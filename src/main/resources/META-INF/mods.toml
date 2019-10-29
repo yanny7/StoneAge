@@ -35,5 +35,5 @@ Age 0 (pre-industrial age)
     modId="ages_api"
     mandatory=true
     versionRange="[1.0.0,)"
-    ordering="BEFORE"
+    ordering="NONE"
     side="BOTH"
