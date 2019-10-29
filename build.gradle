@@ -11,8 +11,8 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 
 version = '1.0.0'
-group = 'com.yanny.ages.zero' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'ages-zero'
+group = 'com.yanny.age.zero' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'age-zero'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 

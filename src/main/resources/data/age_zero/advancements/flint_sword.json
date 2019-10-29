@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "ages_zero:flint_shovel"
+      "age_zero:flint_sword"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "ages_zero:flint_shovel"
+        "recipe": "age_zero:flint_sword"
       }
     }
   },

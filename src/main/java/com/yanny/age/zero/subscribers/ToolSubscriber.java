@@ -1,5 +1,6 @@
-package com.yanny.ages.zero.subscribers;
+package com.yanny.age.zero.subscribers;
 
+import com.yanny.age.zero.Reference;
 import com.yanny.ages.api.group.ModItemGroup;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
@@ -12,11 +13,9 @@ import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.function.Supplier;
 
-import static com.yanny.ages.zero.Reference.*;
-
 @SuppressWarnings("unused")
-@ObjectHolder(MODID)
-@Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@ObjectHolder(Reference.MODID)
+@Mod.EventBusSubscriber(modid = Reference.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ToolSubscriber {
 
     public static final Item flint_axe = null;
@@ -30,11 +29,11 @@ public class ToolSubscriber {
         IForgeRegistry<Item> registry = event.getRegistry();
         Item.Properties properties = new Item.Properties().maxStackSize(1).group(ModItemGroup.TOOMANYORES);
 
-        registry.register(new AxeItem(FlintTier.FLINT_TIER, 5, -3.6f, properties).setRegistryName(MODID, "flint_axe"));
-        registry.register(new PickaxeItem(FlintTier.FLINT_TIER, 1, -3.2f, properties).setRegistryName(MODID, "flint_pickaxe"));
-        registry.register(new ShovelItem(FlintTier.FLINT_TIER, 1.5f, -3.6f, properties).setRegistryName(MODID, "flint_shovel"));
-        registry.register(new SwordItem(FlintTier.FLINT_TIER, 3, -3.2f, properties).setRegistryName(MODID, "flint_sword"));
-        registry.register(new HoeItem(FlintTier.FLINT_TIER, -3.4f, properties).setRegistryName(MODID, "flint_hoe"));
+        registry.register(new AxeItem(FlintTier.FLINT_TIER, 5, -3.6f, properties).setRegistryName(Reference.MODID, "flint_axe"));
+        registry.register(new PickaxeItem(FlintTier.FLINT_TIER, 1, -3.2f, properties).setRegistryName(Reference.MODID, "flint_pickaxe"));
+        registry.register(new ShovelItem(FlintTier.FLINT_TIER, 1.5f, -3.6f, properties).setRegistryName(Reference.MODID, "flint_shovel"));
+        registry.register(new SwordItem(FlintTier.FLINT_TIER, 3, -3.2f, properties).setRegistryName(Reference.MODID, "flint_sword"));
+        registry.register(new HoeItem(FlintTier.FLINT_TIER, -3.4f, properties).setRegistryName(Reference.MODID, "flint_hoe"));
     }
 
     private enum FlintTier implements IItemTier {
