@@ -27,13 +27,14 @@ public class ToolSubscriber {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
-        Item.Properties properties = new Item.Properties().maxStackSize(1).group(ModItemGroup.TOOMANYORES);
+        Item.Properties combatProperties = new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT);
+        Item.Properties toolProperties = new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS);
 
-        registry.register(new AxeItem(FlintTier.FLINT_TIER, 5, -3.6f, properties).setRegistryName(Reference.MODID, "flint_axe"));
-        registry.register(new PickaxeItem(FlintTier.FLINT_TIER, 1, -3.2f, properties).setRegistryName(Reference.MODID, "flint_pickaxe"));
-        registry.register(new ShovelItem(FlintTier.FLINT_TIER, 1.5f, -3.6f, properties).setRegistryName(Reference.MODID, "flint_shovel"));
-        registry.register(new SwordItem(FlintTier.FLINT_TIER, 3, -3.2f, properties).setRegistryName(Reference.MODID, "flint_sword"));
-        registry.register(new HoeItem(FlintTier.FLINT_TIER, -3.4f, properties).setRegistryName(Reference.MODID, "flint_hoe"));
+        registry.register(new AxeItem(FlintTier.FLINT_TIER, 5, -3.6f, toolProperties).setRegistryName(Reference.MODID, "flint_axe"));
+        registry.register(new PickaxeItem(FlintTier.FLINT_TIER, 1, -3.2f, toolProperties).setRegistryName(Reference.MODID, "flint_pickaxe"));
+        registry.register(new ShovelItem(FlintTier.FLINT_TIER, 1.5f, -3.6f, toolProperties).setRegistryName(Reference.MODID, "flint_shovel"));
+        registry.register(new SwordItem(FlintTier.FLINT_TIER, 3, -3.2f, combatProperties).setRegistryName(Reference.MODID, "flint_sword"));
+        registry.register(new HoeItem(FlintTier.FLINT_TIER, -3.4f, toolProperties).setRegistryName(Reference.MODID, "flint_hoe"));
     }
 
     private enum FlintTier implements IItemTier {

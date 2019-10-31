@@ -3,5 +3,10 @@
     "item.age_zero.flint_pickaxe": "Flint pickaxe",
     "item.age_zero.flint_shovel": "Flint shovel",
     "item.age_zero.flint_hoe": "Flint hoe",
-    "item.age_zero.flint_sword": "Flint sword"
+    "item.age_zero.flint_sword": "Flint sword",
+    "item.age_zero.venison": "Venison",
+    "item.age_zero.cooked_venison": "Cooked venison",
+    "item.age_zero.deer_spawn_egg": "Deer spawn egg",
+
+    "entity.age_zero.deer": "Deer"
 }
