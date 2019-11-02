@@ -102,6 +102,7 @@ public class DeerModel extends EntityModel<DeerEntity> {
 		RendererModel.rotateAngleZ = z;
 	}
 
+	@Override
 	public void setRotationAngles(DeerEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
 		this.head.rotateAngleX = headPitch * ((float)Math.PI / 180F) - 0.7854F;
 		this.head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);

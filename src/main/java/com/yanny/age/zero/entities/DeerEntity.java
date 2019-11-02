@@ -35,21 +35,23 @@ public class DeerEntity extends AnimalEntity {
         return EntitySubscriber.deer.create(world);
     }
 
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(Items.WHEAT), false));
         this.goalSelector.addGoal(4, new DeerEntity.AvoidEntityGoal<>(this, PlayerEntity.class, 12.0F, 2.2D, 2.2D));
-        this.goalSelector.addGoal(5, new DeerEntity.AvoidEntityGoal<>(this, WolfEntity.class, 10.0F, 2.2D, 2.2D));
-        this.goalSelector.addGoal(6, new DeerEntity.AvoidEntityGoal<>(this, MonsterEntity.class, 6.0F, 2.2D, 2.2D));
-        this.goalSelector.addGoal(7, new DeerEntity.RaidFarmGoal(this));
-        this.goalSelector.addGoal(8, new FollowParentGoal(this, 1.25D));
-        this.goalSelector.addGoal(9, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(10, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.addGoal(11, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(4, new DeerEntity.AvoidEntityGoal<>(this, WolfEntity.class, 10.0F, 2.2D, 2.2D));
+        this.goalSelector.addGoal(4, new DeerEntity.AvoidEntityGoal<>(this, MonsterEntity.class, 6.0F, 2.2D, 2.2D));
+        this.goalSelector.addGoal(5, new DeerEntity.RaidFarmGoal(this));
+        this.goalSelector.addGoal(6, new FollowParentGoal(this, 1.25D));
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
     }
 
+    @Override
     protected void registerAttributes() {
         super.registerAttributes();
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
@@ -72,9 +74,7 @@ public class DeerEntity extends AnimalEntity {
             this.deer = deer;
         }
 
-        /**
-         * Returns whether the EntityAIBase should begin execution.
-         */
+        @Override
         public boolean shouldExecute() {
             if (this.runDelay <= 0) {
                 if (!net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.deer.world, this.deer)) {
@@ -88,16 +88,12 @@ public class DeerEntity extends AnimalEntity {
             return super.shouldExecute();
         }
 
-        /**
-         * Returns whether an in-progress EntityAIBase should continue executing
-         */
+        @Override
         public boolean shouldContinueExecuting() {
             return this.canRaid && super.shouldContinueExecuting();
         }
 
-        /**
-         * Keep ticking a continuous task that has already been started
-         */
+        @Override
         public void tick() {
             super.tick();
             this.deer.getLookController().setLookPosition((double)this.destinationBlock.getX() + 0.5D, this.destinationBlock.getY() + 1, (double)this.destinationBlock.getZ() + 0.5D, 10.0F, (float)this.deer.getVerticalFaceSpeed());
@@ -123,9 +119,7 @@ public class DeerEntity extends AnimalEntity {
 
         }
 
-        /**
-         * Return true to set given position as destination
-         */
+        @Override
         protected boolean shouldMoveTo(IWorldReader worldIn, @Nonnull BlockPos pos) {
             Block block = worldIn.getBlockState(pos).getBlock();
             if (block == Blocks.FARMLAND && this.wantsToRaid && !this.canRaid) {

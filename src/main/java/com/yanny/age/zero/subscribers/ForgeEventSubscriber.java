@@ -11,11 +11,14 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.LootTable;
+import net.minecraft.world.storage.loot.LootTableManager;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -23,8 +26,7 @@ import static com.yanny.age.zero.Reference.MODID;
 
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeEventSubscriber {
-    private static final Set<ResourceLocation> RESOURCES_TO_REMOVE = Sets.newHashSet(
-            // tools
+    private static final Set<ResourceLocation> RECIPES_TO_REMOVE = Sets.newHashSet(
             new ResourceLocation("minecraft", "wooden_axe"),
             new ResourceLocation("minecraft", "wooden_pickaxe"),
             new ResourceLocation("minecraft", "wooden_hoe"),
@@ -34,14 +36,20 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "stone_pickaxe"),
             new ResourceLocation("minecraft", "stone_hoe"),
             new ResourceLocation("minecraft", "stone_shovel"),
-            new ResourceLocation("minecraft", "stone_sword"),
-            //planks
-            new ResourceLocation("minecraft", "oak_planks"),
-            new ResourceLocation("minecraft", "birch_planks"),
-            new ResourceLocation("minecraft", "acacia_planks"),
-            new ResourceLocation("minecraft", "jungle_planks"),
-            new ResourceLocation("minecraft", "spruce_planks"),
-            new ResourceLocation("minecraft", "dark_oak_planks")
+            new ResourceLocation("minecraft", "stone_sword")
+    );
+    //private static final Set<ResourceLocation> RECIPES_TO_ADD = Sets.newHashSet();
+
+    //private static final Set<ResourceLocation> LOOTS_TO_REMOVE = Sets.newHashSet();
+    //private static final Set<ResourceLocation> LOOTS_TO_ADD = Sets.newHashSet();
+
+    private static final Set<ResourceLocation> ADVANCEMENTS_TO_REMOVE = Sets.newHashSet(
+            new ResourceLocation("minecraft", "recipes/building_blocks/oak_planks"),
+            new ResourceLocation("minecraft", "recipes/building_blocks/birch_planks"),
+            new ResourceLocation("minecraft", "recipes/building_blocks/acacia_planks"),
+            new ResourceLocation("minecraft", "recipes/building_blocks/jungle_planks"),
+            new ResourceLocation("minecraft", "recipes/building_blocks/spruce_planks"),
+            new ResourceLocation("minecraft", "recipes/building_blocks/dark_oak_planks")
     );
 
     @SuppressWarnings("unchecked")
@@ -62,7 +70,11 @@ public class ForgeEventSubscriber {
             recipesMap.forEach((iRecipeType, resourceLocationIRecipeMap) -> {
                 Map<ResourceLocation, IRecipe<?>> map1 = map.computeIfAbsent(iRecipeType, (recipeType) -> Maps.newHashMap());
                 resourceLocationIRecipeMap.forEach(map1::put);
-                RESOURCES_TO_REMOVE.forEach(map1::remove);
+                RECIPES_TO_REMOVE.forEach(map1::remove);
+                /*RECIPES_TO_ADD.forEach(resourceLocation -> {
+                    IRecipe<?> recipe = map1.remove(resourceLocation);
+                    map1.put(new ResourceLocation("minecraft", resourceLocation.getPath()), recipe);
+                });*/
             });
             recipes.set(recipeManager, ImmutableMap.copyOf(map));
         } catch (IllegalAccessException e) {
@@ -81,7 +93,26 @@ public class ForgeEventSubscriber {
             Field listField = list.getDeclaredFields()[1];
             listField.setAccessible(true);
             Map<ResourceLocation, Advancement> map = (Map<ResourceLocation, Advancement>) listField.get(advancementList);
-            RESOURCES_TO_REMOVE.forEach(map::remove);
+            ADVANCEMENTS_TO_REMOVE.forEach(map::remove);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        LootTableManager lootTableManager = event.getServer().getLootTableManager();
+        Class lootTableManagerClass = lootTableManager.getClass();
+
+        try {
+            Field lootTable = lootTableManagerClass.getDeclaredFields()[2];
+            lootTable.setAccessible(true);
+            Map<ResourceLocation, LootTable> lootTableMap = (Map<ResourceLocation, LootTable>) lootTable.get(lootTableManager);
+            HashMap<ResourceLocation, LootTable> map = Maps.newHashMap();
+            lootTableMap.forEach(map::put);
+            /*LOOTS_TO_REMOVE.forEach(map::remove);
+            LOOTS_TO_ADD.forEach(resourceLocation -> {
+                LootTable loot = map.remove(resourceLocation);
+                map.put(new ResourceLocation("minecraft", resourceLocation.getPath()), loot);
+            });*/
+            lootTable.set(lootTableManager, ImmutableMap.copyOf(map));
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
