@@ -10,9 +10,11 @@
     "item.age_zero.boar_spawn_egg": "Boar spawn egg",
     "item.age_zero.auroch_spawn_egg": "Aunoch spawn egg",
     "item.age_zero.fowl_spawn_egg": "Fowl spawn egg",
+    "item.age_zero.mouflon_spawn_egg": "Mouflon spawn egg",
 
     "entity.age_zero.deer": "Deer",
     "entity.age_zero.boar": "Boar",
     "entity.age_zero.auroch": "Auroch",
-    "entity.age_zero.fowl": "Fowl"
+    "entity.age_zero.fowl": "Fowl",
+    "entity.age_zero.mouflon": "Mouflon"
 }

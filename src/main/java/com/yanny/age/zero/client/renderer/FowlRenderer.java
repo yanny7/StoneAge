@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public class FowlRenderer extends LivingRenderer<FowlEntity, FowlModel> {
-    private static final ResourceLocation BOAR_TEXTURE = new ResourceLocation(Reference.MODID, "textures/entity/fowl.png");
+    private static final ResourceLocation FOWL_TEXTURE = new ResourceLocation(Reference.MODID, "textures/entity/fowl.png");
 
     private FowlRenderer(EntityRendererManager rendererManager) {
         super(rendererManager, new FowlModel(), 0.3f);
@@ -26,7 +26,7 @@ public class FowlRenderer extends LivingRenderer<FowlEntity, FowlModel> {
     @Nullable
     @Override
     protected ResourceLocation getEntityTexture(@Nonnull FowlEntity entity) {
-        return BOAR_TEXTURE;
+        return FOWL_TEXTURE;
     }
 
     @Override

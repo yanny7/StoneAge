@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public class AurochRenderer extends LivingRenderer<AurochEntity, AurochModel> {
-    private static final ResourceLocation BOAR_TEXTURE = new ResourceLocation(Reference.MODID, "textures/entity/auroch.png");
+    private static final ResourceLocation AUROCH_TEXTURE = new ResourceLocation(Reference.MODID, "textures/entity/auroch.png");
 
     private AurochRenderer(EntityRendererManager rendererManager) {
         super(rendererManager, new AurochModel(), 0.5f);
@@ -25,7 +25,7 @@ public class AurochRenderer extends LivingRenderer<AurochEntity, AurochModel> {
     @Nullable
     @Override
     protected ResourceLocation getEntityTexture(@Nonnull AurochEntity entity) {
-        return BOAR_TEXTURE;
+        return AUROCH_TEXTURE;
     }
 
     public static class RenderFactory implements IRenderFactory<AurochEntity> {

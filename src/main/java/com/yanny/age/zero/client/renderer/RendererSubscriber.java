@@ -1,9 +1,6 @@
 package com.yanny.age.zero.client.renderer;
 
-import com.yanny.age.zero.entities.AurochEntity;
-import com.yanny.age.zero.entities.BoarEntity;
-import com.yanny.age.zero.entities.DeerEntity;
-import com.yanny.age.zero.entities.FowlEntity;
+import com.yanny.age.zero.entities.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -26,5 +23,6 @@ public class RendererSubscriber {
         RenderingRegistry.registerEntityRenderingHandler(BoarEntity.class, new BoarRenderer.RenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(AurochEntity.class, new AurochRenderer.RenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(FowlEntity.class, new FowlRenderer.RenderFactory());
+        RenderingRegistry.registerEntityRenderingHandler(MouflonEntity.class, new MouflonRenderer.RenderFactory());
     }
 }
