@@ -48,7 +48,7 @@ public class AurochEntity extends AnimalEntity implements IBecomeAngry {
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new AgroTargetGoal(this, AurochEntity.class));
-        this.targetSelector.addGoal(2, new TargetAggressorGoal(this));
+        this.targetSelector.addGoal(2, new TargetAggressorGoal<>(this, AurochEntity.class));
     }
 
     public void registerAttributes() {
@@ -79,15 +79,12 @@ public class AurochEntity extends AnimalEntity implements IBecomeAngry {
             this.moveController.setMoveTo(livingentity.posX, livingentity.posY, livingentity.posZ, this.moveController.getSpeed());
         }
 
-        LivingEntity revengeTarget = this.getRevengeTarget();
         if (this.isAngry()) {
             --this.angerLevel;
-            LivingEntity livingentity1 = revengeTarget != null ? revengeTarget : livingentity;
-            if (!this.isAngry() && livingentity1 != null) {
-                if (!this.canEntityBeSeen(livingentity1)) {
-                    this.setRevengeTarget(null);
-                    this.setAttackTarget(null);
-                }
+            if (!this.isAngry()) {
+                this.setRevengeTarget(null);
+                this.setAttackTarget(null);
+                goalSelector.getRunningGoals().forEach(PrioritizedGoal::resetTask);
             }
         }
 
@@ -123,7 +120,6 @@ public class AurochEntity extends AnimalEntity implements IBecomeAngry {
         } else {
             compound.putString("HurtBy", "");
         }
-
     }
 
     @Override
@@ -140,7 +136,6 @@ public class AurochEntity extends AnimalEntity implements IBecomeAngry {
                 this.recentlyHit = this.getRevengeTimer();
             }
         }
-
     }
 
     @Override
@@ -178,26 +173,16 @@ public class AurochEntity extends AnimalEntity implements IBecomeAngry {
         return stack.getItem() == Items.WHEAT;
     }
 
+    @Override
+    public boolean isAngry() {
+        return this.angerLevel > 0;
+    }
+
     private void calculateRotationYaw(double x, double z) {
         this.rotationYaw = (float)(MathHelper.atan2(z - this.posZ, x - this.posX) * (double)(180F / (float)Math.PI)) - 90.0F;
     }
 
     private int nextRand() {
         return 100 + this.rand.nextInt(100);
-    }
-
-    private boolean isAngry() {
-        return this.angerLevel > 0;
-    }
-
-    static class TargetAggressorGoal extends NearestAttackableTargetGoal<PlayerEntity> {
-        TargetAggressorGoal(AurochEntity entity) {
-            super(entity, PlayerEntity.class, true);
-        }
-
-        @Override
-        public boolean shouldExecute() {
-            return ((AurochEntity)this.goalOwner).isAngry() && super.shouldExecute();
-        }
     }
 }

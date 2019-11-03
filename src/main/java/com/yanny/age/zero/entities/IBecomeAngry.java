@@ -4,4 +4,5 @@ import net.minecraft.entity.Entity;
 
 public interface IBecomeAngry {
     boolean becomeAngryAt(Entity entity);
+    boolean isAngry();
 }
