@@ -2,10 +2,12 @@ package com.yanny.age.zero.entities;
 
 import com.yanny.age.zero.subscribers.EntitySubscriber;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.CropsBlock;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
@@ -40,6 +42,7 @@ public class BoarEntity extends AnimalEntity implements IBecomeAngry {
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 0.5D, false));
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(Items.CARROT), false));
+        this.goalSelector.addGoal(5, new RaidFarmGoal<>(this, CropsBlock.class, CropsBlock.AGE));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
@@ -48,7 +51,7 @@ public class BoarEntity extends AnimalEntity implements IBecomeAngry {
         this.targetSelector.addGoal(2, new TargetAggressorGoal(this));
     }
 
-    protected void registerAttributes() {
+    public void registerAttributes() {
         super.registerAttributes();
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
@@ -170,6 +173,11 @@ public class BoarEntity extends AnimalEntity implements IBecomeAngry {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean isBreedingItem(ItemStack stack) {
+        return stack.getItem() == Items.CARROT;
     }
 
     private void calculateRotationYaw(double x, double z) {
