@@ -11,29 +11,42 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class BoarEntity extends AnimalEntity implements IBecomeAngry {
+public class FowlEntity extends AnimalEntity implements IBecomeAngry {
     private int angerLevel;
     private UUID angerTargetUUID;
+    private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
+    public float wingRotation;
+    public float destPos;
+    public float oFlapSpeed;
+    public float oFlap;
+    private float wingRotDelta = 1.0F;
 
-    public BoarEntity(EntityType<BoarEntity> type, World worldIn) {
+    public FowlEntity(EntityType<? extends FowlEntity> type, World worldIn) {
         super(type, worldIn);
+        this.setPathPriority(PathNodeType.WATER, 0.0F);
     }
 
-    @Nullable
     @Override
-    public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
-        return EntitySubscriber.boar.create(world);
+    public boolean becomeAngryAt(Entity entity) {
+        this.angerLevel = this.nextRand();
+        if (entity instanceof LivingEntity) {
+            this.setRevengeTarget((LivingEntity)entity);
+        }
+
+        return true;
     }
 
     @Override
@@ -47,13 +60,14 @@ public class BoarEntity extends AnimalEntity implements IBecomeAngry {
         this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
-        this.targetSelector.addGoal(1, new AgroTargetGoal(this, BoarEntity.class));
+        this.targetSelector.addGoal(1, new AgroTargetGoal(this, FowlEntity.class));
         this.targetSelector.addGoal(2, new TargetAggressorGoal(this));
     }
 
+    @Override
     public void registerAttributes() {
         super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
+        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(6.0D);
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
     }
 
@@ -67,8 +81,8 @@ public class BoarEntity extends AnimalEntity implements IBecomeAngry {
 
     @Override
     public boolean attackEntityAsMob(Entity entityIn) {
-        this.playSound(SoundEvents.ENTITY_PIG_HURT, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-        return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 4.0F);
+        this.playSound(SoundEvents.ENTITY_CHICKEN_HURT, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+        return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 1.0F);
     }
 
     @Override
@@ -100,6 +114,26 @@ public class BoarEntity extends AnimalEntity implements IBecomeAngry {
     }
 
     @Override
+    public void livingTick() {
+        super.livingTick();
+        this.oFlap = this.wingRotation;
+        this.oFlapSpeed = this.destPos;
+        this.destPos = (float)((double)this.destPos + (double)(this.onGround ? -1 : 4) * 0.3D);
+        this.destPos = MathHelper.clamp(this.destPos, 0.0F, 1.0F);
+        if (!this.onGround && this.wingRotDelta < 1.0F) {
+            this.wingRotDelta = 1.0F;
+        }
+
+        this.wingRotDelta = (float)((double)this.wingRotDelta * 0.9D);
+        Vec3d vec3d = this.getMotion();
+        if (!this.onGround && vec3d.y < 0.0D) {
+            this.setMotion(vec3d.mul(1.0D, 0.6D, 1.0D));
+        }
+
+        this.wingRotation += this.wingRotDelta * 2.0F;
+    }
+
+    @Override
     public boolean attackEntityFrom(@Nonnull DamageSource source, float amount) {
         if (this.isInvulnerableTo(source)) {
             return false;
@@ -115,14 +149,37 @@ public class BoarEntity extends AnimalEntity implements IBecomeAngry {
     }
 
     @Override
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
-        compound.putShort("Anger", (short)this.angerLevel);
-        if (this.angerTargetUUID != null) {
-            compound.putString("HurtBy", this.angerTargetUUID.toString());
-        } else {
-            compound.putString("HurtBy", "");
-        }
+    public void fall(float distance, float damageMultiplier) {
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.ENTITY_CHICKEN_AMBIENT;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+        return SoundEvents.ENTITY_CHICKEN_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.ENTITY_CHICKEN_DEATH;
+    }
+
+    @Override
+    protected void playStepSound(@Nonnull BlockPos pos, BlockState blockIn) {
+        this.playSound(SoundEvents.ENTITY_CHICKEN_STEP, 0.15F, 1.0F);
+    }
+
+    @Override
+    public FowlEntity createChild(@Nonnull AgeableEntity ageable) {
+        return EntitySubscriber.fowl.create(this.world);
+    }
+
+    @Override
+    public boolean isBreedingItem(ItemStack stack) {
+        return TEMPTATION_ITEMS.test(stack);
     }
 
     @Override
@@ -142,42 +199,14 @@ public class BoarEntity extends AnimalEntity implements IBecomeAngry {
     }
 
     @Override
-    public SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_PIG_AMBIENT;
-    }
-
-    @Override
-    public SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.ENTITY_PIG_HURT;
-    }
-
-    @Override
-    public SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_PIG_DEATH;
-    }
-
-    @Override
-    public void playStepSound(@Nonnull BlockPos pos, BlockState blockIn) {
-        this.playSound(SoundEvents.ENTITY_PIG_STEP, 0.15F, 1.0F);
-    }
-
-    @Override
-    public boolean becomeAngryAt(Entity entity) {
-        this.angerLevel = this.nextRand();
-        if (entity instanceof LivingEntity) {
-            this.setRevengeTarget((LivingEntity)entity);
+    public void writeAdditional(CompoundNBT compound) {
+        super.writeAdditional(compound);
+        compound.putShort("Anger", (short)this.angerLevel);
+        if (this.angerTargetUUID != null) {
+            compound.putString("HurtBy", this.angerTargetUUID.toString());
+        } else {
+            compound.putString("HurtBy", "");
         }
-
-        return true;
-    }
-
-    @Override
-    public boolean isBreedingItem(ItemStack stack) {
-        return stack.getItem() == Items.CARROT;
-    }
-
-    private void calculateRotationYaw(double x, double z) {
-        this.rotationYaw = (float)(MathHelper.atan2(z - this.posZ, x - this.posX) * (double)(180F / (float)Math.PI)) - 90.0F;
     }
 
     private int nextRand() {
@@ -188,14 +217,18 @@ public class BoarEntity extends AnimalEntity implements IBecomeAngry {
         return this.angerLevel > 0;
     }
 
+    private void calculateRotationYaw(double x, double z) {
+        this.rotationYaw = (float)(MathHelper.atan2(z - this.posZ, x - this.posX) * (double)(180F / (float)Math.PI)) - 90.0F;
+    }
+
     static class TargetAggressorGoal extends NearestAttackableTargetGoal<PlayerEntity> {
-        TargetAggressorGoal(BoarEntity entity) {
+        TargetAggressorGoal(FowlEntity entity) {
             super(entity, PlayerEntity.class, true);
         }
 
         @Override
         public boolean shouldExecute() {
-            return ((BoarEntity)this.goalOwner).isAngry() && super.shouldExecute();
+            return ((FowlEntity)this.goalOwner).isAngry() && super.shouldExecute();
         }
     }
 }

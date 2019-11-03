@@ -6,6 +6,7 @@ import com.yanny.age.zero.config.Config;
 import com.yanny.age.zero.entities.AurochEntity;
 import com.yanny.age.zero.entities.BoarEntity;
 import com.yanny.age.zero.entities.DeerEntity;
+import com.yanny.age.zero.entities.FowlEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
@@ -35,16 +36,20 @@ public class EntitySubscriber {
             .size(0.9f, 0.9f).build("").setRegistryName(Reference.MODID,"boar");
     public static final EntityType<AurochEntity> auroch = (EntityType<AurochEntity>) EntityType.Builder.create(AurochEntity::new, EntityClassification.CREATURE)
             .size(1.1f, 1.5f).build("").setRegistryName(Reference.MODID,"auroch");
+    public static final EntityType<FowlEntity> fowl = (EntityType<FowlEntity>) EntityType.Builder.create(FowlEntity::new, EntityClassification.CREATURE)
+            .size(0.7f, 0.7f).build("").setRegistryName(Reference.MODID,"fowl");
 
     public static final Item deer_spawn_egg = null;
     public static final Item boar_spawn_egg = null;
     public static final Item auroch_spawn_egg = null;
+    public static final Item fowl_spawn_egg = null;
 
     private static final EnumSet<Biome.Category> deer_biomes = EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA);
     private static final EnumSet<Biome.Category> boar_biomes = EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, SWAMP, JUNGLE);
     private static final EnumSet<Biome.Category> auroch_biomes = EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, BEACH);
+    private static final EnumSet<Biome.Category> fowl_biomes = EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, SWAMP, JUNGLE, BEACH, MESA);
 
-    private static final Set<EntityType> vanillaAnimals = Sets.newHashSet(COW, SHEEP, PIG);
+    private static final Set<EntityType> vanillaAnimals = Sets.newHashSet(COW, SHEEP, PIG, CHICKEN);
 
     @SubscribeEvent
     public static void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
@@ -52,6 +57,7 @@ public class EntitySubscriber {
         registry.register(deer);
         registry.register(boar);
         registry.register(auroch);
+        registry.register(fowl);
 
         for (Biome biome : ForgeRegistries.BIOMES) {
             if (deer_biomes.contains(biome.getCategory())) {
@@ -62,6 +68,9 @@ public class EntitySubscriber {
             }
             if (auroch_biomes.contains(biome.getCategory())) {
                 biome.getSpawns(auroch.getClassification()).add(new Biome.SpawnListEntry(auroch, 10, 2, 4));
+            }
+            if (fowl_biomes.contains(biome.getCategory())) {
+                biome.getSpawns(fowl.getClassification()).add(new Biome.SpawnListEntry(fowl, 10, 2, 6));
             }
 
             if (Config.removeVanillaGeneratedAnimals) {
@@ -79,5 +88,7 @@ public class EntitySubscriber {
                 new Item.Properties().group(ItemGroup.MISC)).setRegistryName(Reference.MODID, "boar_spawn_egg"));
         registry.register(new SpawnEggItem(auroch, 0xffc0c0, 0xffc0ff,
                 new Item.Properties().group(ItemGroup.MISC)).setRegistryName(Reference.MODID, "auroch_spawn_egg"));
+        registry.register(new SpawnEggItem(fowl, 0xd666c0, 0x33c066,
+                new Item.Properties().group(ItemGroup.MISC)).setRegistryName(Reference.MODID, "fowl_spawn_egg"));
     }
 }

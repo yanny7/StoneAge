@@ -8,7 +8,11 @@
     "item.age_zero.cooked_venison": "Cooked venison",
     "item.age_zero.deer_spawn_egg": "Deer spawn egg",
     "item.age_zero.boar_spawn_egg": "Boar spawn egg",
+    "item.age_zero.auroch_spawn_egg": "Aunoch spawn egg",
+    "item.age_zero.fowl_spawn_egg": "Fowl spawn egg",
 
     "entity.age_zero.deer": "Deer",
-    "entity.age_zero.boar": "Boar"
+    "entity.age_zero.boar": "Boar",
+    "entity.age_zero.aunoch": "Aunoch",
+    "entity.age_zero.fowl": "Fowl"
 }

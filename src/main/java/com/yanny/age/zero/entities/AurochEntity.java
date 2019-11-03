@@ -87,8 +87,6 @@ public class AurochEntity extends AnimalEntity implements IBecomeAngry {
                 if (!this.canEntityBeSeen(livingentity1)) {
                     this.setRevengeTarget(null);
                     this.setAttackTarget(null);
-                } else {
-                    this.angerLevel = this.nextRand();
                 }
             }
         }
@@ -185,7 +183,7 @@ public class AurochEntity extends AnimalEntity implements IBecomeAngry {
     }
 
     private int nextRand() {
-        return 400 + this.rand.nextInt(400);
+        return 100 + this.rand.nextInt(100);
     }
 
     private boolean isAngry() {
