@@ -28,6 +28,11 @@ public class DeerRenderer extends LivingRenderer<DeerEntity, DeerModel> {
         return DEER_TEXTURE;
     }
 
+    @Override
+    protected boolean canRenderName(DeerEntity entity) {
+        return false;
+    }
+
     public static class RenderFactory implements IRenderFactory<DeerEntity> {
 
         @Override

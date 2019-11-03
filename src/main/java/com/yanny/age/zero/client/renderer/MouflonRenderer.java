@@ -28,6 +28,11 @@ public class MouflonRenderer extends LivingRenderer<MouflonEntity, MouflonModel>
         return MOUFLON_TEXTURE;
     }
 
+    @Override
+    protected boolean canRenderName(MouflonEntity entity) {
+        return false;
+    }
+
     public static class RenderFactory implements IRenderFactory<MouflonEntity> {
 
         @Override

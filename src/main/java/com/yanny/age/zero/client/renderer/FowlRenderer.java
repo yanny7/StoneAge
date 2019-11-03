@@ -36,6 +36,11 @@ public class FowlRenderer extends LivingRenderer<FowlEntity, FowlModel> {
         return (MathHelper.sin(f) + 1.0F) * f1;
     }
 
+    @Override
+    protected boolean canRenderName(FowlEntity entity) {
+        return false;
+    }
+
     public static class RenderFactory implements IRenderFactory<FowlEntity> {
 
         @Override

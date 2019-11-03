@@ -28,6 +28,11 @@ public class AurochRenderer extends LivingRenderer<AurochEntity, AurochModel> {
         return AUROCH_TEXTURE;
     }
 
+    @Override
+    protected boolean canRenderName(AurochEntity entity) {
+        return false;
+    }
+
     public static class RenderFactory implements IRenderFactory<AurochEntity> {
 
         @Override

@@ -2,6 +2,7 @@ package com.yanny.age.zero.client.renderer;
 
 import com.yanny.age.zero.Reference;
 import com.yanny.age.zero.client.models.BoarModel;
+import com.yanny.age.zero.entities.AurochEntity;
 import com.yanny.age.zero.entities.BoarEntity;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -26,6 +27,11 @@ public class BoarRenderer extends LivingRenderer<BoarEntity, BoarModel> {
     @Override
     protected ResourceLocation getEntityTexture(@Nonnull BoarEntity entity) {
         return BOAR_TEXTURE;
+    }
+
+    @Override
+    protected boolean canRenderName(BoarEntity entity) {
+        return false;
     }
 
     public static class RenderFactory implements IRenderFactory<BoarEntity> {
