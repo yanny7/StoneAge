@@ -40,8 +40,16 @@ public class ForgeEventSubscriber {
     );
     //private static final Set<ResourceLocation> RECIPES_TO_ADD = Sets.newHashSet();
 
-    //private static final Set<ResourceLocation> LOOTS_TO_REMOVE = Sets.newHashSet();
-    //private static final Set<ResourceLocation> LOOTS_TO_ADD = Sets.newHashSet();
+    private static final Set<ResourceLocation> LOOTS_TO_REMOVE = Sets.newHashSet(
+            new ResourceLocation("minecraft", "entities/cow"),
+            new ResourceLocation("minecraft", "entities/pig"),
+            new ResourceLocation("minecraft", "entities/sheep")
+    );
+    private static final Set<ResourceLocation> LOOTS_TO_ADD = Sets.newHashSet(
+            new ResourceLocation(MODID, "entities/cow"),
+            new ResourceLocation(MODID, "entities/pig"),
+            new ResourceLocation(MODID, "entities/sheep")
+    );
 
     private static final Set<ResourceLocation> ADVANCEMENTS_TO_REMOVE = Sets.newHashSet(
             new ResourceLocation("minecraft", "recipes/building_blocks/oak_planks"),
@@ -107,11 +115,11 @@ public class ForgeEventSubscriber {
             Map<ResourceLocation, LootTable> lootTableMap = (Map<ResourceLocation, LootTable>) lootTable.get(lootTableManager);
             HashMap<ResourceLocation, LootTable> map = Maps.newHashMap();
             lootTableMap.forEach(map::put);
-            /*LOOTS_TO_REMOVE.forEach(map::remove);
+            LOOTS_TO_REMOVE.forEach(map::remove);
             LOOTS_TO_ADD.forEach(resourceLocation -> {
                 LootTable loot = map.remove(resourceLocation);
                 map.put(new ResourceLocation("minecraft", resourceLocation.getPath()), loot);
-            });*/
+            });
             lootTable.set(lootTableManager, ImmutableMap.copyOf(map));
         } catch (IllegalAccessException e) {
             e.printStackTrace();
