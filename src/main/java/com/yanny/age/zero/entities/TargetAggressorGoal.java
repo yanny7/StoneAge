@@ -4,7 +4,7 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.player.PlayerEntity;
 
-public class TargetAggressorGoal<T extends MobEntity> extends NearestAttackableTargetGoal<PlayerEntity> {
+class TargetAggressorGoal<T extends MobEntity> extends NearestAttackableTargetGoal<PlayerEntity> {
     private Class<? extends IBecomeAngry> entity;
 
     TargetAggressorGoal(T entity, Class<? extends IBecomeAngry> clazz) {

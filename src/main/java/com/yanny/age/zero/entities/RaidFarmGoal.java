@@ -14,7 +14,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nonnull;
 
-public class RaidFarmGoal<T extends AnimalEntity> extends MoveToBlockGoal {
+class RaidFarmGoal<T extends AnimalEntity> extends MoveToBlockGoal {
     private final T entity;
     private final Class<? extends CropsBlock> cropsBlock;
     private final IntegerProperty ageProperty;

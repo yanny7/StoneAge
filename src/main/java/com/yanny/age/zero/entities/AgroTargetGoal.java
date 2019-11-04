@@ -26,9 +26,7 @@ class AgroTargetGoal extends TargetGoal {
         this.setMutexFlags(EnumSet.of(Goal.Flag.TARGET));
     }
 
-    /**
-     * Returns whether the EntityAIBase should begin execution.
-     */
+    @Override
     public boolean shouldExecute() {
         int i = this.goalOwner.getRevengeTimer();
         LivingEntity livingentity = this.goalOwner.getRevengeTarget();
@@ -46,9 +44,7 @@ class AgroTargetGoal extends TargetGoal {
         }
     }
 
-    /**
-     * Execute a one shot task or start executing a continuous task
-     */
+    @Override
     public void startExecuting() {
         this.goalOwner.setAttackTarget(this.goalOwner.getRevengeTarget());
         this.target = this.goalOwner.getAttackTarget();
