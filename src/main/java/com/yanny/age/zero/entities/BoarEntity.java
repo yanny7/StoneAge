@@ -1,5 +1,6 @@
 package com.yanny.age.zero.entities;
 
+import com.yanny.age.zero.config.Config;
 import com.yanny.age.zero.subscribers.EntitySubscriber;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
@@ -11,6 +12,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -23,6 +27,8 @@ import javax.annotation.Nullable;
 import java.util.UUID;
 
 public class BoarEntity extends AnimalEntity implements IBecomeAngry {
+    private static final DataParameter<Integer> GENERATION = EntityDataManager.createKey(BoarEntity.class, DataSerializers.VARINT);
+
     private int angerLevel;
     private UUID angerTargetUUID;
 
@@ -30,10 +36,26 @@ public class BoarEntity extends AnimalEntity implements IBecomeAngry {
         super(type, worldIn);
     }
 
+    @Override
+    protected void registerData() {
+        super.registerData();
+        this.dataManager.register(GENERATION, 0);
+    }
+
     @Nullable
     @Override
     public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
-        return EntitySubscriber.boar.create(world);
+        if (Math.min(dataManager.get(GENERATION), ageable.getDataManager().get(GENERATION)) >= Config.domesticateAfterGenerations) {
+            return EntityType.PIG.create(world);
+        } else {
+            BoarEntity entity = EntitySubscriber.boar.create(world);
+
+            if (entity != null) {
+                entity.setGeneration(dataManager.get(GENERATION) + 1);
+            }
+
+            return entity;
+        }
     }
 
     @Override
@@ -51,6 +73,7 @@ public class BoarEntity extends AnimalEntity implements IBecomeAngry {
         this.targetSelector.addGoal(2, new TargetAggressorGoal<>(this, BoarEntity.class));
     }
 
+    @Override
     public void registerAttributes() {
         super.registerAttributes();
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
@@ -115,6 +138,7 @@ public class BoarEntity extends AnimalEntity implements IBecomeAngry {
     public void writeAdditional(CompoundNBT compound) {
         super.writeAdditional(compound);
         compound.putShort("Anger", (short)this.angerLevel);
+        compound.putInt("Generation", dataManager.get(GENERATION));
         if (this.angerTargetUUID != null) {
             compound.putString("HurtBy", this.angerTargetUUID.toString());
         } else {
@@ -126,6 +150,7 @@ public class BoarEntity extends AnimalEntity implements IBecomeAngry {
     public void readAdditional(CompoundNBT compound) {
         super.readAdditional(compound);
         this.angerLevel = compound.getShort("Anger");
+        this.setGeneration(compound.getInt("Generation"));
         String s = compound.getString("HurtBy");
         if (!s.isEmpty()) {
             this.angerTargetUUID = UUID.fromString(s);
@@ -176,6 +201,10 @@ public class BoarEntity extends AnimalEntity implements IBecomeAngry {
     @Override
     public boolean isAngry() {
         return this.angerLevel > 0;
+    }
+
+    private void setGeneration(int generation) {
+        dataManager.set(GENERATION, generation);
     }
 
     private void calculateRotationYaw(double x, double z) {

@@ -8,6 +8,7 @@ import javax.annotation.Nonnull;
 class ServerConfig {
     final ForgeConfigSpec.BooleanValue removeVanillaRecipes;
     final ForgeConfigSpec.BooleanValue removeVanillaGeneratedAnimals;
+    final ForgeConfigSpec.IntValue domesticateAfterGenerations;
 
     ServerConfig(@Nonnull final ForgeConfigSpec.Builder builder) {
         builder.push("general");
@@ -19,6 +20,10 @@ class ServerConfig {
                 .comment("Remove spawning of vanilla animals like cows, pigs, sheeps")
                 .translation(Reference.MODID + ".config.remove_vanilla_generated_animals")
                 .define("removeVanillaGeneratedAnimals", true);
+        domesticateAfterGenerations = builder
+                .comment("Domesticate wild animal after given generations")
+                .translation(Reference.MODID + ".config.domesticate_after_generations")
+                .defineInRange("domesticateAfterGenerations", 3, 1, 10);
         builder.pop();
     }
 }

@@ -9,6 +9,7 @@ public class ConfigHelper {
     public static void bakeServer() {
         Config.removeVanillaRecipes = ConfigHolder.SERVER.removeVanillaRecipes.get();
         Config.removeVanillaGeneratedAnimals = ConfigHolder.SERVER.removeVanillaGeneratedAnimals.get();
+        Config.domesticateAfterGenerations = ConfigHolder.SERVER.domesticateAfterGenerations.get();
     }
 
     public static void bakeClient() {

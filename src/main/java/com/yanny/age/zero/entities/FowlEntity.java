@@ -1,16 +1,21 @@
 package com.yanny.age.zero.entities;
 
+import com.yanny.age.zero.config.Config;
 import com.yanny.age.zero.subscribers.EntitySubscriber;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -25,6 +30,8 @@ import javax.annotation.Nullable;
 import java.util.UUID;
 
 public class FowlEntity extends AnimalEntity implements IBecomeAngry {
+    private static final DataParameter<Integer> GENERATION = EntityDataManager.createKey(BoarEntity.class, DataSerializers.VARINT);
+
     private int angerLevel;
     private UUID angerTargetUUID;
     private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
@@ -37,6 +44,27 @@ public class FowlEntity extends AnimalEntity implements IBecomeAngry {
     public FowlEntity(EntityType<? extends FowlEntity> type, World worldIn) {
         super(type, worldIn);
         this.setPathPriority(PathNodeType.WATER, 0.0F);
+    }
+
+    @Override
+    protected void registerData() {
+        super.registerData();
+        this.dataManager.register(GENERATION, 0);
+    }
+
+    @Override
+    public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
+        if (Math.min(dataManager.get(GENERATION), ageable.getDataManager().get(GENERATION)) >= Config.domesticateAfterGenerations) {
+            return EntityType.CHICKEN.create(world);
+        } else {
+            FowlEntity entity = EntitySubscriber.fowl.create(world);
+
+            if (entity != null) {
+                entity.setGeneration(dataManager.get(GENERATION) + 1);
+            }
+
+            return entity;
+        }
     }
 
     @Override
@@ -170,11 +198,6 @@ public class FowlEntity extends AnimalEntity implements IBecomeAngry {
     }
 
     @Override
-    public FowlEntity createChild(@Nonnull AgeableEntity ageable) {
-        return EntitySubscriber.fowl.create(this.world);
-    }
-
-    @Override
     public boolean isBreedingItem(ItemStack stack) {
         return TEMPTATION_ITEMS.test(stack);
     }
@@ -183,6 +206,7 @@ public class FowlEntity extends AnimalEntity implements IBecomeAngry {
     public void readAdditional(CompoundNBT compound) {
         super.readAdditional(compound);
         this.angerLevel = compound.getShort("Anger");
+        this.setGeneration(compound.getInt("Generation"));
         String s = compound.getString("HurtBy");
         if (!s.isEmpty()) {
             this.angerTargetUUID = UUID.fromString(s);
@@ -199,6 +223,7 @@ public class FowlEntity extends AnimalEntity implements IBecomeAngry {
     public void writeAdditional(CompoundNBT compound) {
         super.writeAdditional(compound);
         compound.putShort("Anger", (short)this.angerLevel);
+        compound.putInt("Generation", dataManager.get(GENERATION));
         if (this.angerTargetUUID != null) {
             compound.putString("HurtBy", this.angerTargetUUID.toString());
         } else {
@@ -209,6 +234,10 @@ public class FowlEntity extends AnimalEntity implements IBecomeAngry {
     @Override
     public boolean isAngry() {
         return this.angerLevel > 0;
+    }
+
+    private void setGeneration(int generation) {
+        dataManager.set(GENERATION, generation);
     }
 
     private int nextRand() {
