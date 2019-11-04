@@ -30,7 +30,7 @@ public class AurochRenderer extends LivingRenderer<AurochEntity, AurochModel> {
 
     @Override
     protected boolean canRenderName(AurochEntity entity) {
-        return false;
+        return entity.hasCustomName();
     }
 
     public static class RenderFactory implements IRenderFactory<AurochEntity> {

@@ -30,7 +30,7 @@ public class DeerRenderer extends LivingRenderer<DeerEntity, DeerModel> {
 
     @Override
     protected boolean canRenderName(DeerEntity entity) {
-        return false;
+        return entity.hasCustomName();
     }
 
     public static class RenderFactory implements IRenderFactory<DeerEntity> {

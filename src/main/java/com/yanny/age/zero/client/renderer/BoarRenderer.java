@@ -31,7 +31,7 @@ public class BoarRenderer extends LivingRenderer<BoarEntity, BoarModel> {
 
     @Override
     protected boolean canRenderName(BoarEntity entity) {
-        return false;
+        return entity.hasCustomName();
     }
 
     public static class RenderFactory implements IRenderFactory<BoarEntity> {

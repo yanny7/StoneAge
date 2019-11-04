@@ -30,7 +30,7 @@ public class MouflonRenderer extends LivingRenderer<MouflonEntity, MouflonModel>
 
     @Override
     protected boolean canRenderName(MouflonEntity entity) {
-        return false;
+        return entity.hasCustomName();
     }
 
     public static class RenderFactory implements IRenderFactory<MouflonEntity> {

@@ -38,7 +38,7 @@ public class FowlRenderer extends LivingRenderer<FowlEntity, FowlModel> {
 
     @Override
     protected boolean canRenderName(FowlEntity entity) {
-        return false;
+        return entity.hasCustomName();
     }
 
     public static class RenderFactory implements IRenderFactory<FowlEntity> {
