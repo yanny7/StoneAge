@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "age_zero:block/flint_workbench" },
+    "facing=south": { "model": "age_zero:block/flint_workbench", "y": 180 },
+    "facing=west": { "model": "age_zero:block/flint_workbench", "y": 270 },
+    "facing=east": { "model": "age_zero:block/flint_workbench", "y": 90 }
+  }
+}

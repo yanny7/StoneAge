@@ -1,15 +1,22 @@
 package com.yanny.age.zero.subscribers;
 
+import com.yanny.age.zero.ExampleMod;
 import com.yanny.age.zero.config.ConfigHelper;
 import com.yanny.age.zero.config.ConfigHolder;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import static com.yanny.age.zero.Reference.*;
 
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModSubscriber {
+
+    @SubscribeEvent
+    public static void init(FMLCommonSetupEvent event) {
+        ExampleMod.proxy.init();
+    }
 
     @SubscribeEvent
     public static void onModConfigEvent(ModConfig.ModConfigEvent event) {

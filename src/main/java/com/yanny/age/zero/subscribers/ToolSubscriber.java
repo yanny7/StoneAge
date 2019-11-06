@@ -18,11 +18,10 @@ import java.util.function.Supplier;
 @Mod.EventBusSubscriber(modid = Reference.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ToolSubscriber {
 
-    public static final Item flint_axe = null;
-    public static final Item flint_pickaxe = null;
-    public static final Item flint_shovel = null;
-    public static final Item flint_sword = null;
-    public static final Item flint_hoe = null;
+    public static final Item antler_pickaxe = null;
+    public static final Item antler_shovel = null;
+    public static final Item antler_hoe = null;
+    public static final Item bone_spear = null;
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
@@ -30,16 +29,15 @@ public class ToolSubscriber {
         Item.Properties combatProperties = new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT);
         Item.Properties toolProperties = new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS);
 
-        registry.register(new AxeItem(FlintTier.FLINT_TIER, 5, -3.6f, toolProperties).setRegistryName(Reference.MODID, "flint_axe"));
-        registry.register(new PickaxeItem(FlintTier.FLINT_TIER, 1, -3.2f, toolProperties).setRegistryName(Reference.MODID, "flint_pickaxe"));
-        registry.register(new ShovelItem(FlintTier.FLINT_TIER, 1.5f, -3.6f, toolProperties).setRegistryName(Reference.MODID, "flint_shovel"));
-        registry.register(new SwordItem(FlintTier.FLINT_TIER, 3, -3.2f, combatProperties).setRegistryName(Reference.MODID, "flint_sword"));
-        registry.register(new HoeItem(FlintTier.FLINT_TIER, -3.4f, toolProperties).setRegistryName(Reference.MODID, "flint_hoe"));
+        registry.register(new PickaxeItem(FlintTier.BONE_TIER, 1, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_pickaxe"));
+        registry.register(new ShovelItem(FlintTier.BONE_TIER, 1.5f, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_shovel"));
+        registry.register(new HoeItem(FlintTier.BONE_TIER, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_hoe"));
+        registry.register(new SwordItem(FlintTier.BONE_TIER, 2,-2.5f, toolProperties).setRegistryName(Reference.MODID, "bone_spear"));
     }
 
     private enum FlintTier implements IItemTier {
-        FLINT_TIER(0, 59, 2.0F, 0.0F, 15, () -> {
-            return Ingredient.fromItems(Items.FLINT);
+        BONE_TIER(-1, 59, 2.0F, 1.0F, 15, () -> {
+            return Ingredient.fromItems(Items.BONE);
         })
         ;
 

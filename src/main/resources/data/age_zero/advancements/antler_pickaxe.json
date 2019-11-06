@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "age_zero:flint_axe"
+      "age_zero:antler_pickaxe"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "age_zero:flint_axe"
+        "recipe": "age_zero:antler_pickaxe"
       }
     }
   },

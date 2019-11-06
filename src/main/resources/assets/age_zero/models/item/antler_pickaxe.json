@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "age_zero:item/flint_axe"
+        "layer0": "age_zero:item/antler_pickaxe"
     }
 }
