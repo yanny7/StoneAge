@@ -53,8 +53,8 @@ public class FlintWorkbenchRecipeSerializer extends ForgeRegistryEntry<IRecipeSe
 
     @Override
     public void write(final PacketBuffer buffer, final FlintWorkbenchRecipe recipe) {
-        buffer.writeVarInt(recipe.getRecipeWidth());
-        buffer.writeVarInt(recipe.getRecipeHeight());
+        buffer.writeVarInt(recipe.getWidth());
+        buffer.writeVarInt(recipe.getHeight());
         buffer.writeString(recipe.getGroup());
 
         for (final Ingredient ingredient : recipe.getIngredients()) {

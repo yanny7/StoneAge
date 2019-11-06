@@ -8,10 +8,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-import static com.yanny.age.zero.Reference.*;
+import static com.yanny.age.zero.Reference.MODID;
 
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class ModSubscriber {
+public class ModEventSubscriber {
 
     @SubscribeEvent
     public static void init(FMLCommonSetupEvent event) {

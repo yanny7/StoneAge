@@ -3,6 +3,7 @@ package com.yanny.age.zero.subscribers;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import com.yanny.age.zero.blocks.FlintWorkbenchTileEntity;
 import com.yanny.age.zero.config.Config;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementList;
@@ -10,9 +11,11 @@ import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTable;
 import net.minecraft.world.storage.loot.LootTableManager;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
@@ -123,6 +126,15 @@ public class ForgeEventSubscriber {
             lootTable.set(lootTableManager, ImmutableMap.copyOf(map));
         } catch (IllegalAccessException e) {
             e.printStackTrace();
+        }
+    }
+
+    @SubscribeEvent
+    public static void rightClick(PlayerInteractEvent.RightClickBlock event) {
+        TileEntity entity = event.getWorld().getTileEntity(event.getPos());
+
+        if (entity instanceof FlintWorkbenchTileEntity) {
+            ((FlintWorkbenchTileEntity) entity).blockClicked(event.getPlayer());
         }
     }
 }

@@ -1,0 +1,19 @@
+{
+  "type": "age_zero:flint_workbench",
+  "pattern": [
+    "F#F",
+    "F#F",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:bone"
+    },
+    "F": {
+      "item": "minecraft:flint"
+    }
+  },
+  "result": {
+    "item": "age_zero:bone_spear"
+  }
+}

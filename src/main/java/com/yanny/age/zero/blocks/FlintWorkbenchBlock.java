@@ -75,10 +75,10 @@ public class FlintWorkbenchBlock extends HorizontalBlock {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
         if (tileentity instanceof FlintWorkbenchTileEntity) {
-            return ((FlintWorkbenchTileEntity) tileentity).playerClicked(player, handIn, hit);
+            return ((FlintWorkbenchTileEntity) tileentity).blockActivated(player, handIn, hit);
         }
 
-        return false;
+        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
     }
 
     @Nonnull
