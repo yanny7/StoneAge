@@ -8,10 +8,12 @@ import com.yanny.age.zero.config.Config;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementList;
 import net.minecraft.advancements.AdvancementManager;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTable;
 import net.minecraft.world.storage.loot.LootTableManager;
@@ -46,12 +48,24 @@ public class ForgeEventSubscriber {
     private static final Set<ResourceLocation> LOOTS_TO_REMOVE = Sets.newHashSet(
             new ResourceLocation("minecraft", "entities/cow"),
             new ResourceLocation("minecraft", "entities/pig"),
-            new ResourceLocation("minecraft", "entities/sheep")
+            new ResourceLocation("minecraft", "entities/sheep"),
+            new ResourceLocation("minecraft", "blocks/acacia_leaves"),
+            new ResourceLocation("minecraft", "blocks/birch_leaves"),
+            new ResourceLocation("minecraft", "blocks/dark_oak_leaves"),
+            new ResourceLocation("minecraft", "blocks/jungle_leaves"),
+            new ResourceLocation("minecraft", "blocks/oak_leaves"),
+            new ResourceLocation("minecraft", "blocks/spruce_leaves")
     );
     private static final Set<ResourceLocation> LOOTS_TO_ADD = Sets.newHashSet(
             new ResourceLocation(MODID, "entities/cow"),
             new ResourceLocation(MODID, "entities/pig"),
-            new ResourceLocation(MODID, "entities/sheep")
+            new ResourceLocation(MODID, "entities/sheep"),
+            new ResourceLocation(MODID, "blocks/acacia_leaves"),
+            new ResourceLocation(MODID, "blocks/birch_leaves"),
+            new ResourceLocation(MODID, "blocks/dark_oak_leaves"),
+            new ResourceLocation(MODID, "blocks/jungle_leaves"),
+            new ResourceLocation(MODID, "blocks/oak_leaves"),
+            new ResourceLocation(MODID, "blocks/spruce_leaves")
     );
 
     private static final Set<ResourceLocation> ADVANCEMENTS_TO_REMOVE = Sets.newHashSet(
@@ -130,7 +144,7 @@ public class ForgeEventSubscriber {
     }
 
     @SubscribeEvent
-    public static void rightClick(PlayerInteractEvent.RightClickBlock event) {
+    public static void rightClickWithFlint(PlayerInteractEvent.RightClickBlock event) {
         TileEntity entity = event.getWorld().getTileEntity(event.getPos());
 
         if (entity instanceof FlintWorkbenchTileEntity) {
