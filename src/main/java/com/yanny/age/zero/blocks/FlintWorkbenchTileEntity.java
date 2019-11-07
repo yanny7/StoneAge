@@ -63,8 +63,6 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
 
                         world.playSound(null, getPos(), SoundEvents.BLOCK_DISPENSER_DISPENSE, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     });
-                } else {
-                    System.out.println("No valid recipe found!");
                 }
             }
         }

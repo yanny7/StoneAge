@@ -1,7 +1,7 @@
 package com.yanny.age.zero.subscribers;
 
 import com.yanny.age.zero.Reference;
-import com.yanny.ages.api.group.ModItemGroup;
+import com.yanny.age.zero.items.SickleItem;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyLoadBase;
@@ -22,6 +22,8 @@ public class ToolSubscriber {
     public static final Item antler_shovel = null;
     public static final Item antler_hoe = null;
     public static final Item bone_spear = null;
+    public static final Item antler_sickle = null;
+    public static final Item flint_knife = null;
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
@@ -29,13 +31,15 @@ public class ToolSubscriber {
         Item.Properties combatProperties = new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT);
         Item.Properties toolProperties = new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS);
 
-        registry.register(new PickaxeItem(FlintTier.BONE_TIER, 1, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_pickaxe"));
-        registry.register(new ShovelItem(FlintTier.BONE_TIER, 1.5f, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_shovel"));
-        registry.register(new HoeItem(FlintTier.BONE_TIER, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_hoe"));
-        registry.register(new SwordItem(FlintTier.BONE_TIER, 2,-2.5f, toolProperties).setRegistryName(Reference.MODID, "bone_spear"));
+        registry.register(new PickaxeItem(Tiers.BONE_TIER, 1, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_pickaxe"));
+        registry.register(new ShovelItem(Tiers.BONE_TIER, 1.5f, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_shovel"));
+        registry.register(new HoeItem(Tiers.BONE_TIER, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_hoe"));
+        registry.register(new SwordItem(Tiers.BONE_TIER, 2,-2.5f, toolProperties).setRegistryName(Reference.MODID, "bone_spear"));
+        registry.register(new SickleItem(toolProperties.maxDamage(Tiers.BONE_TIER.maxUses)).setRegistryName(Reference.MODID, "antler_sickle"));
+        registry.register(new SwordItem(Tiers.BONE_TIER, 0,-1.0f, toolProperties).setRegistryName(Reference.MODID, "flint_knife"));
     }
 
-    private enum FlintTier implements IItemTier {
+    private enum Tiers implements IItemTier {
         BONE_TIER(-1, 59, 2.0F, 1.0F, 15, () -> {
             return Ingredient.fromItems(Items.BONE);
         })
@@ -48,7 +52,7 @@ public class ToolSubscriber {
         private final int enchantability;
         private final LazyLoadBase<Ingredient> repairMaterial;
 
-        FlintTier(int harvestLevel, int maxUses, float efficiency, float attackDamage, int enchantability, Supplier<Ingredient> repairMaterial) {
+        Tiers(int harvestLevel, int maxUses, float efficiency, float attackDamage, int enchantability, Supplier<Ingredient> repairMaterial) {
             this.harvestLevel = harvestLevel;
             this.maxUses = maxUses;
             this.efficiency = efficiency;

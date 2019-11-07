@@ -3,17 +3,24 @@
     "item.age_zero.antler_shovel": "Antler shovel",
     "item.age_zero.antler_hoe": "Antler hoe",
     "item.age_zero.bone_spear": "Bone spear",
+    "item.age_zero.antler_sickle": "Antler sickle",
+    "item.age_zero.flint_knife": "Flint knife",
+
     "item.age_zero.venison": "Venison",
     "item.age_zero.cooked_venison": "Cooked venison",
     "item.age_zero.fat": "Fat",
     "item.age_zero.cooked_fat": "Cooked fat",
     "item.age_zero.raw_hide": "Raw hide",
     "item.age_zero.antler": "Antler",
+    "item.age_zero.unlit_torch": "Unlit torch",
+
     "item.age_zero.deer_spawn_egg": "Deer spawn egg",
     "item.age_zero.boar_spawn_egg": "Boar spawn egg",
     "item.age_zero.auroch_spawn_egg": "Aunoch spawn egg",
     "item.age_zero.fowl_spawn_egg": "Fowl spawn egg",
     "item.age_zero.mouflon_spawn_egg": "Mouflon spawn egg",
+
+    "block.age_zero.flint_workbench": "Flint crafting table",
 
     "entity.age_zero.deer": "Deer",
     "entity.age_zero.boar": "Boar",
