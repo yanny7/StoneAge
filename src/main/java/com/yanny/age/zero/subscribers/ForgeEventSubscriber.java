@@ -8,12 +8,10 @@ import com.yanny.age.zero.config.Config;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementList;
 import net.minecraft.advancements.AdvancementManager;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTable;
 import net.minecraft.world.storage.loot.LootTableManager;
@@ -54,7 +52,8 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "blocks/dark_oak_leaves"),
             new ResourceLocation("minecraft", "blocks/jungle_leaves"),
             new ResourceLocation("minecraft", "blocks/oak_leaves"),
-            new ResourceLocation("minecraft", "blocks/spruce_leaves")
+            new ResourceLocation("minecraft", "blocks/spruce_leaves"),
+            new ResourceLocation("minecraft", "blocks/gravel")
     );
     private static final Set<ResourceLocation> LOOTS_TO_ADD = Sets.newHashSet(
             new ResourceLocation(MODID, "entities/cow"),
@@ -65,7 +64,8 @@ public class ForgeEventSubscriber {
             new ResourceLocation(MODID, "blocks/dark_oak_leaves"),
             new ResourceLocation(MODID, "blocks/jungle_leaves"),
             new ResourceLocation(MODID, "blocks/oak_leaves"),
-            new ResourceLocation(MODID, "blocks/spruce_leaves")
+            new ResourceLocation(MODID, "blocks/spruce_leaves"),
+            new ResourceLocation(MODID, "blocks/gravel")
     );
 
     private static final Set<ResourceLocation> ADVANCEMENTS_TO_REMOVE = Sets.newHashSet(
