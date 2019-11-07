@@ -1,0 +1,22 @@
+{
+  "type": "age_zero:flint_workbench",
+  "pattern": [
+    "A",
+    "#",
+    "F"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "A": {
+      "item": "age_zero:bone_arrow_head"
+    },
+    "F": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+    "item": "age_zero:antler_sickle"
+  }
+}

@@ -23,6 +23,7 @@ public class ItemSubscriber {
     public static final Item raw_hide = null;
     public static final Item antler = null;
     public static final Item unlit_torch = null;
+    public static final Item bone_arrow_head = null;
 
     private static final Food VENISON = (new Food.Builder()).hunger(3).saturation(0.3f).meat().build();
     private static final Food COOKED_VENISON = (new Food.Builder()).hunger(8).saturation(0.8f).meat().build();
@@ -39,5 +40,6 @@ public class ItemSubscriber {
         registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "raw_hide"));
         registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "antler"));
         registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "unlit_torch"));
+        registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "bone_arrow_head"));
     }
 }

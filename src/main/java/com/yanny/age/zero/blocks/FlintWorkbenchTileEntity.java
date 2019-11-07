@@ -2,12 +2,13 @@ package com.yanny.age.zero.blocks;
 
 import com.yanny.age.zero.recipes.FlintWorkbenchRecipe;
 import com.yanny.age.zero.subscribers.TilesSubscriber;
+import com.yanny.age.zero.subscribers.ToolSubscriber;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
@@ -41,7 +42,8 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
         ItemStack itemStack = player.getHeldItemMainhand();
 
         if (player.isSneaking()) {
-            if (itemStack.getItem().equals(Items.FLINT)) {
+            //noinspection ConstantConditions
+            if (itemStack.getItem().equals(ToolSubscriber.flint_knife)) {
                 Optional<FlintWorkbenchRecipe> recipe = findMatchingRecipe();
 
                 if (recipe.isPresent()) {
@@ -55,12 +57,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
                             stacks.set(i, ItemStack.EMPTY);
                         }
 
-                        if (itemStack.getCount() > 1) {
-                            itemStack.setCount(itemStack.getCount() - 1);
-                        } else {
-                            player.setHeldItem(Hand.MAIN_HAND, ItemStack.EMPTY);
-                        }
-
+                        itemStack.damageItem(1, player, playerEntity -> playerEntity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
                         world.playSound(null, getPos(), SoundEvents.BLOCK_DISPENSER_DISPENSE, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     });
                 }

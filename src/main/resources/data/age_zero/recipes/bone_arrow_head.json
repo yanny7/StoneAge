@@ -1,0 +1,15 @@
+{
+  "type": "age_zero:flint_workbench",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:bone"
+    }
+  },
+  "result": {
+    "item": "age_zero:bone_arrow_head",
+    "count": 2
+  }
+}
