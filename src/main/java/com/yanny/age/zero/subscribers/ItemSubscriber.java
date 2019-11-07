@@ -22,6 +22,7 @@ public class ItemSubscriber {
     public static final Item cooked_fat = null;
     public static final Item raw_hide = null;
     public static final Item antler = null;
+    public static final Item unlit_torch = null;
 
     private static final Food VENISON = (new Food.Builder()).hunger(3).saturation(0.3f).meat().build();
     private static final Food COOKED_VENISON = (new Food.Builder()).hunger(8).saturation(0.8f).meat().build();
@@ -37,5 +38,6 @@ public class ItemSubscriber {
         registry.register(new Item(new Item.Properties().group(ItemGroup.FOOD).maxStackSize(64).food(COOKED_FAT)).setRegistryName(MODID, "cooked_fat"));
         registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "raw_hide"));
         registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "antler"));
+        registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "unlit_torch"));
     }
 }

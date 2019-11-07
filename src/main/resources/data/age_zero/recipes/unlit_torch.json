@@ -1,0 +1,18 @@
+{
+  "type": "age_zero:flint_workbench",
+  "pattern": [
+    "F",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "F": {
+      "item": "age_zero:fat"
+    }
+  },
+  "result": {
+    "item": "age_zero:unlit_torch"
+  }
+}
