@@ -18,8 +18,8 @@ public class DryingRackRenderer extends TileEntityRenderer<DryingRackTileEntity>
         Direction direction = tileEntityIn.getBlockState().get(HorizontalBlock.HORIZONTAL_FACING);
 
         for (int i = 0; i < DryingRackTileEntity.ITEMS; i++) {
-            float xOffset = (direction == Direction.EAST || direction == Direction.WEST) ? ((i / 2 == 0) ? 0.45f : 0.55f) : ((i % 2 == 0) ? 0.2f : 0.8f);
-            float zOffset = (direction == Direction.NORTH || direction == Direction.SOUTH) ? ((i / 2 == 0) ? 0.45f : 0.55f) : ((i % 2 == 0) ? 0.2f : 0.8f);
+            float xOffset = (direction == Direction.EAST || direction == Direction.WEST) ? ((i / 2 == 0) ? 0.46f : 0.54f) : ((i % 2 == 0) ? 0.35f : 0.65f);
+            float zOffset = (direction == Direction.NORTH || direction == Direction.SOUTH) ? ((i / 2 == 0) ? 0.46f : 0.54f) : ((i % 2 == 0) ? 0.35f : 0.65f);
 
             GlStateManager.pushMatrix();
             GlStateManager.translatef((float)x + xOffset, (float)y + 14f / 16f, (float)z + zOffset);

@@ -137,76 +137,75 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
         ItemStack itemStack = player.getHeldItem(handIn);
         Direction direction = getBlockState().get(HorizontalBlock.HORIZONTAL_FACING);
 
-        if (!player.isSneaking() && !world.isRemote) {
+        if (!player.isSneaking() && !world.isRemote && hit.getFace() != Direction.UP && hit.getFace() != Direction.DOWN) {
             DryingRackRecipe recipe = getRecipe(itemStack);
 
-            for (int i = 0; i < ITEMS; i++) {
-                if (stacks.get(i).isEmpty() && stacks.get(i + ITEMS).isEmpty() && recipe != null) {
-                    DryingItem item = items[i];
+            int pos;
+            double x = (hit.getHitVec().x - hit.getPos().getX());
+            double z = (hit.getHitVec().z - hit.getPos().getZ());
 
-                    stacks.set(i, new ItemStack(itemStack.getItem(), 1));
-                    item.setup(true, recipe.getDryingTime(), recipe.getCraftingResult(null));
-
-                    if (itemStack.getCount() > 1) {
-                        itemStack.setCount(itemStack.getCount() - 1);
+            switch (direction) {
+                case SOUTH:
+                    if (x < 0.5) {
+                        pos = (hit.getFace() == direction) ? 2 : 0;
                     } else {
-                        player.setHeldItem(handIn, ItemStack.EMPTY);
+                        pos = (hit.getFace() == direction) ? 3 : 1;
                     }
-
-                    world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
                     break;
-                }
+                case NORTH:
+                    if (x < 0.5) {
+                        pos = (hit.getFace() == direction) ? 0 : 2;
+                    } else {
+                        pos = (hit.getFace() == direction) ? 1 : 3;
+                    }
+                    break;
+                case EAST:
+                    if (z < 0.5) {
+                        pos = (hit.getFace() == direction) ? 2 : 0;
+                    } else {
+                        pos = (hit.getFace() == direction) ? 3 : 1;
+                    }
+                    break;
+                case WEST:
+                    if (z < 0.5) {
+                        pos = (hit.getFace() == direction) ? 0 : 2;
+                    } else {
+                        pos = (hit.getFace() == direction) ? 1 : 3;
+                    }
+                    break;
+                default:
+                    return false;
             }
 
-            if (itemStack.isEmpty()) {
-                int pos = 0;
-                double x = (hit.getHitVec().x - hit.getPos().getX());
-                double z = (hit.getHitVec().z - hit.getPos().getZ());
+            if (stacks.get(pos).isEmpty() && stacks.get(pos + ITEMS).isEmpty() && recipe != null) {
+                DryingItem item = items[pos];
 
-                switch (direction) {
-                    case SOUTH:
-                        if (x < 0.5) {
-                            pos = (hit.getFace() == direction) ? 2 : 0;
-                        } else {
-                            pos = (hit.getFace() == direction) ? 3 : 1;
-                        }
-                        break;
-                    case NORTH:
-                        if (x < 0.5) {
-                            pos = (hit.getFace() == direction) ? 0 : 2;
-                        } else {
-                            pos = (hit.getFace() == direction) ? 1 : 3;
-                        }
-                        break;
-                    case EAST:
-                        if (z < 0.5) {
-                            pos = (hit.getFace() == direction) ? 2 : 0;
-                        } else {
-                            pos = (hit.getFace() == direction) ? 3 : 1;
-                        }
-                        break;
-                    case WEST:
-                        if (z < 0.5) {
-                            pos = (hit.getFace() == direction) ? 0 : 2;
-                        } else {
-                            pos = (hit.getFace() == direction) ? 1 : 3;
-                        }
-                        break;
+                stacks.set(pos, new ItemStack(itemStack.getItem(), 1));
+                item.setup(true, recipe.getDryingTime(), recipe.getCraftingResult(null));
+
+                if (itemStack.getCount() > 1) {
+                    itemStack.setCount(itemStack.getCount() - 1);
+                } else {
+                    player.setHeldItem(handIn, ItemStack.EMPTY);
                 }
 
-                if (!stacks.get(pos + ITEMS).isEmpty()) {
-                    NonNullList<ItemStack> itemStacks = NonNullList.create();
-                    itemStacks.add(stacks.get(pos + ITEMS).copy());
-                    stacks.set(pos + ITEMS, ItemStack.EMPTY);
-                    stacks.set(pos, ItemStack.EMPTY);
-                    InventoryHelper.dropItems(world, getPos(), itemStacks);
+                world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
+                return true;
+            }
 
-                    world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
-                    world.playSound(null, getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
-                }
+            if (itemStack.isEmpty() && !stacks.get(pos + ITEMS).isEmpty()) {
+                NonNullList<ItemStack> itemStacks = NonNullList.create();
+                itemStacks.add(stacks.get(pos + ITEMS).copy());
+                stacks.set(pos + ITEMS, ItemStack.EMPTY);
+                stacks.set(pos, ItemStack.EMPTY);
+                InventoryHelper.dropItems(world, getPos(), itemStacks);
+
+                world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
+                world.playSound(null, getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     @Nullable

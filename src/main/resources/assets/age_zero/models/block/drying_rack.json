@@ -1,6 +1,7 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
     "textures": {
+        "particle": "age_zero:block/flint_workbench_side",
         "flint_workbench_side": "age_zero:block/flint_workbench_side"
     },
     "display": {
@@ -38,8 +39,8 @@
     "elements": [
         {
             "name": "Cube",
-            "from": [ 0, -3, 2 ], 
-            "to": [ 1, 17, 3 ], 
+            "from": [ 1, -3, 2 ], 
+            "to": [ 2, 17, 3 ], 
             "rotation": { "origin": [ 8, 0, 8 ], "axis": "x", "angle": 22.5 },
             "faces": {
                 "north": { "texture": "#flint_workbench_side", "uv": [ 1, 0, 2, 16 ] },
@@ -52,8 +53,8 @@
         },
         {
             "name": "Cube",
-            "from": [ 0, -3, 13 ], 
-            "to": [ 1, 17, 14 ], 
+            "from": [ 2, -3, 13 ], 
+            "to": [ 3, 17, 14 ], 
             "rotation": { "origin": [ 8, 0, 8 ], "axis": "x", "angle": -22.5 },
             "faces": {
                 "north": { "texture": "#flint_workbench_side", "uv": [ 1, 0, 2, 16 ] },
@@ -66,8 +67,8 @@
         },
         {
             "name": "Cube",
-            "from": [ 15, -3, 2 ], 
-            "to": [ 16, 17, 3 ], 
+            "from": [ 13, -3, 2 ], 
+            "to": [ 14, 17, 3 ], 
             "rotation": { "origin": [ 8, 0, 8 ], "axis": "x", "angle": 22.5 },
             "faces": {
                 "north": { "texture": "#flint_workbench_side", "uv": [ 1, 0, 2, 16 ] },
@@ -80,8 +81,8 @@
         },
         {
             "name": "Cube",
-            "from": [ 15, -3, 13 ], 
-            "to": [ 16, 17, 14 ], 
+            "from": [ 14, -3, 13 ], 
+            "to": [ 15, 17, 14 ], 
             "rotation": { "origin": [ 8, 0, 8 ], "axis": "x", "angle": -22.5 },
             "faces": {
                 "north": { "texture": "#flint_workbench_side", "uv": [ 1, 0, 2, 16 ] },
@@ -94,8 +95,8 @@
         },
         {
             "name": "Cube",
-            "from": [ 0, 15, 7.5 ],
-            "to": [ 16, 16, 8.5 ],
+            "from": [ 0, 15, 7.5 ], 
+            "to": [ 16, 16, 8.5 ], 
             "faces": {
                 "north": { "texture": "#flint_workbench_side", "uv": [ 0, 0, 16, 1 ] },
                 "east": { "texture": "#flint_workbench_side", "uv": [ 0, 0, 1, 1 ] },
