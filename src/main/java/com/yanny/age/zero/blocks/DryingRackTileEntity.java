@@ -38,11 +38,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
 
     public DryingRackTileEntity() {
         //noinspection ConstantConditions
-        super(TilesSubscriber.drying_rack);/*
-        stacks.set(0, Items.ACACIA_SAPLING.getDefaultInstance());
-        stacks.set(1, Items.BAKED_POTATO.getDefaultInstance());
-        stacks.set(2, Items.CARROT.getDefaultInstance());
-        stacks.set(3, Items.DANDELION.getDefaultInstance());*/
+        super(TilesSubscriber.drying_rack);
         for (int i = 0; i < ITEMS; i++) {
             items[i] = new DryingItem();
         }
@@ -117,7 +113,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             if (side != null) {
-                sidedInventoryHandler.cast();
+                return sidedInventoryHandler.cast();
             } else {
                 return nonSidedInventoryHandler.cast();
             }
@@ -231,7 +227,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
             @Nonnull
             @Override
             public ItemStack extractItem(int slot, int amount, boolean simulate) {
-                if (slot == 1) {
+                if (slot >= ITEMS) {
                     return super.extractItem(slot, amount, simulate);
                 } else {
                     return ItemStack.EMPTY;
@@ -241,9 +237,11 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
             @Nonnull
             @Override
             public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-                if (slot == 0) {
-                    if (getStackInSlot(0).isEmpty() && world != null) {
-                        if (getRecipe(stack) != null) {
+                if (slot < ITEMS) {
+                    if (getStackInSlot(slot).isEmpty() && world != null) {
+                        DryingRackRecipe recipe = getRecipe(stack);
+                        if (recipe != null) {
+                            items[slot].setup(true, recipe.getDryingTime(), recipe.getCraftingResult(null));
                             return super.insertItem(slot, stack, simulate);
                         }
                     }
