@@ -15,13 +15,10 @@ class ItemStackUtils {
         ListNBT nbtTagList = new ListNBT();
         for (int i = 0; i < stacks.size(); i++)
         {
-            if (!stacks.get(i).isEmpty())
-            {
-                CompoundNBT itemTag = new CompoundNBT();
-                itemTag.putInt("Slot", i);
-                stacks.get(i).write(itemTag);
-                nbtTagList.add(itemTag);
-            }
+            CompoundNBT itemTag = new CompoundNBT();
+            itemTag.putInt("Slot", i);
+            stacks.get(i).write(itemTag);
+            nbtTagList.add(itemTag);
         }
         CompoundNBT nbt = new CompoundNBT();
         nbt.put("Items", nbtTagList);

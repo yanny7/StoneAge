@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "age_zero:block/drying_rack" },
+    "facing=south": { "model": "age_zero:block/drying_rack", "y": 180 },
+    "facing=west": { "model": "age_zero:block/drying_rack", "y": 270 },
+    "facing=east": { "model": "age_zero:block/drying_rack", "y": 90 }
+  }
+}

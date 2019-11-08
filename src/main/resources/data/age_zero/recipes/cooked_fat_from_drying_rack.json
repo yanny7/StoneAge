@@ -1,0 +1,8 @@
+{
+  "type": "age_zero:drying_rack",
+  "ingredient": {
+    "item": "age_zero:fat"
+  },
+  "result": "age_zero:cooked_fat",
+  "dryingTime": 20
+}

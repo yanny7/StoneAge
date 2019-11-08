@@ -12,6 +12,7 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -23,10 +24,11 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class FlintWorkbenchBlock extends HorizontalBlock {
-    private static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D);
+public class DryingRackBlock extends HorizontalBlock {
+    private static final VoxelShape SHAPE_NS = Block.makeCuboidShape(0.0D, 15.0D, 7.5D, 16.0D, 16.0D, 8.5D);
+    private static final VoxelShape SHAPE_EW = Block.makeCuboidShape(7.5D, 15.0D, 0.0D, 8.5D, 16.0D, 16.0D);
 
-    public FlintWorkbenchBlock() {
+    public DryingRackBlock() {
         super(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0f));
     }
 
@@ -38,7 +40,7 @@ public class FlintWorkbenchBlock extends HorizontalBlock {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new FlintWorkbenchTileEntity();
+        return new DryingRackTileEntity();
     }
 
     @SuppressWarnings("deprecation")
@@ -68,8 +70,8 @@ public class FlintWorkbenchBlock extends HorizontalBlock {
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof FlintWorkbenchTileEntity) {
-            return ((FlintWorkbenchTileEntity) tileentity).blockActivated(player, handIn, hit);
+        if (tileentity instanceof DryingRackTileEntity) {
+            return ((DryingRackTileEntity) tileentity).blockActivated(player, handIn, hit);
         }
 
         return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
@@ -85,7 +87,11 @@ public class FlintWorkbenchBlock extends HorizontalBlock {
     @Nonnull
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return SHAPE;
+        if (state.get(HorizontalBlock.HORIZONTAL_FACING) == Direction.NORTH || state.get(HORIZONTAL_FACING) == Direction.SOUTH) {
+            return SHAPE_NS;
+        } else {
+            return SHAPE_EW;
+        }
     }
 
     @SuppressWarnings("deprecation")
@@ -94,8 +100,8 @@ public class FlintWorkbenchBlock extends HorizontalBlock {
         if (state.getBlock() != newState.getBlock()) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof FlintWorkbenchTileEntity) {
-                InventoryHelper.dropInventoryItems(worldIn, pos, ((FlintWorkbenchTileEntity)tileentity).getInventory());
+            if (tileentity instanceof DryingRackTileEntity) {
+                InventoryHelper.dropInventoryItems(worldIn, pos, ((DryingRackTileEntity)tileentity).getInventory());
             }
 
             super.onReplaced(state, worldIn, pos, newState, isMoving);

@@ -39,7 +39,13 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "stone_pickaxe"),
             new ResourceLocation("minecraft", "stone_hoe"),
             new ResourceLocation("minecraft", "stone_shovel"),
-            new ResourceLocation("minecraft", "stone_sword")
+            new ResourceLocation("minecraft", "stone_sword"),
+            new ResourceLocation("minecraft", "oak_planks"),
+            new ResourceLocation("minecraft", "birch_planks"),
+            new ResourceLocation("minecraft", "acacia_planks"),
+            new ResourceLocation("minecraft", "jungle_planks"),
+            new ResourceLocation("minecraft", "spruce_planks"),
+            new ResourceLocation("minecraft", "dark_oak_planks")
     );
     //private static final Set<ResourceLocation> RECIPES_TO_ADD = Sets.newHashSet();
 

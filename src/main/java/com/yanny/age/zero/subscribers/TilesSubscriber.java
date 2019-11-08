@@ -1,5 +1,6 @@
 package com.yanny.age.zero.subscribers;
 
+import com.yanny.age.zero.blocks.DryingRackTileEntity;
 import com.yanny.age.zero.blocks.FlintWorkbenchTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
@@ -14,6 +15,7 @@ import static com.yanny.age.zero.Reference.MODID;
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TilesSubscriber {
     public static final TileEntityType<FlintWorkbenchTileEntity> flint_workbench = null;
+    public static final TileEntityType<DryingRackTileEntity> drying_rack = null;
 
     @SuppressWarnings("ConstantConditions")
     @SubscribeEvent
@@ -21,5 +23,7 @@ public class TilesSubscriber {
         IForgeRegistry<TileEntityType<?>> registry = event.getRegistry();
         registry.register(TileEntityType.Builder.create(FlintWorkbenchTileEntity::new, BlockSubscriber.flint_workbench)
                 .build(null).setRegistryName("flint_workbench"));
+        registry.register(TileEntityType.Builder.create(DryingRackTileEntity::new, BlockSubscriber.drying_rack)
+                .build(null).setRegistryName("drying_rack"));
     }
 }

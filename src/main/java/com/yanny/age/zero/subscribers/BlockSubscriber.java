@@ -1,5 +1,6 @@
 package com.yanny.age.zero.subscribers;
 
+import com.yanny.age.zero.blocks.DryingRackBlock;
 import com.yanny.age.zero.blocks.FlintWorkbenchBlock;
 import com.yanny.ages.api.group.ModItemGroup;
 import net.minecraft.block.Block;
@@ -13,16 +14,17 @@ import net.minecraftforge.registries.ObjectHolder;
 
 import static com.yanny.age.zero.Reference.MODID;
 
-@SuppressWarnings("WeakerAccess")
 @ObjectHolder(MODID)
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BlockSubscriber {
     public static final Block flint_workbench = null;
+    public static final Block drying_rack = null;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
         registry.register(new FlintWorkbenchBlock().setRegistryName(MODID, "flint_workbench"));
+        registry.register(new DryingRackBlock().setRegistryName(MODID, "drying_rack"));
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -31,5 +33,7 @@ public class BlockSubscriber {
         IForgeRegistry<Item> registry = event.getRegistry();
         registry.register(new BlockItem(flint_workbench, new Item.Properties().group(ModItemGroup.TOOMANYORES))
                 .setRegistryName(MODID, "flint_workbench"));
+        registry.register(new BlockItem(drying_rack, new Item.Properties().group(ModItemGroup.TOOMANYORES))
+                .setRegistryName(MODID, "drying_rack"));
     }
 }

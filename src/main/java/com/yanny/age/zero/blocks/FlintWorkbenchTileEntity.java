@@ -37,6 +37,60 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
         super(TilesSubscriber.flint_workbench);
     }
 
+    @Override
+    public void read(CompoundNBT tag) {
+        CompoundNBT invTag = tag.getCompound("inv");
+        ItemStackUtils.deserializeStacks(invTag, stacks);
+        super.read(tag);
+    }
+
+    @Override
+    @Nonnull
+    public CompoundNBT write(CompoundNBT tag) {
+        tag.put("inv", ItemStackUtils.serializeStacks(stacks));
+        return super.write(tag);
+    }
+
+    @Nullable
+    @Override
+    public SUpdateTileEntityPacket getUpdatePacket() {
+        return new SUpdateTileEntityPacket(getPos(), getType().hashCode(), getUpdateTag());
+    }
+
+    @Nonnull
+    @Override
+    public CompoundNBT getUpdateTag() {
+        return write(new CompoundNBT());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+        super.onDataPacket(net, pkt);
+        read(pkt.getNbtCompound());
+    }
+
+    @Nonnull
+    @Override
+    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            if (side == null) {
+                return nonSidedInventoryHandler.cast();
+            }
+        }
+        return super.getCapability(cap, side);
+    }
+
+    @Override
+    public void remove() {
+        nonSidedInventoryHandler.invalidate();
+        super.remove();
+    }
+
+    @Nonnull
+    public IInventory getInventory() {
+        return inventoryWrapper;
+    }
+
     public void blockClicked(PlayerEntity player) {
         assert world != null;
         ItemStack itemStack = player.getHeldItemMainhand();
@@ -120,60 +174,6 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
         }
 
         return false;
-    }
-
-    @Override
-    public void read(CompoundNBT tag) {
-        CompoundNBT invTag = tag.getCompound("inv");
-        ItemStackUtils.deserializeStacks(invTag, stacks);
-        super.read(tag);
-    }
-
-    @Override
-    @Nonnull
-    public CompoundNBT write(CompoundNBT tag) {
-        tag.put("inv", ItemStackUtils.serializeStacks(stacks));
-        return super.write(tag);
-    }
-
-    @Nullable
-    @Override
-    public SUpdateTileEntityPacket getUpdatePacket() {
-        return new SUpdateTileEntityPacket(getPos(), getType().hashCode(), getUpdateTag());
-    }
-
-    @Nonnull
-    @Override
-    public CompoundNBT getUpdateTag() {
-        return write(new CompoundNBT());
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
-        super.onDataPacket(net, pkt);
-        read(pkt.getNbtCompound());
-    }
-
-    @Nonnull
-    @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            if (side == null) {
-                return nonSidedInventoryHandler.cast();
-            }
-        }
-        return super.getCapability(cap, side);
-    }
-
-    @Override
-    public void remove() {
-        nonSidedInventoryHandler.invalidate();
-        super.remove();
-    }
-
-    @Nonnull
-    public IInventory getInventory() {
-        return inventoryWrapper;
     }
 
     private IItemHandlerModifiable createNonSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {
