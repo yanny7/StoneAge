@@ -23,6 +23,8 @@
     "item.age_zero.mouflon_spawn_egg": "Mouflon spawn egg",
 
     "block.age_zero.flint_workbench": "Flint crafting table",
+    "block.age_zero.drying_rack": "Drying rack",
+    "block.age_zero.tanning_rack": "Tanning rack",
 
     "entity.age_zero.deer": "Deer",
     "entity.age_zero.boar": "Boar",

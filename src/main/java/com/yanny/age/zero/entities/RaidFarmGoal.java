@@ -1,9 +1,6 @@
 package com.yanny.age.zero.entities;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CropsBlock;
+import net.minecraft.block.*;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.state.IntegerProperty;
@@ -63,7 +60,13 @@ class RaidFarmGoal<T extends AnimalEntity> extends MoveToBlockGoal {
             Block block = blockstate.getBlock();
 
             if (this.canRaid && cropsBlock.isAssignableFrom(block.getClass())) {
-                Integer integer = blockstate.get(ageProperty);
+                Integer integer;
+
+                if (block instanceof BeetrootBlock) {
+                    integer = blockstate.get(BeetrootBlock.BEETROOT_AGE);
+                } else {
+                    integer = blockstate.get(ageProperty);
+                }
 
                 if (integer == 0) {
                     world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 2);

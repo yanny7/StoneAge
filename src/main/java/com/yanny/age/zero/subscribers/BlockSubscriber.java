@@ -2,6 +2,7 @@ package com.yanny.age.zero.subscribers;
 
 import com.yanny.age.zero.blocks.DryingRackBlock;
 import com.yanny.age.zero.blocks.FlintWorkbenchBlock;
+import com.yanny.age.zero.blocks.TanningRackBlock;
 import com.yanny.ages.api.group.ModItemGroup;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -19,12 +20,14 @@ import static com.yanny.age.zero.Reference.MODID;
 public class BlockSubscriber {
     public static final Block flint_workbench = null;
     public static final Block drying_rack = null;
+    public static final Block tanning_rack = null;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
         registry.register(new FlintWorkbenchBlock().setRegistryName(MODID, "flint_workbench"));
         registry.register(new DryingRackBlock().setRegistryName(MODID, "drying_rack"));
+        registry.register(new TanningRackBlock().setRegistryName(MODID, "tanning_rack"));
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -35,5 +38,7 @@ public class BlockSubscriber {
                 .setRegistryName(MODID, "flint_workbench"));
         registry.register(new BlockItem(drying_rack, new Item.Properties().group(ModItemGroup.TOOMANYORES))
                 .setRegistryName(MODID, "drying_rack"));
+        registry.register(new BlockItem(tanning_rack, new Item.Properties().group(ModItemGroup.TOOMANYORES))
+                .setRegistryName(MODID, "tanning_rack"));
     }
 }

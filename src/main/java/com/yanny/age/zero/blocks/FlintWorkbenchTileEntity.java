@@ -122,7 +122,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
     boolean blockActivated(PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         assert world != null;
 
-        if (!player.isSneaking()) {
+        if (!player.isSneaking() && handIn == Hand.MAIN_HAND) {
             if (hit.getFace() == Direction.UP) {
                 Direction dir = getBlockState().get(HorizontalBlock.HORIZONTAL_FACING);
                 int x = 0;
