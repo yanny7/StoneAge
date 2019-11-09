@@ -1,0 +1,15 @@
+{
+  "type": "age_zero:flint_workbench",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result": {
+    "item": "age_zero:leather_strip",
+    "count": 4
+  }
+}

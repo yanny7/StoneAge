@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "age_zero:leather_strip"
+    ]
+  },
+  "criteria": {
+    "has_items": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:leather"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "age_zero:leather_strip"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_items",
+      "has_the_recipe"
+    ]
+  ]
+}
