@@ -48,7 +48,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
     public void tick() {
         assert world != null;
 
-        if (!world.isRemote) {
+        if (!world.isRemote && world.isDaytime()) {
             for (int i = 0; i < ITEMS; i++) {
                 if (items[i].active) {
                     if (items[i].isDried()) {
