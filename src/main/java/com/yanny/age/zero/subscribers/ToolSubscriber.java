@@ -39,7 +39,7 @@ public class ToolSubscriber {
         registry.register(new SwordItem(Tiers.BONE_TIER, 0,-1.0f, toolProperties).setRegistryName(Reference.MODID, "flint_knife"));
     }
 
-    private enum Tiers implements IItemTier {
+    public enum Tiers implements IItemTier {
         BONE_TIER(-1, 59, 2.0F, 1.0F, 15, () -> {
             return Ingredient.fromItems(Items.BONE);
         })

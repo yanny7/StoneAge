@@ -10,6 +10,7 @@ class ServerConfig {
     final ForgeConfigSpec.BooleanValue removeVanillaGeneratedAnimals;
     final ForgeConfigSpec.IntValue domesticateAfterGenerations;
     final ForgeConfigSpec.DoubleValue tanningRackFinishChance;
+    final ForgeConfigSpec.BooleanValue changeMiningLevelForVanillaBlocks;
 
     ServerConfig(@Nonnull final ForgeConfigSpec.Builder builder) {
         builder.push("general");
@@ -29,6 +30,10 @@ class ServerConfig {
                 .comment("Chance of finishing recipe in tanning rack")
                 .translation(Reference.MODID + ".config.tanning_rack_finish_chance")
                 .defineInRange("tanningRackFinishChance", 0.1, 0.001, 1.0);
+        changeMiningLevelForVanillaBlocks = builder
+                .comment("Change mining level for vanilla items (change it to -1, to be mineable by antler pickaxe)")
+                .translation(Reference.MODID + ".config.change_mining_level_for_vanilla_blocks")
+                .define("changeMiningLevelForVanillaBlocks", true);
         builder.pop();
     }
 }

@@ -11,6 +11,7 @@ public class ConfigHelper {
         Config.removeVanillaGeneratedAnimals = ConfigHolder.SERVER.removeVanillaGeneratedAnimals.get();
         Config.domesticateAfterGenerations = ConfigHolder.SERVER.domesticateAfterGenerations.get();
         Config.tanningRackFinishChance = ConfigHolder.SERVER.tanningRackFinishChance.get();
+        Config.changeMiningLevelForVanillaBlocks = ConfigHolder.SERVER.changeMiningLevelForVanillaBlocks.get();
     }
 
     public static void bakeClient() {
