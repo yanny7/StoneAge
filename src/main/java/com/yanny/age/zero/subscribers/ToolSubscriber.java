@@ -19,6 +19,7 @@ import java.util.function.Supplier;
 public class ToolSubscriber {
 
     public static final Item antler_pickaxe = null;
+    public static final Item antler_axe = null;
     public static final Item antler_shovel = null;
     public static final Item antler_hoe = null;
     public static final Item bone_spear = null;
@@ -32,11 +33,12 @@ public class ToolSubscriber {
         Item.Properties toolProperties = new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS);
 
         registry.register(new PickaxeItem(Tiers.BONE_TIER, 1, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_pickaxe"));
+        registry.register(new AxeItem(Tiers.BONE_TIER, 1, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_axe"));
         registry.register(new ShovelItem(Tiers.BONE_TIER, 1.5f, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_shovel"));
         registry.register(new HoeItem(Tiers.BONE_TIER, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_hoe"));
-        registry.register(new SwordItem(Tiers.BONE_TIER, 2,-2.5f, toolProperties).setRegistryName(Reference.MODID, "bone_spear"));
+        registry.register(new SwordItem(Tiers.BONE_TIER, 2,-2.5f, combatProperties).setRegistryName(Reference.MODID, "bone_spear"));
         registry.register(new SickleItem(toolProperties.maxDamage(Tiers.BONE_TIER.maxUses)).setRegistryName(Reference.MODID, "antler_sickle"));
-        registry.register(new SwordItem(Tiers.BONE_TIER, 0,-1.0f, toolProperties).setRegistryName(Reference.MODID, "flint_knife"));
+        registry.register(new SwordItem(Tiers.BONE_TIER, 0,-1.0f, combatProperties).setRegistryName(Reference.MODID, "flint_knife"));
     }
 
     public enum Tiers implements IItemTier {
