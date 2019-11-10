@@ -159,6 +159,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
                     } else {
                         player.setHeldItem(handIn, ItemStack.EMPTY);
                     }
+                    return true;
                 }
 
                 if (itemStack.isEmpty()) {
@@ -166,10 +167,9 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
                     itemStacks.add(stack);
                     InventoryHelper.dropItems(world, getPos(), itemStacks);
                     stacks.set(x * 3 + y, ItemStack.EMPTY);
+                    world.playSound(null, getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                    return true;
                 }
-
-                world.playSound(null, getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
-                return true;
             }
         }
 
