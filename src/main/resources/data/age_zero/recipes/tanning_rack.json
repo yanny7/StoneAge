@@ -1,0 +1,16 @@
+{
+  "type": "age_zero:flint_workbench",
+  "pattern": [
+    "S S",
+    " S ",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "age_zero:tanning_rack"
+  }
+}
