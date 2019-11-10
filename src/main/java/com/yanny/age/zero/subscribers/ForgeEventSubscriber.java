@@ -10,11 +10,21 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementList;
 import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTable;
 import net.minecraft.world.storage.loot.LootTableManager;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -24,6 +34,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -48,7 +59,8 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "acacia_planks"),
             new ResourceLocation("minecraft", "jungle_planks"),
             new ResourceLocation("minecraft", "spruce_planks"),
-            new ResourceLocation("minecraft", "dark_oak_planks")
+            new ResourceLocation("minecraft", "dark_oak_planks"),
+            new ResourceLocation("minecraft", "torch")
     );
     //private static final Set<ResourceLocation> RECIPES_TO_ADD = Sets.newHashSet();
 
@@ -78,12 +90,23 @@ public class ForgeEventSubscriber {
     );
 
     private static final Set<ResourceLocation> ADVANCEMENTS_TO_REMOVE = Sets.newHashSet(
+            new ResourceLocation("minecraft", "recipes/tools/wooden_axe"),
+            new ResourceLocation("minecraft", "recipes/tools/wooden_pickaxe"),
+            new ResourceLocation("minecraft", "recipes/tools/wooden_hoe"),
+            new ResourceLocation("minecraft", "recipes/tools/wooden_shovel"),
+            new ResourceLocation("minecraft", "recipes/combat/wooden_sword"),
+            new ResourceLocation("minecraft", "recipes/tools/stone_axe"),
+            new ResourceLocation("minecraft", "recipes/tools/stone_pickaxe"),
+            new ResourceLocation("minecraft", "recipes/tools/stone_hoe"),
+            new ResourceLocation("minecraft", "recipes/tools/stone_shovel"),
+            new ResourceLocation("minecraft", "recipes/combat/stone_sword"),
             new ResourceLocation("minecraft", "recipes/building_blocks/oak_planks"),
             new ResourceLocation("minecraft", "recipes/building_blocks/birch_planks"),
             new ResourceLocation("minecraft", "recipes/building_blocks/acacia_planks"),
             new ResourceLocation("minecraft", "recipes/building_blocks/jungle_planks"),
             new ResourceLocation("minecraft", "recipes/building_blocks/spruce_planks"),
-            new ResourceLocation("minecraft", "recipes/building_blocks/dark_oak_planks")
+            new ResourceLocation("minecraft", "recipes/building_blocks/dark_oak_planks"),
+            new ResourceLocation("minecraft", "recipes/decorations/torch")
     );
 
     @SuppressWarnings("unchecked")
@@ -168,6 +191,41 @@ public class ForgeEventSubscriber {
 
         if (entity instanceof FlintWorkbenchTileEntity) {
             ((FlintWorkbenchTileEntity) entity).blockClicked(event.getPlayer());
+        }
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    @SubscribeEvent
+    public static void makeFireWithSticksAndDroughtGrass(PlayerInteractEvent.RightClickBlock event) {
+        PlayerEntity player = event.getPlayer();
+        ItemStack mainItem = player.getHeldItem(Hand.MAIN_HAND);
+        ItemStack offItem = player.getHeldItem(Hand.OFF_HAND);
+
+        if (mainItem.getItem() == Items.STICK && offItem.getItem() == Items.STICK && event.getFace() != null) {
+            World world = event.getWorld();
+            BlockPos position = event.getPos().offset(event.getFace());
+            BlockState blockState = world.getBlockState(position);
+            List<ItemEntity> droughtGrassList = world.getEntitiesWithinAABB(ItemEntity.class, new AxisAlignedBB(position),
+                    itemEntity -> itemEntity.getItem().getItem().equals(ItemSubscriber.drought_grass));
+
+            if (blockState.isAir(world, position) && !droughtGrassList.isEmpty()) {
+                world.setBlockState(position, FIRE.getDefaultState(), 11);
+                player.sendBreakAnimation(Hand.MAIN_HAND);
+                player.sendBreakAnimation(Hand.OFF_HAND);
+
+                if (mainItem.getCount() > 1) {
+                    mainItem.setCount(mainItem.getCount() - 1);
+                } else {
+                    player.setHeldItem(Hand.MAIN_HAND, ItemStack.EMPTY);
+                }
+                if (offItem.getCount() > 1) {
+                    offItem.setCount(offItem.getCount() - 1);
+                } else {
+                    player.setHeldItem(Hand.OFF_HAND, ItemStack.EMPTY);
+                }
+
+                droughtGrassList.forEach(Entity::remove);
+            }
         }
     }
 
