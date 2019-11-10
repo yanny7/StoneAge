@@ -162,7 +162,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
                     return true;
                 }
 
-                if (itemStack.isEmpty()) {
+                if (itemStack.isEmpty() && !stacks.get(x * 3 + y).isEmpty()) {
                     NonNullList<ItemStack> itemStacks = NonNullList.create();
                     itemStacks.add(stack);
                     InventoryHelper.dropItems(world, getPos(), itemStacks);
@@ -189,7 +189,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
 
     private Optional<FlintWorkbenchRecipe> findMatchingRecipe() {
         assert this.world != null;
-        return stacks.stream().noneMatch(ItemStack::isEmpty) ? Optional.empty() : this.world.getRecipeManager().getRecipe(FlintWorkbenchRecipe.flint_workbench,
+        return this.world.getRecipeManager().getRecipe(FlintWorkbenchRecipe.flint_workbench,
                 getInventory(), this.world);
     }
 }

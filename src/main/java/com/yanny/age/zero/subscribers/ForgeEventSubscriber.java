@@ -25,15 +25,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTable;
-import net.minecraft.world.storage.loot.LootTableManager;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -60,33 +57,20 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "jungle_planks"),
             new ResourceLocation("minecraft", "spruce_planks"),
             new ResourceLocation("minecraft", "dark_oak_planks"),
-            new ResourceLocation("minecraft", "torch")
-    );
-    //private static final Set<ResourceLocation> RECIPES_TO_ADD = Sets.newHashSet();
+            new ResourceLocation("minecraft", "torch"),
 
-    private static final Set<ResourceLocation> LOOTS_TO_REMOVE = Sets.newHashSet(
-            new ResourceLocation("minecraft", "entities/cow"),
-            new ResourceLocation("minecraft", "entities/pig"),
-            new ResourceLocation("minecraft", "entities/sheep"),
-            new ResourceLocation("minecraft", "blocks/acacia_leaves"),
-            new ResourceLocation("minecraft", "blocks/birch_leaves"),
-            new ResourceLocation("minecraft", "blocks/dark_oak_leaves"),
-            new ResourceLocation("minecraft", "blocks/jungle_leaves"),
-            new ResourceLocation("minecraft", "blocks/oak_leaves"),
-            new ResourceLocation("minecraft", "blocks/spruce_leaves"),
-            new ResourceLocation("minecraft", "blocks/gravel")
+            new ResourceLocation("minecraft", "bow"),
+            new ResourceLocation("minecraft", "leather_helmet"),
+            new ResourceLocation("minecraft", "leather_chestplate"),
+            new ResourceLocation("minecraft", "leather_leggings"),
+            new ResourceLocation("minecraft", "leather_boots")
     );
-    private static final Set<ResourceLocation> LOOTS_TO_ADD = Sets.newHashSet(
-            new ResourceLocation(MODID, "entities/cow"),
-            new ResourceLocation(MODID, "entities/pig"),
-            new ResourceLocation(MODID, "entities/sheep"),
-            new ResourceLocation(MODID, "blocks/acacia_leaves"),
-            new ResourceLocation(MODID, "blocks/birch_leaves"),
-            new ResourceLocation(MODID, "blocks/dark_oak_leaves"),
-            new ResourceLocation(MODID, "blocks/jungle_leaves"),
-            new ResourceLocation(MODID, "blocks/oak_leaves"),
-            new ResourceLocation(MODID, "blocks/spruce_leaves"),
-            new ResourceLocation(MODID, "blocks/gravel")
+    private static final Set<ResourceLocation> RECIPES_TO_ADD = Sets.newHashSet(
+            new ResourceLocation(MODID, "bow"),
+            new ResourceLocation(MODID, "leather_helmet"),
+            new ResourceLocation(MODID, "leather_chestplate"),
+            new ResourceLocation(MODID, "leather_leggings"),
+            new ResourceLocation(MODID, "leather_boots")
     );
 
     private static final Set<ResourceLocation> ADVANCEMENTS_TO_REMOVE = Sets.newHashSet(
@@ -125,10 +109,13 @@ public class ForgeEventSubscriber {
                     Map<ResourceLocation, IRecipe<?>> map1 = map.computeIfAbsent(iRecipeType, (recipeType) -> Maps.newHashMap());
                     resourceLocationIRecipeMap.forEach(map1::put);
                     RECIPES_TO_REMOVE.forEach(map1::remove);
-                /*RECIPES_TO_ADD.forEach(resourceLocation -> {
-                    IRecipe<?> recipe = map1.remove(resourceLocation);
-                    map1.put(new ResourceLocation("minecraft", resourceLocation.getPath()), recipe);
-                });*/
+                    RECIPES_TO_ADD.forEach(resourceLocation -> {
+                        IRecipe<?> recipe = map1.remove(resourceLocation);
+
+                        if (recipe != null) {
+                            map1.put(new ResourceLocation("minecraft", resourceLocation.getPath()), recipe);
+                        }
+                    });
                 });
                 recipes.set(recipeManager, ImmutableMap.copyOf(map));
             } catch (IllegalAccessException e) {
@@ -150,7 +137,7 @@ public class ForgeEventSubscriber {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
-
+/*
             LootTableManager lootTableManager = event.getServer().getLootTableManager();
             Class lootTableManagerClass = lootTableManager.getClass();
             Field lootTable = lootTableManagerClass.getDeclaredFields()[2];
@@ -169,7 +156,7 @@ public class ForgeEventSubscriber {
                 lootTable.set(lootTableManager, ImmutableMap.copyOf(map));
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
 
         if (Config.changeMiningLevelForVanillaBlocks) {

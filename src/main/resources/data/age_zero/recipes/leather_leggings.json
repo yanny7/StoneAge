@@ -1,0 +1,19 @@
+{
+  "type": "age_zero:flint_workbench",
+  "pattern": [
+    "XXX",
+    "XSX",
+    "XSX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:leather"
+    },
+    "S": {
+      "item": "age_zero:leather_strip"
+    }
+  },
+  "result": {
+    "item": "minecraft:leather_leggings"
+  }
+}
