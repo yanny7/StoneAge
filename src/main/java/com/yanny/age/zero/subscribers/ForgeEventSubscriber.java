@@ -64,14 +64,16 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "leather_helmet"),
             new ResourceLocation("minecraft", "leather_chestplate"),
             new ResourceLocation("minecraft", "leather_leggings"),
-            new ResourceLocation("minecraft", "leather_boots")
+            new ResourceLocation("minecraft", "leather_boots"),
+            new ResourceLocation("minecraft", "campfire")
     );
     private static final Set<ResourceLocation> RECIPES_TO_ADD = Sets.newHashSet(
             new ResourceLocation(MODID, "bow"),
             new ResourceLocation(MODID, "leather_helmet"),
             new ResourceLocation(MODID, "leather_chestplate"),
             new ResourceLocation(MODID, "leather_leggings"),
-            new ResourceLocation(MODID, "leather_boots")
+            new ResourceLocation(MODID, "leather_boots"),
+            new ResourceLocation(MODID, "campfire")
     );
 
     private static final Set<ResourceLocation> ADVANCEMENTS_TO_REMOVE = Sets.newHashSet(
