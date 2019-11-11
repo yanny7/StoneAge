@@ -187,7 +187,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
 
     private Optional<FlintWorkbenchRecipe> findMatchingRecipe() {
         assert this.world != null;
-        return this.world.getRecipeManager().getRecipe(FlintWorkbenchRecipe.flint_workbench,
-                getInventory(), this.world);
+        return stacks.stream().allMatch(ItemStack::isEmpty) ? Optional.empty()
+                : this.world.getRecipeManager().getRecipe(FlintWorkbenchRecipe.flint_workbench, getInventory(), this.world);
     }
 }

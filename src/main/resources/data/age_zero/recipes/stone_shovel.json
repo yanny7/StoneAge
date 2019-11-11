@@ -1,0 +1,22 @@
+{
+  "type": "age_zero:flint_workbench",
+  "pattern": [
+    "XS",
+    "# ",
+    "# "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "minecraft:stone"
+    },
+    "S": {
+      "item": "age_zero:leather_strip"
+    }
+  },
+  "result": {
+    "item": "minecraft:stone_shovel"
+  }
+}
