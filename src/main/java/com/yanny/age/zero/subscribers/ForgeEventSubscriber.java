@@ -26,6 +26,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
@@ -183,10 +184,27 @@ public class ForgeEventSubscriber {
 
     @SuppressWarnings("ConstantConditions")
     @SubscribeEvent
+    public static void litTorch(PlayerInteractEvent.RightClickBlock event) {
+        PlayerEntity player = event.getPlayer();
+
+        if (event.getHand() == Hand.MAIN_HAND && player.getHeldItemMainhand().getItem().equals(ItemSubscriber.unlit_torch)) {
+            World world = event.getWorld();
+            BlockPos position = event.getPos().offset(event.getFace());
+            BlockState blockState = world.getBlockState(position);
+
+            if (blockState.getBlock().equals(FIRE)) {
+                player.setHeldItem(Hand.MAIN_HAND, new ItemStack(Items.TORCH, player.getHeldItemMainhand().getCount()));
+                event.setUseItem(Event.Result.DENY);
+            }
+        }
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    @SubscribeEvent
     public static void makeFireWithSticksAndDroughtGrass(PlayerInteractEvent.RightClickBlock event) {
         PlayerEntity player = event.getPlayer();
-        ItemStack mainItem = player.getHeldItem(Hand.MAIN_HAND);
-        ItemStack offItem = player.getHeldItem(Hand.OFF_HAND);
+        ItemStack mainItem = player.getHeldItemMainhand();
+        ItemStack offItem = player.getHeldItemOffhand();
 
         if (mainItem.getItem() == Items.STICK && offItem.getItem() == Items.STICK && event.getFace() != null) {
             World world = event.getWorld();

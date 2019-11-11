@@ -68,8 +68,8 @@ public class FlintWorkbenchBlock extends HorizontalBlock {
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof FlintWorkbenchTileEntity) {
-            return ((FlintWorkbenchTileEntity) tileentity).blockActivated(player, handIn, hit);
+        if (tileentity instanceof FlintWorkbenchTileEntity && (handIn == Hand.MAIN_HAND)) {
+            return ((FlintWorkbenchTileEntity) tileentity).blockActivated(player, hit);
         }
 
         return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);

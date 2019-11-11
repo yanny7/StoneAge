@@ -94,35 +94,34 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
     public void blockClicked(PlayerEntity player) {
         assert world != null;
         ItemStack itemStack = player.getHeldItemMainhand();
+        //noinspection ConstantConditions
+        if (itemStack.getItem().equals(ToolSubscriber.flint_knife)) {
+            Optional<FlintWorkbenchRecipe> recipe = findMatchingRecipe();
 
-        if (player.isSneaking()) {
-            //noinspection ConstantConditions
-            if (itemStack.getItem().equals(ToolSubscriber.flint_knife)) {
-                Optional<FlintWorkbenchRecipe> recipe = findMatchingRecipe();
+            if (recipe.isPresent()) {
+                recipe.ifPresent(flintWorkbenchRecipe -> {
+                    ItemStack result = flintWorkbenchRecipe.getCraftingResult(getInventory());
+                    NonNullList<ItemStack> itemStacks = NonNullList.create();
+                    itemStacks.add(result);
+                    InventoryHelper.dropItems(world, getPos(), itemStacks);
 
-                if (recipe.isPresent()) {
-                    recipe.ifPresent(flintWorkbenchRecipe -> {
-                        ItemStack result = flintWorkbenchRecipe.getCraftingResult(getInventory());
-                        NonNullList<ItemStack> itemStacks = NonNullList.create();
-                        itemStacks.add(result);
-                        InventoryHelper.dropItems(world, getPos(), itemStacks);
+                    for (int i = 0; i < stacks.size(); i++) {
+                        stacks.set(i, ItemStack.EMPTY);
+                    }
 
-                        for (int i = 0; i < stacks.size(); i++) {
-                            stacks.set(i, ItemStack.EMPTY);
-                        }
-
-                        itemStack.damageItem(1, player, playerEntity -> playerEntity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
-                        world.playSound(null, getPos(), SoundEvents.BLOCK_DISPENSER_DISPENSE, SoundCategory.BLOCKS, 1.0f, 1.0f);
-                    });
-                }
+                    itemStack.damageItem(1, player, playerEntity -> playerEntity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+                    world.playSound(null, getPos(), SoundEvents.BLOCK_DISPENSER_DISPENSE, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                });
             }
         }
     }
 
-    boolean blockActivated(PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    boolean blockActivated(PlayerEntity player, BlockRayTraceResult hit) {
         assert world != null;
+        ItemStack itemStack = player.getHeldItemMainhand();
 
-        if (!player.isSneaking() && handIn == Hand.MAIN_HAND) {
+        //noinspection ConstantConditions
+        if (!player.isSneaking() && !itemStack.getItem().equals(ToolSubscriber.flint_knife)) {
             if (hit.getFace() == Direction.UP) {
                 Direction dir = getBlockState().get(HorizontalBlock.HORIZONTAL_FACING);
                 int x = 0;
@@ -148,7 +147,6 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
                         break;
                 }
 
-                ItemStack itemStack = player.getHeldItem(handIn);
                 ItemStack stack = stacks.get(x * 3 + y);
 
                 if (!itemStack.isEmpty() && stack.isEmpty()) {
@@ -157,7 +155,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
                     if (itemStack.getCount() > 1) {
                         itemStack.setCount(itemStack.getCount() - 1);
                     } else {
-                        player.setHeldItem(handIn, ItemStack.EMPTY);
+                        player.setHeldItem(Hand.MAIN_HAND, ItemStack.EMPTY);
                     }
                     return true;
                 }
