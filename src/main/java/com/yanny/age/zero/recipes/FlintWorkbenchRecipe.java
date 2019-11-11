@@ -97,11 +97,11 @@ public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
         return this.getRecipeOutput().copy();
     }
 
-    int getWidth() {
+    public int getWidth() {
         return this.recipeWidth;
     }
 
-    int getHeight() {
+    public int getHeight() {
         return this.recipeHeight;
     }
 
