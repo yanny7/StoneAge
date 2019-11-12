@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "age_zero:bone_spear"
+      "age_zero:bone_sword"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "age_zero:bone_spear"
+        "recipe": "age_zero:bone_sword"
       }
     }
   },

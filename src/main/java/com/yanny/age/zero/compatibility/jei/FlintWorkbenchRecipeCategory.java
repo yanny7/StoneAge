@@ -29,8 +29,8 @@ public class FlintWorkbenchRecipeCategory implements IRecipeCategory<FlintWorkbe
     private final IDrawable icon;
 
     FlintWorkbenchRecipeCategory(IGuiHelper guiHelper) {
-        ResourceLocation location = new ResourceLocation(Reference.MODID, "textures/gui/jei/flint_workbench.png");
-        background = guiHelper.createDrawable(location, 26, 13, 122, 60);
+        ResourceLocation location = new ResourceLocation(Reference.MODID, "textures/gui/jei/gui_layouts.png");
+        background = guiHelper.createDrawable(location, 0, 0, 120, 60);
         localizedName = I18n.format("block.age_zero.flint_workbench");
         icon = guiHelper.createDrawableIngredient(new ItemStack(BlockSubscriber.flint_workbench));
     }

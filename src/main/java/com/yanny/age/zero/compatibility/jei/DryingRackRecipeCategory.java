@@ -17,6 +17,7 @@ import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class DryingRackRecipeCategory implements IRecipeCategory<DryingRackRecipe> {
@@ -27,8 +28,8 @@ public class DryingRackRecipeCategory implements IRecipeCategory<DryingRackRecip
     private final IDrawable icon;
 
     DryingRackRecipeCategory(IGuiHelper guiHelper) {
-        ResourceLocation location = new ResourceLocation("minecraft", "textures/gui/demo_background.png");
-        background = guiHelper.createDrawable(location, 50, 22, 95, 42);
+        ResourceLocation location = new ResourceLocation(Reference.MODID, "textures/gui/jei/gui_layouts.png");
+        background = guiHelper.createDrawable(location, 0, 61, 120, 60);
         localizedName = I18n.format("block.age_zero.drying_rack");
         icon = guiHelper.createDrawableIngredient(new ItemStack(BlockSubscriber.drying_rack));
     }
@@ -77,10 +78,13 @@ public class DryingRackRecipeCategory implements IRecipeCategory<DryingRackRecip
 
     @Override
     public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull DryingRackRecipe dryingRackRecipe, @Nonnull IIngredients ingredients) {
-        recipeLayout.getItemStacks().init(0, true, 8, 11);
+        recipeLayout.getItemStacks().init(0, true, 21, 21);
         recipeLayout.getItemStacks().set(0, ingredients.getInputs(VanillaTypes.ITEM).get(0));
 
-        recipeLayout.getItemStacks().init(1, false, 65, 12);
+        recipeLayout.getItemStacks().init(1, false, 84, 22);
         recipeLayout.getItemStacks().set(1, ingredients.getOutputs(VanillaTypes.ITEM).get(0));
+
+        recipeLayout.getItemStacks().init(2, false, 51, 21);
+        recipeLayout.getItemStacks().set(2, Collections.singletonList(new ItemStack(BlockSubscriber.drying_rack)));
     }
 }

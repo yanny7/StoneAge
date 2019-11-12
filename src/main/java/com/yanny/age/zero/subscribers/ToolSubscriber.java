@@ -22,7 +22,7 @@ public class ToolSubscriber {
     public static final Item antler_axe = null;
     public static final Item antler_shovel = null;
     public static final Item antler_hoe = null;
-    public static final Item bone_spear = null;
+    public static final Item bone_sword = null;
     public static final Item antler_sickle = null;
     public static final Item flint_knife = null;
 
@@ -36,13 +36,13 @@ public class ToolSubscriber {
         registry.register(new AxeItem(Tiers.BONE_TIER, 1, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_axe"));
         registry.register(new ShovelItem(Tiers.BONE_TIER, 1.5f, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_shovel"));
         registry.register(new HoeItem(Tiers.BONE_TIER, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_hoe"));
-        registry.register(new SwordItem(Tiers.BONE_TIER, 2,-2.5f, combatProperties).setRegistryName(Reference.MODID, "bone_spear"));
+        registry.register(new SwordItem(Tiers.BONE_TIER, 2,-2.5f, combatProperties).setRegistryName(Reference.MODID, "bone_sword"));
         registry.register(new SickleItem(toolProperties.maxDamage(Tiers.BONE_TIER.maxUses)).setRegistryName(Reference.MODID, "antler_sickle"));
         registry.register(new SwordItem(Tiers.BONE_TIER, 0,-1.0f, combatProperties).setRegistryName(Reference.MODID, "flint_knife"));
     }
 
     public enum Tiers implements IItemTier {
-        BONE_TIER(-1, 59, 2.0F, 1.0F, 15, () -> {
+        BONE_TIER(-1, 35, 2.0F, 1.0F, 15, () -> {
             return Ingredient.fromItems(Items.BONE);
         })
         ;

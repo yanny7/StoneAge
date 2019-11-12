@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "age_zero:item/bone_spear"
+        "layer0": "age_zero:item/bone_sword"
     }
 }
