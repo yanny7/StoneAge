@@ -2,6 +2,7 @@ package com.yanny.age.zero.subscribers;
 
 import com.yanny.age.zero.blocks.DryingRackBlock;
 import com.yanny.age.zero.blocks.FlintWorkbenchBlock;
+import com.yanny.age.zero.blocks.StoneChestBlock;
 import com.yanny.age.zero.blocks.TanningRackBlock;
 import com.yanny.ages.api.group.ModItemGroup;
 import net.minecraft.block.Block;
@@ -21,6 +22,7 @@ public class BlockSubscriber {
     public static final Block flint_workbench = null;
     public static final Block drying_rack = null;
     public static final Block tanning_rack = null;
+    public static final Block stone_chest = null;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -28,6 +30,7 @@ public class BlockSubscriber {
         registry.register(new FlintWorkbenchBlock().setRegistryName(MODID, "flint_workbench"));
         registry.register(new DryingRackBlock().setRegistryName(MODID, "drying_rack"));
         registry.register(new TanningRackBlock().setRegistryName(MODID, "tanning_rack"));
+        registry.register(new StoneChestBlock().setRegistryName(MODID, "stone_chest"));
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -40,5 +43,7 @@ public class BlockSubscriber {
                 .setRegistryName(MODID, "drying_rack"));
         registry.register(new BlockItem(tanning_rack, new Item.Properties().group(ModItemGroup.TOOMANYORES))
                 .setRegistryName(MODID, "tanning_rack"));
+        registry.register(new BlockItem(stone_chest, new Item.Properties().group(ModItemGroup.TOOMANYORES))
+                .setRegistryName(MODID, "stone_chest"));
     }
 }

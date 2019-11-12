@@ -15,10 +15,6 @@ import static com.yanny.age.zero.Reference.*;
 public class RendererSubscriber {
     @SubscribeEvent
     public static void clientRegistries(FMLClientSetupEvent event) {
-        RendererSubscriber.registerRenderer();
-    }
-
-    private static void registerRenderer() {
         RenderingRegistry.registerEntityRenderingHandler(DeerEntity.class, new DeerRenderer.RenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(BoarEntity.class, new BoarRenderer.RenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(AurochEntity.class, new AurochRenderer.RenderFactory());
