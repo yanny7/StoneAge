@@ -45,7 +45,7 @@ public class StoneChestContainer extends Container {
         tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
             for (int y = 0; y < INVENTORY_HEIGHT; y++) {
                 for (int x = 0; x < INVENTORY_WIDTH; x++) {
-                    addSlot(new SlotItemHandler(h, x + y * INVENTORY_WIDTH, 62 + x * 18, 17 + y * 18));
+                    addSlot(new SlotItemHandler(h, x + y * INVENTORY_WIDTH, 44 + x * 18, 17 + y * 18));
                 }
             }
         });

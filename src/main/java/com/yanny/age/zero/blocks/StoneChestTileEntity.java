@@ -34,7 +34,7 @@ import javax.annotation.Nullable;
 
 @OnlyIn(value = Dist.CLIENT, _interface = IChestLid.class)
 public class StoneChestTileEntity extends TileEntity implements IInventoryInterface, INamedContainerProvider, IChestLid, ITickableTileEntity {
-    static final int INVENTORY_WIDTH = 3;
+    static final int INVENTORY_WIDTH = 5;
     static final int INVENTORY_HEIGHT = 3;
 
     private final NonNullList<ItemStack> stacks = NonNullList.create();
