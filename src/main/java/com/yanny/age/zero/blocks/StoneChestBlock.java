@@ -16,6 +16,9 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -24,6 +27,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class StoneChestBlock extends HorizontalBlock {
+    private static final VoxelShape SHAPE = VoxelShapes.create(1, 0, 1, 15, 14, 15);
+
     public StoneChestBlock() {
         super(Properties.create(Material.WOOD).hardnessAndResistance(2.0f));
     }
@@ -65,6 +70,13 @@ public class StoneChestBlock extends HorizontalBlock {
     @Override
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Nonnull
+    @Override
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        return SHAPE;
     }
 
     @SuppressWarnings("deprecation")

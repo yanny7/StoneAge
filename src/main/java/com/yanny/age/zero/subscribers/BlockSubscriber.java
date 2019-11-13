@@ -4,6 +4,7 @@ import com.yanny.age.zero.blocks.DryingRackBlock;
 import com.yanny.age.zero.blocks.FlintWorkbenchBlock;
 import com.yanny.age.zero.blocks.StoneChestBlock;
 import com.yanny.age.zero.blocks.TanningRackBlock;
+import com.yanny.age.zero.client.renderer.StoneChestItemRenderer;
 import com.yanny.ages.api.group.ModItemGroup;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -43,7 +44,7 @@ public class BlockSubscriber {
                 .setRegistryName(MODID, "drying_rack"));
         registry.register(new BlockItem(tanning_rack, new Item.Properties().group(ModItemGroup.TOOMANYORES))
                 .setRegistryName(MODID, "tanning_rack"));
-        registry.register(new BlockItem(stone_chest, new Item.Properties().group(ModItemGroup.TOOMANYORES))
+        registry.register(new BlockItem(stone_chest, new Item.Properties().group(ModItemGroup.TOOMANYORES).setTEISR(() -> StoneChestItemRenderer::new))
                 .setRegistryName(MODID, "stone_chest"));
     }
 }

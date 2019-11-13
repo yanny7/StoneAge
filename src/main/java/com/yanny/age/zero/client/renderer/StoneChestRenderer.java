@@ -5,9 +5,14 @@ import com.yanny.age.zero.Reference;
 import com.yanny.age.zero.blocks.StoneChestBlock;
 import com.yanny.age.zero.blocks.StoneChestTileEntity;
 import com.yanny.age.zero.client.models.StoneChestModel;
+import com.yanny.age.zero.subscribers.BlockSubscriber;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.ChestBlock;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.tileentity.IChestLid;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 
 public class StoneChestRenderer extends TileEntityRenderer<StoneChestTileEntity> {
@@ -20,7 +25,9 @@ public class StoneChestRenderer extends TileEntityRenderer<StoneChestTileEntity>
         GlStateManager.depthFunc(515);
         GlStateManager.depthMask(true);
 
-        BlockState blockstate = tileEntityIn.getBlockState();
+        //noinspection ConstantConditions
+        BlockState blockstate = tileEntityIn.hasWorld() ? tileEntityIn.getBlockState() :
+                BlockSubscriber.stone_chest.getDefaultState().with(StoneChestBlock.HORIZONTAL_FACING, Direction.SOUTH);
         StoneChestModel chestModel = this.getChestModel(destroyStage);
 
         if (destroyStage >= 0) {
