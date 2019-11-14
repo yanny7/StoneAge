@@ -85,8 +85,8 @@ public class TanningRackBlock extends HorizontalBlock {
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TanningRackTileEntity) {
-            return ((TanningRackTileEntity) tileentity).blockActivated(player, handIn);
+        if (tileentity instanceof TanningRackTileEntity && !worldIn.isRemote && (handIn == Hand.MAIN_HAND)) {
+            return ((TanningRackTileEntity) tileentity).blockActivated(player);
         }
 
         return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);

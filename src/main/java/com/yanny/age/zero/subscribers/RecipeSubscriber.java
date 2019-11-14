@@ -17,6 +17,7 @@ public class RecipeSubscriber {
     public static final FlintWorkbenchRecipeSerializer flint_workbench = null;
     public static final DryingRackRecipeSerializer drying_rack = null;
     public static final TanningRackRecipeSerializer tanning_rack = null;
+    public static final TreeStumpRecipeSerializer tree_stump = null;
 
     @SubscribeEvent
     public static void registerTileEntity(RegistryEvent.Register<IRecipeSerializer<?>> event) {
@@ -24,5 +25,6 @@ public class RecipeSubscriber {
         registry.register(new FlintWorkbenchRecipeSerializer().setRegistryName(MODID, "flint_workbench"));
         registry.register(new DryingRackRecipeSerializer<>(DryingRackRecipe::new).setRegistryName(MODID, "drying_rack"));
         registry.register(new TanningRackRecipeSerializer<>(TanningRackRecipe::new).setRegistryName(MODID, "tanning_rack"));
+        registry.register(new TreeStumpRecipeSerializer<>(TreeStumpRecipe::new).setRegistryName(MODID, "tree_stump"));
     }
 }

@@ -100,57 +100,55 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
         super.remove();
     }
 
-    boolean blockActivated(PlayerEntity player, Hand handIn) {
+    boolean blockActivated(PlayerEntity player) {
         assert world != null;
-        ItemStack itemStack = player.getHeldItem(handIn);
+        ItemStack itemStack = player.getHeldItemMainhand();
+        TanningRackRecipe recipe = getRecipe(itemStack);
+        int pos = 0;
 
-        if (!player.isSneaking() && !world.isRemote && handIn == Hand.MAIN_HAND) {
-            TanningRackRecipe recipe = getRecipe(itemStack);
-            int pos = 0;
+        if (stacks.get(pos).isEmpty() && stacks.get(pos + ITEMS).isEmpty() && recipe != null) {
+            stacks.set(pos, new ItemStack(itemStack.getItem(), 1));
 
-            if (stacks.get(pos).isEmpty() && stacks.get(pos + ITEMS).isEmpty() && recipe != null) {
-                stacks.set(pos, new ItemStack(itemStack.getItem(), 1));
-
-                if (itemStack.getCount() > 1) {
-                    itemStack.setCount(itemStack.getCount() - 1);
-                } else {
-                    player.setHeldItem(handIn, ItemStack.EMPTY);
-                }
-
-                world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
-                return true;
+            if (itemStack.getCount() > 1) {
+                itemStack.setCount(itemStack.getCount() - 1);
+            } else {
+                player.setHeldItem(Hand.MAIN_HAND, ItemStack.EMPTY);
             }
 
-            //noinspection ConstantConditions
-            if (itemStack.getItem().equals(ToolSubscriber.flint_knife) && !stacks.get(pos).isEmpty()) {
-                itemStack.damageItem(1, player, playerEntity -> playerEntity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
-
-                if (random.nextDouble() < Config.tanningRackFinishChance) {
-                    TanningRackRecipe rackRecipe = getRecipe(stacks.get(pos));
-
-                    if (rackRecipe != null) {
-                        stacks.set(pos + ITEMS, rackRecipe.getCraftingResult(null));
-                    }
-
-                    stacks.set(pos, ItemStack.EMPTY);
-                    world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
-                }
-
-                return true;
-            }
-
-            if (itemStack.isEmpty() && !stacks.get(pos + ITEMS).isEmpty()) {
-                NonNullList<ItemStack> itemStacks = NonNullList.create();
-                itemStacks.add(stacks.get(pos + ITEMS).copy());
-                stacks.set(pos + ITEMS, ItemStack.EMPTY);
-                stacks.set(pos, ItemStack.EMPTY);
-                InventoryHelper.dropItems(world, getPos(), itemStacks);
-
-                world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
-                world.playSound(null, getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
-                return true;
-            }
+            world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
+            return true;
         }
+
+        //noinspection ConstantConditions
+        if (itemStack.getItem().equals(ToolSubscriber.flint_knife) && !stacks.get(pos).isEmpty()) {
+            itemStack.damageItem(1, player, playerEntity -> playerEntity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+
+            if (random.nextDouble() < Config.tanningRackFinishChance) {
+                TanningRackRecipe rackRecipe = getRecipe(stacks.get(pos));
+
+                if (rackRecipe != null) {
+                    stacks.set(pos + ITEMS, rackRecipe.getCraftingResult(null));
+                }
+
+                stacks.set(pos, ItemStack.EMPTY);
+                world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
+            }
+
+            return true;
+        }
+
+        if (itemStack.isEmpty() && !stacks.get(pos + ITEMS).isEmpty()) {
+            NonNullList<ItemStack> itemStacks = NonNullList.create();
+            itemStacks.add(stacks.get(pos + ITEMS).copy());
+            stacks.set(pos + ITEMS, ItemStack.EMPTY);
+            stacks.set(pos, ItemStack.EMPTY);
+            InventoryHelper.dropItems(world, getPos(), itemStacks);
+
+            world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
+            world.playSound(null, getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
+            return true;
+        }
+
         return false;
     }
 

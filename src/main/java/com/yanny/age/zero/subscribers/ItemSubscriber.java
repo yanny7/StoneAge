@@ -12,7 +12,7 @@ import net.minecraftforge.registries.ObjectHolder;
 
 import static com.yanny.age.zero.Reference.MODID;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 @ObjectHolder(Reference.MODID)
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemSubscriber {
