@@ -1,9 +1,6 @@
 package com.yanny.age.zero.subscribers;
 
-import com.yanny.age.zero.blocks.DryingRackBlock;
-import com.yanny.age.zero.blocks.FlintWorkbenchBlock;
-import com.yanny.age.zero.blocks.StoneChestBlock;
-import com.yanny.age.zero.blocks.TanningRackBlock;
+import com.yanny.age.zero.blocks.*;
 import com.yanny.age.zero.client.renderer.StoneChestItemRenderer;
 import com.yanny.ages.api.group.ModItemGroup;
 import net.minecraft.block.Block;
@@ -17,6 +14,7 @@ import net.minecraftforge.registries.ObjectHolder;
 
 import static com.yanny.age.zero.Reference.MODID;
 
+@SuppressWarnings("WeakerAccess")
 @ObjectHolder(MODID)
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BlockSubscriber {
@@ -24,6 +22,7 @@ public class BlockSubscriber {
     public static final Block drying_rack = null;
     public static final Block tanning_rack = null;
     public static final Block stone_chest = null;
+    public static final Block tree_stump = null;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -32,6 +31,7 @@ public class BlockSubscriber {
         registry.register(new DryingRackBlock().setRegistryName(MODID, "drying_rack"));
         registry.register(new TanningRackBlock().setRegistryName(MODID, "tanning_rack"));
         registry.register(new StoneChestBlock().setRegistryName(MODID, "stone_chest"));
+        registry.register(new TreeStumpBlock().setRegistryName(MODID, "tree_stump"));
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -46,5 +46,7 @@ public class BlockSubscriber {
                 .setRegistryName(MODID, "tanning_rack"));
         registry.register(new BlockItem(stone_chest, new Item.Properties().group(ModItemGroup.TOOMANYORES).setTEISR(() -> StoneChestItemRenderer::new))
                 .setRegistryName(MODID, "stone_chest"));
+        registry.register(new BlockItem(tree_stump, new Item.Properties().group(ModItemGroup.TOOMANYORES))
+                .setRegistryName(MODID, "tree_stump"));
     }
 }

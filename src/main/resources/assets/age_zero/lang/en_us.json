@@ -27,6 +27,8 @@
     "block.age_zero.flint_workbench": "Flint crafting table",
     "block.age_zero.drying_rack": "Drying rack",
     "block.age_zero.tanning_rack": "Tanning rack",
+    "block.age_zero.stone_chest": "Stone chest",
+    "block.age_zero.tree_stump": "Tree stump",
 
     "entity.age_zero.deer": "Deer",
     "entity.age_zero.boar": "Boar",
