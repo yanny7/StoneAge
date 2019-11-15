@@ -1,17 +1,12 @@
 package com.yanny.age.zero.blocks;
 
-import com.yanny.age.zero.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.IBooleanFunction;
@@ -27,7 +22,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class TreeStumpBlock extends Block {
-    public static final Tag<Item> AXES = new ItemTags.Wrapper(new ResourceLocation(Reference.MODID, "axes"));
     private static final VoxelShape SHAPE = VoxelShapes.combine(Block.makeCuboidShape(0, 0, 0, 16, 1, 16),
             Block.makeCuboidShape(2, 1, 2, 14, 12, 14), IBooleanFunction.OR);
 
@@ -95,10 +89,13 @@ public class TreeStumpBlock extends Block {
 
     @SuppressWarnings("deprecation")
     @Override
-    public float getPlayerRelativeBlockHardness(BlockState state, PlayerEntity player, @Nonnull IBlockReader worldIn, @Nonnull BlockPos pos) {
-        if (player.getHeldItemMainhand().getItem().isIn(AXES)) {
+    public float getPlayerRelativeBlockHardness(BlockState state, @Nonnull PlayerEntity player, @Nonnull IBlockReader worldIn, @Nonnull BlockPos pos) {
+        TileEntity tileentity = worldIn.getTileEntity(pos);
+
+        if ((tileentity instanceof TreeStumpTileEntity) && ((TreeStumpTileEntity) tileentity).hasTool(player.getHeldItemMainhand())) {
             return 0.0f;
         }
+
         return super.getPlayerRelativeBlockHardness(state, player, worldIn, pos);
     }
 }

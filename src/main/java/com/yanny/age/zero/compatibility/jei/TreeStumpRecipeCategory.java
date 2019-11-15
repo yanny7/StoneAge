@@ -2,7 +2,6 @@ package com.yanny.age.zero.compatibility.jei;
 
 import com.google.common.collect.ImmutableList;
 import com.yanny.age.zero.Reference;
-import com.yanny.age.zero.blocks.TreeStumpBlock;
 import com.yanny.age.zero.recipes.TreeStumpRecipe;
 import com.yanny.age.zero.subscribers.BlockSubscriber;
 import mezz.jei.api.constants.VanillaTypes;
@@ -14,7 +13,6 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
@@ -72,7 +70,7 @@ public class TreeStumpRecipeCategory implements IRecipeCategory<TreeStumpRecipe>
         ImmutableList.Builder<ItemStack> outputBuilder = ImmutableList.builder();
 
         inputBuilder.add(Arrays.asList(treeStumpRecipe.getIngredients().get(0).getMatchingStacks()));
-        inputBuilder.add(Arrays.asList(Ingredient.fromTag(TreeStumpBlock.AXES).getMatchingStacks()));
+        inputBuilder.add(Arrays.asList(treeStumpRecipe.getTools().get(0).getMatchingStacks()));
         outputBuilder.add(treeStumpRecipe.getRecipeOutput());
 
         ingredients.setInputLists(VanillaTypes.ITEM, inputBuilder.build());

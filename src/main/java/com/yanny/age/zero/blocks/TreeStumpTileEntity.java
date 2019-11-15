@@ -167,15 +167,15 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
         }
     }
 
+    boolean hasTool(ItemStack toolInHand) {
+        return tools.stream().anyMatch(ingredient -> ingredient.test(toolInHand));
+    }
+
     @Nullable
     private TreeStumpRecipe getRecipe(ItemStack item) {
         assert world != null;
         tmpItemHandler.setStackInSlot(0, item);
         return world.getRecipeManager().getRecipe(TreeStumpRecipe.tree_stump, tmpItemHandlerWrapper, world).orElse(null);
-    }
-
-    private boolean hasTool(ItemStack toolInHand) {
-        return tools.stream().anyMatch(ingredient -> ingredient.test(toolInHand));
     }
 
     private IItemHandlerModifiable createNonSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {
