@@ -47,12 +47,6 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "wooden_hoe"),
             new ResourceLocation("minecraft", "wooden_shovel"),
             new ResourceLocation("minecraft", "wooden_sword"),
-            new ResourceLocation("minecraft", "oak_planks"),
-            new ResourceLocation("minecraft", "birch_planks"),
-            new ResourceLocation("minecraft", "acacia_planks"),
-            new ResourceLocation("minecraft", "jungle_planks"),
-            new ResourceLocation("minecraft", "spruce_planks"),
-            new ResourceLocation("minecraft", "dark_oak_planks"),
             new ResourceLocation("minecraft", "torch"),
 
             new ResourceLocation("minecraft", "bow"),
@@ -65,7 +59,19 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "stone_pickaxe"),
             new ResourceLocation("minecraft", "stone_hoe"),
             new ResourceLocation("minecraft", "stone_shovel"),
-            new ResourceLocation("minecraft", "stone_sword")
+            new ResourceLocation("minecraft", "stone_sword"),
+            new ResourceLocation("minecraft", "oak_planks"),
+            new ResourceLocation("minecraft", "birch_planks"),
+            new ResourceLocation("minecraft", "acacia_planks"),
+            new ResourceLocation("minecraft", "jungle_planks"),
+            new ResourceLocation("minecraft", "spruce_planks"),
+            new ResourceLocation("minecraft", "dark_oak_planks"),
+            new ResourceLocation("minecraft", "oak_slab"),
+            new ResourceLocation("minecraft", "birch_slab"),
+            new ResourceLocation("minecraft", "acacia_slab"),
+            new ResourceLocation("minecraft", "jungle_slab"),
+            new ResourceLocation("minecraft", "spruce_slab"),
+            new ResourceLocation("minecraft", "dark_oak_slab")
     );
     private static final Set<ResourceLocation> RECIPES_TO_ADD = Sets.newHashSet(
             new ResourceLocation(MODID, "bow"),
@@ -78,7 +84,19 @@ public class ForgeEventSubscriber {
             new ResourceLocation(MODID, "stone_pickaxe"),
             new ResourceLocation(MODID, "stone_hoe"),
             new ResourceLocation(MODID, "stone_shovel"),
-            new ResourceLocation(MODID, "stone_sword")
+            new ResourceLocation(MODID, "stone_sword"),
+            new ResourceLocation(MODID, "oak_planks"),
+            new ResourceLocation(MODID, "birch_planks"),
+            new ResourceLocation(MODID, "acacia_planks"),
+            new ResourceLocation(MODID, "jungle_planks"),
+            new ResourceLocation(MODID, "spruce_planks"),
+            new ResourceLocation(MODID, "dark_oak_planks"),
+            new ResourceLocation(MODID, "oak_slab"),
+            new ResourceLocation(MODID, "birch_slab"),
+            new ResourceLocation(MODID, "acacia_slab"),
+            new ResourceLocation(MODID, "jungle_slab"),
+            new ResourceLocation(MODID, "spruce_slab"),
+            new ResourceLocation(MODID, "dark_oak_slab")
     );
 
     private static final Set<ResourceLocation> ADVANCEMENTS_TO_REMOVE = Sets.newHashSet(
@@ -87,17 +105,6 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "recipes/tools/wooden_hoe"),
             new ResourceLocation("minecraft", "recipes/tools/wooden_shovel"),
             new ResourceLocation("minecraft", "recipes/combat/wooden_sword"),
-            new ResourceLocation("minecraft", "recipes/tools/stone_axe"),
-            new ResourceLocation("minecraft", "recipes/tools/stone_pickaxe"),
-            new ResourceLocation("minecraft", "recipes/tools/stone_hoe"),
-            new ResourceLocation("minecraft", "recipes/tools/stone_shovel"),
-            new ResourceLocation("minecraft", "recipes/combat/stone_sword"),
-            new ResourceLocation("minecraft", "recipes/building_blocks/oak_planks"),
-            new ResourceLocation("minecraft", "recipes/building_blocks/birch_planks"),
-            new ResourceLocation("minecraft", "recipes/building_blocks/acacia_planks"),
-            new ResourceLocation("minecraft", "recipes/building_blocks/jungle_planks"),
-            new ResourceLocation("minecraft", "recipes/building_blocks/spruce_planks"),
-            new ResourceLocation("minecraft", "recipes/building_blocks/dark_oak_planks"),
             new ResourceLocation("minecraft", "recipes/decorations/torch")
     );
 

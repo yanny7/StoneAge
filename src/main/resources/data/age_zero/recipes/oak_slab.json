@@ -1,0 +1,8 @@
+{
+  "type": "age_zero:tree_stump",
+  "ingredient": {
+    "item": "minecraft:oak_planks"
+  },
+  "result": "minecraft:oak_slab",
+  "chopTimes": 2
+}

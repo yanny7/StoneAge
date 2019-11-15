@@ -1,0 +1,8 @@
+{
+  "type": "age_zero:tree_stump",
+  "ingredient": {
+    "item": "minecraft:acacia_planks"
+  },
+  "result": "minecraft:acacia_slab",
+  "chopTimes": 2
+}

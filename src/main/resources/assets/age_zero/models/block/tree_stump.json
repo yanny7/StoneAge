@@ -42,25 +42,25 @@
         {
             "name": "Cube",
             "from": [ 0, 0, 0 ], 
-            "to": [ 16, 3, 16 ], 
+            "to": [ 16, 1, 16 ], 
             "faces": {
-                "north": { "texture": "#stone", "uv": [ 0, 0, 16, 3 ] },
-                "east": { "texture": "#stone", "uv": [ 0, 0, 16, 3 ] },
-                "south": { "texture": "#stone", "uv": [ 0, 0, 16, 3 ] },
-                "west": { "texture": "#stone", "uv": [ 0, 0, 16, 3 ] },
+                "north": { "texture": "#stone", "uv": [ 0, 0, 16, 1 ] },
+                "east": { "texture": "#stone", "uv": [ 0, 0, 16, 1 ] },
+                "south": { "texture": "#stone", "uv": [ 0, 0, 16, 1 ] },
+                "west": { "texture": "#stone", "uv": [ 0, 0, 16, 1 ] },
                 "up": { "texture": "#stone", "uv": [ 0, 0, 16, 16 ] },
                 "down": { "texture": "#stone", "uv": [ 0, 0, 16, 16 ] }
             }
         },
         {
             "name": "Cube",
-            "from": [ 2, 3, 2 ], 
+            "from": [ 2, 1, 2 ], 
             "to": [ 14, 12, 14 ], 
             "faces": {
-                "north": { "texture": "#oak_log", "uv": [ 0, 0, 12, 9 ] },
-                "east": { "texture": "#oak_log", "uv": [ 0, 0, 12, 9 ] },
-                "south": { "texture": "#oak_log", "uv": [ 0, 0, 12, 9 ] },
-                "west": { "texture": "#oak_log", "uv": [ 0, 0, 12, 9 ] },
+                "north": { "texture": "#oak_log", "uv": [ 0, 0, 12, 11 ] },
+                "east": { "texture": "#oak_log", "uv": [ 0, 0, 12, 11 ] },
+                "south": { "texture": "#oak_log", "uv": [ 0, 0, 12, 11 ] },
+                "west": { "texture": "#oak_log", "uv": [ 0, 0, 12, 11 ] },
                 "up": { "texture": "#oak_log_top", "uv": [ 2, 2, 14, 14 ] }
             }
         }

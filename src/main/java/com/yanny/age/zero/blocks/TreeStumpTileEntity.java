@@ -137,6 +137,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
             itemStacks.add(stacks.get(0).copy());
             stacks.set(0, ItemStack.EMPTY);
             InventoryHelper.dropItems(world, getPos(), itemStacks);
+            recipeResult = ItemStack.EMPTY;
 
             world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
             world.playSound(null, getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
