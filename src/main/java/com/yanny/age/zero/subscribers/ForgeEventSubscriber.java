@@ -50,53 +50,23 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "torch"),
 
             new ResourceLocation("minecraft", "bow"),
-            new ResourceLocation("minecraft", "leather_helmet"),
-            new ResourceLocation("minecraft", "leather_chestplate"),
-            new ResourceLocation("minecraft", "leather_leggings"),
-            new ResourceLocation("minecraft", "leather_boots"),
             new ResourceLocation("minecraft", "campfire"),
             new ResourceLocation("minecraft", "stone_axe"),
             new ResourceLocation("minecraft", "stone_pickaxe"),
             new ResourceLocation("minecraft", "stone_hoe"),
             new ResourceLocation("minecraft", "stone_shovel"),
             new ResourceLocation("minecraft", "stone_sword"),
-            new ResourceLocation("minecraft", "oak_planks"),
-            new ResourceLocation("minecraft", "birch_planks"),
-            new ResourceLocation("minecraft", "acacia_planks"),
-            new ResourceLocation("minecraft", "jungle_planks"),
-            new ResourceLocation("minecraft", "spruce_planks"),
-            new ResourceLocation("minecraft", "dark_oak_planks"),
-            new ResourceLocation("minecraft", "oak_slab"),
-            new ResourceLocation("minecraft", "birch_slab"),
-            new ResourceLocation("minecraft", "acacia_slab"),
-            new ResourceLocation("minecraft", "jungle_slab"),
-            new ResourceLocation("minecraft", "spruce_slab"),
-            new ResourceLocation("minecraft", "dark_oak_slab")
+            new ResourceLocation("minecraft", "stone_slab")
     );
     private static final Set<ResourceLocation> RECIPES_TO_ADD = Sets.newHashSet(
             new ResourceLocation(MODID, "bow"),
-            new ResourceLocation(MODID, "leather_helmet"),
-            new ResourceLocation(MODID, "leather_chestplate"),
-            new ResourceLocation(MODID, "leather_leggings"),
-            new ResourceLocation(MODID, "leather_boots"),
             new ResourceLocation(MODID, "campfire"),
             new ResourceLocation(MODID, "stone_axe"),
             new ResourceLocation(MODID, "stone_pickaxe"),
             new ResourceLocation(MODID, "stone_hoe"),
             new ResourceLocation(MODID, "stone_shovel"),
             new ResourceLocation(MODID, "stone_sword"),
-            new ResourceLocation(MODID, "oak_planks"),
-            new ResourceLocation(MODID, "birch_planks"),
-            new ResourceLocation(MODID, "acacia_planks"),
-            new ResourceLocation(MODID, "jungle_planks"),
-            new ResourceLocation(MODID, "spruce_planks"),
-            new ResourceLocation(MODID, "dark_oak_planks"),
-            new ResourceLocation(MODID, "oak_slab"),
-            new ResourceLocation(MODID, "birch_slab"),
-            new ResourceLocation(MODID, "acacia_slab"),
-            new ResourceLocation(MODID, "jungle_slab"),
-            new ResourceLocation(MODID, "spruce_slab"),
-            new ResourceLocation(MODID, "dark_oak_slab")
+            new ResourceLocation(MODID, "stone_slab")
     );
 
     private static final Set<ResourceLocation> ADVANCEMENTS_TO_REMOVE = Sets.newHashSet(

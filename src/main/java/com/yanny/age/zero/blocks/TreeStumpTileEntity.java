@@ -3,6 +3,7 @@ package com.yanny.age.zero.blocks;
 import com.yanny.age.zero.recipes.TreeStumpRecipe;
 import com.yanny.age.zero.subscribers.TilesSubscriber;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
@@ -120,10 +121,15 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
                 InventoryHelper.dropItems(world, getPos(), itemStacks);
                 recipeResult = ItemStack.EMPTY;
                 tools.clear();
+                player.getHeldItemMainhand().damageItem(1, player, playerEntity -> playerEntity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
 
                 world.playSound(null, getPos(), SoundEvents.BLOCK_WOOD_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
+            } else {
+                world.playSound(null, getPos(), SoundEvents.BLOCK_WOOD_HIT, SoundCategory.BLOCKS, 1.0f, 1.0f);
             }
+        } else {
+            world.playSound(null, getPos(), SoundEvents.ITEM_SHIELD_BLOCK, SoundCategory.BLOCKS, 1.0f, 1.0f);
         }
     }
 

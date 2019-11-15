@@ -1,6 +1,7 @@
 package com.yanny.age.zero.subscribers;
 
 import com.yanny.age.zero.Reference;
+import com.yanny.age.zero.items.HammerItem;
 import com.yanny.age.zero.items.SickleItem;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
@@ -25,6 +26,7 @@ public class ToolSubscriber {
     public static final Item bone_sword = null;
     public static final Item antler_sickle = null;
     public static final Item flint_knife = null;
+    public static final Item stone_hammer = null;
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
@@ -39,6 +41,7 @@ public class ToolSubscriber {
         registry.register(new SwordItem(Tiers.BONE_TIER, 2,-2.5f, combatProperties).setRegistryName(Reference.MODID, "bone_sword"));
         registry.register(new SickleItem(toolProperties.maxDamage(Tiers.BONE_TIER.maxUses)).setRegistryName(Reference.MODID, "antler_sickle"));
         registry.register(new SwordItem(Tiers.BONE_TIER, 0,-1.0f, combatProperties).setRegistryName(Reference.MODID, "flint_knife"));
+        registry.register(new HammerItem(ItemTier.STONE, 2, -3.5f, toolProperties).setRegistryName(Reference.MODID, "stone_hammer"));
     }
 
     public enum Tiers implements IItemTier {
