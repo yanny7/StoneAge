@@ -3,6 +3,9 @@
   "ingredient": {
     "item": "minecraft:spruce_planks"
   },
+  "tool": {
+    "tag": "age_zero:axes"
+  },
   "result": "minecraft:spruce_slab",
   "chopTimes": 2
 }

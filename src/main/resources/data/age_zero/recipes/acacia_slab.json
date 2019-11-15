@@ -3,6 +3,9 @@
   "ingredient": {
     "item": "minecraft:acacia_planks"
   },
+  "tool": {
+    "tag": "age_zero:axes"
+  },
   "result": "minecraft:acacia_slab",
   "chopTimes": 2
 }

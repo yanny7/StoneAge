@@ -3,6 +3,9 @@
   "ingredient": {
     "item": "minecraft:oak_log"
   },
+  "tool": {
+    "tag": "age_zero:axes"
+  },
   "result": "minecraft:oak_planks",
   "chopTimes": 2
 }

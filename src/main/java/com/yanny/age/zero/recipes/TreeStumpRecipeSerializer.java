@@ -26,10 +26,14 @@ public class TreeStumpRecipeSerializer<T extends TreeStumpRecipe>
     @Nonnull
     public T read(@Nonnull ResourceLocation recipeId, @Nonnull JsonObject json) {
         String s = JSONUtils.getString(json, "group", "");
-        JsonElement jsonelement = JSONUtils.isJsonArray(json, "ingredient")
+        JsonElement ingredientJsonElement = JSONUtils.isJsonArray(json, "ingredient")
                 ? JSONUtils.getJsonArray(json, "ingredient")
                 : JSONUtils.getJsonObject(json, "ingredient");
-        Ingredient ingredient = Ingredient.deserialize(jsonelement);
+        JsonElement toolJsonElement = JSONUtils.isJsonArray(json, "tool")
+                ? JSONUtils.getJsonArray(json, "tool")
+                : JSONUtils.getJsonObject(json, "tool");
+        Ingredient ingredient = Ingredient.deserialize(ingredientJsonElement);
+        Ingredient tool = Ingredient.deserialize(toolJsonElement);
         ItemStack itemstack;
 
         if (!json.has("result")) {
@@ -47,7 +51,7 @@ public class TreeStumpRecipeSerializer<T extends TreeStumpRecipe>
 
         int i = JSONUtils.getInt(json, "chopTimes", 1);
 
-        return this.factory.create(recipeId, s, ingredient, itemstack, i);
+        return this.factory.create(recipeId, s, ingredient, tool, itemstack, i);
     }
 
     @Nullable
@@ -55,22 +59,24 @@ public class TreeStumpRecipeSerializer<T extends TreeStumpRecipe>
     public T read(@Nonnull ResourceLocation recipeId, PacketBuffer buffer) {
         String s = buffer.readString(32767);
         Ingredient ingredient = Ingredient.read(buffer);
+        Ingredient tool = Ingredient.read(buffer);
         ItemStack itemstack = buffer.readItemStack();
 
         int i = buffer.readVarInt();
 
-        return this.factory.create(recipeId, s, ingredient, itemstack, i);
+        return this.factory.create(recipeId, s, ingredient, tool, itemstack, i);
     }
 
     @Override
     public void write(PacketBuffer buffer, T recipe) {
         buffer.writeString(recipe.group);
         recipe.ingredient.write(buffer);
+        recipe.tool.write(buffer);
         buffer.writeItemStack(recipe.result);
         buffer.writeVarInt(recipe.chopTimes);
     }
 
     public interface IFactory<T extends TreeStumpRecipe> {
-        T create(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result, int chopTimes);
+        T create(ResourceLocation resourceLocation, String group, Ingredient ingredient, Ingredient tool, ItemStack result, int chopTimes);
     }
 }

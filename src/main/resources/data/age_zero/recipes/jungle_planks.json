@@ -3,6 +3,9 @@
   "ingredient": {
     "item": "minecraft:jungle_log"
   },
+  "tool": {
+    "tag": "age_zero:axes"
+  },
   "result": "minecraft:jungle_planks",
   "chopTimes": 2
 }

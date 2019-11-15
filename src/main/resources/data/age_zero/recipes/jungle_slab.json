@@ -3,6 +3,9 @@
   "ingredient": {
     "item": "minecraft:jungle_planks"
   },
+  "tool": {
+    "tag": "age_zero:axes"
+  },
   "result": "minecraft:jungle_slab",
   "chopTimes": 2
 }

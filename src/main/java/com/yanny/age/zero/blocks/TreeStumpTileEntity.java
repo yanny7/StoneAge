@@ -6,6 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
@@ -20,6 +21,8 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TreeStumpTileEntity extends TileEntity implements IInventoryInterface {
     private final NonNullList<ItemStack> stacks = NonNullList.withSize(1, ItemStack.EMPTY);
@@ -32,6 +35,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
 
     private int chopLeft = 0;
     private ItemStack recipeResult = ItemStack.EMPTY;
+    private List<Ingredient> tools = new ArrayList<>();
 
     public TreeStumpTileEntity() {
         //noinspection ConstantConditions
@@ -48,6 +52,10 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
     public void read(CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
         ItemStackUtils.deserializeStacks(invTag, stacks);
+        chopLeft = tag.getInt("chopLeft");
+        recipeResult = ItemStack.read(tag);
+        CompoundNBT toolTag = tag.getCompound("tool");
+        ItemStackUtils.deserializeIngredients(toolTag, tools);
         super.read(tag);
     }
 
@@ -55,6 +63,9 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
     @Nonnull
     public CompoundNBT write(CompoundNBT tag) {
         tag.put("inv", ItemStackUtils.serializeStacks(stacks));
+        tag.putInt("chopLeft", chopLeft);
+        recipeResult.write(tag);
+        tag.put("tool", ItemStackUtils.serializeIngredients(tools));
         return super.write(tag);
     }
 
@@ -96,19 +107,23 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
         super.remove();
     }
 
-    void onBlockRightClicked() {
+    void onBlockRightClicked(PlayerEntity player) {
         assert world != null;
-        chopLeft--;
 
-        if (chopLeft == 0) {
-            NonNullList<ItemStack> itemStacks = NonNullList.create();
-            itemStacks.add(recipeResult);
-            stacks.set(0, ItemStack.EMPTY);
-            InventoryHelper.dropItems(world, getPos(), itemStacks);
-            recipeResult = ItemStack.EMPTY;
+        if (hasTool(player.getHeldItemMainhand())) {
+            chopLeft--;
 
-            world.playSound(null, getPos(), SoundEvents.BLOCK_WOOD_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
-            world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
+            if (chopLeft == 0) {
+                NonNullList<ItemStack> itemStacks = NonNullList.create();
+                itemStacks.add(recipeResult);
+                stacks.set(0, ItemStack.EMPTY);
+                InventoryHelper.dropItems(world, getPos(), itemStacks);
+                recipeResult = ItemStack.EMPTY;
+                tools.clear();
+
+                world.playSound(null, getPos(), SoundEvents.BLOCK_WOOD_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
+            }
         }
     }
 
@@ -121,6 +136,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
             stacks.set(0, new ItemStack(itemStack.getItem(), 1));
             chopLeft = recipe.getChopTimes();
             recipeResult = recipe.getCraftingResult(null);
+            tools.addAll(recipe.getTools());
 
             if (itemStack.getCount() > 1) {
                 itemStack.setCount(itemStack.getCount() - 1);
@@ -138,6 +154,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
             stacks.set(0, ItemStack.EMPTY);
             InventoryHelper.dropItems(world, getPos(), itemStacks);
             recipeResult = ItemStack.EMPTY;
+            tools.clear();
 
             world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
             world.playSound(null, getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
@@ -152,6 +169,10 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
         assert world != null;
         tmpItemHandler.setStackInSlot(0, item);
         return world.getRecipeManager().getRecipe(TreeStumpRecipe.tree_stump, tmpItemHandlerWrapper, world).orElse(null);
+    }
+
+    private boolean hasTool(ItemStack toolInHand) {
+        return tools.stream().anyMatch(ingredient -> ingredient.test(toolInHand));
     }
 
     private IItemHandlerModifiable createNonSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {

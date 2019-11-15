@@ -3,6 +3,9 @@
   "ingredient": {
     "item": "minecraft:oak_planks"
   },
+  "tool": {
+    "tag": "age_zero:axes"
+  },
   "result": "minecraft:oak_slab",
   "chopTimes": 2
 }

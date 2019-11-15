@@ -22,14 +22,16 @@ public class TreeStumpRecipe implements IRecipe<IInventory> {
     private final ResourceLocation id;
     final String group;
     final Ingredient ingredient;
+    final Ingredient tool;
     final ItemStack result;
     final int chopTimes;
 
-    public TreeStumpRecipe(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result, int chopTimes) {
+    public TreeStumpRecipe(ResourceLocation resourceLocation, String group, Ingredient ingredient, Ingredient tool, ItemStack result, int chopTimes) {
         type = tree_stump;
         id = resourceLocation;
         this.group = group;
         this.ingredient = ingredient;
+        this.tool = tool;
         this.result = result;
         this.chopTimes = chopTimes;
     }
@@ -78,9 +80,15 @@ public class TreeStumpRecipe implements IRecipe<IInventory> {
     @Override
     @Nonnull
     public NonNullList<Ingredient> getIngredients() {
-        NonNullList<Ingredient> nonnulllist = NonNullList.create();
-        nonnulllist.add(this.ingredient);
-        return nonnulllist;
+        NonNullList<Ingredient> nonNullList = NonNullList.create();
+        nonNullList.add(this.ingredient);
+        return nonNullList;
+    }
+
+    public NonNullList<Ingredient> getTools() {
+        NonNullList<Ingredient> nonNullList = NonNullList.create();
+        nonNullList.add(this.tool);
+        return nonNullList;
     }
 
     @Override

@@ -3,6 +3,9 @@
   "ingredient": {
     "item": "minecraft:birch_log"
   },
+  "tool": {
+    "tag": "age_zero:axes"
+  },
   "result": "minecraft:birch_planks",
   "chopTimes": 2
 }

@@ -65,8 +65,8 @@ public class TreeStumpBlock extends Block {
         if (!worldIn.isRemote) {
             TreeStumpTileEntity tileEntity = (TreeStumpTileEntity) worldIn.getTileEntity(pos);
 
-            if (tileEntity != null && player.getHeldItemMainhand().getItem().isIn(AXES)) {
-                tileEntity.onBlockRightClicked();
+            if (tileEntity != null) {
+                tileEntity.onBlockRightClicked(player);
                 return;
             }
         }
