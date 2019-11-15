@@ -79,15 +79,11 @@ public class TreeStumpBlock extends Block {
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if ((tileentity instanceof TreeStumpTileEntity)) {
-            if (!worldIn.isRemote && (handIn == Hand.MAIN_HAND)) {
-                return ((TreeStumpTileEntity) tileentity).blockActivated(player);
-            }
-
-            return true; // do not show ghost item
+        if ((tileentity instanceof TreeStumpTileEntity) && !worldIn.isRemote && (handIn == Hand.MAIN_HAND)) {
+            ((TreeStumpTileEntity) tileentity).blockActivated(player);
         }
 
-        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        return true; // do not show ghost item
     }
 
     @SuppressWarnings("deprecation")

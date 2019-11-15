@@ -133,7 +133,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
         }
     }
 
-    boolean blockActivated(PlayerEntity player) {
+    void blockActivated(PlayerEntity player) {
         assert world != null;
         ItemStack itemStack = player.getHeldItemMainhand();
         TreeStumpRecipe recipe = getRecipe(itemStack);
@@ -151,7 +151,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
             }
 
             world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
-            return true;
+            return;
         }
 
         if (itemStack.isEmpty() && !stacks.get(0).isEmpty()) {
@@ -164,10 +164,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
 
             world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
             world.playSound(null, getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
-            return true;
         }
-
-        return false;
     }
 
     @Nullable
