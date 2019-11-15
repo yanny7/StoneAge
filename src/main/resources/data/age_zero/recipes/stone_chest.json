@@ -1,0 +1,20 @@
+{
+  "type": "age_zero:flint_workbench",
+  "pattern": [
+    "###",
+    "S S",
+    "SSS"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:smooth_stone_slab"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "item": "age_zero:stone_chest",
+    "count": 1
+  }
+}

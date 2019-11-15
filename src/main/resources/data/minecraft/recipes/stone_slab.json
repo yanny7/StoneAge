@@ -1,0 +1,11 @@
+{
+  "type": "age_zero:tree_stump",
+  "ingredient": {
+    "item": "minecraft:stone"
+  },
+  "tool": {
+    "tag": "age_zero:hammers"
+  },
+  "result": "minecraft:stone_slab",
+  "chopTimes": 2
+}

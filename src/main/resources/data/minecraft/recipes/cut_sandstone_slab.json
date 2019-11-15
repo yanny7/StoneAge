@@ -1,0 +1,11 @@
+{
+  "type": "age_zero:tree_stump",
+  "ingredient": {
+    "item": "minecraft:cut_sandstone"
+  },
+  "tool": {
+    "tag": "age_zero:hammers"
+  },
+  "result": "minecraft:cut_sandstone_slab",
+  "chopTimes": 2
+}

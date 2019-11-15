@@ -1,0 +1,11 @@
+{
+  "type": "age_zero:tree_stump",
+  "ingredient": {
+    "item": "minecraft:polished_granite"
+  },
+  "tool": {
+    "tag": "age_zero:hammers"
+  },
+  "result": "minecraft:polished_granite_slab",
+  "chopTimes": 2
+}

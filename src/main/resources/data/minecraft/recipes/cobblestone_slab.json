@@ -1,0 +1,11 @@
+{
+  "type": "age_zero:tree_stump",
+  "ingredient": {
+    "item": "minecraft:cobblestone"
+  },
+  "tool": {
+    "tag": "age_zero:hammers"
+  },
+  "result": "minecraft:cobblestone_slab",
+  "chopTimes": 2
+}

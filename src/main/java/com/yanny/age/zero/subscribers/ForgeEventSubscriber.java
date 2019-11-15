@@ -55,8 +55,7 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "stone_pickaxe"),
             new ResourceLocation("minecraft", "stone_hoe"),
             new ResourceLocation("minecraft", "stone_shovel"),
-            new ResourceLocation("minecraft", "stone_sword"),
-            new ResourceLocation("minecraft", "stone_slab")
+            new ResourceLocation("minecraft", "stone_sword")
     );
     private static final Set<ResourceLocation> RECIPES_TO_ADD = Sets.newHashSet(
             new ResourceLocation(MODID, "bow"),
@@ -65,8 +64,7 @@ public class ForgeEventSubscriber {
             new ResourceLocation(MODID, "stone_pickaxe"),
             new ResourceLocation(MODID, "stone_hoe"),
             new ResourceLocation(MODID, "stone_shovel"),
-            new ResourceLocation(MODID, "stone_sword"),
-            new ResourceLocation(MODID, "stone_slab")
+            new ResourceLocation(MODID, "stone_sword")
     );
 
     private static final Set<ResourceLocation> ADVANCEMENTS_TO_REMOVE = Sets.newHashSet(
