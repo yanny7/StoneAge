@@ -2,7 +2,7 @@
   "type": "age_zero:flint_workbench",
   "pattern": [
     "###",
-    "S S",
+    "SCS",
     "SSS"
   ],
   "key": {
@@ -11,6 +11,9 @@
     },
     "S": {
       "item": "minecraft:stone"
+    },
+    "C": {
+      "item": "minecraft:clay_ball"
     }
   },
   "result": {
