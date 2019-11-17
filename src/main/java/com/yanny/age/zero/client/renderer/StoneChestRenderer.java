@@ -7,14 +7,14 @@ import com.yanny.age.zero.blocks.StoneChestTileEntity;
 import com.yanny.age.zero.client.models.StoneChestModel;
 import com.yanny.age.zero.subscribers.BlockSubscriber;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ChestBlock;
-import net.minecraft.block.HorizontalBlock;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.tileentity.IChestLid;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class StoneChestRenderer extends TileEntityRenderer<StoneChestTileEntity> {
     private static final ResourceLocation TEXTURE_NORMAL = new ResourceLocation(Reference.MODID, "textures/entity/stone_chest.png");
     private final StoneChestModel model = new StoneChestModel();

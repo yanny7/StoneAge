@@ -5,7 +5,10 @@ import com.yanny.age.zero.blocks.TreeStumpTileEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class TreeStumpRenderer extends TileEntityRenderer<TreeStumpTileEntity> {
     @SuppressWarnings("deprecation")
     @Override
