@@ -1,0 +1,17 @@
+{
+  "type": "age_zero:tree_stump",
+  "group": "bonemeal",
+  "ingredients": [
+    {
+      "item": "minecraft:bone"
+    }
+  ],
+  "tool": [
+    {
+      "tag": "age_zero:hammers"
+    }
+  ],
+  "result": {
+    "item": "minecraft:bone_meal"
+  }
+}
