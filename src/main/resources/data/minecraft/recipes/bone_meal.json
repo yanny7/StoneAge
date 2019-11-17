@@ -1,7 +1,7 @@
 {
   "type": "age_zero:tree_stump",
   "group": "bonemeal",
-  "ingredients": [
+  "ingredient": [
     {
       "item": "minecraft:bone"
     }
