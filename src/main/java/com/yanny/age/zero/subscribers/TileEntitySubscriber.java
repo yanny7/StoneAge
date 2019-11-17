@@ -12,7 +12,7 @@ import static com.yanny.age.zero.Reference.MODID;
 
 @ObjectHolder(MODID)
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class TilesSubscriber {
+public class TileEntitySubscriber {
     public static final TileEntityType<FlintWorkbenchTileEntity> flint_workbench = null;
     public static final TileEntityType<DryingRackTileEntity> drying_rack = null;
     public static final TileEntityType<TanningRackTileEntity> tanning_rack = null;

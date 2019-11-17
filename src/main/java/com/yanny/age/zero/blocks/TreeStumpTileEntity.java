@@ -1,7 +1,7 @@
 package com.yanny.age.zero.blocks;
 
 import com.yanny.age.zero.recipes.TreeStumpRecipe;
-import com.yanny.age.zero.subscribers.TilesSubscriber;
+import com.yanny.age.zero.subscribers.TileEntitySubscriber;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.IInventory;
@@ -40,7 +40,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
 
     public TreeStumpTileEntity() {
         //noinspection ConstantConditions
-        super(TilesSubscriber.tree_stump);
+        super(TileEntitySubscriber.tree_stump);
     }
 
     @Nonnull

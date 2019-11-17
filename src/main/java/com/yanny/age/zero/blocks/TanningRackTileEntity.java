@@ -2,7 +2,7 @@ package com.yanny.age.zero.blocks;
 
 import com.yanny.age.zero.config.Config;
 import com.yanny.age.zero.recipes.TanningRackRecipe;
-import com.yanny.age.zero.subscribers.TilesSubscriber;
+import com.yanny.age.zero.subscribers.TileEntitySubscriber;
 import com.yanny.age.zero.subscribers.ToolSubscriber;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -39,7 +39,7 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
 
     public TanningRackTileEntity() {
         //noinspection ConstantConditions
-        super(TilesSubscriber.tanning_rack);
+        super(TileEntitySubscriber.tanning_rack);
     }
 
     @Nonnull

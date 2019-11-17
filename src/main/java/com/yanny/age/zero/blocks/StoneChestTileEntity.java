@@ -1,6 +1,6 @@
 package com.yanny.age.zero.blocks;
 
-import com.yanny.age.zero.subscribers.TilesSubscriber;
+import com.yanny.age.zero.subscribers.TileEntitySubscriber;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -48,7 +48,7 @@ public class StoneChestTileEntity extends TileEntity implements IInventoryInterf
 
     public StoneChestTileEntity() {
         //noinspection ConstantConditions
-        super(TilesSubscriber.stone_chest);
+        super(TileEntitySubscriber.stone_chest);
         for (int i = 0; i < INVENTORY_WIDTH * INVENTORY_HEIGHT; i++) {
             stacks.add(ItemStack.EMPTY);
         }

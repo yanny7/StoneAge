@@ -1,7 +1,7 @@
 package com.yanny.age.zero.blocks;
 
 import com.yanny.age.zero.recipes.DryingRackRecipe;
-import com.yanny.age.zero.subscribers.TilesSubscriber;
+import com.yanny.age.zero.subscribers.TileEntitySubscriber;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
@@ -38,7 +38,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
 
     public DryingRackTileEntity() {
         //noinspection ConstantConditions
-        super(TilesSubscriber.drying_rack);
+        super(TileEntitySubscriber.drying_rack);
         for (int i = 0; i < ITEMS; i++) {
             items[i] = new DryingItem();
         }

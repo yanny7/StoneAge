@@ -1,7 +1,7 @@
 package com.yanny.age.zero.blocks;
 
 import com.yanny.age.zero.recipes.FlintWorkbenchRecipe;
-import com.yanny.age.zero.subscribers.TilesSubscriber;
+import com.yanny.age.zero.subscribers.TileEntitySubscriber;
 import com.yanny.age.zero.subscribers.ToolSubscriber;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,7 +34,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
 
     public FlintWorkbenchTileEntity() {
         //noinspection ConstantConditions
-        super(TilesSubscriber.flint_workbench);
+        super(TileEntitySubscriber.flint_workbench);
     }
 
     @Override
