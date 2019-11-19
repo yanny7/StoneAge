@@ -42,15 +42,17 @@ import static net.minecraft.block.Blocks.*;
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeEventSubscriber {
     private static final Set<ResourceLocation> RECIPES_TO_REMOVE = Sets.newHashSet(
-            new ResourceLocation("minecraft", "wooden_axe"),
-            new ResourceLocation("minecraft", "wooden_pickaxe"),
-            new ResourceLocation("minecraft", "wooden_hoe"),
-            new ResourceLocation("minecraft", "wooden_shovel"),
-            new ResourceLocation("minecraft", "wooden_sword"),
-            new ResourceLocation("minecraft", "torch"),
+            new ResourceLocation("minecraft", "wooden_axe"),        // removed
+            new ResourceLocation("minecraft", "wooden_pickaxe"),    // removed
+            new ResourceLocation("minecraft", "wooden_hoe"),        // removed
+            new ResourceLocation("minecraft", "wooden_shovel"),     // removed
+            new ResourceLocation("minecraft", "wooden_sword"),      // removed
+            new ResourceLocation("minecraft", "torch"),             // lit by using on fire or campfire
 
+            // for replace
             new ResourceLocation("minecraft", "bow"),
             new ResourceLocation("minecraft", "campfire"),
+            new ResourceLocation("minecraft", "furnace"),
             new ResourceLocation("minecraft", "stone_axe"),
             new ResourceLocation("minecraft", "stone_pickaxe"),
             new ResourceLocation("minecraft", "stone_hoe"),
@@ -60,6 +62,7 @@ public class ForgeEventSubscriber {
     private static final Set<ResourceLocation> RECIPES_TO_ADD = Sets.newHashSet(
             new ResourceLocation(MODID, "bow"),
             new ResourceLocation(MODID, "campfire"),
+            new ResourceLocation(MODID, "furnace"),
             new ResourceLocation(MODID, "stone_axe"),
             new ResourceLocation(MODID, "stone_pickaxe"),
             new ResourceLocation(MODID, "stone_hoe"),

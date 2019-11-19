@@ -1,0 +1,19 @@
+{
+  "type": "age_zero:flint_workbench",
+  "pattern": [
+    "###",
+    "#C#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:cobblestone"
+    },
+    "C": {
+      "item": "minecraft:campfire"
+    }
+  },
+  "result": {
+    "item": "minecraft:furnace"
+  }
+}
