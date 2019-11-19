@@ -48,7 +48,7 @@ public class DeerEntity extends AnimalEntity {
     @Override
     public void registerAttributes() {
         super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
+        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2F);
     }
 }

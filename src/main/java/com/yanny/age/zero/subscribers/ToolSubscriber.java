@@ -46,7 +46,7 @@ public class ToolSubscriber {
         registry.register(new SickleItem(toolProperties.maxDamage(Tiers.BONE_TIER.maxUses)).setRegistryName(Reference.MODID, "antler_sickle"));
         registry.register(new SwordItem(Tiers.BONE_TIER, 0,-1.0f, combatProperties).setRegistryName(Reference.MODID, "flint_knife"));
         registry.register(new HammerItem(ItemTier.STONE, 2, -3.5f, toolProperties).setRegistryName(Reference.MODID, "stone_hammer"));
-        registry.register(new SpearItem(Tiers.BONE_TIER, 4, -3.2f, spearProperties).setRegistryName(Reference.MODID, "flint_spear"));
+        registry.register(new SpearItem(Tiers.BONE_TIER, 5.5f, -3.2f, spearProperties).setRegistryName(Reference.MODID, "flint_spear"));
     }
 
     public enum Tiers implements IItemTier {
