@@ -1,6 +1,8 @@
 package com.yanny.age.zero.subscribers;
 
 import com.yanny.age.zero.Reference;
+import com.yanny.age.zero.client.renderer.FlintSpearItemRenderer;
+import com.yanny.age.zero.items.SpearItem;
 import com.yanny.age.zero.items.HammerItem;
 import com.yanny.age.zero.items.SickleItem;
 import net.minecraft.item.*;
@@ -27,12 +29,14 @@ public class ToolSubscriber {
     public static final Item antler_sickle = null;
     public static final Item flint_knife = null;
     public static final Item stone_hammer = null;
+    public static final Item flint_spear = null;
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
         Item.Properties combatProperties = new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT);
         Item.Properties toolProperties = new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS);
+        Item.Properties spearProperties = new Item.Properties().maxStackSize(16).maxDamage(250).group(ItemGroup.COMBAT).setTEISR(() -> FlintSpearItemRenderer::new);
 
         registry.register(new PickaxeItem(Tiers.BONE_TIER, 1, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_pickaxe"));
         registry.register(new AxeItem(Tiers.BONE_TIER, 1, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_axe"));
@@ -42,6 +46,7 @@ public class ToolSubscriber {
         registry.register(new SickleItem(toolProperties.maxDamage(Tiers.BONE_TIER.maxUses)).setRegistryName(Reference.MODID, "antler_sickle"));
         registry.register(new SwordItem(Tiers.BONE_TIER, 0,-1.0f, combatProperties).setRegistryName(Reference.MODID, "flint_knife"));
         registry.register(new HammerItem(ItemTier.STONE, 2, -3.5f, toolProperties).setRegistryName(Reference.MODID, "stone_hammer"));
+        registry.register(new SpearItem(Tiers.BONE_TIER, 4, -3.2f, spearProperties).setRegistryName(Reference.MODID, "flint_spear"));
     }
 
     public enum Tiers implements IItemTier {

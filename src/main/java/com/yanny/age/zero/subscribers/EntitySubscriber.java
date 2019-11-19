@@ -4,7 +4,6 @@ import com.google.common.collect.Sets;
 import com.yanny.age.zero.Reference;
 import com.yanny.age.zero.config.Config;
 import com.yanny.age.zero.entities.*;
-import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -20,6 +19,7 @@ import net.minecraftforge.registries.ObjectHolder;
 import java.util.EnumSet;
 import java.util.Set;
 
+import static net.minecraft.entity.EntityClassification.*;
 import static net.minecraft.entity.EntityType.*;
 import static net.minecraft.world.biome.Biome.Category.*;
 
@@ -27,16 +27,18 @@ import static net.minecraft.world.biome.Biome.Category.*;
 @ObjectHolder(Reference.MODID)
 @Mod.EventBusSubscriber(modid = Reference.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EntitySubscriber {
-    public static final EntityType<DeerEntity> deer = (EntityType<DeerEntity>) EntityType.Builder.create(DeerEntity::new, EntityClassification.CREATURE)
+    public static final EntityType<DeerEntity> deer = (EntityType<DeerEntity>) EntityType.Builder.create(DeerEntity::new, CREATURE)
             .size(0.9f, 1.5f).build("").setRegistryName(Reference.MODID,"deer");
-    public static final EntityType<BoarEntity> boar = (EntityType<BoarEntity>) EntityType.Builder.create(BoarEntity::new, EntityClassification.CREATURE)
+    public static final EntityType<BoarEntity> boar = (EntityType<BoarEntity>) EntityType.Builder.create(BoarEntity::new, CREATURE)
             .size(0.9f, 0.9f).build("").setRegistryName(Reference.MODID,"boar");
-    public static final EntityType<AurochEntity> auroch = (EntityType<AurochEntity>) EntityType.Builder.create(AurochEntity::new, EntityClassification.CREATURE)
+    public static final EntityType<AurochEntity> auroch = (EntityType<AurochEntity>) EntityType.Builder.create(AurochEntity::new, CREATURE)
             .size(1.1f, 1.5f).build("").setRegistryName(Reference.MODID,"auroch");
-    public static final EntityType<FowlEntity> fowl = (EntityType<FowlEntity>) EntityType.Builder.create(FowlEntity::new, EntityClassification.CREATURE)
+    public static final EntityType<FowlEntity> fowl = (EntityType<FowlEntity>) EntityType.Builder.create(FowlEntity::new, CREATURE)
             .size(0.7f, 0.7f).build("").setRegistryName(Reference.MODID,"fowl");
-    public static final EntityType<MouflonEntity> mouflon = (EntityType<MouflonEntity>) EntityType.Builder.create(MouflonEntity::new, EntityClassification.CREATURE)
+    public static final EntityType<MouflonEntity> mouflon = (EntityType<MouflonEntity>) EntityType.Builder.create(MouflonEntity::new, CREATURE)
             .size(0.9f, 1.2f).build("").setRegistryName(Reference.MODID,"mouflon");
+    public static final EntityType<FlintSpearEntity> flint_spear = (EntityType<FlintSpearEntity>) EntityType.Builder.<FlintSpearEntity>create(FlintSpearEntity::new, CREATURE)
+            .size(0.5f, 0.5f).build("").setRegistryName(Reference.MODID,"flint_spear");
 
     public static final Item deer_spawn_egg = null;
     public static final Item boar_spawn_egg = null;
@@ -60,6 +62,7 @@ public class EntitySubscriber {
         registry.register(auroch);
         registry.register(fowl);
         registry.register(mouflon);
+        registry.register(flint_spear);
 
         for (Biome biome : ForgeRegistries.BIOMES) {
             if (deer_biomes.contains(biome.getCategory())) {
@@ -79,13 +82,13 @@ public class EntitySubscriber {
             }
 
             if (Config.removeVanillaGeneratedAnimals) {
-                biome.getSpawns(EntityClassification.CREATURE).removeIf(entry -> vanillaAnimals.contains(entry.entityType));
+                biome.getSpawns(CREATURE).removeIf(entry -> vanillaAnimals.contains(entry.entityType));
             }
         }
     }
 
     @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
+    public static void registerSpawnEggs(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
         registry.register(new SpawnEggItem(deer, 0x00ffff, 0xff00ff,
                 new Item.Properties().group(ItemGroup.MISC)).setRegistryName(Reference.MODID, "deer_spawn_egg"));

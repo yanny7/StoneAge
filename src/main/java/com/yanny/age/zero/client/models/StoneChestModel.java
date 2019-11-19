@@ -3,7 +3,10 @@ package com.yanny.age.zero.client.models;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.Model;
 import net.minecraft.client.renderer.model.ModelBox;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class StoneChestModel extends Model {
 	private final RendererModel body;
 	private final RendererModel lid;

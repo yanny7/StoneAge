@@ -1,0 +1,22 @@
+{
+  "type": "age_zero:flint_workbench",
+  "pattern": [
+    " SF",
+    " # ",
+    "#  "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "F": {
+      "item": "minecraft:flint"
+    },
+    "S": {
+      "item": "age_zero:leather_strip"
+    }
+  },
+  "result": {
+    "item": "age_zero:flint_spear"
+  }
+}
