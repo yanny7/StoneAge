@@ -12,6 +12,8 @@ class ServerConfig {
     final ForgeConfigSpec.DoubleValue tanningRackFinishChance;
     final ForgeConfigSpec.BooleanValue changeMiningLevelForVanillaBlocks;
 
+    final ForgeConfigSpec.IntValue clayVesselCapacity;
+
     ServerConfig(@Nonnull final ForgeConfigSpec.Builder builder) {
         builder.push("general");
         removeVanillaRecipes = builder
@@ -34,6 +36,11 @@ class ServerConfig {
                 .comment("Change mining level for vanilla items (change it to -1, to be mineable by antler pickaxe)")
                 .translation(Reference.MODID + ".config.change_mining_level_for_vanilla_blocks")
                 .define("changeMiningLevelForVanillaBlocks", true);
+
+        clayVesselCapacity = builder
+                .comment("Fluid capacity in mB of clay vessel")
+                .translation(Reference.MODID + ".config.clay_vessel_capaicty")
+                .defineInRange("clayVesselCapacity", 8000, 1, Integer.MAX_VALUE);
         builder.pop();
     }
 }

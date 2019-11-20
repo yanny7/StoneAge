@@ -12,6 +12,8 @@ public class ConfigHelper {
         Config.domesticateAfterGenerations = ConfigHolder.SERVER.domesticateAfterGenerations.get();
         Config.tanningRackFinishChance = ConfigHolder.SERVER.tanningRackFinishChance.get();
         Config.changeMiningLevelForVanillaBlocks = ConfigHolder.SERVER.changeMiningLevelForVanillaBlocks.get();
+
+        Config.clayVesselCapacity = ConfigHolder.SERVER.clayVesselCapacity.get();
     }
 
     public static void bakeClient() {
