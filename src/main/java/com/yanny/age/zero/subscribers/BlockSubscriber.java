@@ -25,6 +25,7 @@ public class BlockSubscriber {
     public static final Block tree_stump = null;
     public static final Block clay_vessel = null;
     public static final Block unfired_clay_vessel = null;
+    public static final Block aquaduct = null;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -36,6 +37,7 @@ public class BlockSubscriber {
         registry.register(new TreeStumpBlock().setRegistryName(MODID, "tree_stump"));
         registry.register(new ClayVesselBlock().setRegistryName(MODID, "clay_vessel"));
         registry.register(new UnfiredClayVesselBlock().setRegistryName(MODID, "unfired_clay_vessel"));
+        registry.register(new AquaductBlock().setRegistryName(MODID, "aquaduct"));
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -56,5 +58,7 @@ public class BlockSubscriber {
                 .setRegistryName(MODID, "clay_vessel"));
         registry.register(new BlockItem(unfired_clay_vessel, new Item.Properties().group(ModItemGroup.TOOMANYORES))
                 .setRegistryName(MODID, "unfired_clay_vessel"));
+        registry.register(new BlockItem(aquaduct, new Item.Properties().group(ModItemGroup.TOOMANYORES))
+                .setRegistryName(MODID, "aquaduct"));
     }
 }

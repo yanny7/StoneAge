@@ -6,6 +6,6 @@ public class Config {
     public static int domesticateAfterGenerations = 3;
     public static double tanningRackFinishChance = 0.1;
     public static boolean changeMiningLevelForVanillaBlocks = true;
-
+    public static int aquaductTickChanceBoneMealEffect = 200;
     public static int clayVesselCapacity = 8000;
 }

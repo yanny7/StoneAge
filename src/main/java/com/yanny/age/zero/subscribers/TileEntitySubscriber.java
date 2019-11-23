@@ -1,6 +1,7 @@
 package com.yanny.age.zero.subscribers;
 
 import com.yanny.age.zero.blocks.*;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -19,6 +20,7 @@ public class TileEntitySubscriber {
     public static final TileEntityType<StoneChestTileEntity> stone_chest = null;
     public static final TileEntityType<TreeStumpTileEntity> tree_stump = null;
     public static final TileEntityType<ClayVesselTileEntity> clay_vessel = null;
+    public static final TileEntityType<AquaductTileEntity> aquaduct = null;
 
     @SuppressWarnings("ConstantConditions")
     @SubscribeEvent
@@ -36,5 +38,7 @@ public class TileEntitySubscriber {
                 .build(null).setRegistryName("tree_stump"));
         registry.register(TileEntityType.Builder.create(ClayVesselTileEntity::new, BlockSubscriber.clay_vessel)
                 .build(null).setRegistryName("clay_vessel"));
+        registry.register(TileEntityType.Builder.create(AquaductTileEntity::new, BlockSubscriber.aquaduct)
+                .build(null).setRegistryName("aquaduct"));
     }
 }

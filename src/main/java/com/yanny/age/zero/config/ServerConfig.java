@@ -11,6 +11,7 @@ class ServerConfig {
     final ForgeConfigSpec.IntValue domesticateAfterGenerations;
     final ForgeConfigSpec.DoubleValue tanningRackFinishChance;
     final ForgeConfigSpec.BooleanValue changeMiningLevelForVanillaBlocks;
+    final ForgeConfigSpec.IntValue aquaductTickChanceBoneMealEffect;
 
     final ForgeConfigSpec.IntValue clayVesselCapacity;
 
@@ -27,7 +28,7 @@ class ServerConfig {
         domesticateAfterGenerations = builder
                 .comment("Domesticate wild animal after given generations")
                 .translation(Reference.MODID + ".config.domesticate_after_generations")
-                .defineInRange("domesticateAfterGenerations", 3, 1, 10);
+                .defineInRange("domesticateAfterGenerations", 3, 1, Integer.MAX_VALUE);
         tanningRackFinishChance = builder
                 .comment("Chance of finishing recipe in tanning rack")
                 .translation(Reference.MODID + ".config.tanning_rack_finish_chance")
@@ -36,7 +37,10 @@ class ServerConfig {
                 .comment("Change mining level for vanilla items (change it to -1, to be mineable by antler pickaxe)")
                 .translation(Reference.MODID + ".config.change_mining_level_for_vanilla_blocks")
                 .define("changeMiningLevelForVanillaBlocks", true);
-
+        aquaductTickChanceBoneMealEffect = builder
+                .comment("Chance of bonemeal efect from aquaduct every X ticks (randomly)")
+                .translation(Reference.MODID + ".config.aquaduct_tich_chance_bone_meal_effect")
+                .defineInRange("aquaductTickChanceBoneMealEffect", 200, 1, Integer.MAX_VALUE);
         clayVesselCapacity = builder
                 .comment("Fluid capacity in mB of clay vessel")
                 .translation(Reference.MODID + ".config.clay_vessel_capaicty")
