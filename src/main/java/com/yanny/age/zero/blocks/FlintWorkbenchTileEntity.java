@@ -130,27 +130,27 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
                 // handle rotation
                 switch (dir) {
                     case NORTH:
-                        x = (int) Math.floor(3 - (hit.getHitVec().x - hit.getPos().getX()) * 3);
-                        y = (int) Math.floor(3 - (hit.getHitVec().z - hit.getPos().getZ()) * 3);
+                        x = (int) Math.floor(FlintWorkbenchRecipe.MAX_WIDTH - (hit.getHitVec().x - hit.getPos().getX()) * FlintWorkbenchRecipe.MAX_WIDTH);
+                        y = (int) Math.floor(FlintWorkbenchRecipe.MAX_HEIGHT - (hit.getHitVec().z - hit.getPos().getZ()) * FlintWorkbenchRecipe.MAX_HEIGHT);
                         break;
                     case SOUTH:
-                        x = (int) Math.floor((hit.getHitVec().x - hit.getPos().getX()) * 3);
-                        y = (int) Math.floor((hit.getHitVec().z - hit.getPos().getZ()) * 3);
+                        x = (int) Math.floor((hit.getHitVec().x - hit.getPos().getX()) * FlintWorkbenchRecipe.MAX_WIDTH);
+                        y = (int) Math.floor((hit.getHitVec().z - hit.getPos().getZ()) * FlintWorkbenchRecipe.MAX_HEIGHT);
                         break;
                     case EAST:
-                        x = (int) Math.floor((hit.getHitVec().x - hit.getPos().getX()) * 3);
-                        y = (int) Math.floor(3 - (hit.getHitVec().z - hit.getPos().getZ()) * 3);
+                        x = (int) Math.floor(FlintWorkbenchRecipe.MAX_HEIGHT - (hit.getHitVec().z - hit.getPos().getZ()) * FlintWorkbenchRecipe.MAX_HEIGHT);
+                        y = (int) Math.floor((hit.getHitVec().x - hit.getPos().getX()) * FlintWorkbenchRecipe.MAX_WIDTH);
                         break;
                     case WEST:
-                        x = (int) Math.floor(3 - (hit.getHitVec().x - hit.getPos().getX()) * 3);
-                        y = (int) Math.floor((hit.getHitVec().z - hit.getPos().getZ()) * 3);
+                        x = (int) Math.floor((hit.getHitVec().z - hit.getPos().getZ()) * FlintWorkbenchRecipe.MAX_HEIGHT);
+                        y = (int) Math.floor(FlintWorkbenchRecipe.MAX_WIDTH - (hit.getHitVec().x - hit.getPos().getX()) * FlintWorkbenchRecipe.MAX_WIDTH);
                         break;
                 }
 
-                ItemStack stack = stacks.get(x * 3 + y);
+                ItemStack stack = stacks.get(y * FlintWorkbenchRecipe.MAX_WIDTH + x);
 
                 if (!itemStack.isEmpty() && stack.isEmpty()) {
-                    stacks.set(x * 3 + y, new ItemStack(itemStack.getItem(), 1));
+                    stacks.set(y * FlintWorkbenchRecipe.MAX_WIDTH + x, new ItemStack(itemStack.getItem(), 1));
 
                     if (itemStack.getCount() > 1) {
                         itemStack.setCount(itemStack.getCount() - 1);
@@ -160,11 +160,11 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
                     return true;
                 }
 
-                if (itemStack.isEmpty() && !stacks.get(x * 3 + y).isEmpty()) {
+                if (itemStack.isEmpty() && !stacks.get(y * FlintWorkbenchRecipe.MAX_WIDTH + x).isEmpty()) {
                     NonNullList<ItemStack> itemStacks = NonNullList.create();
                     itemStacks.add(stack);
                     InventoryHelper.dropItems(world, getPos(), itemStacks);
-                    stacks.set(x * 3 + y, ItemStack.EMPTY);
+                    stacks.set(y * FlintWorkbenchRecipe.MAX_WIDTH + x, ItemStack.EMPTY);
                     world.playSound(null, getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     return true;
                 }

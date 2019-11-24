@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class FlintWorkbenchRenderer extends TileEntityRenderer<FlintWorkbenchTileEntity> {
     @SuppressWarnings("deprecation")
     @Override
-    public void render(FlintWorkbenchTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(FlintWorkbenchTileEntity tileEntityIn, double dx, double dy, double dz, float partialTicks, int destroyStage) {
         Direction direction = tileEntityIn.getBlockState().get(HorizontalBlock.HORIZONTAL_FACING);
         float border = 0.0625f;
         float part = (1 - 4 * border) / 3f;
@@ -23,31 +23,31 @@ public class FlintWorkbenchRenderer extends TileEntityRenderer<FlintWorkbenchTil
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                int m = 0;
-                int n = 0;
+                int x = 0;
+                int y = 0;
 
                 // handle rotation
                 switch (direction) {
                     case NORTH:
-                        m = 2 - i;
-                        n = 2 - j;
+                        x = 2 - j;
+                        y = 2 - i;
                         break;
                     case SOUTH:
-                        m = i;
-                        n = j;
+                        x = j;
+                        y = i;
                         break;
                     case WEST:
-                        m = 2 - i;
-                        n = j;
+                        x = 2 - i;
+                        y = j;
                         break;
                     case EAST:
-                        m = i;
-                        n = 2 - j;
+                        x = i;
+                        y = 2 - j;
                         break;
                 }
 
                 GlStateManager.pushMatrix();
-                GlStateManager.translatef((float)x + off * m + t, (float)y + 0.125f, (float)z + off * n + t);
+                GlStateManager.translatef((float)dx + off * x + t, (float)dy + 0.125f, (float)dz + off * y + t);
 
                 switch (direction) {
                     case SOUTH:

@@ -1,5 +1,6 @@
 package com.yanny.age.zero.recipes;
 
+import com.yanny.age.zero.subscribers.RecipeSubscriber;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -14,8 +15,8 @@ import javax.annotation.Nonnull;
 
 public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
     public static final IRecipeType<FlintWorkbenchRecipe> flint_workbench = IRecipeType.register("flint_workbench");
-    private static int MAX_WIDTH = 3;
-    private static int MAX_HEIGHT = 3;
+    public static int MAX_WIDTH = 3;
+    public static int MAX_HEIGHT = 3;
 
     private final int recipeWidth;
     private final int recipeHeight;
@@ -42,7 +43,8 @@ public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
     @Nonnull
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return IRecipeSerializer.CRAFTING_SHAPED;
+        //noinspection ConstantConditions
+        return RecipeSubscriber.flint_workbench;
     }
 
     @Nonnull
@@ -76,13 +78,13 @@ public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
 
     @Override
     public boolean matches(@Nonnull IInventory inv, @Nonnull World worldIn) {
-        for(int i = 0; i < MAX_WIDTH; ++i) {
-            for(int j = 0; j < MAX_HEIGHT; ++j) {
-                if (this.checkMatch(inv, i, j, true)) {
+        for(int x = 0; x < MAX_WIDTH; ++x) {
+            for(int y = 0; y < MAX_HEIGHT; ++y) {
+                if (this.checkMatch(inv, x, y, true)) {
                     return true;
                 }
 
-                if (this.checkMatch(inv, i, j, false)) {
+                if (this.checkMatch(inv, x, y, false)) {
                     return true;
                 }
             }
@@ -108,21 +110,21 @@ public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
     /**
      * Checks if the region of a crafting inventory is match for the recipe.
      */
-    private boolean checkMatch(IInventory inventory, int x, int y, boolean reversed) {
-        for(int i = 0; i < MAX_WIDTH; ++i) {
-            for(int j = 0; j < MAX_HEIGHT; ++j) {
-                int k = i - x;
-                int l = j - y;
+    private boolean checkMatch(IInventory inventory, int dx, int dy, boolean reversed) {
+        for(int x = 0; x < MAX_WIDTH; ++x) {
+            for(int y = 0; y < MAX_HEIGHT; ++y) {
+                int x1 = x - dx;
+                int y1 = y - dy;
                 Ingredient ingredient = Ingredient.EMPTY;
-                if (k >= 0 && l >= 0 && k < this.recipeWidth && l < this.recipeHeight) {
+                if (x1 >= 0 && y1 >= 0 && x1 < this.recipeWidth && y1 < this.recipeHeight) {
                     if (reversed) {
-                        ingredient = this.recipeItems.get(this.recipeWidth - k - 1 + l * this.recipeWidth);
+                        ingredient = this.recipeItems.get(this.recipeWidth - x1 - 1 + y1 * this.recipeWidth);
                     } else {
-                        ingredient = this.recipeItems.get(k + l * this.recipeWidth);
+                        ingredient = this.recipeItems.get(x1 + y1 * this.recipeWidth);
                     }
                 }
 
-                if (!ingredient.test(inventory.getStackInSlot(i + j * MAX_WIDTH))) {
+                if (!ingredient.test(inventory.getStackInSlot(x + y * MAX_WIDTH))) {
                     return false;
                 }
             }
@@ -130,17 +132,4 @@ public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
 
         return true;
     }
-
-/*
-    FlintWorkbenchRecipe(final ResourceLocation id, final String group, final int recipeWidth, final int recipeHeight,
-                         final NonNullList<Ingredient> ingredients, final ItemStack recipeOutput) {
-        super(id, group, recipeWidth, recipeHeight, ingredients, recipeOutput);
-    }
-
-    @SuppressWarnings("ConstantConditions")
-    @Nonnull
-    @Override
-    public IRecipeSerializer<?> getSerializer() {
-        return RecipeSubscriber.flint_workbench_serializer;
-    }*/
 }
