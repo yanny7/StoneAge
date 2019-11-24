@@ -49,7 +49,10 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "wooden_sword"),      // removed
             new ResourceLocation("minecraft", "torch"),             // lit by using on fire or campfire
 
-            // for replace
+            // TODO disabled recipes - change them in future
+            new ResourceLocation("minecraft", "crafting_table"),
+
+            // for replace - recipes overrided by Forge must be replaced this way
             new ResourceLocation("minecraft", "bow"),
             new ResourceLocation("minecraft", "campfire"),
             new ResourceLocation("minecraft", "furnace"),
@@ -76,7 +79,10 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "recipes/tools/wooden_hoe"),
             new ResourceLocation("minecraft", "recipes/tools/wooden_shovel"),
             new ResourceLocation("minecraft", "recipes/combat/wooden_sword"),
-            new ResourceLocation("minecraft", "recipes/decorations/torch")
+            new ResourceLocation("minecraft", "recipes/decorations/torch"),
+
+            // TODO disabled advancements - change them in future
+            new ResourceLocation("minecraft", "recipes/decorations/crafting_table")
     );
 
     @SuppressWarnings("unchecked")
