@@ -6,7 +6,9 @@
   "tool": {
     "tag": "age_zero:axes"
   },
-  "result": "minecraft:jungle_slab",
-  "count": 2,
+  "result": {
+    "item": "minecraft:jungle_slab",
+    "count": 2
+  },
   "chopTimes": 2
 }

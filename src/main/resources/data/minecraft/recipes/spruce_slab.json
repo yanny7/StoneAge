@@ -6,7 +6,9 @@
   "tool": {
     "tag": "age_zero:axes"
   },
-  "result": "minecraft:spruce_slab",
-  "count": 2,
+  "result": {
+    "item": "minecraft:spruce_slab",
+    "count": 2
+  },
   "chopTimes": 2
 }

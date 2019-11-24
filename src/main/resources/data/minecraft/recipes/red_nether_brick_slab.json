@@ -6,7 +6,9 @@
   "tool": {
     "tag": "age_zero:hammers"
   },
-  "result": "minecraft:red_nether_brick_slab",
-  "count": 2,
+  "result": {
+    "item": "minecraft:red_nether_brick_slab",
+    "count": 2
+  },
   "chopTimes": 2
 }

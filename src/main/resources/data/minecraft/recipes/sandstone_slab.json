@@ -6,7 +6,9 @@
   "tool": {
     "tag": "age_zero:hammers"
   },
-  "result": "minecraft:sandstone_slab",
-  "count": 2,
+  "result": {
+    "item": "minecraft:sandstone_slab",
+    "count": 2
+  },
   "chopTimes": 2
 }

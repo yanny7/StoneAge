@@ -6,7 +6,9 @@
   "tool": {
     "tag": "age_zero:axes"
   },
-  "result": "minecraft:dark_oak_planks",
-  "count": 2,
+  "result": {
+    "item": "minecraft:dark_oak_planks",
+    "count": 2
+  },
   "chopTimes": 2
 }

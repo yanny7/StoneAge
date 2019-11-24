@@ -6,7 +6,9 @@
   "tool": {
     "tag": "age_zero:axes"
   },
-  "result": "minecraft:birch_slab",
-  "count": 2,
+  "result": {
+    "item": "minecraft:birch_slab",
+    "count": 2
+  },
   "chopTimes": 2
 }

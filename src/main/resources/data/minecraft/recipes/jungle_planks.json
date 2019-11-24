@@ -6,7 +6,9 @@
   "tool": {
     "tag": "age_zero:axes"
   },
-  "result": "minecraft:jungle_planks",
-  "count": 2,
+  "result": {
+    "item": "minecraft:jungle_planks",
+    "count": 2
+  },
   "chopTimes": 2
 }
