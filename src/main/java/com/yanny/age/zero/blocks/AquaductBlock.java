@@ -167,7 +167,7 @@ public class AquaductBlock extends Block {
             if (worldIn.isAirBlock(blockpos)) {
                 AquaductTileEntity tileEntity = (AquaductTileEntity) worldIn.getTileEntity(pos);
 
-                if (tileEntity != null) {
+                if (tileEntity != null && tileEntity.getCapacity() > 0.01) {
                     double d0 = pos.getX() + rand.nextFloat() / 2 + 0.25;
                     double d1 = pos.getY() + 4 / 16f + 0.05D;
                     double d2 = pos.getZ() + rand.nextFloat() / 2 + 0.25;
