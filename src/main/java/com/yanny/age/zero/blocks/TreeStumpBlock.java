@@ -9,7 +9,6 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -22,8 +21,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class TreeStumpBlock extends Block {
-    private static final VoxelShape SHAPE = VoxelShapes.combine(Block.makeCuboidShape(0, 0, 0, 16, 1, 16),
-            Block.makeCuboidShape(2, 1, 2, 14, 12, 14), IBooleanFunction.OR);
+    private static final VoxelShape SHAPE = VoxelShapes.or(Block.makeCuboidShape(0, 0, 0, 16, 1, 16),
+            Block.makeCuboidShape(2, 1, 2, 14, 12, 14));
 
     public TreeStumpBlock() {
         super(Properties.create(Material.WOOD).hardnessAndResistance(2.0f));

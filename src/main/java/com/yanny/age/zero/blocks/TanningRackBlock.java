@@ -23,25 +23,23 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static net.minecraft.util.math.shapes.IBooleanFunction.OR;
-
 public class TanningRackBlock extends HorizontalBlock {
-    private static final VoxelShape SHAPE_N = VoxelShapes.combine(VoxelShapes.combine(
+    private static final VoxelShape SHAPE_N = VoxelShapes.or(
             Block.makeCuboidShape(0.0D, 13.5D, 7.0D, 16.0D, 14.5D, 8.0D),
             Block.makeCuboidShape(0.0D, 1.0D, 1.5D, 16.0D, 2.0D, 2.5D),
-            OR), Block.makeCuboidShape(0.0D, 0.0, 7.5D, 16.0D, 15.0D, 8.5D), OR);
-    private static final VoxelShape SHAPE_S = VoxelShapes.combine(VoxelShapes.combine(
+            Block.makeCuboidShape(0.0D, 0.0, 7.5D, 16.0D, 15.0D, 8.5D));
+    private static final VoxelShape SHAPE_S = VoxelShapes.or(
             Block.makeCuboidShape(0.0D, 13.5D, 8.0D, 16.0D, 14.5D, 9.0D),
             Block.makeCuboidShape(0.0D, 1.0D, 13.5D, 16.0D, 2.0D, 14.5D),
-            OR), Block.makeCuboidShape(0.0D, 0.0, 7.5D, 16.0D, 15.0D, 8.5D), OR);
-    private static final VoxelShape SHAPE_W = VoxelShapes.combine(VoxelShapes.combine(
+            Block.makeCuboidShape(0.0D, 0.0, 7.5D, 16.0D, 15.0D, 8.5D));
+    private static final VoxelShape SHAPE_W = VoxelShapes.or(
             Block.makeCuboidShape(7.0D, 13.5D, 0.0D, 8.0D, 14.5D, 16.0D),
             Block.makeCuboidShape(1.5D, 1.0D, 0.0D, 2.5D, 2.0D, 16.0D),
-            OR), Block.makeCuboidShape(7.5D, 0.0, 0.0D, 8.5D, 15.0D, 16D), OR);
-    private static final VoxelShape SHAPE_E = VoxelShapes.combine(VoxelShapes.combine(
+            Block.makeCuboidShape(7.5D, 0.0, 0.0D, 8.5D, 15.0D, 16D));
+    private static final VoxelShape SHAPE_E = VoxelShapes.or(
             Block.makeCuboidShape(8.0D, 13.5D, 0.0D, 9.0D, 14.5D, 16.0D),
             Block.makeCuboidShape(13.5D, 1.0D, 0.0D, 14.5D, 2.0D, 16.0D),
-            OR), Block.makeCuboidShape(7.5D, 0.0, 0.0D, 8.5D, 15.0D, 16D), OR);
+            Block.makeCuboidShape(7.5D, 0.0, 0.0D, 8.5D, 15.0D, 16D));
 
     public TanningRackBlock() {
         super(Properties.create(Material.WOOD).hardnessAndResistance(2.0f));

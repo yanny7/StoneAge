@@ -42,29 +42,27 @@ import java.util.Map;
 import java.util.Random;
 
 import static net.minecraft.state.properties.BlockStateProperties.WATERLOGGED;
-import static net.minecraft.util.math.shapes.IBooleanFunction.OR;
-import static net.minecraft.util.math.shapes.VoxelShapes.combine;
 
 public class AquaductBlock extends Block {
     private static final Map<Integer, VoxelShape> SHAPES = new HashMap<>();
 
     static {
         SHAPES.put(0, getBaseShape());
-        SHAPES.put(1, combine(getBaseShape(), getNorthShape(), OR));
-        SHAPES.put(2, combine(getBaseShape(), getEastShape(), OR));
-        SHAPES.put(3, combine(getBaseShape(), combine(getNorthShape(), getEastShape(), OR), OR));
-        SHAPES.put(4, combine(getBaseShape(), getSouthShape(), OR));
-        SHAPES.put(5, combine(getBaseShape(), combine(getNorthShape(), getSouthShape(), OR), OR));
-        SHAPES.put(6, combine(getBaseShape(), combine(getEastShape(), getSouthShape(), OR), OR));
-        SHAPES.put(7, combine(getBaseShape(), combine(getNorthShape(), combine(getEastShape(), getSouthShape(), OR), OR), OR));
-        SHAPES.put(8, combine(getBaseShape(), getWestShape(), OR));
-        SHAPES.put(9, combine(getBaseShape(), combine(getNorthShape(), getWestShape(), OR), OR));
-        SHAPES.put(10, combine(getBaseShape(), combine(getEastShape(), getWestShape(), OR), OR));
-        SHAPES.put(11, combine(getBaseShape(), combine(getNorthShape(), combine(getEastShape(), getWestShape(), OR), OR), OR));
-        SHAPES.put(12, combine(getBaseShape(), combine(getSouthShape(), getWestShape(), OR), OR));
-        SHAPES.put(13, combine(getBaseShape(), combine(getNorthShape(), combine(getSouthShape(), getWestShape(), OR), OR), OR));
-        SHAPES.put(14, combine(getBaseShape(), combine(getEastShape(), combine(getSouthShape(), getWestShape(), OR), OR), OR));
-        SHAPES.put(15, combine(getBaseShape(), combine(getNorthShape(), combine(getEastShape(), combine(getSouthShape(), getWestShape(), OR), OR), OR), OR));
+        SHAPES.put(1, VoxelShapes.or(getBaseShape(), getNorthShape()));
+        SHAPES.put(2, VoxelShapes.or(getBaseShape(), getEastShape()));
+        SHAPES.put(3, VoxelShapes.or(getBaseShape(), getNorthShape(), getEastShape()));
+        SHAPES.put(4, VoxelShapes.or(getBaseShape(), getSouthShape()));
+        SHAPES.put(5, VoxelShapes.or(getBaseShape(), getNorthShape(), getSouthShape()));
+        SHAPES.put(6, VoxelShapes.or(getBaseShape(), getEastShape(), getSouthShape()));
+        SHAPES.put(7, VoxelShapes.or(getBaseShape(), getNorthShape(), getEastShape(), getSouthShape()));
+        SHAPES.put(8, VoxelShapes.or(getBaseShape(), getWestShape()));
+        SHAPES.put(9, VoxelShapes.or(getBaseShape(), getNorthShape(), getWestShape()));
+        SHAPES.put(10, VoxelShapes.or(getBaseShape(), getEastShape(), getWestShape()));
+        SHAPES.put(11, VoxelShapes.or(getBaseShape(), getNorthShape(), getEastShape(), getWestShape()));
+        SHAPES.put(12, VoxelShapes.or(getBaseShape(), getSouthShape(), getWestShape()));
+        SHAPES.put(13, VoxelShapes.or(getBaseShape(), getNorthShape(), getSouthShape(), getWestShape()));
+        SHAPES.put(14, VoxelShapes.or(getBaseShape(), getEastShape(), getSouthShape(), getWestShape()));
+        SHAPES.put(15, VoxelShapes.or(getBaseShape(), getNorthShape(), getEastShape(), getSouthShape(), getWestShape()));
     }
 
     private static final BooleanProperty NORTH = BooleanProperty.create("north");
@@ -222,7 +220,7 @@ public class AquaductBlock extends Block {
         VoxelShape b2 = Block.makeCuboidShape(12, 4, 0, 16, 16, 4);
         VoxelShape b3 = Block.makeCuboidShape(0, 4, 12, 4, 16, 16);
         VoxelShape b4 = Block.makeCuboidShape(12, 4, 12, 16, 16, 16);
-        return VoxelShapes.combineAndSimplify(base, combine(b1, combine(b2, combine(b3, b4, OR), OR), OR), OR);
+        return VoxelShapes.or(base, b1, b2, b3, b4);
     }
 
     static private VoxelShape getNorthShape() {

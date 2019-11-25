@@ -11,7 +11,6 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -26,8 +25,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class ClayVesselBlock extends Block {
-    static final VoxelShape SHAPE = VoxelShapes.combine(Block.makeCuboidShape(4, 0, 4, 12, 16, 12),
-            Block.makeCuboidShape(1, 4, 1, 15, 14, 15), IBooleanFunction.OR);
+    static final VoxelShape SHAPE = VoxelShapes.or(Block.makeCuboidShape(4, 0, 4, 12, 16, 12),
+            Block.makeCuboidShape(1, 4, 1, 15, 14, 15));
 
     public ClayVesselBlock() {
         super(Properties.create(Material.ROCK).hardnessAndResistance(2.0f));
