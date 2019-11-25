@@ -1,0 +1,40 @@
+{
+    "item.stone_age.antler_pickaxe": "Antler pickaxe",
+    "item.stone_age.antler_shovel": "Antler shovel",
+    "item.stone_age.antler_hoe": "Antler hoe",
+    "item.stone_age.antler_axe": "Antler axe",
+    "item.stone_age.bone_sword": "Bone sword",
+    "item.stone_age.antler_sickle": "Antler sickle",
+    "item.stone_age.flint_knife": "Flint knife",
+    "item.stone_age.stone_hammer": "Stone hammer",
+    "item.stone_age.flint_spear": "Flint spear",
+
+    "item.stone_age.venison": "Venison",
+    "item.stone_age.cooked_venison": "Cooked venison",
+    "item.stone_age.fat": "Fat",
+    "item.stone_age.cooked_fat": "Cooked fat",
+    "item.stone_age.raw_hide": "Raw hide",
+    "item.stone_age.antler": "Antler",
+    "item.stone_age.unlit_torch": "Unlit torch",
+    "item.stone_age.bone_arrow_head": "Bone arrow head",
+    "item.stone_age.drought_grass": "Drought grass",
+    "item.stone_age.leather_strip": "Leather strip",
+
+    "item.stone_age.deer_spawn_egg": "Deer spawn egg",
+    "item.stone_age.boar_spawn_egg": "Boar spawn egg",
+    "item.stone_age.auroch_spawn_egg": "Aunoch spawn egg",
+    "item.stone_age.fowl_spawn_egg": "Fowl spawn egg",
+    "item.stone_age.mouflon_spawn_egg": "Mouflon spawn egg",
+
+    "block.stone_age.flint_workbench": "Flint crafting table",
+    "block.stone_age.drying_rack": "Drying rack",
+    "block.stone_age.tanning_rack": "Tanning rack",
+    "block.stone_age.stone_chest": "Stone chest",
+    "block.stone_age.tree_stump": "Tree stump",
+
+    "entity.stone_age.deer": "Deer",
+    "entity.stone_age.boar": "Boar",
+    "entity.stone_age.auroch": "Auroch",
+    "entity.stone_age.fowl": "Fowl",
+    "entity.stone_age.mouflon": "Mouflon"
+}

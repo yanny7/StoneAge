@@ -11,8 +11,8 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 
 version = '1.0.0'
-group = 'com.yanny.age.zero' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'age-zero'
+group = 'com.yanny.age.stone' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'stone-age'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
@@ -124,7 +124,7 @@ dependencies {
 jar {
     manifest {
         attributes([
-            "Specification-Title": "Age ZERO",
+            "Specification-Title": "Stone age",
             "Specification-Vendor": "Yanny",
             "Specification-Version": "1", // We are version 1 of ourselves
             "Implementation-Title": project.name,

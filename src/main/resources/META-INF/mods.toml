@@ -5,33 +5,33 @@ loaderVersion="[28,)" #mandatory (28 is current forge version)
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
 # The modid of the mod
-modId="age_zero" #mandatory
+modId="stone_age" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
 version="${file.jarVersion}" #mandatory
  # A display name for the mod
-displayName="Age ZERO" #mandatory
+displayName="Stone Age" #mandatory
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="examplemod.png" #optional
 # A text field displayed in the mod UI
 authors="Yanny" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-Age ZERO (pre-industrial age)
+Stone Age
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.age_zero]]
+[[dependencies.stone_age]]
     modId="forge"
     mandatory=true
     versionRange="[28,)"
     ordering="NONE"
     side="BOTH"
-[[dependencies.age_zero]]
+[[dependencies.stone_age]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.14.4]"
     ordering="NONE"
     side="BOTH"
-[[dependencies.age_zero]]
+[[dependencies.stone_age]]
     modId="ages_api"
     mandatory=true
     versionRange="[1.0.0,)"

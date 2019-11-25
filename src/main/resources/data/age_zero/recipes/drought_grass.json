@@ -1,8 +1,0 @@
-{
-  "type": "age_zero:drying_rack",
-  "ingredient": {
-    "item": "minecraft:grass"
-  },
-  "result": "age_zero:drought_grass",
-  "dryingTime": 1200
-}

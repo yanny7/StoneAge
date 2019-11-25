@@ -1,5 +1,5 @@
 {
-  "type": "age_zero:flint_workbench",
+  "type": "stone_age:flint_workbench",
   "pattern": [
     "XSX",
     "XSX"
@@ -9,7 +9,7 @@
       "item": "minecraft:leather"
     },
     "S": {
-      "item": "age_zero:leather_strip"
+      "item": "stone_age:leather_strip"
     }
   },
   "result": {

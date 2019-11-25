@@ -1,5 +1,5 @@
 {
-  "type": "age_zero:tree_stump",
+  "type": "stone_age:tree_stump",
   "group": "bonemeal",
   "ingredient": [
     {
@@ -8,7 +8,7 @@
   ],
   "tool": [
     {
-      "tag": "age_zero:hammers"
+      "tag": "stone_age:hammers"
     }
   ],
   "result": {

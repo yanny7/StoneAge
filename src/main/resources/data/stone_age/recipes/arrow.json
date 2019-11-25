@@ -1,0 +1,22 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "A",
+    "#",
+    "F"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "A": {
+      "item": "stone_age:bone_arrow_head"
+    },
+    "F": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+    "item": "minecraft:arrow"
+  }
+}

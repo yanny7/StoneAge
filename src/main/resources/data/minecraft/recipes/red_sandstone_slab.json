@@ -1,10 +1,10 @@
 {
-  "type": "age_zero:tree_stump",
+  "type": "stone_age:tree_stump",
   "ingredient": {
     "item": "minecraft:red_sandstone"
   },
   "tool": {
-    "tag": "age_zero:hammers"
+    "tag": "stone_age:hammers"
   },
   "result": {
     "item": "minecraft:red_sandstone_slab",

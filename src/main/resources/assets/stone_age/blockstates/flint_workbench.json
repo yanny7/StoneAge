@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "stone_age:block/flint_workbench", "y": 180 },
+    "facing=south": { "model": "stone_age:block/flint_workbench" },
+    "facing=west": { "model": "stone_age:block/flint_workbench", "y": 90 },
+    "facing=east": { "model": "stone_age:block/flint_workbench", "y": 270 }
+  }
+}

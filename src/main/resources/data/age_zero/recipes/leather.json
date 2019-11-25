@@ -1,7 +1,0 @@
-{
-  "type": "age_zero:tanning_rack",
-  "ingredient": {
-    "item": "age_zero:raw_hide"
-  },
-  "result": "minecraft:leather"
-}

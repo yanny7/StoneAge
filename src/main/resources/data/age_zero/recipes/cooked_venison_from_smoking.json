@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smoking",
-  "ingredient": {
-    "item": "age_zero:venison"
-  },
-  "result": "age_zero:cooked_venison",
-  "experience": 0.35,
-  "cookingtime": 100
-}

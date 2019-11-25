@@ -1,0 +1,18 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    " # ",
+    "FFF"
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:logs"
+    },
+    "F": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "item": "stone_age:tree_stump"
+  }
+}

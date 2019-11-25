@@ -1,10 +1,10 @@
 {
-  "type": "age_zero:tree_stump",
+  "type": "stone_age:tree_stump",
   "ingredient": {
     "item": "minecraft:spruce_planks"
   },
   "tool": {
-    "tag": "age_zero:axes"
+    "tag": "stone_age:axes"
   },
   "result": {
     "item": "minecraft:spruce_slab",

@@ -1,10 +1,10 @@
 {
-  "type": "age_zero:tree_stump",
+  "type": "stone_age:tree_stump",
   "ingredient": {
     "item": "minecraft:stone_bricks"
   },
   "tool": {
-    "tag": "age_zero:hammers"
+    "tag": "stone_age:hammers"
   },
   "result": {
     "item": "minecraft:stone_brick_slab",

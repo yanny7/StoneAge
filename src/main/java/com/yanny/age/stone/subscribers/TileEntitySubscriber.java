@@ -1,0 +1,43 @@
+package com.yanny.age.stone.subscribers;
+
+import com.yanny.age.stone.blocks.*;
+import net.minecraft.tileentity.TileEntityType;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.ObjectHolder;
+
+import static com.yanny.age.stone.Reference.MODID;
+
+@ObjectHolder(MODID)
+@Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+public class TileEntitySubscriber {
+    public static final TileEntityType<FlintWorkbenchTileEntity> flint_workbench = null;
+    public static final TileEntityType<DryingRackTileEntity> drying_rack = null;
+    public static final TileEntityType<TanningRackTileEntity> tanning_rack = null;
+    public static final TileEntityType<StoneChestTileEntity> stone_chest = null;
+    public static final TileEntityType<TreeStumpTileEntity> tree_stump = null;
+    public static final TileEntityType<ClayVesselTileEntity> clay_vessel = null;
+    public static final TileEntityType<AquaductTileEntity> aquaduct = null;
+
+    @SuppressWarnings("ConstantConditions")
+    @SubscribeEvent
+    public static void registerTileEntity(RegistryEvent.Register<TileEntityType<?>> event) {
+        IForgeRegistry<TileEntityType<?>> registry = event.getRegistry();
+        registry.register(TileEntityType.Builder.create(FlintWorkbenchTileEntity::new, BlockSubscriber.flint_workbench)
+                .build(null).setRegistryName("flint_workbench"));
+        registry.register(TileEntityType.Builder.create(DryingRackTileEntity::new, BlockSubscriber.drying_rack)
+                .build(null).setRegistryName("drying_rack"));
+        registry.register(TileEntityType.Builder.create(TanningRackTileEntity::new, BlockSubscriber.tanning_rack)
+                .build(null).setRegistryName("tanning_rack"));
+        registry.register(TileEntityType.Builder.create(StoneChestTileEntity::new, BlockSubscriber.stone_chest)
+                .build(null).setRegistryName("stone_chest"));
+        registry.register(TileEntityType.Builder.create(TreeStumpTileEntity::new, BlockSubscriber.tree_stump)
+                .build(null).setRegistryName("tree_stump"));
+        registry.register(TileEntityType.Builder.create(ClayVesselTileEntity::new, BlockSubscriber.clay_vessel)
+                .build(null).setRegistryName("clay_vessel"));
+        registry.register(TileEntityType.Builder.create(AquaductTileEntity::new, BlockSubscriber.aquaduct)
+                .build(null).setRegistryName("aquaduct"));
+    }
+}

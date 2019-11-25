@@ -1,0 +1,23 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "###",
+    "SCS",
+    "SSS"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:smooth_stone_slab"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    },
+    "C": {
+      "item": "minecraft:clay_ball"
+    }
+  },
+  "result": {
+    "item": "stone_age:stone_chest",
+    "count": 1
+  }
+}

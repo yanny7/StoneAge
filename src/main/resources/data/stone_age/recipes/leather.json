@@ -1,0 +1,7 @@
+{
+  "type": "stone_age:tanning_rack",
+  "ingredient": {
+    "item": "stone_age:raw_hide"
+  },
+  "result": "minecraft:leather"
+}

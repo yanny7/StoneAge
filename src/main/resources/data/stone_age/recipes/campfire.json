@@ -1,0 +1,25 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    " S ",
+    "SCS",
+    "L#L"
+  ],
+  "key": {
+    "L": {
+      "tag": "minecraft:logs"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "C": {
+      "tag": "minecraft:coals"
+    },
+    "#": {
+      "item": "minecraft:torch"
+    }
+  },
+  "result": {
+    "item": "minecraft:campfire"
+  }
+}

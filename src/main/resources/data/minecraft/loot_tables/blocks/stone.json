@@ -21,7 +21,7 @@
                         }
                       }
                     ],
-                    "tag": "age_zero:axes"
+                    "tag": "stone_age:axes"
                   }
                 }
               ],
@@ -33,7 +33,7 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "tag": "age_zero:hammers"
+                    "tag": "stone_age:hammers"
                   }
                 }
               ],
