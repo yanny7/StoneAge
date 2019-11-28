@@ -4,6 +4,7 @@ import com.yanny.age.stone.blocks.*;
 import com.yanny.age.stone.client.renderer.StoneChestItemRenderer;
 import com.yanny.ages.api.group.ModItemGroup;
 import net.minecraft.block.Block;
+import net.minecraft.item.BedItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -26,6 +27,7 @@ public class BlockSubscriber {
     public static final Block clay_vessel = null;
     public static final Block unfired_clay_vessel = null;
     public static final Block aquaduct = null;
+    public static final Block drought_grass_bed = null;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -38,6 +40,7 @@ public class BlockSubscriber {
         registry.register(new ClayVesselBlock().setRegistryName(MODID, "clay_vessel"));
         registry.register(new UnfiredClayVesselBlock().setRegistryName(MODID, "unfired_clay_vessel"));
         registry.register(new AquaductBlock().setRegistryName(MODID, "aquaduct"));
+        registry.register(new DroughtGrassBedBlock().setRegistryName(MODID, "drought_grass_bed"));
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -60,5 +63,7 @@ public class BlockSubscriber {
                 .setRegistryName(MODID, "unfired_clay_vessel"));
         registry.register(new BlockItem(aquaduct, new Item.Properties().group(ModItemGroup.TOOMANYORES))
                 .setRegistryName(MODID, "aquaduct"));
+        registry.register(new BedItem(drought_grass_bed, new Item.Properties().group(ModItemGroup.TOOMANYORES))
+                .setRegistryName(MODID, "drought_grass_bed"));
     }
 }
