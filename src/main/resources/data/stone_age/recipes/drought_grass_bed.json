@@ -7,7 +7,7 @@
   ],
   "key": {
     "G": {
-      "tag": "stone_age:drought_grass"
+      "item": "stone_age:drought_grass"
     },
     "W": {
       "tag": "minecraft:blocks/wooden_slabs"
