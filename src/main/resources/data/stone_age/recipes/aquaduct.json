@@ -7,11 +7,10 @@
   ],
   "key": {
     "G": {
-      "item": "minecraft:terracotta"
+      "item": "minecraft:brick"
     }
   },
   "result": {
-    "item": "stone_age:aquaduct",
-    "count": 2
+    "item": "stone_age:aquaduct"
   }
 }
