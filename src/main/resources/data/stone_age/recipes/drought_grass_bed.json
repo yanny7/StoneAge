@@ -1,0 +1,19 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "GGG",
+    "GGG",
+    "WWW"
+  ],
+  "key": {
+    "G": {
+      "tag": "stone_age:drought_grass"
+    },
+    "W": {
+      "tag": "minecraft:blocks/wooden_slabs"
+    }
+  },
+  "result": {
+    "item": "stone_age:drought_grass_bed"
+  }
+}

@@ -8,14 +8,18 @@ import com.yanny.age.stone.subscribers.ItemSubscriber;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.properties.BedPart;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.lwjgl.opengl.GL11;
 
 @OnlyIn(Dist.CLIENT)
 public class DroughtGrassBedRenderer extends TileEntityRenderer<DroughtGrassBedTileEntity> {
@@ -32,16 +36,14 @@ public class DroughtGrassBedRenderer extends TileEntityRenderer<DroughtGrassBedT
             GlStateManager.scalef(4.0F, 4.0F, 1.0F);
             GlStateManager.translatef(0.0625F, 0.0625F, 0.0625F);
             GlStateManager.matrixMode(5888);
-        } else {
-            this.bindTexture(TEXTURE_NORMAL);
         }
 
         if (tileEntityIn.hasWorld()) {
             BlockState blockstate = tileEntityIn.getBlockState();
             this.render(blockstate.get(BedBlock.PART) == BedPart.HEAD, x, y, z, blockstate.get(BedBlock.HORIZONTAL_FACING));
         } else {
-            this.render(true, x, y, z, Direction.SOUTH);
-            this.render(false, x, y, z - 1.0D, Direction.SOUTH);
+            this.render(true, x, y, z + 0.5D, Direction.SOUTH);
+            this.render(false, x, y, z - 0.5D, Direction.SOUTH);
         }
 
         if (destroyStage >= 0) {
@@ -81,6 +83,7 @@ public class DroughtGrassBedRenderer extends TileEntityRenderer<DroughtGrassBedT
 
         GlStateManager.pushMatrix();
         GlStateManager.translatef(0F, 0.09375F, 0F);
+        this.bindTexture(TEXTURE_NORMAL);
         this.model.render();
         GlStateManager.popMatrix();
 

@@ -1,6 +1,7 @@
 package com.yanny.age.stone.subscribers;
 
 import com.yanny.age.stone.blocks.*;
+import com.yanny.age.stone.client.renderer.DroughtGrassBedItemRenderer;
 import com.yanny.age.stone.client.renderer.StoneChestItemRenderer;
 import com.yanny.ages.api.group.ModItemGroup;
 import net.minecraft.block.Block;
@@ -63,7 +64,7 @@ public class BlockSubscriber {
                 .setRegistryName(MODID, "unfired_clay_vessel"));
         registry.register(new BlockItem(aquaduct, new Item.Properties().group(ModItemGroup.TOOMANYORES))
                 .setRegistryName(MODID, "aquaduct"));
-        registry.register(new BedItem(drought_grass_bed, new Item.Properties().group(ModItemGroup.TOOMANYORES))
+        registry.register(new BedItem(drought_grass_bed, new Item.Properties().group(ModItemGroup.TOOMANYORES).setTEISR(() -> DroughtGrassBedItemRenderer::new))
                 .setRegistryName(MODID, "drought_grass_bed"));
     }
 }

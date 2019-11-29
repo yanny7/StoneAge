@@ -23,7 +23,7 @@ public class DroughtGrassBedBlock extends BedBlock {
     private static final VoxelShape EAST = Block.makeCuboidShape(0.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
 
     public DroughtGrassBedBlock() {
-        super(DyeColor.BLACK, Properties.create(Material.WOOD).hardnessAndResistance(2.0f));
+        super(DyeColor.BLACK, Properties.create(Material.WOOL).hardnessAndResistance(2.0f));
     }
 
     @Override
