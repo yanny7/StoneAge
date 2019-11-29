@@ -3,7 +3,7 @@
   "pattern": [
     "XXX",
     "X X",
-    "S S"
+    "S B"
   ],
   "key": {
     "X": {
@@ -11,6 +11,9 @@
     },
     "S": {
       "item": "stone_age:leather_strip"
+    },
+    "B": {
+      "item": "stone_age:fish_bone"
     }
   },
   "result": {

@@ -1,0 +1,16 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "XX ",
+    "X X",
+    " XX"
+  ],
+  "key": {
+    "X": {
+      "item": "stone_age:leather_strip"
+    }
+  },
+  "result": {
+    "item": "minecraft:lead"
+  }
+}

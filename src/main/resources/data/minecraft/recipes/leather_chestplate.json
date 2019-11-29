@@ -1,7 +1,7 @@
 {
   "type": "stone_age:flint_workbench",
   "pattern": [
-    "XSX",
+    "XBX",
     "XSX",
     "XXX"
   ],
@@ -11,6 +11,9 @@
     },
     "S": {
       "item": "stone_age:leather_strip"
+    },
+    "B": {
+      "item": "stone_age:fish_bone"
     }
   },
   "result": {
