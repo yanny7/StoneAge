@@ -8,18 +8,14 @@ import com.yanny.age.stone.subscribers.ItemSubscriber;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.properties.BedPart;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.lwjgl.opengl.GL11;
 
 @OnlyIn(Dist.CLIENT)
 public class DroughtGrassBedRenderer extends TileEntityRenderer<DroughtGrassBedTileEntity> {
@@ -29,27 +25,12 @@ public class DroughtGrassBedRenderer extends TileEntityRenderer<DroughtGrassBedT
 
     @Override
     public void render(DroughtGrassBedTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
-        if (destroyStage >= 0) {
-            this.bindTexture(DESTROY_STAGES[destroyStage]);
-            GlStateManager.matrixMode(5890);
-            GlStateManager.pushMatrix();
-            GlStateManager.scalef(4.0F, 4.0F, 1.0F);
-            GlStateManager.translatef(0.0625F, 0.0625F, 0.0625F);
-            GlStateManager.matrixMode(5888);
-        }
-
         if (tileEntityIn.hasWorld()) {
             BlockState blockstate = tileEntityIn.getBlockState();
             this.render(blockstate.get(BedBlock.PART) == BedPart.HEAD, x, y, z, blockstate.get(BedBlock.HORIZONTAL_FACING));
         } else {
             this.render(true, x, y, z + 0.5D, Direction.SOUTH);
             this.render(false, x, y, z - 0.5D, Direction.SOUTH);
-        }
-
-        if (destroyStage >= 0) {
-            GlStateManager.matrixMode(5890);
-            GlStateManager.popMatrix();
-            GlStateManager.matrixMode(5888);
         }
     }
 
