@@ -76,7 +76,7 @@ class ServerConfig {
         spawnDeerWeight = builder
                 .comment("Spawn weight of mob")
                 .translation(Reference.MODID + ".config.spawn_deer_weight")
-                .defineInRange("spawnDeerWeight", 20, 0, 100);
+                .defineInRange("spawnDeerWeight", 10, 0, 100);
         spawnDeerMinCount = builder
                 .comment("Spawn min count of mob")
                 .translation(Reference.MODID + ".config.spawn_deer_min_count")

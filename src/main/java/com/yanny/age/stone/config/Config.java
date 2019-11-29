@@ -10,7 +10,7 @@ public class Config {
     public static int clayVesselCapacity = 8000;
 
     public static boolean spawnDeerEnable = true;
-    public static int spawnDeerWeight = 20;
+    public static int spawnDeerWeight = 10;
     public static int spawnDeerMinCount = 8;
     public static int spawnDeerMaxCount = 12;
     public static boolean spawnBoarEnable = true;
