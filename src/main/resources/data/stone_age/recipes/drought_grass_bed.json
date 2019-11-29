@@ -10,7 +10,7 @@
       "item": "stone_age:drought_grass"
     },
     "W": {
-      "tag": "minecraft:blocks/wooden_slabs"
+      "tag": "minecraft:wooden_slabs"
     }
   },
   "result": {

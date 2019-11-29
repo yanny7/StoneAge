@@ -1,0 +1,17 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "G G",
+    "G G",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:terracotta"
+    }
+  },
+  "result": {
+    "item": "stone_age:aquaduct",
+    "count": 2
+  }
+}
