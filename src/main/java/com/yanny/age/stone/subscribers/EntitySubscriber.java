@@ -65,20 +65,20 @@ public class EntitySubscriber {
         registry.register(flint_spear);
 
         for (Biome biome : ForgeRegistries.BIOMES) {
-            if (deer_biomes.contains(biome.getCategory())) {
-                biome.getSpawns(deer.getClassification()).add(new Biome.SpawnListEntry(deer, 10, 4, 8));
+            if (deer_biomes.contains(biome.getCategory()) && Config.spawnDeerEnable) {
+                biome.getSpawns(deer.getClassification()).add(new Biome.SpawnListEntry(deer, Config.spawnDeerWeight, Config.spawnDeerMinCount, Config.spawnDeerMaxCount));
             }
-            if (boar_biomes.contains(biome.getCategory())) {
-                biome.getSpawns(boar.getClassification()).add(new Biome.SpawnListEntry(boar, 10, 4, 6));
+            if (boar_biomes.contains(biome.getCategory()) && Config.spawnBoarEnable) {
+                biome.getSpawns(boar.getClassification()).add(new Biome.SpawnListEntry(boar, Config.spawnBoarWeight, Config.spawnBoarMinCount, Config.spawnBoarMaxCount));
             }
-            if (auroch_biomes.contains(biome.getCategory())) {
-                biome.getSpawns(auroch.getClassification()).add(new Biome.SpawnListEntry(auroch, 10, 2, 4));
+            if (auroch_biomes.contains(biome.getCategory()) && Config.spawnAurochEnable) {
+                biome.getSpawns(auroch.getClassification()).add(new Biome.SpawnListEntry(auroch, Config.spawnAurochWeight, Config.spawnAurochMinCount, Config.spawnAurochMaxCount));
             }
-            if (fowl_biomes.contains(biome.getCategory())) {
-                biome.getSpawns(fowl.getClassification()).add(new Biome.SpawnListEntry(fowl, 10, 2, 6));
+            if (fowl_biomes.contains(biome.getCategory()) && Config.spawnFowlEnable) {
+                biome.getSpawns(fowl.getClassification()).add(new Biome.SpawnListEntry(fowl, Config.spawnFowlWeight, Config.spawnFowlMinCount, Config.spawnFowlMaxCount));
             }
-            if (mouflon_biomes.contains(biome.getCategory())) {
-                biome.getSpawns(mouflon.getClassification()).add(new Biome.SpawnListEntry(mouflon, 10, 2, 4));
+            if (mouflon_biomes.contains(biome.getCategory()) && Config.spawnMouflonEnable) {
+                biome.getSpawns(mouflon.getClassification()).add(new Biome.SpawnListEntry(mouflon, Config.spawnMouflonWeight, Config.spawnMouflonMinCount, Config.spawnMouflonMaxCount));
             }
 
             if (Config.removeVanillaGeneratedAnimals) {
