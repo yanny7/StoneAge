@@ -5,7 +5,7 @@ import com.yanny.age.stone.client.models.AurochModel;
 import com.yanny.age.stone.entities.AurochEntity;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.LivingRenderer;
+import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -15,7 +15,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
-public class AurochRenderer extends LivingRenderer<AurochEntity, AurochModel> {
+public class AurochRenderer extends MobRenderer<AurochEntity, AurochModel> {
     private static final ResourceLocation AUROCH_TEXTURE = new ResourceLocation(Reference.MODID, "textures/entity/auroch.png");
 
     private AurochRenderer(EntityRendererManager rendererManager) {

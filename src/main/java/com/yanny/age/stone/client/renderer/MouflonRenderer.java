@@ -5,7 +5,7 @@ import com.yanny.age.stone.client.models.MouflonModel;
 import com.yanny.age.stone.entities.MouflonEntity;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.LivingRenderer;
+import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -15,7 +15,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
-public class MouflonRenderer extends LivingRenderer<MouflonEntity, MouflonModel> {
+public class MouflonRenderer extends MobRenderer<MouflonEntity, MouflonModel> {
     private static final ResourceLocation MOUFLON_TEXTURE = new ResourceLocation(Reference.MODID, "textures/entity/mouflon.png");
 
     private MouflonRenderer(EntityRendererManager rendererManager) {

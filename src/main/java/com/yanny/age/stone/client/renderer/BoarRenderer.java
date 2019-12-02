@@ -5,7 +5,7 @@ import com.yanny.age.stone.client.models.BoarModel;
 import com.yanny.age.stone.entities.BoarEntity;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.LivingRenderer;
+import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -15,7 +15,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
-public class BoarRenderer extends LivingRenderer<BoarEntity, BoarModel> {
+public class BoarRenderer extends MobRenderer<BoarEntity, BoarModel> {
     private static final ResourceLocation BOAR_TEXTURE = new ResourceLocation(Reference.MODID, "textures/entity/boar.png");
 
     private BoarRenderer(EntityRendererManager rendererManager) {

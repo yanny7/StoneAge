@@ -5,7 +5,7 @@ import com.yanny.age.stone.client.models.FowlModel;
 import com.yanny.age.stone.entities.FowlEntity;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.LivingRenderer;
+import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
@@ -16,7 +16,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
-public class FowlRenderer extends LivingRenderer<FowlEntity, FowlModel> {
+public class FowlRenderer extends MobRenderer<FowlEntity, FowlModel> {
     private static final ResourceLocation FOWL_TEXTURE = new ResourceLocation(Reference.MODID, "textures/entity/fowl.png");
 
     private FowlRenderer(EntityRendererManager rendererManager) {

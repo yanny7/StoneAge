@@ -5,7 +5,7 @@ import com.yanny.age.stone.client.models.DeerModel;
 import com.yanny.age.stone.entities.DeerEntity;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.LivingRenderer;
+import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -15,7 +15,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
-public class DeerRenderer extends LivingRenderer<DeerEntity, DeerModel> {
+public class DeerRenderer extends MobRenderer<DeerEntity, DeerModel> {
     private static final ResourceLocation DEER_TEXTURE = new ResourceLocation(Reference.MODID, "textures/entity/deer.png");
 
     private DeerRenderer(EntityRendererManager rendererManager) {
