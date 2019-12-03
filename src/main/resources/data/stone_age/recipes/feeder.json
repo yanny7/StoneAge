@@ -1,0 +1,22 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "WSW",
+    "LSL",
+    "WSW"
+  ],
+  "key": {
+    "L": {
+      "tag": "minecraft:logs"
+    },
+    "S": {
+      "tag": "minecraft:wooden_slabs"
+    },
+    "W": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "result": {
+    "item": "stone_age:feeder"
+  }
+}

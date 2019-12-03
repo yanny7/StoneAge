@@ -1,0 +1,16 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "WWW",
+    "WWW",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "result": {
+    "item": "minecraft:hay_block"
+  }
+}
