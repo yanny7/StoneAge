@@ -29,6 +29,7 @@ public class BlockSubscriber {
     public static final Block unfired_clay_vessel = null;
     public static final Block aquaduct = null;
     public static final Block drought_grass_bed = null;
+    public static final Block feeder = null;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -42,6 +43,7 @@ public class BlockSubscriber {
         registry.register(new UnfiredClayVesselBlock().setRegistryName(MODID, "unfired_clay_vessel"));
         registry.register(new AquaductBlock().setRegistryName(MODID, "aquaduct"));
         registry.register(new DroughtGrassBedBlock().setRegistryName(MODID, "drought_grass_bed"));
+        registry.register(new FeederBlock().setRegistryName(MODID, "feeder"));
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -66,5 +68,7 @@ public class BlockSubscriber {
                 .setRegistryName(MODID, "aquaduct"));
         registry.register(new BedItem(drought_grass_bed, new Item.Properties().group(ModItemGroup.TOOMANYORES).setTEISR(() -> DroughtGrassBedItemRenderer::new))
                 .setRegistryName(MODID, "drought_grass_bed"));
+        registry.register(new BedItem(feeder, new Item.Properties().group(ModItemGroup.TOOMANYORES))
+                .setRegistryName(MODID, "feeder"));
     }
 }

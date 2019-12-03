@@ -1,7 +1,6 @@
 package com.yanny.age.stone.blocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.material.Material;
@@ -13,6 +12,7 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -25,10 +25,11 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class StoneChestBlock extends HorizontalBlock {
-    private static final VoxelShape SHAPE = Block.makeCuboidShape(1, 0, 1, 15, 14, 15);
+public class FeederBlock extends HorizontalBlock {
+    private static final VoxelShape SHAPE_NS = Block.makeCuboidShape(0, 0, 4, 16, 6, 12);
+    private static final VoxelShape SHAPE_EW = Block.makeCuboidShape(4, 0, 0, 12, 6, 16);
 
-    public StoneChestBlock() {
+    public FeederBlock() {
         super(Properties.create(Material.WOOD).hardnessAndResistance(2.0f));
     }
 
@@ -40,29 +41,7 @@ public class StoneChestBlock extends HorizontalBlock {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new StoneChestTileEntity();
-    }
-
-    @SuppressWarnings("deprecation")
-    @Override
-    @Nonnull
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.ENTITYBLOCK_ANIMATED;
-    }
-
-    @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
-    }
-
-    @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(BlockStateProperties.HORIZONTAL_FACING);
-    }
-
-    @Override
-    public boolean isVariableOpacity() {
-        return true;
+        return new FeederTileEntity();
     }
 
     @Nonnull
@@ -75,7 +54,21 @@ public class StoneChestBlock extends HorizontalBlock {
     @Nonnull
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return SHAPE;
+        if (state.get(HorizontalBlock.HORIZONTAL_FACING) == Direction.NORTH || state.get(HORIZONTAL_FACING) == Direction.SOUTH) {
+            return SHAPE_NS;
+        } else {
+            return SHAPE_EW;
+        }
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
+    }
+
+    @Override
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(BlockStateProperties.HORIZONTAL_FACING);
     }
 
     @SuppressWarnings("deprecation")
@@ -84,8 +77,8 @@ public class StoneChestBlock extends HorizontalBlock {
         if (state.getBlock() != newState.getBlock()) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof StoneChestTileEntity) {
-                InventoryHelper.dropInventoryItems(worldIn, pos, ((StoneChestTileEntity)tileentity).getInventory());
+            if (tileentity instanceof FeederTileEntity) {
+                InventoryHelper.dropInventoryItems(worldIn, pos, ((FeederTileEntity)tileentity).getInventory());
             }
 
             super.onReplaced(state, worldIn, pos, newState, isMoving);
@@ -95,7 +88,7 @@ public class StoneChestBlock extends HorizontalBlock {
     @SuppressWarnings("deprecation")
     @Override
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        StoneChestTileEntity tile = (StoneChestTileEntity) worldIn.getTileEntity(pos);
+        FeederTileEntity tile = (FeederTileEntity) worldIn.getTileEntity(pos);
 
         if (tile != null) {
             if (!worldIn.isRemote) {

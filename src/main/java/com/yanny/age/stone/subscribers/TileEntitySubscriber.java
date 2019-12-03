@@ -21,6 +21,7 @@ public class TileEntitySubscriber {
     public static final TileEntityType<ClayVesselTileEntity> clay_vessel = null;
     public static final TileEntityType<AquaductTileEntity> aquaduct = null;
     public static final TileEntityType<DroughtGrassBedTileEntity> drought_grass_bed = null;
+    public static final TileEntityType<FeederTileEntity> feeder = null;
 
     @SuppressWarnings("ConstantConditions")
     @SubscribeEvent
@@ -42,5 +43,7 @@ public class TileEntitySubscriber {
                 .build(null).setRegistryName("aquaduct"));
         registry.register(TileEntityType.Builder.create(DroughtGrassBedTileEntity::new, BlockSubscriber.drought_grass_bed)
                 .build(null).setRegistryName("drought_grass_bed"));
+        registry.register(TileEntityType.Builder.create(FeederTileEntity::new, BlockSubscriber.feeder)
+                .build(null).setRegistryName("feeder"));
     }
 }

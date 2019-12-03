@@ -34,6 +34,7 @@
     "block.stone_age.tree_stump": "Tree stump",
     "block.stone_age.aquaduct": "Aquaduct",
     "block.stone_age.drought_grass_bed": "Drought grass bed",
+    "block.stone_age.feeder": "Animal feeder",
 
     "entity.stone_age.deer": "Deer",
     "entity.stone_age.boar": "Boar",

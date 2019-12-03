@@ -12,6 +12,8 @@ class ServerConfig {
     final ForgeConfigSpec.DoubleValue tanningRackFinishChance;
     final ForgeConfigSpec.BooleanValue changeMiningLevelForVanillaBlocks;
     final ForgeConfigSpec.IntValue aquaductTickChanceBoneMealEffect;
+    final ForgeConfigSpec.IntValue feederTickChanceBreedAnimalEffect;
+    final ForgeConfigSpec.IntValue feederEffectRange;
 
     final ForgeConfigSpec.BooleanValue spawnDeerEnable;
     final ForgeConfigSpec.IntValue spawnDeerWeight;
@@ -59,13 +61,21 @@ class ServerConfig {
                 .translation(Reference.MODID + ".config.change_mining_level_for_vanilla_blocks")
                 .define("changeMiningLevelForVanillaBlocks", true);
         aquaductTickChanceBoneMealEffect = builder
-                .comment("Chance of bonemeal efect from aquaduct every X ticks (randomly)")
-                .translation(Reference.MODID + ".config.aquaduct_tich_chance_bone_meal_effect")
+                .comment("Chance of bonemeal efect from aquaduct every 1/X tick (randomly)")
+                .translation(Reference.MODID + ".config.aquaduct_tick_chance_bone_meal_effect")
                 .defineInRange("aquaductTickChanceBoneMealEffect", 200, 1, Integer.MAX_VALUE);
         clayVesselCapacity = builder
                 .comment("Fluid capacity in mB of clay vessel")
                 .translation(Reference.MODID + ".config.clay_vessel_capaicty")
                 .defineInRange("clayVesselCapacity", 8000, 1, Integer.MAX_VALUE);
+        feederTickChanceBreedAnimalEffect = builder
+                .comment("Chance of breed effect from feeder every 1/X tick")
+                .translation(Reference.MODID + ".config.feeder_tick_chance_breed_animal_effect")
+                .defineInRange("feederTickChanceBreedAnimal", 200, 1, Integer.MAX_VALUE);
+        feederEffectRange = builder
+                .comment("Feeder area of breed effect")
+                .translation(Reference.MODID + ".config.feeder_effect_range")
+                .defineInRange("feederEffectRange", 4, 0, 15);
         builder.pop();
 
         builder.push("mob spawning");

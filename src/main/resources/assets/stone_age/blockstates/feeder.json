@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "stone_age:block/feeder" },
+    "facing=south": { "model": "stone_age:block/feeder", "y": 180 },
+    "facing=west": { "model": "stone_age:block/feeder", "y": 270 },
+    "facing=east": { "model": "stone_age:block/feeder", "y": 90 }
+  }
+}

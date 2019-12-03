@@ -14,6 +14,8 @@ public class ConfigHelper {
         Config.changeMiningLevelForVanillaBlocks = ConfigHolder.SERVER.changeMiningLevelForVanillaBlocks.get();
         Config.aquaductTickChanceBoneMealEffect = ConfigHolder.SERVER.aquaductTickChanceBoneMealEffect.get();
         Config.clayVesselCapacity = ConfigHolder.SERVER.clayVesselCapacity.get();
+        Config.feederTickChanceBreedAnimalEffect = ConfigHolder.SERVER.feederTickChanceBreedAnimalEffect.get();
+        Config.feederEffectRange = ConfigHolder.SERVER.feederEffectRange.get();
 
         Config.spawnDeerEnable = ConfigHolder.SERVER.spawnDeerEnable.get();
         Config.spawnDeerWeight = ConfigHolder.SERVER.spawnDeerWeight.get();

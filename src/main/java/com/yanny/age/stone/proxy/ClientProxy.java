@@ -11,12 +11,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
-
 public class ClientProxy implements IProxy {
 
     @Override
     public void init() {
         ScreenManager.registerFactory(ContainerSubscriber.stone_chest, StoneChestGui::new);
+        ScreenManager.registerFactory(ContainerSubscriber.feeder, FeederGui::new);
 
         RenderingRegistry.registerEntityRenderingHandler(DeerEntity.class, new DeerRenderer.RenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(BoarEntity.class, new BoarRenderer.RenderFactory());
