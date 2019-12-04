@@ -41,7 +41,8 @@ public class FeederTileEntity extends TileEntity implements IInventoryInterface,
         VALID_ITEMS.addAll(SEEDS.getAllElements());
         VALID_ITEMS.addAll(CROPS.getAllElements());
     }
-    static final int ITEMS = 4;
+
+    public static final int ITEMS = 4;
 
     private final NonNullList<ItemStack> stacks = NonNullList.withSize(ITEMS, ItemStack.EMPTY);
     private final IItemHandlerModifiable nonSidedItemHandler = createNonSidedInventoryHandler(stacks);
