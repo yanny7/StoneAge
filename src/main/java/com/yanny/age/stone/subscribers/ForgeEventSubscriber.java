@@ -50,17 +50,7 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "torch"),             // lit by using on fire or campfire
 
             // TODO disabled recipes - change them in future
-            new ResourceLocation("minecraft", "crafting_table"),
-
-            // for replace - recipes overrided by Forge must be replaced this way
-            new ResourceLocation("minecraft", "bow"),
-            new ResourceLocation("minecraft", "campfire"),
-            new ResourceLocation("minecraft", "furnace"),
-            new ResourceLocation("minecraft", "stone_axe"),
-            new ResourceLocation("minecraft", "stone_pickaxe"),
-            new ResourceLocation("minecraft", "stone_hoe"),
-            new ResourceLocation("minecraft", "stone_shovel"),
-            new ResourceLocation("minecraft", "stone_sword")
+            new ResourceLocation("minecraft", "crafting_table") //TODO disable based on config
     );
     private static final Set<ResourceLocation> RECIPES_TO_ADD = Sets.newHashSet(
             new ResourceLocation(MODID, "bow"),
@@ -129,26 +119,6 @@ public class ForgeEventSubscriber {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
-/*
-            LootTableManager lootTableManager = event.getServer().getLootTableManager();
-            Class lootTableManagerClass = lootTableManager.getClass();
-            Field lootTable = lootTableManagerClass.getDeclaredFields()[2];
-            lootTable.setAccessible(true);
-
-            try {
-                Map<ResourceLocation, LootTable> lootTableMap = (Map<ResourceLocation, LootTable>) lootTable.get(lootTableManager);
-                HashMap<ResourceLocation, LootTable> map = Maps.newHashMap();
-                lootTableMap.forEach(map::put);
-                LOOTS_TO_REMOVE.forEach(map::remove);
-                LOOTS_TO_ADD.forEach(resourceLocation -> {
-                LootTable loot = map.remove(resourceLocation);
-                map.put(new ResourceLocation("minecraft", resourceLocation.getPath()), loot);
-            });
-
-                lootTable.set(lootTableManager, ImmutableMap.copyOf(map));
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }*/
         }
 
         if (Config.changeMiningLevelForVanillaBlocks) {

@@ -41,7 +41,7 @@ class ServerConfig {
     ServerConfig(@Nonnull final ForgeConfigSpec.Builder builder) {
         builder.push("general");
         removeVanillaRecipes = builder
-                .comment("Remove vanilla recipes that are changed by mod or break mod gameplay")
+                .comment("Remove vanilla recipes that are changed by mod or break mod gameplay (wooden tools, torch)")
                 .translation(Reference.MODID + ".config.remove_vanilla_recipes")
                 .define("removeVanillaRecipes", true);
         removeVanillaGeneratedAnimals = builder
