@@ -216,13 +216,14 @@ public class FeederTileEntity extends TileEntity implements IInventoryInterface,
                     winner.ageUp((int)((float)(-winner.getGrowingAge() / 20) * 0.1F), true);
                     itemStack.shrink(1);
                 } else {
-                    if (winner.getGrowingAge() == 0 && winner.canBreed()) {
+                    List<AnimalEntity> entities1 = world.getEntitiesWithinAABB(winner.getClass(), boundingBox,
+                            livingEntity -> !livingEntity.isEntityEqual(winner) && !livingEntity.isChild() && livingEntity.canBreed());
+
+                    if (winner.getGrowingAge() == 0 && entities1.size() < 30) {
                         winner.setInLove(null);
                         itemStack.shrink(1);
 
                         getItem().ifPresent(itemStack1 -> {
-                            List<AnimalEntity> entities1 = world.getEntitiesWithinAABB(winner.getClass(), boundingBox,
-                                    livingEntity -> !livingEntity.isEntityEqual(winner) && !livingEntity.isChild() && livingEntity.canBreed());
                             if (!entities1.isEmpty()) {
                                 Collections.shuffle(entities1);
                                 AnimalEntity winner1 = entities1.get(0);

@@ -1,5 +1,6 @@
 package com.yanny.age.stone.client.models;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.yanny.age.stone.entities.FowlEntity;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
@@ -52,12 +53,25 @@ public class FowlModel extends EntityModel<FowlEntity> {
 
 	@Override
 	public void render(FowlEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-		body.render(scale);
-		head.render(scale);
-		foot1.render(scale);
-		foot2.render(scale);
-		wing1.render(scale);
-		wing2.render(scale);
+		if (isChild) {
+			GlStateManager.pushMatrix();
+			GlStateManager.scalef(0.75F, 0.75F, 0.75F);
+			GlStateManager.translatef(0.0F, 0.5F, 0.0F);
+			body.render(scale);
+			head.render(scale);
+			foot1.render(scale);
+			foot2.render(scale);
+			wing1.render(scale);
+			wing2.render(scale);
+			GlStateManager.popMatrix();
+		} else {
+			body.render(scale);
+			head.render(scale);
+			foot1.render(scale);
+			foot2.render(scale);
+			wing1.render(scale);
+			wing2.render(scale);
+		}
 	}
 
 	@Override
