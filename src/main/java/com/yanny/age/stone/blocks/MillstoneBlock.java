@@ -24,8 +24,8 @@ import javax.annotation.Nullable;
 
 public class MillstoneBlock extends HorizontalBlock {
     private static final VoxelShape SHAPE = VoxelShapes.or(Block.makeCuboidShape(0, 0, 0, 16, 3, 16),
-            Block.makeCuboidShape(3, 3, 3, 13, 7, 13),
-            Block.makeCuboidShape(3, 7, 3, 13, 11, 13),
+            Block.makeCuboidShape(2.5, 3, 2.5, 13.5, 7, 13.5),
+            Block.makeCuboidShape(3, 7.05, 3, 13, 11, 13),
             Block.makeCuboidShape(7, 7, 7, 9, 12, 9));
 
     public MillstoneBlock() {

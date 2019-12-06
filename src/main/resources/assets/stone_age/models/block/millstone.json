@@ -1,10 +1,10 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
     "textures": {
+        "particle": "minecraft:block/stone",
         "oak_log": "minecraft:block/oak_log",
         "granite": "minecraft:block/granite",
-        "stone": "minecraft:block/stone",
-        "particle": "minecraft:block/stone"
+        "stone": "minecraft:block/stone"
     },
     "display": {
         "gui": {
@@ -53,14 +53,14 @@
         },
         {
             "name": "Cube",
-            "from": [ 3, 3, 3 ], 
-            "to": [ 13, 7, 13 ], 
+            "from": [ 2.5, 3, 2.5 ], 
+            "to": [ 13.5, 7, 13.5 ], 
             "faces": {
-                "north": { "texture": "#granite", "uv": [ 4, 6, 14, 10 ] },
-                "east": { "texture": "#granite", "uv": [ 2, 7, 12, 11 ] },
+                "north": { "texture": "#granite", "uv": [ 4, 6, 15, 10 ] },
+                "east": { "texture": "#granite", "uv": [ 2, 7, 13, 11 ] },
                 "south": { "texture": "#granite", "uv": [ 6, 11, 16, 15 ] },
-                "west": { "texture": "#granite", "uv": [ 0, 5, 10, 9 ] },
-                "up": { "texture": "#granite", "uv": [ 0, 0, 10, 10 ] }
+                "west": { "texture": "#granite", "uv": [ 0, 5, 11, 9 ] },
+                "up": { "texture": "#granite", "uv": [ 0, 0, 11, 11 ] }
             }
         },
         {

@@ -18,7 +18,7 @@ public class MillstoneRenderer extends TileEntityRenderer<MillstoneTileEntity> {
     public void render(MillstoneTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
         GlStateManager.pushMatrix();
         GlStateManager.enableRescaleNormal();
-        GlStateManager.translatef((float)x + 0.5f, (float)y, (float)z + 0.5f);
+        GlStateManager.translatef((float)x + 0.5f, (float)y + 0.05f * 1/16f, (float)z + 0.5f);
 
         this.bindTexture(TEXTURE_NORMAL);
         model.rotate(tileEntityIn.rotateAngle());

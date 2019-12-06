@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -62,6 +63,13 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
         if (active) {
             float oldRot = rotation;
 
+            if (world.rand.nextInt(5) == 0) {
+                double d0 = pos.getX() + world.rand.nextFloat() / 2 + 0.25;
+                double d1 = pos.getY() + 7 / 16f + 0.025D;
+                double d2 = pos.getZ() + world.rand.nextFloat() / 2 + 0.25;
+                world.addParticle(ParticleTypes.CRIT, d0, d1, d2, 0, world.rand.nextFloat(), 0);
+            }
+
             rotation += PI2 / TICKS_TO_FINISH;
             rotation = (float) (rotation % PI2);
 
@@ -80,7 +88,7 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
                         if (entity != null) {
                             entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
                                 for (int i = 0; i < handler.getSlots(); i++) {
-                                    if (!handler.insertItem(i, result, true).isEmpty()) {
+                                    if (handler.insertItem(i, result, true).isEmpty()) {
                                         handler.insertItem(i, result, false);
                                         break;
                                     }
