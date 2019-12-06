@@ -15,16 +15,16 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TanningRackRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<TanningRackRecipe> {
-    private final TanningRackRecipeSerializer.IFactory<TanningRackRecipe> factory;
+public class MillstoneRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<MillstoneRecipe> {
+    private final MillstoneRecipeSerializer.IFactory<MillstoneRecipe> factory;
 
-    public TanningRackRecipeSerializer(TanningRackRecipeSerializer.IFactory<TanningRackRecipe> factory) {
+    public MillstoneRecipeSerializer(MillstoneRecipeSerializer.IFactory<MillstoneRecipe> factory) {
         this.factory = factory;
     }
 
     @Override
     @Nonnull
-    public TanningRackRecipe read(@Nonnull ResourceLocation recipeId, @Nonnull JsonObject json) {
+    public MillstoneRecipe read(@Nonnull ResourceLocation recipeId, @Nonnull JsonObject json) {
         String s = JSONUtils.getString(json, "group", "");
         JsonElement jsonelement = JSONUtils.isJsonArray(json, "ingredient")
                 ? JSONUtils.getJsonArray(json, "ingredient")
@@ -50,7 +50,7 @@ public class TanningRackRecipeSerializer extends ForgeRegistryEntry<IRecipeSeria
 
     @Nullable
     @Override
-    public TanningRackRecipe read(@Nonnull ResourceLocation recipeId, PacketBuffer buffer) {
+    public MillstoneRecipe read(@Nonnull ResourceLocation recipeId, PacketBuffer buffer) {
         String s = buffer.readString(32767);
         Ingredient ingredient = Ingredient.read(buffer);
         ItemStack itemstack = buffer.readItemStack();
@@ -59,13 +59,13 @@ public class TanningRackRecipeSerializer extends ForgeRegistryEntry<IRecipeSeria
     }
 
     @Override
-    public void write(PacketBuffer buffer, TanningRackRecipe recipe) {
+    public void write(PacketBuffer buffer, MillstoneRecipe recipe) {
         buffer.writeString(recipe.group);
         recipe.ingredient.write(buffer);
         buffer.writeItemStack(recipe.result);
     }
 
-    public interface IFactory<T extends TanningRackRecipe> {
+    public interface IFactory<T extends MillstoneRecipe> {
         T create(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result);
     }
 }

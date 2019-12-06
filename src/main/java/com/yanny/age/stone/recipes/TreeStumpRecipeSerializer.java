@@ -10,21 +10,21 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TreeStumpRecipeSerializer<T extends TreeStumpRecipe>
-        extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
-    private final TreeStumpRecipeSerializer.IFactory<T> factory;
+public class TreeStumpRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<TreeStumpRecipe> {
+    private final TreeStumpRecipeSerializer.IFactory<TreeStumpRecipe> factory;
 
-    public TreeStumpRecipeSerializer(TreeStumpRecipeSerializer.IFactory<T> factory) {
+    public TreeStumpRecipeSerializer(TreeStumpRecipeSerializer.IFactory<TreeStumpRecipe> factory) {
         this.factory = factory;
     }
 
     @Override
     @Nonnull
-    public T read(@Nonnull ResourceLocation recipeId, @Nonnull JsonObject json) {
+    public TreeStumpRecipe read(@Nonnull ResourceLocation recipeId, @Nonnull JsonObject json) {
         String s = JSONUtils.getString(json, "group", "");
         JsonElement ingredientJsonElement = JSONUtils.isJsonArray(json, "ingredient")
                 ? JSONUtils.getJsonArray(json, "ingredient")
@@ -56,7 +56,7 @@ public class TreeStumpRecipeSerializer<T extends TreeStumpRecipe>
 
     @Nullable
     @Override
-    public T read(@Nonnull ResourceLocation recipeId, PacketBuffer buffer) {
+    public TreeStumpRecipe read(@Nonnull ResourceLocation recipeId, PacketBuffer buffer) {
         String s = buffer.readString(32767);
         Ingredient ingredient = Ingredient.read(buffer);
         Ingredient tool = Ingredient.read(buffer);
@@ -68,7 +68,7 @@ public class TreeStumpRecipeSerializer<T extends TreeStumpRecipe>
     }
 
     @Override
-    public void write(PacketBuffer buffer, T recipe) {
+    public void write(PacketBuffer buffer, TreeStumpRecipe recipe) {
         buffer.writeString(recipe.group);
         recipe.ingredient.write(buffer);
         recipe.tool.write(buffer);

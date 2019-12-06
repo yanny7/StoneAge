@@ -5,7 +5,6 @@ import com.yanny.age.stone.subscribers.BlockSubscriber;
 import com.yanny.age.stone.subscribers.ContainerSubscriber;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
@@ -20,20 +19,20 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nonnull;
 
-import static com.yanny.age.stone.blocks.StoneChestTileEntity.*;
+import static com.yanny.age.stone.blocks.MillstoneTileEntity.ITEMS;
 
-public class StoneChestContainer extends Container {
-    private StoneChestTileEntity tile;
+public class MillstoneContainer extends Container {
+    private MillstoneTileEntity tile;
     private PlayerEntity player;
     private IItemHandler inventory;
 
-    public StoneChestContainer(int windowId, PlayerInventory inv, PacketBuffer extraData) {
+    public MillstoneContainer(int windowId, PlayerInventory inv, PacketBuffer extraData) {
         this(windowId, extraData.readBlockPos(), ExampleMod.proxy.getClientWorld(), inv, ExampleMod.proxy.getClientPlayer());
     }
 
-    StoneChestContainer(int id, BlockPos pos, World world, PlayerInventory inventory, PlayerEntity player) {
-        super(ContainerSubscriber.stone_chest, id);
-        tile = (StoneChestTileEntity) world.getTileEntity(pos);
+    MillstoneContainer(int id, BlockPos pos, World world, PlayerInventory inventory, PlayerEntity player) {
+        super(ContainerSubscriber.millstone, id);
+        tile = (MillstoneTileEntity) world.getTileEntity(pos);
         this.player = player;
         this.inventory = new InvWrapper(inventory);
 
@@ -41,14 +40,8 @@ public class StoneChestContainer extends Container {
             throw new IllegalStateException("TileEntity does not exists!");
         }
 
-        tile.openInventory(player);
-        tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-            for (int y = 0; y < INVENTORY_HEIGHT; y++) {
-                for (int x = 0; x < INVENTORY_WIDTH; x++) {
-                    addSlot(new SlotItemHandler(h, x + y * INVENTORY_WIDTH, 44 + x * 18, 17 + y * 18));
-                }
-            }
-        });
+        tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> addSlot(new SlotItemHandler(h, 0, 80, 35)));
+
         layoutPlayerInventorySlots(8, 84);
     }
 
@@ -57,7 +50,8 @@ public class StoneChestContainer extends Container {
         if (tile == null || tile.getWorld() == null) {
             throw new IllegalStateException("Null pointer");
         }
-        return isWithinUsableDistance(IWorldPosCallable.of(tile.getWorld(), tile.getPos()), player, BlockSubscriber.stone_chest);
+
+        return isWithinUsableDistance(IWorldPosCallable.of(tile.getWorld(), tile.getPos()), player, BlockSubscriber.millstone);
     }
 
     @Nonnull
@@ -68,13 +62,15 @@ public class StoneChestContainer extends Container {
         if (slot != null && slot.getHasStack()) {
             ItemStack stack = slot.getStack();
             ItemStack itemstack = stack.copy();
-            if (index < INVENTORY_WIDTH * INVENTORY_HEIGHT) {
-                if (!mergeItemStack(stack, INVENTORY_WIDTH * INVENTORY_HEIGHT + 1, INVENTORY_WIDTH * INVENTORY_HEIGHT + 36, true)) {
+
+            if (index < ITEMS) {
+                if (!mergeItemStack(stack, ITEMS + 1, ITEMS + 36, true)) {
                     return ItemStack.EMPTY;
                 }
+
                 slot.onSlotChange(stack, itemstack);
             } else {
-                if (!mergeItemStack(stack, 0, INVENTORY_WIDTH * INVENTORY_HEIGHT, false)) {
+                if (tile.isItemValid(stack) && !mergeItemStack(stack, 0, ITEMS, false)) {
                     return ItemStack.EMPTY;
                 }
             }
@@ -98,7 +94,6 @@ public class StoneChestContainer extends Container {
     @Override
     public void onContainerClosed(PlayerEntity playerIn) {
         super.onContainerClosed(playerIn);
-        tile.closeInventory(playerIn);
     }
 
     private int addSlotRange(IItemHandler handler, int index, int x, int y, int amount, int dx) {
@@ -126,9 +121,5 @@ public class StoneChestContainer extends Container {
         // Hotbar offset
         topRow += 58;
         addSlotRange(inventory, 0, leftCol, topRow, 9, 18);
-    }
-
-    IInventory getIInventory() {
-        return tile.getInventory();
     }
 }

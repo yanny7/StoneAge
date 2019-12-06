@@ -17,6 +17,7 @@ public class ClientProxy implements IProxy {
     public void init() {
         ScreenManager.registerFactory(ContainerSubscriber.stone_chest, StoneChestGui::new);
         ScreenManager.registerFactory(ContainerSubscriber.feeder, FeederGui::new);
+        ScreenManager.registerFactory(ContainerSubscriber.millstone, MillstoneGui::new);
 
         RenderingRegistry.registerEntityRenderingHandler(DeerEntity.class, new DeerRenderer.RenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(BoarEntity.class, new BoarRenderer.RenderFactory());
@@ -33,6 +34,7 @@ public class ClientProxy implements IProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(AquaductTileEntity.class, new AquaductRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(DroughtGrassBedTileEntity.class, new DroughtGrassBedRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(FeederTileEntity.class, new FeederRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(MillstoneTileEntity.class, new MillstoneRenderer());
     }
 
     @Override

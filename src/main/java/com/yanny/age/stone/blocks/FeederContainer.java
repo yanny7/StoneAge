@@ -68,7 +68,7 @@ public class FeederContainer extends Container {
             ItemStack itemstack = stack.copy();
 
             if (index < ITEMS) {
-                if (!mergeItemStack(stack, ITEMS + 1, 38, true)) {
+                if (!mergeItemStack(stack, ITEMS + 1, ITEMS + 36, true)) {
                     return ItemStack.EMPTY;
                 }
 

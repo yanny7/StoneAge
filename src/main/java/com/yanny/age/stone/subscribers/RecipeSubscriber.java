@@ -18,13 +18,15 @@ public class RecipeSubscriber {
     public static final DryingRackRecipeSerializer drying_rack = null;
     public static final TanningRackRecipeSerializer tanning_rack = null;
     public static final TreeStumpRecipeSerializer tree_stump = null;
+    public static final MillstoneRecipeSerializer millstone = null;
 
     @SubscribeEvent
     public static void registerTileEntity(RegistryEvent.Register<IRecipeSerializer<?>> event) {
         IForgeRegistry<IRecipeSerializer<?>> registry = event.getRegistry();
         registry.register(new FlintWorkbenchRecipeSerializer().setRegistryName(MODID, "flint_workbench"));
-        registry.register(new DryingRackRecipeSerializer<>(DryingRackRecipe::new).setRegistryName(MODID, "drying_rack"));
-        registry.register(new TanningRackRecipeSerializer<>(TanningRackRecipe::new).setRegistryName(MODID, "tanning_rack"));
-        registry.register(new TreeStumpRecipeSerializer<>(TreeStumpRecipe::new).setRegistryName(MODID, "tree_stump"));
+        registry.register(new DryingRackRecipeSerializer(DryingRackRecipe::new).setRegistryName(MODID, "drying_rack"));
+        registry.register(new TanningRackRecipeSerializer(TanningRackRecipe::new).setRegistryName(MODID, "tanning_rack"));
+        registry.register(new TreeStumpRecipeSerializer(TreeStumpRecipe::new).setRegistryName(MODID, "tree_stump"));
+        registry.register(new MillstoneRecipeSerializer(MillstoneRecipe::new).setRegistryName(MODID, "millstone"));
     }
 }

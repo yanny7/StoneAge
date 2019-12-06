@@ -10,21 +10,21 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class DryingRackRecipeSerializer<T extends DryingRackRecipe>
-        extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
-    private final DryingRackRecipeSerializer.IFactory<T> factory;
+public class DryingRackRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<DryingRackRecipe> {
+    private final DryingRackRecipeSerializer.IFactory<DryingRackRecipe> factory;
 
-    public DryingRackRecipeSerializer(DryingRackRecipeSerializer.IFactory<T> factory) {
+    public DryingRackRecipeSerializer(DryingRackRecipeSerializer.IFactory<DryingRackRecipe> factory) {
         this.factory = factory;
     }
 
     @Override
     @Nonnull
-    public T read(@Nonnull ResourceLocation recipeId, @Nonnull JsonObject json) {
+    public DryingRackRecipe read(@Nonnull ResourceLocation recipeId, @Nonnull JsonObject json) {
         String s = JSONUtils.getString(json, "group", "");
         JsonElement jsonelement = JSONUtils.isJsonArray(json, "ingredient")
                 ? JSONUtils.getJsonArray(json, "ingredient")
@@ -52,7 +52,7 @@ public class DryingRackRecipeSerializer<T extends DryingRackRecipe>
 
     @Nullable
     @Override
-    public T read(@Nonnull ResourceLocation recipeId, PacketBuffer buffer) {
+    public DryingRackRecipe read(@Nonnull ResourceLocation recipeId, PacketBuffer buffer) {
         String s = buffer.readString(32767);
         Ingredient ingredient = Ingredient.read(buffer);
         ItemStack itemstack = buffer.readItemStack();
@@ -63,7 +63,7 @@ public class DryingRackRecipeSerializer<T extends DryingRackRecipe>
     }
 
     @Override
-    public void write(PacketBuffer buffer, T recipe) {
+    public void write(PacketBuffer buffer, DryingRackRecipe recipe) {
         buffer.writeString(recipe.group);
         recipe.ingredient.write(buffer);
         buffer.writeItemStack(recipe.result);
