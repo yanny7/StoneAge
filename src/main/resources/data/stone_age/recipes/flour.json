@@ -1,0 +1,10 @@
+{
+  "type": "stone_age:millstone",
+  "ingredient": {
+    "item": "minecraft:wheat"
+  },
+  "result": {
+    "item": "stone_age:flour",
+    "count": 2
+  }
+}

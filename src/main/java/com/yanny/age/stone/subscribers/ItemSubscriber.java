@@ -27,6 +27,8 @@ public class ItemSubscriber {
     public static final Item drought_grass = null;
     public static final Item leather_strip = null;
     public static final Item fish_bone = null;
+    public static final Item flour = null;
+    public static final Item raw_bread = null;
 
     private static final Food VENISON = (new Food.Builder()).hunger(3).saturation(0.3f).meat().build();
     private static final Food COOKED_VENISON = (new Food.Builder()).hunger(8).saturation(0.8f).meat().build();
@@ -47,5 +49,7 @@ public class ItemSubscriber {
         registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "drought_grass"));
         registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "leather_strip"));
         registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "fish_bone"));
+        registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "flour"));
+        registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "raw_bread"));
     }
 }
