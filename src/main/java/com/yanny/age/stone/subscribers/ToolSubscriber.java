@@ -5,6 +5,7 @@ import com.yanny.age.stone.client.renderer.FlintSpearItemRenderer;
 import com.yanny.age.stone.items.SpearItem;
 import com.yanny.age.stone.items.HammerItem;
 import com.yanny.age.stone.items.SickleItem;
+import com.yanny.ages.api.group.ModItemGroup;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyLoadBase;
@@ -34,9 +35,9 @@ public class ToolSubscriber {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
-        Item.Properties combatProperties = new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT);
-        Item.Properties toolProperties = new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS);
-        Item.Properties spearProperties = new Item.Properties().maxStackSize(16).maxDamage(250).group(ItemGroup.COMBAT).setTEISR(() -> FlintSpearItemRenderer::new);
+        Item.Properties combatProperties = new Item.Properties().maxStackSize(1).group(ModItemGroup.AGES);
+        Item.Properties toolProperties = new Item.Properties().maxStackSize(1).group(ModItemGroup.AGES);
+        Item.Properties spearProperties = new Item.Properties().maxStackSize(16).maxDamage(250).group(ModItemGroup.AGES).setTEISR(() -> FlintSpearItemRenderer::new);
 
         registry.register(new PickaxeItem(Tiers.BONE_TIER, 1, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_pickaxe"));
         registry.register(new AxeItem(Tiers.BONE_TIER, 1, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_axe"));
