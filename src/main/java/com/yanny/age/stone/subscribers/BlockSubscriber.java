@@ -25,8 +25,6 @@ public class BlockSubscriber {
     public static final Block tanning_rack = null;
     public static final Block stone_chest = null;
     public static final Block tree_stump = null;
-    public static final Block clay_vessel = null;
-    public static final Block unfired_clay_vessel = null;
     public static final Block aquaduct = null;
     public static final Block drought_grass_bed = null;
     public static final Block feeder = null;
@@ -40,8 +38,6 @@ public class BlockSubscriber {
         registry.register(new TanningRackBlock().setRegistryName(MODID, "tanning_rack"));
         registry.register(new StoneChestBlock().setRegistryName(MODID, "stone_chest"));
         registry.register(new TreeStumpBlock().setRegistryName(MODID, "tree_stump"));
-        registry.register(new ClayVesselBlock().setRegistryName(MODID, "clay_vessel"));
-        registry.register(new UnfiredClayVesselBlock().setRegistryName(MODID, "unfired_clay_vessel"));
         registry.register(new AquaductBlock().setRegistryName(MODID, "aquaduct"));
         registry.register(new DroughtGrassBedBlock().setRegistryName(MODID, "drought_grass_bed"));
         registry.register(new FeederBlock().setRegistryName(MODID, "feeder"));
@@ -62,10 +58,6 @@ public class BlockSubscriber {
                 .setRegistryName(MODID, "stone_chest"));
         registry.register(new BlockItem(tree_stump, new Item.Properties().group(ModItemGroup.TOOMANYORES))
                 .setRegistryName(MODID, "tree_stump"));
-        registry.register(new BlockItem(clay_vessel, new Item.Properties().group(ModItemGroup.TOOMANYORES))
-                .setRegistryName(MODID, "clay_vessel"));
-        registry.register(new BlockItem(unfired_clay_vessel, new Item.Properties().group(ModItemGroup.TOOMANYORES))
-                .setRegistryName(MODID, "unfired_clay_vessel"));
         registry.register(new BlockItem(aquaduct, new Item.Properties().group(ModItemGroup.TOOMANYORES))
                 .setRegistryName(MODID, "aquaduct"));
         registry.register(new BedItem(drought_grass_bed, new Item.Properties().group(ModItemGroup.TOOMANYORES).setTEISR(() -> DroughtGrassBedItemRenderer::new))

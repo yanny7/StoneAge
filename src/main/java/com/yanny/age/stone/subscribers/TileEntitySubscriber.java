@@ -18,7 +18,6 @@ public class TileEntitySubscriber {
     public static final TileEntityType<TanningRackTileEntity> tanning_rack = null;
     public static final TileEntityType<StoneChestTileEntity> stone_chest = null;
     public static final TileEntityType<TreeStumpTileEntity> tree_stump = null;
-    public static final TileEntityType<ClayVesselTileEntity> clay_vessel = null;
     public static final TileEntityType<AquaductTileEntity> aquaduct = null;
     public static final TileEntityType<DroughtGrassBedTileEntity> drought_grass_bed = null;
     public static final TileEntityType<FeederTileEntity> feeder = null;
@@ -38,8 +37,6 @@ public class TileEntitySubscriber {
                 .build(null).setRegistryName("stone_chest"));
         registry.register(TileEntityType.Builder.create(TreeStumpTileEntity::new, BlockSubscriber.tree_stump)
                 .build(null).setRegistryName("tree_stump"));
-        registry.register(TileEntityType.Builder.create(ClayVesselTileEntity::new, BlockSubscriber.clay_vessel)
-                .build(null).setRegistryName("clay_vessel"));
         registry.register(TileEntityType.Builder.create(AquaductTileEntity::new, BlockSubscriber.aquaduct)
                 .build(null).setRegistryName("aquaduct"));
         registry.register(TileEntityType.Builder.create(DroughtGrassBedTileEntity::new, BlockSubscriber.drought_grass_bed)
