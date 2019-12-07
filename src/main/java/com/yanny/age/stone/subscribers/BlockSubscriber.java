@@ -48,23 +48,23 @@ public class BlockSubscriber {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
-        registry.register(new BlockItem(flint_workbench, new Item.Properties().group(ModItemGroup.TOOMANYORES))
+        registry.register(new BlockItem(flint_workbench, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "flint_workbench"));
-        registry.register(new BlockItem(drying_rack, new Item.Properties().group(ModItemGroup.TOOMANYORES))
+        registry.register(new BlockItem(drying_rack, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "drying_rack"));
-        registry.register(new BlockItem(tanning_rack, new Item.Properties().group(ModItemGroup.TOOMANYORES))
+        registry.register(new BlockItem(tanning_rack, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "tanning_rack"));
-        registry.register(new BlockItem(stone_chest, new Item.Properties().group(ModItemGroup.TOOMANYORES).setTEISR(() -> StoneChestItemRenderer::new))
+        registry.register(new BlockItem(stone_chest, new Item.Properties().group(ModItemGroup.AGES).setTEISR(() -> StoneChestItemRenderer::new))
                 .setRegistryName(MODID, "stone_chest"));
-        registry.register(new BlockItem(tree_stump, new Item.Properties().group(ModItemGroup.TOOMANYORES))
+        registry.register(new BlockItem(tree_stump, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "tree_stump"));
-        registry.register(new BlockItem(aquaduct, new Item.Properties().group(ModItemGroup.TOOMANYORES))
+        registry.register(new BlockItem(aquaduct, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "aquaduct"));
-        registry.register(new BedItem(drought_grass_bed, new Item.Properties().group(ModItemGroup.TOOMANYORES).setTEISR(() -> DroughtGrassBedItemRenderer::new))
+        registry.register(new BedItem(drought_grass_bed, new Item.Properties().group(ModItemGroup.AGES).setTEISR(() -> DroughtGrassBedItemRenderer::new))
                 .setRegistryName(MODID, "drought_grass_bed"));
-        registry.register(new BlockItem(feeder, new Item.Properties().group(ModItemGroup.TOOMANYORES))
+        registry.register(new BlockItem(feeder, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "feeder"));
-        registry.register(new BlockItem(millstone, new Item.Properties().group(ModItemGroup.TOOMANYORES))
+        registry.register(new BlockItem(millstone, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "millstone"));
     }
 }

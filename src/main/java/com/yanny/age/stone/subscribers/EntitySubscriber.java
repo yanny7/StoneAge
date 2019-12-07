@@ -52,7 +52,7 @@ public class EntitySubscriber {
     private static final EnumSet<Biome.Category> fowl_biomes = EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, SWAMP, JUNGLE, BEACH, MESA);
     private static final EnumSet<Biome.Category> mouflon_biomes = EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SWAMP, MESA);
 
-    private static final Set<EntityType> vanillaAnimals = Sets.newHashSet(COW, SHEEP, PIG, CHICKEN);
+    private static final Set<EntityType<?>> vanillaAnimals = Sets.newHashSet(COW, SHEEP, PIG, CHICKEN);
 
     @SubscribeEvent
     public static void registerEntities(RegistryEvent.Register<EntityType<?>> event) {

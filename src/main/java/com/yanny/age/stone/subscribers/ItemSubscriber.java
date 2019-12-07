@@ -1,6 +1,7 @@
 package com.yanny.age.stone.subscribers;
 
 import com.yanny.age.stone.Reference;
+import com.yanny.ages.api.group.ModItemGroup;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -38,18 +39,18 @@ public class ItemSubscriber {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
-        registry.register(new Item(new Item.Properties().group(ItemGroup.FOOD).maxStackSize(64).food(VENISON)).setRegistryName(MODID, "venison"));
-        registry.register(new Item(new Item.Properties().group(ItemGroup.FOOD).maxStackSize(64).food(COOKED_VENISON)).setRegistryName(MODID, "cooked_venison"));
-        registry.register(new Item(new Item.Properties().group(ItemGroup.FOOD).maxStackSize(64).food(FAT)).setRegistryName(MODID, "fat"));
-        registry.register(new Item(new Item.Properties().group(ItemGroup.FOOD).maxStackSize(64).food(COOKED_FAT)).setRegistryName(MODID, "cooked_fat"));
-        registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "raw_hide"));
-        registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "antler"));
-        registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "unlit_torch"));
-        registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "bone_arrow_head"));
-        registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "drought_grass"));
-        registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "leather_strip"));
-        registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "fish_bone"));
-        registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "flour"));
-        registry.register(new Item(new Item.Properties().group(ItemGroup.MATERIALS).maxStackSize(64)).setRegistryName(MODID, "raw_bread"));
+        registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64).food(VENISON)).setRegistryName(MODID, "venison"));
+        registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64).food(COOKED_VENISON)).setRegistryName(MODID, "cooked_venison"));
+        registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64).food(FAT)).setRegistryName(MODID, "fat"));
+        registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64).food(COOKED_FAT)).setRegistryName(MODID, "cooked_fat"));
+        registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "raw_hide"));
+        registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "antler"));
+        registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "unlit_torch"));
+        registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "bone_arrow_head"));
+        registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "drought_grass"));
+        registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "leather_strip"));
+        registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "fish_bone"));
+        registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "flour"));
+        registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "raw_bread"));
     }
 }
