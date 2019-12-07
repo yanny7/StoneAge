@@ -1,1 +1,1 @@
-Add recipes to JEI - millstone
+Improve putting/removing items from drying rack

@@ -1,10 +1,7 @@
 package com.yanny.age.stone.compatibility.jei;
 
 import com.yanny.age.stone.Reference;
-import com.yanny.age.stone.recipes.DryingRackRecipe;
-import com.yanny.age.stone.recipes.FlintWorkbenchRecipe;
-import com.yanny.age.stone.recipes.TanningRackRecipe;
-import com.yanny.age.stone.recipes.TreeStumpRecipe;
+import com.yanny.age.stone.recipes.*;
 import com.yanny.age.stone.subscribers.BlockSubscriber;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -37,7 +34,8 @@ public class JeiCompatPlugin implements IModPlugin {
                 new DryingRackRecipeCategory(registration.getJeiHelpers().getGuiHelper()),
                 new TanningRackRecipeCategory(registration.getJeiHelpers().getGuiHelper()),
                 new FlintWorkbenchRecipeCategory(registration.getJeiHelpers().getGuiHelper()),
-                new TreeStumpRecipeCategory(registration.getJeiHelpers().getGuiHelper())
+                new TreeStumpRecipeCategory(registration.getJeiHelpers().getGuiHelper()),
+                new MillstoneRecipeCategory(registration.getJeiHelpers().getGuiHelper())
         );
     }
 
@@ -47,11 +45,13 @@ public class JeiCompatPlugin implements IModPlugin {
         List<IRecipe<?>> tanningRackRecipes = recipeManager.getRecipes().stream().filter(recipe -> recipe instanceof TanningRackRecipe).collect(Collectors.toList());
         List<IRecipe<?>> flintWorkbenchRecipes = recipeManager.getRecipes().stream().filter(recipe -> recipe instanceof FlintWorkbenchRecipe).collect(Collectors.toList());
         List<IRecipe<?>> treeStumpRecipes = recipeManager.getRecipes().stream().filter(recipe -> recipe instanceof TreeStumpRecipe).collect(Collectors.toList());
+        List<IRecipe<?>> millstoneRecipes = recipeManager.getRecipes().stream().filter(recipe -> recipe instanceof MillstoneRecipe).collect(Collectors.toList());
 
         registration.addRecipes(dryingRackRecipes, DryingRackRecipeCategory.UID);
         registration.addRecipes(tanningRackRecipes, TanningRackRecipeCategory.UID);
         registration.addRecipes(flintWorkbenchRecipes, FlintWorkbenchRecipeCategory.UID);
         registration.addRecipes(treeStumpRecipes, TreeStumpRecipeCategory.UID);
+        registration.addRecipes(millstoneRecipes, MillstoneRecipeCategory.UID);
     }
 
     @Override
@@ -60,5 +60,6 @@ public class JeiCompatPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(BlockSubscriber.tanning_rack), TanningRackRecipeCategory.UID);
         registration.addRecipeCatalyst(new ItemStack(BlockSubscriber.flint_workbench), FlintWorkbenchRecipeCategory.UID);
         registration.addRecipeCatalyst(new ItemStack(BlockSubscriber.tree_stump), TreeStumpRecipeCategory.UID);
+        registration.addRecipeCatalyst(new ItemStack(BlockSubscriber.millstone), MillstoneRecipeCategory.UID);
     }
 }
