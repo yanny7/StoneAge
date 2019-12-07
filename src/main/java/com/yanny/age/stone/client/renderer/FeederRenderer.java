@@ -22,14 +22,13 @@ public class FeederRenderer extends TileEntityRenderer<FeederTileEntity> {
 
             if (direction == Direction.NORTH || direction == Direction.SOUTH) {
                 GlStateManager.translatef((float)x + i * 0.1875f + 0.21875f, (float)y + 0.3125f + i * 0.001f, (float)z + 0.5f);
-                GlStateManager.rotatef(90, 1.0f, 0.0f, 0.0f);
-                GlStateManager.scalef(0.3f, 0.3f, 0.3f);
             } else {
                 GlStateManager.translatef((float)x + 0.5f, (float)y + 0.3125f + i * 0.001f, (float)z + i * 0.1875f + 0.21875f);
                 GlStateManager.rotatef(90, 0.0F, 1.0F, 0.0F);
-                GlStateManager.rotatef(90, 1.0f, 0.0f, 0.0f);
-                GlStateManager.scalef(0.3f, 0.3f, 0.3f);
             }
+
+            GlStateManager.rotatef(90, 1.0f, 0.0f, 0.0f);
+            GlStateManager.scalef(0.3f, 0.3f, 0.3f);
 
             Minecraft.getInstance().getItemRenderer().renderItem(tileEntityIn.getInventory().getStackInSlot(i),
                     ItemCameraTransforms.TransformType.FIXED);

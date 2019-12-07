@@ -24,10 +24,10 @@ import javax.annotation.Nonnull;
 import static com.yanny.age.stone.blocks.MillstoneTileEntity.ITEMS;
 
 public class MillstoneContainer extends Container {
-    private MillstoneTileEntity tile;
-    private PlayerEntity player;
-    private IItemHandler inventory;
-    private IIntArray data;
+    private final MillstoneTileEntity tile;
+    private final PlayerEntity player;
+    private final IItemHandler inventory;
+    private final IIntArray data;
 
     public MillstoneContainer(int windowId, PlayerInventory inv, PacketBuffer extraData) {
         this(windowId, extraData.readBlockPos(), ExampleMod.proxy.getClientWorld(), inv, ExampleMod.proxy.getClientPlayer(), new IntArray(1));

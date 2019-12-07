@@ -35,7 +35,7 @@ public class AquaductTileEntity extends TileEntity implements ITickableTileEntit
 
     private float capacity = 0f;
     private boolean activated = false;
-    private Map<Direction, Boolean> sources = Maps.newHashMap();
+    private final Map<Direction, Boolean> sources = Maps.newHashMap();
 
     private int tick = 0;
     private int tmpTick = 0;

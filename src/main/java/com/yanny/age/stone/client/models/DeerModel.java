@@ -75,29 +75,23 @@ public class DeerModel extends EntityModel<DeerEntity> {
 	@Override
 	public void render(DeerEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 		this.setRotationAngles(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+		GlStateManager.pushMatrix();
+
 		if (isChild) {
-			GlStateManager.pushMatrix();
 			GlStateManager.scalef(0.75F, 0.75F, 0.75F);
 			GlStateManager.translatef(0.0F, 0.5F, 0.0F);
-			body.render(scale);
-			head.render(scale);
-			feet1.render(scale);
-			feet2.render(scale);
-			feet3.render(scale);
-			feet4.render(scale);
-			GlStateManager.popMatrix();
 		} else {
-			GlStateManager.pushMatrix();
 			GlStateManager.scalef(1.5F, 1.5F, 1.5F);
 			GlStateManager.translatef(0.0F, -0.5F, 0.0F);
-			body.render(scale);
-			head.render(scale);
-			feet1.render(scale);
-			feet2.render(scale);
-			feet3.render(scale);
-			feet4.render(scale);
-			GlStateManager.popMatrix();
 		}
+
+		body.render(scale);
+		head.render(scale);
+		feet1.render(scale);
+		feet2.render(scale);
+		feet3.render(scale);
+		feet4.render(scale);
+		GlStateManager.popMatrix();
 	}
 
 	private void setRotationAngle(RendererModel RendererModel, float x, float z) {

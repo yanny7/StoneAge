@@ -22,9 +22,9 @@ import javax.annotation.Nonnull;
 import static com.yanny.age.stone.blocks.FeederTileEntity.ITEMS;
 
 public class FeederContainer extends Container {
-    private FeederTileEntity tile;
-    private PlayerEntity player;
-    private IItemHandler inventory;
+    private final FeederTileEntity tile;
+    private final PlayerEntity player;
+    private final IItemHandler inventory;
 
     public FeederContainer(int windowId, PlayerInventory inv, PacketBuffer extraData) {
         this(windowId, extraData.readBlockPos(), ExampleMod.proxy.getClientWorld(), inv, ExampleMod.proxy.getClientPlayer());

@@ -171,11 +171,6 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
     }
 
     @Override
-    public void validate() {
-        super.validate();
-    }
-
-    @Override
     public void remove() {
         sidedInventoryHandler.invalidate();
         nonSidedInventoryHandler.invalidate();

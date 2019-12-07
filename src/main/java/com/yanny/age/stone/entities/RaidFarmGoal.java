@@ -60,7 +60,7 @@ class RaidFarmGoal<T extends AnimalEntity> extends MoveToBlockGoal {
             Block block = blockstate.getBlock();
 
             if (this.canRaid && cropsBlock.isAssignableFrom(block.getClass())) {
-                Integer integer;
+                int integer;
 
                 if (block instanceof BeetrootBlock) {
                     integer = blockstate.get(BeetrootBlock.BEETROOT_AGE);

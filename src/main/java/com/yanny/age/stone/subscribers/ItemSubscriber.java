@@ -4,7 +4,6 @@ import com.yanny.age.stone.Reference;
 import com.yanny.ages.api.group.ModItemGroup;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

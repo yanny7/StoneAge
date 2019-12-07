@@ -16,9 +16,9 @@ import static com.yanny.age.stone.Reference.*;
 @ObjectHolder(MODID)
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ContainerSubscriber {
-    public static ContainerType<StoneChestContainer> stone_chest = IForgeContainerType.create(StoneChestContainer::new);
-    public static ContainerType<FeederContainer> feeder = IForgeContainerType.create(FeederContainer::new);
-    public static ContainerType<MillstoneContainer> millstone = IForgeContainerType.create(MillstoneContainer::new);
+    public static final ContainerType<StoneChestContainer> stone_chest = IForgeContainerType.create(StoneChestContainer::new);
+    public static final ContainerType<FeederContainer> feeder = IForgeContainerType.create(FeederContainer::new);
+    public static final ContainerType<MillstoneContainer> millstone = IForgeContainerType.create(MillstoneContainer::new);
 
     @SubscribeEvent
     public static void registerContainer(RegistryEvent.Register<ContainerType<?>> event) {

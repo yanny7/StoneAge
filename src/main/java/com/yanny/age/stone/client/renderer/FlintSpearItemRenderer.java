@@ -10,7 +10,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class FlintSpearItemRenderer extends ItemStackTileEntityRenderer {
-    private FlintSpearItemModel model = new FlintSpearItemModel();
+    private final FlintSpearItemModel model = new FlintSpearItemModel();
 
     @Override
     public void renderByItem(ItemStack itemStackIn) {

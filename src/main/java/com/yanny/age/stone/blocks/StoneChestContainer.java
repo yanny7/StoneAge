@@ -23,9 +23,9 @@ import javax.annotation.Nonnull;
 import static com.yanny.age.stone.blocks.StoneChestTileEntity.*;
 
 public class StoneChestContainer extends Container {
-    private StoneChestTileEntity tile;
-    private PlayerEntity player;
-    private IItemHandler inventory;
+    private final StoneChestTileEntity tile;
+    private final PlayerEntity player;
+    private final IItemHandler inventory;
 
     public StoneChestContainer(int windowId, PlayerInventory inv, PacketBuffer extraData) {
         this(windowId, extraData.readBlockPos(), ExampleMod.proxy.getClientWorld(), inv, ExampleMod.proxy.getClientPlayer());

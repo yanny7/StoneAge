@@ -9,7 +9,7 @@ import net.minecraft.util.text.ITextComponent;
 
 public class MillstoneGui extends ContainerScreen<MillstoneContainer> {
 
-    private ResourceLocation GUI = new ResourceLocation(Reference.MODID, "textures/gui/container/millstone.png");
+    private final ResourceLocation GUI = new ResourceLocation(Reference.MODID, "textures/gui/container/millstone.png");
 
     public MillstoneGui(MillstoneContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);

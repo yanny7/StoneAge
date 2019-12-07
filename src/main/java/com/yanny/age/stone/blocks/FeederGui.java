@@ -10,7 +10,7 @@ import net.minecraft.util.text.ITextComponent;
 
 public class FeederGui extends ContainerScreen<Container> {
 
-    private ResourceLocation GUI = new ResourceLocation(Reference.MODID, "textures/gui/container/feeder.png");
+    private final ResourceLocation GUI = new ResourceLocation(Reference.MODID, "textures/gui/container/feeder.png");
 
     public FeederGui(Container screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);

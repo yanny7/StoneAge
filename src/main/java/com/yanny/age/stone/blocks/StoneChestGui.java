@@ -10,7 +10,7 @@ import net.minecraft.util.text.ITextComponent;
 
 public class StoneChestGui extends ContainerScreen<Container> {
 
-    private ResourceLocation GUI = new ResourceLocation(Reference.MODID, "textures/gui/container/stone_chest.png");
+    private final ResourceLocation GUI = new ResourceLocation(Reference.MODID, "textures/gui/container/stone_chest.png");
 
     public StoneChestGui(Container screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);

@@ -185,18 +185,14 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
             @Nonnull
             @Override
             public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-                if (slot < ITEMS) {
-                    if (getStackInSlot(slot).isEmpty() && world != null) {
-                        TanningRackRecipe recipe = getRecipe(stack);
-                        if (recipe != null) {
-                            return super.insertItem(slot, stack, simulate);
-                        }
-                    }
+                if (slot < ITEMS && getStackInSlot(slot).isEmpty() && world != null) {
+                    TanningRackRecipe recipe = getRecipe(stack);
 
-                    return stack;
-                } else {
-                    return stack;
+                    if (recipe != null) {
+                        return super.insertItem(slot, stack, simulate);
+                    }
                 }
+                return stack;
             }
 
             @Override

@@ -10,7 +10,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class StoneChestItemRenderer extends ItemStackTileEntityRenderer {
-    private static TileEntity tileEntity = new StoneChestTileEntity();
+    private static final TileEntity tileEntity = new StoneChestTileEntity();
 
     @Override
     public void renderByItem(ItemStack itemStackIn) {

@@ -68,10 +68,11 @@ public class DroughtGrassBedRenderer extends TileEntityRenderer<DroughtGrassBedT
         this.model.render();
         GlStateManager.popMatrix();
 
+        GlStateManager.pushMatrix();
+        GlStateManager.translatef(0.5F, 0.5F, 0.5F);
+        GlStateManager.scalef(0.749f, 0.749f, 0.749f);
+
         if (isHead) {
-            GlStateManager.pushMatrix();
-            GlStateManager.translatef(0.5F, 0.5F, 0.5F);
-            GlStateManager.scalef(0.749f, 0.749f, 0.749f);
             GlStateManager.rotatef(-85F, 1, 0, 0F);
             GlStateManager.translatef(-0.5F, -0.5F, -0.5F);
             GlStateManager.translatef(0.5f, 0.75F, 0.0325f);
@@ -105,12 +106,7 @@ public class DroughtGrassBedRenderer extends TileEntityRenderer<DroughtGrassBedT
             GlStateManager.rotatef(-85F, 1, 0, 0F);
             GlStateManager.translatef(-0.5F, -0.5F, -0.5F);
             GlStateManager.translatef(1.1666666f, 0.75F, 0.03251f);
-            Minecraft.getInstance().getItemRenderer().renderItem(GRASS, ItemCameraTransforms.TransformType.FIXED);
-            GlStateManager.popMatrix();
         } else {
-            GlStateManager.pushMatrix();
-            GlStateManager.translatef(0.5F, 0.5F, 0.5F);
-            GlStateManager.scalef(0.749f, 0.749f, 0.749f);
             GlStateManager.rotatef(85F, 1, 0, 0F);
             GlStateManager.translatef(-0.5F, -0.5F, -0.5F);
             GlStateManager.translatef(0.5f, 0.75F, 0.9675f);
@@ -144,9 +140,10 @@ public class DroughtGrassBedRenderer extends TileEntityRenderer<DroughtGrassBedT
             GlStateManager.rotatef(85F, 1, 0, 0F);
             GlStateManager.translatef(-0.5F, -0.5F, -0.5F);
             GlStateManager.translatef(-0.1666666f, 0.75F, 0.96751f);
-            Minecraft.getInstance().getItemRenderer().renderItem(GRASS, ItemCameraTransforms.TransformType.FIXED);
-            GlStateManager.popMatrix();
         }
+
+        Minecraft.getInstance().getItemRenderer().renderItem(GRASS, ItemCameraTransforms.TransformType.FIXED);
+        GlStateManager.popMatrix();
 
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.popMatrix();

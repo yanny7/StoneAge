@@ -36,7 +36,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
 
     private int chopLeft = 0;
     private ItemStack recipeResult = ItemStack.EMPTY;
-    private List<Ingredient> tools = new ArrayList<>();
+    private final List<Ingredient> tools = new ArrayList<>();
 
     public TreeStumpTileEntity() {
         //noinspection ConstantConditions

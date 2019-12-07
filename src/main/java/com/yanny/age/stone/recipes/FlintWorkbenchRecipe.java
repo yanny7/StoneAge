@@ -15,8 +15,8 @@ import javax.annotation.Nonnull;
 
 public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
     public static final IRecipeType<FlintWorkbenchRecipe> flint_workbench = IRecipeType.register("flint_workbench");
-    public static int MAX_WIDTH = 3;
-    public static int MAX_HEIGHT = 3;
+    public static final int MAX_WIDTH = 3;
+    public static final int MAX_HEIGHT = 3;
 
     private final int recipeWidth;
     private final int recipeHeight;
