@@ -5,3 +5,5 @@ Stone age is minecraft 1.14.4 mod that gives you feeling of man from stone age. 
 
 For more information, see [wiki](https://github.com/yanny7/StoneAge/wiki).
 Found bug? Please report [here](https://github.com/yanny7/StoneAge/issues).
+
+This mod depends on [Ages api](https://github.com/yanny7/AgesApi).
