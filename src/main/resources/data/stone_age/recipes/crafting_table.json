@@ -1,0 +1,34 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "IMW",
+    "BCL",
+    "PPP"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:cooked_chicken"
+    },
+    "M": {
+      "item": "minecraft:cooked_mutton"
+    },
+    "W": {
+      "item": "minecraft:cooked_beef"
+    },
+    "L": {
+      "item": "minecraft:cooked_porkchop"
+    },
+    "B": {
+      "item": "minecraft:bread"
+    },
+    "C": {
+      "item": "stone_age:stone_chest"
+    },
+    "P": {
+      "tag": "minecraft:wooden_slabs"
+    }
+  },
+  "result": {
+    "item": "minecraft:crafting_table"
+  }
+}

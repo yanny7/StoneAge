@@ -49,18 +49,10 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "wooden_sword"),      // removed
             new ResourceLocation("minecraft", "torch"),             // lit by using on fire or campfire
 
-            // TODO disabled recipes - change them in future
-            new ResourceLocation("minecraft", "crafting_table") //TODO disable based on config
+            new ResourceLocation("minecraft", "crafting_table")     // changed recipe
     );
     private static final Set<ResourceLocation> RECIPES_TO_ADD = Sets.newHashSet(
-            new ResourceLocation(MODID, "bow"),
-            new ResourceLocation(MODID, "campfire"),
-            new ResourceLocation(MODID, "furnace"),
-            new ResourceLocation(MODID, "stone_axe"),
-            new ResourceLocation(MODID, "stone_pickaxe"),
-            new ResourceLocation(MODID, "stone_hoe"),
-            new ResourceLocation(MODID, "stone_shovel"),
-            new ResourceLocation(MODID, "stone_sword")
+            new ResourceLocation(MODID, "crafting_table")
     );
 
     private static final Set<ResourceLocation> ADVANCEMENTS_TO_REMOVE = Sets.newHashSet(
@@ -80,7 +72,7 @@ public class ForgeEventSubscriber {
     public static void FMLServerStartingEvent(FMLServerStartingEvent event) {
         if (Config.removeVanillaRecipes) {
             RecipeManager recipeManager = event.getServer().getRecipeManager();
-            Class recipeManagerClass = recipeManager.getClass();
+            Class<?> recipeManagerClass = recipeManager.getClass();
 
             try {
                 Field recipes = recipeManagerClass.getDeclaredFields()[2];
@@ -105,13 +97,13 @@ public class ForgeEventSubscriber {
             }
 
             AdvancementManager advancementManager = event.getServer().getAdvancementManager();
-            Class advancementManagerClass = advancementManager.getClass();
+            Class<?> advancementManagerClass = advancementManager.getClass();
             Field advancements = advancementManagerClass.getDeclaredFields()[2];
             advancements.setAccessible(true);
 
             try {
                 AdvancementList advancementList = (AdvancementList) advancements.get(advancementManager);
-                Class list = advancementList.getClass();
+                Class<?> list = advancementList.getClass();
                 Field listField = list.getDeclaredFields()[1];
                 listField.setAccessible(true);
                 Map<ResourceLocation, Advancement> map = (Map<ResourceLocation, Advancement>) listField.get(advancementList);
@@ -198,7 +190,7 @@ public class ForgeEventSubscriber {
     }
 
     private static void setHarvestLevel(Block block, @SuppressWarnings("SameParameterValue") int harvestLevel) {
-        Class clazz = Block.class;
+        Class<?> clazz = Block.class;
         Field harvestLevelField = clazz.getDeclaredFields()[24];
         harvestLevelField.setAccessible(true);
         try {
