@@ -61,10 +61,7 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "recipes/tools/wooden_hoe"),
             new ResourceLocation("minecraft", "recipes/tools/wooden_shovel"),
             new ResourceLocation("minecraft", "recipes/combat/wooden_sword"),
-            new ResourceLocation("minecraft", "recipes/decorations/torch"),
-
-            // TODO disabled advancements - change them in future
-            new ResourceLocation("minecraft", "recipes/decorations/crafting_table")
+            new ResourceLocation("minecraft", "recipes/decorations/torch")
     );
 
     @SuppressWarnings("unchecked")
