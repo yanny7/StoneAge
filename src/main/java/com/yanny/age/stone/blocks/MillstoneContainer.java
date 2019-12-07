@@ -9,7 +9,9 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
+import net.minecraft.util.IntArray;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -25,24 +27,31 @@ public class MillstoneContainer extends Container {
     private MillstoneTileEntity tile;
     private PlayerEntity player;
     private IItemHandler inventory;
+    private IIntArray data;
 
     public MillstoneContainer(int windowId, PlayerInventory inv, PacketBuffer extraData) {
-        this(windowId, extraData.readBlockPos(), ExampleMod.proxy.getClientWorld(), inv, ExampleMod.proxy.getClientPlayer());
+        this(windowId, extraData.readBlockPos(), ExampleMod.proxy.getClientWorld(), inv, ExampleMod.proxy.getClientPlayer(), new IntArray(1));
     }
 
-    MillstoneContainer(int id, BlockPos pos, World world, PlayerInventory inventory, PlayerEntity player) {
+    MillstoneContainer(int id, BlockPos pos, World world, PlayerInventory inventory, PlayerEntity player, IIntArray data) {
         super(ContainerSubscriber.millstone, id);
         tile = (MillstoneTileEntity) world.getTileEntity(pos);
         this.player = player;
         this.inventory = new InvWrapper(inventory);
+        this.data = data;
 
         if (tile == null) {
             throw new IllegalStateException("TileEntity does not exists!");
         }
 
-        tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> addSlot(new SlotItemHandler(h, 0, 80, 35)));
+        tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+            addSlot(new SlotItemHandler(h, 0, 62, 35));
+            addSlot(new SlotItemHandler(h, 1, 98, 35));
+        });
 
         layoutPlayerInventorySlots(8, 84);
+
+        trackIntArray(data);
     }
 
     @Override
@@ -121,5 +130,9 @@ public class MillstoneContainer extends Container {
         // Hotbar offset
         topRow += 58;
         addSlotRange(inventory, 0, leftCol, topRow, 9, 18);
+    }
+
+    int getProgress() {
+        return data.get(0);
     }
 }

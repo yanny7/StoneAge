@@ -5,7 +5,6 @@ import com.yanny.age.stone.subscribers.TileEntitySubscriber;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
@@ -15,8 +14,7 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.*;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
@@ -29,12 +27,9 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MillstoneTileEntity extends TileEntity implements IInventoryInterface, ITickableTileEntity, INamedContainerProvider {
-    private static final Direction[] DIRECTIONS = new Direction[]{Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST, Direction.DOWN};
-
-    static final int ITEMS = 1;
+    static final int ITEMS = 2;
     private static final double PI2 = Math.PI * 2;
     private static final int TICKS_TO_FINISH = 100;
 
@@ -45,6 +40,7 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
     private final RecipeWrapper inventoryWrapper = new RecipeWrapper(nonSidedItemHandler);
     private final IItemHandlerModifiable tmpItemHandler = new ItemStackHandler(1);
     private final RecipeWrapper tmpItemHandlerWrapper = new RecipeWrapper(tmpItemHandler);
+    private final IIntArray data = getData();
 
     private float rotation = 0f;
     private boolean active = false;
@@ -82,29 +78,10 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
                 partCnt = 0;
 
                 if (!world.isRemote) {
-                    AtomicBoolean found = new AtomicBoolean(false);
-                    for (Direction direction : DIRECTIONS) {
-                        TileEntity entity = world.getTileEntity(pos.offset(direction));
-                        if (entity != null) {
-                            entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-                                for (int i = 0; i < handler.getSlots(); i++) {
-                                    if (handler.insertItem(i, result, true).isEmpty()) {
-                                        handler.insertItem(i, result, false);
-                                        break;
-                                    }
-                                }
-                                found.set(true);
-                            });
-                            if (found.get()) {
-                                break;
-                            }
-                        }
-                    }
-
-                    if (!found.get()) {
-                        NonNullList<ItemStack> itemStacks = NonNullList.create();
-                        itemStacks.add(result);
-                        InventoryHelper.dropItems(world, getPos(), itemStacks);
+                    if (stacks.get(1).isEmpty()) {
+                        stacks.set(1, result);
+                    } else {
+                        stacks.get(1).grow(result.getCount());
                     }
 
                     result = ItemStack.EMPTY;
@@ -126,7 +103,7 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
     @Override
     public Container createMenu(int id, @Nonnull PlayerInventory inventory, @Nonnull PlayerEntity entity) {
         assert world != null;
-        return new MillstoneContainer(id, pos, world, inventory, entity);
+        return new MillstoneContainer(id, pos, world, inventory, entity, data);
     }
 
     @Nonnull
@@ -185,9 +162,7 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             if (side != null) {
-                if (side == Direction.UP) {
-                    return sidedInventoryHandler.cast();
-                }
+                return sidedInventoryHandler.cast();
             } else {
                 return nonSidedInventoryHandler.cast();
             }
@@ -213,7 +188,6 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
 
     private IItemHandlerModifiable createNonSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {
         return new ItemStackHandler(stacks) {
-
             @Nonnull
             @Override
             public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
@@ -238,13 +212,17 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
             @Nonnull
             @Override
             public ItemStack extractItem(int slot, int amount, boolean simulate) {
+                if (slot == 1) {
+                    return super.extractItem(slot, amount, simulate);
+                }
+
                 return ItemStack.EMPTY;
             }
 
             @Nonnull
             @Override
             public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-                if (MillstoneTileEntity.this.isItemValid(stack)) {
+                if (slot == 0 && MillstoneTileEntity.this.isItemValid(stack)) {
                     return super.insertItem(slot, stack, simulate);
                 }
 
@@ -269,19 +247,28 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
 
         if (!active) {
             if (result.isEmpty() && !stacks.get(0).isEmpty()) {
-                Optional<MillstoneRecipe> recipe = getRecipe(stacks.get(0));
-                recipe.ifPresent(millstoneRecipe -> {
-                    result = millstoneRecipe.getRecipeOutput().copy();
-                    stacks.get(0).shrink(1);
+                getRecipe(stacks.get(0)).ifPresent(millstoneRecipe -> {
+                    ItemStack recipeResult = millstoneRecipe.getRecipeOutput().copy();
+
+                    if (stacks.get(1).isEmpty() || (stacks.get(1).getItem().equals(recipeResult.getItem()) &&
+                            stacks.get(1).getCount() < stacks.get(1).getMaxStackSize() - recipeResult.getCount())) {
+                        stacks.get(0).shrink(1);
+
+                        result = recipeResult;
+                        active = true;
+                        partCnt = TICKS_TO_FINISH / 4;
+
+                        world.playSound(null, getPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 0.5f, 1.0f);
+                        world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
+                    }
                 });
-                active = true;
-                partCnt = TICKS_TO_FINISH / 4;
             } else if (!result.isEmpty()) {
                 active = true;
                 partCnt = TICKS_TO_FINISH / 4;
-            }
 
-            world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
+                world.playSound(null, getPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 0.5f, 1.0f);
+                world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
+            }
         }
     }
 
@@ -290,5 +277,25 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
         assert world != null;
         tmpItemHandler.setStackInSlot(0, item);
         return world.getRecipeManager().getRecipe(MillstoneRecipe.millstone, tmpItemHandlerWrapper, world);
+    }
+
+    @Nonnull
+    private IIntArray getData() {
+        return new IIntArray() {
+            @Override
+            public int get(int index) {
+                return Math.round(rotation * 15.9154943092f);
+            }
+
+            @Override
+            public void set(int index, int value) {
+                rotation = value * 0.0628318530718f;
+            }
+
+            @Override
+            public int size() {
+                return 1;
+            }
+        };
     }
 }
