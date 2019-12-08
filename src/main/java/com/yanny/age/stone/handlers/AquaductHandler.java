@@ -41,7 +41,7 @@ public class AquaductHandler {
     }
 
     private static final class AquaductSetup extends Setup {
-        private static final Set<Direction> DIRECTIONS = Sets.newHashSet(Direction.values());
+        private static final Set<Direction> DIRECTIONS = Sets.newHashSet(Direction.Plane.HORIZONTAL);
 
         AquaductSetup() {
             super(500, ID, DIRECTIONS);
