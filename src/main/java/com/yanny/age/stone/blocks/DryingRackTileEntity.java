@@ -2,7 +2,6 @@ package com.yanny.age.stone.blocks;
 
 import com.yanny.age.stone.recipes.DryingRackRecipe;
 import com.yanny.age.stone.subscribers.TileEntitySubscriber;
-import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
@@ -23,6 +22,7 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Optional;
 
 public class DryingRackTileEntity extends TileEntity implements IInventoryInterface, ITickableTileEntity {
     public static final int ITEMS = 4;
@@ -74,9 +74,11 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
     public void read(CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
         ItemStackUtils.deserializeStacks(invTag, stacks);
+
         for (int i = 0; i < ITEMS; i++) {
             items[i].read(tag.getCompound("items" + i));
         }
+
         super.read(tag);
     }
 
@@ -84,9 +86,11 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
     @Nonnull
     public CompoundNBT write(CompoundNBT tag) {
         tag.put("inv", ItemStackUtils.serializeStacks(stacks));
+
         for (int i = 0; i < ITEMS; i++) {
             tag.put("items" + i, items[i].write());
         }
+
         return super.write(tag);
     }
 
@@ -118,6 +122,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
                 return nonSidedInventoryHandler.cast();
             }
         }
+
         return super.getCapability(cap, side);
     }
 
@@ -136,83 +141,51 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
         assert world != null;
 
         if (!player.isSneaking() && !world.isRemote && hit.getFace() != Direction.UP && hit.getFace() != Direction.DOWN && handIn == Hand.MAIN_HAND) {
-            Direction direction = getBlockState().get(HorizontalBlock.HORIZONTAL_FACING);
             ItemStack itemStack = player.getHeldItem(handIn);
-            DryingRackRecipe recipe = getRecipe(itemStack);
 
-            int pos;
-            double x = (hit.getHitVec().x - hit.getPos().getX());
-            double z = (hit.getHitVec().z - hit.getPos().getZ());
+            getRecipe(itemStack).ifPresent(recipe -> {
+                for (int i = 0; i < ITEMS; i++) {
+                    if (!stacks.get(i).isEmpty()) {
+                        DryingItem item = items[i];
 
-            switch (direction) {
-                case SOUTH:
-                    if (x < 0.5) {
-                        pos = (hit.getFace() == direction) ? 2 : 0;
-                    } else {
-                        pos = (hit.getFace() == direction) ? 3 : 1;
+                        stacks.set(i, new ItemStack(itemStack.getItem(), 1));
+                        item.setup(true, recipe.getDryingTime(), recipe.getCraftingResult(null));
+
+                        if (itemStack.getCount() > 1) {
+                            itemStack.setCount(itemStack.getCount() - 1);
+                        } else {
+                            player.setHeldItem(handIn, ItemStack.EMPTY);
+                        }
+
+                        world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
+                        return;
                     }
-                    break;
-                case NORTH:
-                    if (x < 0.5) {
-                        pos = (hit.getFace() == direction) ? 0 : 2;
-                    } else {
-                        pos = (hit.getFace() == direction) ? 1 : 3;
-                    }
-                    break;
-                case EAST:
-                    if (z < 0.5) {
-                        pos = (hit.getFace() == direction) ? 2 : 0;
-                    } else {
-                        pos = (hit.getFace() == direction) ? 3 : 1;
-                    }
-                    break;
-                case WEST:
-                    if (z < 0.5) {
-                        pos = (hit.getFace() == direction) ? 0 : 2;
-                    } else {
-                        pos = (hit.getFace() == direction) ? 1 : 3;
-                    }
-                    break;
-                default:
-                    return false;
-            }
 
-            if (stacks.get(pos).isEmpty() && stacks.get(pos + ITEMS).isEmpty() && recipe != null) {
-                DryingItem item = items[pos];
+                    if (itemStack.isEmpty() && !stacks.get(i + ITEMS).isEmpty()) {
+                        NonNullList<ItemStack> itemStacks = NonNullList.create();
+                        itemStacks.add(stacks.get(i + ITEMS).copy());
 
-                stacks.set(pos, new ItemStack(itemStack.getItem(), 1));
-                item.setup(true, recipe.getDryingTime(), recipe.getCraftingResult(null));
+                        stacks.set(i + ITEMS, ItemStack.EMPTY);
+                        stacks.set(i, ItemStack.EMPTY);
 
-                if (itemStack.getCount() > 1) {
-                    itemStack.setCount(itemStack.getCount() - 1);
-                } else {
-                    player.setHeldItem(handIn, ItemStack.EMPTY);
+                        InventoryHelper.dropItems(world, getPos(), itemStacks);
+
+                        world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
+                        world.playSound(null, getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                        return;
+                    }
                 }
+            });
 
-                world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
-                return true;
-            }
-
-            if (itemStack.isEmpty() && !stacks.get(pos + ITEMS).isEmpty()) {
-                NonNullList<ItemStack> itemStacks = NonNullList.create();
-                itemStacks.add(stacks.get(pos + ITEMS).copy());
-                stacks.set(pos + ITEMS, ItemStack.EMPTY);
-                stacks.set(pos, ItemStack.EMPTY);
-                InventoryHelper.dropItems(world, getPos(), itemStacks);
-
-                world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
-                world.playSound(null, getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
-                return true;
-            }
         }
         return false;
     }
 
-    @Nullable
-    private DryingRackRecipe getRecipe(ItemStack item) {
+    @Nonnull
+    private Optional<DryingRackRecipe> getRecipe(@Nonnull ItemStack item) {
         assert world != null;
         tmpItemHandler.setStackInSlot(0, item);
-        return world.getRecipeManager().getRecipe(DryingRackRecipe.drying_rack, tmpItemHandlerWrapper, world).orElse(null);
+        return world.getRecipeManager().getRecipe(DryingRackRecipe.drying_rack, tmpItemHandlerWrapper, world);
     }
 
     private IItemHandlerModifiable createNonSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {
@@ -242,7 +215,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
             @Override
             public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
                 if (slot < ITEMS && getStackInSlot(slot).isEmpty() && world != null) {
-                    DryingRackRecipe recipe = getRecipe(stack);
+                    DryingRackRecipe recipe = getRecipe(stack).orElse(null);
 
                     if (recipe != null) {
                         items[slot].setup(true, recipe.getDryingTime(), recipe.getCraftingResult(null));
