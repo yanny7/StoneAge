@@ -128,6 +128,10 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
         super.remove();
     }
 
+    DryingItem getItem(int index) {
+        return items[index];
+    }
+
     boolean blockActivated(PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         assert world != null;
 
@@ -258,7 +262,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
         };
     }
 
-    private static class DryingItem {
+    static class DryingItem {
         boolean active;
         int dryingTime;
         int remaining;

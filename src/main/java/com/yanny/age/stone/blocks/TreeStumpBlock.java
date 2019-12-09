@@ -1,5 +1,9 @@
 package com.yanny.age.stone.blocks;
 
+import com.yanny.age.stone.compatibility.top.TopBlockProvider;
+import mcjty.theoneprobe.api.IProbeHitData;
+import mcjty.theoneprobe.api.IProbeInfo;
+import mcjty.theoneprobe.api.ProbeMode;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
@@ -20,7 +24,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TreeStumpBlock extends Block {
+public class TreeStumpBlock extends Block implements TopBlockProvider {
     private static final VoxelShape SHAPE = VoxelShapes.or(Block.makeCuboidShape(0, 0, 0, 16, 1, 16),
             Block.makeCuboidShape(2, 1, 2, 14, 12, 14));
 
@@ -96,5 +100,18 @@ public class TreeStumpBlock extends Block {
         }
 
         return super.getPlayerRelativeBlockHardness(state, player, worldIn, pos);
+    }
+
+    @Override
+    public void addProbeInfo(ProbeMode probeMode, IProbeInfo iProbeInfo, PlayerEntity playerEntity, World world, BlockState blockState, IProbeHitData iProbeHitData) {
+        TileEntity te = world.getTileEntity(iProbeHitData.getPos());
+
+        if (te instanceof TreeStumpTileEntity) {
+            TreeStumpTileEntity treeStump = (TreeStumpTileEntity) te;
+
+            if (!treeStump.getResult().isEmpty()) {
+                iProbeInfo.horizontal().item(treeStump.getResult()).progress(treeStump.getPerc(), 100, iProbeInfo.defaultProgressStyle().suffix("%"));
+            }
+        }
     }
 }

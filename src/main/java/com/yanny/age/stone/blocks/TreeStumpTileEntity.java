@@ -38,6 +38,9 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
     private ItemStack recipeResult = ItemStack.EMPTY;
     private final List<Ingredient> tools = new ArrayList<>();
 
+    //TOP values
+    private int totalChops = 0;
+
     public TreeStumpTileEntity() {
         //noinspection ConstantConditions
         super(TileEntitySubscriber.tree_stump);
@@ -140,6 +143,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
 
         if (stacks.get(0).isEmpty() && recipe != null) {
             stacks.set(0, new ItemStack(itemStack.getItem(), 1));
+            totalChops = recipe.getChopTimes();
             chopLeft = recipe.getChopTimes();
             recipeResult = recipe.getCraftingResult(null);
             tools.addAll(recipe.getTools());
@@ -169,6 +173,14 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
 
     boolean hasTool(ItemStack toolInHand) {
         return tools.stream().anyMatch(ingredient -> ingredient.test(toolInHand));
+    }
+
+    ItemStack getResult() {
+        return recipeResult;
+    }
+
+    int getPerc() {
+        return (int) (100 - chopLeft / (float)totalChops * 100);
     }
 
     @Nullable

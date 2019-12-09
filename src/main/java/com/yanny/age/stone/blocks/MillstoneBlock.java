@@ -1,5 +1,9 @@
 package com.yanny.age.stone.blocks;
 
+import com.yanny.age.stone.compatibility.top.TopBlockProvider;
+import mcjty.theoneprobe.api.IProbeHitData;
+import mcjty.theoneprobe.api.IProbeInfo;
+import mcjty.theoneprobe.api.ProbeMode;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
@@ -22,7 +26,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class MillstoneBlock extends HorizontalBlock {
+public class MillstoneBlock extends HorizontalBlock implements TopBlockProvider {
     private static final VoxelShape SHAPE = VoxelShapes.or(Block.makeCuboidShape(0, 0, 0, 16, 3, 16),
             Block.makeCuboidShape(2.5, 3, 2.5, 13.5, 7, 13.5),
             Block.makeCuboidShape(3, 7.05, 3, 13, 11, 13),
@@ -86,6 +90,19 @@ public class MillstoneBlock extends HorizontalBlock {
             return true;
         } else {
             throw new IllegalStateException("Named container provider is missing");
+        }
+    }
+
+    @Override
+    public void addProbeInfo(ProbeMode probeMode, IProbeInfo iProbeInfo, PlayerEntity playerEntity, World world, BlockState blockState, IProbeHitData iProbeHitData) {
+        TileEntity te = world.getTileEntity(iProbeHitData.getPos());
+
+        if (te instanceof MillstoneTileEntity) {
+            MillstoneTileEntity millstone = (MillstoneTileEntity) te;
+
+            if (!millstone.getResult().isEmpty()) {
+                iProbeInfo.horizontal().item(millstone.getResult()).progress(millstone.getPerc(), 100, iProbeInfo.defaultProgressStyle().suffix("%"));
+            }
         }
     }
 }

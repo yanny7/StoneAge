@@ -177,6 +177,14 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
         super.remove();
     }
 
+    ItemStack getResult() {
+        return result;
+    }
+
+    int getPerc() {
+        return (int) Math.round(rotation / PI2 * 100);
+    }
+
     boolean isItemValid(ItemStack itemStack) {
         return getRecipe(itemStack).isPresent();
     }

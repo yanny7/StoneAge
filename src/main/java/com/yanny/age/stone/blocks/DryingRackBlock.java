@@ -1,5 +1,9 @@
 package com.yanny.age.stone.blocks;
 
+import com.yanny.age.stone.compatibility.top.TopBlockProvider;
+import mcjty.theoneprobe.api.IProbeHitData;
+import mcjty.theoneprobe.api.IProbeInfo;
+import mcjty.theoneprobe.api.ProbeMode;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -24,7 +28,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class DryingRackBlock extends HorizontalBlock {
+public class DryingRackBlock extends HorizontalBlock implements TopBlockProvider {
     private static final VoxelShape SHAPE_NS = Block.makeCuboidShape(0.0D, 15.0D, 7.5D, 16.0D, 16.0D, 8.5D);
     private static final VoxelShape SHAPE_EW = Block.makeCuboidShape(7.5D, 15.0D, 0.0D, 8.5D, 16.0D, 16.0D);
 
@@ -105,6 +109,24 @@ public class DryingRackBlock extends HorizontalBlock {
             }
 
             super.onReplaced(state, worldIn, pos, newState, isMoving);
+        }
+    }
+
+    @Override
+    public void addProbeInfo(ProbeMode probeMode, IProbeInfo iProbeInfo, PlayerEntity playerEntity, World world, BlockState blockState, IProbeHitData iProbeHitData) {
+        TileEntity te = world.getTileEntity(iProbeHitData.getPos());
+
+        if (te instanceof DryingRackTileEntity) {
+            DryingRackTileEntity dataTileEntity = (DryingRackTileEntity) te;
+
+            for (int i = 0; i < DryingRackTileEntity.ITEMS; i++) {
+                DryingRackTileEntity.DryingItem item = dataTileEntity.getItem(i);
+
+                if (!item.result.isEmpty()) {
+                    iProbeInfo.horizontal().item(item.result).progress(100 - (int) (item.remaining / (float) item.dryingTime * 100), 100,
+                            iProbeInfo.defaultProgressStyle().suffix("%"));
+                }
+            }
         }
     }
 }

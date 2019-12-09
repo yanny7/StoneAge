@@ -1,12 +1,14 @@
 package com.yanny.age.stone.subscribers;
 
 import com.yanny.age.stone.ExampleMod;
+import com.yanny.age.stone.compatibility.top.TopCompatibility;
 import com.yanny.age.stone.config.ConfigHelper;
 import com.yanny.age.stone.config.ConfigHolder;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 
 import static com.yanny.age.stone.Reference.MODID;
 
@@ -16,6 +18,11 @@ public class ModEventSubscriber {
     @SubscribeEvent
     public static void init(FMLCommonSetupEvent event) {
         ExampleMod.proxy.init();
+    }
+
+    @SubscribeEvent
+    public static void registerTOP(InterModEnqueueEvent event) {
+        TopCompatibility.register();
     }
 
     @SubscribeEvent

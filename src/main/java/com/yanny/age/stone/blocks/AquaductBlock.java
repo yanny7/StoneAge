@@ -1,6 +1,10 @@
 package com.yanny.age.stone.blocks;
 
 import com.google.common.collect.Maps;
+import com.yanny.age.stone.compatibility.top.TopBlockProvider;
+import mcjty.theoneprobe.api.IProbeHitData;
+import mcjty.theoneprobe.api.IProbeInfo;
+import mcjty.theoneprobe.api.ProbeMode;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -43,7 +47,7 @@ import java.util.Random;
 
 import static net.minecraft.state.properties.BlockStateProperties.WATERLOGGED;
 
-public class AquaductBlock extends Block {
+public class AquaductBlock extends Block implements TopBlockProvider {
     private static final Map<Integer, VoxelShape> SHAPES = new HashMap<>();
 
     static {
@@ -237,5 +241,15 @@ public class AquaductBlock extends Block {
 
     static private VoxelShape getWestShape() {
         return Block.makeCuboidShape(0, 4, 4, 4, 16, 12);
+    }
+
+    @Override
+    public void addProbeInfo(ProbeMode probeMode, IProbeInfo iProbeInfo, PlayerEntity playerEntity, World world, BlockState blockState, IProbeHitData iProbeHitData) {
+        TileEntity te = world.getTileEntity(iProbeHitData.getPos());
+
+        if (te instanceof AquaductTileEntity) {
+            AquaductTileEntity aquaductTileEntity = (AquaductTileEntity) te;
+            iProbeInfo.horizontal().progress(aquaductTileEntity.getFilled(), aquaductTileEntity.getFullCapacity(), iProbeInfo.defaultProgressStyle().suffix("mB"));
+        }
     }
 }

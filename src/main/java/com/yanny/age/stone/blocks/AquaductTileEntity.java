@@ -42,6 +42,10 @@ public class AquaductTileEntity extends TileEntity implements ITickableTileEntit
     private int level = 0;
     private boolean initialized = false;
 
+    //TOP values
+    private int filled = 0;
+    private int fullCapacity = 0;
+
     public AquaductTileEntity() {
         //noinspection ConstantConditions
         super(TileEntitySubscriber.aquaduct);
@@ -73,6 +77,9 @@ public class AquaductTileEntity extends TileEntity implements ITickableTileEntit
             LazyOptional<FluidTank> fluidTank = AquaductHandler.getInstance(world).getCapability(pos);
             fluidTank.ifPresent(tank -> {
                 int oldLevel = level;
+
+                filled = tank.getFluidAmount();
+                fullCapacity = tank.getCapacity();
                 level = Math.round((float)tank.getFluidAmount() / tank.getCapacity() * 20);
 
                 if (oldLevel != level) {
@@ -173,6 +180,14 @@ public class AquaductTileEntity extends TileEntity implements ITickableTileEntit
 
     public float getCapacity() {
         return capacity;
+    }
+
+    public int getFilled() {
+        return filled;
+    }
+
+    public int getFullCapacity() {
+        return fullCapacity;
     }
 
     public int getTick() {
