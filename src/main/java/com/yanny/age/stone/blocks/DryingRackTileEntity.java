@@ -12,7 +12,6 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -137,48 +136,45 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
         return items[index];
     }
 
-    boolean blockActivated(PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    void blockActivated(PlayerEntity player, Hand handIn) {
         assert world != null;
 
-        if (!player.isSneaking() && !world.isRemote && hit.getFace() != Direction.UP && hit.getFace() != Direction.DOWN && handIn == Hand.MAIN_HAND) {
+        if (!player.isSneaking() && !world.isRemote && handIn == Hand.MAIN_HAND) {
             ItemStack itemStack = player.getHeldItem(handIn);
+            DryingRackRecipe recipe = getRecipe(itemStack).orElse(null);
 
-            getRecipe(itemStack).ifPresent(recipe -> {
-                for (int i = 0; i < ITEMS; i++) {
-                    if (!stacks.get(i).isEmpty()) {
-                        DryingItem item = items[i];
+            for (int i = 0; i < ITEMS; i++) {
+                if (stacks.get(i).isEmpty() && stacks.get(i + ITEMS).isEmpty() && recipe != null) {
+                    DryingItem item = items[i];
 
-                        stacks.set(i, new ItemStack(itemStack.getItem(), 1));
-                        item.setup(true, recipe.getDryingTime(), recipe.getCraftingResult(null));
+                    stacks.set(i, new ItemStack(itemStack.getItem(), 1));
+                    item.setup(true, recipe.getDryingTime(), recipe.getCraftingResult(null));
 
-                        if (itemStack.getCount() > 1) {
-                            itemStack.setCount(itemStack.getCount() - 1);
-                        } else {
-                            player.setHeldItem(handIn, ItemStack.EMPTY);
-                        }
-
-                        world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
-                        return;
+                    if (itemStack.getCount() > 1) {
+                        itemStack.setCount(itemStack.getCount() - 1);
+                    } else {
+                        player.setHeldItem(handIn, ItemStack.EMPTY);
                     }
 
-                    if (itemStack.isEmpty() && !stacks.get(i + ITEMS).isEmpty()) {
-                        NonNullList<ItemStack> itemStacks = NonNullList.create();
-                        itemStacks.add(stacks.get(i + ITEMS).copy());
-
-                        stacks.set(i + ITEMS, ItemStack.EMPTY);
-                        stacks.set(i, ItemStack.EMPTY);
-
-                        InventoryHelper.dropItems(world, getPos(), itemStacks);
-
-                        world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
-                        world.playSound(null, getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
-                        return;
-                    }
+                    world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
+                    return;
                 }
-            });
 
+                if (itemStack.isEmpty() && !stacks.get(i + ITEMS).isEmpty()) {
+                    NonNullList<ItemStack> itemStacks = NonNullList.create();
+                    itemStacks.add(stacks.get(i + ITEMS).copy());
+
+                    stacks.set(i + ITEMS, ItemStack.EMPTY);
+                    stacks.set(i, ItemStack.EMPTY);
+
+                    InventoryHelper.dropItems(world, getPos(), itemStacks);
+
+                    world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
+                    world.playSound(null, getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                    return;
+                }
+            }
         }
-        return false;
     }
 
     @Nonnull
