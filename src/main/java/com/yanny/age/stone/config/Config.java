@@ -31,4 +31,8 @@ public class Config {
     public static int spawnMouflonWeight = 10;
     public static int spawnMouflonMinCount = 4;
     public static int spawnMouflonMaxCount = 8;
+    public static boolean spawnMammothEnable = true;
+    public static int spawnMammothWeight = 10;
+    public static int spawnMammothMinCount = 2;
+    public static int spawnMammothMaxCount = 4;
 }

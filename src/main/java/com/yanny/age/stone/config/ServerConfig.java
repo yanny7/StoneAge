@@ -35,6 +35,10 @@ class ServerConfig {
     final ForgeConfigSpec.IntValue spawnMouflonWeight;
     final ForgeConfigSpec.IntValue spawnMouflonMinCount;
     final ForgeConfigSpec.IntValue spawnMouflonMaxCount;
+    final ForgeConfigSpec.BooleanValue spawnMammothEnable;
+    final ForgeConfigSpec.IntValue spawnMammothWeight;
+    final ForgeConfigSpec.IntValue spawnMammothMinCount;
+    final ForgeConfigSpec.IntValue spawnMammothMaxCount;
 
     final ForgeConfigSpec.IntValue clayVesselCapacity;
 
@@ -159,6 +163,22 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_mouflon_max_count")
                 .defineInRange("spawnMouflonMaxCount", 8, 1, 100);
+        spawnMammothEnable = builder
+                .comment("Enable spawning of mob")
+                .translation(Reference.MODID + ".config.spawn_mammoth_enable")
+                .define("spawnMammothEnable", true);
+        spawnMammothWeight = builder
+                .comment("Spawn weight of mob")
+                .translation(Reference.MODID + ".config.spawn_mammoth_weight")
+                .defineInRange("spawnMammothWeight", 10, 0, 100);
+        spawnMammothMinCount = builder
+                .comment("Spawn min count of mob")
+                .translation(Reference.MODID + ".config.spawn_mammoth_min_count")
+                .defineInRange("spawnMammothMinCount", 2, 1, 100);
+        spawnMammothMaxCount = builder
+                .comment("Spawn max count of mob")
+                .translation(Reference.MODID + ".config.spawn_mammoth_max_count")
+                .defineInRange("spawnMammothMaxCount", 4, 1, 100);
         builder.pop();
     }
 }

@@ -37,6 +37,10 @@ public class ConfigHelper {
         Config.spawnMouflonWeight = ConfigHolder.SERVER.spawnMouflonWeight.get();
         Config.spawnMouflonMinCount = ConfigHolder.SERVER.spawnMouflonMinCount.get();
         Config.spawnMouflonMaxCount = ConfigHolder.SERVER.spawnMouflonMaxCount.get();
+        Config.spawnMammothEnable = ConfigHolder.SERVER.spawnMammothEnable.get();
+        Config.spawnMammothWeight = ConfigHolder.SERVER.spawnMammothWeight.get();
+        Config.spawnMammothMinCount = ConfigHolder.SERVER.spawnMammothMinCount.get();
+        Config.spawnMammothMaxCount = ConfigHolder.SERVER.spawnMammothMaxCount.get();
     }
 
     public static void bakeClient() {

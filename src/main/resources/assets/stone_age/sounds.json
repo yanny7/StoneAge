@@ -1,0 +1,5 @@
+{
+  "mammoth_ambient": { "sounds": ["stone_age:mammoth_ambient"], "subtitle": "stone_age.subtitle.mammoth_ambient" },
+  "mammoth_hit": { "sounds": ["stone_age:mammoth_hit"], "subtitle": "stone_age.subtitle.mammoth_hit" },
+  "mammoth_death": { "sounds": ["stone_age:mammoth_death"], "subtitle": "stone_age.subtitle.mammoth_death" }
+}

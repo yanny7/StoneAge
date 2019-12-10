@@ -28,6 +28,7 @@
     "item.stone_age.auroch_spawn_egg": "Aunoch spawn egg",
     "item.stone_age.fowl_spawn_egg": "Fowl spawn egg",
     "item.stone_age.mouflon_spawn_egg": "Mouflon spawn egg",
+    "item.stone_age.mammoth_spawn_egg": "Mammoth spawn egg",
 
     "block.stone_age.flint_workbench": "Flint crafting table",
     "block.stone_age.drying_rack": "Drying rack",
@@ -43,5 +44,10 @@
     "entity.stone_age.boar": "Boar",
     "entity.stone_age.auroch": "Auroch",
     "entity.stone_age.fowl": "Fowl",
-    "entity.stone_age.mouflon": "Mouflon"
+    "entity.stone_age.mouflon": "Mouflon",
+    "entity.stone_age.mammoth": "Mammoth",
+
+    "stone_age.subtitle.mammoth_ambient": "Mammoth",
+    "stone_age.subtitle.mammoth_hit": "Mammoth was hit",
+    "stone_age.subtitle.mammoth_death": "Mammoth died"
 }
