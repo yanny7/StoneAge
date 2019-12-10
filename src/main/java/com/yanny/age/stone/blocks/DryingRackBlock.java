@@ -75,7 +75,7 @@ public class DryingRackBlock extends HorizontalBlock implements TopBlockProvider
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
         if (tileentity instanceof DryingRackTileEntity) {
-            ((DryingRackTileEntity) tileentity).blockActivated(player, handIn);
+            ((DryingRackTileEntity) tileentity).blockActivated(player);
             return true;
         }
 

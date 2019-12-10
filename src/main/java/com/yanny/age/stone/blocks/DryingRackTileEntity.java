@@ -136,11 +136,11 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
         return items[index];
     }
 
-    void blockActivated(PlayerEntity player, Hand handIn) {
+    void blockActivated(PlayerEntity player) {
         assert world != null;
 
-        if (!player.isSneaking() && !world.isRemote && handIn == Hand.MAIN_HAND) {
-            ItemStack itemStack = player.getHeldItem(handIn);
+        if (!world.isRemote) {
+            ItemStack itemStack = player.getHeldItemMainhand();
             DryingRackRecipe recipe = getRecipe(itemStack).orElse(null);
 
             for (int i = 0; i < ITEMS; i++) {
@@ -149,12 +149,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
 
                     stacks.set(i, new ItemStack(itemStack.getItem(), 1));
                     item.setup(true, recipe.getDryingTime(), recipe.getCraftingResult(null));
-
-                    if (itemStack.getCount() > 1) {
-                        itemStack.setCount(itemStack.getCount() - 1);
-                    } else {
-                        player.setHeldItem(handIn, ItemStack.EMPTY);
-                    }
+                    itemStack.shrink(1);
 
                     world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
                     return;

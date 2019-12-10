@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.yanny.age.stone.blocks.FlintWorkbenchTileEntity;
 import com.yanny.age.stone.config.Config;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementList;
@@ -19,7 +18,6 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -120,15 +118,6 @@ public class ForgeEventSubscriber {
                     BROWN_SHULKER_BOX, CYAN_SHULKER_BOX, GRAY_SHULKER_BOX, GREEN_SHULKER_BOX, LIGHT_BLUE_SHULKER_BOX, LIGHT_GRAY_SHULKER_BOX, LIME_SHULKER_BOX,
                     MAGENTA_SHULKER_BOX, ORANGE_SHULKER_BOX, PINK_SHULKER_BOX, PURPLE_SHULKER_BOX, RED_SHULKER_BOX, WHITE_SHULKER_BOX, YELLOW_SHULKER_BOX);
             set.forEach(block -> setHarvestLevel(block, ToolSubscriber.Tiers.BONE_TIER.getHarvestLevel()));
-        }
-    }
-
-    @SubscribeEvent
-    public static void rightClickWithFlint(PlayerInteractEvent.RightClickBlock event) {
-        TileEntity entity = event.getWorld().getTileEntity(event.getPos());
-
-        if (entity instanceof FlintWorkbenchTileEntity) {
-            ((FlintWorkbenchTileEntity) entity).blockClicked(event.getPlayer());
         }
     }
 

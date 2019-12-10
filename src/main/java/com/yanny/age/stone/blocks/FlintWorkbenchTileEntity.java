@@ -91,9 +91,10 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
         return inventoryWrapper;
     }
 
-    public void blockClicked(PlayerEntity player) {
+    boolean blockActivated(PlayerEntity player, BlockRayTraceResult hit) {
         assert world != null;
         ItemStack itemStack = player.getHeldItemMainhand();
+
         //noinspection ConstantConditions
         if (itemStack.getItem().equals(ToolSubscriber.flint_knife)) {
             Optional<FlintWorkbenchRecipe> recipe = findMatchingRecipe();
@@ -113,15 +114,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
                     world.playSound(null, getPos(), SoundEvents.BLOCK_DISPENSER_DISPENSE, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 });
             }
-        }
-    }
-
-    boolean blockActivated(PlayerEntity player, BlockRayTraceResult hit) {
-        assert world != null;
-        ItemStack itemStack = player.getHeldItemMainhand();
-
-        //noinspection ConstantConditions
-        if (!player.isSneaking() && !itemStack.getItem().equals(ToolSubscriber.flint_knife)) {
+        } else {
             if (hit.getFace() == Direction.UP) {
                 Direction dir = getBlockState().get(HorizontalBlock.HORIZONTAL_FACING);
                 int x = 0;
@@ -151,12 +144,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
 
                 if (!itemStack.isEmpty() && stack.isEmpty()) {
                     stacks.set(y * FlintWorkbenchRecipe.MAX_WIDTH + x, new ItemStack(itemStack.getItem(), 1));
-
-                    if (itemStack.getCount() > 1) {
-                        itemStack.setCount(itemStack.getCount() - 1);
-                    } else {
-                        player.setHeldItem(Hand.MAIN_HAND, ItemStack.EMPTY);
-                    }
+                    itemStack.shrink(1);
                     return true;
                 }
 

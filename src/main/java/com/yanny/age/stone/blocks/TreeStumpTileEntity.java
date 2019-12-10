@@ -147,12 +147,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
             chopLeft = recipe.getChopTimes();
             recipeResult = recipe.getCraftingResult(null);
             tools.addAll(recipe.getTools());
-
-            if (itemStack.getCount() > 1) {
-                itemStack.setCount(itemStack.getCount() - 1);
-            } else {
-                player.setHeldItem(Hand.MAIN_HAND, ItemStack.EMPTY);
-            }
+            itemStack.shrink(1);
 
             world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
             return;

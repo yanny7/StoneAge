@@ -108,12 +108,7 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
 
         if (stacks.get(pos).isEmpty() && stacks.get(pos + ITEMS).isEmpty() && recipe != null) {
             stacks.set(pos, new ItemStack(itemStack.getItem(), 1));
-
-            if (itemStack.getCount() > 1) {
-                itemStack.setCount(itemStack.getCount() - 1);
-            } else {
-                player.setHeldItem(Hand.MAIN_HAND, ItemStack.EMPTY);
-            }
+            itemStack.shrink(1);
 
             world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
             return true;
