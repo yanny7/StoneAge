@@ -1,3 +1,4 @@
+v1.0.1
 - added mammoth tusk item
 - added Mammoth entity
 - moved tools to mod group
