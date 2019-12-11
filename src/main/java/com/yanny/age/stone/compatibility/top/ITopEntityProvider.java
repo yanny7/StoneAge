@@ -1,8 +1,8 @@
 package com.yanny.age.stone.compatibility.top;
 
-import mcjty.theoneprobe.api.IProbeInfoProvider;
+import mcjty.theoneprobe.api.IProbeInfoEntityProvider;
 
-public interface TopBlockProvider extends IProbeInfoProvider {
+public interface ITopEntityProvider extends IProbeInfoEntityProvider {
     @Override
     default String getID() {
         return TopCompatibility.ID;

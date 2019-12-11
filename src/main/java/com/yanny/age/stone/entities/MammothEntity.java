@@ -1,7 +1,7 @@
 package com.yanny.age.stone.entities;
 
-import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.subscribers.EntitySubscriber;
+import com.yanny.age.stone.subscribers.SoundSubscriber;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -21,9 +20,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class MammothEntity extends WildAnimalEntity {
-    private static final SoundEvent MAMMOTH_AMBIENT = new SoundEvent(new ResourceLocation(Reference.MODID, "mammoth_ambient"));
-    private static final SoundEvent MAMMOTH_HIT = new SoundEvent(new ResourceLocation(Reference.MODID, "mammoth_hit"));
-    private static final SoundEvent MAMMOTH_DEATH = new SoundEvent(new ResourceLocation(Reference.MODID, "mammoth_death"));
 
     public MammothEntity(EntityType<MammothEntity> type, World worldIn) {
         super(type, worldIn);
@@ -57,7 +53,8 @@ public class MammothEntity extends WildAnimalEntity {
 
     @Override
     public boolean attackEntityAsMob(Entity entityIn) {
-        this.playSound(MAMMOTH_HIT, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+        //noinspection ConstantConditions
+        this.playSound(SoundSubscriber.mammoth_hit, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 
         if (entityIn instanceof LivingEntity) {
             ((LivingEntity) entityIn).knockBack(this, 2.0F,
@@ -70,17 +67,17 @@ public class MammothEntity extends WildAnimalEntity {
 
     @Override
     public SoundEvent getAmbientSound() {
-        return MAMMOTH_AMBIENT;
+        return SoundSubscriber.mammoth_ambient;
     }
 
     @Override
     public SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return MAMMOTH_HIT;
+        return SoundSubscriber.mammoth_hit;
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return MAMMOTH_DEATH;
+        return SoundSubscriber.mammoth_death;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.yanny.age.stone.blocks;
 
-import com.yanny.age.stone.compatibility.top.TopBlockProvider;
+import com.yanny.age.stone.compatibility.top.ITopBlockProvider;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.ProbeMode;
@@ -24,7 +24,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TreeStumpBlock extends Block implements TopBlockProvider {
+public class TreeStumpBlock extends Block implements ITopBlockProvider {
     private static final VoxelShape SHAPE = VoxelShapes.or(Block.makeCuboidShape(0, 0, 0, 16, 1, 16),
             Block.makeCuboidShape(2, 1, 2, 14, 12, 14));
 

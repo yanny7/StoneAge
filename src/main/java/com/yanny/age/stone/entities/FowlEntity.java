@@ -1,7 +1,11 @@
 package com.yanny.age.stone.entities;
 
+import com.yanny.age.stone.compatibility.top.ITopEntityProvider;
 import com.yanny.age.stone.config.Config;
 import com.yanny.age.stone.subscribers.EntitySubscriber;
+import mcjty.theoneprobe.api.IProbeHitEntityData;
+import mcjty.theoneprobe.api.IProbeInfo;
+import mcjty.theoneprobe.api.ProbeMode;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.entity.AgeableEntity;
@@ -24,7 +28,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
-public class FowlEntity extends WildAnimalEntity {
+public class FowlEntity extends WildAnimalEntity implements ITopEntityProvider {
 
     private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
     public float wingRotation;
@@ -128,5 +132,10 @@ public class FowlEntity extends WildAnimalEntity {
     @Override
     public boolean isBreedingItem(ItemStack stack) {
         return TEMPTATION_ITEMS.test(stack);
+    }
+
+    @Override
+    public void addProbeEntityInfo(ProbeMode mode, IProbeInfo probeInfo, PlayerEntity player, World world, Entity entity, IProbeHitEntityData data) {
+        probeInfo.horizontal().text("Generation: " + dataManager.get(GENERATION));
     }
 }

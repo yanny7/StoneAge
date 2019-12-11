@@ -3,6 +3,7 @@ package com.yanny.age.stone.compatibility.top;
 import com.yanny.age.stone.Reference;
 import mcjty.theoneprobe.api.*;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.InterModComms;
@@ -37,7 +38,20 @@ public class TopCompatibility {
                     IProbeInfoProvider provider = (IProbeInfoProvider) blockState.getBlock();
                     provider.addProbeInfo(mode, probeInfo, player, world, blockState, data);
                 }
+            }
+        });
+        probe.registerEntityProvider(new IProbeInfoEntityProvider() {
+            @Override
+            public String getID() {
+                return ID;
+            }
 
+            @Override
+            public void addProbeEntityInfo(ProbeMode mode, IProbeInfo probeInfo, PlayerEntity player, World world, Entity entity, IProbeHitEntityData data) {
+                if (entity instanceof  IProbeInfoEntityProvider) {
+                    IProbeInfoEntityProvider provider = (IProbeInfoEntityProvider) entity;
+                    provider.addProbeEntityInfo(mode, probeInfo, player, world, entity, data);
+                }
             }
         });
 

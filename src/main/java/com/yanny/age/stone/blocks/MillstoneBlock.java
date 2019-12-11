@@ -1,6 +1,6 @@
 package com.yanny.age.stone.blocks;
 
-import com.yanny.age.stone.compatibility.top.TopBlockProvider;
+import com.yanny.age.stone.compatibility.top.ITopBlockProvider;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.ProbeMode;
@@ -26,7 +26,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class MillstoneBlock extends HorizontalBlock implements TopBlockProvider {
+public class MillstoneBlock extends HorizontalBlock implements ITopBlockProvider {
     private static final VoxelShape SHAPE = VoxelShapes.or(Block.makeCuboidShape(0, 0, 0, 16, 3, 16),
             Block.makeCuboidShape(2.5, 3, 2.5, 13.5, 7, 13.5),
             Block.makeCuboidShape(3, 7.05, 3, 13, 11, 13),
