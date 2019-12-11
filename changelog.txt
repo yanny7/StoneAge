@@ -1,3 +1,5 @@
+- added mammoth tusk item
+- added Mammoth entity
 - moved tools to mod group
 - integrated TheOneProbe
 - drying rack improved add/remove item
