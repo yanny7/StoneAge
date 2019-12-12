@@ -34,12 +34,10 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
     private final IItemHandlerModifiable tmpItemHandler = new ItemStackHandler(1);
     private final RecipeWrapper tmpItemHandlerWrapper = new RecipeWrapper(tmpItemHandler);
 
+    private int totalChops = 0;
     private int chopLeft = 0;
     private ItemStack recipeResult = ItemStack.EMPTY;
     private final List<Ingredient> tools = new ArrayList<>();
-
-    //TOP values
-    private int totalChops = 0;
 
     public TreeStumpTileEntity() {
         //noinspection ConstantConditions
@@ -57,7 +55,8 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
         CompoundNBT invTag = tag.getCompound("inv");
         ItemStackUtils.deserializeStacks(invTag, stacks);
         chopLeft = tag.getInt("chopLeft");
-        recipeResult = ItemStack.read(tag);
+        totalChops = tag.getInt("totalChops");
+        recipeResult = ItemStack.read(tag.getCompound("result"));
         CompoundNBT toolTag = tag.getCompound("tool");
         ItemStackUtils.deserializeIngredients(toolTag, tools);
         super.read(tag);
@@ -68,7 +67,10 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
     public CompoundNBT write(CompoundNBT tag) {
         tag.put("inv", ItemStackUtils.serializeStacks(stacks));
         tag.putInt("chopLeft", chopLeft);
-        recipeResult.write(tag);
+        tag.putInt("totalChops", totalChops);
+        CompoundNBT resTag = new CompoundNBT();
+        recipeResult.write(resTag);
+        tag.put("result", resTag);
         tag.put("tool", ItemStackUtils.serializeIngredients(tools));
         return super.write(tag);
     }

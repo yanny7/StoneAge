@@ -126,6 +126,7 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
         active = tag.getBoolean("active");
         rotation = tag.getFloat("rotation");
         partCnt = tag.getInt("partCnt");
+        result = ItemStack.read(tag.getCompound("result"));
         super.read(tag);
     }
 
@@ -136,6 +137,9 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
         tag.putBoolean("active", active);
         tag.putFloat("rotation", rotation);
         tag.putInt("partCnt", partCnt);
+        CompoundNBT resTag = new CompoundNBT();
+        result.write(resTag);
+        tag.put("result", resTag);
         return super.write(tag);
     }
 
