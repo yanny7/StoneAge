@@ -23,6 +23,7 @@
     "item.stone_age.flour": "Flour",
     "item.stone_age.raw_bread": "Bread dough",
     "item.stone_age.mammoth_tusk": "Mammoth tusk",
+    "item.stone_age.rhino_tusk": "Rhino tusk",
 
     "item.stone_age.deer_spawn_egg": "Deer spawn egg",
     "item.stone_age.boar_spawn_egg": "Boar spawn egg",
@@ -30,6 +31,8 @@
     "item.stone_age.fowl_spawn_egg": "Fowl spawn egg",
     "item.stone_age.mouflon_spawn_egg": "Mouflon spawn egg",
     "item.stone_age.mammoth_spawn_egg": "Mammoth spawn egg",
+    "item.stone_age.saber_tooth_tiger_spawn_egg": "Saber-tooth tiger spawn egg",
+    "item.stone_age.woolly_rhino_spawn_egg": "Woolly rhino spawn egg",
 
     "block.stone_age.flint_workbench": "Flint crafting table",
     "block.stone_age.drying_rack": "Drying rack",
@@ -47,11 +50,16 @@
     "entity.stone_age.fowl": "Fowl",
     "entity.stone_age.mouflon": "Mouflon",
     "entity.stone_age.mammoth": "Mammoth",
+    "entity.stone_age.saber_tooth_tiger": "Saber-tooth tiger",
+    "entity.stone_age.woolly_rhino": "Woolly rhino",
 
     "stone_age.subtitle.mammoth_ambient": "Mammoth roar",
     "stone_age.subtitle.mammoth_hit": "Mammoth was hit",
     "stone_age.subtitle.mammoth_death": "Mammoth died",
-    "stone_age.subtitle.saber_tooth_tiger_ambient": "Saber-tooth roar",
+    "stone_age.subtitle.saber_tooth_tiger_ambient": "Saber-tooth tiger roar",
     "stone_age.subtitle.saber_tooth_tiger_hit": "Saber-tooth tiger was hit",
-    "stone_age.subtitle.saber_tooth_tiger_death": "Saber-tooth tiger died"
+    "stone_age.subtitle.saber_tooth_tiger_death": "Saber-tooth tiger died",
+    "stone_age.subtitle.woolly_rhino_ambient": "Woolly rhino roar",
+    "stone_age.subtitle.woolly_rhino_hit": "Woolly rhino was hit",
+    "stone_age.subtitle.woolly_rhino_death": "Woolly rhino died"
 }

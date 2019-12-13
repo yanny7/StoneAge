@@ -30,6 +30,7 @@ public class ItemSubscriber {
     public static final Item flour = null;
     public static final Item raw_bread = null;
     public static final Item mammoth_tusk = null;
+    public static final Item rhino_tusk = null;
 
     private static final Food VENISON = (new Food.Builder()).hunger(3).saturation(0.3f).meat().build();
     private static final Food COOKED_VENISON = (new Food.Builder()).hunger(8).saturation(0.8f).meat().build();
@@ -53,5 +54,6 @@ public class ItemSubscriber {
         registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "flour"));
         registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "raw_bread"));
         registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "mammoth_tusk"));
+        registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "rhino_tusk"));
     }
 }
