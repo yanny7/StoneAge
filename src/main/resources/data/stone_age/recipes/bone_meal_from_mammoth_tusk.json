@@ -1,0 +1,19 @@
+{
+  "type": "stone_age:tree_stump",
+  "group": "bonemeal",
+  "ingredient": [
+    {
+      "item": "stone_age:mammoth_tusk"
+    }
+  ],
+  "tool": [
+    {
+      "tag": "stone_age:hammers"
+    }
+  ],
+  "result": {
+    "item": "minecraft:bone_meal",
+    "count": 8
+  },
+  "chopTimes": 3
+}

@@ -3,7 +3,7 @@
   "group": "bonemeal",
   "ingredient": [
     {
-      "item": "stone_age:mammoth_tusk"
+      "item": "stone_age:rhino_tusk"
     }
   ],
   "tool": [
@@ -13,7 +13,7 @@
   ],
   "result": {
     "item": "minecraft:bone_meal",
-    "count": 8
+    "count": 3
   },
-  "chopTimes": 2
+  "chopTimes": 1
 }

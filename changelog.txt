@@ -1,5 +1,6 @@
-- added woolly rhino
-- added saber-tooth tiger
+- added rhino tusk and saber teeth
+- added woolly rhino entity
+- added saber-tooth tiger entity
 - fixed TOP values after restart
 v1.0.1
 - added mammoth tusk item
