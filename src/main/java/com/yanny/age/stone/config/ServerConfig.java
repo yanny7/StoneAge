@@ -39,6 +39,10 @@ class ServerConfig {
     final ForgeConfigSpec.IntValue spawnMammothWeight;
     final ForgeConfigSpec.IntValue spawnMammothMinCount;
     final ForgeConfigSpec.IntValue spawnMammothMaxCount;
+    final ForgeConfigSpec.BooleanValue spawnSaberToothTigerEnable;
+    final ForgeConfigSpec.IntValue spawnSaberToothTigerWeight;
+    final ForgeConfigSpec.IntValue spawnSaberToothTigerMinCount;
+    final ForgeConfigSpec.IntValue spawnSaberToothTigerMaxCount;
 
     final ForgeConfigSpec.IntValue clayVesselCapacity;
 
@@ -165,7 +169,7 @@ class ServerConfig {
                 .defineInRange("spawnMouflonMaxCount", 8, 1, 100);
         spawnMammothEnable = builder
                 .comment("Enable spawning of mob")
-                .translation(Reference.MODID + ".config.spawn_mammoth_enable")
+                .translation(Reference.MODID + ".config.spawn_saberToothTiger_enable")
                 .define("spawnMammothEnable", true);
         spawnMammothWeight = builder
                 .comment("Spawn weight of mob")
@@ -179,6 +183,22 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_mammoth_max_count")
                 .defineInRange("spawnMammothMaxCount", 4, 1, 100);
+        spawnSaberToothTigerEnable = builder
+                .comment("Enable spawning of mob")
+                .translation(Reference.MODID + ".config.spawn_saber_tooth_tiger_enable")
+                .define("spawnSaberToothTigerEnable", true);
+        spawnSaberToothTigerWeight = builder
+                .comment("Spawn weight of mob")
+                .translation(Reference.MODID + ".config.spawn_saber_tooth_tiger_weight")
+                .defineInRange("spawnSaberToothTigerWeight", 10, 0, 100);
+        spawnSaberToothTigerMinCount = builder
+                .comment("Spawn min count of mob")
+                .translation(Reference.MODID + ".config.spawn_saber_tooth_tiger_min_count")
+                .defineInRange("spawnSaberToothTigerMinCount", 2, 1, 100);
+        spawnSaberToothTigerMaxCount = builder
+                .comment("Spawn max count of mob")
+                .translation(Reference.MODID + ".config.spawn_saber_tooth_tiger_max_count")
+                .defineInRange("spawnSaberToothTigerMaxCount", 4, 1, 100);
         builder.pop();
     }
 }

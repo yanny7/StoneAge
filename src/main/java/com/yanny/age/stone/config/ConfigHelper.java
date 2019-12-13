@@ -41,6 +41,10 @@ public class ConfigHelper {
         Config.spawnMammothWeight = ConfigHolder.SERVER.spawnMammothWeight.get();
         Config.spawnMammothMinCount = ConfigHolder.SERVER.spawnMammothMinCount.get();
         Config.spawnMammothMaxCount = ConfigHolder.SERVER.spawnMammothMaxCount.get();
+        Config.spawnSaberToothTigerEnable = ConfigHolder.SERVER.spawnSaberToothTigerEnable.get();
+        Config.spawnSaberToothTigerWeight = ConfigHolder.SERVER.spawnSaberToothTigerWeight.get();
+        Config.spawnSaberToothTigerMinCount = ConfigHolder.SERVER.spawnSaberToothTigerMinCount.get();
+        Config.spawnSaberToothTigerMaxCount = ConfigHolder.SERVER.spawnSaberToothTigerMaxCount.get();
     }
 
     public static void bakeClient() {

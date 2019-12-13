@@ -35,4 +35,8 @@ public class Config {
     public static int spawnMammothWeight = 10;
     public static int spawnMammothMinCount = 2;
     public static int spawnMammothMaxCount = 4;
+    public static boolean spawnSaberToothTigerEnable = true;
+    public static int spawnSaberToothTigerWeight = 10;
+    public static int spawnSaberToothTigerMinCount = 2;
+    public static int spawnSaberToothTigerMaxCount = 4;
 }

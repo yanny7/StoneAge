@@ -17,6 +17,9 @@ public class SoundSubscriber {
     public static final SoundEvent mammoth_ambient = null;
     public static final SoundEvent mammoth_hit = null;
     public static final SoundEvent mammoth_death = null;
+    public static final SoundEvent saber_tooth_tiger_ambient = null;
+    public static final SoundEvent saber_tooth_tiger_hit = null;
+    public static final SoundEvent saber_tooth_tiger_death = null;
 
     @SubscribeEvent
     public static void registerSounds(RegistryEvent.Register<SoundEvent> event) {
@@ -24,5 +27,8 @@ public class SoundSubscriber {
         registry.register(new SoundEvent(new ResourceLocation(Reference.MODID, "mammoth_ambient")).setRegistryName(MODID, "mammoth_ambient"));
         registry.register(new SoundEvent(new ResourceLocation(Reference.MODID, "mammoth_hit")).setRegistryName(MODID, "mammoth_hit"));
         registry.register(new SoundEvent(new ResourceLocation(Reference.MODID, "mammoth_death")).setRegistryName(MODID, "mammoth_death"));
+        registry.register(new SoundEvent(new ResourceLocation(Reference.MODID, "saber_tooth_tiger_ambient")).setRegistryName(MODID, "saber_tooth_tiger_ambient"));
+        registry.register(new SoundEvent(new ResourceLocation(Reference.MODID, "saber_tooth_tiger_hit")).setRegistryName(MODID, "saber_tooth_tiger_hit"));
+        registry.register(new SoundEvent(new ResourceLocation(Reference.MODID, "saber_tooth_tiger_death")).setRegistryName(MODID, "saber_tooth_tiger_death"));
     }
 }

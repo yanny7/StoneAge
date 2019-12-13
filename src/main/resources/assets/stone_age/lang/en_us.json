@@ -48,7 +48,10 @@
     "entity.stone_age.mouflon": "Mouflon",
     "entity.stone_age.mammoth": "Mammoth",
 
-    "stone_age.subtitle.mammoth_ambient": "Mammoth",
+    "stone_age.subtitle.mammoth_ambient": "Mammoth roar",
     "stone_age.subtitle.mammoth_hit": "Mammoth was hit",
-    "stone_age.subtitle.mammoth_death": "Mammoth died"
+    "stone_age.subtitle.mammoth_death": "Mammoth died",
+    "stone_age.subtitle.saber_tooth_tiger_ambient": "Saber-tooth roar",
+    "stone_age.subtitle.saber_tooth_tiger_hit": "Saber-tooth tiger was hit",
+    "stone_age.subtitle.saber_tooth_tiger_death": "Saber-tooth tiger died"
 }

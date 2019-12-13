@@ -35,9 +35,10 @@ public class DeerEntity extends AnimalEntity {
         this.goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(Items.WHEAT), false));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, PlayerEntity.class, 12.0F, 2.2D, 2.2D));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, WolfEntity.class, 10.0F, 2.2D, 2.2D));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, MonsterEntity.class, 6.0F, 2.2D, 2.2D));
+        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, SaberToothTigerEntity.class, 14.0F, 1.5D, 2.2D));
+        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, PlayerEntity.class, 12.0F, 1.5D, 2.2D));
+        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, WolfEntity.class, 10.0F, 1.5D, 2.2D));
+        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, MonsterEntity.class, 6.0F, 1.5D, 2.2D));
         this.goalSelector.addGoal(5, new RaidFarmGoal<>(this, CropsBlock.class, CropsBlock.AGE));
         this.goalSelector.addGoal(6, new FollowParentGoal(this, 1.25D));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
