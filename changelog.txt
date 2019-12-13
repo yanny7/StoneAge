@@ -1,3 +1,4 @@
+- added woolly rhino
 - added saber-tooth tiger
 - fixed TOP values after restart
 v1.0.1

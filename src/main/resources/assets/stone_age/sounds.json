@@ -4,5 +4,8 @@
   "mammoth_death": { "sounds": ["stone_age:mammoth_death"], "subtitle": "stone_age.subtitle.mammoth_death" },
   "saber_tooth_tiger_ambient": { "sounds": ["stone_age:saber_tooth_tiger_ambient"], "subtitle": "stone_age.subtitle.saber_tooth_tiger_ambient" },
   "saber_tooth_tiger_hit": { "sounds": ["stone_age:saber_tooth_tiger_hit"], "subtitle": "stone_age.subtitle.saber_tooth_tiger_hit" },
-  "saber_tooth_tiger_death": { "sounds": ["stone_age:saber_tooth_tiger_death"], "subtitle": "stone_age.subtitle.saber_tooth_tiger_death" }
+  "saber_tooth_tiger_death": { "sounds": ["stone_age:saber_tooth_tiger_death"], "subtitle": "stone_age.subtitle.saber_tooth_tiger_death" },
+  "woolly_rhino_ambient": { "sounds": ["stone_age:woolly_rhino_ambient"], "subtitle": "stone_age.subtitle.woolly_rhino_ambient" },
+  "woolly_rhino_hit": { "sounds": ["stone_age:woolly_rhino_hit"], "subtitle": "stone_age.subtitle.woolly_rhino_hit" },
+  "woolly_rhino_death": { "sounds": ["stone_age:woolly_rhino_death"], "subtitle": "stone_age.subtitle.woolly_rhino_death" }
 }

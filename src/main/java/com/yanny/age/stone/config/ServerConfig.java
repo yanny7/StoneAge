@@ -43,6 +43,10 @@ class ServerConfig {
     final ForgeConfigSpec.IntValue spawnSaberToothTigerWeight;
     final ForgeConfigSpec.IntValue spawnSaberToothTigerMinCount;
     final ForgeConfigSpec.IntValue spawnSaberToothTigerMaxCount;
+    final ForgeConfigSpec.BooleanValue spawnWoollyRhinoEnable;
+    final ForgeConfigSpec.IntValue spawnWoollyRhinoWeight;
+    final ForgeConfigSpec.IntValue spawnWoollyRhinoMinCount;
+    final ForgeConfigSpec.IntValue spawnWoollyRhinoMaxCount;
 
     final ForgeConfigSpec.IntValue clayVesselCapacity;
 
@@ -103,6 +107,7 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_deer_max_count")
                 .defineInRange("spawnDeerMaxCount", 12, 1, 100);
+
         spawnBoarEnable = builder
                 .comment("Enable spawning of mob")
                 .translation(Reference.MODID + ".config.spawn_boar_enable")
@@ -119,6 +124,7 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_boar_max_count")
                 .defineInRange("spawnBoarMaxCount", 6, 1, 100);
+
         spawnAurochEnable = builder
                 .comment("Enable spawning of mob")
                 .translation(Reference.MODID + ".config.spawn_auroch_enable")
@@ -135,6 +141,7 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_auroch_max_count")
                 .defineInRange("spawnAurochMaxCount", 8, 1, 100);
+
         spawnFowlEnable = builder
                 .comment("Enable spawning of mob")
                 .translation(Reference.MODID + ".config.spawn_fowl_enable")
@@ -151,6 +158,7 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_fowl_max_count")
                 .defineInRange("spawnFowlMaxCount", 8, 1, 100);
+
         spawnMouflonEnable = builder
                 .comment("Enable spawning of mob")
                 .translation(Reference.MODID + ".config.spawn_mouflon_enable")
@@ -167,6 +175,7 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_mouflon_max_count")
                 .defineInRange("spawnMouflonMaxCount", 8, 1, 100);
+
         spawnMammothEnable = builder
                 .comment("Enable spawning of mob")
                 .translation(Reference.MODID + ".config.spawn_saberToothTiger_enable")
@@ -183,6 +192,7 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_mammoth_max_count")
                 .defineInRange("spawnMammothMaxCount", 4, 1, 100);
+
         spawnSaberToothTigerEnable = builder
                 .comment("Enable spawning of mob")
                 .translation(Reference.MODID + ".config.spawn_saber_tooth_tiger_enable")
@@ -199,6 +209,23 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_saber_tooth_tiger_max_count")
                 .defineInRange("spawnSaberToothTigerMaxCount", 4, 1, 100);
+
+        spawnWoollyRhinoEnable = builder
+                .comment("Enable spawning of mob")
+                .translation(Reference.MODID + ".config.spawn_woolly_rhino_enable")
+                .define("spawnWoollyRhinoEnable", true);
+        spawnWoollyRhinoWeight = builder
+                .comment("Spawn weight of mob")
+                .translation(Reference.MODID + ".config.spawn_woolly_rhino_weight")
+                .defineInRange("spawnWoollyRhinoWeight", 10, 0, 100);
+        spawnWoollyRhinoMinCount = builder
+                .comment("Spawn min count of mob")
+                .translation(Reference.MODID + ".config.spawn_woolly_rhino_min_count")
+                .defineInRange("spawnWoollyRhinoMinCount", 2, 1, 100);
+        spawnWoollyRhinoMaxCount = builder
+                .comment("Spawn max count of mob")
+                .translation(Reference.MODID + ".config.spawn_woolly_rhino_max_count")
+                .defineInRange("spawnWoollyRhinoMaxCount", 6, 1, 100);
         builder.pop();
     }
 }
