@@ -11,6 +11,7 @@ import net.minecraft.advancements.AdvancementList;
 import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.item.ItemEntity;
@@ -32,9 +33,11 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -121,8 +124,12 @@ public class ForgeEventSubscriber {
                     POLISHED_GRANITE_SLAB, SMOOTH_RED_SANDSTONE_SLAB, MOSSY_STONE_BRICK_SLAB, POLISHED_DIORITE_SLAB, MOSSY_COBBLESTONE_SLAB, SMOOTH_SANDSTONE_SLAB,
                     GRANITE_SLAB, ANDESITE_SLAB, RED_NETHER_BRICK_SLAB, POLISHED_ANDESITE_SLAB, DIORITE_SLAB, SHULKER_BOX, BLACK_SHULKER_BOX, BLUE_SHULKER_BOX,
                     BROWN_SHULKER_BOX, CYAN_SHULKER_BOX, GRAY_SHULKER_BOX, GREEN_SHULKER_BOX, LIGHT_BLUE_SHULKER_BOX, LIGHT_GRAY_SHULKER_BOX, LIME_SHULKER_BOX,
-                    MAGENTA_SHULKER_BOX, ORANGE_SHULKER_BOX, PINK_SHULKER_BOX, PURPLE_SHULKER_BOX, RED_SHULKER_BOX, WHITE_SHULKER_BOX, YELLOW_SHULKER_BOX);
+                    MAGENTA_SHULKER_BOX, ORANGE_SHULKER_BOX, PINK_SHULKER_BOX, PURPLE_SHULKER_BOX, RED_SHULKER_BOX, WHITE_SHULKER_BOX, YELLOW_SHULKER_BOX); // FROM tag
             set.forEach(block -> setHarvestLevel(block, ToolSubscriber.Tiers.BONE_TIER.getHarvestLevel()));
+        }
+
+        if (Config.forceToolForWood) {
+            setUseToolForWood();
         }
     }
 
@@ -195,12 +202,26 @@ public class ForgeEventSubscriber {
     }
 
     private static void setHarvestLevel(Block block, @SuppressWarnings("SameParameterValue") int harvestLevel) {
-        Class<?> clazz = Block.class;
-        Field harvestLevelField = clazz.getDeclaredFields()[24];
+        Field harvestLevelField = ObfuscationReflectionHelper.findField(Block.class, "harvestLevel");
         harvestLevelField.setAccessible(true);
+
         try {
             harvestLevelField.set(block, harvestLevel);
         } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void setUseToolForWood() {
+        Field field = ObfuscationReflectionHelper.findField(Material.class, "requiresNoTool");
+        field.setAccessible(true);
+
+        try {
+            Field modifiersField = Field.class.getDeclaredField("modifiers");
+            modifiersField.setAccessible(true);
+            modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+            field.setBoolean(Material.WOOD, false);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
     }

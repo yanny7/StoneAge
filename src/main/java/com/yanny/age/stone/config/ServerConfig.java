@@ -14,6 +14,7 @@ class ServerConfig {
     final ForgeConfigSpec.IntValue aquaductTickChanceBoneMealEffect;
     final ForgeConfigSpec.IntValue feederTickChanceBreedAnimalEffect;
     final ForgeConfigSpec.IntValue feederEffectRange;
+    final ForgeConfigSpec.BooleanValue forceToolForWood;
 
     final ForgeConfigSpec.BooleanValue spawnDeerEnable;
     final ForgeConfigSpec.IntValue spawnDeerWeight;
@@ -88,6 +89,10 @@ class ServerConfig {
                 .comment("Feeder area of breed effect")
                 .translation(Reference.MODID + ".config.feeder_effect_range")
                 .defineInRange("feederEffectRange", 4, 0, 15);
+        forceToolForWood = builder
+                .comment("Force tool for wood material - harvestable only with axe")
+                .translation(Reference.MODID + ".config.force_tool_for_wood")
+                .define("forceToolForWood", true);
         builder.pop();
 
         builder.push("mob spawning");
