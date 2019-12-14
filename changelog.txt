@@ -1,3 +1,4 @@
+- all blocks from wood material harvestable only with axe
 - added rhino tusk and saber teeth
 - added woolly rhino entity
 - added saber-tooth tiger entity
