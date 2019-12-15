@@ -49,8 +49,6 @@ class ServerConfig {
     final ForgeConfigSpec.IntValue spawnWoollyRhinoMinCount;
     final ForgeConfigSpec.IntValue spawnWoollyRhinoMaxCount;
 
-    final ForgeConfigSpec.IntValue clayVesselCapacity;
-
     ServerConfig(@Nonnull final ForgeConfigSpec.Builder builder) {
         builder.push("general");
         removeVanillaRecipes = builder
@@ -77,10 +75,6 @@ class ServerConfig {
                 .comment("Chance of bonemeal efect from aquaduct every 1/X tick (randomly)")
                 .translation(Reference.MODID + ".config.aquaduct_tick_chance_bone_meal_effect")
                 .defineInRange("aquaductTickChanceBoneMealEffect", 200, 1, Integer.MAX_VALUE);
-        clayVesselCapacity = builder
-                .comment("Fluid capacity in mB of clay vessel")
-                .translation(Reference.MODID + ".config.clay_vessel_capaicty")
-                .defineInRange("clayVesselCapacity", 8000, 1, Integer.MAX_VALUE);
         feederTickChanceBreedAnimalEffect = builder
                 .comment("Chance of breed effect from feeder every 1/X tick")
                 .translation(Reference.MODID + ".config.feeder_tick_chance_breed_animal_effect")
