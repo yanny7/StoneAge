@@ -7,6 +7,9 @@ public class Config {
     public static double tanningRackFinishChance = 0.1;
     public static boolean changeMiningLevelForVanillaBlocks = true;
     public static int aquaductTickChanceBoneMealEffect = 200;
+    public static int aquaductEffectRange = 4;
+    public static int aquaductFillPerTick = 4;
+    public static int aquaductUsePerTick = 1;
     public static int feederTickChanceBreedAnimalEffect = 200;
     public static int feederEffectRange = 4;
     public static boolean forceToolForWood = true;

@@ -18,7 +18,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
@@ -135,7 +134,7 @@ public class AquaductBlock extends Block implements ITopBlockProvider {
     @Nonnull
     @Override
     public IFluidState getFluidState(BlockState state) {
-        return state.get(BlockStateProperties.WATERLOGGED) ? Fluids.WATER.getFlowingFluidState(1, false) : super.getFluidState(state);
+        return state.get(WATERLOGGED) ? Fluids.WATER.getFlowingFluidState(1, false) : super.getFluidState(state);
     }
 
     @SuppressWarnings("deprecation")

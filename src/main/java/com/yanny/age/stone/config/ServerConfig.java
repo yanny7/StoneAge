@@ -12,6 +12,9 @@ class ServerConfig {
     final ForgeConfigSpec.DoubleValue tanningRackFinishChance;
     final ForgeConfigSpec.BooleanValue changeMiningLevelForVanillaBlocks;
     final ForgeConfigSpec.IntValue aquaductTickChanceBoneMealEffect;
+    final ForgeConfigSpec.IntValue aquaductEffectRange;
+    final ForgeConfigSpec.IntValue aquaductFillPerTick;
+    final ForgeConfigSpec.IntValue aquaductUsePerTick;
     final ForgeConfigSpec.IntValue feederTickChanceBreedAnimalEffect;
     final ForgeConfigSpec.IntValue feederEffectRange;
     final ForgeConfigSpec.BooleanValue forceToolForWood;
@@ -75,6 +78,18 @@ class ServerConfig {
                 .comment("Chance of bonemeal efect from aquaduct every 1/X tick (randomly)")
                 .translation(Reference.MODID + ".config.aquaduct_tick_chance_bone_meal_effect")
                 .defineInRange("aquaductTickChanceBoneMealEffect", 200, 1, Integer.MAX_VALUE);
+        aquaductEffectRange = builder
+                .comment("Aquaduct area of bonemeal effect")
+                .translation(Reference.MODID + ".config.aquaduct_effect_range")
+                .defineInRange("aquaductEffectRange", 4, 0, 15);
+        aquaductFillPerTick = builder
+                .comment("Fill amount per tick when filling from water source")
+                .translation(Reference.MODID + ".config.aquaduct_fill_per_tick")
+                .defineInRange("aquaductFillPerTick", 4, 1, Integer.MAX_VALUE);
+        aquaductUsePerTick = builder
+                .comment("Usage of water per tick when activated aquaduct")
+                .translation(Reference.MODID + ".config.aquaduct_use_per_tick")
+                .defineInRange("aquaductUsePerTick", 1, 1, Integer.MAX_VALUE);
         feederTickChanceBreedAnimalEffect = builder
                 .comment("Chance of breed effect from feeder every 1/X tick")
                 .translation(Reference.MODID + ".config.feeder_tick_chance_breed_animal_effect")

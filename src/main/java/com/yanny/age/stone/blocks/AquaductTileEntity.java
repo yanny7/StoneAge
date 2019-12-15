@@ -31,18 +31,17 @@ import java.util.Map;
 import static net.minecraft.state.properties.BlockStateProperties.WATERLOGGED;
 
 public class AquaductTileEntity extends TileEntity implements ITickableTileEntity {
+    private static final float LEVELS = 20f;
     private static final FluidStack WATER = new FluidStack(Fluids.WATER, 0);
 
-    private float capacity = 0f;
-    private boolean activated = false;
     private final Map<Direction, Boolean> sources = Maps.newHashMap();
 
+    private boolean activated = false;
+    private boolean initialized = false;
+    private float capacity = 0f;
     private int tick = 0;
     private int tmpTick = 0;
     private int level = 0;
-    private boolean initialized = false;
-
-    //TOP values
     private int filled = 0;
     private int fullCapacity = 0;
 
@@ -80,19 +79,19 @@ public class AquaductTileEntity extends TileEntity implements ITickableTileEntit
 
                 filled = tank.getFluidAmount();
                 fullCapacity = tank.getCapacity();
-                level = Math.round((float)tank.getFluidAmount() / tank.getCapacity() * 20);
+                level = Math.round((float)tank.getFluidAmount() / tank.getCapacity() * LEVELS);
 
                 if (oldLevel != level) {
-                    capacity = level / 20f;
+                    capacity = level / LEVELS;
                     world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), 3);
                 }
 
                 if (sources.containsValue(true)) {
-                    WATER.setAmount(4);
+                    WATER.setAmount(Config.aquaductFillPerTick);
                     tank.fill(WATER, IFluidHandler.FluidAction.EXECUTE);
                 } else {
                     if (activated) {
-                        FluidStack fluidStack = tank.drain(1, IFluidHandler.FluidAction.EXECUTE);
+                        FluidStack fluidStack = tank.drain(Config.aquaductUsePerTick, IFluidHandler.FluidAction.EXECUTE);
 
                         if (fluidStack.isEmpty()) {
                             if (world.getBlockState(pos).get(WATERLOGGED)) {
@@ -204,7 +203,8 @@ public class AquaductTileEntity extends TileEntity implements ITickableTileEntit
     }
 
     private static void boneMealEffect(BlockPos pos, World world) {
-        BlockPos cropPos = pos.up().north(world.rand.nextInt(9) - 4).east(world.rand.nextInt(9) - 4);
+        int r = Config.aquaductEffectRange;
+        BlockPos cropPos = pos.up().north(world.rand.nextInt(r * 2 + 1) - r).east(world.rand.nextInt(r * 2 + 1) - r);
         BlockState blockstate = world.getBlockState(cropPos);
 
         if (blockstate.getBlock() instanceof IGrowable) {
