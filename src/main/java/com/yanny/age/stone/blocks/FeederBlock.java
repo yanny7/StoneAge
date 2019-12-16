@@ -9,7 +9,6 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
@@ -54,7 +53,7 @@ public class FeederBlock extends HorizontalBlock {
     @Nonnull
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        if (state.get(HorizontalBlock.HORIZONTAL_FACING) == Direction.NORTH || state.get(HORIZONTAL_FACING) == Direction.SOUTH) {
+        if (state.get(HORIZONTAL_FACING).getAxis() == Direction.Axis.Z) {
             return SHAPE_NS;
         } else {
             return SHAPE_EW;
@@ -68,7 +67,7 @@ public class FeederBlock extends HorizontalBlock {
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(BlockStateProperties.HORIZONTAL_FACING);
+        builder.add(HORIZONTAL_FACING);
     }
 
     @SuppressWarnings("deprecation")
