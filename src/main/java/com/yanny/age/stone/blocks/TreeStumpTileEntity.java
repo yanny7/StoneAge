@@ -2,6 +2,7 @@ package com.yanny.age.stone.blocks;
 
 import com.yanny.age.stone.recipes.TreeStumpRecipe;
 import com.yanny.age.stone.subscribers.TileEntitySubscriber;
+import com.yanny.age.stone.utils.ItemStackUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.IInventory;

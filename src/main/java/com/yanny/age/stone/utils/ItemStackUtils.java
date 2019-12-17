@@ -1,4 +1,4 @@
-package com.yanny.age.stone.blocks;
+package com.yanny.age.stone.utils;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-class ItemStackUtils {
+public class ItemStackUtils {
 
-    static CompoundNBT serializeStacks(@Nonnull NonNullList<ItemStack> stacks) {
+    public static CompoundNBT serializeStacks(@Nonnull NonNullList<ItemStack> stacks) {
         ListNBT listNBT = new ListNBT();
         CompoundNBT compoundNBT = new CompoundNBT();
 
@@ -28,7 +28,7 @@ class ItemStackUtils {
         return compoundNBT;
     }
 
-    static CompoundNBT serializeIngredients(@Nonnull List<Ingredient> ingredients) {
+    public static CompoundNBT serializeIngredients(@Nonnull List<Ingredient> ingredients) {
         ListNBT listNBT = new ListNBT();
         CompoundNBT compoundNBT = new CompoundNBT();
 
@@ -50,7 +50,7 @@ class ItemStackUtils {
         return compoundNBT;
     }
 
-    static void deserializeStacks(@Nonnull CompoundNBT compoundNBT, @Nonnull NonNullList<ItemStack> stacks) {
+    public static void deserializeStacks(@Nonnull CompoundNBT compoundNBT, @Nonnull NonNullList<ItemStack> stacks) {
         assert compoundNBT.contains("Items", Constants.NBT.TAG_LIST);
         ListNBT listNBT = compoundNBT.getList("Items", Constants.NBT.TAG_COMPOUND);
         assert listNBT.size() == stacks.size();
@@ -62,7 +62,7 @@ class ItemStackUtils {
         });
     }
 
-    static void deserializeIngredients(@Nonnull CompoundNBT compoundNBT, @Nonnull List<Ingredient> ingredients) {
+    public static void deserializeIngredients(@Nonnull CompoundNBT compoundNBT, @Nonnull List<Ingredient> ingredients) {
         assert compoundNBT.contains("Items", Constants.NBT.TAG_LIST);
         ListNBT listNBT = compoundNBT.getList("Items", Constants.NBT.TAG_COMPOUND);
 

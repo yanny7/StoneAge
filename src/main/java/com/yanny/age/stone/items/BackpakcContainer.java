@@ -1,7 +1,5 @@
-package com.yanny.age.stone.blocks;
+package com.yanny.age.stone.items;
 
-import com.yanny.age.stone.ExampleMod;
-import com.yanny.age.stone.subscribers.BlockSubscriber;
 import com.yanny.age.stone.subscribers.ContainerSubscriber;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -9,58 +7,57 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.IIntArray;
-import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.IntArray;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nonnull;
 
-import static com.yanny.age.stone.blocks.MillstoneTileEntity.ITEMS;
+import static com.yanny.age.stone.items.BackpackItem.*;
 
-public class MillstoneContainer extends Container {
-    private final MillstoneTileEntity tile;
-    private final PlayerEntity player;
+public class BackpakcContainer extends Container {
     private final IItemHandler inventory;
-    private final IIntArray data;
+    private final ItemStack backpack;
+    private final NonNullList<ItemStack> backpackItems;
 
-    public MillstoneContainer(int windowId, PlayerInventory inv, PacketBuffer extraData) {
-        this(windowId, extraData.readBlockPos(), ExampleMod.proxy.getClientWorld(), inv, ExampleMod.proxy.getClientPlayer(), new IntArray(1));
+    public BackpakcContainer(int windowId, PlayerInventory inv, @SuppressWarnings("unused") PacketBuffer extraData) {
+        this(windowId, inv, inv.getCurrentItem());
     }
 
-    MillstoneContainer(int id, BlockPos pos, World world, PlayerInventory inventory, PlayerEntity player, IIntArray data) {
-        super(ContainerSubscriber.millstone, id);
-        tile = (MillstoneTileEntity) world.getTileEntity(pos);
-        this.player = player;
+    BackpakcContainer(int id, PlayerInventory inventory, ItemStack current) {
+        super(ContainerSubscriber.backpack, id);
         this.inventory = new InvWrapper(inventory);
-        this.data = data;
 
-        if (tile == null) {
-            throw new IllegalStateException("TileEntity does not exists!");
+        backpack = current;
+        backpackItems = BackpackItem.getBackpackItems(backpack);
+
+        ItemStackHandler handler = new ItemStackHandler(backpackItems) {
+            @Override
+            protected void onContentsChanged(int slot) {
+                super.onContentsChanged(slot);
+                BackpackItem.saveBackpackItems(backpack, backpackItems);
+            }
+
+            @Override
+            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
+                return !(stack.isItemEqual(backpack));
+            }
+        };
+
+        for (int y = 0; y < INVENTORY_HEIGHT; y++) {
+            for (int x = 0; x < INVENTORY_WIDTH; x++) {
+                addSlot(new SlotItemHandler(handler, x + y * INVENTORY_WIDTH, 44 + x * 18, 17 + y * 18));
+            }
         }
 
-        tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-            addSlot(new SlotItemHandler(h, 0, 62, 35));
-            addSlot(new SlotItemHandler(h, 1, 98, 35));
-        });
-
         layoutPlayerInventorySlots(8, 84);
-
-        trackIntArray(data);
     }
 
     @Override
     public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
-        if (tile == null || tile.getWorld() == null) {
-            throw new IllegalStateException("Null pointer");
-        }
-
-        return isWithinUsableDistance(IWorldPosCallable.of(tile.getWorld(), tile.getPos()), player, BlockSubscriber.millstone);
+        return true;
     }
 
     @Nonnull
@@ -72,6 +69,10 @@ public class MillstoneContainer extends Container {
             ItemStack stack = slot.getStack();
             ItemStack itemstack = stack.copy();
 
+            if (stack == backpack) {
+                return ItemStack.EMPTY;
+            }
+
             if (index < ITEMS) {
                 if (!mergeItemStack(stack, ITEMS + 1, ITEMS + 36, true)) {
                     return ItemStack.EMPTY;
@@ -79,7 +80,7 @@ public class MillstoneContainer extends Container {
 
                 slot.onSlotChange(stack, itemstack);
             } else {
-                if (tile.isItemValid(stack) && !mergeItemStack(stack, 0, ITEMS, false)) {
+                if (!mergeItemStack(stack, 0, ITEMS, false)) {
                     return ItemStack.EMPTY;
                 }
             }
@@ -97,12 +98,13 @@ public class MillstoneContainer extends Container {
             slot.onTake(playerIn, stack);
         }
 
+        BackpackItem.saveBackpackItems(backpack, backpackItems);
         return ItemStack.EMPTY;
     }
 
     private int addSlotRange(IItemHandler handler, int index, int x, int y, int amount, int dx) {
         for (int i = 0 ; i < amount ; i++) {
-            addSlot(new SlotItemHandler(handler, index, x, y));
+            addSlot(new LimitedSlotItemHandler(handler, index, x, y));
             x += dx;
             index++;
         }
@@ -127,7 +129,14 @@ public class MillstoneContainer extends Container {
         addSlotRange(inventory, 0, leftCol, topRow, 9, 18);
     }
 
-    int getProgress() {
-        return data.get(0);
+    class LimitedSlotItemHandler extends SlotItemHandler {
+        public LimitedSlotItemHandler(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
+            super(itemHandler, index, xPosition, yPosition);
+        }
+
+        @Override
+        public boolean canTakeStack(PlayerEntity playerIn) {
+            return !getStack().isItemEqual(backpack);
+        }
     }
 }

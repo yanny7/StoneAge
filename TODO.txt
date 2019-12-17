@@ -1,3 +1,2 @@
 - Crocodile entity
-- Backpack
 - Emu entity
