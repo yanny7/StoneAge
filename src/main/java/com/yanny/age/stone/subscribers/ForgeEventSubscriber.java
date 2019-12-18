@@ -213,7 +213,7 @@ public class ForgeEventSubscriber {
     }
 
     private static void setUseToolForWood() {
-        Field field = ObfuscationReflectionHelper.findField(Material.class, "requiresNoTool");
+        Field field = ObfuscationReflectionHelper.findField(Material.class, "field_76241_J");
         field.setAccessible(true);
 
         try {
