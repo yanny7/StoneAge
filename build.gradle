@@ -10,7 +10,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle'
 
-version = '1.0.1'
+version = "${game_version}"
 group = 'com.yanny.age.stone' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'stone-age'
 
@@ -126,7 +126,7 @@ jar {
         attributes([
             "Specification-Title": "Stone age",
             "Specification-Vendor": "Yanny",
-            "Specification-Version": "1", // We are version 1 of ourselves
+            "Specification-Version": "${game_version}",
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
             "Implementation-Vendor" :"Yanny",
