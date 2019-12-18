@@ -1,2 +1,3 @@
 - Crocodile entity
 - Emu entity
+- Fishing net
