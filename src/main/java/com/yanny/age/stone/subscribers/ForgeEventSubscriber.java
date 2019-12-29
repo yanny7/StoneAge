@@ -18,17 +18,22 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.AxeItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -38,6 +43,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -130,6 +136,18 @@ public class ForgeEventSubscriber {
 
         if (Config.forceToolForWood) {
             setUseToolForWood();
+
+            Set<Block> set = new HashSet<>();
+            set.addAll(BlockTags.LOGS.getAllElements());
+            set.addAll(BlockTags.PLANKS.getAllElements());
+            set.addAll(BlockTags.WOODEN_FENCES.getAllElements());
+            set.addAll(BlockTags.WOODEN_BUTTONS.getAllElements());
+            set.addAll(BlockTags.WOODEN_DOORS.getAllElements());
+            set.addAll(BlockTags.WOODEN_PRESSURE_PLATES.getAllElements());
+            set.addAll(BlockTags.WOODEN_SLABS.getAllElements());
+            set.addAll(BlockTags.WOODEN_STAIRS.getAllElements());
+            set.addAll(BlockTags.WOODEN_TRAPDOORS.getAllElements());
+            set.forEach(block -> setHarvestLevel(block, ToolSubscriber.Tiers.BONE_TIER.getHarvestLevel()));
         }
     }
 
@@ -198,6 +216,19 @@ public class ForgeEventSubscriber {
 
                 droughtGrassList.forEach(Entity::remove);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void axeHarvestCheck(PlayerEvent.HarvestCheck event) {
+        BlockState state = event.getTargetBlock();
+        PlayerEntity entity = event.getPlayer();
+        ItemStack stack = entity.getHeldItem(Hand.MAIN_HAND);
+        Item item = stack.getItem();
+
+        if ((entity.getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem) && (state.getMaterial() == Material.WOOD) &&
+                (state.getBlock().getHarvestLevel(state) <= item.getHarvestLevel(stack, ToolType.AXE, entity, state))) {
+            event.setCanHarvest(true);
         }
     }
 

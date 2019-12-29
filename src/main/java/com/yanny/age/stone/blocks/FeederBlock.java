@@ -1,5 +1,6 @@
 package com.yanny.age.stone.blocks;
 
+import com.yanny.age.stone.subscribers.ToolSubscriber;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
@@ -19,6 +20,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nonnull;
@@ -29,7 +31,7 @@ public class FeederBlock extends HorizontalBlock {
     private static final VoxelShape SHAPE_EW = Block.makeCuboidShape(4, 0, 0, 12, 6, 16);
 
     public FeederBlock() {
-        super(Properties.create(Material.WOOD).hardnessAndResistance(2.0f));
+        super(Properties.create(Material.WOOD).harvestLevel(ToolSubscriber.Tiers.BONE_TIER.getHarvestLevel()).harvestTool(ToolType.AXE).hardnessAndResistance(2.0f));
     }
 
     @Override

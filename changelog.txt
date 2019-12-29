@@ -1,3 +1,5 @@
+- fixed wood material blocks cannot be harvested by antler axe
+v1.0.2
 - added backpack
 - configurable aquaduct effect range, fill per tick and use per tick
 - all blocks from wood material harvestable only with axe

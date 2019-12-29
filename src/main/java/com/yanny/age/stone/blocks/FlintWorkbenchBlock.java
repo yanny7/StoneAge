@@ -1,5 +1,6 @@
 package com.yanny.age.stone.blocks;
 
+import com.yanny.age.stone.subscribers.ToolSubscriber;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -18,6 +19,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -26,7 +28,7 @@ public class FlintWorkbenchBlock extends HorizontalBlock {
     private static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D);
 
     public FlintWorkbenchBlock() {
-        super(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0f));
+        super(Block.Properties.create(Material.WOOD).harvestLevel(ToolSubscriber.Tiers.BONE_TIER.getHarvestLevel()).harvestTool(ToolType.AXE).hardnessAndResistance(2.0f));
     }
 
     @Override

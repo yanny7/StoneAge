@@ -1,5 +1,6 @@
 package com.yanny.age.stone.blocks;
 
+import com.yanny.age.stone.subscribers.ToolSubscriber;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -19,6 +20,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -42,7 +44,7 @@ public class TanningRackBlock extends HorizontalBlock {
             Block.makeCuboidShape(7.5D, 0.0, 0.0D, 8.5D, 15.0D, 16D));
 
     public TanningRackBlock() {
-        super(Properties.create(Material.WOOD).hardnessAndResistance(2.0f));
+        super(Properties.create(Material.WOOD).harvestLevel(ToolSubscriber.Tiers.BONE_TIER.getHarvestLevel()).harvestTool(ToolType.AXE).hardnessAndResistance(2.0f));
     }
 
     @Override
