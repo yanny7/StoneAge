@@ -4,6 +4,7 @@ import com.yanny.age.stone.blocks.*;
 import com.yanny.age.stone.client.renderer.*;
 import com.yanny.age.stone.entities.*;
 import com.yanny.age.stone.items.BackpackGui;
+import com.yanny.age.stone.items.StoneTabletGui;
 import com.yanny.age.stone.subscribers.ContainerSubscriber;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
@@ -20,6 +21,7 @@ public class ClientProxy implements IProxy {
         ScreenManager.registerFactory(ContainerSubscriber.feeder, FeederGui::new);
         ScreenManager.registerFactory(ContainerSubscriber.millstone, MillstoneGui::new);
         ScreenManager.registerFactory(ContainerSubscriber.backpack, BackpackGui::new);
+        ScreenManager.registerFactory(ContainerSubscriber.stone_tablet, StoneTabletGui::new);
 
         RenderingRegistry.registerEntityRenderingHandler(DeerEntity.class, new DeerRenderer.RenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(BoarEntity.class, new BoarRenderer.RenderFactory());

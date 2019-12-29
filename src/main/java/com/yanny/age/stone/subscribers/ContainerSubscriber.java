@@ -4,6 +4,7 @@ import com.yanny.age.stone.blocks.FeederContainer;
 import com.yanny.age.stone.blocks.MillstoneContainer;
 import com.yanny.age.stone.blocks.StoneChestContainer;
 import com.yanny.age.stone.items.BackpakcContainer;
+import com.yanny.age.stone.items.StoneTabletContainer;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
@@ -21,6 +22,7 @@ public class ContainerSubscriber {
     public static final ContainerType<FeederContainer> feeder = IForgeContainerType.create(FeederContainer::new);
     public static final ContainerType<MillstoneContainer> millstone = IForgeContainerType.create(MillstoneContainer::new);
     public static final ContainerType<BackpakcContainer> backpack = IForgeContainerType.create(BackpakcContainer::new);
+    public static final ContainerType<StoneTabletContainer> stone_tablet = IForgeContainerType.create(StoneTabletContainer::new);
 
     @SubscribeEvent
     public static void registerContainer(RegistryEvent.Register<ContainerType<?>> event) {
@@ -29,5 +31,6 @@ public class ContainerSubscriber {
         registry.register(feeder.setRegistryName(MODID, "feeder"));
         registry.register(millstone.setRegistryName(MODID, "millstone"));
         registry.register(backpack.setRegistryName(MODID, "backpack"));
+        registry.register(stone_tablet.setRegistryName(MODID, "stone_tablet"));
     }
 }

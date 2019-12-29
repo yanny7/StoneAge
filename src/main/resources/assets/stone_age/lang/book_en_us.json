@@ -1,0 +1,30 @@
+[
+  [
+    {
+      "type": "title",
+      "text": "Stone Age mod",
+      "scale": 2.0
+    },
+    {
+      "type": "text",
+      "text": "Hello world! §plink Hello world! Hell Hello world! Hello world!§ptrest Hello world! Hell Hello world!",
+      "scale": 0.5,
+      "color": 16711935,
+      "key": "test"
+    }
+  ],
+  [
+    {
+      "type": "title",
+      "text": "Page 2",
+      "scale": 1.0
+    },
+    {
+      "type": "text",
+      "text": "Another page §ptest or this link?§p bajaja baja baja lkjlfaksd afd lsd flasjd fsldfkj alsdkfj lasdf",
+      "scale": 1.0,
+      "color": 16711935,
+      "key": "link"
+    }
+  ]
+]

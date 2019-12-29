@@ -2,6 +2,7 @@ package com.yanny.age.stone.subscribers;
 
 import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.items.BackpackItem;
+import com.yanny.age.stone.items.StoneTabletItem;
 import com.yanny.ages.api.group.ModItemGroup;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
@@ -34,6 +35,7 @@ public class ItemSubscriber {
     public static final Item rhino_tusk = null;
     public static final Item saber_teeth = null;
     public static final Item backpack = null;
+    public static final Item stone_tablet = null;
 
     private static final Food VENISON = (new Food.Builder()).hunger(3).saturation(0.3f).meat().build();
     private static final Food COOKED_VENISON = (new Food.Builder()).hunger(8).saturation(0.8f).meat().build();
@@ -60,5 +62,6 @@ public class ItemSubscriber {
         registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "rhino_tusk"));
         registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "saber_teeth"));
         registry.register(new BackpackItem().setRegistryName(MODID, "backpack"));
+        registry.register(new StoneTabletItem().setRegistryName(MODID, "stone_tablet"));
     }
 }
