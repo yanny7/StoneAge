@@ -27,6 +27,7 @@ public class StoneTabletGui extends ContainerScreen<Container> {
         this.renderBackground();
         super.render(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
+        manual.render(this, mouseX, mouseY);
     }
 
     @Override
@@ -39,7 +40,7 @@ public class StoneTabletGui extends ContainerScreen<Container> {
         minecraft.getTextureManager().bindTexture(GUI);
         blit(guiLeft, guiTop, 0, 0, xSize, ySize);
 
-        manual.draw(this, mouseX, mouseY);
+        manual.drawBackgroundLayer(this, mouseX, mouseY);
     }
 
     @Override
@@ -67,10 +68,5 @@ public class StoneTabletGui extends ContainerScreen<Container> {
     public void init(@Nonnull Minecraft minecraft, int width, int height) {
         super.init(minecraft, width, height);
         manual.setPos(guiLeft, guiTop);
-    }
-
-    @Override
-    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        super.drawGuiContainerForegroundLayer(mouseX, mouseY);
     }
 }

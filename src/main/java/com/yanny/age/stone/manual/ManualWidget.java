@@ -5,7 +5,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.AbstractGui;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
@@ -27,7 +27,8 @@ public class ManualWidget extends Widget {
     private int currentPage = 0;
 
     public ManualWidget(ResourceLocation resource, int width, int height) {
-        super(width, height);
+        this.width = width - Utils.MARGIN * 2;
+        this.height = height - Utils.MARGIN * 2;
         JsonArray array;
 
         try (
@@ -48,7 +49,7 @@ public class ManualWidget extends Widget {
                     LOGGER.warn("Element {} is not an array", element.toString());
                 }
 
-                pages.put(page, new PageWidget(this, element.getAsJsonArray(), width - Utils.MARGIN * 2, height - Utils.MARGIN * 2, page));
+                pages.put(page, new PageWidget(this, element.getAsJsonArray(), page));
                 page++;
             }
         }
@@ -59,8 +60,13 @@ public class ManualWidget extends Widget {
     }
 
     @Override
-    public void draw(AbstractGui screen, int mx, int my) {
-        pages.get(currentPage).draw(screen, mx, my);
+    public void drawBackgroundLayer(Screen screen, int mx, int my) {
+        pages.get(currentPage).drawBackgroundLayer(screen, mx, my);
+    }
+
+    @Override
+    public void render(Screen screen, int mx, int my) {
+        pages.get(currentPage).render(screen, mx, my);
     }
 
     @Override

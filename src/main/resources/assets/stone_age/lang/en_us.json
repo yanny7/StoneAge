@@ -64,5 +64,12 @@
     "stone_age.subtitle.saber_tooth_tiger_death": "Saber-tooth tiger died",
     "stone_age.subtitle.woolly_rhino_ambient": "Woolly rhino roar",
     "stone_age.subtitle.woolly_rhino_hit": "Woolly rhino was hit",
-    "stone_age.subtitle.woolly_rhino_death": "Woolly rhino died"
+    "stone_age.subtitle.woolly_rhino_death": "Woolly rhino died",
+
+    "advancements.stone_age.root.title": "Stone age",
+    "advancements.stone_age.root.description": "Welcome to stone age",
+    "advancements.stone_age.flint_and_stick.title": "Flint and stick",
+    "advancements.stone_age.flint_and_stick.description": "Made your first tool.",
+    "advancements.stone_age.flint_workbench.title": "Flint workbench",
+    "advancements.stone_age.flint_workbench.description": "Workbench like no other. Craft by right-click with flint knife."
 }

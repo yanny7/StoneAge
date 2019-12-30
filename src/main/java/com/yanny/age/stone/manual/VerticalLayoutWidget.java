@@ -7,19 +7,23 @@ import net.minecraft.client.gui.screen.Screen;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class PageWidget extends Widget {
+public class VerticalLayoutWidget extends Widget {
+    public static final String TYPE = "vlayout";
+
     private static final Logger LOGGER = LogManager.getLogger();
     private final List<Widget> widgets = new ArrayList<>();
-    private final ManualWidget manual;
-    private final int page;
+    private final Widget parent;
 
-    public PageWidget(ManualWidget manual, JsonArray array, int page) {
-        this.width = manual.width;
-        this.height = manual.height;
-        this.manual = manual;
-        this.page = page;
+    VerticalLayoutWidget(Widget parent, JsonObject object) {
+        this.parent = parent;
+
+        JsonArray array = Utils.getArray(object, "content");
+        if (array == null) {
+            return;
+        }
 
         for (JsonElement element : array) {
             if (!element.isJsonObject()) {
@@ -27,44 +31,34 @@ public class PageWidget extends Widget {
                 continue;
             }
 
-            JsonObject object = element.getAsJsonObject();
-            String type = Utils.getString(object, "type", null, false);
+            JsonObject obj = element.getAsJsonObject();
+            String type = Utils.getString(obj, "type", null, false);
 
             if (type == null) {
                 continue;
             }
 
-            widgets.add(WidgetFactory.getWidget(type, this, object));
+            Widget widget = WidgetFactory.getWidget(type, this, obj);
+            widgets.add(widget);
         }
     }
 
     @Override
     public void drawBackgroundLayer(Screen screen, int mx, int my) {
-        for (Widget widget : widgets) {
+        widgets.forEach(widget -> {
             if (widget.visible) {
                 widget.drawBackgroundLayer(screen, mx, my);
             }
-        }
+        });
     }
 
     @Override
     public void render(Screen screen, int mx, int my) {
-        for (Widget widget : widgets) {
+        widgets.forEach(widget -> {
             if (widget.visible) {
                 widget.render(screen, mx, my);
             }
-        }
-    }
-
-    @Override
-    public boolean mouseClicked(int mx, int my, int key) {
-        for (Widget widget : widgets) {
-            if (widget.inBounds(mx, my) && widget.mouseClicked(mx, my, key)) {
-                return true;
-            }
-        }
-
-        return false;
+        });
     }
 
     @Override
@@ -80,11 +74,33 @@ public class PageWidget extends Widget {
         }
     }
 
+    @Override
+    public int getMinWidth(int height) {
+        int width = DYNAMIC;
+
+        for (Widget widget : widgets) {
+            width = Math.max(width, widget.getMinWidth(height));
+        }
+
+        return width;
+    }
+
+    @Override
+    public boolean mouseClicked(int mx, int my, int key) {
+        for (Widget widget : widgets) {
+            if (widget.inBounds(mx, my) && widget.mouseClicked(mx, my, key)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void changePage(String key) {
-        manual.changePage(key);
+        parent.changePage(key);
     }
 
     public void addLink(String key) {
-        manual.addLink(key, page);
+        parent.addLink(key);
     }
 }

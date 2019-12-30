@@ -1,23 +1,29 @@
 package com.yanny.age.stone.manual;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.AbstractGui;
+import net.minecraft.client.gui.screen.Screen;
 
 public abstract class Widget {
-    protected Minecraft mc = Minecraft.getInstance();
+    public static final int DYNAMIC = -1;
+
+    protected final Minecraft mc = Minecraft.getInstance();
 
     protected int x, y, width, height;
     protected boolean enabled;
     protected boolean visible;
 
-    public Widget(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public Widget() {
         this.enabled = true;
         this.visible = true;
+        x = 0;
+        y = 0;
+        width = DYNAMIC;
+        height = DYNAMIC;
     }
 
-    public abstract void draw(AbstractGui screen, int mx, int my);
+    public abstract void drawBackgroundLayer(Screen screen, int mx, int my);
+
+    public abstract void render(Screen screen, int mx, int my);
 
     public boolean mouseClicked(int mx, int my, int key) {
         return false;
@@ -27,12 +33,24 @@ public abstract class Widget {
 
     public void keyTyped(char c, int code) {}
 
+    public void changePage(String key) {}
+
+    public void addLink(String key) {}
+
     public void setPos(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    final boolean inBounds(int mx, int my) {
-        return mx >= x && my >= y && mx < x + width && my < y + height;
+    public int getMinWidth(int height) {
+        return DYNAMIC;
+    }
+
+    public int getMinHeight(int width) {
+        return DYNAMIC;
+    }
+
+    public boolean inBounds(int mx, int my) {
+        return mx >= x && my >= y && mx <= x + width && my <= y + height;
     }
 }
