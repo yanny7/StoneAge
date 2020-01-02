@@ -86,9 +86,19 @@ public class AquaductTileEntity extends TileEntity implements ITickableTileEntit
                     world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), 3);
                 }
 
+                LazyOptional<FluidTank> upperTank = AquaductHandler.getInstance(world).getCapability(pos.up());
+
                 if (sources.containsValue(true)) {
+                    activated = false;
                     WATER.setAmount(Config.aquaductFillPerTick);
                     tank.fill(WATER, IFluidHandler.FluidAction.EXECUTE);
+                } else if (upperTank.isPresent()) {
+                    upperTank.ifPresent(upTank -> {
+                        activated = false;
+                        if (tank.getSpace() >= Config.aquaductFillPerTick) {
+                            tank.fill(upTank.drain(Config.aquaductFillPerTick, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
+                        }
+                    });
                 } else {
                     if (activated) {
                         FluidStack fluidStack = tank.drain(Config.aquaductUsePerTick, IFluidHandler.FluidAction.EXECUTE);

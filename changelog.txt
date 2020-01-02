@@ -1,3 +1,4 @@
+- aquaduct water can flow downward (aquaduct below is filled)
 - fixed missing saber-tooth loot table
 - fixed wood material blocks cannot be harvested by antler axe
 v1.0.2
