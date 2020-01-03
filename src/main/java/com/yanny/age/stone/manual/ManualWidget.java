@@ -1,11 +1,9 @@
 package com.yanny.age.stone.manual;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParseException;
+import com.google.gson.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
@@ -18,31 +16,40 @@ import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ManualWidget extends Widget {
+public class ManualWidget extends Widget implements IManual {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Gson GSON = new Gson();
 
-    private Map<Integer, PageWidget> pages = new HashMap<>();
-    private Map<String, Integer> links = new HashMap<>();
+    private final Map<Integer, PageWidget> pages = new HashMap<>();
+    private final Map<String, Integer> links = new HashMap<>();
+    private final Map<String, JsonElement> constants = new HashMap<>();
+
     private int currentPage = 0;
 
     public ManualWidget(ResourceLocation resource, int width, int height) {
+        JsonObject object;
+        IResourceManager manager = Minecraft.getInstance().getResourceManager();
+
         this.width = width - Utils.MARGIN * 2;
         this.height = height - Utils.MARGIN * 2;
-        JsonArray array;
 
-        try (
-                InputStreamReader inputstream = new InputStreamReader(Minecraft.getInstance().getResourceManager().getResource(resource).getInputStream());
-                Reader reader = new BufferedReader(inputstream)
-        ) {
-            array = JSONUtils.fromJson(GSON, reader, JsonArray.class);
+        try (InputStreamReader inputstream = new InputStreamReader(manager.getResource(resource).getInputStream()); Reader reader = new BufferedReader(inputstream)) {
+            object = JSONUtils.fromJson(GSON, reader, JsonObject.class);
         } catch (IllegalArgumentException | IOException | JsonParseException jsonparseexception) {
             LOGGER.error("Couldn't parse data file {} - {}", resource, jsonparseexception);
             return;
         }
 
-        if (array != null) {
+        if (object != null) {
             int page = 0;
+
+            JsonArray array = Utils.getArray(object, "content");
+
+            if (array == null) {
+                return;
+            }
+
+            loadConstants(constants, object);
 
             for (JsonElement element : array) {
                 if (!element.isJsonArray()) {
@@ -51,6 +58,23 @@ public class ManualWidget extends Widget {
 
                 pages.put(page, new PageWidget(this, element.getAsJsonArray(), page));
                 page++;
+            }
+        } else {
+            LOGGER.error("Couldn't parse data file {}", resource);
+        }
+    }
+
+    private void loadConstants(Map<String, JsonElement> constants, JsonObject object) {
+        JsonObject items = Utils.getObject(object, "constants");
+        if (items != null) {
+            for (Map.Entry<String, JsonElement> item : items.entrySet()) {
+                JsonElement element = item.getValue();
+
+                if (element.isJsonPrimitive()) {
+                    constants.put(item.getKey(), element);
+                } else {
+                    LOGGER.warn("Invalid element type in constants: {}", item.getKey());
+                }
             }
         }
     }
@@ -86,5 +110,10 @@ public class ManualWidget extends Widget {
 
     public void changePage(String key) {
         setCurrentPage(links.get(key));
+    }
+
+    @Override
+    public JsonElement getConstant(String key) {
+        return constants.get(key);
     }
 }

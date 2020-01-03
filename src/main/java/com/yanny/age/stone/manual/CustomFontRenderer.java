@@ -49,6 +49,10 @@ public class CustomFontRenderer {
         return Arrays.asList(this.wrapFormattedStringToWidth(str, wrapWidth).split("\n"));
     }
 
+    public int getWordWrappedHeight(String str, int maxLength) {
+        return 9 * this.listFormattedStringToWidth(str, maxLength).size();
+    }
+
     Font getFont() {
         try {
             Field f = ObfuscationReflectionHelper.findField(FontRenderer.class, "field_211127_e");
@@ -330,7 +334,7 @@ public class CustomFontRenderer {
         List<Link> list = new ArrayList<>();
         for(String s : listFormattedStringToWidth(str, Math.round(width / scale))) {
             analyseString(list, s, (float)x, (float)y);
-            y += Math.round(fontRenderer.FONT_HEIGHT * scale);
+            y += Math.ceil(fontRenderer.FONT_HEIGHT);
         }
         return list;
     }

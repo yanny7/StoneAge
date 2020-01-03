@@ -21,9 +21,9 @@ public abstract class Widget {
         height = DYNAMIC;
     }
 
-    public abstract void drawBackgroundLayer(Screen screen, int mx, int my);
+    public void drawBackgroundLayer(Screen screen, int mx, int my) {}
 
-    public abstract void render(Screen screen, int mx, int my);
+    public void render(Screen screen, int mx, int my) {}
 
     public boolean mouseClicked(int mx, int my, int key) {
         return false;
@@ -32,10 +32,6 @@ public abstract class Widget {
     public void mouseMoved(int mx, int my) {}
 
     public void keyTyped(char c, int code) {}
-
-    public void changePage(String key) {}
-
-    public void addLink(String key) {}
 
     public void setPos(int x, int y) {
         this.x = x;

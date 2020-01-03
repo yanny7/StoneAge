@@ -9,10 +9,10 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
-public class PageWidget extends Widget {
+public class PageWidget extends Widget implements IPage {
     private static final Logger LOGGER = LogManager.getLogger();
     private final List<Widget> widgets = new ArrayList<>();
-    private final ManualWidget manual;
+    private final IManual manual;
     private final int page;
 
     public PageWidget(ManualWidget manual, JsonArray array, int page) {
@@ -28,13 +28,13 @@ public class PageWidget extends Widget {
             }
 
             JsonObject object = element.getAsJsonObject();
-            String type = Utils.getString(object, "type", null, false);
+            String type = Utils.getString(manual, object, "type", null, false);
 
             if (type == null) {
                 continue;
             }
 
-            widgets.add(WidgetFactory.getWidget(type, this, object));
+            widgets.add(WidgetFactory.getWidget(type, object, this, manual));
         }
     }
 
@@ -78,10 +78,6 @@ public class PageWidget extends Widget {
             widget.setPos(x, pos);
             pos += widget.height;
         }
-    }
-
-    public void changePage(String key) {
-        manual.changePage(key);
     }
 
     public void addLink(String key) {

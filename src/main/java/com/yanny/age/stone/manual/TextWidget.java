@@ -10,7 +10,7 @@ import java.util.List;
 public class TextWidget extends Widget {
     public static final String TYPE = "text";
 
-    protected final Widget parent;
+    protected final IManual manual;
     protected final String text;
     protected final List<CustomFontRenderer.Link> links = new ArrayList<>();
     protected final CustomFontRenderer customFontRenderer;
@@ -20,18 +20,18 @@ public class TextWidget extends Widget {
     protected final int tmpWidth;
     protected final int tmpHeight;
 
-    public TextWidget(Widget parent, JsonObject object) {
-        this.parent = parent;
+    public TextWidget(JsonObject object, IPage page, IManual manual) {
+        this.manual = manual;
 
-        text = Utils.getString(object, "text", "<UNSET>", false);
-        scale = Utils.getReal(object, "scale", 1.0, true).floatValue();
-        color = Utils.getInt(object, "color", -1, true);
-        tmpWidth = Utils.getInt(object, "width", DYNAMIC, true);
-        tmpHeight = Utils.getInt(object, "height", DYNAMIC, true);
+        text = Utils.getString(manual, object, "text", "<UNSET>", false);
+        scale = Utils.getReal(manual, object, "scale", 1.0, true).floatValue();
+        color = Utils.getInt(manual, object, "color", -1, true);
+        tmpWidth = Utils.getInt(manual, object, "width", DYNAMIC, true);
+        tmpHeight = Utils.getInt(manual, object, "height", DYNAMIC, true);
 
-        String key = Utils.getString(object, "key", null, true);
+        String key = Utils.getString(manual, object, "key", null, true);
         if (key != null) {
-            parent.addLink(key);
+            page.addLink(key);
         }
 
         customFontRenderer = new CustomFontRenderer(mc.fontRenderer);
@@ -44,7 +44,7 @@ public class TextWidget extends Widget {
 
     @Override
     public int getMinHeight(int width) {
-        return Math.max(tmpHeight, Math.round(getTextHeight(width) * scale));
+        return Math.max(tmpHeight, Math.round(getTextHeight(Math.round(width)) * scale));
     }
 
     @Override
@@ -77,15 +77,10 @@ public class TextWidget extends Widget {
     }
 
     @Override
-    public void render(Screen screen, int mx, int my) {
-
-    }
-
-    @Override
     public boolean mouseClicked(int mx, int my, int key) {
         for (CustomFontRenderer.Link link : links) {
             if (link.inArea(x, y, mx, my, scale)) {
-                parent.changePage(link.key);
+                manual.changePage(link.key);
                 return true;
             }
         }
@@ -94,6 +89,6 @@ public class TextWidget extends Widget {
     }
 
     private int getTextHeight(int width) {
-        return mc.fontRenderer.getWordWrappedHeight(text, Math.round(width / scale));
+        return customFontRenderer.getWordWrappedHeight(text, Math.round(width / scale));
     }
 }

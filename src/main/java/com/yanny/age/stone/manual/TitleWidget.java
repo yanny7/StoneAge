@@ -13,16 +13,16 @@ public class TitleWidget extends Widget {
     protected final int tmpWidth;
     protected final int tmpHeight;
 
-    public TitleWidget(Widget parent, JsonObject object) {
-        text = Utils.getString(object, "text", "<UNSET>", false);
-        scale = Utils.getReal(object, "scale", 1.0, true).floatValue();
-        color = Utils.getInt(object, "color", -1, true);
-        tmpWidth = Utils.getInt(object, "width", DYNAMIC, true);
-        tmpHeight = Utils.getInt(object, "height", DYNAMIC, true);
+    public TitleWidget(JsonObject object, IPage page, IManual manual) {
+        text = Utils.getString(manual, object, "text", "<UNSET>", false);
+        scale = Utils.getReal(manual, object, "scale", 1.0, true).floatValue();
+        color = Utils.getInt(manual, object, "color", -1, true);
+        tmpWidth = Utils.getInt(manual, object, "width", DYNAMIC, true);
+        tmpHeight = Utils.getInt(manual, object, "height", DYNAMIC, true);
 
-        String key = Utils.getString(object, "key", null, true);
+        String key = Utils.getString(manual, object, "key", null, true);
         if (key != null) {
-            parent.addLink(key);
+            page.addLink(key);
         }
     }
 
@@ -43,10 +43,5 @@ public class TitleWidget extends Widget {
         GlStateManager.scalef(scale, scale, 1.0f);
         screen.drawCenteredString(mc.fontRenderer, text, Math.round((width / scale) / 2f), 0, color);
         GlStateManager.popMatrix();
-    }
-
-    @Override
-    public void render(Screen screen, int mx, int my) {
-
     }
 }

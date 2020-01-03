@@ -25,13 +25,15 @@ public class ItemWidget extends Widget {
     protected final List<String> text;
     protected final int tmpWidth;
     protected final int tmpHeight;
+    protected final int margin;
 
-    public ItemWidget(Widget parent, JsonObject object) {
-        scale = Utils.getReal(object, "scale", 1.0, true).floatValue();
-        tmpWidth = Utils.getInt(object, "width", DYNAMIC, true);
-        tmpHeight = Utils.getInt(object, "height", DYNAMIC, true);
+    public ItemWidget(JsonObject object, IPage page, IManual manual) {
+        scale = Utils.getReal(manual, object, "scale", 1.0, true).floatValue();
+        tmpWidth = Utils.getInt(manual, object, "width", DYNAMIC, true);
+        tmpHeight = Utils.getInt(manual, object, "height", DYNAMIC, true);
+        margin = Utils.getInt(manual, object, "margin", 0, true);
 
-        String name = Utils.getString(object, "path", "minecraft:stone", false);
+        String name = Utils.getString(manual, object, "path", "minecraft:stone", false);
         item = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(name)));
 
         text = Lists.newArrayList();
@@ -43,12 +45,12 @@ public class ItemWidget extends Widget {
 
     @Override
     public int getMinWidth(int height) {
-        return Math.max(tmpWidth, Math.round(ITEM_WIDTH * scale));
+        return Math.max(tmpWidth, Math.round(ITEM_WIDTH * scale)) + (2 * margin);
     }
 
     @Override
     public int getMinHeight(int width) {
-        return Math.max(tmpHeight, Math.round(ITEM_WIDTH * scale));
+        return Math.max(tmpHeight, Math.round(ITEM_WIDTH * scale)) + (2 * margin);
     }
 
     @Override
@@ -56,7 +58,7 @@ public class ItemWidget extends Widget {
         GlStateManager.pushTextureAttributes();
         GlStateManager.pushLightingAttributes();
         GlStateManager.pushMatrix();
-        GlStateManager.translatef(x, y, 0.0f);
+        GlStateManager.translatef(x + (width - ITEM_WIDTH - margin) / 2f, y + (height - ITEM_WIDTH - margin) / 2f, 0.0f);
         GlStateManager.scalef(scale, scale, 1.0f);
         GlStateManager.enableRescaleNormal();
         RenderHelper.enableGUIStandardItemLighting();

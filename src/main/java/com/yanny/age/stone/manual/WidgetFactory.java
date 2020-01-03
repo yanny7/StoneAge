@@ -4,10 +4,9 @@ import com.google.gson.JsonObject;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.BiFunction;
 
 class WidgetFactory {
-    private static final Map<String, BiFunction<Widget, JsonObject, Widget>> FACTORY = new HashMap<>();
+    private static final Map<String, FactoryFunction<JsonObject, IPage, IManual, Widget>> FACTORY = new HashMap<>();
 
     static {
         FACTORY.put(TextWidget.TYPE, TextWidget::new);
@@ -17,7 +16,11 @@ class WidgetFactory {
         FACTORY.put(VerticalLayoutWidget.TYPE, VerticalLayoutWidget::new);
     }
 
-    static Widget getWidget(String name, Widget parent, JsonObject object) {
-        return FACTORY.get(name).apply(parent, object);
+    static Widget getWidget(String name, JsonObject object, IPage page, IManual manual) {
+        return FACTORY.get(name).apply(object, page, manual);
+    }
+
+    interface FactoryFunction<A, B, C, R> {
+        R apply(A a, B b, C c);
     }
 }

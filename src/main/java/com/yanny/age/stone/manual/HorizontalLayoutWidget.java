@@ -15,11 +15,8 @@ public class HorizontalLayoutWidget extends Widget {
 
     private static final Logger LOGGER = LogManager.getLogger();
     private final List<Widget> widgets = new ArrayList<>();
-    private final Widget parent;
 
-    HorizontalLayoutWidget(Widget parent, JsonObject object) {
-        this.parent = parent;
-
+    HorizontalLayoutWidget(JsonObject object, IPage page, IManual manual) {
         JsonArray array = Utils.getArray(object, "content");
         if (array == null) {
             return;
@@ -32,13 +29,13 @@ public class HorizontalLayoutWidget extends Widget {
             }
 
             JsonObject obj = element.getAsJsonObject();
-            String type = Utils.getString(obj, "type", null, false);
+            String type = Utils.getString(manual, obj, "type", null, false);
 
             if (type == null) {
                 continue;
             }
 
-            Widget widget = WidgetFactory.getWidget(type, this, obj);
+            Widget widget = WidgetFactory.getWidget(type, obj, page, manual);
             widgets.add(widget);
         }
     }
@@ -77,11 +74,16 @@ public class HorizontalLayoutWidget extends Widget {
     @Override
     public int getMinHeight(int width) {
         int height = DYNAMIC;
+        int totalWidth = 0;
+        int oldWidth = this.width;
 
+        this.width = width;
         Utils.resizeHLayout(this, widgets);
+        this.width = oldWidth;
 
         for (Widget widget : widgets) {
-            height = Math.max(height, widget.getMinHeight(width));
+            height = Math.max(height, widget.getMinHeight(width - totalWidth));
+            totalWidth += widget.width;
         }
 
         return height;
@@ -96,13 +98,5 @@ public class HorizontalLayoutWidget extends Widget {
         }
 
         return false;
-    }
-
-    public void changePage(String key) {
-        parent.changePage(key);
-    }
-
-    public void addLink(String key) {
-        parent.addLink(key);
     }
 }

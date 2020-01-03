@@ -15,11 +15,8 @@ public class VerticalLayoutWidget extends Widget {
 
     private static final Logger LOGGER = LogManager.getLogger();
     private final List<Widget> widgets = new ArrayList<>();
-    private final Widget parent;
 
-    VerticalLayoutWidget(Widget parent, JsonObject object) {
-        this.parent = parent;
-
+    VerticalLayoutWidget(JsonObject object, IPage page, IManual manual) {
         JsonArray array = Utils.getArray(object, "content");
         if (array == null) {
             return;
@@ -32,13 +29,13 @@ public class VerticalLayoutWidget extends Widget {
             }
 
             JsonObject obj = element.getAsJsonObject();
-            String type = Utils.getString(obj, "type", null, false);
+            String type = Utils.getString(manual, obj, "type", null, false);
 
             if (type == null) {
                 continue;
             }
 
-            Widget widget = WidgetFactory.getWidget(type, this, obj);
+            Widget widget = WidgetFactory.getWidget(type, obj, page, manual);
             widgets.add(widget);
         }
     }
@@ -94,13 +91,5 @@ public class VerticalLayoutWidget extends Widget {
         }
 
         return false;
-    }
-
-    public void changePage(String key) {
-        parent.changePage(key);
-    }
-
-    public void addLink(String key) {
-        parent.addLink(key);
     }
 }
