@@ -28,12 +28,12 @@ public class ItemWidget extends Widget {
     protected final int margin;
 
     public ItemWidget(JsonObject object, IPage page, IManual manual) {
-        scale = Utils.getReal(manual, object, "scale", 1.0, true).floatValue();
-        tmpWidth = Utils.getInt(manual, object, "width", DYNAMIC, true);
-        tmpHeight = Utils.getInt(manual, object, "height", DYNAMIC, true);
-        margin = Utils.getInt(manual, object, "margin", 0, true);
+        scale = Utils.get(Float.class, manual, object, "scale", 1.0f, true);
+        tmpWidth = Utils.get(Integer.class, manual, object, "width", DYNAMIC, true);
+        tmpHeight = Utils.get(Integer.class, manual, object, "height", DYNAMIC, true);
+        margin = Utils.get(Integer.class, manual, object, "margin", 0, true);
 
-        String name = Utils.getString(manual, object, "path", "minecraft:stone", false);
+        String name = Utils.get(String.class, manual, object, "path", "minecraft:stone", false);
         item = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(name)));
 
         text = Lists.newArrayList();

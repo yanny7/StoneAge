@@ -20,16 +20,16 @@ public class ImageWidget extends Widget {
     protected final int margin;
 
     public ImageWidget(JsonObject object, IPage page, IManual manual) {
-        scale = Utils.getReal(manual, object, "scale", 1.0, true).floatValue();
-        tmpWidth = Utils.getInt(manual, object, "width", 16, false);
-        tmpHeight = Utils.getInt(manual, object, "height", 16, false);
-        imgWidth = Utils.getInt(manual, object, "w", 16, false);
-        imgHeight = Utils.getInt(manual, object, "h", 16, false);
-        u = Utils.getInt(manual, object, "u", 0, true);
-        v = Utils.getInt(manual, object, "v", 0, true);
-        margin = Utils.getInt(manual, object, "margin", 0, true);
+        scale = Utils.get(Float.class, manual, object, "scale", 1.0f, true);
+        tmpWidth = Utils.get(Integer.class, manual, object, "width", 16, false);
+        tmpHeight = Utils.get(Integer.class, manual, object, "height", 16, false);
+        imgWidth = Utils.get(Integer.class, manual, object, "w", 16, false);
+        imgHeight = Utils.get(Integer.class, manual, object, "h", 16, false);
+        u = Utils.get(Integer.class, manual, object, "u", 0, true);
+        v = Utils.get(Integer.class, manual, object, "v", 0, true);
+        margin = Utils.get(Integer.class, manual, object, "margin", 0, true);
 
-        imgRes = new ResourceLocation(Utils.getString(manual, object, "path", "minecraft:textures/block/stone.png", false));
+        imgRes = new ResourceLocation(Utils.get(String.class, manual, object, "path", "minecraft:textures/block/stone.png", false));
     }
 
     @Override

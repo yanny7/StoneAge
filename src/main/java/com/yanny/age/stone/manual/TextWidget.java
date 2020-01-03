@@ -23,11 +23,11 @@ public class TextWidget extends Widget {
     public TextWidget(JsonObject object, IPage page, IManual manual) {
         this.manual = manual;
 
-        text = Utils.getString(manual, object, "text", "<UNSET>", false);
-        scale = Utils.getReal(manual, object, "scale", 1.0, true).floatValue();
-        color = Utils.getInt(manual, object, "color", -1, true);
-        tmpWidth = Utils.getInt(manual, object, "width", DYNAMIC, true);
-        tmpHeight = Utils.getInt(manual, object, "height", DYNAMIC, true);
+        text = Utils.get(String.class, manual, object, "text", "<UNSET>", false);
+        scale = Utils.get(Float.class, manual, object, "scale", 1.0f, true);
+        color = Utils.get(Integer.class, manual, object, "color", -1, true);
+        tmpWidth = Utils.get(Integer.class, manual, object, "width", DYNAMIC, true);
+        tmpHeight = Utils.get(Integer.class, manual, object, "height", DYNAMIC, true);
 
         customFontRenderer = new CustomFontRenderer(mc.fontRenderer);
     }

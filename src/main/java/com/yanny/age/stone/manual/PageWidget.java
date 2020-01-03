@@ -27,7 +27,7 @@ public class PageWidget extends Widget implements IPage {
             return;
         }
 
-        String key = Utils.getString(manual, object, "key", null, false);
+        String key = Utils.get(String.class, manual, object, "key", null, false);
         if (key != null) {
             manual.addLink(key, page);
         }
@@ -39,7 +39,7 @@ public class PageWidget extends Widget implements IPage {
             }
 
             JsonObject obj = element.getAsJsonObject();
-            String type = Utils.getString(manual, obj, "type", null, false);
+            String type = Utils.get(String.class, manual, obj, "type", null, false);
 
             if (type == null) {
                 continue;

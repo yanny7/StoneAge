@@ -29,7 +29,7 @@ public class VerticalLayoutWidget extends Widget {
             }
 
             JsonObject obj = element.getAsJsonObject();
-            String type = Utils.getString(manual, obj, "type", null, false);
+            String type = Utils.get(String.class, manual, obj, "type", null, false);
 
             if (type == null) {
                 continue;
