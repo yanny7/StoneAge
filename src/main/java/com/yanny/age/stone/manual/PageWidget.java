@@ -15,11 +15,22 @@ public class PageWidget extends Widget implements IPage {
     private final IManual manual;
     private final int page;
 
-    public PageWidget(ManualWidget manual, JsonArray array, int page) {
+    public PageWidget(ManualWidget manual, JsonObject object, int page) {
         this.width = manual.width;
         this.height = manual.height;
         this.manual = manual;
         this.page = page;
+
+        JsonArray array = Utils.getArray(object, "content");
+        if (array == null) {
+            LOGGER.warn("Element content does not exists or not an array!");
+            return;
+        }
+
+        String key = Utils.getString(manual, object, "key", null, false);
+        if (key != null) {
+            manual.addLink(key, page);
+        }
 
         for (JsonElement element : array) {
             if (!element.isJsonObject()) {
@@ -27,14 +38,14 @@ public class PageWidget extends Widget implements IPage {
                 continue;
             }
 
-            JsonObject object = element.getAsJsonObject();
-            String type = Utils.getString(manual, object, "type", null, false);
+            JsonObject obj = element.getAsJsonObject();
+            String type = Utils.getString(manual, obj, "type", null, false);
 
             if (type == null) {
                 continue;
             }
 
-            widgets.add(WidgetFactory.getWidget(type, object, this, manual));
+            widgets.add(WidgetFactory.getWidget(type, obj, this, manual));
         }
     }
 

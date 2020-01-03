@@ -29,11 +29,6 @@ public class TextWidget extends Widget {
         tmpWidth = Utils.getInt(manual, object, "width", DYNAMIC, true);
         tmpHeight = Utils.getInt(manual, object, "height", DYNAMIC, true);
 
-        String key = Utils.getString(manual, object, "key", null, true);
-        if (key != null) {
-            page.addLink(key);
-        }
-
         customFontRenderer = new CustomFontRenderer(mc.fontRenderer);
     }
 

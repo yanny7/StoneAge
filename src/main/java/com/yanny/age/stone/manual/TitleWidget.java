@@ -19,11 +19,6 @@ public class TitleWidget extends Widget {
         color = Utils.getInt(manual, object, "color", -1, true);
         tmpWidth = Utils.getInt(manual, object, "width", DYNAMIC, true);
         tmpHeight = Utils.getInt(manual, object, "height", DYNAMIC, true);
-
-        String key = Utils.getString(manual, object, "key", null, true);
-        if (key != null) {
-            page.addLink(key);
-        }
     }
 
     @Override

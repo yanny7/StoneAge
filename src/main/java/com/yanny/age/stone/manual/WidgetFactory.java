@@ -14,6 +14,7 @@ class WidgetFactory {
         FACTORY.put(ItemWidget.TYPE, ItemWidget::new);
         FACTORY.put(HorizontalLayoutWidget.TYPE, HorizontalLayoutWidget::new);
         FACTORY.put(VerticalLayoutWidget.TYPE, VerticalLayoutWidget::new);
+        FACTORY.put(ImageWidget.TYPE, ImageWidget::new);
     }
 
     static Widget getWidget(String name, JsonObject object, IPage page, IManual manual) {

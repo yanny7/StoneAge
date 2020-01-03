@@ -1,106 +1,124 @@
 {
   "constants": {
-    "WHITE": -1
+    "WHITE": -1,
+    "RED": 16711680,
+    "GREEN": 65280,
+    "BLUE": 255
   },
   "content":
   [
-    [
-      {
-        "type": "title",
-        "text": "Stone Age mod",
-        "scale": 1.0
-      },
-      {
-        "type": "text",
-        "text": "Hello world! §plink Hello world! Hell Hello world! Hello world!§ptrest Hello world! Hell Hello world!",
-        "scale": 0.5,
-        "color": "WHITE",
-        "key": "test"
-      },
-      {
-        "type": "hlayout",
-        "content": [
-          {
-            "type": "item",
-            "path": "minecraft:saddle",
-            "margin": 1
-          },
-          {
-            "type": "text",
-            "text": "Hello world! §plink Hello world! Hell Hello world! Hello world!§ptrest Hello world! Hell Hello world!",
-            "scale": 0.5,
-            "color": "WHITE"
-          }
-        ]
-      },
-      {
-        "type": "hlayout",
-        "content": [
-          {
-            "type": "item",
-            "path": "minecraft:beacon",
-            "margin": 1
-          },
-          {
-            "type": "text",
-            "text": "Hello world! §plink Hello world! Hell Hello world! Hello world!§ptrest Hello world! Hell Hello world!",
-            "scale": 0.5,
-            "color": "WHITE"
-          }
-        ]
-      },
-      {
-        "type": "hlayout",
-        "content": [
-          {
-            "type": "item",
-            "path": "minecraft:diamond_hoe",
-            "margin": 1
-          },
-          {
-            "type": "text",
-            "text": "Hello world! §plink Hello world! Hell Hello world! Hello world!§ptrest Hello world! Hell Hello world!",
-            "scale": 0.5,
-            "color": "WHITE"
-          }
-        ]
-      },
-      {
-        "type": "hlayout",
-        "content": [
-          {
-            "type": "item",
-            "path": "minecraft:iron_chestplate",
-            "margin": 1
-          },
-          {
-            "type": "text",
-            "text": "Hello world! §plink Hello world! Hell Hello world! Hello world!§ptrest Hello world! Hell Hello world!",
-            "scale": 0.5,
-            "color": "WHITE"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "scale": 0.5,
-        "color": "WHITE"
-      }
-    ],
-    [
-      {
-        "type": "title",
-        "text": "Page 2",
-        "scale": 1.0
-      },
-      {
-        "type": "text",
-        "text": "Another page §ptest or this link?§p bajaja baja baja lkjlfaksd afd lsd flasjd fsldfkj alsdkfj lasdf",
-        "scale": 1.0,
-        "color": 16711935,
-        "key": "link"
-      }
-    ]
+    {
+      "key": "test",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Stone Age mod",
+          "scale": 1.0
+        },
+        {
+          "type": "text",
+          "text": "Hello world! §plink Hello world! Hell Hello world! Hello world!§ptrest Hello world! Hell Hello world!",
+          "scale": 0.5,
+          "color": "WHITE"
+        },
+        {
+          "type": "hlayout",
+          "content": [
+            {
+              "type": "item",
+              "path": "minecraft:saddle",
+              "margin": 1
+            },
+            {
+              "type": "text",
+              "text": "Hello world! §plink Hello world! Hell Hello world! Hello world!§ptrest Hello world! Hell Hello world!",
+              "scale": 0.5,
+              "color": "WHITE"
+            }
+          ]
+        },
+        {
+          "type": "hlayout",
+          "content": [
+            {
+              "type": "item",
+              "path": "minecraft:beacon",
+              "margin": 1
+            },
+            {
+              "type": "text",
+              "text": "Hello world! §plink Hello world! Hell Hello world! Hello world!§ptrest Hello world! Hell Hello world!",
+              "scale": 0.5,
+              "color": "WHITE"
+            }
+          ]
+        },
+        {
+          "type": "hlayout",
+          "content": [
+            {
+              "type": "item",
+              "path": "minecraft:diamond_hoe",
+              "margin": 1
+            },
+            {
+              "type": "text",
+              "text": "Hello world! §plink Hello world! Hell Hello world! Hello world!§ptrest Hello world! Hell Hello world!",
+              "scale": 0.5,
+              "color": "WHITE"
+            }
+          ]
+        },
+        {
+          "type": "hlayout",
+          "content": [
+            {
+              "type": "item",
+              "path": "minecraft:iron_chestplate",
+              "margin": 1
+            },
+            {
+              "type": "text",
+              "text": "Hello world! §plink Hello world! Hell Hello world! Hello world!§ptrest Hello world! Hell Hello world!",
+              "scale": 0.5,
+              "color": "WHITE"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "scale": 0.5,
+          "color": "WHITE"
+        },
+        {
+          "type": "image",
+          "width": 32,
+          "height": 16,
+          "w": 16,
+          "h": 16,
+          "path": "stone_age:textures/block/flint_workbench_side.png"
+        }
+      ]
+    },
+    {
+      "key": "link",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Page 2",
+          "scale": 1.0,
+          "color": "RED"
+        },
+        {
+          "type": "text",
+          "text": "Another page §ptest or this link?§p bajaja baja baja lkjlfaksd afd lsd flasjd fsldfkj alsdkfj lasdf",
+          "scale": 1.0,
+          "color": "GREEN"
+        }
+      ]
+    }
   ]
 }

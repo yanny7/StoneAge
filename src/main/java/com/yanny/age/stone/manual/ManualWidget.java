@@ -52,11 +52,11 @@ public class ManualWidget extends Widget implements IManual {
             loadConstants(constants, object);
 
             for (JsonElement element : array) {
-                if (!element.isJsonArray()) {
-                    LOGGER.warn("Element {} is not an array", element.toString());
+                if (!element.isJsonObject()) {
+                    LOGGER.warn("Element {} is not an object", element.toString());
                 }
 
-                pages.put(page, new PageWidget(this, element.getAsJsonArray(), page));
+                pages.put(page, new PageWidget(this, element.getAsJsonObject(), page));
                 page++;
             }
         } else {
