@@ -22,7 +22,7 @@ public class ImageWidget extends Widget {
     protected final int margin;
 
     public ImageWidget(JsonObject object, IPage page, IManual manual) {
-        ConfigHolder holder = new ConfigHolder(SCALE, WIDTH, HEIGHT, ITEM, IMG_WIDTH, IMG_HEIGHT, IMG_U, IMG_V, IMAGE);
+        ConfigHolder holder = new ConfigHolder(SCALE, WIDTH, HEIGHT, IMG_WIDTH, IMG_HEIGHT, IMG_U, IMG_V, IMAGE);
         holder.Load(object, manual);
 
         scale = holder.getValue(SCALE);
@@ -32,10 +32,10 @@ public class ImageWidget extends Widget {
         imgHeight = holder.getValue(IMG_HEIGHT);
         u = holder.getValue(IMG_U);
         v = holder.getValue(IMG_V);
+        imgRes = holder.getValue(IMAGE);
 
         margin = Utils.get(Integer.class, manual, object, "margin", 0, true);
 
-        imgRes = new ResourceLocation(holder.getValue(IMAGE));
     }
 
     @Override

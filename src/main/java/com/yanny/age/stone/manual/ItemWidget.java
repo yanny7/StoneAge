@@ -22,13 +22,12 @@ public class ItemWidget extends Widget {
     public static final String TYPE = "item";
     private static final int ITEM_WIDTH = 16;
 
-    protected final ItemStack item;
-
     protected final float scale;
     protected final List<String> text;
     protected final int tmpWidth;
     protected final int tmpHeight;
     protected final int margin;
+    protected final ItemStack item;
 
     public ItemWidget(JsonObject object, IPage page, IManual manual) {
         ConfigHolder holder = new ConfigHolder(SCALE, WIDTH, HEIGHT, ITEM);
@@ -38,9 +37,7 @@ public class ItemWidget extends Widget {
         tmpWidth = holder.getValue(WIDTH);
         tmpHeight = holder.getValue(HEIGHT);
         margin = Utils.get(Integer.class, manual, object, "margin", 0, true);
-
-        String name = holder.getValue(ITEM);
-        item = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(name)));
+        item = holder.getValue(ITEM);
 
         text = Lists.newArrayList();
         List<ITextComponent> list = item.getTooltip(ExampleMod.proxy.getClientPlayer(), ITooltipFlag.TooltipFlags.NORMAL);

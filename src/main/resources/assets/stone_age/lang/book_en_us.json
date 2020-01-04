@@ -27,7 +27,7 @@
           "content": [
             {
               "type": "item",
-              "path": "minecraft:saddle",
+              "item": "minecraft:saddle",
               "margin": 1
             },
             {
@@ -43,7 +43,7 @@
           "content": [
             {
               "type": "item",
-              "path": "minecraft:beacon",
+              "item": "minecraft:beacon",
               "margin": 1
             },
             {
@@ -59,7 +59,7 @@
           "content": [
             {
               "type": "item",
-              "path": "minecraft:diamond_hoe",
+              "item": "minecraft:diamond_hoe",
               "margin": 1
             },
             {
@@ -75,7 +75,7 @@
           "content": [
             {
               "type": "item",
-              "path": "minecraft:iron_chestplate",
+              "item": "minecraft:iron_chestplate",
               "margin": 1
             },
             {
@@ -98,7 +98,7 @@
           "height": 16,
           "w": 16,
           "h": 16,
-          "path": "stone_age:textures/block/flint_workbench_side.png"
+          "image": "stone_age:textures/block/flint_workbench_side.png"
         }
       ]
     },
