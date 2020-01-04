@@ -7,6 +7,8 @@ import com.google.gson.JsonPrimitive;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +34,7 @@ public class Utils {
         GET.put(Float.class, JsonPrimitive::getAsFloat);
     }
 
-    public static <T> T get(Class<T> t, JsonElement element, T defaultValue) {
+    public static <T> T get(Class<?> t, @Nonnull JsonElement element, T defaultValue) {
         if (element.isJsonPrimitive() && IS.get(t).apply(element.getAsJsonPrimitive())) {
             //noinspection unchecked
             return (T) GET.get(t).apply(element.getAsJsonPrimitive());
@@ -42,7 +44,7 @@ public class Utils {
         }
     }
 
-    public static <T> T get(Class<T> t, IManual manual, JsonObject object, String field, T defaultValue, boolean optional) {
+    public static <T> T get(Class<?> t, IManual manual, @Nonnull JsonObject object, String field, Object defaultValue, boolean optional) {
         if (object.has(field)) {
             if ( object.get(field).isJsonPrimitive()) {
                 if (String.class.isAssignableFrom(t)) {
@@ -52,7 +54,15 @@ public class Utils {
                     }
                 } else {
                     if (object.getAsJsonPrimitive(field).isString()) {
-                        return get(t, manual.getConstant(object.getAsJsonPrimitive(field).getAsString()), defaultValue);
+                        JsonElement constant = manual.getConstant(object.getAsJsonPrimitive(field).getAsString());
+
+                        if (constant == null) {
+                            LOGGER.warn("Constant '{}' not defined!", field);
+                            //noinspection unchecked
+                            return (T) defaultValue;
+                        }
+                        //noinspection unchecked
+                        return (T) get(t, constant, defaultValue);
                     } else if (IS.get(t).apply(object.getAsJsonPrimitive(field))) {
                         //noinspection unchecked
                         return (T) GET.get(t).apply(object.getAsJsonPrimitive(field));
@@ -63,14 +73,17 @@ public class Utils {
             if (!optional) {
                 LOGGER.warn("Element '{}' not found", field);
             }
-            return defaultValue;
+            //noinspection unchecked
+            return (T) defaultValue;
         }
 
         LOGGER.warn("Invalid element type: '{}'", field);
-        return defaultValue;
+        //noinspection unchecked
+        return (T) defaultValue;
     }
 
-    public static JsonObject getObject(JsonObject object, String field) {
+    @Nullable
+    public static JsonObject getObject(@Nonnull JsonObject object, String field) {
         if (!object.has(field) || !object.get(field).isJsonObject()) {
             LOGGER.warn("Element '{}' not found or not an object", field);
             return null;
@@ -79,7 +92,8 @@ public class Utils {
         return object.getAsJsonObject(field);
     }
 
-    public static JsonArray getArray(JsonObject object, String field) {
+    @Nullable
+    public static JsonArray getArray(@Nonnull JsonObject object, String field) {
         if (!object.has(field) || !object.get(field).isJsonArray()) {
             LOGGER.warn("Element '{}' not found or not an array", field);
             return null;
@@ -88,7 +102,7 @@ public class Utils {
         return object.getAsJsonArray(field);
     }
 
-    public static void resizeHLayout(Widget parent, List<Widget> widgets) {
+    public static void resizeHLayout(Widget parent, @Nonnull List<Widget> widgets) {
         int width = 0;
         int dCount = 0;
 
@@ -134,7 +148,7 @@ public class Utils {
         }
     }
 
-    public static void resizeVLayout(Widget parent, List<Widget> widgets) {
+    public static void resizeVLayout(Widget parent, @Nonnull List<Widget> widgets) {
         int height = 0;
         int dCount = 0;
 

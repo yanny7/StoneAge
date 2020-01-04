@@ -15,6 +15,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 
+import static com.yanny.age.stone.manual.ConfigHolder.*;
+import static com.yanny.age.stone.manual.ConfigHolder.HEIGHT;
+
 public class ItemWidget extends Widget {
     public static final String TYPE = "item";
     private static final int ITEM_WIDTH = 16;
@@ -28,12 +31,15 @@ public class ItemWidget extends Widget {
     protected final int margin;
 
     public ItemWidget(JsonObject object, IPage page, IManual manual) {
-        scale = Utils.get(Float.class, manual, object, "scale", 1.0f, true);
-        tmpWidth = Utils.get(Integer.class, manual, object, "width", DYNAMIC, true);
-        tmpHeight = Utils.get(Integer.class, manual, object, "height", DYNAMIC, true);
+        ConfigHolder holder = new ConfigHolder(SCALE, WIDTH, HEIGHT, ITEM);
+        holder.Load(object, manual);
+
+        scale = holder.getValue(SCALE);
+        tmpWidth = holder.getValue(WIDTH);
+        tmpHeight = holder.getValue(HEIGHT);
         margin = Utils.get(Integer.class, manual, object, "margin", 0, true);
 
-        String name = Utils.get(String.class, manual, object, "path", "minecraft:stone", false);
+        String name = holder.getValue(ITEM);
         item = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(name)));
 
         text = Lists.newArrayList();

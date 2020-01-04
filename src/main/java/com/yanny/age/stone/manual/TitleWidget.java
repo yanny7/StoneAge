@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.gui.screen.Screen;
 
+import static com.yanny.age.stone.manual.ConfigHolder.*;
+
 public class TitleWidget extends Widget {
     public static final String TYPE = "title";
 
@@ -14,11 +16,14 @@ public class TitleWidget extends Widget {
     protected final int tmpHeight;
 
     public TitleWidget(JsonObject object, IPage page, IManual manual) {
-        text = Utils.get(String.class, manual, object, "text", "<UNSET>", false);
-        scale = Utils.get(Float.class, manual, object, "scale", 1.0f, true);
-        color = Utils.get(Integer.class, manual, object, "color", -1, true);
-        tmpWidth = Utils.get(Integer.class, manual, object, "width", DYNAMIC, true);
-        tmpHeight = Utils.get(Integer.class, manual, object, "height", DYNAMIC, true);
+        ConfigHolder holder = new ConfigHolder(TEXT, SCALE, COLOR, WIDTH, HEIGHT);
+        holder.Load(object, manual);
+
+        text = holder.getValue(TEXT);
+        color = holder.getValue(COLOR);
+        scale = holder.getValue(SCALE);
+        tmpWidth = holder.getValue(WIDTH);
+        tmpHeight = holder.getValue(HEIGHT);
     }
 
     @Override

@@ -7,6 +7,9 @@ import net.minecraft.client.gui.screen.Screen;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.yanny.age.stone.manual.ConfigHolder.*;
+import static com.yanny.age.stone.manual.ConfigHolder.HEIGHT;
+
 public class TextWidget extends Widget {
     public static final String TYPE = "text";
 
@@ -21,13 +24,15 @@ public class TextWidget extends Widget {
     protected final int tmpHeight;
 
     public TextWidget(JsonObject object, IPage page, IManual manual) {
+        ConfigHolder holder = new ConfigHolder(TEXT, SCALE, COLOR, WIDTH, HEIGHT);
+        holder.Load(object, manual);
         this.manual = manual;
 
-        text = Utils.get(String.class, manual, object, "text", "<UNSET>", false);
-        scale = Utils.get(Float.class, manual, object, "scale", 1.0f, true);
-        color = Utils.get(Integer.class, manual, object, "color", -1, true);
-        tmpWidth = Utils.get(Integer.class, manual, object, "width", DYNAMIC, true);
-        tmpHeight = Utils.get(Integer.class, manual, object, "height", DYNAMIC, true);
+        text = holder.getValue(TEXT);
+        color = holder.getValue(COLOR);
+        scale = holder.getValue(SCALE);
+        tmpWidth = holder.getValue(WIDTH);
+        tmpHeight = holder.getValue(HEIGHT);
 
         customFontRenderer = new CustomFontRenderer(mc.fontRenderer);
     }

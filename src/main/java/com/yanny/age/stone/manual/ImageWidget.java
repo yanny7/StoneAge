@@ -6,6 +6,8 @@ import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
 
+import static com.yanny.age.stone.manual.ConfigHolder.*;
+
 public class ImageWidget extends Widget {
     public static final String TYPE = "image";
 
@@ -20,16 +22,20 @@ public class ImageWidget extends Widget {
     protected final int margin;
 
     public ImageWidget(JsonObject object, IPage page, IManual manual) {
-        scale = Utils.get(Float.class, manual, object, "scale", 1.0f, true);
-        tmpWidth = Utils.get(Integer.class, manual, object, "width", 16, false);
-        tmpHeight = Utils.get(Integer.class, manual, object, "height", 16, false);
-        imgWidth = Utils.get(Integer.class, manual, object, "w", 16, false);
-        imgHeight = Utils.get(Integer.class, manual, object, "h", 16, false);
-        u = Utils.get(Integer.class, manual, object, "u", 0, true);
-        v = Utils.get(Integer.class, manual, object, "v", 0, true);
+        ConfigHolder holder = new ConfigHolder(SCALE, WIDTH, HEIGHT, ITEM, IMG_WIDTH, IMG_HEIGHT, IMG_U, IMG_V, IMAGE);
+        holder.Load(object, manual);
+
+        scale = holder.getValue(SCALE);
+        tmpWidth = holder.getValue(WIDTH);
+        tmpHeight = holder.getValue(HEIGHT);
+        imgWidth = holder.getValue(IMG_WIDTH);
+        imgHeight = holder.getValue(IMG_HEIGHT);
+        u = holder.getValue(IMG_U);
+        v = holder.getValue(IMG_V);
+
         margin = Utils.get(Integer.class, manual, object, "margin", 0, true);
 
-        imgRes = new ResourceLocation(Utils.get(String.class, manual, object, "path", "minecraft:textures/block/stone.png", false));
+        imgRes = new ResourceLocation(holder.getValue(IMAGE));
     }
 
     @Override
