@@ -66,6 +66,7 @@ public class ManualWidget extends Widget implements IManual {
 
     private void loadConstants(Map<String, JsonElement> constants, JsonObject object) {
         JsonObject items = Utils.getObject(object, "constants");
+
         if (items != null) {
             for (Map.Entry<String, JsonElement> item : items.entrySet()) {
                 JsonElement element = item.getValue();

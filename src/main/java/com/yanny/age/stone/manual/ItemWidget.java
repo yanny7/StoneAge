@@ -8,10 +8,8 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.fml.client.config.GuiUtils;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 
@@ -24,20 +22,22 @@ public class ItemWidget extends Widget {
 
     protected final float scale;
     protected final List<String> text;
-    protected final int tmpWidth;
-    protected final int tmpHeight;
-    protected final int margin;
     protected final ItemStack item;
+    protected final int margin_top;
+    protected final int margin_left;
+    protected final int margin_bottom;
+    protected final int margin_right;
 
     public ItemWidget(JsonObject object, IPage page, IManual manual) {
-        ConfigHolder holder = new ConfigHolder(SCALE, WIDTH, HEIGHT, ITEM);
-        holder.Load(object, manual);
+        ConfigHolder holder = new ConfigHolder(SCALE, WIDTH, HEIGHT, ITEM, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT);
+        holder.loadConfig(object, manual);
 
         scale = holder.getValue(SCALE);
-        tmpWidth = holder.getValue(WIDTH);
-        tmpHeight = holder.getValue(HEIGHT);
-        margin = Utils.get(Integer.class, manual, object, "margin", 0, true);
         item = holder.getValue(ITEM);
+        margin_top = holder.getValue(MARGIN_TOP);
+        margin_left = holder.getValue(MARGIN_LEFT);
+        margin_bottom = holder.getValue(MARGIN_BOTTOM);
+        margin_right = holder.getValue(MARGIN_RIGHT);
 
         text = Lists.newArrayList();
         List<ITextComponent> list = item.getTooltip(ExampleMod.proxy.getClientPlayer(), ITooltipFlag.TooltipFlags.NORMAL);
@@ -48,12 +48,12 @@ public class ItemWidget extends Widget {
 
     @Override
     public int getMinWidth(int height) {
-        return Math.max(tmpWidth, Math.round(ITEM_WIDTH * scale)) + (2 * margin);
+        return Math.round(ITEM_WIDTH * scale) + margin_left + margin_right;
     }
 
     @Override
     public int getMinHeight(int width) {
-        return Math.max(tmpHeight, Math.round(ITEM_WIDTH * scale)) + (2 * margin);
+        return Math.round(ITEM_WIDTH * scale) + margin_top + margin_bottom;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class ItemWidget extends Widget {
         GlStateManager.pushTextureAttributes();
         GlStateManager.pushLightingAttributes();
         GlStateManager.pushMatrix();
-        GlStateManager.translatef(x + (width - ITEM_WIDTH - margin) / 2f, y + (height - ITEM_WIDTH - margin) / 2f, 0.0f);
+        GlStateManager.translatef(x + margin_left, y + margin_top, 0.0f);
         GlStateManager.scalef(scale, scale, 1.0f);
         GlStateManager.enableRescaleNormal();
         RenderHelper.enableGUIStandardItemLighting();

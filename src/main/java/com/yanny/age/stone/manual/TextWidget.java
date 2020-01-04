@@ -22,10 +22,14 @@ public class TextWidget extends Widget {
     protected final float scale;
     protected final int tmpWidth;
     protected final int tmpHeight;
+    protected final int margin_top;
+    protected final int margin_left;
+    protected final int margin_bottom;
+    protected final int margin_right;
 
     public TextWidget(JsonObject object, IPage page, IManual manual) {
-        ConfigHolder holder = new ConfigHolder(TEXT, SCALE, COLOR, WIDTH, HEIGHT);
-        holder.Load(object, manual);
+        ConfigHolder holder = new ConfigHolder(TEXT, SCALE, COLOR, WIDTH, HEIGHT, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT);
+        holder.loadConfig(object, manual);
         this.manual = manual;
 
         text = holder.getValue(TEXT);
@@ -33,6 +37,10 @@ public class TextWidget extends Widget {
         scale = holder.getValue(SCALE);
         tmpWidth = holder.getValue(WIDTH);
         tmpHeight = holder.getValue(HEIGHT);
+        margin_top = holder.getValue(MARGIN_TOP);
+        margin_left = holder.getValue(MARGIN_LEFT);
+        margin_bottom = holder.getValue(MARGIN_BOTTOM);
+        margin_right = holder.getValue(MARGIN_RIGHT);
 
         customFontRenderer = new CustomFontRenderer(mc.fontRenderer);
     }
@@ -44,7 +52,7 @@ public class TextWidget extends Widget {
 
     @Override
     public int getMinHeight(int width) {
-        return Math.max(tmpHeight, Math.round(getTextHeight(Math.round(width)) * scale));
+        return Math.max(tmpHeight, Math.round(getTextHeight(Math.round(width)) * scale) + margin_top + margin_bottom);
     }
 
     @Override
@@ -57,11 +65,13 @@ public class TextWidget extends Widget {
     @Override
     public void drawBackgroundLayer(Screen screen, int mx, int my) {
         GlStateManager.pushMatrix();
-        GlStateManager.translatef(x, y, 0.0f);
+        GlStateManager.translatef(x + margin_left, y + margin_top, 0.0f);
         GlStateManager.scalef(scale, scale, 1.0f);
         customFontRenderer.drawSplitString(text, 0, 0, Math.round(width / scale), color);
         GlStateManager.popMatrix();
 
+        GlStateManager.pushMatrix();
+        GlStateManager.translatef(margin_left, margin_top, 0.0f);
         links.forEach(link -> {
             if (link.inArea(x, y, mx, my, scale)) {
                 link.rects.forEach(rect -> {
@@ -74,6 +84,7 @@ public class TextWidget extends Widget {
                 });
             }
         });
+        GlStateManager.popMatrix();
     }
 
     @Override

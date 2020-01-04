@@ -1,5 +1,6 @@
 {
-  "constants": {
+  "constants":
+  {
     "WHITE": -1,
     "RED": 16711680,
     "GREEN": 65280,
@@ -24,11 +25,11 @@
         },
         {
           "type": "hlayout",
-          "content": [
+          "content":
+          [
             {
               "type": "item",
-              "item": "minecraft:saddle",
-              "margin": 1
+              "item": "minecraft:saddle"
             },
             {
               "type": "text",
@@ -40,11 +41,11 @@
         },
         {
           "type": "hlayout",
-          "content": [
+          "content":
+          [
             {
               "type": "item",
-              "item": "minecraft:beacon",
-              "margin": 1
+              "item": "minecraft:beacon"
             },
             {
               "type": "text",
@@ -56,11 +57,11 @@
         },
         {
           "type": "hlayout",
-          "content": [
+          "content":
+          [
             {
               "type": "item",
-              "item": "minecraft:diamond_hoe",
-              "margin": 1
+              "item": "minecraft:diamond_hoe"
             },
             {
               "type": "text",
@@ -72,11 +73,11 @@
         },
         {
           "type": "hlayout",
-          "content": [
+          "content":
+          [
             {
               "type": "item",
-              "item": "minecraft:iron_chestplate",
-              "margin": 1
+              "item": "minecraft:iron_chestplate"
             },
             {
               "type": "text",

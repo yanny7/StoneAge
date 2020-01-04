@@ -10,8 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -33,6 +32,10 @@ class ConfigHolder {
     public static final Pair<String, Obj<?, ?>> IMG_V = new Pair<>("v", new Obj<>(Integer.class, Integer.class, 0, true, s -> s, s -> s >= 0));
     public static final Pair<String, Obj<?, ?>> IMAGE = new Pair<>("image", new Obj<>(String.class, ResourceLocation.class, "minecraft:textures/block/stone.png", false,
             ResourceLocation::new, s -> Minecraft.getInstance().getResourceManager().hasResource(new ResourceLocation(s))));
+    public static final Pair<String, Obj<?, ?>> MARGIN_TOP = new Pair<>("margin_top", new Obj<>(Integer.class, Integer.class, 0, true, s -> s, s -> s >= 0));
+    public static final Pair<String, Obj<?, ?>> MARGIN_LEFT = new Pair<>("margin_left", new Obj<>(Integer.class, Integer.class, 0, true, s -> s, s -> s >= 0));
+    public static final Pair<String, Obj<?, ?>> MARGIN_BOTTOM = new Pair<>("margin_bottom", new Obj<>(Integer.class, Integer.class, 0, true, s -> s, s -> s >= 0));
+    public static final Pair<String, Obj<?, ?>> MARGIN_RIGHT = new Pair<>("margin_right", new Obj<>(Integer.class, Integer.class, 0, true, s -> s, s -> s >= 0));
 
     private Map<String, Obj<?, ?>> objMap = new HashMap<>();
     private Map<String, ?> values = new HashMap<>();
@@ -44,7 +47,7 @@ class ConfigHolder {
         }
     }
 
-    void Load(JsonObject object, IManual manual) {
+    void loadConfig(JsonObject object, IManual manual) {
         for (Map.Entry<String, Obj<?, ?>> entry : objMap.entrySet()) {
             Obj<?, ?> type = entry.getValue();
             String key = entry.getKey();

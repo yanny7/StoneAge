@@ -19,11 +19,14 @@ public class ImageWidget extends Widget {
     protected final int imgHeight;
     protected final int u;
     protected final int v;
-    protected final int margin;
+    protected final int margin_top;
+    protected final int margin_left;
+    protected final int margin_bottom;
+    protected final int margin_right;
 
     public ImageWidget(JsonObject object, IPage page, IManual manual) {
-        ConfigHolder holder = new ConfigHolder(SCALE, WIDTH, HEIGHT, IMG_WIDTH, IMG_HEIGHT, IMG_U, IMG_V, IMAGE);
-        holder.Load(object, manual);
+        ConfigHolder holder = new ConfigHolder(SCALE, WIDTH, HEIGHT, IMG_WIDTH, IMG_HEIGHT, IMG_U, IMG_V, IMAGE, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT);
+        holder.loadConfig(object, manual);
 
         scale = holder.getValue(SCALE);
         tmpWidth = holder.getValue(WIDTH);
@@ -33,8 +36,20 @@ public class ImageWidget extends Widget {
         u = holder.getValue(IMG_U);
         v = holder.getValue(IMG_V);
         imgRes = holder.getValue(IMAGE);
+        margin_top = holder.getValue(MARGIN_TOP);
+        margin_left = holder.getValue(MARGIN_LEFT);
+        margin_bottom = holder.getValue(MARGIN_BOTTOM);
+        margin_right = holder.getValue(MARGIN_RIGHT);
+    }
 
-        margin = Utils.get(Integer.class, manual, object, "margin", 0, true);
+    @Override
+    public int getMinWidth(int height) {
+        return margin_left + margin_right + tmpWidth;
+    }
+
+    @Override
+    public int getMinHeight(int width) {
+        return margin_top + margin_bottom + tmpHeight;
     }
 
     @Override
@@ -42,7 +57,7 @@ public class ImageWidget extends Widget {
         mc.getTextureManager().bindTexture(imgRes);
 
         GlStateManager.pushMatrix();
-        GlStateManager.translatef(x + margin, y + margin, 0.0f);
+        GlStateManager.translatef(x + margin_left, y + margin_top, 0.0f);
         GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         AbstractGui.blit(0, 0, 0, u, v, tmpWidth, tmpHeight, imgWidth, imgHeight);
         GlStateManager.popMatrix();
