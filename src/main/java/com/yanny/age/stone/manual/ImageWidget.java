@@ -35,7 +35,6 @@ public class ImageWidget extends Widget {
         imgRes = holder.getValue(IMAGE);
 
         margin = Utils.get(Integer.class, manual, object, "margin", 0, true);
-
     }
 
     @Override

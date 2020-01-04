@@ -2,6 +2,7 @@ package com.yanny.age.stone.manual;
 
 import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -12,23 +13,26 @@ import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 import static com.yanny.age.stone.manual.Widget.DYNAMIC;
 
 class ConfigHolder {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public static final Pair<String, Obj<?, ?>> TEXT = new Pair<>("text", new Obj<>(String.class, String.class, "<UNSET>", false, s -> s));
-    public static final Pair<String, Obj<?, ?>> SCALE = new Pair<>("scale", new Obj<>(Float.class, Float.class, 1.0f, true, s -> s));
-    public static final Pair<String, Obj<?, ?>> COLOR = new Pair<>("color", new Obj<>(Integer.class, Integer.class, -1, true, s -> s));
-    public static final Pair<String, Obj<?, ?>> WIDTH = new Pair<>("width", new Obj<>(Integer.class, Integer.class, DYNAMIC, true, s -> s));
-    public static final Pair<String, Obj<?, ?>> HEIGHT = new Pair<>("height", new Obj<>(Integer.class, Integer.class, DYNAMIC, true, s -> s));
-    public static final Pair<String, Obj<?, ?>> ITEM = new Pair<>("item", new Obj<>(String.class, ItemStack.class, "minecraft:stone", false, s -> new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(s)))));
-    public static final Pair<String, Obj<?, ?>> IMG_WIDTH = new Pair<>("w", new Obj<>(Integer.class, Integer.class, 16, false, s -> s));
-    public static final Pair<String, Obj<?, ?>> IMG_HEIGHT = new Pair<>("h", new Obj<>(Integer.class, Integer.class, 16, false, s -> s));
-    public static final Pair<String, Obj<?, ?>> IMG_U = new Pair<>("u", new Obj<>(Integer.class, Integer.class, 0, true, s -> s));
-    public static final Pair<String, Obj<?, ?>> IMG_V = new Pair<>("v", new Obj<>(Integer.class, Integer.class, 0, true, s -> s));
-    public static final Pair<String, Obj<?, ?>> IMAGE = new Pair<>("image", new Obj<>(String.class, ResourceLocation.class, "minecraft:textures/block/stone.png", false, ResourceLocation::new));
+    public static final Pair<String, Obj<?, ?>> TEXT = new Pair<>("text", new Obj<>(String.class, String.class, "<UNSET>", false, s -> s, s -> true));
+    public static final Pair<String, Obj<?, ?>> SCALE = new Pair<>("scale", new Obj<>(Float.class, Float.class, 1.0f, true, s -> s, s -> s != 0));
+    public static final Pair<String, Obj<?, ?>> COLOR = new Pair<>("color", new Obj<>(Integer.class, Integer.class, -1, true, s -> s, s -> true));
+    public static final Pair<String, Obj<?, ?>> WIDTH = new Pair<>("width", new Obj<>(Integer.class, Integer.class, DYNAMIC, true, s -> s, s -> true));
+    public static final Pair<String, Obj<?, ?>> HEIGHT = new Pair<>("height", new Obj<>(Integer.class, Integer.class, DYNAMIC, true, s -> s, s -> true));
+    public static final Pair<String, Obj<?, ?>> ITEM = new Pair<>("item", new Obj<>(String.class, ItemStack.class, "minecraft:stone", false,
+            s -> new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(s))), s -> ForgeRegistries.ITEMS.getValue(new ResourceLocation(s)) != null));
+    public static final Pair<String, Obj<?, ?>> IMG_WIDTH = new Pair<>("w", new Obj<>(Integer.class, Integer.class, 16, false, s -> s, s -> s > 0));
+    public static final Pair<String, Obj<?, ?>> IMG_HEIGHT = new Pair<>("h", new Obj<>(Integer.class, Integer.class, 16, false, s -> s, s -> s > 0));
+    public static final Pair<String, Obj<?, ?>> IMG_U = new Pair<>("u", new Obj<>(Integer.class, Integer.class, 0, true, s -> s, s -> s >= 0));
+    public static final Pair<String, Obj<?, ?>> IMG_V = new Pair<>("v", new Obj<>(Integer.class, Integer.class, 0, true, s -> s, s -> s >= 0));
+    public static final Pair<String, Obj<?, ?>> IMAGE = new Pair<>("image", new Obj<>(String.class, ResourceLocation.class, "minecraft:textures/block/stone.png", false,
+            ResourceLocation::new, s -> Minecraft.getInstance().getResourceManager().hasResource(new ResourceLocation(s))));
 
     private Map<String, Obj<?, ?>> objMap = new HashMap<>();
     private Map<String, ?> values = new HashMap<>();
@@ -53,6 +57,12 @@ class ConfigHolder {
         Object s = values.get(key.getFirst());
 
         if (type.param.isAssignableFrom(s.getClass())) {
+            if (!type.checkValue(s)) {
+                LOGGER.warn("Param type check failed! {}", s);
+                new Exception().printStackTrace();
+                return null;
+            }
+
             Object r = type.getValue(s);
 
             if (type.result.isAssignableFrom(r.getClass())) {
@@ -75,19 +85,26 @@ class ConfigHolder {
         private Class<R> result;
         private T defaultValue;
         private boolean optional;
-        private Function<T, R> function;
+        private Function<T, R> transform;
+        private Predicate<T> check;
 
-        public Obj(Class<T> param, Class<R> result, T defaultValue, boolean optional, Function<T, R> function) {
+        public Obj(Class<T> param, Class<R> result, T defaultValue, boolean optional, Function<T, R> transform, Predicate<T> check) {
             this.param = param;
             this.result = result;
             this.defaultValue = defaultValue;
             this.optional = optional;
-            this.function = function;
+            this.transform = transform;
+            this.check = check;
         }
 
         R getValue(Object t) {
             //noinspection unchecked
-            return function.apply((T) t);
+            return transform.apply((T) t);
+        }
+
+        boolean checkValue(Object t) {
+            //noinspection unchecked
+            return check.test((T) t);
         }
     }
 }
