@@ -16,7 +16,7 @@ public class VerticalLayoutWidget extends Widget {
     private static final Logger LOGGER = LogManager.getLogger();
     private final List<Widget> widgets = new ArrayList<>();
 
-    VerticalLayoutWidget(JsonObject object, IPage page, IManual manual) {
+    VerticalLayoutWidget(JsonObject object, IManual manual) {
         JsonArray array = Utils.getArray(object, "content");
         if (array == null) {
             return;
@@ -35,7 +35,7 @@ public class VerticalLayoutWidget extends Widget {
                 continue;
             }
 
-            Widget widget = WidgetFactory.getWidget(type, obj, page, manual);
+            Widget widget = WidgetFactory.getWidget(type, obj, manual);
             widgets.add(widget);
         }
     }

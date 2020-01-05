@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
-public class PageWidget extends Widget implements IPage {
+public class PageWidget extends Widget {
     private static final Logger LOGGER = LogManager.getLogger();
     private final List<Widget> widgets = new ArrayList<>();
     private final IManual manual;
@@ -45,7 +45,7 @@ public class PageWidget extends Widget implements IPage {
                 continue;
             }
 
-            widgets.add(WidgetFactory.getWidget(type, obj, this, manual));
+            widgets.add(WidgetFactory.getWidget(type, obj, manual));
         }
     }
 

@@ -110,6 +110,13 @@ public class ManualWidget extends Widget implements IManual {
     }
 
     public void changePage(String key) {
+        Integer page = links.get(key);
+
+        if (page == null) {
+            LOGGER.warn("Page key '{}' does not exists", page);
+            return;
+        }
+
         setCurrentPage(links.get(key));
     }
 

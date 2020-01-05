@@ -28,7 +28,7 @@ public class ItemWidget extends Widget {
     protected final int margin_bottom;
     protected final int margin_right;
 
-    public ItemWidget(JsonObject object, IPage page, IManual manual) {
+    public ItemWidget(JsonObject object, IManual manual) {
         ConfigHolder holder = new ConfigHolder(SCALE, WIDTH, HEIGHT, ITEM, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT);
         holder.loadConfig(object, manual);
 

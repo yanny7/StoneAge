@@ -24,7 +24,7 @@ public class ImageWidget extends Widget {
     protected final int margin_bottom;
     protected final int margin_right;
 
-    public ImageWidget(JsonObject object, IPage page, IManual manual) {
+    public ImageWidget(JsonObject object, IManual manual) {
         ConfigHolder holder = new ConfigHolder(SCALE, WIDTH, HEIGHT, IMG_WIDTH, IMG_HEIGHT, IMG_U, IMG_V, IMAGE, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT);
         holder.loadConfig(object, manual);
 

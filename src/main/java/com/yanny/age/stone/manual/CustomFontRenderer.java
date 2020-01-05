@@ -14,11 +14,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
+import javax.annotation.Nonnull;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CustomFontRenderer {
@@ -28,9 +28,9 @@ public class CustomFontRenderer {
         this.fontRenderer = fontRenderer;
     }
 
-    void drawSplitString(String str, int x, int y, int wrapWidth, int textColor) {
+    void drawSplitString(String str, int x, int y, int wrapWidth, int textColor, Align align) {
         str = trimStringNewline(str);
-        renderSplitString(str, x, y, wrapWidth, textColor);
+        renderSplitString(str, x, y, wrapWidth, textColor, align);
     }
 
     String trimStringNewline(String str) {
@@ -45,12 +45,8 @@ public class CustomFontRenderer {
         return "";
     }
 
-    List<String> listFormattedStringToWidth(String str, int wrapWidth) {
-        return Arrays.asList(this.wrapFormattedStringToWidth(str, wrapWidth).split("\n"));
-    }
-
     public int getWordWrappedHeight(String str, int maxLength) {
-        return 9 * this.listFormattedStringToWidth(str, maxLength).size();
+        return 9 * this.wrapFormattedStringToWidth(str, maxLength).size();
     }
 
     Font getFont() {
@@ -64,48 +60,59 @@ public class CustomFontRenderer {
         throw new IllegalArgumentException();
     }
 
-    List<Link> analyseSplitStringLinks(String str, int x, int y, int width, float scale) {
+    List<Link> analyseSplitStringLinks(String str, int x, int y, int width, Align align) {
         str = trimStringNewline(str);
-        return analyseSplitString(str, x, y, width, scale);
+        return analyseSplitString(str, x, y, width, align);
     }
 
-    private String wrapFormattedStringToWidth(String str, int wrapWidth) {
+    @Nonnull
+    private List<StringWidth> wrapFormattedStringToWidth(@Nonnull String str, int wrapWidth) {
         String s;
         String s1;
+        List<StringWidth> list = new ArrayList<>();
         MutableBool bool = new MutableBool();
 
         for(s = ""; !str.isEmpty(); s = s + s1 + "\n") {
-            int i = this.sizeStringToWidth(str, wrapWidth, bool);
+            Size i = this.sizeStringToWidth(str, wrapWidth, bool);
 
-            if (str.length() <= i) {
-                return s + str;
+            if (str.length() <= i.count) {
+                list.add(new StringWidth(str, i.size));
+                return list;
             }
 
-            s1 = str.substring(0, i);
-            char c0 = str.charAt(i);
+            s1 = str.substring(0, i.count);
+            char c0 = str.charAt(i.count);
             boolean flag = c0 == ' ' || c0 == '\n';
-            str = TextFormatting.getFormatString(s1) + str.substring(i + (flag ? 1 : 0));
+            str = TextFormatting.getFormatString(s1) + str.substring(i.count + (flag ? 1 : 0));
+            list.add(new StringWidth(s1, i.size));
         }
 
-        return s;
+        return list;
     }
 
-    private int sizeStringToWidth(String str, int wrapWidth, MutableBool link) {
+    @Nonnull
+    private Size sizeStringToWidth(@Nonnull String str, int wrapWidth, MutableBool link) {
         int i = Math.max(1, wrapWidth);
         int j = str.length();
         float f = 0.0F;
+        float r = 0.0F;
         int k = 0;
         int l = -1;
         boolean flag = false;
+        boolean wasSpace;
 
         for(boolean flag1 = true; k < j; ++k) {
             char c0 = str.charAt(k);
+            wasSpace = false;
+
             switch(c0) {
                 case '\n':
                     --k;
                     break;
                 case ' ':
                     l = k;
+                    r = f;
+                    wasSpace = true;
                 default:
                     if (f != 0.0F) {
                         flag1 = false;
@@ -117,7 +124,7 @@ public class CustomFontRenderer {
                         ++f;
                     }
                     break;
-                case '\u00a7':
+                case '\u00a7': {
                     if (k < j - 1) {
                         ++k;
                         TextFormatting textformatting = TextFormatting.fromFormattingCode(str.charAt(k));
@@ -137,17 +144,19 @@ public class CustomFontRenderer {
                                     s++;
                                 }
 
-                                k += s - 1;
+                                k += s;
                             } else {
                                 link.valid = false;
                             }
                         }
                     }
+                }
             }
 
             if (c0 == '\n') {
                 ++k;
                 l = k;
+                r = f;
                 break;
             }
 
@@ -155,33 +164,48 @@ public class CustomFontRenderer {
                 if (flag1) {
                     ++k;
                 }
+                if (wasSpace) {
+                    f -= this.getCharWidth(' ');
+                }
                 break;
             }
         }
 
-        return k != j && l != -1 && l < k ? l : k;
+        return k != j && l != -1 && l < k ? new Size(l, r) : new Size(k, f);
     }
 
     public float getCharWidth(char character) {
         return character == 167 ? 0.0F : getFont().findGlyph(character).getAdvance(false);
     }
 
-    private void renderSplitString(String str, int x, int y, int wrapWidth, int textColor) {
-        for(String s : this.listFormattedStringToWidth(str, wrapWidth)) {
+    private void renderSplitString(String str, int x, int y, int wrapWidth, int textColor, Align align) {
+        MutableBool link = new MutableBool();
+
+        for(StringWidth s : this.wrapFormattedStringToWidth(str, wrapWidth)) {
             float f = (float)x;
 
             if (fontRenderer.getBidiFlag()) {
-                int i = fontRenderer.getStringWidth(fontRenderer.bidiReorder(s));
+                int i = fontRenderer.getStringWidth(fontRenderer.bidiReorder(s.str));
                 f += (float)(wrapWidth - i);
             }
 
-            this.renderString(s, f, (float)y, textColor, false);
+            switch (align) {
+                case LEFT:
+                    this.renderString(s.str, f, y, textColor, false, link);
+                    break;
+                case RIGHT:
+                    this.renderString(s.str, f + (wrapWidth - s.width), y, textColor, false, link);
+                    break;
+                case CENTER:
+                    this.renderString(s.str, f + (wrapWidth - s.width) / 2f, y, textColor, false, link);
+                    break;
+            }
+
             y += fontRenderer.FONT_HEIGHT;
         }
-
     }
 
-    private int renderString(String text, float x, float y, int color, boolean dropShadow) {
+    private int renderString(String text, float x, float y, int color, boolean dropShadow, MutableBool bool) {
         if (text == null) {
             return 0;
         } else {
@@ -194,15 +218,15 @@ public class CustomFontRenderer {
             }
 
             if (dropShadow) {
-                this.renderStringAtPos(text, x, y, color, true);
+                this.renderStringAtPos(text, x, y, color, true, bool);
             }
 
-            x = this.renderStringAtPos(text, x, y, color, false);
+            x = this.renderStringAtPos(text, x, y, color, false, bool);
             return (int)x + (dropShadow ? 1 : 0);
         }
     }
 
-    private float renderStringAtPos(String text, float x, float y, int color, boolean isShadow) {
+    private float renderStringAtPos(@Nonnull String text, float x, float y, int color, boolean isShadow, MutableBool link) {
         float f = isShadow ? 0.25F : 1.0F;
         float f1 = (float)(color >> 16 & 255) / 255.0F * f;
         float f2 = (float)(color >> 8 & 255) / 255.0F * f;
@@ -221,7 +245,6 @@ public class CustomFontRenderer {
         boolean flag3 = false;
         boolean flag4 = false;
         List<Entry> list = Lists.newArrayList();
-        MutableBool link = new MutableBool();
 
         for(int i = 0; i < text.length(); ++i) {
             char c0 = text.charAt(i);
@@ -322,37 +345,56 @@ public class CustomFontRenderer {
         return x;
     }
 
-    private void renderGlyph(TexturedGlyph glyph, boolean bold, boolean italic, float boldOffset, float x, float y, BufferBuilder builder, float r, float g, float b, float a) {
+    private void renderGlyph(@Nonnull TexturedGlyph glyph, boolean bold, boolean italic, float boldOffset, float x, float y, BufferBuilder builder, float r, float g, float b, float a) {
         glyph.render(Minecraft.getInstance().textureManager, italic, x, y, builder, r, g, b, a);
+
         if (bold) {
             glyph.render(Minecraft.getInstance().textureManager, italic, x + boldOffset, y, builder, r, g, b, a);
         }
 
     }
 
-    private List<Link> analyseSplitString(String str, int x, int y, int width, float scale) {
+    @Nonnull
+    private List<Link> analyseSplitString(String str, int x, int y, int width, Align align) {
         List<Link> list = new ArrayList<>();
-        for(String s : listFormattedStringToWidth(str, Math.round(width / scale))) {
-            analyseString(list, s, (float)x, (float)y);
+        int line = 0;
+
+        for(StringWidth s : wrapFormattedStringToWidth(str, width)) {
+            switch (align) {
+                case LEFT:
+                    analyseString(list, s.str, (float)x, (float)y, line);
+                    break;
+                case RIGHT:
+                    analyseString(list, s.str, (float)x + (width - s.width), (float)y, line);
+                    break;
+                case CENTER:
+                    analyseString(list, s.str, (float)x + (width - s.width) / 2f, (float)y, line);
+                    break;
+            }
+
             y += Math.ceil(fontRenderer.FONT_HEIGHT);
+            line++;
         }
+
         return list;
     }
 
-    private void analyseString(List<Link> list, String text, float x, float y) {
+    private void analyseString(List<Link> list, String text, float x, float y, int line) {
         if (text != null) {
-            analyseStringAtPos(list, text, x, y);
+            analyseStringAtPos(list, text, x, y, line);
         }
     }
 
-    private void analyseStringAtPos(List<Link> list, String text, float xIn, float yIn) {
+    private void analyseStringAtPos(List<Link> list, @Nonnull String text, float xIn, float yIn, int line) {
         boolean bold = false;
         float x = xIn;
 
         for(int i = 0; i < text.length(); ++i) {
             char c0 = text.charAt(i);
+
             if (c0 == 167 && i + 1 < text.length()) {
                 TextFormatting textformatting = TextFormatting.fromFormattingCode(text.charAt(i + 1));
+
                 if (textformatting != null) {
                     if (textformatting.isNormalStyle()) {
                         bold = false;
@@ -375,6 +417,7 @@ public class CustomFontRenderer {
                         rect = new Rect();
                         rect.x1 = x;
                         rect.y1 = yIn;
+                        rect.line = line;
                         link = new Link();
                         link.rects.add(rect);
                         list.add(link);
@@ -394,6 +437,7 @@ public class CustomFontRenderer {
                         rect.x2 = x;
                         rect.y2 = yIn + fontRenderer.FONT_HEIGHT;
                         rect.valid = true;
+                        rect.line = line;
                     }
                 }
 
@@ -408,6 +452,11 @@ public class CustomFontRenderer {
         if (!list.isEmpty() && list.get(list.size() - 1).hasUnclosedLink()) {
             Link link = list.get(list.size() - 1);
             Rect rect = link.rects.get(link.rects.size() - 1);
+
+            if (rect.line != line) {
+                rect.x1 = xIn;
+                rect.y1 = yIn;
+            }
 
             rect.x2 = x;
             rect.y2 = yIn + fontRenderer.FONT_HEIGHT;
@@ -428,22 +477,18 @@ public class CustomFontRenderer {
             return !rects.isEmpty() && !rects.get(rects.size() - 1).valid;
         }
 
-        boolean inArea(int x, int y, int mx, int my, float scale) {
-            return rects.stream().anyMatch(rect -> rect.inArea(x, y, mx, my, scale));
+        boolean inArea(int mx, int my, float scale) {
+            return rects.stream().anyMatch(rect -> rect.inArea(mx, my, scale));
         }
     }
 
     static class Rect {
         boolean valid;
+        int line;
         float x1, x2, y1, y2;
 
-        boolean inArea(int x, int y, int mx, int my, float scale) {
-            float x1 = x + (this.x1 - x) * scale;
-            float y1 = y + (this.y1 - y) * scale;
-            float x2 = x + (this.x2 - x) * scale;
-            float y2 = y + (this.y2 - y) * scale;
-
-            return mx >= x1 && mx <= x2 && my >= y1 && my <= y2;
+        boolean inArea(int mx, int my, float scale) {
+            return mx >= x1 * scale && mx <= x2 * scale && my >= y1 * scale && my <= y2 * scale;
         }
     }
 
@@ -468,7 +513,7 @@ public class CustomFontRenderer {
             this.alpha = alpha;
         }
 
-        public void pipe(BufferBuilder buffer) {
+        public void pipe(@Nonnull BufferBuilder buffer) {
             buffer.pos(this.x1, this.y1, 0.0D).color(this.red, this.green, this.blue, this.alpha).endVertex();
             buffer.pos(this.x2, this.y1, 0.0D).color(this.red, this.green, this.blue, this.alpha).endVertex();
             buffer.pos(this.x2, this.y2, 0.0D).color(this.red, this.green, this.blue, this.alpha).endVertex();
@@ -478,5 +523,25 @@ public class CustomFontRenderer {
 
     static class MutableBool {
         boolean valid;
+    }
+
+    static class StringWidth {
+        String str;
+        float width;
+
+        StringWidth(String str, float width) {
+            this.str = str;
+            this.width = width;
+        }
+    }
+
+    static class Size {
+        int count;
+        float size;
+
+        Size(int count, float size) {
+            this.count = count;
+            this.size = size;
+        }
     }
 }

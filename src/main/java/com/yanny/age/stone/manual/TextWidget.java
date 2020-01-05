@@ -26,9 +26,11 @@ public class TextWidget extends Widget {
     protected final int margin_left;
     protected final int margin_bottom;
     protected final int margin_right;
+    protected final Align align;
+    protected final boolean justify;
 
-    public TextWidget(JsonObject object, IPage page, IManual manual) {
-        ConfigHolder holder = new ConfigHolder(TEXT, SCALE, COLOR, WIDTH, HEIGHT, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT);
+    public TextWidget(JsonObject object, IManual manual) {
+        ConfigHolder holder = new ConfigHolder(TEXT, SCALE, COLOR, WIDTH, HEIGHT, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT, ALIGN_LEFT, JUSTIFY);
         holder.loadConfig(object, manual);
         this.manual = manual;
 
@@ -41,6 +43,8 @@ public class TextWidget extends Widget {
         margin_left = holder.getValue(MARGIN_LEFT);
         margin_bottom = holder.getValue(MARGIN_BOTTOM);
         margin_right = holder.getValue(MARGIN_RIGHT);
+        align = holder.getValue(ALIGN_LEFT);
+        justify = holder.getValue(JUSTIFY);
 
         customFontRenderer = new CustomFontRenderer(mc.fontRenderer);
     }
@@ -52,14 +56,14 @@ public class TextWidget extends Widget {
 
     @Override
     public int getMinHeight(int width) {
-        return Math.max(tmpHeight, Math.round(getTextHeight(Math.round(width)) * scale) + margin_top + margin_bottom);
+        return Math.max(tmpHeight, Math.round(getTextHeight(Math.round((width - margin_left - margin_right) / scale)) * scale) + margin_top + margin_bottom);
     }
 
     @Override
     public void setPos(int x, int y) {
         super.setPos(x, y);
         links.clear();
-        links.addAll(customFontRenderer.analyseSplitStringLinks(text, x, y, width, scale));
+        links.addAll(customFontRenderer.analyseSplitStringLinks(text, 0, 0, Math.round((width - margin_left - margin_right) / scale), align));
     }
 
     @Override
@@ -67,21 +71,15 @@ public class TextWidget extends Widget {
         GlStateManager.pushMatrix();
         GlStateManager.translatef(x + margin_left, y + margin_top, 0.0f);
         GlStateManager.scalef(scale, scale, 1.0f);
-        customFontRenderer.drawSplitString(text, 0, 0, Math.round(width / scale), color);
+        customFontRenderer.drawSplitString(text, 0, 0, Math.round((width - margin_left - margin_right) / scale), color, align);
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
-        GlStateManager.translatef(margin_left, margin_top, 0.0f);
+        GlStateManager.translatef(x + margin_left, y + margin_top, 0.0f);
+        GlStateManager.scalef(scale, scale, 1.0f);
         links.forEach(link -> {
-            if (link.inArea(x, y, mx, my, scale)) {
-                link.rects.forEach(rect -> {
-                    float x1 = x + (rect.x1 - x) * scale;
-                    float y1 = y + (rect.y1 - y) * scale;
-                    float x2 = x + (rect.x2 - x) * scale;
-                    float y2 = y + (rect.y2 - y) * scale;
-
-                    Screen.fill((int) x1, (int) y1, (int) x2, (int) y2, 0x66000000);
-                });
+            if (link.inArea(mx - (x + margin_left), my - (y + margin_top), scale)) {
+                link.rects.forEach(rect -> Screen.fill((int) rect.x1, (int) rect.y1, (int) rect.x2, (int) rect.y2, 0x66000000));
             }
         });
         GlStateManager.popMatrix();
@@ -90,7 +88,7 @@ public class TextWidget extends Widget {
     @Override
     public boolean mouseClicked(int mx, int my, int key) {
         for (CustomFontRenderer.Link link : links) {
-            if (link.inArea(x, y, mx, my, scale)) {
+            if (link.inArea(mx - (x + margin_left), my - (y + margin_top), scale)) {
                 manual.changePage(link.key);
                 return true;
             }
@@ -100,6 +98,6 @@ public class TextWidget extends Widget {
     }
 
     private int getTextHeight(int width) {
-        return customFontRenderer.getWordWrappedHeight(text, Math.round(width / scale));
+        return customFontRenderer.getWordWrappedHeight(text, width);
     }
 }

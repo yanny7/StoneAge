@@ -36,6 +36,11 @@ class ConfigHolder {
     public static final Pair<String, Obj<?, ?>> MARGIN_LEFT = new Pair<>("margin_left", new Obj<>(Integer.class, Integer.class, 0, true, s -> s, s -> s >= 0));
     public static final Pair<String, Obj<?, ?>> MARGIN_BOTTOM = new Pair<>("margin_bottom", new Obj<>(Integer.class, Integer.class, 0, true, s -> s, s -> s >= 0));
     public static final Pair<String, Obj<?, ?>> MARGIN_RIGHT = new Pair<>("margin_right", new Obj<>(Integer.class, Integer.class, 0, true, s -> s, s -> s >= 0));
+    public static final Pair<String, Obj<?, ?>> ALIGN_CENTER = new Pair<>("align", new Obj<>(String.class, Align.class, "CENTER", true,
+            Align::fromString, s -> Align.fromString(s) != null));
+    public static final Pair<String, Obj<?, ?>> ALIGN_LEFT = new Pair<>("align", new Obj<>(String.class, Align.class, "LEFT", true,
+            Align::fromString, s -> Align.fromString(s) != null));
+    public static final Pair<String, Obj<?, ?>> JUSTIFY = new Pair<>("justify", new Obj<>(Boolean.class, Boolean.class, false, true, s -> s, s -> true));
 
     private Map<String, Obj<?, ?>> objMap = new HashMap<>();
     private Map<String, ?> values = new HashMap<>();

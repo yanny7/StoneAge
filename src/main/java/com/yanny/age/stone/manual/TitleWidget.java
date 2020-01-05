@@ -18,9 +18,10 @@ public class TitleWidget extends Widget {
     protected final int margin_left;
     protected final int margin_bottom;
     protected final int margin_right;
+    protected final Align align;
 
-    public TitleWidget(JsonObject object, IPage page, IManual manual) {
-        ConfigHolder holder = new ConfigHolder(TEXT, SCALE, COLOR, WIDTH, HEIGHT, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT);
+    public TitleWidget(JsonObject object, IManual manual) {
+        ConfigHolder holder = new ConfigHolder(TEXT, SCALE, COLOR, WIDTH, HEIGHT, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT, ALIGN_CENTER);
         holder.loadConfig(object, manual);
 
         text = holder.getValue(TEXT);
@@ -32,6 +33,7 @@ public class TitleWidget extends Widget {
         margin_left = holder.getValue(MARGIN_LEFT);
         margin_bottom = holder.getValue(MARGIN_BOTTOM);
         margin_right = holder.getValue(MARGIN_RIGHT);
+        align = holder.getValue(ALIGN_CENTER);
     }
 
     @Override
@@ -49,7 +51,17 @@ public class TitleWidget extends Widget {
         GlStateManager.pushMatrix();
         GlStateManager.translatef(x + margin_left, y + margin_top, 0.0f);
         GlStateManager.scalef(scale, scale, 1.0f);
-        screen.drawCenteredString(mc.fontRenderer, text, Math.round((width / scale) / 2f), 0, color);
+        switch (align) {
+            case LEFT:
+                screen.drawString(mc.fontRenderer, text, 0, 0, color);
+                break;
+            case RIGHT:
+                screen.drawRightAlignedString(mc.fontRenderer, text, Math.round((width - margin_left - margin_right) / scale), 0, color);
+                break;
+            case CENTER:
+                screen.drawCenteredString(mc.fontRenderer, text, Math.round(((width - margin_left - margin_right) / scale) / 2f), 0, color);
+                break;
+        }
         GlStateManager.popMatrix();
     }
 }
