@@ -28,9 +28,9 @@ public class CustomFontRenderer {
         this.fontRenderer = fontRenderer;
     }
 
-    void drawSplitString(String str, int x, int y, int wrapWidth, int textColor, Align align) {
+    void drawSplitString(String str, int x, int y, int wrapWidth, int textColor, Align align, boolean justify) {
         str = trimStringNewline(str);
-        renderSplitString(str, x, y, wrapWidth, textColor, align);
+        renderSplitString(str, x, y, wrapWidth, textColor, align, justify);
     }
 
     String trimStringNewline(String str) {
@@ -60,9 +60,9 @@ public class CustomFontRenderer {
         throw new IllegalArgumentException();
     }
 
-    List<Link> analyseSplitStringLinks(String str, int x, int y, int width, Align align) {
+    List<Link> analyseSplitStringLinks(String str, int x, int y, int width, Align align, boolean justify) {
         str = trimStringNewline(str);
-        return analyseSplitString(str, x, y, width, align);
+        return analyseSplitString(str, x, y, width, align, justify);
     }
 
     @Nonnull
@@ -76,7 +76,7 @@ public class CustomFontRenderer {
             Size i = this.sizeStringToWidth(str, wrapWidth, bool);
 
             if (str.length() <= i.count) {
-                list.add(new StringWidth(str, i.size));
+                list.add(new StringWidth(str, i.size, false));
                 return list;
             }
 
@@ -84,7 +84,7 @@ public class CustomFontRenderer {
             char c0 = str.charAt(i.count);
             boolean flag = c0 == ' ' || c0 == '\n';
             str = TextFormatting.getFormatString(s1) + str.substring(i.count + (flag ? 1 : 0));
-            list.add(new StringWidth(s1, i.size));
+            list.add(new StringWidth(s1, i.size, true));
         }
 
         return list;
@@ -178,7 +178,7 @@ public class CustomFontRenderer {
         return character == 167 ? 0.0F : getFont().findGlyph(character).getAdvance(false);
     }
 
-    private void renderSplitString(String str, int x, int y, int wrapWidth, int textColor, Align align) {
+    private void renderSplitString(String str, int x, int y, int wrapWidth, int textColor, Align align, boolean justify) {
         MutableBool link = new MutableBool();
 
         for(StringWidth s : this.wrapFormattedStringToWidth(str, wrapWidth)) {
@@ -189,23 +189,27 @@ public class CustomFontRenderer {
                 f += (float)(wrapWidth - i);
             }
 
-            switch (align) {
-                case LEFT:
-                    this.renderString(s.str, f, y, textColor, false, link);
-                    break;
-                case RIGHT:
-                    this.renderString(s.str, f + (wrapWidth - s.width), y, textColor, false, link);
-                    break;
-                case CENTER:
-                    this.renderString(s.str, f + (wrapWidth - s.width) / 2f, y, textColor, false, link);
-                    break;
+            if (justify && s.fullLine) {
+                this.renderString(s.str, f, y, textColor, false, link, wrapWidth - s.width);
+            } else {
+                switch (align) {
+                    case LEFT:
+                        this.renderString(s.str, f, y, textColor, false, link, 0);
+                        break;
+                    case RIGHT:
+                        this.renderString(s.str, f + (wrapWidth - s.width), y, textColor, false, link, 0);
+                        break;
+                    case CENTER:
+                        this.renderString(s.str, f + (wrapWidth - s.width) / 2f, y, textColor, false, link, 0);
+                        break;
+                }
             }
 
             y += fontRenderer.FONT_HEIGHT;
         }
     }
 
-    private int renderString(String text, float x, float y, int color, boolean dropShadow, MutableBool bool) {
+    private int renderString(String text, float x, float y, int color, boolean dropShadow, MutableBool bool, float width) {
         if (text == null) {
             return 0;
         } else {
@@ -218,15 +222,15 @@ public class CustomFontRenderer {
             }
 
             if (dropShadow) {
-                this.renderStringAtPos(text, x, y, color, true, bool);
+                this.renderStringAtPos(text, x, y, color, true, bool, width);
             }
 
-            x = this.renderStringAtPos(text, x, y, color, false, bool);
+            x = this.renderStringAtPos(text, x, y, color, false, bool, width);
             return (int)x + (dropShadow ? 1 : 0);
         }
     }
 
-    private float renderStringAtPos(@Nonnull String text, float x, float y, int color, boolean isShadow, MutableBool link) {
+    private float renderStringAtPos(@Nonnull String text, float x, float y, int color, boolean isShadow, MutableBool link, float width) {
         float f = isShadow ? 0.25F : 1.0F;
         float f1 = (float)(color >> 16 & 255) / 255.0F * f;
         float f2 = (float)(color >> 8 & 255) / 255.0F * f;
@@ -245,6 +249,12 @@ public class CustomFontRenderer {
         boolean flag3 = false;
         boolean flag4 = false;
         List<Entry> list = Lists.newArrayList();
+        int spaces = getSpaces(text);
+        float spaceWidth = 0;
+
+        if (width > 0 && spaces > 0) {
+            spaceWidth = width / spaces;
+        }
 
         for(int i = 0; i < text.length(); ++i) {
             char c0 = text.charAt(i);
@@ -326,6 +336,10 @@ public class CustomFontRenderer {
                 }
 
                 x += f10;
+
+                if (spaceWidth > 0 && c0 == ' ') {
+                    x += spaceWidth;
+                }
             }
         }
 
@@ -345,6 +359,22 @@ public class CustomFontRenderer {
         return x;
     }
 
+    private int getSpaces(String text) {
+        int count = 0;
+
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+
+            if (c == ' ') {
+                count++;
+            } else if ((c == '\u00a7') && (i < text.length() - 1) && (text.charAt(i + 1) == 'p')) {
+                count--;
+            }
+        }
+
+        return count;
+    }
+
     private void renderGlyph(@Nonnull TexturedGlyph glyph, boolean bold, boolean italic, float boldOffset, float x, float y, BufferBuilder builder, float r, float g, float b, float a) {
         glyph.render(Minecraft.getInstance().textureManager, italic, x, y, builder, r, g, b, a);
 
@@ -355,21 +385,25 @@ public class CustomFontRenderer {
     }
 
     @Nonnull
-    private List<Link> analyseSplitString(String str, int x, int y, int width, Align align) {
+    private List<Link> analyseSplitString(String str, int x, int y, int width, Align align, boolean justify) {
         List<Link> list = new ArrayList<>();
         int line = 0;
 
         for(StringWidth s : wrapFormattedStringToWidth(str, width)) {
-            switch (align) {
-                case LEFT:
-                    analyseString(list, s.str, (float)x, (float)y, line);
-                    break;
-                case RIGHT:
-                    analyseString(list, s.str, (float)x + (width - s.width), (float)y, line);
-                    break;
-                case CENTER:
-                    analyseString(list, s.str, (float)x + (width - s.width) / 2f, (float)y, line);
-                    break;
+            if (justify && s.fullLine) {
+                analyseString(list, s.str, (float) x, (float) y, line, width - s.width);
+            } else {
+                switch (align) {
+                    case LEFT:
+                        analyseString(list, s.str, (float) x, (float) y, line, 0);
+                        break;
+                    case RIGHT:
+                        analyseString(list, s.str, (float) x + (width - s.width), (float) y, line, 0);
+                        break;
+                    case CENTER:
+                        analyseString(list, s.str, (float) x + (width - s.width) / 2f, (float) y, line, 0);
+                        break;
+                }
             }
 
             y += Math.ceil(fontRenderer.FONT_HEIGHT);
@@ -379,15 +413,21 @@ public class CustomFontRenderer {
         return list;
     }
 
-    private void analyseString(List<Link> list, String text, float x, float y, int line) {
+    private void analyseString(List<Link> list, String text, float x, float y, int line, float width) {
         if (text != null) {
-            analyseStringAtPos(list, text, x, y, line);
+            analyseStringAtPos(list, text, x, y, line, width);
         }
     }
 
-    private void analyseStringAtPos(List<Link> list, @Nonnull String text, float xIn, float yIn, int line) {
+    private void analyseStringAtPos(List<Link> list, @Nonnull String text, float xIn, float yIn, int line, float width) {
         boolean bold = false;
         float x = xIn;
+        int spaces = getSpaces(text);
+        float spaceWidth = 0;
+
+        if (width > 0 && spaces > 0) {
+            spaceWidth = width / spaces;
+        }
 
         for(int i = 0; i < text.length(); ++i) {
             char c0 = text.charAt(i);
@@ -446,6 +486,10 @@ public class CustomFontRenderer {
                 IGlyph iglyph = getFont().findGlyph(c0);
                 float f10 = iglyph.getAdvance(bold);
                 x += f10;
+
+                if (spaceWidth > 0 && c0 == ' ') {
+                    x += spaceWidth;
+                }
             }
         }
 
@@ -528,10 +572,12 @@ public class CustomFontRenderer {
     static class StringWidth {
         String str;
         float width;
+        boolean fullLine;
 
-        StringWidth(String str, float width) {
+        StringWidth(String str, float width, boolean fullLine) {
             this.str = str;
             this.width = width;
+            this.fullLine = fullLine;
         }
     }
 

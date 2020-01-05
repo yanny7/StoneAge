@@ -63,7 +63,7 @@ public class TextWidget extends Widget {
     public void setPos(int x, int y) {
         super.setPos(x, y);
         links.clear();
-        links.addAll(customFontRenderer.analyseSplitStringLinks(text, 0, 0, Math.round((width - margin_left - margin_right) / scale), align));
+        links.addAll(customFontRenderer.analyseSplitStringLinks(text, 0, 0, Math.round((width - margin_left - margin_right) / scale), align, justify));
     }
 
     @Override
@@ -71,7 +71,7 @@ public class TextWidget extends Widget {
         GlStateManager.pushMatrix();
         GlStateManager.translatef(x + margin_left, y + margin_top, 0.0f);
         GlStateManager.scalef(scale, scale, 1.0f);
-        customFontRenderer.drawSplitString(text, 0, 0, Math.round((width - margin_left - margin_right) / scale), color, align);
+        customFontRenderer.drawSplitString(text, 0, 0, Math.round((width - margin_left - margin_right) / scale), color, align, justify);
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();

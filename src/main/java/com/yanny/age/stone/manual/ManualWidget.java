@@ -113,7 +113,7 @@ public class ManualWidget extends Widget implements IManual {
         Integer page = links.get(key);
 
         if (page == null) {
-            LOGGER.warn("Page key '{}' does not exists", page);
+            LOGGER.warn("Page key '{}' does not exists", key);
             return;
         }
 

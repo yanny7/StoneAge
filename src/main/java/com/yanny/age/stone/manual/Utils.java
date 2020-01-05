@@ -26,12 +26,14 @@ public class Utils {
         IS.put(Integer.class, JsonPrimitive::isNumber);
         IS.put(Double.class, JsonPrimitive::isNumber);
         IS.put(Float.class, JsonPrimitive::isNumber);
+        IS.put(Boolean.class, JsonPrimitive::isBoolean);
 
         GET = new HashMap<>();
         GET.put(String.class, JsonPrimitive::getAsString);
         GET.put(Integer.class, JsonPrimitive::getAsInt);
         GET.put(Double.class, JsonPrimitive::getAsDouble);
         GET.put(Float.class, JsonPrimitive::getAsFloat);
+        GET.put(Boolean.class, JsonPrimitive::getAsBoolean);
     }
 
     public static <T> T get(Class<?> t, @Nonnull JsonElement element, T defaultValue) {
