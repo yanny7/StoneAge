@@ -8,10 +8,12 @@ import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.util.NonNullList;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.fml.client.config.GuiUtils;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class RecipeWidget extends Widget {
     protected final IRecipeWidget recipe;
     protected final RecipeBackground background;
     protected final List<RecipeIngredient> recipeIngredients;
-    protected final List<List<String>> texts;
+    protected final List<Ingredient> texts;
 
     public RecipeWidget(JsonObject object, IManual manual) {
         ConfigHolder holder = new ConfigHolder(MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT, RECIPE);
@@ -45,14 +47,7 @@ public class RecipeWidget extends Widget {
 
         texts = Lists.newArrayList();
         for (RecipeIngredient ingredient : recipeIngredients) {
-            List<String> text = new ArrayList<>();
-            List<ITextComponent> list = ingredient.item.getTooltip(ExampleMod.proxy.getClientPlayer(), ITooltipFlag.TooltipFlags.NORMAL);
-
-            for (ITextComponent itextcomponent : list) {
-                text.add(itextcomponent.getFormattedText());
-            }
-
-            texts.add(text);
+            texts.add(ingredient.item);
         }
     }
 
@@ -68,6 +63,7 @@ public class RecipeWidget extends Widget {
 
     @Override
     public void drawBackgroundLayer(Screen screen, int mx, int my) {
+        int tmp = (int) (System.currentTimeMillis() / 2000);
         mc.getTextureManager().bindTexture(background.image);
 
         GlStateManager.pushMatrix();
@@ -84,7 +80,11 @@ public class RecipeWidget extends Widget {
         RenderHelper.enableGUIStandardItemLighting();
 
         for (RecipeIngredient ingredient : recipeIngredients) {
-            mc.getItemRenderer().renderItemIntoGUI(ingredient.item, ingredient.x, ingredient.y);
+            ItemStack[] stacks = ingredient.item.getMatchingStacks();
+
+            if (stacks.length > 0) {
+                mc.getItemRenderer().renderItemIntoGUI(stacks[tmp % stacks.length], ingredient.x, ingredient.y);
+            }
         }
 
         RenderHelper.disableStandardItemLighting();
@@ -96,16 +96,32 @@ public class RecipeWidget extends Widget {
 
     @Override
     public void render(Screen screen, int mx, int my) {
-        int i = 0;
+        int tmp = (int) (System.currentTimeMillis() / 2000);
+        mc.getTextureManager().bindTexture(background.image);
 
         if (inBounds(mx, my)) {
             for (RecipeIngredient ingredient : recipeIngredients) {
-                if (((x + margin_left + ingredient.x) < mx) && (mx < (x + margin_left + ingredient.x + ITEM_WIDTH)) &&
+                ItemStack[] stacks = ingredient.item.getMatchingStacks();
+
+                if (stacks.length > 0) {
+                    if (((x + margin_left + ingredient.x) < mx) && (mx < (x + margin_left + ingredient.x + ITEM_WIDTH)) &&
                         ((y + margin_top + ingredient.y) < my) && (my < (y + margin_top + ingredient.y + ITEM_WIDTH))) {
-                    GuiUtils.drawHoveringText(texts.get(i), mx, my, screen.width, screen.height, -1, mc.fontRenderer);
+                        GuiUtils.drawHoveringText(getText(stacks[tmp % stacks.length]), mx, my, screen.width, screen.height, -1, mc.fontRenderer);
+                    }
                 }
-                i++;
             }
         }
+    }
+
+    @Nonnull
+    private List<String> getText(@Nonnull ItemStack ingredient) {
+        List<ITextComponent> list = ingredient.getTooltip(ExampleMod.proxy.getClientPlayer(), ITooltipFlag.TooltipFlags.NORMAL);
+        List<String> text = new ArrayList<>();
+
+        for (ITextComponent itextcomponent : list) {
+            text.add(itextcomponent.getFormattedText());
+        }
+
+        return text;
     }
 }

@@ -125,7 +125,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:backpack"
+          "recipe": "stone_age:campfire"
         }
       ]
     }

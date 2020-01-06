@@ -129,7 +129,7 @@ public class FlintWorkbenchRecipe implements IRecipe<IInventory>, IRecipeWidget 
         for (int y = 0; y < recipeHeight; y++) {
             for (int x = 0; x < recipeWidth; x++) {
                 int pos = y * recipeWidth + x;
-                list.add(pos, new RecipeIngredient(recipeItems.get(pos).getMatchingStacks()[0], 4 + x * 18, 4 + y * 18));
+                list.add(pos, new RecipeIngredient(recipeItems.get(pos), 4 + x * 18, 4 + y * 18));
             }
         }
 
