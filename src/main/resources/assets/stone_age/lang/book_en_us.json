@@ -98,20 +98,6 @@
           "justify": true
         },
         {
-          "type": "text",
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor §pincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident§p , sunt in culpa qui officia deserunt mollit anim id est laborum.",
-          "scale": 0.5,
-          "color": "WHITE",
-          "align": "RIGHT"
-        },
-        {
-          "type": "text",
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore §pmagna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui§p officia deserunt mollit anim id est laborum.",
-          "scale": 0.5,
-          "color": "WHITE",
-          "align": "CENTER"
-        },
-        {
           "type": "image",
           "width": 32,
           "height": 16,

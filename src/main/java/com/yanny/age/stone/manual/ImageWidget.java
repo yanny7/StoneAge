@@ -44,12 +44,12 @@ public class ImageWidget extends Widget {
 
     @Override
     public int getMinWidth(int height) {
-        return margin_left + margin_right + tmpWidth;
+        return margin_left + margin_right + (tmpWidth <= 0 ? imgWidth : tmpWidth);
     }
 
     @Override
     public int getMinHeight(int width) {
-        return margin_top + margin_bottom + tmpHeight;
+        return margin_top + margin_bottom + (tmpHeight <= 0 ? imgHeight : tmpHeight);
     }
 
     @Override
