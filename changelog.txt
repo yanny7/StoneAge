@@ -1,6 +1,7 @@
+v1.0.3
 - aquaduct water can flow downward (aquaduct below is filled)
 - fixed missing saber-tooth loot table
-- fixed wood material blocks cannot be harvested by antler axe
+- fixed wood material blocks cannot be harvested by axe
 v1.0.2
 - added backpack
 - configurable aquaduct effect range, fill per tick and use per tick
