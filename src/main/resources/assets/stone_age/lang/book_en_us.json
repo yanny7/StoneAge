@@ -122,6 +122,10 @@
           "text": "Another page §ptest or this link?§p bajaja baja baja lkjlfaksd afd lsd flasjd fsldfkj alsdkfj lasdf",
           "scale": 1.0,
           "color": "GREEN"
+        },
+        {
+          "type": "recipe",
+          "recipe": "stone_age:backpack"
         }
       ]
     }

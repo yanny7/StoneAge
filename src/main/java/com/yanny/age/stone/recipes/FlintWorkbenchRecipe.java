@@ -1,5 +1,9 @@
 package com.yanny.age.stone.recipes;
 
+import com.yanny.age.stone.Reference;
+import com.yanny.age.stone.manual.IRecipeWidget;
+import com.yanny.age.stone.manual.RecipeBackground;
+import com.yanny.age.stone.manual.RecipeIngredient;
 import com.yanny.age.stone.subscribers.RecipeSubscriber;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -12,8 +16,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
 
-public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
+public class FlintWorkbenchRecipe implements IRecipe<IInventory>, IRecipeWidget {
     public static final IRecipeType<FlintWorkbenchRecipe> flint_workbench = IRecipeType.register("flint_workbench");
     public static final int MAX_WIDTH = 3;
     public static final int MAX_HEIGHT = 3;
@@ -105,6 +111,35 @@ public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
 
     public int getHeight() {
         return this.recipeHeight;
+    }
+
+    public int getRecipeWidth() {
+        return 120;
+    }
+
+    public int getRecipeHeight() {
+        return 60;
+    }
+
+    @Nonnull
+    @Override
+    public List<RecipeIngredient> getRecipeIngredients() {
+        List<RecipeIngredient> list = new ArrayList<>();
+
+        for (int y = 0; y < recipeHeight; y++) {
+            for (int x = 0; x < recipeWidth; x++) {
+                int pos = y * recipeWidth + x;
+                list.add(pos, new RecipeIngredient(recipeItems.get(pos).getMatchingStacks()[0], 4 + x * 18, 4 + y * 18));
+            }
+        }
+
+        return list;
+    }
+
+    @Nonnull
+    @Override
+    public RecipeBackground getRecipeBackground() {
+        return new RecipeBackground(new ResourceLocation(Reference.MODID, "textures/gui/jei/gui_layouts.png"), 0, 0, 256, 256);
     }
 
     /**

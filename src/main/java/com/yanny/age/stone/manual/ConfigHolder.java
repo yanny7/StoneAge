@@ -4,13 +4,20 @@ import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.item.crafting.ShapedRecipe;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -41,6 +48,15 @@ class ConfigHolder {
     public static final Pair<String, Obj<?, ?>> ALIGN_LEFT = new Pair<>("align", new Obj<>(String.class, Align.class, "LEFT", true,
             Align::fromString, s -> Align.fromString(s) != null));
     public static final Pair<String, Obj<?, ?>> JUSTIFY = new Pair<>("justify", new Obj<>(Boolean.class, Boolean.class, false, true, s -> s, s -> true));
+    public static final Pair<String, Obj<?, ?>> RECIPE = new Pair<>("recipe", new Obj<>(String.class, IRecipeWidget.class, "", false,
+            s -> {
+                IRecipe<?> recipe = Minecraft.getInstance().world.getRecipeManager().getRecipe(new ResourceLocation(s)).orElse(null);
+                return recipe instanceof IRecipeWidget ? (IRecipeWidget) recipe : new DefaultRecipe();
+            },
+            s -> {
+                IRecipe<?> recipe = Minecraft.getInstance().world.getRecipeManager().getRecipe(new ResourceLocation(s)).orElse(null);
+                return recipe instanceof IRecipeWidget;
+            }));
 
     private Map<String, Obj<?, ?>> objMap = new HashMap<>();
     private Map<String, ?> values = new HashMap<>();
@@ -113,6 +129,24 @@ class ConfigHolder {
         boolean checkValue(Object t) {
             //noinspection unchecked
             return check.test((T) t);
+        }
+    }
+
+    private static class DefaultRecipe extends ShapedRecipe implements IRecipeWidget {
+        public DefaultRecipe() {
+            super(new ResourceLocation(""), "", 1, 1, NonNullList.from(Ingredient.EMPTY), ItemStack.EMPTY);
+        }
+
+        @Nonnull
+        @Override
+        public List<RecipeIngredient> getRecipeIngredients() {
+            return new ArrayList<>();
+        }
+
+        @Nonnull
+        @Override
+        public RecipeBackground getRecipeBackground() {
+            return new RecipeBackground(new ResourceLocation("minecraft", "textures/block/stone.png"), 0, 0, 16, 16);
         }
     }
 }
