@@ -19,32 +19,19 @@ import java.util.List;
 
 import static com.yanny.age.stone.manual.ConfigHolder.*;
 
-public class RecipeWidget extends ConfigurableWidget {
+public class RecipeWidget extends MarginWidget {
     public static final String TYPE = "recipe";
     private static final int ITEM_WIDTH = 16;
 
-    protected final int margin_top;
-    protected final int margin_bottom;
-    protected final int tmpMarginLeft;
-    protected final int tmpMarginRight;
-    protected final Align align;
     protected final IRecipeWidget recipe;
     protected final RecipeBackground background;
     protected final List<RecipeIngredient> recipeIngredients;
     protected final List<Ingredient> texts;
 
-    protected int margin_left;
-
     public RecipeWidget(JsonObject object, IManual manual) {
-        super(object, manual, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT, RECIPE, ALIGN_CENTER);
+        super(object, manual, RECIPE);
 
-        margin_top = configHolder.getValue(MARGIN_TOP);
-        tmpMarginLeft = configHolder.getValue(MARGIN_LEFT);
-        margin_bottom = configHolder.getValue(MARGIN_BOTTOM);
-        tmpMarginRight = configHolder.getValue(MARGIN_RIGHT);
         recipe = configHolder.getValue(RECIPE);
-        align = configHolder.getValue(ALIGN_CENTER);
-
         background = recipe.getRecipeBackground();
         recipeIngredients = recipe.getRecipeIngredients();
 
@@ -55,46 +42,18 @@ public class RecipeWidget extends ConfigurableWidget {
     }
 
     @Override
+    int getRawWidth() {
+        return recipe.getRecipeWidth() + Math.max(getRawMarginLeft(), 0) + Math.max(getRawMarginRight(), 0);
+    }
+
+    @Override
     public int getMinWidth(int height) {
-        return recipe.getRecipeWidth() + Math.max(tmpMarginLeft, 0) + Math.max(tmpMarginRight, 0);
+        return getRawWidth();
     }
 
     @Override
     public int getMinHeight(int width) {
-        return recipe.getRecipeHeight() + margin_top + margin_bottom;
-    }
-
-    @Override
-    public void setWidth(int width) {
-        int minWidth = getMinWidth(0);
-
-        if (minWidth < width) {
-            switch (align) {
-                case CENTER:
-                    if (tmpMarginLeft < 0) {
-                        if (tmpMarginRight < 0) {
-                            margin_left = (width - minWidth) / 2;
-                        } else {
-                            margin_left = (width - minWidth - tmpMarginRight);
-                        }
-                    } else {
-                        margin_left = tmpMarginLeft;
-                    }
-                    break;
-                case RIGHT:
-                    if (tmpMarginLeft < 0) {
-                        margin_left = width - minWidth;
-                    } else {
-                        margin_left = tmpMarginLeft;
-                    }
-                    break;
-                case LEFT:
-                    margin_left = Math.max(tmpMarginLeft, 0);
-                    break;
-            }
-        }
-
-        super.setWidth(width);
+        return recipe.getRecipeHeight() + getMarginTop() + getMarginBottom();
     }
 
     @Override
@@ -103,7 +62,7 @@ public class RecipeWidget extends ConfigurableWidget {
         mc.getTextureManager().bindTexture(background.image);
 
         GlStateManager.pushMatrix();
-        GlStateManager.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
+        GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
         GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         AbstractGui.blit(0, 0, 0, background.u, background.v, recipe.getRecipeWidth(), recipe.getRecipeHeight(), background.imgW, background.imgH);
         GlStateManager.popMatrix();
@@ -111,7 +70,7 @@ public class RecipeWidget extends ConfigurableWidget {
         GlStateManager.pushTextureAttributes();
         GlStateManager.pushLightingAttributes();
         GlStateManager.pushMatrix();
-        GlStateManager.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
+        GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
         GlStateManager.enableRescaleNormal();
         RenderHelper.enableGUIStandardItemLighting();
 
@@ -140,8 +99,8 @@ public class RecipeWidget extends ConfigurableWidget {
                 ItemStack[] stacks = ingredient.item.getMatchingStacks();
 
                 if (stacks.length > 0) {
-                    if (((getX() + margin_left + ingredient.x) < mx) && (mx < (getX() + margin_left + ingredient.x + ITEM_WIDTH)) &&
-                        ((getY() + margin_top + ingredient.y) < my) && (my < (getY() + margin_top + ingredient.y + ITEM_WIDTH))) {
+                    if (((getX() + getMarginLeft() + ingredient.x) < mx) && (mx < (getX() + getMarginLeft() + ingredient.x + ITEM_WIDTH)) &&
+                        ((getY() + getMarginTop() + ingredient.y) < my) && (my < (getY() + getMarginTop() + ingredient.y + ITEM_WIDTH))) {
                         GuiUtils.drawHoveringText(getText(stacks[tmp % stacks.length]), mx, my, screen.width, screen.height, -1, mc.fontRenderer);
                     }
                 }

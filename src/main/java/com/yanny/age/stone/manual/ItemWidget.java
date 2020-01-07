@@ -16,31 +16,19 @@ import java.util.List;
 import static com.yanny.age.stone.manual.ConfigHolder.*;
 import static com.yanny.age.stone.manual.ConfigHolder.HEIGHT;
 
-public class ItemWidget extends ConfigurableWidget {
+public class ItemWidget extends MarginWidget {
     public static final String TYPE = "item";
     private static final int ITEM_WIDTH = 16;
 
     protected final float scale;
     protected final List<String> text;
     protected final ItemStack item;
-    protected final int margin_top;
-    protected final int margin_bottom;
-    protected final int tmpMarginLeft;
-    protected final int tmpMarginRight;
-    protected final Align align;
-
-    protected int margin_left;
 
     public ItemWidget(JsonObject object, IManual manual) {
-        super(object, manual, SCALE, WIDTH, HEIGHT, ITEM, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT, ALIGN_CENTER);
+        super(object, manual, SCALE, ITEM);
 
         scale = configHolder.getValue(SCALE);
         item = configHolder.getValue(ITEM);
-        margin_top = configHolder.getValue(MARGIN_TOP);
-        tmpMarginLeft = configHolder.getValue(MARGIN_LEFT);
-        margin_bottom = configHolder.getValue(MARGIN_BOTTOM);
-        tmpMarginRight = configHolder.getValue(MARGIN_RIGHT);
-        align = configHolder.getValue(ALIGN_CENTER);
 
         text = Lists.newArrayList();
         List<ITextComponent> list = item.getTooltip(ExampleMod.proxy.getClientPlayer(), ITooltipFlag.TooltipFlags.NORMAL);
@@ -50,46 +38,18 @@ public class ItemWidget extends ConfigurableWidget {
     }
 
     @Override
+    int getRawWidth() {
+        return Math.round(ITEM_WIDTH * scale) + Math.max(getRawMarginLeft(), 0) + Math.max(getRawMarginRight(), 0);
+    }
+
+    @Override
     public int getMinWidth(int height) {
-        return Math.round(ITEM_WIDTH * scale) + Math.max(tmpMarginLeft, 0) + Math.max(tmpMarginRight, 0);
+        return getRawWidth();
     }
 
     @Override
     public int getMinHeight(int width) {
-        return Math.round(ITEM_WIDTH * scale) + margin_top + margin_bottom;
-    }
-
-    @Override
-    public void setWidth(int width) {
-        int minWidth = getMinWidth(0);
-
-        if (minWidth < width) {
-            switch (align) {
-                case CENTER:
-                    if (tmpMarginLeft < 0) {
-                        if (tmpMarginRight < 0) {
-                            margin_left = (width - minWidth) / 2;
-                        } else {
-                            margin_left = (width - minWidth - tmpMarginRight);
-                        }
-                    } else {
-                        margin_left = tmpMarginLeft;
-                    }
-                    break;
-                case RIGHT:
-                    if (tmpMarginLeft < 0) {
-                        margin_left = width - minWidth;
-                    } else {
-                        margin_left = tmpMarginLeft;
-                    }
-                    break;
-                case LEFT:
-                    margin_left = Math.max(tmpMarginLeft, 0);
-                    break;
-            }
-        }
-
-        super.setWidth(width);
+        return Math.round(ITEM_WIDTH * scale) + getMarginTop() + getMarginBottom();
     }
 
     @Override
@@ -97,7 +57,7 @@ public class ItemWidget extends ConfigurableWidget {
         GlStateManager.pushTextureAttributes();
         GlStateManager.pushLightingAttributes();
         GlStateManager.pushMatrix();
-        GlStateManager.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
+        GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
         GlStateManager.scalef(scale, scale, 1.0f);
         GlStateManager.enableRescaleNormal();
         RenderHelper.enableGUIStandardItemLighting();
