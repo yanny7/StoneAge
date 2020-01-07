@@ -20,12 +20,15 @@ public class ImageWidget extends ConfigurableWidget {
     protected final int u;
     protected final int v;
     protected final int margin_top;
-    protected final int margin_left;
     protected final int margin_bottom;
-    protected final int margin_right;
+    protected final int tmpMarginLeft;
+    protected final int tmpMarginRight;
+    protected final Align align;
+
+    protected int margin_left;
 
     public ImageWidget(JsonObject object, IManual manual) {
-        super(object, manual, SCALE, WIDTH, HEIGHT, IMG_WIDTH, IMG_HEIGHT, IMG_U, IMG_V, IMAGE, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT);
+        super(object, manual, SCALE, WIDTH, HEIGHT, IMG_WIDTH, IMG_HEIGHT, IMG_U, IMG_V, IMAGE, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT, ALIGN_CENTER);
 
         scale = configHolder.getValue(SCALE);
         tmpWidth = configHolder.getValue(WIDTH);
@@ -36,19 +39,53 @@ public class ImageWidget extends ConfigurableWidget {
         v = configHolder.getValue(IMG_V);
         imgRes = configHolder.getValue(IMAGE);
         margin_top = configHolder.getValue(MARGIN_TOP);
-        margin_left = configHolder.getValue(MARGIN_LEFT);
+        tmpMarginLeft = configHolder.getValue(MARGIN_LEFT);
         margin_bottom = configHolder.getValue(MARGIN_BOTTOM);
-        margin_right = configHolder.getValue(MARGIN_RIGHT);
+        tmpMarginRight = configHolder.getValue(MARGIN_RIGHT);
+        align = configHolder.getValue(ALIGN_CENTER);
     }
 
     @Override
     public int getMinWidth(int height) {
-        return margin_left + margin_right + (tmpWidth <= 0 ? imgWidth : tmpWidth);
+        return Math.max(tmpMarginLeft, 0) + Math.max(tmpMarginRight, 0) + (tmpWidth <= 0 ? imgWidth : tmpWidth);
     }
 
     @Override
     public int getMinHeight(int width) {
         return margin_top + margin_bottom + (tmpHeight <= 0 ? imgHeight : tmpHeight);
+    }
+
+    @Override
+    public void setWidth(int width) {
+        int minWidth = getMinWidth(0);
+
+        if (minWidth < width) {
+            switch (align) {
+                case CENTER:
+                    if (tmpMarginLeft < 0) {
+                        if (tmpMarginRight < 0) {
+                            margin_left = (width - minWidth) / 2;
+                        } else {
+                            margin_left = (width - minWidth - tmpMarginRight);
+                        }
+                    } else {
+                        margin_left = tmpMarginLeft;
+                    }
+                    break;
+                case RIGHT:
+                    if (tmpMarginLeft < 0) {
+                        margin_left = width - minWidth;
+                    } else {
+                        margin_left = tmpMarginLeft;
+                    }
+                    break;
+                case LEFT:
+                    margin_left = Math.max(tmpMarginLeft, 0);
+                    break;
+            }
+        }
+
+        super.setWidth(width);
     }
 
     @Override

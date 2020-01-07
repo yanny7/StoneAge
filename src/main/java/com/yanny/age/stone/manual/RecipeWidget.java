@@ -23,8 +23,6 @@ public class RecipeWidget extends ConfigurableWidget {
     public static final String TYPE = "recipe";
     private static final int ITEM_WIDTH = 16;
 
-    protected int margin_left;
-
     protected final int margin_top;
     protected final int margin_bottom;
     protected final int tmpMarginLeft;
@@ -35,11 +33,13 @@ public class RecipeWidget extends ConfigurableWidget {
     protected final List<RecipeIngredient> recipeIngredients;
     protected final List<Ingredient> texts;
 
+    protected int margin_left;
+
     public RecipeWidget(JsonObject object, IManual manual) {
-        super(object, manual, MARGIN_TOP, MARGIN_LEFT_AUTO, MARGIN_BOTTOM, MARGIN_RIGHT_AUTO, RECIPE, ALIGN_CENTER);
+        super(object, manual, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT, RECIPE, ALIGN_CENTER);
 
         margin_top = configHolder.getValue(MARGIN_TOP);
-        tmpMarginLeft = configHolder.getValue(MARGIN_LEFT_AUTO);
+        tmpMarginLeft = configHolder.getValue(MARGIN_LEFT);
         margin_bottom = configHolder.getValue(MARGIN_BOTTOM);
         tmpMarginRight = configHolder.getValue(MARGIN_RIGHT);
         recipe = configHolder.getValue(RECIPE);
@@ -56,7 +56,7 @@ public class RecipeWidget extends ConfigurableWidget {
 
     @Override
     public int getMinWidth(int height) {
-        return recipe.getRecipeWidth() + tmpMarginLeft + tmpMarginRight;
+        return recipe.getRecipeWidth() + Math.max(tmpMarginLeft, 0) + Math.max(tmpMarginRight, 0);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class RecipeWidget extends ConfigurableWidget {
 
     @Override
     public void setWidth(int width) {
-        int minWidth = (recipe.getRecipeWidth() + Math.max(tmpMarginLeft, 0) + Math.max(tmpMarginRight, 0));
+        int minWidth = getMinWidth(0);
 
         if (minWidth < width) {
             switch (align) {
@@ -140,7 +140,7 @@ public class RecipeWidget extends ConfigurableWidget {
                 ItemStack[] stacks = ingredient.item.getMatchingStacks();
 
                 if (stacks.length > 0) {
-                    if (((getX() + tmpMarginLeft + ingredient.x) < mx) && (mx < (getX() + tmpMarginLeft + ingredient.x + ITEM_WIDTH)) &&
+                    if (((getX() + margin_left + ingredient.x) < mx) && (mx < (getX() + margin_left + ingredient.x + ITEM_WIDTH)) &&
                         ((getY() + margin_top + ingredient.y) < my) && (my < (getY() + margin_top + ingredient.y + ITEM_WIDTH))) {
                         GuiUtils.drawHoveringText(getText(stacks[tmp % stacks.length]), mx, my, screen.width, screen.height, -1, mc.fontRenderer);
                     }

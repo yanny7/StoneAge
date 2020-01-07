@@ -24,19 +24,23 @@ public class ItemWidget extends ConfigurableWidget {
     protected final List<String> text;
     protected final ItemStack item;
     protected final int margin_top;
-    protected final int margin_left;
     protected final int margin_bottom;
-    protected final int margin_right;
+    protected final int tmpMarginLeft;
+    protected final int tmpMarginRight;
+    protected final Align align;
+
+    protected int margin_left;
 
     public ItemWidget(JsonObject object, IManual manual) {
-        super(object, manual, SCALE, WIDTH, HEIGHT, ITEM, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT);
+        super(object, manual, SCALE, WIDTH, HEIGHT, ITEM, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT, ALIGN_CENTER);
 
         scale = configHolder.getValue(SCALE);
         item = configHolder.getValue(ITEM);
         margin_top = configHolder.getValue(MARGIN_TOP);
-        margin_left = configHolder.getValue(MARGIN_LEFT);
+        tmpMarginLeft = configHolder.getValue(MARGIN_LEFT);
         margin_bottom = configHolder.getValue(MARGIN_BOTTOM);
-        margin_right = configHolder.getValue(MARGIN_RIGHT);
+        tmpMarginRight = configHolder.getValue(MARGIN_RIGHT);
+        align = configHolder.getValue(ALIGN_CENTER);
 
         text = Lists.newArrayList();
         List<ITextComponent> list = item.getTooltip(ExampleMod.proxy.getClientPlayer(), ITooltipFlag.TooltipFlags.NORMAL);
@@ -47,12 +51,45 @@ public class ItemWidget extends ConfigurableWidget {
 
     @Override
     public int getMinWidth(int height) {
-        return Math.round(ITEM_WIDTH * scale) + margin_left + margin_right;
+        return Math.round(ITEM_WIDTH * scale) + Math.max(tmpMarginLeft, 0) + Math.max(tmpMarginRight, 0);
     }
 
     @Override
     public int getMinHeight(int width) {
         return Math.round(ITEM_WIDTH * scale) + margin_top + margin_bottom;
+    }
+
+    @Override
+    public void setWidth(int width) {
+        int minWidth = getMinWidth(0);
+
+        if (minWidth < width) {
+            switch (align) {
+                case CENTER:
+                    if (tmpMarginLeft < 0) {
+                        if (tmpMarginRight < 0) {
+                            margin_left = (width - minWidth) / 2;
+                        } else {
+                            margin_left = (width - minWidth - tmpMarginRight);
+                        }
+                    } else {
+                        margin_left = tmpMarginLeft;
+                    }
+                    break;
+                case RIGHT:
+                    if (tmpMarginLeft < 0) {
+                        margin_left = width - minWidth;
+                    } else {
+                        margin_left = tmpMarginLeft;
+                    }
+                    break;
+                case LEFT:
+                    margin_left = Math.max(tmpMarginLeft, 0);
+                    break;
+            }
+        }
+
+        super.setWidth(width);
     }
 
     @Override
