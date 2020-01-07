@@ -103,7 +103,8 @@
           "height": 16,
           "w": 16,
           "h": 16,
-          "image": "stone_age:textures/block/flint_workbench_side.png"
+          "image": "stone_age:textures/block/flint_workbench_side.png",
+          "scale": 2.0
         }
       ]
     },
@@ -125,7 +126,8 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:campfire"
+          "recipe": "stone_age:campfire",
+          "scale": 0.5
         }
       ]
     }

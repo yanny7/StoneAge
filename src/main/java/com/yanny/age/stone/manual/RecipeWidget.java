@@ -23,14 +23,16 @@ public class RecipeWidget extends MarginWidget {
     public static final String TYPE = "recipe";
     private static final int ITEM_WIDTH = 16;
 
+    protected final float scale;
     protected final IRecipeWidget recipe;
     protected final RecipeBackground background;
     protected final List<RecipeIngredient> recipeIngredients;
     protected final List<Ingredient> texts;
 
     public RecipeWidget(JsonObject object, IManual manual) {
-        super(object, manual, RECIPE);
+        super(object, manual, RECIPE, SCALE);
 
+        scale = configHolder.getValue(SCALE);
         recipe = configHolder.getValue(RECIPE);
         background = recipe.getRecipeBackground();
         recipeIngredients = recipe.getRecipeIngredients();
@@ -43,7 +45,7 @@ public class RecipeWidget extends MarginWidget {
 
     @Override
     int getRawWidth() {
-        return recipe.getRecipeWidth() + Math.max(getRawMarginLeft(), 0) + Math.max(getRawMarginRight(), 0);
+        return Math.round(recipe.getRecipeWidth() * scale) + Math.max(getRawMarginLeft(), 0) + Math.max(getRawMarginRight(), 0);
     }
 
     @Override
@@ -53,7 +55,7 @@ public class RecipeWidget extends MarginWidget {
 
     @Override
     public int getMinHeight(int width) {
-        return recipe.getRecipeHeight() + getMarginTop() + getMarginBottom();
+        return Math.round(recipe.getRecipeHeight() * scale) + getMarginTop() + getMarginBottom();
     }
 
     @Override
@@ -63,6 +65,7 @@ public class RecipeWidget extends MarginWidget {
 
         GlStateManager.pushMatrix();
         GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
+        GlStateManager.scalef(scale, scale, 0);
         GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         AbstractGui.blit(0, 0, 0, background.u, background.v, recipe.getRecipeWidth(), recipe.getRecipeHeight(), background.imgW, background.imgH);
         GlStateManager.popMatrix();
@@ -71,6 +74,7 @@ public class RecipeWidget extends MarginWidget {
         GlStateManager.pushLightingAttributes();
         GlStateManager.pushMatrix();
         GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
+        GlStateManager.scalef(scale, scale, 0);
         GlStateManager.enableRescaleNormal();
         RenderHelper.enableGUIStandardItemLighting();
 
@@ -99,8 +103,8 @@ public class RecipeWidget extends MarginWidget {
                 ItemStack[] stacks = ingredient.item.getMatchingStacks();
 
                 if (stacks.length > 0) {
-                    if (((getX() + getMarginLeft() + ingredient.x) < mx) && (mx < (getX() + getMarginLeft() + ingredient.x + ITEM_WIDTH)) &&
-                        ((getY() + getMarginTop() + ingredient.y) < my) && (my < (getY() + getMarginTop() + ingredient.y + ITEM_WIDTH))) {
+                    if (((getX() + getMarginLeft() + ingredient.x * scale) < mx) && (mx < (getX() + getMarginLeft() + (ingredient.x + ITEM_WIDTH) * scale)) &&
+                        ((getY() + getMarginTop() + ingredient.y * scale) < my) && (my < (getY() + getMarginTop() + (ingredient.y + ITEM_WIDTH) * scale))) {
                         GuiUtils.drawHoveringText(getText(stacks[tmp % stacks.length]), mx, my, screen.width, screen.height, -1, mc.fontRenderer);
                     }
                 }

@@ -35,7 +35,7 @@ public class ImageWidget extends MarginWidget {
 
     @Override
     int getRawWidth() {
-        return (tmpWidth <= 0 ? imgWidth : tmpWidth) + Math.max(getRawMarginLeft(), 0) + Math.max(getRawMarginRight(), 0);
+        return Math.round(tmpWidth <= 0 ? imgWidth * scale : tmpWidth * scale) + Math.max(getRawMarginLeft(), 0) + Math.max(getRawMarginRight(), 0);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class ImageWidget extends MarginWidget {
 
     @Override
     public int getMinHeight(int width) {
-        return (tmpHeight <= 0 ? imgHeight : tmpHeight) + getMarginTop() + getMarginBottom();
+        return Math.round(tmpHeight <= 0 ? imgHeight * scale : tmpHeight * scale) + getMarginTop() + getMarginBottom();
     }
 
     @Override
@@ -54,6 +54,7 @@ public class ImageWidget extends MarginWidget {
 
         GlStateManager.pushMatrix();
         GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
+        GlStateManager.scalef(scale, scale, 0);
         GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         AbstractGui.blit(0, 0, 0, u, v, tmpWidth, tmpHeight, imgWidth, imgHeight);
         GlStateManager.popMatrix();
