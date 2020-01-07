@@ -61,7 +61,7 @@ public class ItemWidget extends Widget {
         GlStateManager.pushTextureAttributes();
         GlStateManager.pushLightingAttributes();
         GlStateManager.pushMatrix();
-        GlStateManager.translatef(x + margin_left, y + margin_top, 0.0f);
+        GlStateManager.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
         GlStateManager.scalef(scale, scale, 1.0f);
         GlStateManager.enableRescaleNormal();
         RenderHelper.enableGUIStandardItemLighting();

@@ -30,8 +30,7 @@ public class ManualWidget extends Widget implements IManual {
         JsonObject object;
         IResourceManager manager = Minecraft.getInstance().getResourceManager();
 
-        this.width = width - Utils.MARGIN * 2;
-        this.height = height - Utils.MARGIN * 2;
+        setSize(width - Utils.MARGIN * 2, height - Utils.MARGIN * 2);
 
         try (InputStreamReader inputstream = new InputStreamReader(manager.getResource(resource).getInputStream()); Reader reader = new BufferedReader(inputstream)) {
             object = JSONUtils.fromJson(GSON, reader, JsonObject.class);

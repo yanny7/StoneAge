@@ -67,7 +67,7 @@ public class VerticalLayoutWidget extends Widget {
 
         for (Widget widget : widgets) {
             widget.setPos(x, pos);
-            pos += widget.height;
+            pos += widget.getHeight();
         }
     }
 

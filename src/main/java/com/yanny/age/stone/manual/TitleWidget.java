@@ -49,17 +49,17 @@ public class TitleWidget extends Widget {
     @Override
     public void drawBackgroundLayer(Screen screen, int mx, int my) {
         GlStateManager.pushMatrix();
-        GlStateManager.translatef(x + margin_left, y + margin_top, 0.0f);
+        GlStateManager.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
         GlStateManager.scalef(scale, scale, 1.0f);
         switch (align) {
             case LEFT:
                 screen.drawString(mc.fontRenderer, text, 0, 0, color);
                 break;
             case RIGHT:
-                screen.drawRightAlignedString(mc.fontRenderer, text, Math.round((width - margin_left - margin_right) / scale), 0, color);
+                screen.drawRightAlignedString(mc.fontRenderer, text, Math.round((getWidth() - margin_left - margin_right) / scale), 0, color);
                 break;
             case CENTER:
-                screen.drawCenteredString(mc.fontRenderer, text, Math.round(((width - margin_left - margin_right) / scale) / 2f), 0, color);
+                screen.drawCenteredString(mc.fontRenderer, text, Math.round(((getWidth() - margin_left - margin_right) / scale) / 2f), 0, color);
                 break;
         }
         GlStateManager.popMatrix();

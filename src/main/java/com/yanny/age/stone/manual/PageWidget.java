@@ -6,8 +6,7 @@ public class PageWidget extends VerticalLayoutWidget {
 
     public PageWidget(ManualWidget manual, JsonObject object, int page) {
         super(object, manual);
-        this.width = manual.width;
-        this.height = manual.height;
+        setSize(manual.getWidth(), manual.getHeight());
 
         String key = Utils.get(String.class, manual, object, "key", null, false);
         if (key != null) {

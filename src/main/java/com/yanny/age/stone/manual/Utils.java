@@ -109,43 +109,43 @@ public class Utils {
         int dCount = 0;
 
         for (Widget widget : widgets) {
-            widget.width = widget.getMinWidth(parent.height);
+            widget.setWidth(widget.getMinWidth(parent.getHeight()));
 
-            if (widget.width < 0) {
+            if (widget.getWidth() < 0) {
                 dCount++;
             } else {
-                width += widget.width;
+                width += widget.getWidth();
             }
         }
 
-        int leftWidth = parent.width - width;
+        int leftWidth = parent.getWidth() - width;
 
         if (leftWidth < 0) {
             for (Widget widget : widgets) {
-                if (widget.width < 0) {
-                    widget.width = 50;
-                    LOGGER.warn("Width not set for {}, parent width: {}!", widget.getClass().getCanonicalName(), parent.width);
+                if (widget.getWidth() < 0) {
+                    widget.setWidth(50);
+                    LOGGER.warn("Width not set for {}, parent width: {}!", widget.getClass().getCanonicalName(), parent.getWidth());
                 }
-                widget.width = parent.width / widgets.size();
+                widget.setWidth(parent.getWidth() / widgets.size());
             }
             LOGGER.warn("Total width is greater than parent width!");
         } else {
             if (dCount > 0) {
                 for (Widget widget : widgets) {
-                    if (widget.width < 0) {
-                        widget.width = leftWidth / dCount;
+                    if (widget.getWidth() < 0) {
+                        widget.setWidth(leftWidth / dCount);
                     }
                 }
             }
         }
 
         for (Widget widget : widgets) {
-            if (widget.height < 0) {
-                widget.height = widget.getMinHeight(widget.width);
+            if (widget.getHeight() < 0) {
+                widget.setHeight(widget.getMinHeight(widget.getWidth()));
             }
 
-            if (widget.height < 0) {
-                widget.height = parent.height;
+            if (widget.getHeight() < 0) {
+                widget.setHeight(parent.getHeight());
             }
         }
     }
@@ -155,42 +155,42 @@ public class Utils {
         int dCount = 0;
 
         for (Widget widget : widgets) {
-            widget.height = widget.getMinHeight(parent.width);
+            widget.setHeight(widget.getMinHeight(parent.getWidth()));
 
-            if (widget.height < 0) {
+            if (widget.getHeight() < 0) {
                 dCount++;
             } else {
-                height += widget.height;
+                height += widget.getHeight();
             }
         }
 
-        int leftHeight = parent.height - height;
+        int leftHeight = parent.getHeight() - height;
 
         if (leftHeight < 0) {
             for (Widget widget : widgets) {
-                if (widget.height < 0) {
-                    widget.height = 50;
-                    LOGGER.warn("Height not set for {}, parent height: {}!", widget.getClass().getCanonicalName(), parent.height);
+                if (widget.getHeight() < 0) {
+                    widget.setHeight(50);
+                    LOGGER.warn("Height not set for {}, parent height: {}!", widget.getClass().getCanonicalName(), parent.getHeight());
                 }
             }
             LOGGER.warn("Total height is greater than parent height!");
         } else {
             if (dCount > 0) {
                 for (Widget widget : widgets) {
-                    if (widget.height < 0) {
-                        widget.height = leftHeight / dCount;
+                    if (widget.getHeight() < 0) {
+                        widget.setHeight(leftHeight / dCount);
                     }
                 }
             }
         }
 
         for (Widget widget : widgets) {
-            if (widget.width < 0) {
-                widget.width = widget.getMinWidth(widget.height);
-            }
+            /*if (widget.getWidth() < 0) {
+                widget.setWidth(widget.getMinWidth(widget.getHeight()));
+            }*/
 
-            if (widget.width < 0) {
-                widget.width = parent.width;
+            if (widget.getWidth() < 0) {
+                widget.setWidth(parent.getWidth());
             }
         }
     }

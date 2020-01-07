@@ -8,7 +8,7 @@ public abstract class Widget {
 
     protected final Minecraft mc = Minecraft.getInstance();
 
-    protected int x, y, width, height;
+    private int x, y, width, height;
     protected boolean enabled;
     protected boolean visible;
 
@@ -36,6 +36,35 @@ public abstract class Widget {
     public void setPos(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public void setSize(int width, int height) {
+        setWidth(width);
+        setHeight(height);
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     public int getMinWidth(int height) {

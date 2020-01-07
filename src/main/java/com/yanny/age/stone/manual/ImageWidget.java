@@ -57,7 +57,7 @@ public class ImageWidget extends Widget {
         mc.getTextureManager().bindTexture(imgRes);
 
         GlStateManager.pushMatrix();
-        GlStateManager.translatef(x + margin_left, y + margin_top, 0.0f);
+        GlStateManager.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
         GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         AbstractGui.blit(0, 0, 0, u, v, tmpWidth, tmpHeight, imgWidth, imgHeight);
         GlStateManager.popMatrix();

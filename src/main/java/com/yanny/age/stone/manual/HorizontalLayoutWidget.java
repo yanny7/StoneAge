@@ -67,7 +67,7 @@ public class HorizontalLayoutWidget extends Widget {
 
         for (Widget widget : widgets) {
             widget.setPos(pos, y);
-            pos += widget.width;
+            pos += widget.getWidth();
         }
     }
 
@@ -75,15 +75,15 @@ public class HorizontalLayoutWidget extends Widget {
     public int getMinHeight(int width) {
         int height = DYNAMIC;
         int totalWidth = 0;
-        int oldWidth = this.width;
+        int oldWidth = this.getWidth();
 
-        this.width = width;
+        setWidth(width);
         Utils.resizeHLayout(this, widgets);
-        this.width = oldWidth;
+        setWidth(oldWidth);
 
         for (Widget widget : widgets) {
             height = Math.max(height, widget.getMinHeight(width - totalWidth));
-            totalWidth += widget.width;
+            totalWidth += widget.getWidth();
         }
 
         return height;
