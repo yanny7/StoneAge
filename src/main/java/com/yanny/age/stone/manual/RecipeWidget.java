@@ -18,9 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.yanny.age.stone.manual.ConfigHolder.*;
-import static com.yanny.age.stone.manual.ConfigHolder.MARGIN_RIGHT;
 
-public class RecipeWidget extends Widget {
+public class RecipeWidget extends ConfigurableWidget {
     public static final String TYPE = "recipe";
     private static final int ITEM_WIDTH = 16;
 
@@ -37,15 +36,14 @@ public class RecipeWidget extends Widget {
     protected final List<Ingredient> texts;
 
     public RecipeWidget(JsonObject object, IManual manual) {
-        ConfigHolder holder = new ConfigHolder(MARGIN_TOP, MARGIN_LEFT_AUTO, MARGIN_BOTTOM, MARGIN_RIGHT_AUTO, RECIPE, ALIGN_CENTER);
-        holder.loadConfig(object, manual);
+        super(object, manual, MARGIN_TOP, MARGIN_LEFT_AUTO, MARGIN_BOTTOM, MARGIN_RIGHT_AUTO, RECIPE, ALIGN_CENTER);
 
-        margin_top = holder.getValue(MARGIN_TOP);
-        tmpMarginLeft = holder.getValue(MARGIN_LEFT_AUTO);
-        margin_bottom = holder.getValue(MARGIN_BOTTOM);
-        tmpMarginRight = holder.getValue(MARGIN_RIGHT);
-        recipe = holder.getValue(RECIPE);
-        align = holder.getValue(ALIGN_CENTER);
+        margin_top = configHolder.getValue(MARGIN_TOP);
+        tmpMarginLeft = configHolder.getValue(MARGIN_LEFT_AUTO);
+        margin_bottom = configHolder.getValue(MARGIN_BOTTOM);
+        tmpMarginRight = configHolder.getValue(MARGIN_RIGHT);
+        recipe = configHolder.getValue(RECIPE);
+        align = configHolder.getValue(ALIGN_CENTER);
 
         background = recipe.getRecipeBackground();
         recipeIngredients = recipe.getRecipeIngredients();

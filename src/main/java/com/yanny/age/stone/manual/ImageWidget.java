@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 
 import static com.yanny.age.stone.manual.ConfigHolder.*;
 
-public class ImageWidget extends Widget {
+public class ImageWidget extends ConfigurableWidget {
     public static final String TYPE = "image";
 
     protected final ResourceLocation imgRes;
@@ -25,21 +25,20 @@ public class ImageWidget extends Widget {
     protected final int margin_right;
 
     public ImageWidget(JsonObject object, IManual manual) {
-        ConfigHolder holder = new ConfigHolder(SCALE, WIDTH, HEIGHT, IMG_WIDTH, IMG_HEIGHT, IMG_U, IMG_V, IMAGE, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT);
-        holder.loadConfig(object, manual);
+        super(object, manual, SCALE, WIDTH, HEIGHT, IMG_WIDTH, IMG_HEIGHT, IMG_U, IMG_V, IMAGE, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT);
 
-        scale = holder.getValue(SCALE);
-        tmpWidth = holder.getValue(WIDTH);
-        tmpHeight = holder.getValue(HEIGHT);
-        imgWidth = holder.getValue(IMG_WIDTH);
-        imgHeight = holder.getValue(IMG_HEIGHT);
-        u = holder.getValue(IMG_U);
-        v = holder.getValue(IMG_V);
-        imgRes = holder.getValue(IMAGE);
-        margin_top = holder.getValue(MARGIN_TOP);
-        margin_left = holder.getValue(MARGIN_LEFT);
-        margin_bottom = holder.getValue(MARGIN_BOTTOM);
-        margin_right = holder.getValue(MARGIN_RIGHT);
+        scale = configHolder.getValue(SCALE);
+        tmpWidth = configHolder.getValue(WIDTH);
+        tmpHeight = configHolder.getValue(HEIGHT);
+        imgWidth = configHolder.getValue(IMG_WIDTH);
+        imgHeight = configHolder.getValue(IMG_HEIGHT);
+        u = configHolder.getValue(IMG_U);
+        v = configHolder.getValue(IMG_V);
+        imgRes = configHolder.getValue(IMAGE);
+        margin_top = configHolder.getValue(MARGIN_TOP);
+        margin_left = configHolder.getValue(MARGIN_LEFT);
+        margin_bottom = configHolder.getValue(MARGIN_BOTTOM);
+        margin_right = configHolder.getValue(MARGIN_RIGHT);
     }
 
     @Override

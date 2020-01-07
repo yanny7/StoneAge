@@ -41,10 +41,10 @@ class ConfigHolder {
             ResourceLocation::new, s -> Minecraft.getInstance().getResourceManager().hasResource(new ResourceLocation(s))));
     public static final Pair<String, Obj<?, ?>> MARGIN_TOP = new Pair<>("margin_top", new Obj<>(Integer.class, Integer.class, 0, true, s -> s, s -> s >= 0));
     public static final Pair<String, Obj<?, ?>> MARGIN_LEFT = new Pair<>("margin_left", new Obj<>(Integer.class, Integer.class, 0, true, s -> s, s -> s >= 0));
-    public static final Pair<String, Obj<?, ?>> MARGIN_LEFT_AUTO = new Pair<>("margin_left", new Obj<>(Integer.class, Integer.class, -1, true, s -> s, s -> s >= -1));
+    public static final Pair<String, Obj<?, ?>> MARGIN_LEFT_AUTO = new Pair<>("margin_left", new Obj<>(Integer.class, Integer.class, DYNAMIC, true, s -> s, s -> true));
     public static final Pair<String, Obj<?, ?>> MARGIN_BOTTOM = new Pair<>("margin_bottom", new Obj<>(Integer.class, Integer.class, 0, true, s -> s, s -> s >= 0));
     public static final Pair<String, Obj<?, ?>> MARGIN_RIGHT = new Pair<>("margin_right", new Obj<>(Integer.class, Integer.class, 0, true, s -> s, s -> s >= 0));
-    public static final Pair<String, Obj<?, ?>> MARGIN_RIGHT_AUTO = new Pair<>("margin_right", new Obj<>(Integer.class, Integer.class, -1, true, s -> s, s -> s >= -1));
+    public static final Pair<String, Obj<?, ?>> MARGIN_RIGHT_AUTO = new Pair<>("margin_right", new Obj<>(Integer.class, Integer.class, DYNAMIC, true, s -> s, s -> true));
     public static final Pair<String, Obj<?, ?>> ALIGN_CENTER = new Pair<>("align", new Obj<>(String.class, Align.class, "CENTER", true,
             Align::fromString, s -> Align.fromString(s) != null));
     public static final Pair<String, Obj<?, ?>> ALIGN_LEFT = new Pair<>("align", new Obj<>(String.class, Align.class, "LEFT", true,
@@ -106,7 +106,7 @@ class ConfigHolder {
         return null;
     }
 
-    private static class Obj<T, R> {
+    static class Obj<T, R> {
         private Class<T> param;
         private Class<R> result;
         private T defaultValue;

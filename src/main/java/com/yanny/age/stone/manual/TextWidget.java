@@ -10,10 +10,9 @@ import java.util.List;
 import static com.yanny.age.stone.manual.ConfigHolder.*;
 import static com.yanny.age.stone.manual.ConfigHolder.HEIGHT;
 
-public class TextWidget extends Widget {
+public class TextWidget extends ConfigurableWidget {
     public static final String TYPE = "text";
 
-    protected final IManual manual;
     protected final String text;
     protected final List<CustomFontRenderer.Link> links = new ArrayList<>();
     protected final CustomFontRenderer customFontRenderer;
@@ -30,21 +29,19 @@ public class TextWidget extends Widget {
     protected final boolean justify;
 
     public TextWidget(JsonObject object, IManual manual) {
-        ConfigHolder holder = new ConfigHolder(TEXT, SCALE, COLOR, WIDTH, HEIGHT, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT, ALIGN_LEFT, JUSTIFY);
-        holder.loadConfig(object, manual);
-        this.manual = manual;
+        super(object, manual, TEXT, SCALE, COLOR, WIDTH, HEIGHT, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT, ALIGN_LEFT, JUSTIFY);
 
-        text = holder.getValue(TEXT);
-        color = holder.getValue(COLOR);
-        scale = holder.getValue(SCALE);
-        tmpWidth = holder.getValue(WIDTH);
-        tmpHeight = holder.getValue(HEIGHT);
-        margin_top = holder.getValue(MARGIN_TOP);
-        margin_left = holder.getValue(MARGIN_LEFT);
-        margin_bottom = holder.getValue(MARGIN_BOTTOM);
-        margin_right = holder.getValue(MARGIN_RIGHT);
-        align = holder.getValue(ALIGN_LEFT);
-        justify = holder.getValue(JUSTIFY);
+        text = configHolder.getValue(TEXT);
+        color = configHolder.getValue(COLOR);
+        scale = configHolder.getValue(SCALE);
+        tmpWidth = configHolder.getValue(WIDTH);
+        tmpHeight = configHolder.getValue(HEIGHT);
+        margin_top = configHolder.getValue(MARGIN_TOP);
+        margin_left = configHolder.getValue(MARGIN_LEFT);
+        margin_bottom = configHolder.getValue(MARGIN_BOTTOM);
+        margin_right = configHolder.getValue(MARGIN_RIGHT);
+        align = configHolder.getValue(ALIGN_LEFT);
+        justify = configHolder.getValue(JUSTIFY);
 
         customFontRenderer = new CustomFontRenderer(mc.fontRenderer);
     }

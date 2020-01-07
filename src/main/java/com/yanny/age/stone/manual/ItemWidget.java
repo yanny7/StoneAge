@@ -16,7 +16,7 @@ import java.util.List;
 import static com.yanny.age.stone.manual.ConfigHolder.*;
 import static com.yanny.age.stone.manual.ConfigHolder.HEIGHT;
 
-public class ItemWidget extends Widget {
+public class ItemWidget extends ConfigurableWidget {
     public static final String TYPE = "item";
     private static final int ITEM_WIDTH = 16;
 
@@ -29,15 +29,14 @@ public class ItemWidget extends Widget {
     protected final int margin_right;
 
     public ItemWidget(JsonObject object, IManual manual) {
-        ConfigHolder holder = new ConfigHolder(SCALE, WIDTH, HEIGHT, ITEM, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT);
-        holder.loadConfig(object, manual);
+        super(object, manual, SCALE, WIDTH, HEIGHT, ITEM, MARGIN_TOP, MARGIN_LEFT, MARGIN_BOTTOM, MARGIN_RIGHT);
 
-        scale = holder.getValue(SCALE);
-        item = holder.getValue(ITEM);
-        margin_top = holder.getValue(MARGIN_TOP);
-        margin_left = holder.getValue(MARGIN_LEFT);
-        margin_bottom = holder.getValue(MARGIN_BOTTOM);
-        margin_right = holder.getValue(MARGIN_RIGHT);
+        scale = configHolder.getValue(SCALE);
+        item = configHolder.getValue(ITEM);
+        margin_top = configHolder.getValue(MARGIN_TOP);
+        margin_left = configHolder.getValue(MARGIN_LEFT);
+        margin_bottom = configHolder.getValue(MARGIN_BOTTOM);
+        margin_right = configHolder.getValue(MARGIN_RIGHT);
 
         text = Lists.newArrayList();
         List<ITextComponent> list = item.getTooltip(ExampleMod.proxy.getClientPlayer(), ITooltipFlag.TooltipFlags.NORMAL);
