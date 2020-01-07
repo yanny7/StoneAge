@@ -61,6 +61,7 @@ public class ItemWidget extends MarginWidget {
         GlStateManager.scalef(scale, scale, 1.0f);
         GlStateManager.enableRescaleNormal();
         RenderHelper.enableGUIStandardItemLighting();
+        RenderHelper.enableStandardItemLighting();
         mc.getItemRenderer().renderItemIntoGUI(item, 0, 0);
         RenderHelper.disableStandardItemLighting();
         GlStateManager.disableRescaleNormal();

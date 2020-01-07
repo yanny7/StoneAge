@@ -75,8 +75,10 @@ public class RecipeWidget extends MarginWidget {
         GlStateManager.pushMatrix();
         GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
         GlStateManager.scalef(scale, scale, 0);
+        GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         GlStateManager.enableRescaleNormal();
         RenderHelper.enableGUIStandardItemLighting();
+        RenderHelper.enableStandardItemLighting();
 
         for (RecipeIngredient ingredient : recipeIngredients) {
             ItemStack[] stacks = ingredient.item.getMatchingStacks();
