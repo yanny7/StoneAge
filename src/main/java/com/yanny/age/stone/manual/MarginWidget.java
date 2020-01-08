@@ -22,12 +22,12 @@ public abstract class MarginWidget extends ConfigurableWidget {
     @SafeVarargs
     MarginWidget(JsonObject object, IManual manual, @Nonnull Pair<String, ConfigHolder.Obj<?, ?>>...types) {
         //noinspection unchecked
-        super(object, manual, ArrayUtils.addAll(types, MARGIN_LEFT, MARGIN_RIGHT, MARGIN_TOP, MARGIN_BOTTOM, ALIGN_CENTER));
+        super(object, manual, ArrayUtils.addAll(types, MARGIN_LEFT_AUTO, MARGIN_RIGHT_AUTO, MARGIN_TOP, MARGIN_BOTTOM, ALIGN_CENTER));
 
         margin_top = configHolder.getValue(MARGIN_TOP);
-        tmpMarginLeft = configHolder.getValue(MARGIN_LEFT);
+        tmpMarginLeft = configHolder.getValue(MARGIN_LEFT_AUTO);
         margin_bottom = configHolder.getValue(MARGIN_BOTTOM);
-        tmpMarginRight = configHolder.getValue(MARGIN_RIGHT);
+        tmpMarginRight = configHolder.getValue(MARGIN_RIGHT_AUTO);
         align = configHolder.getValue(ALIGN_CENTER);
     }
 

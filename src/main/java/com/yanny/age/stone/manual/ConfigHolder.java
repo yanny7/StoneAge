@@ -1,5 +1,7 @@
 package com.yanny.age.stone.manual;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.client.Minecraft;
@@ -40,9 +42,11 @@ class ConfigHolder {
     public static final Pair<String, Obj<?, ?>> IMAGE = new Pair<>("image", new Obj<>(String.class, ResourceLocation.class, "minecraft:textures/block/stone.png", false,
             ResourceLocation::new, s -> Minecraft.getInstance().getResourceManager().hasResource(new ResourceLocation(s))));
     public static final Pair<String, Obj<?, ?>> MARGIN_TOP = new Pair<>("margin_top", new Obj<>(Integer.class, Integer.class, 0, true, s -> s, s -> s >= 0));
-    public static final Pair<String, Obj<?, ?>> MARGIN_LEFT = new Pair<>("margin_left", new Obj<>(Integer.class, Integer.class, DYNAMIC, true, s -> s, s -> true));
+    public static final Pair<String, Obj<?, ?>> MARGIN_LEFT = new Pair<>("margin_left", new Obj<>(Integer.class, Integer.class, 0, true, s -> s, s -> s >= 0));
+    public static final Pair<String, Obj<?, ?>> MARGIN_LEFT_AUTO = new Pair<>("margin_left", new Obj<>(Integer.class, Integer.class, DYNAMIC, true, s -> s, s -> true));
     public static final Pair<String, Obj<?, ?>> MARGIN_BOTTOM = new Pair<>("margin_bottom", new Obj<>(Integer.class, Integer.class, 0, true, s -> s, s -> s >= 0));
-    public static final Pair<String, Obj<?, ?>> MARGIN_RIGHT = new Pair<>("margin_right", new Obj<>(Integer.class, Integer.class, DYNAMIC, true, s -> s, s -> true));
+    public static final Pair<String, Obj<?, ?>> MARGIN_RIGHT = new Pair<>("margin_right", new Obj<>(Integer.class, Integer.class, 0, true, s -> s, s -> s >= 0));
+    public static final Pair<String, Obj<?, ?>> MARGIN_RIGHT_AUTO = new Pair<>("margin_right", new Obj<>(Integer.class, Integer.class, DYNAMIC, true, s -> s, s -> true));
     public static final Pair<String, Obj<?, ?>> ALIGN_CENTER = new Pair<>("align", new Obj<>(String.class, Align.class, "CENTER", true,
             Align::fromString, s -> Align.fromString(s) != null));
     public static final Pair<String, Obj<?, ?>> ALIGN_LEFT = new Pair<>("align", new Obj<>(String.class, Align.class, "LEFT", true,
@@ -53,10 +57,25 @@ class ConfigHolder {
                 IRecipe<?> recipe = Minecraft.getInstance().world.getRecipeManager().getRecipe(new ResourceLocation(s)).orElse(null);
                 return recipe instanceof IRecipeWidget ? (IRecipeWidget) recipe : new DefaultRecipe();
             },
+            s -> Minecraft.getInstance().world.getRecipeManager().getRecipe(new ResourceLocation(s)).orElse(null) instanceof IRecipeWidget));
+    public static final Pair<String, Obj<?, ?>> LIST = new Pair<>("list", new Obj<>(JsonArray.class, String[].class, new JsonArray(), false,
             s -> {
-                IRecipe<?> recipe = Minecraft.getInstance().world.getRecipeManager().getRecipe(new ResourceLocation(s)).orElse(null);
-                return recipe instanceof IRecipeWidget;
+                String[] result = new String[s.size()];
+                int i = 0;
+                for (JsonElement element : s) {
+                    result[i++] = element.getAsJsonPrimitive().getAsString();
+                }
+                return result;
+            },
+            s -> {
+                for (JsonElement element : s) {
+                    if (!element.isJsonPrimitive() || !element.getAsJsonPrimitive().isString()) {
+                        return false;
+                    }
+                }
+                return true;
             }));
+    public static final Pair<String, Obj<?, ?>> BULLET = new Pair<>("bullet", new Obj<>(String.class, String.class, "•", true, s -> s, s -> true));
 
     private Map<String, Obj<?, ?>> objMap = new HashMap<>();
     private Map<String, ?> values = new HashMap<>();
@@ -87,11 +106,11 @@ class ConfigHolder {
                 return null;
             }
 
-            Object r = type.getValue(s);
+            Object result = type.getValue(s);
 
-            if (type.result.isAssignableFrom(r.getClass())) {
+            if (type.result.isAssignableFrom(result.getClass())) {
                 //noinspection unchecked
-                return (T) type.getValue(s);
+                return (T) result;
             } else {
                 LOGGER.warn("Invalid result type, cannot convert {} to return type", type.result.getCanonicalName());
                 new Exception().printStackTrace();

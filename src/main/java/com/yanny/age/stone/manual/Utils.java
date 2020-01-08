@@ -3,7 +3,6 @@ package com.yanny.age.stone.manual;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,28 +17,30 @@ public class Utils {
     private static final Logger LOGGER = LogManager.getLogger();
     static final int MARGIN = 5;
 
-    private static final Map<Class<?>, Function<JsonPrimitive, Boolean>> IS;
-    private static final Map<Class<?>, Function<JsonPrimitive, Object>> GET;
+    private static final Map<Class<?>, Function<JsonElement, Boolean>> IS;
+    private static final Map<Class<?>, Function<JsonElement, Object>> GET;
     static {
         IS = new HashMap<>();
-        IS.put(String.class, JsonPrimitive::isString);
-        IS.put(Integer.class, JsonPrimitive::isNumber);
-        IS.put(Double.class, JsonPrimitive::isNumber);
-        IS.put(Float.class, JsonPrimitive::isNumber);
-        IS.put(Boolean.class, JsonPrimitive::isBoolean);
+        IS.put(String.class, s -> s.isJsonPrimitive() && s.getAsJsonPrimitive().isString());
+        IS.put(Integer.class, s -> s.isJsonPrimitive() && s.getAsJsonPrimitive().isNumber());
+        IS.put(Double.class, s -> s.isJsonPrimitive() && s.getAsJsonPrimitive().isNumber());
+        IS.put(Float.class, s -> s.isJsonPrimitive() && s.getAsJsonPrimitive().isNumber());
+        IS.put(Boolean.class, s -> s.isJsonPrimitive() && s.getAsJsonPrimitive().isBoolean());
+        IS.put(JsonArray.class, JsonElement::isJsonArray);
 
         GET = new HashMap<>();
-        GET.put(String.class, JsonPrimitive::getAsString);
-        GET.put(Integer.class, JsonPrimitive::getAsInt);
-        GET.put(Double.class, JsonPrimitive::getAsDouble);
-        GET.put(Float.class, JsonPrimitive::getAsFloat);
-        GET.put(Boolean.class, JsonPrimitive::getAsBoolean);
+        GET.put(String.class, s -> s.getAsJsonPrimitive().getAsString());
+        GET.put(Integer.class, s -> s.getAsJsonPrimitive().getAsInt());
+        GET.put(Double.class, s -> s.getAsJsonPrimitive().getAsDouble());
+        GET.put(Float.class, s -> s.getAsJsonPrimitive().getAsFloat());
+        GET.put(Boolean.class, s -> s.getAsJsonPrimitive().getAsBoolean());
+        GET.put(JsonArray.class, JsonElement::getAsJsonArray);
     }
 
     public static <T> T get(Class<?> t, @Nonnull JsonElement element, T defaultValue) {
-        if (element.isJsonPrimitive() && IS.get(t).apply(element.getAsJsonPrimitive())) {
+        if (IS.get(t).apply(element)) {
             //noinspection unchecked
-            return (T) GET.get(t).apply(element.getAsJsonPrimitive());
+            return (T) GET.get(t).apply(element);
         } else {
             LOGGER.warn("Invalid element type: '{}'", element);
             return defaultValue;
@@ -48,27 +49,25 @@ public class Utils {
 
     public static <T> T get(Class<?> t, IManual manual, @Nonnull JsonObject object, String field, Object defaultValue, boolean optional) {
         if (object.has(field)) {
-            if ( object.get(field).isJsonPrimitive()) {
-                if (String.class.isAssignableFrom(t)) {
-                    if (IS.get(t).apply(object.getAsJsonPrimitive(field))) {
-                        //noinspection unchecked
-                        return (T) GET.get(t).apply(object.getAsJsonPrimitive(field));
-                    }
-                } else {
-                    if (object.getAsJsonPrimitive(field).isString()) {
-                        JsonElement constant = manual.getConstant(object.getAsJsonPrimitive(field).getAsString());
+            if (String.class.isAssignableFrom(t)) {
+                if (IS.get(t).apply(object.get(field))) {
+                    //noinspection unchecked
+                    return (T) GET.get(t).apply(object.get(field));
+                }
+            } else {
+                if (object.get(field).isJsonPrimitive() && object.getAsJsonPrimitive(field).isString()) {
+                    JsonElement constant = manual.getConstant(object.getAsJsonPrimitive(field).getAsString());
 
-                        if (constant == null) {
-                            LOGGER.warn("Constant '{}' not defined!", field);
-                            //noinspection unchecked
-                            return (T) defaultValue;
-                        }
+                    if (constant == null) {
+                        LOGGER.warn("Constant '{}' not defined!", field);
                         //noinspection unchecked
-                        return (T) get(t, constant, defaultValue);
-                    } else if (IS.get(t).apply(object.getAsJsonPrimitive(field))) {
-                        //noinspection unchecked
-                        return (T) GET.get(t).apply(object.getAsJsonPrimitive(field));
+                        return (T) defaultValue;
                     }
+                    //noinspection unchecked
+                    return (T) get(t, constant, defaultValue);
+                } else if (IS.get(t).apply(object.get(field))) {
+                    //noinspection unchecked
+                    return (T) GET.get(t).apply(object.get(field));
                 }
             }
         } else {

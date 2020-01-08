@@ -14,7 +14,6 @@ import net.minecraftforge.fml.client.config.GuiUtils;
 import java.util.List;
 
 import static com.yanny.age.stone.manual.ConfigHolder.*;
-import static com.yanny.age.stone.manual.ConfigHolder.HEIGHT;
 
 public class ItemWidget extends MarginWidget {
     public static final String TYPE = "item";

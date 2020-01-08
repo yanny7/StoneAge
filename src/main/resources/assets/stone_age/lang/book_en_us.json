@@ -121,13 +121,25 @@
         {
           "type": "text",
           "text": "Another page §ptest or this link?§p bajaja baja baja lkjlfaksd afd lsd flasjd fsldfkj alsdkfj lasdf",
-          "scale": 1.0,
+          "scale": 0.5,
           "color": "GREEN"
         },
         {
           "type": "recipe",
           "recipe": "stone_age:campfire",
           "scale": 0.5
+        },
+        {
+          "type": "list",
+          "scale": 0.5,
+          "list": [
+            "•jsdfkj laskdfjlaskd flakjsd flkajsdsd §pfps dflas§p f;dlaskd ;flsfsa fda",
+            "∙fkjasdlk f§asdkjf §plkasjfl askdjf asdfasdf asdf§p asdf asdf§r asdf asdfa",
+            "·slfjlsajfsd lfkjad fkasdflkjfdla dasdfa §psdfa sdf asdf asdf asdf asdfa§p sdf",
+            "ldjfakjweo walefj lawkefae a.wefsdf f;laskj df;lkasj ;dflkajs d;lfkja s",
+            "eijfoai walefkj alwief aelfiawe ldsfasdf j;lksfj ;alskdj f;alej fowaiefoiwa",
+            "joweifj §palifea lwie falifwe lifjl flaksj flejlfjwlefij§p liej flaijf lwijef lawef"
+          ]
         }
       ]
     }
