@@ -72,7 +72,7 @@ class RaidFarmGoal<T extends AnimalEntity> extends MoveToBlockGoal {
                     world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 2);
                     world.destroyBlock(blockpos, true);
                 } else {
-                    world.setBlockState(blockpos, blockstate.with(ageProperty, integer - 1), 2);
+                    world.setBlockState(blockpos, blockstate.with((block instanceof BeetrootBlock ? BeetrootBlock.BEETROOT_AGE : ageProperty), integer - 1), 2);
                     world.playEvent(2001, blockpos, Block.getStateId(blockstate));
                 }
             }
