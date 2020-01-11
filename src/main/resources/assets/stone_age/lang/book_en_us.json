@@ -9,137 +9,278 @@
   "content":
   [
     {
-      "key": "test",
+      "key": "index",
       "content":
       [
         {
           "type": "title",
-          "text": "Stone Age mod",
-          "scale": 1.0
+          "text": "Stone Age Mod",
+          "margin_bottom": 10
         },
         {
           "type": "text",
-          "text": "1Hello world! §plink Hello world! Hell Hello world! Hello world!§p trest Hello world! Hell Hello world!",
-          "scale": 0.5,
-          "color": "WHITE",
-          "align": "RIGHT"
+          "text": "Welcome to stone age mod manual! If you find any bug in this manual or in mod, please report it to github §ngithub.com/yanny7/StoneAge§r.",
+          "margin_bottom": 10
         },
         {
-          "type": "hlayout",
-          "content":
+          "type": "list",
+          "list":
           [
-            {
-              "type": "item",
-              "item": "minecraft:saddle"
-            },
-            {
-              "type": "text",
-              "text": "2Hello world! §plink Hello world! Hell Hello world! Hello world!§p trest Hello world! Hell Hello world!",
-              "scale": 0.5,
-              "color": "WHITE",
-              "align": "CENTER"
-            }
+            "§pblocks §oBlocks§r§p",
+            "§pitems §oItems§r§p",
+            "§pmobs §oMobs§r§p"
           ]
-        },
-        {
-          "type": "hlayout",
-          "content":
-          [
-            {
-              "type": "item",
-              "item": "minecraft:beacon"
-            },
-            {
-              "type": "text",
-              "text": "3Hello world! §plink Hello world! Hell Hello world! Hello world!§p trest Hello world! Hell Hello world!",
-              "scale": 0.5,
-              "color": "WHITE",
-              "align": "RIGHT"
-            }
-          ]
-        },
-        {
-          "type": "hlayout",
-          "content":
-          [
-            {
-              "type": "item",
-              "item": "minecraft:diamond_hoe"
-            },
-            {
-              "type": "text",
-              "text": "4Hello world! §plink Hello world! Hell Hello world! Hello world!§p trest Hello world! Hell Hello world!",
-              "scale": 0.5,
-              "color": "WHITE"
-            }
-          ]
-        },
-        {
-          "type": "hlayout",
-          "content":
-          [
-            {
-              "type": "item",
-              "item": "minecraft:iron_chestplate"
-            },
-            {
-              "type": "text",
-              "text": "5Hello world! §plink Hello world! Hell Hello world! Hello world!§p trest Hello world! Hell Hello world!",
-              "scale": 0.5,
-              "color": "WHITE"
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, §psed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat§p non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-          "scale": 0.5,
-          "color": "WHITE",
-          "justify": true
-        },
-        {
-          "type": "image",
-          "width": 32,
-          "height": 16,
-          "w": 16,
-          "h": 16,
-          "image": "stone_age:textures/block/flint_workbench_side.png",
-          "scale": 2.0
         }
       ]
     },
     {
-      "key": "link",
+      "key": "blocks",
       "content":
       [
         {
           "type": "title",
-          "text": "Page 2",
-          "scale": 1.0,
-          "color": "RED"
-        },
-        {
-          "type": "text",
-          "text": "Another page §ptest or this link?§p bajaja baja baja lkjlfaksd afd lsd flasjd fsldfkj alsdkfj lasdf",
-          "scale": 0.5,
-          "color": "GREEN"
-        },
-        {
-          "type": "recipe",
-          "recipe": "stone_age:campfire",
-          "scale": 0.5
+          "text": "Blocks",
+          "margin_bottom": 10
         },
         {
           "type": "list",
-          "scale": 0.5,
-          "list": [
-            "•jsdfkj laskdfjlaskd flakjsd flkajsdsd §pfps dflas§p f;dlaskd ;flsfsa fda",
-            "∙fkjasdlk f§asdkjf §plkasjfl askdjf asdfasdf asdf§p asdf asdf§r asdf asdfa",
-            "·slfjlsajfsd lfkjad fkasdflkjfdla dasdfa §psdfa sdf asdf asdf asdf asdfa§p sdf",
-            "ldjfakjweo walefj lawkefae a.wefsdf f;laskj df;lkasj ;dflkajs d;lfkja s",
-            "eijfoai walefkj alwief aelfiawe ldsfasdf j;lksfj ;alskdj f;alej fowaiefoiwa",
-            "joweifj §palifea lwie falifwe lifjl flaksj flejlfjwlefij§p liej flaijf lwijef lawef"
+          "list":
+          [
+            "§pflint_workbench §oFlint workbench§r§p",
+            "§pdrying_rack §oDrying rack§r§p",
+            "§ptanning_rack §oTanning rack§r§p",
+            "§pstone_chest §oStone chest§r§p",
+            "§ptree_stump §oTree stump§r§p",
+            "§paquaduct §oAquaduct§r§p",
+            "§pdrought_grass_bed §oDrought grass bed§r§p",
+            "§pfeeder §oFeeder§r§p",
+            "§pmillstone §oMillstone§r§p"
           ]
+        }
+      ]
+    },
+    {
+      "key": "items",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Items",
+          "margin_bottom": 10
+        },
+        {
+          "type": "list",
+          "list":
+          [
+            "§pflint_workbench §oFlint workbench§r§p"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "mobs",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Mobs",
+          "margin_bottom": 10
+        },
+        {
+          "type": "list",
+          "list":
+          [
+            "§pflint_workbench §oFlint workbench§r§p"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "flint_workbench",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Flint workbench",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": "stone_age:flint_workbench",
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Allow you to craft primitive items. Just put required items into workbench by right-click and then right-click with §pflint_knife §nflint knife§r§p to craft an item.",
+          "margin_bottom": 5
+        },
+        {
+          "type": "image",
+          "width": 124,
+          "height": 52,
+          "w": 128,
+          "h": 128,
+          "image": "stone_age:textures/gui/manual/screenshots/flint_workbench.png"
+        }
+      ]
+    },
+    {
+      "key": "drying_rack",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Drying rack",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": "stone_age:drying_rack",
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Drying rack is used for drying foods and items like grass. Just right-click with item on drying rack and wait. Note that item is dried only during day."
+        }
+      ]
+    },
+    {
+      "key": "tanning_rack",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Tanning rack",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": "stone_age:tanning_rack",
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Tanning rack is used for tanning raw hide to leather. Just put raw hide to tanning rack by right-click and then multiple times right-click on hide with §pflint_knife §nflint knife§r§p."
+        }
+      ]
+    },
+    {
+      "key": "stone_chest",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Stone chest",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": "stone_age:stone_chest",
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Stone chest allow you to store small amount of items. Still better than nothing!"
+        }
+      ]
+    },
+    {
+      "key": "tree_stump",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Tree stump",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": "stone_age:tree_stump",
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Tree stump is way to get planks or half-slabs. Just put valid item on tree stump by right-click and then left-click with tool: for wood use axe, for stone use hammer."
+        }
+      ]
+    },
+    {
+      "key": "aquaduct",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Aquaduct",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": "stone_age:aquaduct",
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Aquaduct allow you to transfer water near your crops. To fill aquaduct with water, put it near water source. To water nearby farmland, activate aquaduct with right-click. You will see bubbles when aquaduct is active and has water. Aquaduct transfer water horizontally and downward. Activated aquaduct also apply around §lbonemeal effect§r."
+        }
+      ]
+    },
+    {
+      "key": "drought_grass_bed",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Drought grass bed",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": "stone_age:drought_grass_bed",
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "When wool is not available for you, you can still sleep on bed made of dried grass."
+        }
+      ]
+    },
+    {
+      "key": "feeder",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Feeder",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": "stone_age:feeder",
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Feeder as name says, provide food for animals around. Just right-click to open menu and put inside food like wheat or seeds. Feeder with food inside speed-up growth rate of baby animals and for adult animals activate breeding randomly."
+        }
+      ]
+    },
+    {
+      "key": "millstone",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Millstone",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": "stone_age:millstone",
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Millstone is used for milling wheat into grain. Right-click while sneak to open menu. There you can place wheat. Then right-click with empty hand to mill wheat."
         }
       ]
     }

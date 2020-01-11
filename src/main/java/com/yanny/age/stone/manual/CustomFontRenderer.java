@@ -532,7 +532,7 @@ public class CustomFontRenderer {
         float x1, x2, y1, y2;
 
         boolean inArea(int mx, int my, float scale) {
-            return mx >= x1 * scale && mx <= x2 * scale && my >= y1 * scale && my <= y2 * scale;
+            return mx >= x1 * scale && mx < x2 * scale && my >= y1 * scale && my < y2 * scale;
         }
     }
 

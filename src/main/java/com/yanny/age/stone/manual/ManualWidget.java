@@ -1,8 +1,10 @@
 package com.yanny.age.stone.manual;
 
 import com.google.gson.*;
-import net.minecraft.client.Minecraft;
+import com.yanny.age.stone.manual.handlers.*;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
@@ -23,14 +25,25 @@ public class ManualWidget extends Widget implements IManual {
     private final Map<Integer, PageWidget> pages = new HashMap<>();
     private final Map<String, Integer> links = new HashMap<>();
     private final Map<String, JsonElement> constants = new HashMap<>();
+    private final Map<IRecipeSerializer<?>, IRecipeHandler> recipeHandlerMap = new HashMap<>();
 
     private int currentPage = 0;
 
-    public ManualWidget(ResourceLocation resource, int width, int height) {
-        JsonObject object;
-        IResourceManager manager = Minecraft.getInstance().getResourceManager();
+    public ManualWidget(int width, int height) {
+        recipeHandlerMap.put(IRecipeSerializer.CRAFTING_SHAPED, new ShapedRecipeHandler());
+        recipeHandlerMap.put(IRecipeSerializer.CRAFTING_SHAPELESS, new ShapelessRecipeHandler());
+        recipeHandlerMap.put(IRecipeSerializer.SMELTING, new SmeltingRecipeHandler());
+        recipeHandlerMap.put(IRecipeSerializer.BLASTING, new SmeltingRecipeHandler());
+        recipeHandlerMap.put(IRecipeSerializer.SMOKING, new SmeltingRecipeHandler());
+        recipeHandlerMap.put(IRecipeSerializer.CAMPFIRE_COOKING, new CampfireRecipeHandler());
+        recipeHandlerMap.put(IRecipeSerializer.STONECUTTING, new StonecuttinRecipeHandler());
 
         setSize(width - Utils.MARGIN * 2, height - Utils.MARGIN * 2);
+    }
+
+    public void init(ResourceLocation resource) {
+        JsonObject object;
+        IResourceManager manager = mc.getResourceManager();
 
         try (InputStreamReader inputstream = new InputStreamReader(manager.getResource(resource).getInputStream()); Reader reader = new BufferedReader(inputstream)) {
             object = JSONUtils.fromJson(GSON, reader, JsonObject.class);
@@ -63,20 +76,8 @@ public class ManualWidget extends Widget implements IManual {
         }
     }
 
-    private void loadConstants(Map<String, JsonElement> constants, JsonObject object) {
-        JsonObject items = Utils.getObject(object, "constants");
-
-        if (items != null) {
-            for (Map.Entry<String, JsonElement> item : items.entrySet()) {
-                JsonElement element = item.getValue();
-
-                if (element.isJsonPrimitive()) {
-                    constants.put(item.getKey(), element);
-                } else {
-                    LOGGER.warn("Invalid element type in constants: {}", item.getKey());
-                }
-            }
-        }
+    public void addRecipeHandler(IRecipeSerializer<?> serializer, IRecipeHandler handler) {
+        recipeHandlerMap.put(serializer, handler);
     }
 
     public void setCurrentPage(int currentPage) {
@@ -122,5 +123,26 @@ public class ManualWidget extends Widget implements IManual {
     @Override
     public JsonElement getConstant(String key) {
         return constants.get(key);
+    }
+
+    @Override
+    public IRecipeHandler getRecipeHandler(IRecipe<?> recipe) {
+        return recipeHandlerMap.get(recipe.getSerializer());
+    }
+
+    private void loadConstants(Map<String, JsonElement> constants, JsonObject object) {
+        JsonObject items = Utils.getObject(object, "constants");
+
+        if (items != null) {
+            for (Map.Entry<String, JsonElement> item : items.entrySet()) {
+                JsonElement element = item.getValue();
+
+                if (element.isJsonPrimitive()) {
+                    constants.put(item.getKey(), element);
+                } else {
+                    LOGGER.warn("Invalid element type in constants: {}", item.getKey());
+                }
+            }
+        }
     }
 }

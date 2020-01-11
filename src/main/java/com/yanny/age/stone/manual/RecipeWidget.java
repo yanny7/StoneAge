@@ -9,6 +9,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.fml.client.config.GuiUtils;
@@ -17,14 +18,16 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.yanny.age.stone.manual.ConfigHolder.*;
+import static com.yanny.age.stone.manual.ConfigHolder.RECIPE;
+import static com.yanny.age.stone.manual.ConfigHolder.SCALE;
 
 public class RecipeWidget extends MarginWidget {
     public static final String TYPE = "recipe";
     private static final int ITEM_WIDTH = 16;
 
     protected final float scale;
-    protected final IRecipeWidget recipe;
+    protected final IRecipe<?> recipe;
+    protected final IRecipeHandler recipeHandler;
     protected final RecipeBackground background;
     protected final List<RecipeIngredient> recipeIngredients;
     protected final List<Ingredient> texts;
@@ -34,8 +37,10 @@ public class RecipeWidget extends MarginWidget {
 
         scale = configHolder.getValue(SCALE);
         recipe = configHolder.getValue(RECIPE);
-        background = recipe.getRecipeBackground();
-        recipeIngredients = recipe.getRecipeIngredients();
+
+        recipeHandler = manual.getRecipeHandler(recipe);
+        background = recipeHandler.getRecipeBackground();
+        recipeIngredients = recipeHandler.getRecipeIngredients(recipe);
 
         texts = Lists.newArrayList();
         for (RecipeIngredient ingredient : recipeIngredients) {
@@ -45,7 +50,7 @@ public class RecipeWidget extends MarginWidget {
 
     @Override
     int getRawWidth() {
-        return Math.round(recipe.getRecipeWidth() * scale) + Math.max(getRawMarginLeft(), 0) + Math.max(getRawMarginRight(), 0);
+        return Math.round(background.width * scale) + Math.max(getRawMarginLeft(), 0) + Math.max(getRawMarginRight(), 0);
     }
 
     @Override
@@ -55,7 +60,7 @@ public class RecipeWidget extends MarginWidget {
 
     @Override
     public int getMinHeight(int width) {
-        return Math.round(recipe.getRecipeHeight() * scale) + getMarginTop() + getMarginBottom();
+        return Math.round(background.height * scale) + getMarginTop() + getMarginBottom();
     }
 
     @Override
@@ -67,7 +72,7 @@ public class RecipeWidget extends MarginWidget {
         GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
         GlStateManager.scalef(scale, scale, 0);
         GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
-        AbstractGui.blit(0, 0, 0, background.u, background.v, recipe.getRecipeWidth(), recipe.getRecipeHeight(), background.imgW, background.imgH);
+        AbstractGui.blit(0, 0, 0, background.u, background.v, background.width, background.height, background.imgW, background.imgH);
         GlStateManager.popMatrix();
 
         GlStateManager.pushTextureAttributes();
@@ -77,7 +82,6 @@ public class RecipeWidget extends MarginWidget {
         GlStateManager.scalef(scale, scale, 0);
         GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         GlStateManager.enableRescaleNormal();
-        RenderHelper.enableGUIStandardItemLighting();
         RenderHelper.enableStandardItemLighting();
 
         for (RecipeIngredient ingredient : recipeIngredients) {
@@ -88,8 +92,6 @@ public class RecipeWidget extends MarginWidget {
             }
         }
 
-        RenderHelper.disableStandardItemLighting();
-        GlStateManager.disableRescaleNormal();
         GlStateManager.popMatrix();
         GlStateManager.popAttributes();
         GlStateManager.popAttributes();

@@ -3,6 +3,11 @@ package com.yanny.age.stone.items;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.manual.ManualWidget;
+import com.yanny.age.stone.recipes.handlers.DryingRackRecipeHandler;
+import com.yanny.age.stone.recipes.handlers.FlintWorkbenchRecipeHandler;
+import com.yanny.age.stone.recipes.handlers.TanningRackRecipeHandler;
+import com.yanny.age.stone.recipes.handlers.TreeStumpRecipeHandler;
+import com.yanny.age.stone.subscribers.RecipeSubscriber;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
@@ -13,13 +18,23 @@ import net.minecraft.util.text.ITextComponent;
 import javax.annotation.Nonnull;
 
 public class StoneTabletGui extends ContainerScreen<Container> {
-    private final ResourceLocation GUI = new ResourceLocation(Reference.MODID, "textures/gui/container/stone_tablet.png");
+    private final ResourceLocation GUI = new ResourceLocation(Reference.MODID, "textures/gui/manual/stone_tablet.png");
 
     private final ManualWidget manual;
 
     public StoneTabletGui(Container screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
-        manual = new ManualWidget(new ResourceLocation(Reference.MODID, "lang/book_en_us.json"), xSize, ySize);
+        xSize = 176;
+        ySize = 200;
+
+        manual = new ManualWidget(xSize, ySize);
+
+        manual.addRecipeHandler(RecipeSubscriber.flint_workbench, new FlintWorkbenchRecipeHandler());
+        manual.addRecipeHandler(RecipeSubscriber.drying_rack, new DryingRackRecipeHandler());
+        manual.addRecipeHandler(RecipeSubscriber.tanning_rack, new TanningRackRecipeHandler());
+        manual.addRecipeHandler(RecipeSubscriber.tree_stump, new TreeStumpRecipeHandler());
+
+        manual.init(new ResourceLocation(Reference.MODID, "lang/book_en_us.json"));
     }
 
     @Override
@@ -38,7 +53,7 @@ public class StoneTabletGui extends ContainerScreen<Container> {
 
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         minecraft.getTextureManager().bindTexture(GUI);
-        blit(guiLeft, guiTop, 0, 0, xSize, ySize);
+        blit(guiLeft, guiTop, 0, 0, 0, xSize, ySize, 255, 255);
 
         manual.drawBackgroundLayer(this, mouseX, mouseY);
     }
