@@ -68,6 +68,7 @@ public class TextWidget extends ConfigurableWidget {
         GlStateManager.pushMatrix();
         GlStateManager.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
         GlStateManager.scalef(scale, scale, 1.0f);
+        GlStateManager.enableBlend();
         customFontRenderer.drawSplitString(text, 0, 0, Math.round((getWidth() - margin_left - margin_right) / scale), color, align, justify);
         GlStateManager.popMatrix();
 

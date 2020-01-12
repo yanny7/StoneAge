@@ -6,15 +6,24 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.yanny.age.stone.ExampleMod;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.renderer.ItemModelMesher;
+import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.model.IBakedModel;
+import net.minecraft.client.renderer.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.texture.AtlasTexture;
+import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.fml.client.config.GuiUtils;
+import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,13 +84,9 @@ public class RecipeWidget extends MarginWidget {
         AbstractGui.blit(0, 0, 0, background.u, background.v, background.width, background.height, background.imgW, background.imgH);
         GlStateManager.popMatrix();
 
-        GlStateManager.pushTextureAttributes();
-        GlStateManager.pushLightingAttributes();
         GlStateManager.pushMatrix();
         GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
         GlStateManager.scalef(scale, scale, 0);
-        GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
-        GlStateManager.enableRescaleNormal();
         RenderHelper.enableStandardItemLighting();
 
         for (RecipeIngredient ingredient : recipeIngredients) {
@@ -92,9 +97,8 @@ public class RecipeWidget extends MarginWidget {
             }
         }
 
+        RenderHelper.disableStandardItemLighting();
         GlStateManager.popMatrix();
-        GlStateManager.popAttributes();
-        GlStateManager.popAttributes();
     }
 
     @Override

@@ -23,13 +23,13 @@ public class DryingRackRecipeHandler implements IRecipeHandler {
 
         list.add(new RecipeIngredient(dryingRackRecipe.getIngredients().get(0), 22, 22));
         list.add(new RecipeIngredient(Ingredient.fromItems(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, "drying_rack"))), 52, 22));
-        list.add(new RecipeIngredient(Ingredient.fromItems(dryingRackRecipe.getRecipeOutput().getItem()), 82, 22));
+        list.add(new RecipeIngredient(Ingredient.fromItems(dryingRackRecipe.getRecipeOutput().getItem()), 85, 23));
         return list;
     }
 
     @Nonnull
     @Override
     public RecipeBackground getRecipeBackground() {
-        return new RecipeBackground(new ResourceLocation(Reference.MODID, "textures/gui/jei/gui_layouts.png"), 0, 62, 120, 60, 256, 256);
+        return new RecipeBackground(new ResourceLocation(Reference.MODID, "textures/gui/jei/gui_layouts.png"), 0, 61, 120, 60, 256, 256);
     }
 }

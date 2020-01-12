@@ -3,10 +3,7 @@ package com.yanny.age.stone.items;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.manual.ManualWidget;
-import com.yanny.age.stone.recipes.handlers.DryingRackRecipeHandler;
-import com.yanny.age.stone.recipes.handlers.FlintWorkbenchRecipeHandler;
-import com.yanny.age.stone.recipes.handlers.TanningRackRecipeHandler;
-import com.yanny.age.stone.recipes.handlers.TreeStumpRecipeHandler;
+import com.yanny.age.stone.recipes.handlers.*;
 import com.yanny.age.stone.subscribers.RecipeSubscriber;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -33,6 +30,7 @@ public class StoneTabletGui extends ContainerScreen<Container> {
         manual.addRecipeHandler(RecipeSubscriber.drying_rack, new DryingRackRecipeHandler());
         manual.addRecipeHandler(RecipeSubscriber.tanning_rack, new TanningRackRecipeHandler());
         manual.addRecipeHandler(RecipeSubscriber.tree_stump, new TreeStumpRecipeHandler());
+        manual.addRecipeHandler(RecipeSubscriber.millstone, new MillstoneRecipeHandler());
 
         manual.buildFromResources(new ResourceLocation(Reference.MODID, "lang/book_en_us.json"));
     }

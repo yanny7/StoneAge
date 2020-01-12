@@ -24,13 +24,13 @@ public class TanningRackRecipeHandler implements IRecipeHandler {
         list.add(new RecipeIngredient(tanningRackRecipe.getIngredients().get(0), 22, 22));
         list.add(new RecipeIngredient(Ingredient.fromItems(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, "tanning_rack"))), 52, 14));
         list.add(new RecipeIngredient(Ingredient.fromItems(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, "flint_knife"))), 52, 30));
-        list.add(new RecipeIngredient(Ingredient.fromItems(tanningRackRecipe.getRecipeOutput().getItem()), 82, 22));
+        list.add(new RecipeIngredient(Ingredient.fromItems(tanningRackRecipe.getRecipeOutput().getItem()), 85, 23));
         return list;
     }
 
     @Nonnull
     @Override
     public RecipeBackground getRecipeBackground() {
-        return new RecipeBackground(new ResourceLocation(Reference.MODID, "textures/gui/jei/gui_layouts.png"), 0, 62, 120, 60, 256, 256);
+        return new RecipeBackground(new ResourceLocation(Reference.MODID, "textures/gui/jei/gui_layouts.png"), 0, 61, 120, 60, 256, 256);
     }
 }

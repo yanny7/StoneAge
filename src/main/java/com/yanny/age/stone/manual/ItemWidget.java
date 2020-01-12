@@ -53,20 +53,12 @@ public class ItemWidget extends MarginWidget {
 
     @Override
     public void drawBackgroundLayer(Screen screen, int mx, int my) {
-        GlStateManager.pushTextureAttributes();
-        GlStateManager.pushLightingAttributes();
         GlStateManager.pushMatrix();
         GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
         GlStateManager.scalef(scale, scale, 1.0f);
-        GlStateManager.enableRescaleNormal();
-        RenderHelper.enableGUIStandardItemLighting();
-        RenderHelper.enableStandardItemLighting();
-        mc.getItemRenderer().renderItemIntoGUI(item, 0, 0);
-        RenderHelper.disableStandardItemLighting();
-        GlStateManager.disableRescaleNormal();
+        mc.getItemRenderer().renderItemAndEffectIntoGUI(item, 0, 0);
+        mc.getItemRenderer().renderItemOverlays(mc.fontRenderer, item, 0, 0);
         GlStateManager.popMatrix();
-        GlStateManager.popAttributes();
-        GlStateManager.popAttributes();
     }
 
     @Override

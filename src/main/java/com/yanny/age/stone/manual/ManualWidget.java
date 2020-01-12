@@ -154,7 +154,13 @@ public class ManualWidget extends Widget implements IManual {
 
     @Override
     public IRecipeHandler getRecipeHandler(IRecipe<?> recipe) {
-        return recipeHandlerMap.get(recipe.getSerializer());
+        IRecipeHandler handler = recipeHandlerMap.get(recipe.getSerializer());
+
+        if (handler == null) {
+            LOGGER.warn("Recipe handler for serializer '{}' does not exists!", recipe.getSerializer().getRegistryName());
+        }
+
+        return handler;
     }
 
     private void loadConstants(Map<String, JsonElement> constants, JsonObject object) {

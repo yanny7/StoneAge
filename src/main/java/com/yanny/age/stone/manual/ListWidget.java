@@ -71,6 +71,7 @@ public class ListWidget extends ConfigurableWidget {
         GlStateManager.pushMatrix();
         GlStateManager.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
         GlStateManager.scalef(scale, scale, 1.0f);
+        GlStateManager.enableBlend();
         int height = 0;
         for (int i = 0; i < list.length; i++) {
             mc.fontRenderer.drawString(bullet, 0, height, color);

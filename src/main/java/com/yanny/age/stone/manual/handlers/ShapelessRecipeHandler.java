@@ -20,10 +20,8 @@ public class ShapelessRecipeHandler implements IRecipeHandler {
         ShapelessRecipe shapelessRecipe = (ShapelessRecipe) recipe;
         List<RecipeIngredient> list = new ArrayList<>();
 
-        for (int y = 0; y < 3; y++) {
-            for (int x = 0; x < 3; x++) {
-                list.add(new RecipeIngredient(shapelessRecipe.getIngredients().get(y * 3 + x), 3 + x * 18, 4 + y * 18));
-            }
+        for (int i = 0; i < shapelessRecipe.getIngredients().size(); i++) {
+            list.add(new RecipeIngredient(shapelessRecipe.getIngredients().get(i), 3 + (i % 3) * 18, 4 + (i / 3) * 18));
         }
 
         list.add(new RecipeIngredient(Ingredient.fromItems(shapelessRecipe.getRecipeOutput().getItem()), 97, 22));

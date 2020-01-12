@@ -48,6 +48,7 @@ public class TitleWidget extends ConfigurableWidget {
     @Override
     public void drawBackgroundLayer(Screen screen, int mx, int my) {
         GlStateManager.pushMatrix();
+        GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         GlStateManager.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
         GlStateManager.scalef(scale, scale, 1.0f);
         switch (align) {

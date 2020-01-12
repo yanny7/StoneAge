@@ -10,13 +10,27 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HorizontalLayoutWidget extends Widget {
+import static com.yanny.age.stone.manual.ConfigHolder.*;
+
+public class HorizontalLayoutWidget extends ConfigurableWidget {
     public static final String TYPE = "hlayout";
 
     private static final Logger LOGGER = LogManager.getLogger();
     private final List<Widget> widgets = new ArrayList<>();
 
+    private final int margin_right;
+    private final int margin_left;
+    private final int margin_top;
+    private final int margin_bottom;
+
     HorizontalLayoutWidget(JsonObject object, IManual manual) {
+        super(object, manual, MARGIN_LEFT, MARGIN_RIGHT, MARGIN_TOP, MARGIN_BOTTOM);
+
+        margin_right = configHolder.getValue(MARGIN_RIGHT);
+        margin_left = configHolder.getValue(MARGIN_LEFT);
+        margin_top = configHolder.getValue(MARGIN_TOP);
+        margin_bottom = configHolder.getValue(MARGIN_BOTTOM);
+
         JsonArray array = Utils.getArray(object, "content");
         if (array == null) {
             return;
@@ -61,12 +75,15 @@ public class HorizontalLayoutWidget extends Widget {
     @Override
     public void setPos(int x, int y) {
         super.setPos(x, y);
-        int pos = x;
+        int pos = x + margin_left;
+        int oldWidth = getWidth();
 
+        setWidth(oldWidth - margin_left - margin_right);
         Utils.resizeHLayout(this, widgets);
+        setWidth(oldWidth);
 
         for (Widget widget : widgets) {
-            widget.setPos(pos, y);
+            widget.setPos(pos, y + margin_top);
             pos += widget.getWidth();
         }
     }
@@ -75,7 +92,7 @@ public class HorizontalLayoutWidget extends Widget {
     public int getMinHeight(int width) {
         int height = DYNAMIC;
         int totalWidth = 0;
-        int oldWidth = this.getWidth();
+        int oldWidth = getWidth();
 
         setWidth(width);
         Utils.resizeHLayout(this, widgets);
@@ -86,7 +103,7 @@ public class HorizontalLayoutWidget extends Widget {
             totalWidth += widget.getWidth();
         }
 
-        return height;
+        return height + margin_top + margin_bottom;
     }
 
     @Override
