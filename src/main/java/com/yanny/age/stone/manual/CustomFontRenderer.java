@@ -100,6 +100,7 @@ public class CustomFontRenderer {
         int l = -1;
         boolean flag = false;
         boolean wasSpace;
+        int linkPos = 0;
 
         for(boolean flag1 = true; k < j; ++k) {
             char c0 = str.charAt(k);
@@ -136,6 +137,8 @@ public class CustomFontRenderer {
                         }
 
                         if ((str.charAt(k) == 'p')) {
+                            linkPos = k;
+
                             if (!link.valid) {
                                 int s = 2;
                                 link.valid = true;
@@ -169,6 +172,10 @@ public class CustomFontRenderer {
                 }
                 break;
             }
+        }
+
+        if (l < linkPos) {
+            link.valid = false;
         }
 
         return k != j && l != -1 && l < k ? new Size(l, r) : new Size(k, f);
