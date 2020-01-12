@@ -28,6 +28,8 @@
           [
             "§pblocks §oBlocks§r§p",
             "§pitems §oItems§r§p",
+            "§ptools §oTools§r§p",
+            "§pfoods §oFoods§r§p",
             "§pmobs §oMobs§r§p"
           ]
         }
@@ -55,42 +57,6 @@
             "§pdrought_grass_bed §oDrought grass bed§r§p",
             "§pfeeder §oFeeder§r§p",
             "§pmillstone §oMillstone§r§p"
-          ]
-        }
-      ]
-    },
-    {
-      "key": "items",
-      "content":
-      [
-        {
-          "type": "title",
-          "text": "Items",
-          "margin_bottom": 10
-        },
-        {
-          "type": "list",
-          "list":
-          [
-            "§pflint_workbench §oFlint workbench§r§p"
-          ]
-        }
-      ]
-    },
-    {
-      "key": "mobs",
-      "content":
-      [
-        {
-          "type": "title",
-          "text": "Mobs",
-          "margin_bottom": 10
-        },
-        {
-          "type": "list",
-          "list":
-          [
-            "§pflint_workbench §oFlint workbench§r§p"
           ]
         }
       ]
@@ -160,7 +126,7 @@
         },
         {
           "type": "text",
-          "text": "Tanning rack is used for tanning raw hide to leather. Just put raw hide to tanning rack by right-click and then multiple times right-click on hide with §pflint_knife §nflint knife§r§p."
+          "text": "Tanning rack is used for tanning §praw_hide §nraw hide§r§p to leather. Just put raw hide to tanning rack by right-click and then multiple times right-click on hide with §pflint_knife §nflint knife§r§p."
         }
       ]
     },
@@ -281,6 +247,106 @@
         {
           "type": "text",
           "text": "Millstone is used for milling wheat into grain. Right-click while sneak to open menu. There you can place wheat. Then right-click with empty hand to mill wheat."
+        }
+      ]
+    },
+    {
+      "key": "items",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Items",
+          "margin_bottom": 10
+        },
+        {
+          "type": "list",
+          "list":
+          [
+            "§praw_hide §oRaw hide§r§p",
+            "§pantler §oAntler§r§p",
+            "§punlit_torch §oUnlit torch§r§p",
+            "§pbone_arrow_head §oBone arrow head§r§p",
+            "§pdrought_grass §oDrought grass§r§p",
+            "§pleather_strip §oLeather strip§r§p",
+            "§pfish_bone §oFish bone§r§p",
+            "§pflour §oFlour§r§p",
+            "§pbread_drough §oBread drough§r§p",
+            "§pmammoth_tusk §oMammoth tusk§r§p",
+            "§psabber_tooth_teeth §oSaber-tooth teeth§r§p",
+            "§prhino_tusk §oRhino tusk§r§p",
+            "§pbackpack §oBackpack§r§p"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "raw_hide",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Raw hide",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "Raw hide drops from §pdeer §ndeer§r§p, §pauroch §nauroch§r§p, §pmammoth §nmammoth§r§p, §pwoolly_rhino §nwoolly rhino§r§p and from cows. Raw hide can be tanned into leather using §ptanning_rack §ntanning rack§r§p."
+        }
+      ]
+    },
+    {
+      "key": "tools",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Tools",
+          "margin_bottom": 10
+        },
+        {
+          "type": "list",
+          "list":
+          [
+            "§pvenison §oVenison§r§p"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "foods",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Foods",
+          "margin_bottom": 10
+        },
+        {
+          "type": "list",
+          "list":
+          [
+            "§pvenison §oVenison§r§p",
+            "§pfat §oFat§r§p"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "mobs",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Mobs",
+          "margin_bottom": 10
+        },
+        {
+          "type": "list",
+          "list":
+          [
+            "§pflint_workbench §oFlint workbench§r§p"
+          ]
         }
       ]
     }

@@ -34,7 +34,7 @@ public class StoneTabletGui extends ContainerScreen<Container> {
         manual.addRecipeHandler(RecipeSubscriber.tanning_rack, new TanningRackRecipeHandler());
         manual.addRecipeHandler(RecipeSubscriber.tree_stump, new TreeStumpRecipeHandler());
 
-        manual.init(new ResourceLocation(Reference.MODID, "lang/book_en_us.json"));
+        manual.buildFromResources(new ResourceLocation(Reference.MODID, "lang/book_en_us.json"));
     }
 
     @Override

@@ -1,3 +1,4 @@
 - Crocodile entity
 - Emu entity
 - Fishing net
+- Fix rendering of items which use ItemStackTileEntityRenderer
