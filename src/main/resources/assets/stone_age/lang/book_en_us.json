@@ -31,7 +31,8 @@
             "§ptools §oWeapons and tools§r§p",
             "§parmor §oArmors§r§p",
             "§pfoods §oFoods§r§p",
-            "§pmobs §oMobs§r§p"
+            "§pmobs §oMobs§r§p",
+            "§pfire §oMaking fire§r§p"
           ]
         }
       ]
@@ -360,7 +361,7 @@
             "§pleather_strip §oLeather strip§r§p",
             "§pfish_bone §oFish bone§r§p",
             "§pflour §oFlour§r§p",
-            "§pbread_drough §oBread drough§r§p",
+            "§pbread_dough §oBread dough§r§p",
             "§pmammoth_tusk §oMammoth tusk§r§p",
             "§psabber_tooth_teeth §oSaber-tooth teeth§r§p",
             "§prhino_tusk §oRhino tusk§r§p",
@@ -596,12 +597,12 @@
       ]
     },
     {
-      "key": "bread_drough",
+      "key": "bread_dough",
       "content":
       [
         {
           "type": "title",
-          "text": "Bread drough",
+          "text": "Bread dough",
           "margin_bottom": 10
         },
         {
@@ -611,7 +612,7 @@
         },
         {
           "type": "text",
-          "text": "Bread drough is used for crafting §pbread §nbread§r§p."
+          "text": "Bread dough is used for crafting §pbread §nbread§r§p."
         }
       ]
     },
@@ -631,7 +632,7 @@
       ]
     },
     {
-      "key": "saber_tooth_teeth",
+      "key": "sabber_tooth_teeth",
       "content":
       [
         {
@@ -646,7 +647,7 @@
       ]
     },
     {
-      "key": "woolly_rhino_tusk",
+      "key": "rhino_tusk",
       "content":
       [
         {
@@ -1523,6 +1524,30 @@
         {
           "type": "text",
           "text": "It is passive mob, but when you attack it, all same species around will attack you."
+        }
+      ]
+    },
+    {
+      "key": "fire",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Making fire",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "You can make fire with two sticks: Drop §pdrought_grass §ndrought grass§r§p into world, put stick into your right and left hand and righ-click on dropped drought grass.",
+          "margin_bottom": 5
+        },
+        {
+          "type": "image",
+          "width": 128,
+          "height": 47,
+          "w": 128,
+          "h": 128,
+          "image": "stone_age:textures/gui/manual/screenshots/fire.png"
         }
       ]
     }

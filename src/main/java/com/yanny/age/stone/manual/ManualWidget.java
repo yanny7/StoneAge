@@ -16,7 +16,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class ManualWidget extends Widget implements IManual {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -26,6 +28,7 @@ public class ManualWidget extends Widget implements IManual {
 
     private final Map<Integer, PageWidget> pages = new HashMap<>();
     private final Map<String, Integer> links = new HashMap<>();
+    private final Set<String> keys = new HashSet<>();
     private final Map<String, JsonElement> constants = new HashMap<>();
     private final Map<IRecipeSerializer<?>, IRecipeHandler> recipeHandlerMap = new HashMap<>();
     private final ButtonWidget prevPage = new ButtonWidget("<", () -> setCurrentPage(Math.max(currentPage - 1, 0)));
@@ -60,7 +63,6 @@ public class ManualWidget extends Widget implements IManual {
 
         if (object != null) {
             int page = 0;
-
             JsonArray array = Utils.getArray(object, "content");
 
             if (array == null) {
@@ -68,6 +70,16 @@ public class ManualWidget extends Widget implements IManual {
             }
 
             loadConstants(constants, object);
+
+            // preload link for test availability
+            for (JsonElement element : array) {
+                if (element.isJsonObject()) {
+                    String key = Utils.get(String.class, this, element.getAsJsonObject(), "key", null, false);
+                    if (key != null) {
+                        keys.add(key);
+                    }
+                }
+            }
 
             for (JsonElement element : array) {
                 if (!element.isJsonObject()) {
@@ -150,6 +162,13 @@ public class ManualWidget extends Widget implements IManual {
     @Override
     public JsonElement getConstant(String key) {
         return constants.get(key);
+    }
+
+    @Override
+    public void linkExists(String key) {
+        if (!keys.contains(key)) {
+            LOGGER.warn("Link key '{}' does not exists!", key);
+        }
     }
 
     @Override

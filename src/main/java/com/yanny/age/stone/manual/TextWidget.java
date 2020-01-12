@@ -61,6 +61,7 @@ public class TextWidget extends ConfigurableWidget {
         super.setPos(x, y);
         links.clear();
         links.addAll(customFontRenderer.analyseSplitStringLinks(text, 0, 0, Math.round((getWidth() - margin_left - margin_right) / scale), align, justify));
+        links.forEach(link -> manual.linkExists(link.key));
     }
 
     @Override

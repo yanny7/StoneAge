@@ -113,6 +113,8 @@ public class ListWidget extends ConfigurableWidget {
             links.addAll(customFontRenderer.analyseSplitStringLinks(list[i], bulletWidth, height, Math.round((getWidth() - bulletWidth - margin_left - margin_right) / scale), Align.LEFT, false));
             height += heights[i];
         }
+
+        links.forEach(link -> manual.linkExists(link.key));
     }
 
     private int getTextHeight(int width) {
