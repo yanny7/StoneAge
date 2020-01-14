@@ -54,7 +54,7 @@ public class ImageWidget extends MarginWidget {
 
         GlStateManager.pushMatrix();
         GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
-        GlStateManager.scalef(scale, scale, 0);
+        GlStateManager.scalef(scale, scale, scale);
         GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         AbstractGui.blit(0, 0, 0, u, v, tmpWidth, tmpHeight, imgWidth, imgHeight);
         GlStateManager.popMatrix();

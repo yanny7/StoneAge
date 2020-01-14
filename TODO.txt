@@ -3,4 +3,3 @@
 - Fishing net
 - Meat from every mob
 - Abandoned cave
-- Fix rendering of items which use ItemStackTileEntityRenderer

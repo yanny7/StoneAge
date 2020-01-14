@@ -55,7 +55,7 @@ public class ItemWidget extends MarginWidget {
     public void drawBackgroundLayer(Screen screen, int mx, int my) {
         GlStateManager.pushMatrix();
         GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
-        GlStateManager.scalef(scale, scale, 1.0f);
+        GlStateManager.scalef(scale, scale, scale);
         mc.getItemRenderer().renderItemAndEffectIntoGUI(item, 0, 0);
         mc.getItemRenderer().renderItemOverlays(mc.fontRenderer, item, 0, 0);
         GlStateManager.popMatrix();

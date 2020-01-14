@@ -1,6 +1,7 @@
 package com.yanny.age.stone.manual;
 
 import com.google.gson.JsonObject;
+import com.mojang.blaze3d.platform.GLX;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.yanny.age.stone.ExampleMod;
 import net.minecraft.client.gui.AbstractGui;
@@ -70,27 +71,9 @@ public class RecipeWidget extends MarginWidget {
 
         GlStateManager.pushMatrix();
         GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
-        GlStateManager.scalef(scale, scale, 0);
+        GlStateManager.scalef(scale, scale, scale);
         GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         AbstractGui.blit(0, 0, 0, backgrounds.get(recipeIndex).u, backgrounds.get(recipeIndex).v, backgrounds.get(recipeIndex).width, backgrounds.get(recipeIndex).height, backgrounds.get(recipeIndex).imgW, backgrounds.get(recipeIndex).imgH);
-        GlStateManager.popMatrix();
-
-        GlStateManager.pushMatrix();
-        GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
-        GlStateManager.scalef(scale, scale, 0);
-        RenderHelper.enableStandardItemLighting();
-
-        List<RecipeIngredient> ingredients = recipeIngredients.get(recipeIndex);
-
-        for (RecipeIngredient ingredient : ingredients) {
-            ItemStack[] stacks = ingredient.item.getMatchingStacks();
-
-            if (stacks.length > 0) {
-                mc.getItemRenderer().renderItemIntoGUI(stacks[tmp % stacks.length], ingredient.x, ingredient.y);
-            }
-        }
-
-        RenderHelper.disableStandardItemLighting();
         GlStateManager.popMatrix();
     }
 
@@ -99,11 +82,29 @@ public class RecipeWidget extends MarginWidget {
         int tmp = (int) (System.currentTimeMillis() / 2000);
         int recipeIndex = tmp % recipeIngredients.size();
 
+        GlStateManager.pushMatrix();
+        GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
+        GlStateManager.scalef(scale, scale, scale);
+        RenderHelper.disableStandardItemLighting();
+        RenderHelper.enableGUIStandardItemLighting();
+
+        List<RecipeIngredient> ingredients = recipeIngredients.get(recipeIndex);
+
+        for (RecipeIngredient ingredient : ingredients) {
+            ItemStack[] stacks = ingredient.item.getMatchingStacks();
+
+            if (stacks.length > 0) {
+                mc.getItemRenderer().renderItemAndEffectIntoGUI(stacks[tmp % stacks.length], ingredient.x, ingredient.y);
+                mc.getItemRenderer().renderItemOverlays(mc.fontRenderer, stacks[tmp % stacks.length], ingredient.x, ingredient.y);
+            }
+        }
+
+        RenderHelper.enableStandardItemLighting();
+        GlStateManager.popMatrix();
+
         mc.getTextureManager().bindTexture(backgrounds.get(recipeIndex).image);
 
         if (inBounds(mx, my)) {
-            List<RecipeIngredient> ingredients = recipeIngredients.get(recipeIndex);
-
             for (RecipeIngredient ingredient : ingredients) {
                 ItemStack[] stacks = ingredient.item.getMatchingStacks();
 

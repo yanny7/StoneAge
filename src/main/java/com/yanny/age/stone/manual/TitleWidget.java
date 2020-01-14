@@ -50,7 +50,7 @@ public class TitleWidget extends ConfigurableWidget {
         GlStateManager.pushMatrix();
         GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         GlStateManager.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
-        GlStateManager.scalef(scale, scale, 1.0f);
+        GlStateManager.scalef(scale, scale, scale);
         switch (align) {
             case LEFT:
                 screen.drawString(mc.fontRenderer, text, 0, 0, color);

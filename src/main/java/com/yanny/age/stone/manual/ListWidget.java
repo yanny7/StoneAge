@@ -70,7 +70,7 @@ public class ListWidget extends ConfigurableWidget {
     public void drawBackgroundLayer(Screen screen, int mx, int my) {
         GlStateManager.pushMatrix();
         GlStateManager.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
-        GlStateManager.scalef(scale, scale, 1.0f);
+        GlStateManager.scalef(scale, scale, scale);
         GlStateManager.enableBlend();
         int height = 0;
         for (int i = 0; i < list.length; i++) {
@@ -82,7 +82,7 @@ public class ListWidget extends ConfigurableWidget {
 
         GlStateManager.pushMatrix();
         GlStateManager.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
-        GlStateManager.scalef(scale, scale, 1.0f);
+        GlStateManager.scalef(scale, scale, scale);
         links.forEach(link -> {
             if (link.inArea(mx - (getX() + margin_left), my - (getY() + margin_top), scale)) {
                 link.rects.forEach(rect -> Screen.fill((int) rect.x1, (int) rect.y1, (int) rect.x2, (int) rect.y2, 0x66000000));
