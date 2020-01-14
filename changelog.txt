@@ -1,3 +1,4 @@
+- implemented in-game manual
 - fixed crash when new mob raids beetroot
 v1.0.3
 - aquaduct water can flow downward (aquaduct below is filled)
