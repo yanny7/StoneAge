@@ -19,6 +19,7 @@ public class ConfigHelper {
         Config.feederTickChanceBreedAnimalEffect = ConfigHolder.SERVER.feederTickChanceBreedAnimalEffect.get();
         Config.feederEffectRange = ConfigHolder.SERVER.feederEffectRange.get();
         Config.forceToolForWood = ConfigHolder.SERVER.forceToolForWood.get();
+        Config.givePlayerManualOnFirstConnect = ConfigHolder.SERVER.givePlayerManualOnFirstConnect.get();
 
         Config.spawnDeerEnable = ConfigHolder.SERVER.spawnDeerEnable.get();
         Config.spawnDeerWeight = ConfigHolder.SERVER.spawnDeerWeight.get();

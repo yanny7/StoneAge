@@ -13,6 +13,7 @@ public class Config {
     public static int feederTickChanceBreedAnimalEffect = 200;
     public static int feederEffectRange = 4;
     public static boolean forceToolForWood = true;
+    public static boolean givePlayerManualOnFirstConnect = true;
 
     public static boolean spawnDeerEnable = true;
     public static int spawnDeerWeight = 10;

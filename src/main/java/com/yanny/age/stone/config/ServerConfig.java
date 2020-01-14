@@ -18,6 +18,7 @@ class ServerConfig {
     final ForgeConfigSpec.IntValue feederTickChanceBreedAnimalEffect;
     final ForgeConfigSpec.IntValue feederEffectRange;
     final ForgeConfigSpec.BooleanValue forceToolForWood;
+    final ForgeConfigSpec.BooleanValue givePlayerManualOnFirstConnect;
 
     final ForgeConfigSpec.BooleanValue spawnDeerEnable;
     final ForgeConfigSpec.IntValue spawnDeerWeight;
@@ -102,6 +103,10 @@ class ServerConfig {
                 .comment("Force tool for wood material - harvestable only with axe")
                 .translation(Reference.MODID + ".config.force_tool_for_wood")
                 .define("forceToolForWood", true);
+        givePlayerManualOnFirstConnect = builder
+                .comment("Give player manual on first connect to game")
+                .translation(Reference.MODID + ".config.give_player_manual_on_first_connect")
+                .define("givePlayerManualOnFirstConnect", true);
         builder.pop();
 
         builder.push("mob spawning");
