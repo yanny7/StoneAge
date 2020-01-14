@@ -23,7 +23,7 @@ public class CampfireRecipeHandler implements IRecipeHandler {
 
         list.add(new RecipeIngredient(cookingRecipe.getIngredients().get(0), 22, 22));
         list.add(new RecipeIngredient(Ingredient.fromItems(Items.CAMPFIRE), 52, 22));
-        list.add(new RecipeIngredient(Ingredient.fromItems(cookingRecipe.getRecipeOutput().getItem()), 82, 22));
+        list.add(new RecipeIngredient(Ingredient.fromStacks(cookingRecipe.getRecipeOutput()), 82, 22));
         return list;
     }
 

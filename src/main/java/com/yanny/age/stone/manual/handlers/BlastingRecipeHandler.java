@@ -25,7 +25,7 @@ public class BlastingRecipeHandler implements IRecipeHandler {
 
         list.add(new RecipeIngredient(blastingRecipe.getIngredients().get(0), 22, 4));
         list.add(new RecipeIngredient(Ingredient.fromItems(Items.COAL, CHARCOAL, COAL_BLOCK, OAK_PLANKS, STICK, OAK_SLAB), 22, 40));
-        list.add(new RecipeIngredient(Ingredient.fromItems(blastingRecipe.getRecipeOutput().getItem()), 82, 22));
+        list.add(new RecipeIngredient(Ingredient.fromStacks(blastingRecipe.getRecipeOutput()), 82, 22));
         return list;
     }
 

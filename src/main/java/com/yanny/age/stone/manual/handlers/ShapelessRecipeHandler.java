@@ -24,7 +24,7 @@ public class ShapelessRecipeHandler implements IRecipeHandler {
             list.add(new RecipeIngredient(shapelessRecipe.getIngredients().get(i), 3 + (i % 3) * 18, 4 + (i / 3) * 18));
         }
 
-        list.add(new RecipeIngredient(Ingredient.fromItems(shapelessRecipe.getRecipeOutput().getItem()), 97, 22));
+        list.add(new RecipeIngredient(Ingredient.fromStacks(shapelessRecipe.getRecipeOutput()), 97, 22));
 
         return list;
     }

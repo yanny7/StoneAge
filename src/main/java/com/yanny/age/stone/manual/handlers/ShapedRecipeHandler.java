@@ -27,7 +27,7 @@ public class ShapedRecipeHandler implements IRecipeHandler {
             }
         }
 
-        list.add(new RecipeIngredient(Ingredient.fromItems(shapedRecipe.getRecipeOutput().getItem()), 97, 22));
+        list.add(new RecipeIngredient(Ingredient.fromStacks(shapedRecipe.getRecipeOutput()), 97, 22));
 
         return list;
     }

@@ -23,7 +23,7 @@ public class DryingRackRecipeHandler implements IRecipeHandler {
 
         list.add(new RecipeIngredient(dryingRackRecipe.getIngredients().get(0), 22, 22));
         list.add(new RecipeIngredient(Ingredient.fromItems(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, "drying_rack"))), 52, 22));
-        list.add(new RecipeIngredient(Ingredient.fromItems(dryingRackRecipe.getRecipeOutput().getItem()), 85, 23));
+        list.add(new RecipeIngredient(Ingredient.fromStacks(dryingRackRecipe.getRecipeOutput()), 85, 23));
         return list;
     }
 

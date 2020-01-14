@@ -25,7 +25,7 @@ public class SmokingRecipeHandler implements IRecipeHandler {
 
         list.add(new RecipeIngredient(smokingRecipe.getIngredients().get(0), 22, 4));
         list.add(new RecipeIngredient(Ingredient.fromItems(COAL, CHARCOAL, COAL_BLOCK, OAK_PLANKS, STICK, OAK_SLAB), 22, 40));
-        list.add(new RecipeIngredient(Ingredient.fromItems(smokingRecipe.getRecipeOutput().getItem()), 82, 22));
+        list.add(new RecipeIngredient(Ingredient.fromStacks(smokingRecipe.getRecipeOutput()), 82, 22));
         return list;
     }
 

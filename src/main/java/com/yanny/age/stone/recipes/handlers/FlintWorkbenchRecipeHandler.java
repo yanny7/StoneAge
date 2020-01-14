@@ -27,7 +27,7 @@ public class FlintWorkbenchRecipeHandler implements IRecipeHandler {
             }
         }
 
-        list.add(new RecipeIngredient(Ingredient.fromItems(flintWorkbenchRecipe.getRecipeOutput().getItem()), 98, 22));
+        list.add(new RecipeIngredient(Ingredient.fromStacks(flintWorkbenchRecipe.getRecipeOutput()), 98, 22));
 
         return list;
     }

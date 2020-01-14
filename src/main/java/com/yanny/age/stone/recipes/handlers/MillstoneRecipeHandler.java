@@ -24,7 +24,7 @@ public class MillstoneRecipeHandler implements IRecipeHandler {
 
         list.add(new RecipeIngredient(millstoneRecipe.getIngredients().get(0), 22, 22));
         list.add(new RecipeIngredient(Ingredient.fromItems(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, "millstone"))), 52, 22));
-        list.add(new RecipeIngredient(Ingredient.fromItems(millstoneRecipe.getRecipeOutput().getItem()), 85, 23));
+        list.add(new RecipeIngredient(Ingredient.fromStacks(millstoneRecipe.getRecipeOutput()), 85, 23));
         return list;
     }
 
