@@ -7,6 +7,7 @@ import com.mojang.datafixers.util.Pair;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +16,6 @@ import org.apache.logging.log4j.Logger;
 import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -48,33 +48,10 @@ class ConfigHolder {
     public static final Pair<String, Obj<?, ?>> ALIGN_LEFT = new Pair<>("align", new Obj<>(String.class, Align.class, "LEFT", true,
             Align::fromString, s -> Align.fromString(s) != null));
     public static final Pair<String, Obj<?, ?>> JUSTIFY = new Pair<>("justify", new Obj<>(Boolean.class, Boolean.class, false, true, s -> s, s -> true));
-    public static final Pair<String, Obj<?, ?>> RECIPE = new Pair<>("recipe", new Obj<>(String.class, IRecipe.class, "", false,
-            s -> {
-                Optional<? extends IRecipe<?>> r = Minecraft.getInstance().world.getRecipeManager().getRecipe(new ResourceLocation(s));
-                IRecipe<?> rec = r.orElse(null);
-                if (rec == null) {
-                    rec = Minecraft.getInstance().world.getRecipeManager().getRecipe(new ResourceLocation("minecraft:crafting_table")).orElse(null);
-                }
-                return rec;
-            },
-            s -> Minecraft.getInstance().world.getRecipeManager().getRecipe(new ResourceLocation(s)).orElse(null) != null));
+    public static final Pair<String, Obj<?, ?>> RECIPE = new Pair<>("recipe", new Obj<>(JsonArray.class, IRecipe[].class, new JsonArray(), false,
+            ConfigHolder::getRecipes, ConfigHolder::checkRecipes));
     public static final Pair<String, Obj<?, ?>> LIST = new Pair<>("list", new Obj<>(JsonArray.class, String[].class, new JsonArray(), false,
-            s -> {
-                String[] result = new String[s.size()];
-                int i = 0;
-                for (JsonElement element : s) {
-                    result[i++] = element.getAsJsonPrimitive().getAsString();
-                }
-                return result;
-            },
-            s -> {
-                for (JsonElement element : s) {
-                    if (!element.isJsonPrimitive() || !element.getAsJsonPrimitive().isString()) {
-                        return false;
-                    }
-                }
-                return true;
-            }));
+            ConfigHolder::getList, ConfigHolder::checkList));
     public static final Pair<String, Obj<?, ?>> BULLET = new Pair<>("bullet", new Obj<>(String.class, String.class, "•", true, s -> s, s -> true));
 
     private Map<String, Obj<?, ?>> objMap = new HashMap<>();
@@ -121,6 +98,64 @@ class ConfigHolder {
         }
 
         return null;
+    }
+
+    private static boolean checkRecipes(JsonArray array) {
+        RecipeManager recipeManager = Minecraft.getInstance().world.getRecipeManager();
+
+        if (array.size() == 0) {
+            LOGGER.warn("Empty recipe list");
+            return false;
+        }
+
+        for (JsonElement element : array) {
+            if (!element.isJsonPrimitive() || !element.getAsJsonPrimitive().isString()) {
+                LOGGER.warn("List element not an string");
+                return false;
+            }
+
+            IRecipe<?> recipe = recipeManager.getRecipe(new ResourceLocation(element.getAsString())).orElse(null);
+
+            if (recipe == null) {
+                LOGGER.warn("Recipe '{}' does not exists", element.getAsString());
+                return false;
+            }
+        }
+
+        return array.size() > 0;
+    }
+
+    private static IRecipe<?>[] getRecipes(JsonArray array) {
+        RecipeManager recipeManager = Minecraft.getInstance().world.getRecipeManager();
+        IRecipe<?>[] result = new IRecipe[array.size()];
+        int i = 0;
+
+        for (JsonElement element : array) {
+            result[i++] = recipeManager.getRecipe(new ResourceLocation(element.getAsString())).orElse(null);
+        }
+
+        return result;
+    }
+
+    private static boolean checkList(JsonArray array) {
+        for (JsonElement element : array) {
+            if (!element.isJsonPrimitive() || !element.getAsJsonPrimitive().isString()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static String[] getList(JsonArray array) {
+        String[] result = new String[array.size()];
+        int i = 0;
+
+        for (JsonElement element : array) {
+            result[i++] = element.getAsJsonPrimitive().getAsString();
+        }
+
+        return result;
     }
 
     static class Obj<T, R> {

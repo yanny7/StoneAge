@@ -62,7 +62,10 @@
             "§pcampfire §oCampfire§r§p",
             "§pcrafting_table §oCrafting table§r§p",
             "§pfurnace §oFurnace§r§p",
-            "§phay_block §oHay block§r§p"
+            "§phay_block §oHay block§r§p",
+            "§pfences §oWooden fences and gates§r§p",
+            "§pslabs §oWooden and rocky slabs§r§p",
+            "§pplanks §oPlanks§r§p"
           ]
         }
       ]
@@ -78,7 +81,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:flint_workbench",
+          "recipe": ["stone_age:flint_workbench"],
           "margin_bottom": 5
         },
         {
@@ -107,7 +110,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:drying_rack",
+          "recipe": ["stone_age:drying_rack"],
           "margin_bottom": 5
         },
         {
@@ -127,7 +130,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:tanning_rack",
+          "recipe": ["stone_age:tanning_rack"],
           "margin_bottom": 5
         },
         {
@@ -147,7 +150,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:stone_chest",
+          "recipe": ["stone_age:stone_chest"],
           "margin_bottom": 5
         },
         {
@@ -167,7 +170,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:tree_stump",
+          "recipe": ["stone_age:tree_stump"],
           "margin_bottom": 5
         },
         {
@@ -187,7 +190,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:aquaduct",
+          "recipe": ["stone_age:aquaduct"],
           "margin_bottom": 5
         },
         {
@@ -207,7 +210,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:drought_grass_bed",
+          "recipe": ["stone_age:drought_grass_bed"],
           "margin_bottom": 5
         },
         {
@@ -227,7 +230,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:feeder",
+          "recipe": ["stone_age:feeder"],
           "margin_bottom": 5
         },
         {
@@ -247,7 +250,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:millstone",
+          "recipe": ["stone_age:millstone"],
           "margin_bottom": 5
         },
         {
@@ -267,7 +270,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:campfire",
+          "recipe": ["stone_age:campfire"],
           "margin_bottom": 5
         },
         {
@@ -287,7 +290,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:crafting_table",
+          "recipe": ["stone_age:crafting_table"],
           "margin_bottom": 5
         },
         {
@@ -307,7 +310,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:furnace",
+          "recipe": ["stone_age:furnace"],
           "margin_bottom": 5
         },
         {
@@ -327,12 +330,124 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:hay_block",
+          "recipe": ["stone_age:hay_block"],
           "margin_bottom": 5
         },
         {
           "type": "text",
           "text": "Hay block, used for larger smoke when under campfire."
+        }
+      ]
+    },
+    {
+      "key": "fences",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Wooden fences and gates",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:acacia_fence",
+            "stone_age:birch_fence",
+            "stone_age:dark_oak_fence",
+            "stone_age:jungle_fence",
+            "stone_age:oak_fence",
+            "stone_age:spruce_fence"
+          ],
+          "margin_bottom": 5
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:acacia_fence_gate",
+            "stone_age:birch_fence_gate",
+            "stone_age:dark_oak_fence_gate",
+            "stone_age:jungle_fence_gate",
+            "stone_age:oak_fence_gate",
+            "stone_age:spruce_fence_gate"
+          ],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "slabs",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Wooden and rocky slabs",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:acacia_slab",
+            "stone_age:birch_slab",
+            "stone_age:oak_slab",
+            "stone_age:dark_oak_slab",
+            "stone_age:jungle_slab",
+            "stone_age:spruce_slab"
+          ],
+          "margin_bottom": 5
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:andesite_slab",
+            "stone_age:brick_slab",
+            "stone_age:cobblestone_slab",
+            "stone_age:cut_red_sandstone_slab",
+            "stone_age:cut_sandstone_slab",
+            "stone_age:diorite_slab",
+            "stone_age:granite_slab",
+            "stone_age:mossy_cobblestone_slab",
+            "stone_age:mossy_stone_brick_slab",
+            "stone_age:nether_brick_slab",
+            "stone_age:polished_andesite_slab",
+            "stone_age:polished_diorite_slab",
+            "stone_age:polished_granite_slab",
+            "stone_age:red_nether_brick_slab",
+            "stone_age:red_sandstone_slab",
+            "stone_age:sandstone_slab",
+            "stone_age:smooth_red_sandstone_slab",
+            "stone_age:smooth_sandstone_slab",
+            "stone_age:smooth_stone_slab",
+            "stone_age:stone_brick_slab",
+            "stone_age:stone_slab"
+          ],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "planks",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Planks",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:acacia_planks",
+            "stone_age:birch_planks",
+            "stone_age:dark_oak_planks",
+            "stone_age:jungle_planks",
+            "stone_age:spruce_planks"
+          ],
+          "margin_bottom": 5
         }
       ]
     },
@@ -350,8 +465,6 @@
           "list":
           [
             "§pbone_meal §oBone meal§r§p",
-            "§pfences §oWooden fences and gates§r§p",
-            "§pslabs §oWooden and rocky slabs§r§p",
             "§parrow §oArrows§r§p",
             "§praw_hide §oRaw hide§r§p",
             "§pantler §oAntler§r§p",
@@ -384,54 +497,18 @@
         },
         {
           "type": "recipe",
-          "recipe": "minecraft:bone_meal",
+          "recipe":
+          [
+            "minecraft:bone_meal",
+            "stone_age:bone_meal_from_mammoth_tusk",
+            "stone_age:bone_meal_from_rhino_tusk",
+            "stone_age:bone_meal_from_saber_teeth"
+          ],
           "margin_bottom": 5
         },
         {
           "type": "text",
           "text": "Bone meal can be made from crushed bones."
-        }
-      ]
-    },
-    {
-      "key": "fences",
-      "content":
-      [
-        {
-          "type": "title",
-          "text": "Wooden fences and gates",
-          "margin_bottom": 10
-        },
-        {
-          "type": "recipe",
-          "recipe": "stone_age:oak_fence",
-          "margin_bottom": 5
-        },
-        {
-          "type": "recipe",
-          "recipe": "stone_age:oak_fence_gate",
-          "margin_bottom": 5
-        }
-      ]
-    },
-    {
-      "key": "slabs",
-      "content":
-      [
-        {
-          "type": "title",
-          "text": "Wooden and rocky slabs",
-          "margin_bottom": 10
-        },
-        {
-          "type": "recipe",
-          "recipe": "stone_age:oak_slab",
-          "margin_bottom": 5
-        },
-        {
-          "type": "recipe",
-          "recipe": "stone_age:stone_slab",
-          "margin_bottom": 5
         }
       ]
     },
@@ -446,7 +523,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:arrow",
+          "recipe": ["stone_age:arrow"],
           "margin_bottom": 5
         }
       ]
@@ -492,7 +569,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:unlit_torch",
+          "recipe": ["stone_age:unlit_torch"],
           "margin_bottom": 5
         },
         {
@@ -512,7 +589,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:bone_arrow_head",
+          "recipe": ["stone_age:bone_arrow_head"],
           "margin_bottom": 5
         },
         {
@@ -532,7 +609,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:drought_grass",
+          "recipe": ["stone_age:drought_grass"],
           "margin_bottom": 5
         },
         {
@@ -552,7 +629,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:leather_strip",
+          "recipe": ["stone_age:leather_strip"],
           "margin_bottom": 5
         },
         {
@@ -587,7 +664,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:flour",
+          "recipe": ["stone_age:flour"],
           "margin_bottom": 5
         },
         {
@@ -607,7 +684,11 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:raw_bread",
+          "recipe":
+          [
+            "stone_age:raw_bread",
+            "stone_age:raw_bread_flint_workbench"
+          ],
           "margin_bottom": 5
         },
         {
@@ -672,7 +753,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:backpack",
+          "recipe": ["stone_age:backpack"],
           "margin_bottom": 5
         },
         {
@@ -692,7 +773,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:lead",
+          "recipe": ["stone_age:lead"],
           "margin_bottom": 5
         },
         {
@@ -712,7 +793,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:leather",
+          "recipe": ["stone_age:leather"],
           "margin_bottom": 5
         },
         {
@@ -732,7 +813,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:sugar",
+          "recipe": ["stone_age:sugar"],
           "margin_bottom": 5
         },
         {
@@ -784,7 +865,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:antler_axe",
+          "recipe": ["stone_age:antler_axe"],
           "margin_bottom": 5
         }
       ]
@@ -800,7 +881,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:antler_hoe",
+          "recipe": ["stone_age:antler_hoe"],
           "margin_bottom": 5
         }
       ]
@@ -816,7 +897,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:antler_pickaxe",
+          "recipe": ["stone_age:antler_pickaxe"],
           "margin_bottom": 5
         }
       ]
@@ -832,7 +913,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:antler_shovel",
+          "recipe": ["stone_age:antler_shovel"],
           "margin_bottom": 5
         }
       ]
@@ -848,7 +929,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:antler_sickle",
+          "recipe": ["stone_age:antler_sickle"],
           "margin_bottom": 5
         },
         {
@@ -868,7 +949,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:bone_sword",
+          "recipe": ["stone_age:bone_sword"],
           "margin_bottom": 5
         }
       ]
@@ -884,7 +965,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:bow",
+          "recipe": ["stone_age:bow"],
           "margin_bottom": 5
         }
       ]
@@ -900,7 +981,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:flint_knife",
+          "recipe": ["stone_age:flint_knife"],
           "margin_bottom": 5
         },
         {
@@ -920,7 +1001,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:flint_spear",
+          "recipe": ["stone_age:flint_spear"],
           "margin_bottom": 5
         },
         {
@@ -940,7 +1021,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:stone_axe",
+          "recipe": ["stone_age:stone_axe"],
           "margin_bottom": 5
         }
       ]
@@ -956,7 +1037,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:stone_hammer",
+          "recipe": ["stone_age:stone_hammer"],
           "margin_bottom": 5
         }
       ]
@@ -972,7 +1053,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:stone_hoe",
+          "recipe": ["stone_age:stone_hoe"],
           "margin_bottom": 5
         }
       ]
@@ -988,7 +1069,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:stone_pickaxe",
+          "recipe": ["stone_age:stone_pickaxe"],
           "margin_bottom": 5
         }
       ]
@@ -1004,7 +1085,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:stone_shovel",
+          "recipe": ["stone_age:stone_shovel"],
           "margin_bottom": 5
         }
       ]
@@ -1020,7 +1101,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:stone_sword",
+          "recipe": ["stone_age:stone_sword"],
           "margin_bottom": 5
         }
       ]
@@ -1057,7 +1138,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:leather_boots",
+          "recipe": ["stone_age:leather_boots"],
           "margin_bottom": 5
         }
       ]
@@ -1073,7 +1154,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:leather_chestplate",
+          "recipe": ["stone_age:leather_chestplate"],
           "margin_bottom": 5
         }
       ]
@@ -1089,7 +1170,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:leather_helmet",
+          "recipe": ["stone_age:leather_helmet"],
           "margin_bottom": 5
         }
       ]
@@ -1105,7 +1186,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:leather_leggings",
+          "recipe": ["stone_age:leather_leggings"],
           "margin_bottom": 5
         }
       ]
@@ -1141,7 +1222,7 @@
         },
         {
           "type": "recipe",
-          "recipe": "minecraft:bread",
+          "recipe": ["minecraft:bread"],
           "margin_bottom": 5
         },
         {
@@ -1161,7 +1242,12 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:cooked_fat",
+          "recipe":
+          [
+            "stone_age:cooked_fat",
+            "stone_age:cooked_fat_from_campfire_cooking",
+            "stone_age:cooked_fat_from_smoking"
+          ],
           "margin_bottom": 5
         },
         {
@@ -1181,7 +1267,12 @@
         },
         {
           "type": "recipe",
-          "recipe": "stone_age:cooked_venison",
+          "recipe":
+          [
+            "stone_age:cooked_venison",
+            "stone_age:cooked_venison_from_campfire_cooking",
+            "stone_age:cooked_venison_from_smoking"
+          ],
           "margin_bottom": 5
         },
         {

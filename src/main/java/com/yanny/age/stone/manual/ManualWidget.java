@@ -38,9 +38,9 @@ public class ManualWidget extends Widget implements IManual {
     public ManualWidget(int width, int height) {
         recipeHandlerMap.put(IRecipeSerializer.CRAFTING_SHAPED, new ShapedRecipeHandler());
         recipeHandlerMap.put(IRecipeSerializer.CRAFTING_SHAPELESS, new ShapelessRecipeHandler());
-        recipeHandlerMap.put(IRecipeSerializer.SMELTING, new SmeltingRecipeHandler());
-        recipeHandlerMap.put(IRecipeSerializer.BLASTING, new SmeltingRecipeHandler());
-        recipeHandlerMap.put(IRecipeSerializer.SMOKING, new SmeltingRecipeHandler());
+        recipeHandlerMap.put(IRecipeSerializer.SMELTING, new FurnaceRecipeHandler());
+        recipeHandlerMap.put(IRecipeSerializer.BLASTING, new BlastingRecipeHandler());
+        recipeHandlerMap.put(IRecipeSerializer.SMOKING, new SmokingRecipeHandler());
         recipeHandlerMap.put(IRecipeSerializer.CAMPFIRE_COOKING, new CampfireRecipeHandler());
         recipeHandlerMap.put(IRecipeSerializer.STONECUTTING, new StonecuttinRecipeHandler());
 
@@ -173,6 +173,11 @@ public class ManualWidget extends Widget implements IManual {
 
     @Override
     public IRecipeHandler getRecipeHandler(IRecipe<?> recipe) {
+        if (recipe == null) {
+            LOGGER.warn("Null recipe");
+            return null;
+        }
+
         IRecipeHandler handler = recipeHandlerMap.get(recipe.getSerializer());
 
         if (handler == null) {

@@ -1,30 +1,21 @@
 package com.yanny.age.stone.manual;
 
-import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.yanny.age.stone.ExampleMod;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.model.IBakedModel;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.texture.AtlasTexture;
-import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.fml.client.config.GuiUtils;
-import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static com.yanny.age.stone.manual.ConfigHolder.RECIPE;
@@ -35,31 +26,29 @@ public class RecipeWidget extends MarginWidget {
     private static final int ITEM_WIDTH = 16;
 
     protected final float scale;
-    protected final IRecipe<?> recipe;
-    protected final IRecipeHandler recipeHandler;
-    protected final RecipeBackground background;
-    protected final List<RecipeIngredient> recipeIngredients;
-    protected final List<Ingredient> texts;
+    protected final IRecipe<?>[] recipes;
+    protected final List<IRecipeHandler> recipeHandlers = new ArrayList<>();
+    protected final List<RecipeBackground> backgrounds = new ArrayList<>();
+    protected final List<List<RecipeIngredient>> recipeIngredients = new ArrayList<>();
 
     public RecipeWidget(JsonObject object, IManual manual) {
         super(object, manual, RECIPE, SCALE);
 
         scale = configHolder.getValue(SCALE);
-        recipe = configHolder.getValue(RECIPE);
+        recipes = configHolder.getValue(RECIPE);
 
-        recipeHandler = manual.getRecipeHandler(recipe);
-        background = recipeHandler.getRecipeBackground();
-        recipeIngredients = recipeHandler.getRecipeIngredients(recipe);
+        for (IRecipe<?> recipe : recipes) {
+            IRecipeHandler recipeHandler = manual.getRecipeHandler(recipe);
 
-        texts = Lists.newArrayList();
-        for (RecipeIngredient ingredient : recipeIngredients) {
-            texts.add(ingredient.item);
+            recipeHandlers.add(recipeHandler);
+            backgrounds.add(recipeHandler.getRecipeBackground());
+            recipeIngredients.add(recipeHandler.getRecipeIngredients(recipe));
         }
     }
 
     @Override
     int getRawWidth() {
-        return Math.round(background.width * scale) + Math.max(getRawMarginLeft(), 0) + Math.max(getRawMarginRight(), 0);
+        return Collections.max(backgrounds, Comparator.comparing(b -> b.width * scale)).width + Math.max(getRawMarginLeft(), 0) + Math.max(getRawMarginRight(), 0);
     }
 
     @Override
@@ -69,19 +58,21 @@ public class RecipeWidget extends MarginWidget {
 
     @Override
     public int getMinHeight(int width) {
-        return Math.round(background.height * scale) + getMarginTop() + getMarginBottom();
+        return Collections.max(backgrounds, Comparator.comparing(b -> b.height * scale)).height + getMarginTop() + getMarginBottom();
     }
 
     @Override
     public void drawBackgroundLayer(Screen screen, int mx, int my) {
         int tmp = (int) (System.currentTimeMillis() / 2000);
-        mc.getTextureManager().bindTexture(background.image);
+        int recipeIndex = tmp % recipeIngredients.size();
+
+        mc.getTextureManager().bindTexture(backgrounds.get(recipeIndex).image);
 
         GlStateManager.pushMatrix();
         GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
         GlStateManager.scalef(scale, scale, 0);
         GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
-        AbstractGui.blit(0, 0, 0, background.u, background.v, background.width, background.height, background.imgW, background.imgH);
+        AbstractGui.blit(0, 0, 0, backgrounds.get(recipeIndex).u, backgrounds.get(recipeIndex).v, backgrounds.get(recipeIndex).width, backgrounds.get(recipeIndex).height, backgrounds.get(recipeIndex).imgW, backgrounds.get(recipeIndex).imgH);
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
@@ -89,7 +80,9 @@ public class RecipeWidget extends MarginWidget {
         GlStateManager.scalef(scale, scale, 0);
         RenderHelper.enableStandardItemLighting();
 
-        for (RecipeIngredient ingredient : recipeIngredients) {
+        List<RecipeIngredient> ingredients = recipeIngredients.get(recipeIndex);
+
+        for (RecipeIngredient ingredient : ingredients) {
             ItemStack[] stacks = ingredient.item.getMatchingStacks();
 
             if (stacks.length > 0) {
@@ -104,10 +97,14 @@ public class RecipeWidget extends MarginWidget {
     @Override
     public void render(Screen screen, int mx, int my) {
         int tmp = (int) (System.currentTimeMillis() / 2000);
-        mc.getTextureManager().bindTexture(background.image);
+        int recipeIndex = tmp % recipeIngredients.size();
+
+        mc.getTextureManager().bindTexture(backgrounds.get(recipeIndex).image);
 
         if (inBounds(mx, my)) {
-            for (RecipeIngredient ingredient : recipeIngredients) {
+            List<RecipeIngredient> ingredients = recipeIngredients.get(recipeIndex);
+
+            for (RecipeIngredient ingredient : ingredients) {
                 ItemStack[] stacks = ingredient.item.getMatchingStacks();
 
                 if (stacks.length > 0) {
