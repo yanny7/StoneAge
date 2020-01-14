@@ -1,0 +1,1646 @@
+{
+  "constants":
+  {
+    "WHITE": -1,
+    "RED": 16711680,
+    "GREEN": 65280,
+    "BLUE": 255
+  },
+  "content":
+  [
+    {
+      "key": "index",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Stone Age Mod",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "Welcome to stone age mod manual! If you find any bug in this manual or in mod, please report it to github §ngithub.com/yanny7/StoneAge§r.",
+          "margin_bottom": 10
+        },
+        {
+          "type": "list",
+          "list":
+          [
+            "§pblocks §oBlocks§r§p",
+            "§pitems §oItems§r§p",
+            "§ptools §oWeapons and tools§r§p",
+            "§parmor §oArmors§r§p",
+            "§pfoods §oFoods§r§p",
+            "§pmobs §oMobs§r§p",
+            "§pfire §oMaking fire§r§p"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "blocks",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Blocks",
+          "margin_bottom": 10
+        },
+        {
+          "type": "list",
+          "list":
+          [
+            "§pflint_workbench §oFlint workbench§r§p",
+            "§pdrying_rack §oDrying rack§r§p",
+            "§ptanning_rack §oTanning rack§r§p",
+            "§pstone_chest §oStone chest§r§p",
+            "§ptree_stump §oTree stump§r§p",
+            "§paquaduct §oAquaduct§r§p",
+            "§pdrought_grass_bed §oDrought grass bed§r§p",
+            "§pfeeder §oFeeder§r§p",
+            "§pmillstone §oMillstone§r§p",
+            "§pcampfire §oCampfire§r§p",
+            "§pcrafting_table §oCrafting table§r§p",
+            "§pfurnace §oFurnace§r§p",
+            "§phay_block §oHay block§r§p",
+            "§pfences §oWooden fences and gates§r§p",
+            "§pslabs §oWooden and rocky slabs§r§p",
+            "§pplanks §oPlanks§r§p"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "flint_workbench",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Flint workbench",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:flint_workbench"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Allow you to craft primitive items. Just put required items into workbench by right-click and then right-click with §pflint_knife §nflint knife§r§p to craft an item.",
+          "margin_bottom": 5
+        },
+        {
+          "type": "image",
+          "width": 124,
+          "height": 52,
+          "w": 128,
+          "h": 128,
+          "image": "stone_age:textures/gui/manual/screenshots/flint_workbench.png"
+        }
+      ]
+    },
+    {
+      "key": "drying_rack",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Drying rack",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:drying_rack"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Drying rack is used for drying items like grass. Just right-click with item on drying rack and wait. Note that item is dried only during day."
+        }
+      ]
+    },
+    {
+      "key": "tanning_rack",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Tanning rack",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:tanning_rack"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Tanning rack is used for tanning §praw_hide §nraw hide§r§p to leather. Just put raw hide to tanning rack by right-click and then multiple times right-click on hide with §pflint_knife §nflint knife§r§p."
+        }
+      ]
+    },
+    {
+      "key": "stone_chest",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Stone chest",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:stone_chest"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Stone chest allow you to store small amount of items. Still better than nothing!"
+        }
+      ]
+    },
+    {
+      "key": "tree_stump",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Tree stump",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:tree_stump"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Tree stump is way to get planks or half-slabs. Just put valid item on tree stump by right-click and then left-click with tool: for wood use axe, for stone use hammer."
+        }
+      ]
+    },
+    {
+      "key": "aquaduct",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Aquaduct",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:aquaduct"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Aquaduct allow you to transfer water near your crops. To fill aquaduct with water, put it near water source. To water nearby farmland, activate aquaduct with right-click. You will see bubbles when aquaduct is active and has water. Aquaduct transfer water horizontally and downward. Activated aquaduct also apply around §lbonemeal effect§r."
+        }
+      ]
+    },
+    {
+      "key": "drought_grass_bed",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Drought grass bed",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:drought_grass_bed"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "When wool is not available for you, you can still sleep on bed made of dried grass."
+        }
+      ]
+    },
+    {
+      "key": "feeder",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Feeder",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:feeder"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Feeder as name says, provide food for animals around. Just right-click to open menu and put inside food like wheat or seeds. Feeder with food inside speed-up growth rate of baby animals and for adult animals activate breeding randomly."
+        }
+      ]
+    },
+    {
+      "key": "millstone",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Millstone",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:millstone"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Millstone is used for milling wheat into grain. Right-click while sneak to open menu. There you can place wheat. Then right-click with empty hand to mill wheat."
+        }
+      ]
+    },
+    {
+      "key": "campfire",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Campfire",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:campfire"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Campfire is used for cooking food."
+        }
+      ]
+    },
+    {
+      "key": "crafting_table",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Crafting table",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:crafting_table"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Vanilla crafting table, access to crafting table ends stone age."
+        }
+      ]
+    },
+    {
+      "key": "furnace",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Furnace",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:furnace"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Vanilla furnace."
+        }
+      ]
+    },
+    {
+      "key": "hay_block",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Hay block",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:hay_block"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Hay block, used for larger smoke when under campfire."
+        }
+      ]
+    },
+    {
+      "key": "fences",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Wooden fences and gates",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:acacia_fence",
+            "stone_age:birch_fence",
+            "stone_age:dark_oak_fence",
+            "stone_age:jungle_fence",
+            "stone_age:oak_fence",
+            "stone_age:spruce_fence"
+          ],
+          "margin_bottom": 5
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:acacia_fence_gate",
+            "stone_age:birch_fence_gate",
+            "stone_age:dark_oak_fence_gate",
+            "stone_age:jungle_fence_gate",
+            "stone_age:oak_fence_gate",
+            "stone_age:spruce_fence_gate"
+          ],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "slabs",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Wooden and rocky slabs",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:acacia_slab",
+            "stone_age:birch_slab",
+            "stone_age:oak_slab",
+            "stone_age:dark_oak_slab",
+            "stone_age:jungle_slab",
+            "stone_age:spruce_slab"
+          ],
+          "margin_bottom": 5
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:andesite_slab",
+            "stone_age:brick_slab",
+            "stone_age:cobblestone_slab",
+            "stone_age:cut_red_sandstone_slab",
+            "stone_age:cut_sandstone_slab",
+            "stone_age:diorite_slab",
+            "stone_age:granite_slab",
+            "stone_age:mossy_cobblestone_slab",
+            "stone_age:mossy_stone_brick_slab",
+            "stone_age:nether_brick_slab",
+            "stone_age:polished_andesite_slab",
+            "stone_age:polished_diorite_slab",
+            "stone_age:polished_granite_slab",
+            "stone_age:red_nether_brick_slab",
+            "stone_age:red_sandstone_slab",
+            "stone_age:sandstone_slab",
+            "stone_age:smooth_red_sandstone_slab",
+            "stone_age:smooth_sandstone_slab",
+            "stone_age:smooth_stone_slab",
+            "stone_age:stone_brick_slab",
+            "stone_age:stone_slab"
+          ],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "planks",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Planks",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:acacia_planks",
+            "stone_age:birch_planks",
+            "stone_age:dark_oak_planks",
+            "stone_age:jungle_planks",
+            "stone_age:spruce_planks"
+          ],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "items",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Items",
+          "margin_bottom": 10
+        },
+        {
+          "type": "list",
+          "list":
+          [
+            "§pbone_meal §oBone meal§r§p",
+            "§parrow §oArrows§r§p",
+            "§praw_hide §oRaw hide§r§p",
+            "§pantler §oAntler§r§p",
+            "§punlit_torch §oUnlit torch§r§p",
+            "§pbone_arrow_head §oBone arrow head§r§p",
+            "§pdrought_grass §oDrought grass§r§p",
+            "§pleather_strip §oLeather strip§r§p",
+            "§pfish_bone §oFish bone§r§p",
+            "§pflour §oFlour§r§p",
+            "§pbread_dough §oBread dough§r§p",
+            "§pmammoth_tusk §oMammoth tusk§r§p",
+            "§psabber_tooth_teeth §oSaber-tooth teeth§r§p",
+            "§prhino_tusk §oRhino tusk§r§p",
+            "§pbackpack §oBackpack§r§p",
+            "§plead §oLead§r§p",
+            "§pleather §oLeather§r§p",
+            "§psugar §oSugar§r§p"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "bone_meal",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Bone meal",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "minecraft:bone_meal",
+            "stone_age:bone_meal_from_mammoth_tusk",
+            "stone_age:bone_meal_from_rhino_tusk",
+            "stone_age:bone_meal_from_saber_teeth"
+          ],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Bone meal can be made from crushed bones."
+        }
+      ]
+    },
+    {
+      "key": "arrow",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Arrows",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:arrow"],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "raw_hide",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Raw hide",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "Raw hide drops from §pdeer §ndeers§r§p, §pauroch §naurochs§r§p, §pmammoth §nmammoths§r§p, §pwoolly_rhino §nwoolly rhinos§r§p and from cows. Raw hide can be tanned into leather using §ptanning_rack §ntanning rack§r§p."
+        }
+      ]
+    },
+    {
+      "key": "antler",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Antler",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "Antler drops from §pdeer §ndeers§r§p. It is used for making antler tools."
+        }
+      ]
+    },
+    {
+      "key": "unlit_torch",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Unlit torch",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:unlit_torch"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Unlit torch can be lit by right-click on fire, campfire or another torch"
+        }
+      ]
+    },
+    {
+      "key": "bone_arrow_head",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Bone arrow head",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:bone_arrow_head"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Bone arrow head is used for crafting §parrow §narrows§r§p."
+        }
+      ]
+    },
+    {
+      "key": "drought_grass",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Drought grass",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:drought_grass"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Drought grass is used as crafting item or for making §pfire §nfire§r§p."
+        }
+      ]
+    },
+    {
+      "key": "leather_strip",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Leather strip",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:leather_strip"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Leather strips is used as crafting item."
+        }
+      ]
+    },
+    {
+      "key": "fish_bone",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Fish bone",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "Fish bone drops from fishs and is used as crafting item."
+        }
+      ]
+    },
+    {
+      "key": "flour",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Flour",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:flour"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Flour is used as crafting item."
+        }
+      ]
+    },
+    {
+      "key": "bread_dough",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Bread dough",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:raw_bread",
+            "stone_age:raw_bread_flint_workbench"
+          ],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Bread dough is used for crafting §pbread §nbread§r§p."
+        }
+      ]
+    },
+    {
+      "key": "mammoth_tusk",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Mammoth tusk",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "Mammoth tusk drops from §pmammoth §nmammoth§r§p."
+        }
+      ]
+    },
+    {
+      "key": "sabber_tooth_teeth",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Saber tooth teeth",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "Saber-tooth teeth drops from §psaber_tooth_tiger §nsaber-tooth tiger§r§p."
+        }
+      ]
+    },
+    {
+      "key": "rhino_tusk",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Woolly rhino tusk",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "Woolly rhino tusk drops from §pwoolly_rhino §nwoolly rhino§r§p."
+        }
+      ]
+    },
+    {
+      "key": "backpack",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Backpack",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:backpack"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Backpack is used for increase carrying capacity. Right-click with backpack to open it's inventory"
+        }
+      ]
+    },
+    {
+      "key": "lead",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Lead",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:lead"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Lead is used for leash animals and moving them around."
+        }
+      ]
+    },
+    {
+      "key": "leather",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Leather",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:leather"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Leather is made in §ptanning_rack §oTanning rack§r§p. Right-click with §praw_hide §oraw hide§r§p on tanning rack and then right-click multiple times with §pflint_knife §oflint knife§r§p."
+        }
+      ]
+    },
+    {
+      "key": "sugar",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Sugar",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:sugar"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Used as crafting item"
+        }
+      ]
+    },
+    {
+      "key": "tools",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Weapons and tools",
+          "margin_bottom": 10
+        },
+        {
+          "type": "list",
+          "list":
+          [
+            "§pantler_axe §oAntler axe§r§p",
+            "§pantler_hoe §oAntler hoe§r§p",
+            "§pantler_pickaxe §oAntler pickaxe§r§p",
+            "§pantler_shovel §oAntler shovel§r§p",
+            "§pantler_sickle §oAntler sickle§r§p",
+            "§pbone_sword §oBone sword§r§p",
+            "§pbow §oBow§r§p",
+            "§pflint_knife §oFlint knife§r§p",
+            "§pflint_spear §oFlint spear§r§p",
+            "§pstone_axe §oStone axe§r§p",
+            "§pstone_hammer §oStone hammer§r§p",
+            "§pstone_hoe §oStone hoe§r§p",
+            "§pstone_pickaxe §oStone pickaxe§r§p",
+            "§pstone_shovel §oStone shovel§r§p",
+            "§pstone_sword §oStone sword§r§p"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "antler_axe",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Antler axe",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:antler_axe"],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "antler_hoe",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Antler hoe",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:antler_hoe"],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "antler_pickaxe",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Antler pickaxe",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:antler_pickaxe"],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "antler_shovel",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Antler shovel",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:antler_shovel"],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "antler_sickle",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Antler sickle",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:antler_sickle"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Used for mowing grass."
+        }
+      ]
+    },
+    {
+      "key": "bone_sword",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Bone sword",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:bone_sword"],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "bow",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Bow",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:bow"],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "flint_knife",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Flint knife",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:flint_knife"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Your first weapon, not very efficient, but help you survive and hunt animals. Also used for crafting items in §pflint_workbench §oflint workbench§r§p and for §ptanning_rack §otanning§r§p."
+        }
+      ]
+    },
+    {
+      "key": "flint_spear",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Flint spear",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:flint_spear"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Ranged weapon, similar to trident, but less efficient. Still very usefull for surviving and hunting in wild."
+        }
+      ]
+    },
+    {
+      "key": "stone_axe",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Stone axe",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:stone_axe"],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "stone_hammer",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Stone hammer",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:stone_hammer"],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "stone_hoe",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Stone hoe",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:stone_hoe"],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "stone_pickaxe",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Stone pickaxe",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:stone_pickaxe"],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "stone_shovel",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Stone shovel",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:stone_shovel"],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "stone_sword",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Stone sword",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:stone_sword"],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "armor",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Armor",
+          "margin_bottom": 10
+        },
+        {
+          "type": "list",
+          "list":
+          [
+            "§pleather_boots §oLeather boots§r§p",
+            "§pleather_chestplate §oLeather chestplate§r§p",
+            "§pleather_helmet §oLeather helmet§r§p",
+            "§pleather_leggings §oLeather leggings§r§p"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "leather_boots",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Leather boots",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:leather_boots"],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "leather_chestplate",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Leather chestplate",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:leather_chestplate"],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "leather_helmet",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Leather helmet",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:leather_helmet"],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "leather_leggings",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Leather leggings",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:leather_leggings"],
+          "margin_bottom": 5
+        }
+      ]
+    },
+    {
+      "key": "foods",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Foods",
+          "margin_bottom": 10
+        },
+        {
+          "type": "list",
+          "list":
+          [
+            "§pbread §oBread§r§p",
+            "§pfat §oFat§r§p",
+            "§pvenison §oVenison§r§p"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "bread",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Bread",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["minecraft:bread"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Bread is baked from §pbread_dough §oBread dough§r§p."
+        }
+      ]
+    },
+    {
+      "key": "fat",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Fat",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:cooked_fat",
+            "stone_age:cooked_fat_from_campfire_cooking",
+            "stone_age:cooked_fat_from_smoking"
+          ],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Fat drops from §pauroch §naurochs§r§p, §pboar §nboars§r§p, §pdeer §ndeers§r§p, §pdeer §ndeers§r§p, §pmammoth §nmammoths§r§p, §pmouflon §nmouflons§r§p, §psaber_tooth_tiger §nsaber-tooth tigers§r§p, §pwoolly_rhino §nwoolly rhinos§r§p, cows, pigs and sheeps."
+        }
+      ]
+    },
+    {
+      "key": "venison",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Venison",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:cooked_venison",
+            "stone_age:cooked_venison_from_campfire_cooking",
+            "stone_age:cooked_venison_from_smoking"
+          ],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Venison drops from from §pdeer §ndeers§r§p."
+        }
+      ]
+    },
+    {
+      "key": "mobs",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Mobs",
+          "margin_bottom": 10
+        },
+        {
+          "type": "list",
+          "list":
+          [
+            "§pauroch §oAuroch§r§p",
+            "§pboar §oBoar§r§p",
+            "§pdeer §oDeer§r§p",
+            "§pfowl §oFowl§r§p",
+            "§pmammoth §oMammoth§r§p",
+            "§pmouflon §oMouflon§r§p",
+            "§psaber_tooth_tiger §oSaber-tooth tiger§r§p",
+            "§pwoolly_rhino §oWoolly rhino§r§p"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "auroch",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Auroch",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "Mob drops:",
+          "margin_bottom": 5
+        },
+        {
+          "type": "hlayout",
+          "margin_bottom": 5,
+          "content":
+          [
+            {
+              "type": "item",
+              "item": "stone_age:raw_hide"
+            },
+            {
+              "type": "item",
+              "item": "stone_age:fat"
+            },
+            {
+              "type": "item",
+              "item": "minecraft:bone"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Ancestor of cows, you must breed them few generations until you get cow. It is passive mob, but when you attack it, all same species around will attack you."
+        }
+      ]
+    },
+    {
+      "key": "boar",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Boar",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "Mob drops:",
+          "margin_bottom": 5
+        },
+        {
+          "type": "hlayout",
+          "margin_bottom": 5,
+          "content":
+          [
+            {
+              "type": "item",
+              "item": "stone_age:fat"
+            },
+            {
+              "type": "item",
+              "item": "minecraft:bone"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Ancestor of pigs, you must breed them few generations until you get pig. It is passive mob, but when you attack it, all same species around will attack you."
+        }
+      ]
+    },
+    {
+      "key": "deer",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Deer",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "Mob drops:",
+          "margin_bottom": 5
+        },
+        {
+          "type": "hlayout",
+          "margin_bottom": 5,
+          "content":
+          [
+            {
+              "type": "item",
+              "item": "stone_age:antler"
+            },
+            {
+              "type": "item",
+              "item": "stone_age:fat"
+            },
+            {
+              "type": "item",
+              "item": "minecraft:bone"
+            },
+            {
+              "type": "item",
+              "item": "stone_age:raw_hide"
+            },
+            {
+              "type": "item",
+              "item": "stone_age:venison"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Passive fearful mob, only source of antlers used for crafting first tools."
+        }
+      ]
+    },
+    {
+      "key": "fowl",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Fowl",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "Mob drops:",
+          "margin_bottom": 5
+        },
+        {
+          "type": "hlayout",
+          "margin_bottom": 5,
+          "content":
+          [
+            {
+              "type": "item",
+              "item": "minecraft:feather"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Ancestor of chickens, you must breed them few generations until you get chicken. It is passive mob, but when you attack it, all same species around will attack you."
+        }
+      ]
+    },
+    {
+      "key": "mammoth",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Mammoth",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "Mob drops:",
+          "margin_bottom": 5
+        },
+        {
+          "type": "hlayout",
+          "margin_bottom": 5,
+          "content":
+          [
+            {
+              "type": "item",
+              "item": "stone_age:raw_hide"
+            },
+            {
+              "type": "item",
+              "item": "stone_age:fat"
+            },
+            {
+              "type": "item",
+              "item": "minecraft:bone"
+            },
+            {
+              "type": "item",
+              "item": "stone_age:mammoth_tusk"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Big and strong animal. It is passive mob, but when you attack it, all same species around will attack you."
+        }
+      ]
+    },
+    {
+      "key": "mouflon",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Mouflon",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "Mob drops:",
+          "margin_bottom": 5
+        },
+        {
+          "type": "hlayout",
+          "margin_bottom": 5,
+          "content":
+          [
+            {
+              "type": "item",
+              "item": "stone_age:fat"
+            },
+            {
+              "type": "item",
+              "item": "minecraft:bone"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Ancestor of sheeps, you must breed them few generations until you get sheep. It is passive mob, but when you attack it, all same species around will attack you."
+        }
+      ]
+    },
+    {
+      "key": "saber_tooth_tiger",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Saber-tooth tiger",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "Mob drops:",
+          "margin_bottom": 5
+        },
+        {
+          "type": "hlayout",
+          "margin_bottom": 5,
+          "content":
+          [
+            {
+              "type": "item",
+              "item": "stone_age:fat"
+            },
+            {
+              "type": "item",
+              "item": "minecraft:bone"
+            },
+            {
+              "type": "item",
+              "item": "stone_age:saber_teeth"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Big and dangerous animal, hunts down other smaller passive mobs like deers, fowls or §lyou§r."
+        }
+      ]
+    },
+    {
+      "key": "woolly_rhino",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Woolly rhino",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "Mob drops:",
+          "margin_bottom": 5
+        },
+        {
+          "type": "hlayout",
+          "margin_bottom": 5,
+          "content":
+          [
+            {
+              "type": "item",
+              "item": "stone_age:raw_hide"
+            },
+            {
+              "type": "item",
+              "item": "stone_age:fat"
+            },
+            {
+              "type": "item",
+              "item": "minecraft:bone"
+            },
+            {
+              "type": "item",
+              "item": "stone_age:rhino_tusk"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "It is passive mob, but when you attack it, all same species around will attack you."
+        }
+      ]
+    },
+    {
+      "key": "fire",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Making fire",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "You can make fire with two sticks: Drop §pdrought_grass §ndrought grass§r§p into world, put stick into your right and left hand and righ-click on dropped drought grass.",
+          "margin_bottom": 5
+        },
+        {
+          "type": "image",
+          "width": 128,
+          "height": 47,
+          "w": 128,
+          "h": 128,
+          "image": "stone_age:textures/gui/manual/screenshots/fire.png"
+        }
+      ]
+    }
+  ]
+}
