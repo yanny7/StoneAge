@@ -8,6 +8,9 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.event.ClickEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,6 +29,7 @@ public class ManualWidget extends Widget implements IManual {
 
     private int currentPage = 0;
 
+    private final Screen screen;
     private final Map<Integer, PageWidget> pages = new HashMap<>();
     private final Map<String, Integer> links = new HashMap<>();
     private final Set<String> keys = new HashSet<>();
@@ -35,7 +39,7 @@ public class ManualWidget extends Widget implements IManual {
     private final ButtonWidget nextPage = new ButtonWidget(">", () -> setCurrentPage(Math.min(currentPage + 1, pages.size() - 1)));
     private final ButtonWidget menuPage = new ButtonWidget("MENU", () -> setCurrentPage(0));
 
-    public ManualWidget(int width, int height) {
+    public ManualWidget(Screen screen, int width, int height) {
         recipeHandlerMap.put(IRecipeSerializer.CRAFTING_SHAPED, new ShapedRecipeHandler());
         recipeHandlerMap.put(IRecipeSerializer.CRAFTING_SHAPELESS, new ShapelessRecipeHandler());
         recipeHandlerMap.put(IRecipeSerializer.SMELTING, new FurnaceRecipeHandler());
@@ -48,6 +52,8 @@ public class ManualWidget extends Widget implements IManual {
         prevPage.setSize(20, 20);
         nextPage.setSize(20, 20);
         menuPage.setSize(60, 20);
+
+        this.screen = screen;
     }
 
     public void buildFromResources(ResourceLocation resource) {
@@ -145,10 +151,21 @@ public class ManualWidget extends Widget implements IManual {
     }
 
     public void addLink(String key, int page) {
+        if (key.startsWith("http://") || key.startsWith("https://")) {
+            return;
+        }
+
         links.put(key, page);
     }
 
     public void changePage(String key) {
+        if (key.startsWith("http://") || key.startsWith("https://")) {
+            Style style = new Style();
+            style.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, key));
+            screen.handleComponentClicked(new StringTextComponent("").setStyle(style));
+            return;
+        }
+
         Integer page = links.get(key);
 
         if (page == null) {

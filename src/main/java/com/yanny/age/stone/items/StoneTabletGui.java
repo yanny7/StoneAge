@@ -24,7 +24,7 @@ public class StoneTabletGui extends ContainerScreen<Container> {
         xSize = 176;
         ySize = 200;
 
-        manual = new ManualWidget(xSize, ySize);
+        manual = new ManualWidget(this, xSize, ySize);
 
         manual.addRecipeHandler(RecipeSubscriber.flint_workbench, new FlintWorkbenchRecipeHandler());
         manual.addRecipeHandler(RecipeSubscriber.drying_rack, new DryingRackRecipeHandler());
