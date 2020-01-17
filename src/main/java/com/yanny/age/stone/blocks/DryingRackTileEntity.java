@@ -148,9 +148,8 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
                 if (stacks.get(i).isEmpty() && stacks.get(i + ITEMS).isEmpty() && recipe != null) {
                     DryingItem item = items[i];
 
-                    stacks.set(i, new ItemStack(itemStack.getItem(), 1));
+                    stacks.set(i, itemStack.split(1));
                     item.setup(true, recipe.getDryingTime(), recipe.getCraftingResult(null));
-                    itemStack.shrink(1);
 
                     world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
                     return;

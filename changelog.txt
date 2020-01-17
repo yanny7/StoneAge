@@ -1,3 +1,4 @@
+- fixed metadata cleared when put into flint workbench
 - fixed saber-tooth tigers spawning like hell
 - implemented in-game manual
 - fixed crash when new mob raids beetroot

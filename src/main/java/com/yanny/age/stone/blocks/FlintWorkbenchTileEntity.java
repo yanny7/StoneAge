@@ -144,8 +144,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
                 ItemStack stack = stacks.get(y * FlintWorkbenchRecipe.MAX_WIDTH + x);
 
                 if (!itemStack.isEmpty() && stack.isEmpty()) {
-                    stacks.set(y * FlintWorkbenchRecipe.MAX_WIDTH + x, new ItemStack(itemStack.getItem(), 1));
-                    itemStack.shrink(1);
+                    stacks.set(y * FlintWorkbenchRecipe.MAX_WIDTH + x, itemStack.split(1));
                     return true;
                 }
 
