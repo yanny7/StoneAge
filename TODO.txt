@@ -3,4 +3,3 @@
 - Fishing net
 - Meat from every mob
 - Abandoned cave
-- Improve click with backpack also when aiming to block

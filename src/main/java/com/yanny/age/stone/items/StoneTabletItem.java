@@ -39,7 +39,11 @@ public class StoneTabletItem extends Item implements INamedContainerProvider {
     @Nonnull
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
-        return ActionResultType.FAIL;
+        if (!context.getWorld().isRemote && context.getPlayer() instanceof ServerPlayerEntity) {
+            context.getPlayer().openContainer(this);
+        }
+
+        return ActionResultType.SUCCESS;
     }
 
     @Nonnull

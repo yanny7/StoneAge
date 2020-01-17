@@ -69,6 +69,14 @@ public class BackpackItem extends Item implements INamedContainerProvider {
     @Nonnull
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
+        ItemStack stack = context.getItem();
+
+        getBackpackItems(stack); // create backpack
+
+        if (!context.getWorld().isRemote && context.getPlayer() instanceof ServerPlayerEntity) {
+            context.getPlayer().openContainer(this);
+        }
+
         return ActionResultType.SUCCESS;
     }
 
