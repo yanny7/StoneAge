@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "stone_age:mammoth_meat"
+  },
+  "result": "stone_age:cooked_mammoth_meat",
+  "experience": 0.35,
+  "cookingtime": 600
+}

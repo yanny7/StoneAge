@@ -183,6 +183,10 @@ public class ManualWidget extends Widget implements IManual {
 
     @Override
     public void linkExists(String key) {
+        if (key.startsWith("http://") || key.startsWith("https://")) {
+            return;
+        }
+
         if (!keys.contains(key)) {
             LOGGER.warn("Link key '{}' does not exists!", key);
         }

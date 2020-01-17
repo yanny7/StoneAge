@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "stone_age:mouflon_meat"
+  },
+  "result": "stone_age:cooked_mouflon_meat",
+  "experience": 0.35,
+  "cookingtime": 100
+}

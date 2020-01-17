@@ -1273,7 +1273,14 @@
           [
             "§pbread §oBread§r§p",
             "§pfat §oFat§r§p",
-            "§pvenison §oVenison§r§p"
+            "§pvenison §oVenison§r§p",
+            "§pfowl_meat §oFowl meat§r§p",
+            "§pauroch_meat §oAuroch meat§r§p",
+            "§pmouflon_meat §oMouflon meat§r§p",
+            "§pboar_meat §oBoar meat§r§p",
+            "§pmammoth_meat §oMammoth meat§r§p",
+            "§prhino_meat §oWoolly rhino meat§r§p",
+            "§ptiger_meat §oSaber-tooth tiger meat§r§p"
           ]
         }
       ]
@@ -1352,6 +1359,188 @@
       ]
     },
     {
+      "key": "fowl_meat",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Fowl meat",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:cooked_fowl_meat",
+            "stone_age:cooked_fowl_meat_from_campfire_cooking",
+            "stone_age:cooked_fowl_meat_from_smoking"
+          ],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Fowl meat drops from from §pfowl §6fowls§r§p."
+        }
+      ]
+    },
+    {
+      "key": "auroch_meat",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Auroch meat",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:cooked_auroch_meat",
+            "stone_age:cooked_auroch_meat_from_campfire_cooking",
+            "stone_age:cooked_auroch_meat_from_smoking"
+          ],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Auroch meat drops from from §pauroch §6aurochs§r§p."
+        }
+      ]
+    },
+    {
+      "key": "mouflon_meat",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Mouflon meat",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:cooked_mouflon_meat",
+            "stone_age:cooked_mouflon_meat_from_campfire_cooking",
+            "stone_age:cooked_mouflon_meat_from_smoking"
+          ],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Mouflon meat drops from from §pmouflon §6mouflons§r§p."
+        }
+      ]
+    },
+    {
+      "key": "boar_meat",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Boar meat",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:cooked_boar_meat",
+            "stone_age:cooked_boar_meat_from_campfire_cooking",
+            "stone_age:cooked_boar_meat_from_smoking"
+          ],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Boar meat drops from from §pboar §6boars§r§p."
+        }
+      ]
+    },
+    {
+      "key": "mammoth_meat",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Mammoth meat",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:cooked_mammoth_meat",
+            "stone_age:cooked_mammoth_meat_from_campfire_cooking",
+            "stone_age:cooked_mammoth_meat_from_smoking"
+          ],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Mammoth meat drops from from §pmammoth §6mammoths§r§p."
+        }
+      ]
+    },
+    {
+      "key": "rhino_meat",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Rhino meat",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:cooked_rhino_meat",
+            "stone_age:cooked_rhino_meat_from_campfire_cooking",
+            "stone_age:cooked_rhino_meat_from_smoking"
+          ],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Rhino meat drops from from §pwoolly_rhino §6woolly rhinos§r§p."
+        }
+      ]
+    },
+    {
+      "key": "tiger_meat",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Tiger meat",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:cooked_tiger_meat",
+            "stone_age:cooked_tiger_meat_from_campfire_cooking",
+            "stone_age:cooked_tiger_meat_from_smoking"
+          ],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Tiger meat drops from from §psaber_tooth_tiger §6saber-tooth tigers§r§p."
+        }
+      ]
+    },
+    {
       "key": "mobs",
       "content":
       [
@@ -1415,6 +1604,10 @@
                     {
                       "type": "item",
                       "item": "minecraft:bone"
+                    },
+                    {
+                      "type": "item",
+                      "item": "stone_age:auroch_meat"
                     }
                   ]
                 }
@@ -1481,6 +1674,10 @@
                     {
                       "type": "item",
                       "item": "minecraft:bone"
+                    },
+                    {
+                      "type": "item",
+                      "item": "stone_age:boar_meat"
                     }
                   ]
                 }
@@ -1627,6 +1824,10 @@
                     {
                       "type": "item",
                       "item": "minecraft:feather"
+                    },
+                    {
+                      "type": "item",
+                      "item": "stone_age:fowl_meat"
                     }
                   ]
                 }
@@ -1715,6 +1916,16 @@
                       "item": "stone_age:mammoth_tusk"
                     }
                   ]
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "stone_age:mammoth_meat"
+                    }
+                  ]
                 }
               ]
             },
@@ -1779,6 +1990,10 @@
                     {
                       "type": "item",
                       "item": "minecraft:bone"
+                    },
+                    {
+                      "type": "item",
+                      "item": "stone_age:mouflon_meat"
                     }
                   ]
                 }
@@ -1849,6 +2064,10 @@
                     {
                       "type": "item",
                       "item": "stone_age:saber_teeth"
+                    },
+                    {
+                      "type": "item",
+                      "item": "stone_age:tiger_meat"
                     }
                   ]
                 }
@@ -1923,6 +2142,16 @@
                     {
                       "type": "item",
                       "item": "stone_age:rhino_tusk"
+                    }
+                  ]
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "stone_age:rhino_meat"
                     }
                   ]
                 }

@@ -1,5 +1,4 @@
 - Crocodile entity
 - Emu entity
 - Fishing net
-- Meat from every mob
 - Abandoned cave
