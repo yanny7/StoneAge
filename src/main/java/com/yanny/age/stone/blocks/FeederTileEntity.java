@@ -63,6 +63,7 @@ public class FeederTileEntity extends TileEntity implements IInventoryInterface,
         if (world != null && !world.isRemote) {
             if (world.rand.nextInt(Config.feederTickChanceBreedAnimalEffect) == 0) {
                 useOnEntity();
+                world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
             }
         }
     }
