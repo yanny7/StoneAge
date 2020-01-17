@@ -56,8 +56,11 @@ public class ItemWidget extends MarginWidget {
         GlStateManager.pushMatrix();
         GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
         GlStateManager.scalef(scale, scale, scale);
+        RenderHelper.disableStandardItemLighting();
+        RenderHelper.enableGUIStandardItemLighting();
         mc.getItemRenderer().renderItemAndEffectIntoGUI(item, 0, 0);
         mc.getItemRenderer().renderItemOverlays(mc.fontRenderer, item, 0, 0);
+        RenderHelper.enableStandardItemLighting();
         GlStateManager.popMatrix();
     }
 

@@ -16,7 +16,6 @@ import java.util.function.Function;
 public class Utils {
     private static final Logger LOGGER = LogManager.getLogger();
     static final int MARGIN = 5;
-    static final float TIMEOUT = 1500;
 
     private static final Map<Class<?>, Function<JsonElement, Boolean>> IS;
     private static final Map<Class<?>, Function<JsonElement, Object>> GET;

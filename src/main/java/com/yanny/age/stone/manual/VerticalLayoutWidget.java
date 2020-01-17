@@ -83,6 +83,17 @@ public class VerticalLayoutWidget extends Widget {
     }
 
     @Override
+    public int getMinHeight(int width) {
+        int height = 0;
+
+        for (Widget widget : widgets) {
+            height += widget.getMinHeight(width);
+        }
+
+        return height;
+    }
+
+    @Override
     public boolean mouseClicked(int mx, int my, int key) {
         for (Widget widget : widgets) {
             if (widget.inBounds(mx, my) && widget.mouseClicked(mx, my, key)) {

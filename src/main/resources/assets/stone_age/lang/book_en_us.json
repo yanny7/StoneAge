@@ -1389,26 +1389,56 @@
           "margin_bottom": 10
         },
         {
-          "type": "text",
-          "text": "Mob drops:",
-          "margin_bottom": 5
-        },
-        {
           "type": "hlayout",
           "margin_bottom": 5,
-          "content":
-          [
+          "content": [
             {
-              "type": "item",
-              "item": "stone_age:raw_hide"
+              "type": "vlayout",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Mob drops:",
+                  "margin_bottom": 5
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "stone_age:raw_hide"
+                    },
+                    {
+                      "type": "item",
+                      "item": "stone_age:fat"
+                    },
+                    {
+                      "type": "item",
+                      "item": "minecraft:bone"
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "type": "item",
-              "item": "stone_age:fat"
-            },
-            {
-              "type": "item",
-              "item": "minecraft:bone"
+              "type": "vlayout",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Breeding items:",
+                  "margin_bottom": 5
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "minecraft:wheat"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -1429,22 +1459,52 @@
           "margin_bottom": 10
         },
         {
-          "type": "text",
-          "text": "Mob drops:",
-          "margin_bottom": 5
-        },
-        {
           "type": "hlayout",
           "margin_bottom": 5,
-          "content":
-          [
+          "content": [
             {
-              "type": "item",
-              "item": "stone_age:fat"
+              "type": "vlayout",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Mob drops:",
+                  "margin_bottom": 5
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "stone_age:fat"
+                    },
+                    {
+                      "type": "item",
+                      "item": "minecraft:bone"
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "type": "item",
-              "item": "minecraft:bone"
+              "type": "vlayout",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Breeding items:",
+                  "margin_bottom": 5
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "minecraft:carrot"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -1465,34 +1525,70 @@
           "margin_bottom": 10
         },
         {
-          "type": "text",
-          "text": "Mob drops:",
-          "margin_bottom": 5
-        },
-        {
           "type": "hlayout",
           "margin_bottom": 5,
-          "content":
-          [
+          "content": [
             {
-              "type": "item",
-              "item": "stone_age:antler"
+              "type": "vlayout",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Mob drops:",
+                  "margin_bottom": 5
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "stone_age:antler"
+                    },
+                    {
+                      "type": "item",
+                      "item": "stone_age:fat"
+                    },
+                    {
+                      "type": "item",
+                      "item": "minecraft:bone"
+                    },
+                    {
+                      "type": "item",
+                      "item": "stone_age:raw_hide"
+                    }
+                  ]
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "stone_age:venison"
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "type": "item",
-              "item": "stone_age:fat"
-            },
-            {
-              "type": "item",
-              "item": "minecraft:bone"
-            },
-            {
-              "type": "item",
-              "item": "stone_age:raw_hide"
-            },
-            {
-              "type": "item",
-              "item": "stone_age:venison"
+              "type": "vlayout",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Breeding items:",
+                  "margin_bottom": 5
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "minecraft:wheat"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -1513,18 +1609,60 @@
           "margin_bottom": 10
         },
         {
-          "type": "text",
-          "text": "Mob drops:",
-          "margin_bottom": 5
-        },
-        {
           "type": "hlayout",
           "margin_bottom": 5,
-          "content":
-          [
+          "content": [
             {
-              "type": "item",
-              "item": "minecraft:feather"
+              "type": "vlayout",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Mob drops:",
+                  "margin_bottom": 5
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "minecraft:feather"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "vlayout",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Breeding items:",
+                  "margin_bottom": 5
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "minecraft:wheat_seeds"
+                    },
+                    {
+                      "type": "item",
+                      "item": "minecraft:melon_seeds"
+                    },
+                    {
+                      "type": "item",
+                      "item": "minecraft:pumpkin_seeds"
+                    },
+                    {
+                      "type": "item",
+                      "item": "minecraft:beetroot_seeds"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -1545,30 +1683,60 @@
           "margin_bottom": 10
         },
         {
-          "type": "text",
-          "text": "Mob drops:",
-          "margin_bottom": 5
-        },
-        {
           "type": "hlayout",
           "margin_bottom": 5,
-          "content":
-          [
+          "content": [
             {
-              "type": "item",
-              "item": "stone_age:raw_hide"
+              "type": "vlayout",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Mob drops:",
+                  "margin_bottom": 5
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "stone_age:raw_hide"
+                    },
+                    {
+                      "type": "item",
+                      "item": "stone_age:fat"
+                    },
+                    {
+                      "type": "item",
+                      "item": "minecraft:bone"
+                    },
+                    {
+                      "type": "item",
+                      "item": "stone_age:mammoth_tusk"
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "type": "item",
-              "item": "stone_age:fat"
-            },
-            {
-              "type": "item",
-              "item": "minecraft:bone"
-            },
-            {
-              "type": "item",
-              "item": "stone_age:mammoth_tusk"
+              "type": "vlayout",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Breeding items:",
+                  "margin_bottom": 5
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "minecraft:hay_block"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -1589,22 +1757,52 @@
           "margin_bottom": 10
         },
         {
-          "type": "text",
-          "text": "Mob drops:",
-          "margin_bottom": 5
-        },
-        {
           "type": "hlayout",
           "margin_bottom": 5,
-          "content":
-          [
+          "content": [
             {
-              "type": "item",
-              "item": "stone_age:fat"
+              "type": "vlayout",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Mob drops:",
+                  "margin_bottom": 5
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "stone_age:fat"
+                    },
+                    {
+                      "type": "item",
+                      "item": "minecraft:bone"
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "type": "item",
-              "item": "minecraft:bone"
+              "type": "vlayout",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Breeding items:",
+                  "margin_bottom": 5
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "minecraft:wheat"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -1625,26 +1823,56 @@
           "margin_bottom": 10
         },
         {
-          "type": "text",
-          "text": "Mob drops:",
-          "margin_bottom": 5
-        },
-        {
           "type": "hlayout",
           "margin_bottom": 5,
-          "content":
-          [
+          "content": [
             {
-              "type": "item",
-              "item": "stone_age:fat"
+              "type": "vlayout",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Mob drops:",
+                  "margin_bottom": 5
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "stone_age:fat"
+                    },
+                    {
+                      "type": "item",
+                      "item": "minecraft:bone"
+                    },
+                    {
+                      "type": "item",
+                      "item": "stone_age:saber_teeth"
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "type": "item",
-              "item": "minecraft:bone"
-            },
-            {
-              "type": "item",
-              "item": "stone_age:saber_teeth"
+              "type": "vlayout",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Breeding items:",
+                  "margin_bottom": 5
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "minecraft:beef"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -1665,30 +1893,60 @@
           "margin_bottom": 10
         },
         {
-          "type": "text",
-          "text": "Mob drops:",
-          "margin_bottom": 5
-        },
-        {
           "type": "hlayout",
           "margin_bottom": 5,
-          "content":
-          [
+          "content": [
             {
-              "type": "item",
-              "item": "stone_age:raw_hide"
+              "type": "vlayout",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Mob drops:",
+                  "margin_bottom": 5
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "stone_age:raw_hide"
+                    },
+                    {
+                      "type": "item",
+                      "item": "stone_age:fat"
+                    },
+                    {
+                      "type": "item",
+                      "item": "minecraft:bone"
+                    },
+                    {
+                      "type": "item",
+                      "item": "stone_age:rhino_tusk"
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "type": "item",
-              "item": "stone_age:fat"
-            },
-            {
-              "type": "item",
-              "item": "minecraft:bone"
-            },
-            {
-              "type": "item",
-              "item": "stone_age:rhino_tusk"
+              "type": "vlayout",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Breeding items:",
+                  "margin_bottom": 5
+                },
+                {
+                  "type": "hlayout",
+                  "content":
+                  [
+                    {
+                      "type": "item",
+                      "item": "minecraft:hay_block"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },

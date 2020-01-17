@@ -3,6 +3,7 @@ package com.yanny.age.stone.manual;
 import com.google.gson.JsonObject;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.renderer.RenderHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +71,7 @@ public class TextWidget extends ConfigurableWidget {
         GlStateManager.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
         GlStateManager.scalef(scale, scale, scale);
         GlStateManager.enableBlend();
+        RenderHelper.enableGUIStandardItemLighting();
         customFontRenderer.drawSplitString(text, 0, 0, Math.round((getWidth() - margin_left - margin_right) / scale), color, align, justify);
         GlStateManager.popMatrix();
 

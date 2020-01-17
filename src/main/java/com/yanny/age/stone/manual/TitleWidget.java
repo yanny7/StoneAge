@@ -3,6 +3,7 @@ package com.yanny.age.stone.manual;
 import com.google.gson.JsonObject;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.renderer.RenderHelper;
 
 import static com.yanny.age.stone.manual.ConfigHolder.*;
 
@@ -51,6 +52,7 @@ public class TitleWidget extends ConfigurableWidget {
         GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         GlStateManager.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
         GlStateManager.scalef(scale, scale, scale);
+        RenderHelper.enableGUIStandardItemLighting();
         switch (align) {
             case LEFT:
                 screen.drawString(mc.fontRenderer, text, 0, 0, color);

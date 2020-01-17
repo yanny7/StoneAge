@@ -3,6 +3,7 @@ package com.yanny.age.stone.manual;
 import com.google.gson.JsonObject;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.renderer.RenderHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +73,7 @@ public class ListWidget extends ConfigurableWidget {
         GlStateManager.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
         GlStateManager.scalef(scale, scale, scale);
         GlStateManager.enableBlend();
+        RenderHelper.enableGUIStandardItemLighting();
         int height = 0;
         for (int i = 0; i < list.length; i++) {
             mc.fontRenderer.drawString(bullet, 0, height, color);
