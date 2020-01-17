@@ -16,9 +16,9 @@ public class Config {
     public static boolean givePlayerManualOnFirstConnect = true;
 
     public static boolean spawnDeerEnable = true;
-    public static int spawnDeerWeight = 10;
-    public static int spawnDeerMinCount = 8;
-    public static int spawnDeerMaxCount = 12;
+    public static int spawnDeerWeight = 20;
+    public static int spawnDeerMinCount = 4;
+    public static int spawnDeerMaxCount = 10;
     public static boolean spawnBoarEnable = true;
     public static int spawnBoarWeight = 10;
     public static int spawnBoarMinCount = 4;
@@ -40,9 +40,9 @@ public class Config {
     public static int spawnMammothMinCount = 2;
     public static int spawnMammothMaxCount = 4;
     public static boolean spawnSaberToothTigerEnable = true;
-    public static int spawnSaberToothTigerWeight = 10;
-    public static int spawnSaberToothTigerMinCount = 2;
-    public static int spawnSaberToothTigerMaxCount = 4;
+    public static int spawnSaberToothTigerWeight = 5;
+    public static int spawnSaberToothTigerMinCount = 1;
+    public static int spawnSaberToothTigerMaxCount = 2;
     public static boolean spawnWoollyRhinoEnable = true;
     public static int spawnWoollyRhinoWeight = 10;
     public static int spawnWoollyRhinoMinCount = 2;

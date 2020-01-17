@@ -1,3 +1,4 @@
+- fixed saber-tooth tigers spawning like hell
 - implemented in-game manual
 - fixed crash when new mob raids beetroot
 v1.0.3

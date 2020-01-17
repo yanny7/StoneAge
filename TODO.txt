@@ -3,3 +3,5 @@
 - Fishing net
 - Meat from every mob
 - Abandoned cave
+- Fix tool not storing metadata when put & removed from flint workbench
+- Fix feeder not redrawing wheat when out of wheat

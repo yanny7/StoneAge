@@ -20,7 +20,6 @@ import java.util.EnumSet;
 import java.util.Set;
 
 import static net.minecraft.entity.EntityClassification.CREATURE;
-import static net.minecraft.entity.EntityClassification.MONSTER;
 import static net.minecraft.entity.EntityType.*;
 import static net.minecraft.world.biome.Biome.Category.*;
 
@@ -42,7 +41,7 @@ public class EntitySubscriber {
             .size(0.5f, 0.5f).build("").setRegistryName(Reference.MODID,"flint_spear");
     public static final EntityType<MammothEntity> mammoth = (EntityType<MammothEntity>) EntityType.Builder.create(MammothEntity::new, CREATURE)
             .size(1.9f, 3.5f).build("").setRegistryName(Reference.MODID,"mammoth");
-    public static final EntityType<SaberToothTigerEntity> saber_tooth_tiger = (EntityType<SaberToothTigerEntity>) EntityType.Builder.create(SaberToothTigerEntity::new, MONSTER)
+    public static final EntityType<SaberToothTigerEntity> saber_tooth_tiger = (EntityType<SaberToothTigerEntity>) EntityType.Builder.create(SaberToothTigerEntity::new, CREATURE)
             .size(1.4f, 1.4f).build("").setRegistryName(Reference.MODID, "saber_tooth_tiger");
     public static final EntityType<WoollyRhinoEntity> woolly_rhino = (EntityType<WoollyRhinoEntity>) EntityType.Builder.create(WoollyRhinoEntity::new, CREATURE)
             .size(1.7f, 1.4f).build("").setRegistryName(Reference.MODID, "woolly_rhino");
@@ -56,7 +55,7 @@ public class EntitySubscriber {
     public static final Item saber_tooth_tiger_spawn_egg = null;
     public static final Item woolly_rhino_spawn_egg = null;
 
-    private static final EnumSet<Biome.Category> deer_biomes = EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA);
+    private static final EnumSet<Biome.Category> deer_biomes = EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, BEACH, SWAMP, JUNGLE, MESA, ICY);
     private static final EnumSet<Biome.Category> boar_biomes = EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, SWAMP, JUNGLE);
     private static final EnumSet<Biome.Category> auroch_biomes = EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, BEACH);
     private static final EnumSet<Biome.Category> fowl_biomes = EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, SWAMP, JUNGLE, BEACH, MESA);

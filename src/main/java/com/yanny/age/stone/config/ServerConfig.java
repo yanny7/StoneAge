@@ -117,15 +117,15 @@ class ServerConfig {
         spawnDeerWeight = builder
                 .comment("Spawn weight of mob")
                 .translation(Reference.MODID + ".config.spawn_deer_weight")
-                .defineInRange("spawnDeerWeight", 10, 0, 100);
+                .defineInRange("spawnDeerWeight", 20, 0, 100);
         spawnDeerMinCount = builder
                 .comment("Spawn min count of mob")
                 .translation(Reference.MODID + ".config.spawn_deer_min_count")
-                .defineInRange("spawnDeerMinCount", 8, 1, 100);
+                .defineInRange("spawnDeerMinCount", 4, 1, 100);
         spawnDeerMaxCount = builder
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_deer_max_count")
-                .defineInRange("spawnDeerMaxCount", 12, 1, 100);
+                .defineInRange("spawnDeerMaxCount", 10, 1, 100);
 
         spawnBoarEnable = builder
                 .comment("Enable spawning of mob")
@@ -219,15 +219,15 @@ class ServerConfig {
         spawnSaberToothTigerWeight = builder
                 .comment("Spawn weight of mob")
                 .translation(Reference.MODID + ".config.spawn_saber_tooth_tiger_weight")
-                .defineInRange("spawnSaberToothTigerWeight", 10, 0, 100);
+                .defineInRange("spawnSaberToothTigerWeight", 5, 0, 100);
         spawnSaberToothTigerMinCount = builder
                 .comment("Spawn min count of mob")
                 .translation(Reference.MODID + ".config.spawn_saber_tooth_tiger_min_count")
-                .defineInRange("spawnSaberToothTigerMinCount", 2, 1, 100);
+                .defineInRange("spawnSaberToothTigerMinCount", 1, 1, 100);
         spawnSaberToothTigerMaxCount = builder
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_saber_tooth_tiger_max_count")
-                .defineInRange("spawnSaberToothTigerMaxCount", 4, 1, 100);
+                .defineInRange("spawnSaberToothTigerMaxCount", 2, 1, 100);
 
         spawnWoollyRhinoEnable = builder
                 .comment("Enable spawning of mob")
