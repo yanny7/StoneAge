@@ -1,0 +1,11 @@
+{
+  "multipart": [
+    {
+      "apply": { "model": "stone_age:block/fishing_net" }
+    },
+    {
+      "when": { "attached": true },
+      "apply": { "model": "stone_age:block/fishing_net_side" }
+    }
+  ]
+}

@@ -22,6 +22,7 @@ public class ClientProxy implements IProxy {
         ScreenManager.registerFactory(ContainerSubscriber.millstone, MillstoneGui::new);
         ScreenManager.registerFactory(ContainerSubscriber.backpack, BackpackGui::new);
         ScreenManager.registerFactory(ContainerSubscriber.stone_tablet, StoneTabletGui::new);
+        ScreenManager.registerFactory(ContainerSubscriber.fishing_net, FishingNetGui::new);
 
         RenderingRegistry.registerEntityRenderingHandler(DeerEntity.class, new DeerRenderer.RenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(BoarEntity.class, new BoarRenderer.RenderFactory());

@@ -71,7 +71,8 @@
             "§phay_block §oHay block§r§p",
             "§pfences §oWooden fences and gates§r§p",
             "§pslabs §oWooden and rocky slabs§r§p",
-            "§pplanks §oPlanks§r§p"
+            "§pplanks §oPlanks§r§p",
+            "§pfishing_net §oFishing net§r§p"
           ]
         }
       ]
@@ -474,6 +475,30 @@
       ]
     },
     {
+      "key": "fishing_net",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Fishing net",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:fishing_net"
+          ],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Used for passive fishing, just craft §pgrass_mesh §ograss mesh§r§p, put it into fishing net and wait. Around fishing net must be still water."
+        }
+      ]
+    },
+    {
       "key": "items",
       "content":
       [
@@ -505,7 +530,8 @@
             "§pbackpack §oBackpack§r§p",
             "§plead §oLead§r§p",
             "§pleather §oLeather§r§p",
-            "§psugar §oSugar§r§p"
+            "§psugar §oSugar§r§p",
+            "§pgrass_mesh §oGrash mesh§r§p"
           ]
         }
       ]
@@ -861,6 +887,27 @@
         {
           "type": "text",
           "text": "Used as crafting item"
+        }
+      ]
+    },
+    {
+      "key": "grass_mesh",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Grass mesh",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:grass_mesh"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Used in §pfishing_net §ofishing net§r§p, have 15 uses before breaking up."
         }
       ]
     },

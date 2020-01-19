@@ -42,6 +42,7 @@
     "item.stone_age.saber_teeth": "Saber teeth",
     "item.stone_age.backpack": "Backpack",
     "item.stone_age.stone_tablet": "Stone tablet",
+    "item.stone_age.grass_mesh": "Grass mesh",
 
     "item.stone_age.deer_spawn_egg": "Deer spawn egg",
     "item.stone_age.boar_spawn_egg": "Boar spawn egg",
@@ -61,6 +62,7 @@
     "block.stone_age.drought_grass_bed": "Drought grass bed",
     "block.stone_age.feeder": "Animal feeder",
     "block.stone_age.millstone": "Millstone",
+    "block.stone_age.fishing_net": "Fishing net",
 
     "entity.stone_age.deer": "Deer",
     "entity.stone_age.boar": "Boar",

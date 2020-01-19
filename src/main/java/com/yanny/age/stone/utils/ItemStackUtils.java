@@ -81,4 +81,57 @@ public class ItemStackUtils {
             ingredients.add(Ingredient.fromStacks(itemStacks.toArray(new ItemStack[0])));
         });
     }
+
+    public static void insertItems(@Nonnull List<ItemStack> input, List<ItemStack> output, int startIndex, int endIndex) {
+        assert output.size() > startIndex && output.size() >= endIndex && startIndex < endIndex;
+
+        for (ItemStack itemStack : input) {
+            if (itemStack.isEmpty()) {
+                return;
+            }
+
+            int index = getFirstFreeOrValid(itemStack, output, startIndex, endIndex);
+
+            if (index < 0) {
+                return;
+            }
+
+            int items = itemStack.getCount();
+
+            if (!output.get(index).isEmpty()) {
+                while (items > 0) {
+                    ItemStack item = output.get(index);
+
+                    int amount = item.getMaxStackSize() - item.getCount();
+
+                    if (amount < items) {
+                        item.grow(amount);
+                        items -= amount;
+                        index = getFirstFreeOrValid(itemStack, output, index, endIndex);
+                    } else {
+                        item.grow(items);
+                        items = 0;
+                    }
+                }
+            } else {
+                output.set(index, itemStack.copy());
+            }
+        }
+    }
+
+    private static int getFirstFreeOrValid(ItemStack item, List<ItemStack> output, int startIndex, int endIndex) {
+        for (int i = startIndex; i < endIndex; i++) {
+            ItemStack itemStack = output.get(i);
+
+            if (itemStack.isItemEqual(item)) {
+                if (itemStack.getCount() < itemStack.getMaxStackSize()) {
+                    return i;
+                }
+            } else if (itemStack.isEmpty()) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
 }

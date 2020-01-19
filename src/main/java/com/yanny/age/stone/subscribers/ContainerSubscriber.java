@@ -1,6 +1,7 @@
 package com.yanny.age.stone.subscribers;
 
 import com.yanny.age.stone.blocks.FeederContainer;
+import com.yanny.age.stone.blocks.FishingNetContainer;
 import com.yanny.age.stone.blocks.MillstoneContainer;
 import com.yanny.age.stone.blocks.StoneChestContainer;
 import com.yanny.age.stone.items.BackpakcContainer;
@@ -23,6 +24,7 @@ public class ContainerSubscriber {
     public static final ContainerType<MillstoneContainer> millstone = IForgeContainerType.create(MillstoneContainer::new);
     public static final ContainerType<BackpakcContainer> backpack = IForgeContainerType.create(BackpakcContainer::new);
     public static final ContainerType<StoneTabletContainer> stone_tablet = IForgeContainerType.create(StoneTabletContainer::new);
+    public static final ContainerType<FishingNetContainer> fishing_net = IForgeContainerType.create(FishingNetContainer::new);
 
     @SubscribeEvent
     public static void registerContainer(RegistryEvent.Register<ContainerType<?>> event) {
@@ -32,5 +34,6 @@ public class ContainerSubscriber {
         registry.register(millstone.setRegistryName(MODID, "millstone"));
         registry.register(backpack.setRegistryName(MODID, "backpack"));
         registry.register(stone_tablet.setRegistryName(MODID, "stone_tablet"));
+        registry.register(fishing_net.setRegistryName(MODID, "fishing_net"));
     }
 }

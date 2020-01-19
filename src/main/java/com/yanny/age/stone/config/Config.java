@@ -14,6 +14,7 @@ public class Config {
     public static int feederEffectRange = 4;
     public static boolean forceToolForWood = true;
     public static boolean givePlayerManualOnFirstConnect = true;
+    public static int fishingNetChance = 3600;
 
     public static boolean spawnDeerEnable = true;
     public static int spawnDeerWeight = 20;

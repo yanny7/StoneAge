@@ -20,6 +20,7 @@ public class ConfigHelper {
         Config.feederEffectRange = ConfigHolder.SERVER.feederEffectRange.get();
         Config.forceToolForWood = ConfigHolder.SERVER.forceToolForWood.get();
         Config.givePlayerManualOnFirstConnect = ConfigHolder.SERVER.givePlayerManualOnFirstConnect.get();
+        Config.fishingNetChance = ConfigHolder.SERVER.fishingNetChance.get();
 
         Config.spawnDeerEnable = ConfigHolder.SERVER.spawnDeerEnable.get();
         Config.spawnDeerWeight = ConfigHolder.SERVER.spawnDeerWeight.get();

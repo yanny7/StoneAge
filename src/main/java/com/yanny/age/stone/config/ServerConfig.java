@@ -19,6 +19,7 @@ class ServerConfig {
     final ForgeConfigSpec.IntValue feederEffectRange;
     final ForgeConfigSpec.BooleanValue forceToolForWood;
     final ForgeConfigSpec.BooleanValue givePlayerManualOnFirstConnect;
+    final ForgeConfigSpec.IntValue fishingNetChance;
 
     final ForgeConfigSpec.BooleanValue spawnDeerEnable;
     final ForgeConfigSpec.IntValue spawnDeerWeight;
@@ -107,6 +108,10 @@ class ServerConfig {
                 .comment("Give player manual on first connect to game")
                 .translation(Reference.MODID + ".config.give_player_manual_on_first_connect")
                 .define("givePlayerManualOnFirstConnect", true);
+        fishingNetChance = builder
+                .comment("Chance of successfull fishing every 1/X tick (randomly)")
+                .translation(Reference.MODID + ".config.fishing_net_chance")
+                .defineInRange("fishingNetChance", 3600, 1, Integer.MAX_VALUE);
         builder.pop();
 
         builder.push("mob spawning");

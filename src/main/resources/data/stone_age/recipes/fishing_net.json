@@ -1,0 +1,22 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "SLS",
+    "L#L",
+    "SLS"
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:wooden_slabs"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "L": {
+      "item": "stone_age:leather_strip"
+    }
+  },
+  "result": {
+    "item": "stone_age:fishing_net"
+  }
+}

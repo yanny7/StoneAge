@@ -1,3 +1,4 @@
+- added fishing net
 v1.0.4
 - added meat for all new mobs
 - fixed metadata cleared when put into flint workbench

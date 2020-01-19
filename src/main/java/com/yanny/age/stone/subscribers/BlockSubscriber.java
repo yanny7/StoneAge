@@ -29,6 +29,7 @@ public class BlockSubscriber {
     public static final Block drought_grass_bed = null;
     public static final Block feeder = null;
     public static final Block millstone = null;
+    public static final Block fishing_net = null;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -42,6 +43,7 @@ public class BlockSubscriber {
         registry.register(new DroughtGrassBedBlock().setRegistryName(MODID, "drought_grass_bed"));
         registry.register(new FeederBlock().setRegistryName(MODID, "feeder"));
         registry.register(new MillstoneBlock().setRegistryName(MODID, "millstone"));
+        registry.register(new FishingNetBlock().setRegistryName(MODID, "fishing_net"));
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -66,5 +68,7 @@ public class BlockSubscriber {
                 .setRegistryName(MODID, "feeder"));
         registry.register(new BlockItem(millstone, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "millstone"));
+        registry.register(new BlockItem(fishing_net, new Item.Properties().group(ModItemGroup.AGES))
+                .setRegistryName(MODID, "fishing_net"));
     }
 }
