@@ -16,6 +16,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
@@ -55,6 +56,15 @@ public class SaberToothTigerEntity extends WildAnimalEntity {
         super.registerAttributes();
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+
+        if (!this.world.isRemote && this.world.getDifficulty() == Difficulty.PEACEFUL) {
+            this.remove();
+        }
     }
 
     @Override
