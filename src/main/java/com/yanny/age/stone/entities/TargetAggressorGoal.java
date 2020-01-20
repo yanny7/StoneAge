@@ -3,6 +3,7 @@ package com.yanny.age.stone.entities;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.Difficulty;
 
 class TargetAggressorGoal<T extends MobEntity> extends NearestAttackableTargetGoal<PlayerEntity> {
     private final Class<? extends IBecomeAngry> entity;
@@ -14,6 +15,6 @@ class TargetAggressorGoal<T extends MobEntity> extends NearestAttackableTargetGo
 
     @Override
     public boolean shouldExecute() {
-        return entity.cast(goalOwner).isAngry() && super.shouldExecute();
+        return entity.cast(goalOwner).isAngry() && super.shouldExecute() && goalOwner.world.getDifficulty() != Difficulty.PEACEFUL;
     }
 }

@@ -8,6 +8,7 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.TargetGoal;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.world.Difficulty;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -38,7 +39,7 @@ class AgroTargetGoal extends TargetGoal {
                 }
             }
 
-            return this.isSuitableTarget(livingentity, predicate);
+            return this.isSuitableTarget(livingentity, predicate) && goalOwner.world.getDifficulty() != Difficulty.PEACEFUL;
         } else {
             return false;
         }
