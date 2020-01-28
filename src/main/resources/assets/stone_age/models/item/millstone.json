@@ -1,3 +1,92 @@
 {
-  "parent": "stone_age:block/millstone"
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "oak_log": "minecraft:block/oak_log",
+        "granite": "minecraft:block/granite",
+        "andesite": "minecraft:block/andesite",
+        "stone": "minecraft:block/stone"
+    },
+    "display": {
+        "gui": {
+            "rotation": [ 30, 45, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 0.625, 0.625, 0.625 ]
+        },
+        "ground": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 3, 0 ],
+            "scale": [ 0.25, 0.25, 0.25 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "head": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.4, 0.4, 0.4 ]
+        },
+        "thirdperson_righthand": {
+            "rotation": [ 75, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        }
+    },
+    "elements": [
+        {
+            "name": "Cube",
+            "from": [ 0, 0, 0 ], 
+            "to": [ 16, 3, 16 ], 
+            "faces": {
+                "north": { "texture": "#stone", "uv": [ 0, 0, 16, 3 ] },
+                "east": { "texture": "#stone", "uv": [ 0, 0, 16, 3 ] },
+                "south": { "texture": "#stone", "uv": [ 0, 0, 16, 3 ] },
+                "west": { "texture": "#stone", "uv": [ 0, 0, 16, 3 ] },
+                "up": { "texture": "#stone", "uv": [ 0, 0, 16, 16 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 2.5, 3, 2.5 ], 
+            "to": [ 13.5, 7, 13.5 ], 
+            "faces": {
+                "north": { "texture": "#granite", "uv": [ 4, 6, 15, 10 ] },
+                "east": { "texture": "#granite", "uv": [ 2, 7, 13, 11 ] },
+                "south": { "texture": "#granite", "uv": [ 6, 11, 16, 15 ] },
+                "west": { "texture": "#granite", "uv": [ 0, 5, 11, 9 ] },
+                "up": { "texture": "#granite", "uv": [ 0, 0, 11, 11 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 7, 7, 7 ], 
+            "to": [ 9, 12, 9 ], 
+            "faces": {
+                "north": { "texture": "#oak_log", "uv": [ 0, 0, 2, 5 ] },
+                "east": { "texture": "#oak_log", "uv": [ 0, 0, 2, 5 ] },
+                "south": { "texture": "#oak_log", "uv": [ 0, 0, 2, 5 ] },
+                "west": { "texture": "#oak_log", "uv": [ 0, 0, 2, 5 ] },
+                "up": { "texture": "#oak_log", "uv": [ 11, 3, 13, 5 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 2.5, 7.1, 2.5 ], 
+            "to": [ 13.5, 11.1, 13.5 ], 
+            "faces": {
+                "north": { "texture": "#andesite", "uv": [ 4, 6, 15, 10 ] },
+                "east": { "texture": "#andesite", "uv": [ 2, 7, 13, 11 ] },
+                "south": { "texture": "#andesite", "uv": [ 6, 11, 16, 15 ] },
+                "west": { "texture": "#andesite", "uv": [ 0, 5, 11, 9 ] },
+                "up": { "texture": "#andesite", "uv": [ 0, 0, 11, 11 ] },
+                "down": { "texture": "#andesite", "uv": [ 0, 0, 11, 11 ] }
+            }
+        }
+    ]
 }
