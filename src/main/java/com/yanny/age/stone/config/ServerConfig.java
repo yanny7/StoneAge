@@ -21,6 +21,9 @@ class ServerConfig {
     final ForgeConfigSpec.BooleanValue givePlayerManualOnFirstConnect;
     final ForgeConfigSpec.IntValue fishingNetChance;
 
+    final ForgeConfigSpec.DoubleValue abandonedCampSpawnChance;
+    final ForgeConfigSpec.DoubleValue burialPlaceSpawnChance;
+
     final ForgeConfigSpec.BooleanValue spawnDeerEnable;
     final ForgeConfigSpec.IntValue spawnDeerWeight;
     final ForgeConfigSpec.IntValue spawnDeerMinCount;
@@ -112,6 +115,17 @@ class ServerConfig {
                 .comment("Chance of successfull fishing every 1/X tick (randomly)")
                 .translation(Reference.MODID + ".config.fishing_net_chance")
                 .defineInRange("fishingNetChance", 3600, 1, Integer.MAX_VALUE);
+        builder.pop();
+
+        builder.push("structures");
+        abandonedCampSpawnChance = builder
+                .comment("Abandoned camp spawn chance")
+                .translation(Reference.MODID + ".config.abandoned_camp_spawn_chance")
+                .defineInRange("abandonedCampSpawnChance", 0.009, Double.MIN_VALUE, 1.0);
+        burialPlaceSpawnChance = builder
+                .comment("Burial place spawn chance")
+                .translation(Reference.MODID + ".config.burial_place_spawn_chance")
+                .defineInRange("burialPlaceSpawnChance", 0.01, Double.MIN_VALUE, 1.0);
         builder.pop();
 
         builder.push("mob spawning");

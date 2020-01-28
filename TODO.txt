@@ -1,3 +1,2 @@
 - Crocodile entity
 - Emu entity
-- Abandoned cave

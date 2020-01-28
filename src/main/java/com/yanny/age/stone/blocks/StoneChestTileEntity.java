@@ -14,6 +14,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.IChestLid;
 import net.minecraft.tileentity.ITickableTileEntity;
+import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -34,11 +35,11 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 @OnlyIn(value = Dist.CLIENT, _interface = IChestLid.class)
-public class StoneChestTileEntity extends TileEntity implements IInventoryInterface, INamedContainerProvider, IChestLid, ITickableTileEntity {
+public class StoneChestTileEntity extends LockableLootTileEntity implements IInventoryInterface, INamedContainerProvider, IChestLid, ITickableTileEntity {
     static final int INVENTORY_WIDTH = 5;
     static final int INVENTORY_HEIGHT = 3;
 
-    private final NonNullList<ItemStack> stacks = NonNullList.create();
+    private NonNullList<ItemStack> stacks = NonNullList.create();
     private final IItemHandlerModifiable nonSidedItemHandler = createNonSidedInventoryHandler(stacks);
     private final LazyOptional<IItemHandlerModifiable> nonSidedInventoryHandler = LazyOptional.of(() -> nonSidedItemHandler);
     private final RecipeWrapper inventoryWrapper = new RecipeWrapper(nonSidedItemHandler);
@@ -100,14 +101,21 @@ public class StoneChestTileEntity extends TileEntity implements IInventoryInterf
     @Override
     public void read(CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
-        ItemStackUtils.deserializeStacks(invTag, stacks);
+
+        if (!this.checkLootAndRead(tag)) {
+            ItemStackUtils.deserializeStacks(invTag, stacks);
+        }
+
         super.read(tag);
     }
 
     @Override
     @Nonnull
     public CompoundNBT write(CompoundNBT tag) {
-        tag.put("inv", ItemStackUtils.serializeStacks(stacks));
+        if (!this.checkLootAndWrite(tag)) {
+            tag.put("inv", ItemStackUtils.serializeStacks(stacks));
+        }
+
         return super.write(tag);
     }
 
@@ -129,7 +137,6 @@ public class StoneChestTileEntity extends TileEntity implements IInventoryInterf
         read(pkt.getNbtCompound());
     }
 
-    @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
@@ -144,11 +151,22 @@ public class StoneChestTileEntity extends TileEntity implements IInventoryInterf
         super.remove();
     }
 
-    @Nullable
+    @Nonnull
     @Override
-    public Container createMenu(int id, @Nonnull PlayerInventory inventory, @Nonnull PlayerEntity entity) {
+    protected NonNullList<ItemStack> getItems() {
+        return stacks;
+    }
+
+    @Override
+    protected void setItems(@Nonnull NonNullList<ItemStack> itemsIn) {
+        stacks = itemsIn;
+    }
+
+    @Nonnull
+    @Override
+    protected Container createMenu(int id, @Nonnull PlayerInventory player) {
         assert world != null;
-        return new StoneChestContainer(id, pos, world, inventory, entity);
+        return new StoneChestContainer(id, pos, world, player, player.player);
     }
 
     @Nonnull
@@ -156,6 +174,12 @@ public class StoneChestTileEntity extends TileEntity implements IInventoryInterf
     public ITextComponent getDisplayName() {
         assert getType().getRegistryName() != null;
         return new StringTextComponent(getType().getRegistryName().getPath());
+    }
+
+    @Nonnull
+    @Override
+    protected ITextComponent getDefaultName() {
+        return new StringTextComponent("StoneChest");
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -174,7 +198,17 @@ public class StoneChestTileEntity extends TileEntity implements IInventoryInterf
         }
     }
 
-    void openInventory(PlayerEntity player) {
+    @Override
+    public int getSizeInventory() {
+        return stacks.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    public void openInventory(PlayerEntity player) {
         if (!player.isSpectator()) {
             assert this.world != null;
             if (this.numPlayersUsing < 0) {
@@ -186,7 +220,7 @@ public class StoneChestTileEntity extends TileEntity implements IInventoryInterf
         }
     }
 
-    void closeInventory(PlayerEntity player) {
+    public void closeInventory(PlayerEntity player) {
         if (!player.isSpectator()) {
             --this.numPlayersUsing;
             this.onOpenOrClose();

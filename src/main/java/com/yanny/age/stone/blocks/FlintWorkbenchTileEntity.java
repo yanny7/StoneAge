@@ -92,6 +92,11 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
         return inventoryWrapper;
     }
 
+    @Nonnull
+    public NonNullList<ItemStack> getStacks() {
+        return stacks;
+    }
+
     boolean blockActivated(PlayerEntity player, BlockRayTraceResult hit) {
         assert world != null;
         ItemStack itemStack = player.getHeldItemMainhand();

@@ -70,6 +70,11 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
         return inventoryWrapper;
     }
 
+    @Nonnull
+    public NonNullList<ItemStack> getStacks() {
+        return stacks;
+    }
+
     @Override
     public void read(CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");

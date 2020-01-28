@@ -16,6 +16,9 @@ public class Config {
     public static boolean givePlayerManualOnFirstConnect = true;
     public static int fishingNetChance = 3600;
 
+    public static double abandonedCampSpawnChance = 0.009f;
+    public static double burialPlaceSpawnChance = 0.01f;
+
     public static boolean spawnDeerEnable = true;
     public static int spawnDeerWeight = 20;
     public static int spawnDeerMinCount = 4;

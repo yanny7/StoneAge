@@ -2,18 +2,30 @@ package com.yanny.age.stone.subscribers;
 
 import com.yanny.age.stone.ExampleMod;
 import com.yanny.age.stone.compatibility.top.TopCompatibility;
+import com.yanny.age.stone.config.Config;
 import com.yanny.age.stone.config.ConfigHelper;
 import com.yanny.age.stone.config.ConfigHolder;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.ProbabilityConfig;
+import net.minecraft.world.gen.placement.IPlacementConfig;
+import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.EnumSet;
 
 import static com.yanny.age.stone.Reference.MODID;
+import static net.minecraft.world.biome.Biome.Category.*;
 
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventSubscriber {
+    private static final EnumSet<Biome.Category> INVALID_BIOMES = EnumSet.of(OCEAN, RIVER, THEEND, NETHER);
 
     @SubscribeEvent
     public static void init(FMLCommonSetupEvent event) {
@@ -38,6 +50,24 @@ public class ModEventSubscriber {
             ConfigHelper.bakeClient();
         } else if (config.getSpec() == ConfigHolder.SERVER_SPEC) {
             ConfigHelper.bakeServer();
+        }
+    }
+
+    @SuppressWarnings({"ConstantConditions"})
+    @SubscribeEvent
+    public static void FMLLoadCompleteEvent(FMLLoadCompleteEvent event) {
+        for (Biome biome : ForgeRegistries.BIOMES) {
+            if (INVALID_BIOMES.contains(biome.getCategory())) {
+                continue;
+            }
+
+            biome.addStructure(FeatureSubscriber.abandoned_camp_structure, new ProbabilityConfig((float) Config.abandonedCampSpawnChance));
+            biome.addStructure(FeatureSubscriber.burial_place_structure, new ProbabilityConfig((float) Config.burialPlaceSpawnChance));
+
+            biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(FeatureSubscriber.abandoned_camp_structure,
+                    new ProbabilityConfig((float) Config.abandonedCampSpawnChance), Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
+            biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(FeatureSubscriber.burial_place_structure,
+                    new ProbabilityConfig((float) Config.burialPlaceSpawnChance), Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
         }
     }
 }

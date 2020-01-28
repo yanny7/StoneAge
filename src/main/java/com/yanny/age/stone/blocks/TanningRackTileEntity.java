@@ -49,6 +49,11 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
         return inventoryWrapper;
     }
 
+    @Nonnull
+    public NonNullList<ItemStack> getStacks() {
+        return stacks;
+    }
+
     @Override
     public void read(CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");

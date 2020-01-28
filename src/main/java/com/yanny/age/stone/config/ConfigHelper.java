@@ -22,6 +22,9 @@ public class ConfigHelper {
         Config.givePlayerManualOnFirstConnect = ConfigHolder.SERVER.givePlayerManualOnFirstConnect.get();
         Config.fishingNetChance = ConfigHolder.SERVER.fishingNetChance.get();
 
+        Config.abandonedCampSpawnChance = ConfigHolder.SERVER.abandonedCampSpawnChance.get();
+        Config.burialPlaceSpawnChance = ConfigHolder.SERVER.burialPlaceSpawnChance.get();
+
         Config.spawnDeerEnable = ConfigHolder.SERVER.spawnDeerEnable.get();
         Config.spawnDeerWeight = ConfigHolder.SERVER.spawnDeerWeight.get();
         Config.spawnDeerMinCount = ConfigHolder.SERVER.spawnDeerMinCount.get();

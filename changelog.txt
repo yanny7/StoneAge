@@ -1,3 +1,4 @@
+- added generated structures - abandoned camp and burial place
 - added fishing net
 v1.0.4
 - added meat for all new mobs
