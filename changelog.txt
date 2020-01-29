@@ -1,3 +1,4 @@
+v1.0.5
 - added generated structures - abandoned camp and burial place
 - added fishing net
 v1.0.4
