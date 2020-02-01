@@ -1,8 +1,6 @@
 package com.yanny.age.stone.subscribers;
 
 import com.yanny.age.stone.blocks.*;
-import com.yanny.age.stone.client.renderer.DroughtGrassBedItemRenderer;
-import com.yanny.age.stone.client.renderer.StoneChestItemRenderer;
 import com.yanny.ages.api.group.ModItemGroup;
 import net.minecraft.block.Block;
 import net.minecraft.item.BedItem;
@@ -56,13 +54,13 @@ public class BlockSubscriber {
                 .setRegistryName(MODID, "drying_rack"));
         registry.register(new BlockItem(tanning_rack, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "tanning_rack"));
-        registry.register(new BlockItem(stone_chest, new Item.Properties().group(ModItemGroup.AGES).setISTER(() -> StoneChestItemRenderer::new))
+        registry.register(new BlockItem(stone_chest, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "stone_chest"));
         registry.register(new BlockItem(tree_stump, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "tree_stump"));
         registry.register(new BlockItem(aquaduct, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "aquaduct"));
-        registry.register(new BedItem(drought_grass_bed, new Item.Properties().group(ModItemGroup.AGES).setISTER(() -> DroughtGrassBedItemRenderer::new))
+        registry.register(new BedItem(drought_grass_bed, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "drought_grass_bed"));
         registry.register(new BlockItem(feeder, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "feeder"));
