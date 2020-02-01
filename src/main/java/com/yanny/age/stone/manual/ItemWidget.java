@@ -2,14 +2,14 @@ package com.yanny.age.stone.manual;
 
 import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.yanny.age.stone.ExampleMod;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraftforge.fml.client.config.GuiUtils;
+import net.minecraftforge.fml.client.gui.GuiUtils;
 
 import java.util.List;
 
@@ -53,15 +53,13 @@ public class ItemWidget extends MarginWidget {
 
     @Override
     public void drawBackgroundLayer(Screen screen, int mx, int my) {
-        GlStateManager.pushMatrix();
-        GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
-        GlStateManager.scalef(scale, scale, scale);
-        RenderHelper.disableStandardItemLighting();
-        RenderHelper.enableGUIStandardItemLighting();
+        RenderSystem.pushMatrix();
+        RenderSystem.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
+        RenderSystem.scalef(scale, scale, scale);
+        RenderHelper.setupGui3DDiffuseLighting();
         mc.getItemRenderer().renderItemAndEffectIntoGUI(item, 0, 0);
         mc.getItemRenderer().renderItemOverlays(mc.fontRenderer, item, 0, 0);
-        RenderHelper.enableStandardItemLighting();
-        GlStateManager.popMatrix();
+        RenderSystem.popMatrix();
     }
 
     @Override

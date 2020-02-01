@@ -19,7 +19,7 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Util;
@@ -101,12 +101,6 @@ public class AquaductBlock extends Block implements ITopBlockProvider {
         return new AquaductTileEntity();
     }
 
-    @Nonnull
-    @Override
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT_MIPPED;
-    }
-
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         return this.makeConnections(context.getWorld(), context.getPos());
@@ -137,9 +131,10 @@ public class AquaductBlock extends Block implements ITopBlockProvider {
         return state.get(WATERLOGGED) ? Fluids.WATER.getFlowingFluidState(1, false) : super.getFluidState(state);
     }
 
+    @Nonnull
     @SuppressWarnings("deprecation")
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         AquaductTileEntity tile = (AquaductTileEntity) worldIn.getTileEntity(pos);
 
         if (tile != null) {
@@ -148,12 +143,12 @@ public class AquaductBlock extends Block implements ITopBlockProvider {
             if (heldItem.getItem() instanceof BucketItem) {
                 LazyOptional<IFluidHandler> fluidHandler = tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null);
                 fluidHandler.ifPresent(fluid -> FluidUtil.interactWithFluidHandler(player, handIn, fluid));
-                return true;
+                return ActionResultType.CONSUME;
             }
 
             if (heldItem.isEmpty()) {
                 tile.changedState();
-                return true;
+                return ActionResultType.CONSUME;
             }
 
             return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);

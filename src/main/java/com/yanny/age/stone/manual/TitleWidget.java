@@ -1,7 +1,7 @@
 package com.yanny.age.stone.manual;
 
 import com.google.gson.JsonObject;
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.RenderHelper;
 
@@ -48,11 +48,11 @@ public class TitleWidget extends ConfigurableWidget {
 
     @Override
     public void drawBackgroundLayer(Screen screen, int mx, int my) {
-        GlStateManager.pushMatrix();
-        GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
-        GlStateManager.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
-        GlStateManager.scalef(scale, scale, scale);
-        RenderHelper.enableGUIStandardItemLighting();
+        RenderSystem.pushMatrix();
+        RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
+        RenderSystem.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
+        RenderSystem.scalef(scale, scale, scale);
+        RenderHelper.setupGuiFlatDiffuseLighting();
         switch (align) {
             case LEFT:
                 screen.drawString(mc.fontRenderer, text, 0, 0, color);
@@ -64,6 +64,6 @@ public class TitleWidget extends ConfigurableWidget {
                 screen.drawCenteredString(mc.fontRenderer, text, Math.round(((getWidth() - margin_left - margin_right) / scale) / 2f), 0, color);
                 break;
         }
-        GlStateManager.popMatrix();
+        RenderSystem.popMatrix();
     }
 }

@@ -5,7 +5,6 @@ import com.yanny.age.stone.manual.IRecipeHandler;
 import com.yanny.age.stone.manual.RecipeBackground;
 import com.yanny.age.stone.manual.RecipeIngredient;
 import com.yanny.age.stone.recipes.MillstoneRecipe;
-import com.yanny.age.stone.recipes.TreeStumpRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;

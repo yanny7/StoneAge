@@ -11,7 +11,7 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -64,12 +64,6 @@ public class StoneChestBlock extends HorizontalBlock {
         return true;
     }
 
-    @Nonnull
-    @Override
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
-
     @SuppressWarnings("deprecation")
     @Nonnull
     @Override
@@ -91,16 +85,18 @@ public class StoneChestBlock extends HorizontalBlock {
         }
     }
 
+    @Nonnull
     @SuppressWarnings("deprecation")
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         StoneChestTileEntity tile = (StoneChestTileEntity) worldIn.getTileEntity(pos);
 
         if (tile != null) {
             if (!worldIn.isRemote) {
                 NetworkHooks.openGui((ServerPlayerEntity) player, tile, tile.getPos());
             }
-            return true;
+
+            return ActionResultType.CONSUME;
         } else {
             throw new IllegalStateException("Named container provider is missing");
         }

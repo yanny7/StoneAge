@@ -13,7 +13,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public class FowlRenderer extends MobRenderer<FowlEntity, FowlModel> {
@@ -23,9 +22,9 @@ public class FowlRenderer extends MobRenderer<FowlEntity, FowlModel> {
         super(rendererManager, new FowlModel(), 0.3f);
     }
 
-    @Nullable
+    @Nonnull
     @Override
-    protected ResourceLocation getEntityTexture(@Nonnull FowlEntity entity) {
+    public ResourceLocation getEntityTexture(@Nonnull FowlEntity entity) {
         return FOWL_TEXTURE;
     }
 

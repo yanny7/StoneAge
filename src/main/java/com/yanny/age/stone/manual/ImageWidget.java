@@ -1,7 +1,7 @@
 package com.yanny.age.stone.manual;
 
 import com.google.gson.JsonObject;
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
@@ -52,11 +52,11 @@ public class ImageWidget extends MarginWidget {
     public void drawBackgroundLayer(Screen screen, int mx, int my) {
         mc.getTextureManager().bindTexture(imgRes);
 
-        GlStateManager.pushMatrix();
-        GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
-        GlStateManager.scalef(scale, scale, scale);
-        GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
+        RenderSystem.pushMatrix();
+        RenderSystem.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
+        RenderSystem.scalef(scale, scale, scale);
+        RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         AbstractGui.blit(0, 0, 0, u, v, tmpWidth, tmpHeight, imgWidth, imgHeight);
-        GlStateManager.popMatrix();
+        RenderSystem.popMatrix();
     }
 }

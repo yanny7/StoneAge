@@ -1,8 +1,7 @@
 package com.yanny.age.stone.manual;
 
 import com.google.gson.JsonObject;
-import com.mojang.blaze3d.platform.GLX;
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.yanny.age.stone.ExampleMod;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.screen.Screen;
@@ -11,7 +10,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraftforge.fml.client.config.GuiUtils;
+import net.minecraftforge.fml.client.gui.GuiUtils;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -69,12 +68,12 @@ public class RecipeWidget extends MarginWidget {
 
         mc.getTextureManager().bindTexture(backgrounds.get(recipeIndex).image);
 
-        GlStateManager.pushMatrix();
-        GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
-        GlStateManager.scalef(scale, scale, scale);
-        GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
+        RenderSystem.pushMatrix();
+        RenderSystem.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
+        RenderSystem.scalef(scale, scale, scale);
+        RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         AbstractGui.blit(0, 0, 0, backgrounds.get(recipeIndex).u, backgrounds.get(recipeIndex).v, backgrounds.get(recipeIndex).width, backgrounds.get(recipeIndex).height, backgrounds.get(recipeIndex).imgW, backgrounds.get(recipeIndex).imgH);
-        GlStateManager.popMatrix();
+        RenderSystem.popMatrix();
     }
 
     @Override
@@ -82,11 +81,10 @@ public class RecipeWidget extends MarginWidget {
         int tmp = (int) (System.currentTimeMillis() / 2000);
         int recipeIndex = tmp % recipeIngredients.size();
 
-        GlStateManager.pushMatrix();
-        GlStateManager.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
-        GlStateManager.scalef(scale, scale, scale);
-        RenderHelper.disableStandardItemLighting();
-        RenderHelper.enableGUIStandardItemLighting();
+        RenderSystem.pushMatrix();
+        RenderSystem.translatef(getX() + getMarginLeft(), getY() + getMarginTop(), 0.0f);
+        RenderSystem.scalef(scale, scale, scale);
+        RenderHelper.setupGui3DDiffuseLighting();
 
         List<RecipeIngredient> ingredients = recipeIngredients.get(recipeIndex);
 
@@ -99,8 +97,7 @@ public class RecipeWidget extends MarginWidget {
             }
         }
 
-        RenderHelper.enableStandardItemLighting();
-        GlStateManager.popMatrix();
+        RenderSystem.popMatrix();
 
         mc.getTextureManager().bindTexture(backgrounds.get(recipeIndex).image);
 

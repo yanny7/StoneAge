@@ -5,7 +5,6 @@ import com.yanny.age.stone.items.BackpackItem;
 import com.yanny.age.stone.items.GrassMesh;
 import com.yanny.age.stone.items.StoneTabletItem;
 import com.yanny.ages.api.group.ModItemGroup;
-import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

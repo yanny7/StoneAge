@@ -8,6 +8,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
@@ -29,7 +30,8 @@ public class BurialPlacePiece extends BasePiece {
     }
 
     @Override
-    public boolean addComponentParts(@Nonnull IWorld worldIn, @Nonnull Random randomIn, @Nonnull MutableBoundingBox structureBoundingBoxIn, @Nonnull ChunkPos chunkPosIn) {
+    public boolean func_225577_a_(@Nonnull IWorld worldIn, @Nonnull ChunkGenerator<?> chunkGenerator, @Nonnull Random randomIn,
+                                  @Nonnull MutableBoundingBox structureBoundingBoxIn, @Nonnull ChunkPos chunkPos) {
         if (!isInsideBounds(worldIn, structureBoundingBoxIn, 0)) {
             return false;
         }

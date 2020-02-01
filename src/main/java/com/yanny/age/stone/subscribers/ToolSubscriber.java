@@ -8,13 +8,13 @@ import com.yanny.age.stone.items.SickleItem;
 import com.yanny.ages.api.group.ModItemGroup;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyLoadBase;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
+import javax.annotation.Nonnull;
 import java.util.function.Supplier;
 
 @SuppressWarnings("unused")
@@ -37,7 +37,7 @@ public class ToolSubscriber {
         IForgeRegistry<Item> registry = event.getRegistry();
         Item.Properties combatProperties = new Item.Properties().maxStackSize(1).group(ModItemGroup.AGES);
         Item.Properties toolProperties = new Item.Properties().maxStackSize(1).group(ModItemGroup.AGES);
-        Item.Properties spearProperties = new Item.Properties().maxStackSize(16).maxDamage(250).group(ModItemGroup.AGES).setTEISR(() -> FlintSpearItemRenderer::new);
+        Item.Properties spearProperties = new Item.Properties().maxStackSize(16).maxDamage(250).group(ModItemGroup.AGES).setISTER(() -> FlintSpearItemRenderer::new);
 
         registry.register(new PickaxeItem(Tiers.BONE_TIER, 1, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_pickaxe"));
         registry.register(new AxeItem(Tiers.BONE_TIER, 1, -3.2f, toolProperties).setRegistryName(Reference.MODID, "antler_axe"));
@@ -61,7 +61,7 @@ public class ToolSubscriber {
         private final float efficiency;
         private final float attackDamage;
         private final int enchantability;
-        private final LazyLoadBase<Ingredient> repairMaterial;
+        private final Supplier<Ingredient> repairMaterial;
 
         Tiers(int harvestLevel, int maxUses, float efficiency, float attackDamage, int enchantability, Supplier<Ingredient> repairMaterial) {
             this.harvestLevel = harvestLevel;
@@ -69,7 +69,7 @@ public class ToolSubscriber {
             this.efficiency = efficiency;
             this.attackDamage = attackDamage;
             this.enchantability = enchantability;
-            this.repairMaterial = new LazyLoadBase<>(repairMaterial);
+            this.repairMaterial = repairMaterial;
         }
 
         public int getMaxUses() {
@@ -92,8 +92,9 @@ public class ToolSubscriber {
             return this.enchantability;
         }
 
+        @Nonnull
         public Ingredient getRepairMaterial() {
-            return this.repairMaterial.getValue();
+            return this.repairMaterial.get();
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.yanny.age.stone.client.renderer;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.blocks.DroughtGrassBedTileEntity;
 import com.yanny.age.stone.client.models.DroughtGrassBedModel;
@@ -8,8 +9,11 @@ import com.yanny.age.stone.subscribers.ItemSubscriber;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.properties.BedPart;
 import net.minecraft.util.Direction;
@@ -17,135 +21,145 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
+import static net.minecraft.client.renderer.model.ItemCameraTransforms.TransformType;
+
 @OnlyIn(Dist.CLIENT)
 public class DroughtGrassBedRenderer extends TileEntityRenderer<DroughtGrassBedTileEntity> {
     private static final ResourceLocation TEXTURE_NORMAL = new ResourceLocation(Reference.MODID, "textures/entity/drought_grass_bed.png");
     private static final ItemStack GRASS = new ItemStack(ItemSubscriber.drought_grass);
     private final DroughtGrassBedModel model = new DroughtGrassBedModel();
 
+    public DroughtGrassBedRenderer(TileEntityRendererDispatcher p_i226006_1_) {
+        super(p_i226006_1_);
+    }
+
     @Override
-    public void render(DroughtGrassBedTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(@Nonnull DroughtGrassBedTileEntity tileEntityIn, float partialTicks, @Nonnull MatrixStack matrixStack,
+                       @Nonnull IRenderTypeBuffer iRenderTypeBuffer, int overlayUV, int lightmapUV) {
         if (tileEntityIn.hasWorld()) {
-            BlockState blockstate = tileEntityIn.getBlockState();
-            this.render(blockstate.get(BedBlock.PART) == BedPart.HEAD, x, y, z, blockstate.get(BedBlock.HORIZONTAL_FACING));
+            BlockState blockState = tileEntityIn.getBlockState();
+            render(blockState.get(BedBlock.PART) == BedPart.HEAD, matrixStack, iRenderTypeBuffer, overlayUV, lightmapUV, blockState.get(BedBlock.HORIZONTAL_FACING));
         } else {
-            this.render(true, x, y, z + 0.5D, Direction.SOUTH);
-            this.render(false, x, y, z - 0.5D, Direction.SOUTH);
+            matrixStack.translate(0, 0, 0.5);
+            render(true, matrixStack, iRenderTypeBuffer, overlayUV, lightmapUV, Direction.SOUTH);
+            matrixStack.translate(0, 0, -1);
+            render(false, matrixStack, iRenderTypeBuffer, overlayUV, lightmapUV, Direction.SOUTH);
         }
     }
 
-    @SuppressWarnings("deprecation")
-    private void render(boolean isHead, double x, double y, double z, Direction direction) {
+    private void render(boolean isHead, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int overlayUV, int lightmapUV, Direction direction) {
         if (isHead) {
             this.model.setVisibleHead();
         } else {
             this.model.setVisibleFoot();
         }
 
-        GlStateManager.pushMatrix();
-        GlStateManager.translatef((float)x, (float)y, (float)z);
-        GlStateManager.translatef(0.5F, 0.5F, 0.5F);
+        matrixStack.push();
+        matrixStack.translate(0.5, 0.5, 0.5);
+
         switch (direction) {
-            case NORTH:
-                GlStateManager.rotatef(0.0F, 0.0F, 1.0F, 0.0F);
-                break;
             case SOUTH:
-                GlStateManager.rotatef(180.0F, 0.0F, 1.0F, 0.0F);
+                matrixStack.rotate(Vector3f.YP.rotationDegrees(180));
                 break;
             case EAST:
-                GlStateManager.rotatef(270.0F, 0.0F, 1.0F, 0.0F);
+                matrixStack.rotate(Vector3f.YP.rotationDegrees(270));
                 break;
             case WEST:
-                GlStateManager.rotatef(90.0F, 0.0F, 1.0F, 0.0F);
+                matrixStack.rotate(Vector3f.YP.rotationDegrees(90));
                 break;
         }
-        GlStateManager.translatef(-0.5F, -0.5F, -0.5F);
-        GlStateManager.enableRescaleNormal();
 
-        GlStateManager.pushMatrix();
-        GlStateManager.translatef(0F, 0.09375F, 0F);
-        this.bindTexture(TEXTURE_NORMAL);
-        this.model.render();
-        GlStateManager.popMatrix();
+        matrixStack.translate(-0.5, -0.5, -0.5);
+        RenderSystem.enableRescaleNormal();
 
-        GlStateManager.pushMatrix();
-        GlStateManager.translatef(0.5F, 0.5F, 0.5F);
-        GlStateManager.scalef(0.749f, 0.749f, 0.749f);
+        matrixStack.push();
+        matrixStack.translate(0, 0.09375, 0);
+        model.render(matrixStack, renderTypeBuffer.getBuffer(RenderType.entityCutoutNoCull(TEXTURE_NORMAL)), overlayUV, lightmapUV, 1f, 1f, 1f, 1f);
+        matrixStack.pop();
 
         if (isHead) {
-            GlStateManager.rotatef(-85F, 1, 0, 0F);
-            GlStateManager.translatef(-0.5F, -0.5F, -0.5F);
-            GlStateManager.translatef(0.5f, 0.75F, 0.0325f);
-            Minecraft.getInstance().getItemRenderer().renderItem(GRASS, ItemCameraTransforms.TransformType.FIXED);
-            GlStateManager.popMatrix();
+            matrixStack.push();
+            matrixStack.translate(0.5, 0.5, 0.5);
+            matrixStack.scale(0.749f, 0.749f,0.749f);
+            matrixStack.rotate(Vector3f.XP.rotationDegrees(-85));
+            matrixStack.translate(-0.5, -0.5, -0.5);
+            matrixStack.translate(0.5, 0.75, 0.0325);
+            Minecraft.getInstance().getItemRenderer().renderItem(GRASS, TransformType.FIXED, overlayUV, lightmapUV, matrixStack, renderTypeBuffer);
+            matrixStack.pop();
 
-            GlStateManager.pushMatrix();
-            GlStateManager.translatef(0.5F, 0.5F, 0.5F);
-            GlStateManager.scalef(0.749f, 0.749f, 0.749f);
-            GlStateManager.rotatef(90F, 0, 1, 0F);
-            GlStateManager.rotatef(-85F, 1, 0, 0F);
-            GlStateManager.translatef(-0.5F, -0.5F, -0.5F);
-            GlStateManager.translatef(0.5f, 0.75F, 0.0325f);
-            Minecraft.getInstance().getItemRenderer().renderItem(GRASS, ItemCameraTransforms.TransformType.FIXED);
-            GlStateManager.popMatrix();
+            matrixStack.push();
+            matrixStack.translate(0.5, 0.5, 0.5);
+            matrixStack.scale(0.749f, 0.749f, 0.749f);
+            matrixStack.rotate(Vector3f.YP.rotationDegrees(90F));
+            matrixStack.rotate(Vector3f.XP.rotationDegrees(-85));
+            matrixStack.translate(-0.5, -0.5, -0.5);
+            matrixStack.translate(0.5, 0.75, 0.0325);
+            Minecraft.getInstance().getItemRenderer().renderItem(GRASS, TransformType.FIXED, overlayUV, lightmapUV, matrixStack, renderTypeBuffer);
+            matrixStack.pop();
 
-            GlStateManager.pushMatrix();
-            GlStateManager.translatef(0.5F, 0.5F, 0.5F);
-            GlStateManager.scalef(0.749f, 0.749f, 0.749f);
-            GlStateManager.rotatef(-90F, 0, 1, 0F);
-            GlStateManager.rotatef(-85F, 1, 0, 0F);
-            GlStateManager.translatef(-0.5F, -0.5F, -0.5F);
-            GlStateManager.translatef(0.5f, 0.75F, 0.0325f);
-            Minecraft.getInstance().getItemRenderer().renderItem(GRASS, ItemCameraTransforms.TransformType.FIXED);
-            GlStateManager.popMatrix();
+            matrixStack.push();
+            matrixStack.translate(0.5, 0.5, 0.5);
+            matrixStack.scale(0.749f, 0.749f, 0.749f);
+            matrixStack.rotate(Vector3f.YP.rotationDegrees(-90F));
+            matrixStack.rotate(Vector3f.XP.rotationDegrees(-85));
+            matrixStack.translate(-0.5, -0.5, -0.5);
+            matrixStack.translate(0.5, 0.75, 0.0325);
+            Minecraft.getInstance().getItemRenderer().renderItem(GRASS, TransformType.FIXED, overlayUV, lightmapUV, matrixStack, renderTypeBuffer);
+            matrixStack.pop();
 
-            GlStateManager.pushMatrix();
-            GlStateManager.translatef(0.5F, 0.5F, 0.5F);
-            GlStateManager.scalef(0.749f, 0.749f, 0.749f);
-            GlStateManager.rotatef(-90F, 0, 1, 0F);
-            GlStateManager.rotatef(-85F, 1, 0, 0F);
-            GlStateManager.translatef(-0.5F, -0.5F, -0.5F);
-            GlStateManager.translatef(1.1666666f, 0.75F, 0.03251f);
+            matrixStack.push();
+            matrixStack.translate(0.5, 0.5, 0.5);
+            matrixStack.scale(0.749f, 0.749f, 0.749f);
+            matrixStack.rotate(Vector3f.YP.rotationDegrees(-90F));
+            matrixStack.rotate(Vector3f.XP.rotationDegrees(-85));
+            matrixStack.translate(-0.5, -0.5, -0.5);
+            matrixStack.translate(1.1666666f, 0.75, 0.03251);
+            Minecraft.getInstance().getItemRenderer().renderItem(GRASS, TransformType.FIXED, overlayUV, lightmapUV, matrixStack, renderTypeBuffer);
+            matrixStack.pop();
         } else {
-            GlStateManager.rotatef(85F, 1, 0, 0F);
-            GlStateManager.translatef(-0.5F, -0.5F, -0.5F);
-            GlStateManager.translatef(0.5f, 0.75F, 0.9675f);
-            Minecraft.getInstance().getItemRenderer().renderItem(GRASS, ItemCameraTransforms.TransformType.FIXED);
-            GlStateManager.popMatrix();
+            matrixStack.push();
+            matrixStack.translate(0.5, 0.5, 0.5);
+            matrixStack.scale(0.749f, 0.749f,0.749f);
+            matrixStack.rotate(Vector3f.XP.rotationDegrees(85));
+            matrixStack.translate(-0.5, -0.5, -0.5);
+            matrixStack.translate(0.5, 0.75, 0.9675);
+            Minecraft.getInstance().getItemRenderer().renderItem(GRASS, TransformType.FIXED, overlayUV, lightmapUV, matrixStack, renderTypeBuffer);
+            matrixStack.pop();
 
-            GlStateManager.pushMatrix();
-            GlStateManager.translatef(0.5F, 0.5F, 0.5F);
-            GlStateManager.scalef(0.749f, 0.749f, 0.749f);
-            GlStateManager.rotatef(90F, 0, 1, 0F);
-            GlStateManager.rotatef(85F, 1, 0, 0F);
-            GlStateManager.translatef(-0.5F, -0.5F, -0.5F);
-            GlStateManager.translatef(0.5f, 0.75F, 0.9675f);
-            Minecraft.getInstance().getItemRenderer().renderItem(GRASS, ItemCameraTransforms.TransformType.FIXED);
-            GlStateManager.popMatrix();
+            matrixStack.push();
+            matrixStack.translate(0.5, 0.5, 0.5);
+            matrixStack.scale(0.749f, 0.749f, 0.749f);
+            matrixStack.rotate(Vector3f.YP.rotationDegrees(90F));
+            matrixStack.rotate(Vector3f.XP.rotationDegrees(85));
+            matrixStack.translate(-0.5, -0.5, -0.5);
+            matrixStack.translate(0.5, 0.75, 0.9675);
+            Minecraft.getInstance().getItemRenderer().renderItem(GRASS, TransformType.FIXED, overlayUV, lightmapUV, matrixStack, renderTypeBuffer);
+            matrixStack.pop();
 
-            GlStateManager.pushMatrix();
-            GlStateManager.translatef(0.5F, 0.5F, 0.5F);
-            GlStateManager.scalef(0.749f, 0.749f, 0.749f);
-            GlStateManager.rotatef(-90F, 0, 1, 0F);
-            GlStateManager.rotatef(85F, 1, 0, 0F);
-            GlStateManager.translatef(-0.5F, -0.5F, -0.5F);
-            GlStateManager.translatef(0.5f, 0.75F, 0.9675f);
-            Minecraft.getInstance().getItemRenderer().renderItem(GRASS, ItemCameraTransforms.TransformType.FIXED);
-            GlStateManager.popMatrix();
+            matrixStack.push();
+            matrixStack.translate(0.5, 0.5, 0.5);
+            matrixStack.scale(0.749f, 0.749f, 0.749f);
+            matrixStack.rotate(Vector3f.YP.rotationDegrees(-90F));
+            matrixStack.rotate(Vector3f.XP.rotationDegrees(85));
+            matrixStack.translate(-0.5, -0.5, -0.5);
+            matrixStack.translate(0.5, 0.75, 0.9675);
+            Minecraft.getInstance().getItemRenderer().renderItem(GRASS, TransformType.FIXED, overlayUV, lightmapUV, matrixStack, renderTypeBuffer);
+            matrixStack.pop();
 
-            GlStateManager.pushMatrix();
-            GlStateManager.translatef(0.5F, 0.5F, 0.5F);
-            GlStateManager.scalef(0.749f, 0.749f, 0.749f);
-            GlStateManager.rotatef(-90F, 0, 1, 0F);
-            GlStateManager.rotatef(85F, 1, 0, 0F);
-            GlStateManager.translatef(-0.5F, -0.5F, -0.5F);
-            GlStateManager.translatef(-0.1666666f, 0.75F, 0.96751f);
+            matrixStack.push();
+            matrixStack.translate(0.5, 0.5, 0.5);
+            matrixStack.scale(0.749f, 0.749f, 0.749f);
+            matrixStack.rotate(Vector3f.YP.rotationDegrees(-90F));
+            matrixStack.rotate(Vector3f.XP.rotationDegrees(85));
+            matrixStack.translate(-0.5, -0.5, -0.5);
+            matrixStack.translate(-0.1666666f, 0.75, 0.9675);
+            Minecraft.getInstance().getItemRenderer().renderItem(GRASS, TransformType.FIXED, overlayUV, lightmapUV, matrixStack, renderTypeBuffer);
+            matrixStack.pop();
         }
 
-        Minecraft.getInstance().getItemRenderer().renderItem(GRASS, ItemCameraTransforms.TransformType.FIXED);
-        GlStateManager.popMatrix();
-
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        GlStateManager.popMatrix();
+        RenderSystem.color4f(1, 1, 1, 1);
+        matrixStack.pop();
     }
 }

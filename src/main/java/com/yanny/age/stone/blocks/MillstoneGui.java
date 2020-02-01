@@ -1,6 +1,6 @@
 package com.yanny.age.stone.blocks;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.yanny.age.stone.Reference;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
@@ -28,7 +28,7 @@ public class MillstoneGui extends ContainerScreen<MillstoneContainer> {
             return;
         }
 
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         minecraft.getTextureManager().bindTexture(GUI);
         blit(guiLeft, guiTop, 0, 0, xSize, ySize);
 

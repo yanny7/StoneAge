@@ -101,6 +101,7 @@ class ConfigHolder {
     }
 
     private static boolean checkRecipes(JsonArray array) {
+        assert Minecraft.getInstance().world != null;
         RecipeManager recipeManager = Minecraft.getInstance().world.getRecipeManager();
 
         if (array.size() == 0) {
@@ -126,6 +127,7 @@ class ConfigHolder {
     }
 
     private static IRecipe<?>[] getRecipes(JsonArray array) {
+        assert Minecraft.getInstance().world != null;
         RecipeManager recipeManager = Minecraft.getInstance().world.getRecipeManager();
         IRecipe<?>[] result = new IRecipe[array.size()];
         int i = 0;

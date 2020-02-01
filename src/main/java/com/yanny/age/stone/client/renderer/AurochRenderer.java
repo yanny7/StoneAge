@@ -12,7 +12,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public class AurochRenderer extends MobRenderer<AurochEntity, AurochModel> {
@@ -22,9 +21,9 @@ public class AurochRenderer extends MobRenderer<AurochEntity, AurochModel> {
         super(rendererManager, new AurochModel(), 0.5f);
     }
 
-    @Nullable
+    @Nonnull
     @Override
-    protected ResourceLocation getEntityTexture(@Nonnull AurochEntity entity) {
+    public ResourceLocation getEntityTexture(@Nonnull AurochEntity entity) {
         return AUROCH_TEXTURE;
     }
 

@@ -1,11 +1,15 @@
 package com.yanny.age.stone.proxy;
 
-import com.yanny.age.stone.blocks.*;
+import com.yanny.age.stone.blocks.FeederGui;
+import com.yanny.age.stone.blocks.FishingNetGui;
+import com.yanny.age.stone.blocks.MillstoneGui;
+import com.yanny.age.stone.blocks.StoneChestGui;
 import com.yanny.age.stone.client.renderer.*;
-import com.yanny.age.stone.entities.*;
 import com.yanny.age.stone.items.BackpackGui;
 import com.yanny.age.stone.items.StoneTabletGui;
 import com.yanny.age.stone.subscribers.ContainerSubscriber;
+import com.yanny.age.stone.subscribers.EntitySubscriber;
+import com.yanny.age.stone.subscribers.TileEntitySubscriber;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,25 +28,25 @@ public class ClientProxy implements IProxy {
         ScreenManager.registerFactory(ContainerSubscriber.stone_tablet, StoneTabletGui::new);
         ScreenManager.registerFactory(ContainerSubscriber.fishing_net, FishingNetGui::new);
 
-        RenderingRegistry.registerEntityRenderingHandler(DeerEntity.class, new DeerRenderer.RenderFactory());
-        RenderingRegistry.registerEntityRenderingHandler(BoarEntity.class, new BoarRenderer.RenderFactory());
-        RenderingRegistry.registerEntityRenderingHandler(AurochEntity.class, new AurochRenderer.RenderFactory());
-        RenderingRegistry.registerEntityRenderingHandler(FowlEntity.class, new FowlRenderer.RenderFactory());
-        RenderingRegistry.registerEntityRenderingHandler(MouflonEntity.class, new MouflonRenderer.RenderFactory());
-        RenderingRegistry.registerEntityRenderingHandler(FlintSpearEntity.class, new FlintSpearRenderer.RenderFactory());
-        RenderingRegistry.registerEntityRenderingHandler(MammothEntity.class, new MammothRenderer.RenderFactory());
-        RenderingRegistry.registerEntityRenderingHandler(SaberToothTigerEntity.class, new SaberToothTigerRenderer.RenderFactory());
-        RenderingRegistry.registerEntityRenderingHandler(WoollyRhinoEntity.class, new WoollyRhinoRenderer.RenderFactory());
+        RenderingRegistry.registerEntityRenderingHandler(EntitySubscriber.deer, new DeerRenderer.RenderFactory());
+        RenderingRegistry.registerEntityRenderingHandler(EntitySubscriber.boar, new BoarRenderer.RenderFactory());
+        RenderingRegistry.registerEntityRenderingHandler(EntitySubscriber.auroch, new AurochRenderer.RenderFactory());
+        RenderingRegistry.registerEntityRenderingHandler(EntitySubscriber.fowl, new FowlRenderer.RenderFactory());
+        RenderingRegistry.registerEntityRenderingHandler(EntitySubscriber.mouflon, new MouflonRenderer.RenderFactory());
+        RenderingRegistry.registerEntityRenderingHandler(EntitySubscriber.flint_spear, new FlintSpearRenderer.RenderFactory());
+        RenderingRegistry.registerEntityRenderingHandler(EntitySubscriber.mammoth, new MammothRenderer.RenderFactory());
+        RenderingRegistry.registerEntityRenderingHandler(EntitySubscriber.saber_tooth_tiger, new SaberToothTigerRenderer.RenderFactory());
+        RenderingRegistry.registerEntityRenderingHandler(EntitySubscriber.woolly_rhino, new WoollyRhinoRenderer.RenderFactory());
 
-        ClientRegistry.bindTileEntitySpecialRenderer(FlintWorkbenchTileEntity.class, new FlintWorkbenchRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(DryingRackTileEntity.class, new DryingRackRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TanningRackTileEntity.class, new TanningRackRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(StoneChestTileEntity.class, new StoneChestRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TreeStumpTileEntity.class, new TreeStumpRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(AquaductTileEntity.class, new AquaductRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(DroughtGrassBedTileEntity.class, new DroughtGrassBedRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(FeederTileEntity.class, new FeederRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(MillstoneTileEntity.class, new MillstoneRenderer());
+        ClientRegistry.bindTileEntityRenderer(TileEntitySubscriber.flint_workbench, FlintWorkbenchRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(TileEntitySubscriber.drying_rack, DryingRackRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(TileEntitySubscriber.tanning_rack, TanningRackRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(TileEntitySubscriber.stone_chest, StoneChestRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(TileEntitySubscriber.tree_stump, TreeStumpRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(TileEntitySubscriber.aquaduct, AquaductRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(TileEntitySubscriber.drought_grass_bed, DroughtGrassBedRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(TileEntitySubscriber.feeder, FeederRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(TileEntitySubscriber.millstone, MillstoneRenderer::new);
     }
 
     @Override

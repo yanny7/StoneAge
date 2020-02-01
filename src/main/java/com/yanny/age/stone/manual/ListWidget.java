@@ -1,7 +1,7 @@
 package com.yanny.age.stone.manual;
 
 import com.google.gson.JsonObject;
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.RenderHelper;
 
@@ -69,28 +69,28 @@ public class ListWidget extends ConfigurableWidget {
 
     @Override
     public void drawBackgroundLayer(Screen screen, int mx, int my) {
-        GlStateManager.pushMatrix();
-        GlStateManager.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
-        GlStateManager.scalef(scale, scale, scale);
-        GlStateManager.enableBlend();
-        RenderHelper.enableGUIStandardItemLighting();
+        RenderSystem.pushMatrix();
+        RenderSystem.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
+        RenderSystem.scalef(scale, scale, scale);
+        RenderSystem.enableBlend();
+        RenderHelper.setupGuiFlatDiffuseLighting();
         int height = 0;
         for (int i = 0; i < list.length; i++) {
             mc.fontRenderer.drawString(bullet, 0, height, color);
             customFontRenderer.drawSplitString(list[i], bulletWidth, height, Math.round((getWidth() - bulletWidth - margin_left - margin_right) / scale), color, Align.LEFT, false);
             height += heights[i];
         }
-        GlStateManager.popMatrix();
+        RenderSystem.popMatrix();
 
-        GlStateManager.pushMatrix();
-        GlStateManager.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
-        GlStateManager.scalef(scale, scale, scale);
+        RenderSystem.pushMatrix();
+        RenderSystem.translatef(getX() + margin_left, getY() + margin_top, 0.0f);
+        RenderSystem.scalef(scale, scale, scale);
         links.forEach(link -> {
             if (link.inArea(mx - (getX() + margin_left), my - (getY() + margin_top), scale)) {
                 link.rects.forEach(rect -> Screen.fill((int) rect.x1, (int) rect.y1, (int) rect.x2, (int) rect.y2, 0x66000000));
             }
         });
-        GlStateManager.popMatrix();
+        RenderSystem.popMatrix();
     }
 
     @Override

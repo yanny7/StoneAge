@@ -1,6 +1,6 @@
 package com.yanny.age.stone.items;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.manual.ManualWidget;
 import com.yanny.age.stone.recipes.handlers.*;
@@ -49,7 +49,7 @@ public class StoneTabletGui extends ContainerScreen<Container> {
             return;
         }
 
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         minecraft.getTextureManager().bindTexture(GUI);
         blit(guiLeft, guiTop, 0, 0, 0, xSize, ySize, 255, 255);
 

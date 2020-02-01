@@ -1,40 +1,49 @@
 package com.yanny.age.stone.client.renderer;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.yanny.age.stone.blocks.FeederTileEntity;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.Direction;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
+import static net.minecraft.client.renderer.model.ItemCameraTransforms.TransformType;
+
 @OnlyIn(Dist.CLIENT)
 public class FeederRenderer extends TileEntityRenderer<FeederTileEntity> {
-    @SuppressWarnings("deprecation")
+    public FeederRenderer(TileEntityRendererDispatcher p_i226006_1_) {
+        super(p_i226006_1_);
+    }
+
     @Override
-    public void render(FeederTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(@Nonnull FeederTileEntity tileEntityIn, float partialTicks, @Nonnull MatrixStack matrixStack,
+                       @Nonnull IRenderTypeBuffer renderTypeBuffer, int overlayUV, int lightmapUV) {
         Direction direction = tileEntityIn.getBlockState().get(HorizontalBlock.HORIZONTAL_FACING);
 
         for (int i = 0; i < FeederTileEntity.ITEMS; i++) {
-            GlStateManager.pushMatrix();
+            matrixStack.push();
 
             if (direction == Direction.NORTH || direction == Direction.SOUTH) {
-                GlStateManager.translatef((float)x + i * 0.1875f + 0.21875f, (float)y + 0.3125f + i * 0.001f, (float)z + 0.5f);
+                matrixStack.translate(i * 0.1875f + 0.21875f, 0.3125f + i * 0.001f, 0.5f);
             } else {
-                GlStateManager.translatef((float)x + 0.5f, (float)y + 0.3125f + i * 0.001f, (float)z + i * 0.1875f + 0.21875f);
-                GlStateManager.rotatef(90, 0.0F, 1.0F, 0.0F);
+                matrixStack.translate(0.5f, 0.3125f + i * 0.001f, i * 0.1875f + 0.21875f);
+                matrixStack.rotate(Vector3f.YP.rotationDegrees(90));
             }
 
-            GlStateManager.rotatef(90, 1.0f, 0.0f, 0.0f);
-            GlStateManager.scalef(0.3f, 0.3f, 0.3f);
+            matrixStack.rotate(Vector3f.XP.rotationDegrees(90));
+            matrixStack.scale(0.3F, 0.3F, 0.3F);
 
-            Minecraft.getInstance().getItemRenderer().renderItem(tileEntityIn.getInventory().getStackInSlot(i),
-                    ItemCameraTransforms.TransformType.FIXED);
+            Minecraft.getInstance().getItemRenderer().renderItem(tileEntityIn.getInventory().getStackInSlot(i), TransformType.FIXED,
+                    overlayUV, lightmapUV, matrixStack, renderTypeBuffer);
 
-            GlStateManager.enableLighting();
-            GlStateManager.popMatrix();
+            matrixStack.pop();
         }
     }
 }

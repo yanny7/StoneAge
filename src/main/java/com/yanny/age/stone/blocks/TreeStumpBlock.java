@@ -10,7 +10,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -19,8 +19,6 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nonnull;
@@ -45,12 +43,6 @@ public class TreeStumpBlock extends Block implements ITopBlockProvider {
         return new TreeStumpTileEntity();
     }
 
-    @Nonnull
-    @Override
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
-
     @SuppressWarnings("deprecation")
     @Nonnull
     @Override
@@ -73,23 +65,17 @@ public class TreeStumpBlock extends Block implements ITopBlockProvider {
         super.onBlockClicked(state, worldIn, pos, player);
     }
 
+    @Nonnull
     @SuppressWarnings("deprecation")
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
         if ((tileentity instanceof TreeStumpTileEntity) && !worldIn.isRemote && (handIn == Hand.MAIN_HAND)) {
             ((TreeStumpTileEntity) tileentity).blockActivated(player);
         }
 
-        return true; // do not show ghost item
-    }
-
-    @SuppressWarnings("deprecation")
-    @OnlyIn(Dist.CLIENT)
-    @Override
-    public boolean hasCustomBreakingProgress(BlockState state) {
-        return true;
+        return ActionResultType.CONSUME; // do not show ghost item
     }
 
     @SuppressWarnings("deprecation")

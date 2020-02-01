@@ -12,7 +12,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public class MammothRenderer extends MobRenderer<MammothEntity, MammothModel> {
@@ -22,9 +21,9 @@ public class MammothRenderer extends MobRenderer<MammothEntity, MammothModel> {
         super(rendererManager, new MammothModel(), 1.0f);
     }
 
-    @Nullable
+    @Nonnull
     @Override
-    protected ResourceLocation getEntityTexture(@Nonnull MammothEntity entity) {
+    public ResourceLocation getEntityTexture(@Nonnull MammothEntity entity) {
         return MAMMOTH_TEXTURE;
     }
 

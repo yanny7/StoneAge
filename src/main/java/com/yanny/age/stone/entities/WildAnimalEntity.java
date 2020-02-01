@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 import java.util.UUID;
 
 abstract class WildAnimalEntity extends AnimalEntity implements IBecomeAngry {
-    static final DataParameter<Integer> GENERATION = EntityDataManager.createKey(BoarEntity.class, DataSerializers.VARINT);
+    static final DataParameter<Integer> GENERATION = EntityDataManager.createKey(AurochEntity.class, DataSerializers.VARINT);
 
     private int angerLevel;
     private UUID angerTargetUUID;
@@ -32,8 +32,8 @@ abstract class WildAnimalEntity extends AnimalEntity implements IBecomeAngry {
     public void updateAITasks() {
         LivingEntity livingentity = this.getAttackTarget();
         if (livingentity != null && this.getDistanceSq(livingentity) < 16.0D) {
-            this.calculateRotationYaw(livingentity.posX, livingentity.posZ);
-            this.moveController.setMoveTo(livingentity.posX, livingentity.posY, livingentity.posZ, this.moveController.getSpeed());
+            this.calculateRotationYaw(livingentity.getPosX(), livingentity.getPosZ());
+            this.moveController.setMoveTo(livingentity.getPosX(), livingentity.getPosY(), livingentity.getPosZ(), this.moveController.getSpeed());
         }
 
         if (this.isAngry()) {
@@ -135,6 +135,6 @@ abstract class WildAnimalEntity extends AnimalEntity implements IBecomeAngry {
     }
 
     private void calculateRotationYaw(double x, double z) {
-        this.rotationYaw = (float)(MathHelper.atan2(z - this.posZ, x - this.posX) * (double)(180F / (float)Math.PI)) - 90.0F;
+        this.rotationYaw = (float)(MathHelper.atan2(z - this.getPosZ(), x - this.getPosX()) * (double)(180F / (float)Math.PI)) - 90.0F;
     }
 }

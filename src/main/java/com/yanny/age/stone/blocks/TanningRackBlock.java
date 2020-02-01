@@ -11,7 +11,7 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -80,9 +80,10 @@ public class TanningRackBlock extends HorizontalBlock {
         return true;
     }
 
+    @Nonnull
     @SuppressWarnings("deprecation")
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
         if (tileentity instanceof TanningRackTileEntity && !worldIn.isRemote && (handIn == Hand.MAIN_HAND)) {
@@ -90,12 +91,6 @@ public class TanningRackBlock extends HorizontalBlock {
         }
 
         return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
-    }
-
-    @Nonnull
-    @Override
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
     }
 
     @SuppressWarnings("deprecation")

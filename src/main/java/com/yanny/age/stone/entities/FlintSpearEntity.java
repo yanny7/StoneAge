@@ -73,11 +73,12 @@ public class FlintSpearEntity extends AbstractArrowEntity {
                 this.remove();
             } else if (i > 0) {
                 this.setNoClip(true);
-                Vec3d vec3d = new Vec3d(entity.posX - this.posX, entity.posY + (double)entity.getEyeHeight() - this.posY, entity.posZ - this.posZ);
-                this.posY += vec3d.y * 0.015D * (double)i;
+                Vec3d vec3d = new Vec3d(entity.getPosX() - this.getPosX(), entity.getPosY() + (double)entity.getEyeHeight() - this.getPosY(),
+                        entity.getPosZ() - this.getPosZ());
+                setPosition(getPosX(), vec3d.y * 0.015D * (double)i, getPosZ());
 
                 if (this.world.isRemote) {
-                    this.lastTickPosY = this.posY;
+                    this.lastTickPosY = this.getPosY();
                 }
 
                 double d0 = 0.05D * (double)i;
@@ -138,11 +139,11 @@ public class FlintSpearEntity extends AbstractArrowEntity {
         if (this.world instanceof ServerWorld && this.world.isThundering() && EnchantmentHelper.hasChanneling(this.thrownStack)) {
             BlockPos blockpos = entity.getPosition();
 
-            if (this.world.isSkyLightMax(blockpos)) {
-                LightningBoltEntity lightningboltentity = new LightningBoltEntity(this.world,
-                        (double)blockpos.getX() + 0.5D, blockpos.getY(), (double)blockpos.getZ() + 0.5D, false);
-                lightningboltentity.setCaster(entity1 instanceof ServerPlayerEntity ? (ServerPlayerEntity)entity1 : null);
-                ((ServerWorld)this.world).addLightningBolt(lightningboltentity);
+            if (this.world.canSeeSky(blockpos)) {
+                LightningBoltEntity lvt_9_1_ = new LightningBoltEntity(this.world, (double)blockpos.getX() + 0.5D,
+                        blockpos.getY(), (double)blockpos.getZ() + 0.5D, false);
+                lvt_9_1_.setCaster(entity1 instanceof ServerPlayerEntity ? (ServerPlayerEntity)entity1 : null);
+                ((ServerWorld)this.world).addLightningBolt(lvt_9_1_);
                 soundevent = SoundEvents.ITEM_TRIDENT_THUNDER;
                 f1 = 5.0F;
             }
@@ -186,10 +187,10 @@ public class FlintSpearEntity extends AbstractArrowEntity {
     }
 
     @Override
-    public void tryDespawn() {
+    public void checkDespawn() {
         int i = this.dataManager.get(LOYALTY_LEVEL);
         if (this.pickupStatus != AbstractArrowEntity.PickupStatus.ALLOWED || i <= 0) {
-            super.tryDespawn();
+            super.checkDespawn();
         }
     }
 

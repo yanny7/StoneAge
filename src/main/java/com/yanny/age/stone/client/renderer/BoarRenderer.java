@@ -12,7 +12,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public class BoarRenderer extends MobRenderer<BoarEntity, BoarModel> {
@@ -22,9 +21,9 @@ public class BoarRenderer extends MobRenderer<BoarEntity, BoarModel> {
         super(rendererManager, new BoarModel(), 0.5f);
     }
 
-    @Nullable
+    @Nonnull
     @Override
-    protected ResourceLocation getEntityTexture(@Nonnull BoarEntity entity) {
+    public ResourceLocation getEntityTexture(@Nonnull BoarEntity entity) {
         return BOAR_TEXTURE;
     }
 

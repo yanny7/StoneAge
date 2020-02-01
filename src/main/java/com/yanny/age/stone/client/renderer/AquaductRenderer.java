@@ -1,71 +1,75 @@
 package com.yanny.age.stone.client.renderer;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.yanny.age.stone.blocks.AquaductTileEntity;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.Matrix3f;
+import net.minecraft.client.renderer.Matrix4f;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.lwjgl.opengl.GL11;
+
+import javax.annotation.Nonnull;
+import java.util.Objects;
 
 @OnlyIn(Dist.CLIENT)
 public class AquaductRenderer extends TileEntityRenderer<AquaductTileEntity> {
     private static final ResourceLocation WATER = new ResourceLocation("minecraft", "textures/block/water_still.png");
 
+    public AquaductRenderer(TileEntityRendererDispatcher p_i226006_1_) {
+        super(p_i226006_1_);
+    }
+
     @Override
-    public void render(AquaductTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(AquaductTileEntity tileEntityIn, float partialTicks, @Nonnull MatrixStack matrixStack,
+                       @Nonnull IRenderTypeBuffer renderTypeBuffer, int overlayUV, int lightmapUV) {
+        if (!tileEntityIn.hasWorld()) { //TODO rendering not working
+            return;
+        }
+
         if (tileEntityIn.getCapacity() < 0.01) {
             return;
         }
 
         float off;
         int tick = tileEntityIn.getTick();
-        int color = getWorld().getBiome(tileEntityIn.getPos()).getWaterColor();
-        float r = (color & 0xff0000) >> 16;
-        float g = (color & 0xff00) >> 8;
-        float b = (color & 0xff);
         float v = tileEntityIn.getCapacity() * (10 / 16f) + 4 / 16f;
 
         off = (tick % 32) * (1 / 32f);
 
-        GlStateManager.pushMatrix();
-        GlStateManager.translatef((float)x, (float)y, (float)z);
-        GlStateManager.enableLighting();
-        GlStateManager.enableNormalize();
-        GlStateManager.enableRescaleNormal();
-        GlStateManager.enableBlend();
-        GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        GlStateManager.color4f(r / 0xff, g / 0xff, b / 0xff, 1f);
-        GlStateManager.enableTexture();
+        matrixStack.push();
 
-        if (Minecraft.isAmbientOcclusionEnabled()) {
-            GlStateManager.shadeModel(GL11.GL_SMOOTH);
-        } else {
-            GlStateManager.shadeModel(GL11.GL_FLAT);
-        }
+        RenderSystem.enableBlend();
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0f);
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.disableTexture();
 
-        RenderHelper.disableStandardItemLighting();
-        Minecraft.getInstance().getTextureManager().bindTexture(WATER);
+        IVertexBuilder vertexBuilder = renderTypeBuffer.getBuffer(RenderType.entityTranslucentCull(WATER));
+        MatrixStack.Entry matrix = matrixStack.getLast();
+        Matrix4f matrix4f = matrix.getPositionMatrix();
+        Matrix3f matrix3f = matrix.getNormalMatrix();
 
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder bufferbuilder = tessellator.getBuffer();
-        bufferbuilder.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        bufferbuilder.pos(0, v, 1).tex(0, off + 1/32f).endVertex();
-        bufferbuilder.pos(1, v, 1).tex(1, off + 1/32f).endVertex();
-        bufferbuilder.pos(1, v, 0).tex(1, off).endVertex();
-        bufferbuilder.pos(0, v, 0).tex(0, off).endVertex();
-        tessellator.draw();
+        func_229132_a_(tileEntityIn, vertexBuilder, matrix4f, matrix3f, 0, v, 1, 0, off + 1/32f, overlayUV, lightmapUV);
+        func_229132_a_(tileEntityIn, vertexBuilder, matrix4f, matrix3f, 1, v, 1, 1, off + 1/32f, overlayUV, lightmapUV);
+        func_229132_a_(tileEntityIn, vertexBuilder, matrix4f, matrix3f, 1, v, 0, 1, off, overlayUV, lightmapUV);
+        func_229132_a_(tileEntityIn, vertexBuilder, matrix4f, matrix3f, 0, v, 0, 0, off, overlayUV, lightmapUV);
 
-        RenderHelper.enableStandardItemLighting();
-        GlStateManager.disableBlend();
-        GlStateManager.disableRescaleNormal();
-        GlStateManager.disableNormalize();
-        GlStateManager.disableLighting();
-        GlStateManager.popMatrix();
+        matrixStack.pop();
+    }
+
+    private static void func_229132_a_(TileEntity tileEntity, IVertexBuilder vertexBuilder, Matrix4f matrix4f, Matrix3f matrix3f,
+                                       float x, float y, float z, float u, float v, int overlayUV, int lightmapUV) {
+        int color = Objects.requireNonNull(tileEntity.getWorld()).getBiome(tileEntity.getPos()).getWaterColor();
+        float r = (color & 0xff0000) >> 16;
+        float g = (color & 0xff00) >> 8;
+        float b = (color & 0xff);
+        vertexBuilder.pos(matrix4f, x, y, z).color(r / 16f, g / 16f, b / 16f, 1.0f)
+                .tex(u, v).overlay(overlayUV).lightmap(lightmapUV).normal(matrix3f, 0.0F, 1.0F, 0.0F).endVertex();
     }
 }

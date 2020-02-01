@@ -97,7 +97,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
         return stacks;
     }
 
-    boolean blockActivated(PlayerEntity player, BlockRayTraceResult hit) {
+    ActionResultType blockActivated(PlayerEntity player, BlockRayTraceResult hit) {
         assert world != null;
         ItemStack itemStack = player.getHeldItemMainhand();
 
@@ -150,7 +150,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
 
                 if (!itemStack.isEmpty() && stack.isEmpty()) {
                     stacks.set(y * FlintWorkbenchRecipe.MAX_WIDTH + x, itemStack.split(1));
-                    return true;
+                    return ActionResultType.CONSUME;
                 }
 
                 if (itemStack.isEmpty() && !stacks.get(y * FlintWorkbenchRecipe.MAX_WIDTH + x).isEmpty()) {
@@ -159,12 +159,12 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
                     InventoryHelper.dropItems(world, getPos(), itemStacks);
                     stacks.set(y * FlintWorkbenchRecipe.MAX_WIDTH + x, ItemStack.EMPTY);
                     world.playSound(null, getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
-                    return true;
+                    return ActionResultType.CONSUME;
                 }
             }
         }
 
-        return false;
+        return ActionResultType.FAIL;
     }
 
     private IItemHandlerModifiable createNonSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {

@@ -12,7 +12,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public class WoollyRhinoRenderer extends MobRenderer<WoollyRhinoEntity, WoollyRhinoModel> {
@@ -22,9 +21,9 @@ public class WoollyRhinoRenderer extends MobRenderer<WoollyRhinoEntity, WoollyRh
         super(rendererManager, new WoollyRhinoModel(), 0.7f);
     }
 
-    @Nullable
+    @Nonnull
     @Override
-    protected ResourceLocation getEntityTexture(@Nonnull WoollyRhinoEntity entity) {
+    public ResourceLocation getEntityTexture(@Nonnull WoollyRhinoEntity entity) {
         return WOOLLY_RHINO_TEXTURE;
     }
 

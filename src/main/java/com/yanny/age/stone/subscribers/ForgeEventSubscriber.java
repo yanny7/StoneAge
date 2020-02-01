@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.config.Config;
 import com.yanny.age.stone.entities.SaberToothTigerEntity;
 import net.minecraft.advancements.Advancement;

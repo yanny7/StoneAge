@@ -1,27 +1,27 @@
 package com.yanny.age.stone.client.models;
 
-import net.minecraft.client.renderer.entity.model.RendererModel;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.model.Model;
-import net.minecraft.client.renderer.model.ModelBox;
+import net.minecraft.client.renderer.model.ModelRenderer;
+
+import javax.annotation.Nonnull;
 
 public class DroughtGrassBedModel extends Model {
-	private final RendererModel head;
-	private final RendererModel foot;
+	private final ModelRenderer head;
+	private final ModelRenderer foot;
 
 	public DroughtGrassBedModel() {
+		super(RenderType::entityCutoutNoCull);
 		textureWidth = 64;
 		textureHeight = 64;
 
-		head = new RendererModel(this);
-		head.cubeList.add(new ModelBox(head, 0, 17, 2.0F, -1.5F, 2.0F, 12, 3, 14, 0.0F, false));
+		head = new ModelRenderer(this, 0, 17);
+		head.addBox(2.0F, -1.5F, 2.0F, 12, 3, 14, 0.0F, false);
 
-		foot = new RendererModel(this);
-		foot.cubeList.add(new ModelBox(foot, 0, 0, 2.0F, -1.5F, 0, 12, 3, 14, 0.0F, false));
-	}
-
-	public void render() {
-		head.render(0.0625F);
-		foot.render(0.0625F);
+		foot = new ModelRenderer(this, 0, 0);
+		foot.addBox(2.0F, -1.5F, 0, 12, 3, 14, 0.0F, false);
 	}
 
 	public void setVisibleHead() {
@@ -32,5 +32,11 @@ public class DroughtGrassBedModel extends Model {
 	public void setVisibleFoot() {
 		head.showModel = false;
 		foot.showModel = true;
+	}
+
+	@Override
+	public void render(@Nonnull MatrixStack matrixStack, @Nonnull IVertexBuilder iVertexBuilder, int i, int i1, float v, float v1, float v2, float v3) {
+		head.render(matrixStack, iVertexBuilder, i, i1, v, v1, v2, v3);
+		foot.render(matrixStack, iVertexBuilder, i, i1, v, v1, v2, v3);
 	}
 }

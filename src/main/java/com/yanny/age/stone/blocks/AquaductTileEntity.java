@@ -16,7 +16,7 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
@@ -113,7 +113,7 @@ public class AquaductTileEntity extends TileEntity implements ITickableTileEntit
                             }
 
                             if (world.rand.nextInt(Config.aquaductTickChanceBoneMealEffect) == 0) {
-                                boneMealEffect(pos, world);
+                                boneMealEffect(pos, (ServerWorld)world);
                             }
                         }
                     } else {
@@ -212,7 +212,7 @@ public class AquaductTileEntity extends TileEntity implements ITickableTileEntit
         activated = !activated;
     }
 
-    private static void boneMealEffect(BlockPos pos, World world) {
+    private static void boneMealEffect(BlockPos pos, ServerWorld world) {
         int r = Config.aquaductEffectRange;
         BlockPos cropPos = pos.up().north(world.rand.nextInt(r * 2 + 1) - r).east(world.rand.nextInt(r * 2 + 1) - r);
         BlockState blockstate = world.getBlockState(cropPos);

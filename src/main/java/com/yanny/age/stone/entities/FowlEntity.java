@@ -106,10 +106,6 @@ public class FowlEntity extends WildAnimalEntity implements ITopEntityProvider {
     }
 
     @Override
-    public void fall(float distance, float damageMultiplier) {
-    }
-
-    @Override
     protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_CHICKEN_AMBIENT;
     }

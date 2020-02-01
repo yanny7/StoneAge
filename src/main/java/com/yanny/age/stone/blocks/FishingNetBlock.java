@@ -11,7 +11,7 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -60,12 +60,6 @@ public class FishingNetBlock extends HorizontalBlock implements IWaterLoggable {
         return new FishingNetTileEntity();
     }
 
-    @Nonnull
-    @Override
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
-
     @SuppressWarnings("deprecation")
     @Nonnull
     @Override
@@ -106,16 +100,17 @@ public class FishingNetBlock extends HorizontalBlock implements IWaterLoggable {
         }
     }
 
+    @Nonnull
     @SuppressWarnings("deprecation")
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         FishingNetTileEntity tile = (FishingNetTileEntity) worldIn.getTileEntity(pos);
 
         if (tile != null) {
             if (!worldIn.isRemote) {
                 NetworkHooks.openGui((ServerPlayerEntity) player, tile, tile.getPos());
             }
-            return true;
+            return ActionResultType.CONSUME;
         } else {
             throw new IllegalStateException("Named container provider is missing");
         }

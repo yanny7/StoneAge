@@ -1,16 +1,13 @@
 package com.yanny.age.stone.manual;
 
 import com.google.common.collect.Lists;
-import com.mojang.blaze3d.platform.GlStateManager;
-import net.minecraft.client.Minecraft;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.fonts.EmptyGlyph;
 import net.minecraft.client.gui.fonts.Font;
 import net.minecraft.client.gui.fonts.IGlyph;
 import net.minecraft.client.gui.fonts.TexturedGlyph;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.renderer.*;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
@@ -216,10 +213,10 @@ public class CustomFontRenderer {
         }
     }
 
-    private int renderString(String text, float x, float y, int color, boolean dropShadow, MutableBool bool, float width) {
-        if (text == null) {
-            return 0;
-        } else {
+    private void renderString(String text, float x, float y, int color, boolean dropShadow, MutableBool bool, float width) {
+        if (text != null) {
+            Matrix4f matrix = TransformationMatrix.identity().getMatrix();
+
             if (fontRenderer.getBidiFlag()) {
                 text = fontRenderer.bidiReorder(text);
             }
@@ -229,15 +226,20 @@ public class CustomFontRenderer {
             }
 
             if (dropShadow) {
-                this.renderStringAtPos(text, x, y, color, true, bool, width);
+                IRenderTypeBuffer.Impl renderTypeBufferTmp = IRenderTypeBuffer.getImpl(Tessellator.getInstance().getBuffer());
+                Matrix4f matrixTmp = matrix.copy();
+                matrixTmp.translate(new Vector3f(0.0F, 0.0F, 0.001F));
+                this.renderStringAtPos(text, x, y, color, true, matrixTmp, renderTypeBufferTmp, bool, width);
+                renderTypeBufferTmp.finish();
             }
 
-            x = this.renderStringAtPos(text, x, y, color, false, bool, width);
-            return (int)x + (dropShadow ? 1 : 0);
+            IRenderTypeBuffer.Impl renderTypeBuffer = IRenderTypeBuffer.getImpl(Tessellator.getInstance().getBuffer());
+            this.renderStringAtPos(text, x, y, color, false, matrix, renderTypeBuffer, bool, width);
+            renderTypeBuffer.finish();
         }
     }
 
-    private float renderStringAtPos(@Nonnull String text, float x, float y, int color, boolean isShadow, MutableBool link, float width) {
+    private void renderStringAtPos(@Nonnull String text, float x, float y, int color, boolean isShadow, Matrix4f matrix, IRenderTypeBuffer renderTypeBuffer, MutableBool link, float width) {
         float f = isShadow ? 0.25F : 1.0F;
         float f1 = (float)(color >> 16 & 255) / 255.0F * f;
         float f2 = (float)(color >> 8 & 255) / 255.0F * f;
@@ -246,16 +248,12 @@ public class CustomFontRenderer {
         float f5 = f2;
         float f6 = f3;
         float f7 = (float)(color >> 24 & 255) / 255.0F;
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder bufferbuilder = tessellator.getBuffer();
-        ResourceLocation resourcelocation = null;
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-        boolean flag = false;
-        boolean flag1 = false;
-        boolean flag2 = false;
-        boolean flag3 = false;
-        boolean flag4 = false;
-        List<Entry> list = Lists.newArrayList();
+        boolean isObfuscated = false;
+        boolean isBold = false;
+        boolean isItalic = false;
+        boolean isUnderline = false;
+        boolean isStrikeThrough = false;
+        List<TexturedGlyph.Effect> lvt_25_1_ = Lists.newArrayList();
         int spaces = getSpaces(text);
         float spaceWidth = 0;
 
@@ -271,11 +269,11 @@ public class CustomFontRenderer {
 
                 if (textformatting != null) {
                     if (textformatting.isNormalStyle()) {
-                        flag = false;
-                        flag1 = false;
-                        flag4 = false;
-                        flag3 = false;
-                        flag2 = false;
+                        isObfuscated = false;
+                        isBold = false;
+                        isStrikeThrough = false;
+                        isUnderline = false;
+                        isItalic = false;
                         f4 = f1;
                         f5 = f2;
                         f6 = f3;
@@ -287,15 +285,15 @@ public class CustomFontRenderer {
                         f5 = (float)(j >> 8 & 255) / 255.0F * f;
                         f6 = (float)(j & 255) / 255.0F * f;
                     } else if (textformatting == TextFormatting.OBFUSCATED) {
-                        flag = true;
+                        isObfuscated = true;
                     } else if (textformatting == TextFormatting.BOLD) {
-                        flag1 = true;
+                        isBold = true;
                     } else if (textformatting == TextFormatting.STRIKETHROUGH) {
-                        flag4 = true;
+                        isStrikeThrough = true;
                     } else if (textformatting == TextFormatting.UNDERLINE) {
-                        flag3 = true;
+                        isUnderline = true;
                     } else if (textformatting == TextFormatting.ITALIC) {
-                        flag2 = true;
+                        isItalic = true;
                     }
                 } else if (text.charAt(i + 1) == 'p') {
                     if (!link.valid) {
@@ -315,34 +313,35 @@ public class CustomFontRenderer {
                 ++i;
             } else {
                 IGlyph iglyph = getFont().findGlyph(c0);
-                TexturedGlyph texturedglyph = flag && c0 != ' ' ? getFont().obfuscate(iglyph) : getFont().getGlyph(c0);
-                ResourceLocation resourcelocation1 = texturedglyph.getTextureLocation();
+                TexturedGlyph texturedGlyph = isObfuscated && c0 != ' ' ? getFont().obfuscate(iglyph) : getFont().getGlyph(c0);
+                float boldOffset;
+                float shadowOffset;
 
-                if (resourcelocation1 != null) {
-                    if (resourcelocation != resourcelocation1) {
-                        tessellator.draw();
-                        Minecraft.getInstance().textureManager.bindTexture(resourcelocation1);
-                        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-                        resourcelocation = resourcelocation1;
-                    }
+                if (!(texturedGlyph instanceof EmptyGlyph)) {
+                    boldOffset = isBold ? iglyph.getBoldOffset() : 0.0F;
+                    shadowOffset = isShadow ? iglyph.getShadowOffset() : 0.0F;
+                    IVertexBuilder vertexBuilder = renderTypeBuffer.getBuffer(texturedGlyph.getRenderType(false));
+                    drawGlyph(texturedGlyph, isBold, isItalic, boldOffset, x + shadowOffset,
+                            y + shadowOffset, matrix, vertexBuilder, f4, f5, f6, f7);
 
-                    float f8 = flag1 ? iglyph.getBoldOffset() : 0.0F;
-                    float f9 = isShadow ? iglyph.getShadowOffset() : 0.0F;
-                    this.renderGlyph(texturedglyph, flag1, flag2, f8, x + f9, y + f9, bufferbuilder, f4, f5, f6, f7);
                 }
 
-                float f10 = iglyph.getAdvance(flag1);
-                float f11 = isShadow ? 1.0F : 0.0F;
+                boldOffset = iglyph.getAdvance(isBold);
+                shadowOffset = isShadow ? 1.0F : 0.0F;
 
-                if (flag4) {
-                    list.add(new Entry(x + f11 - 1.0F, y + f11 + 4.5F, x + f11 + f10, y + f11 + 4.5F - 1.0F, f4, f5, f6, f7));
+                if (isStrikeThrough) {
+                    lvt_25_1_.add(new TexturedGlyph.Effect(x + shadowOffset - 1.0F, y + shadowOffset + 4.5F,
+                            x + shadowOffset + boldOffset, y + shadowOffset + 4.5F - 1.0F, -0.01F,
+                            f4, f5, f6, f7));
                 }
 
-                if (flag3) {
-                    list.add(new Entry(x + f11 - 1.0F, y + f11 + 9.0F, x + f11 + f10, y + f11 + 9.0F - 1.0F, f4, f5, f6, f7));
+                if (isUnderline) {
+                    lvt_25_1_.add(new TexturedGlyph.Effect(x + shadowOffset - 1.0F, y + shadowOffset + 9.0F,
+                            x + shadowOffset + boldOffset, y + shadowOffset + 9.0F - 1.0F, -0.01F,
+                            f4, f5, f6, f7));
                 }
 
-                x += f10;
+                x += boldOffset;
 
                 if (spaceWidth > 0 && c0 == ' ') {
                     x += spaceWidth;
@@ -350,20 +349,15 @@ public class CustomFontRenderer {
             }
         }
 
-        tessellator.draw();
-        if (!list.isEmpty()) {
-            GlStateManager.disableTexture();
-            bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        if (!lvt_25_1_.isEmpty()) {
+            TexturedGlyph lvt_26_3_ = getFont().getWhiteGlyph();
+            IVertexBuilder lvt_27_3_ = renderTypeBuffer.getBuffer(lvt_26_3_.getRenderType(false));
 
-            for(Entry fontrenderer$entry : list) {
-                fontrenderer$entry.pipe(bufferbuilder);
+            for (TexturedGlyph.Effect lvt_29_4_ : lvt_25_1_) {
+                lvt_26_3_.renderEffect(lvt_29_4_, matrix, lvt_27_3_, 15728880);
             }
-
-            tessellator.draw();
-            GlStateManager.enableTexture();
         }
 
-        return x;
     }
 
     private int getSpaces(String text) {
@@ -382,13 +376,15 @@ public class CustomFontRenderer {
         return count;
     }
 
-    private void renderGlyph(@Nonnull TexturedGlyph glyph, boolean bold, boolean italic, float boldOffset, float x, float y, BufferBuilder builder, float r, float g, float b, float a) {
-        glyph.render(Minecraft.getInstance().textureManager, italic, x, y, builder, r, g, b, a);
-
-        if (bold) {
-            glyph.render(Minecraft.getInstance().textureManager, italic, x + boldOffset, y, builder, r, g, b, a);
+    private void drawGlyph(TexturedGlyph texturedGlyph, boolean hasShadow, boolean p_228077_3_, float p_228077_4_,
+                           float p_228077_5_, float p_228077_6_, Matrix4f matrix, IVertexBuilder vertexBuilder,
+                           float p_228077_9_, float p_228077_10_, float p_228077_11_, float p_228077_12_) {
+        texturedGlyph.render(p_228077_3_, p_228077_5_, p_228077_6_, matrix, vertexBuilder,
+                p_228077_9_, p_228077_10_, p_228077_11_, p_228077_12_, 15728880);
+        if (hasShadow) {
+            texturedGlyph.render(p_228077_3_, p_228077_5_ + p_228077_4_, p_228077_6_, matrix, vertexBuilder,
+                    p_228077_9_, p_228077_10_, p_228077_11_, p_228077_12_, 15728880);
         }
-
     }
 
     @Nonnull
@@ -540,35 +536,6 @@ public class CustomFontRenderer {
 
         boolean inArea(int mx, int my, float scale) {
             return mx >= x1 * scale && mx < x2 * scale && my >= y1 * scale && my < y2 * scale;
-        }
-    }
-
-    static class Entry {
-        protected final float x1;
-        protected final float y1;
-        protected final float x2;
-        protected final float y2;
-        protected final float red;
-        protected final float green;
-        protected final float blue;
-        protected final float alpha;
-
-        private Entry(float x1, float y1, float x2, float y2, float red, float green, float blue, float alpha) {
-            this.x1 = x1;
-            this.y1 = y1;
-            this.x2 = x2;
-            this.y2 = y2;
-            this.red = red;
-            this.green = green;
-            this.blue = blue;
-            this.alpha = alpha;
-        }
-
-        public void pipe(@Nonnull BufferBuilder buffer) {
-            buffer.pos(this.x1, this.y1, 0.0D).color(this.red, this.green, this.blue, this.alpha).endVertex();
-            buffer.pos(this.x2, this.y1, 0.0D).color(this.red, this.green, this.blue, this.alpha).endVertex();
-            buffer.pos(this.x2, this.y2, 0.0D).color(this.red, this.green, this.blue, this.alpha).endVertex();
-            buffer.pos(this.x1, this.y2, 0.0D).color(this.red, this.green, this.blue, this.alpha).endVertex();
         }
     }
 

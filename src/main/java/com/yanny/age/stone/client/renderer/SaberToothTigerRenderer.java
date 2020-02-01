@@ -12,7 +12,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public class SaberToothTigerRenderer extends MobRenderer<SaberToothTigerEntity, SaberToothTigerModel> {
@@ -22,9 +21,9 @@ public class SaberToothTigerRenderer extends MobRenderer<SaberToothTigerEntity, 
         super(rendererManager, new SaberToothTigerModel(), 0.5f);
     }
 
-    @Nullable
+    @Nonnull
     @Override
-    protected ResourceLocation getEntityTexture(@Nonnull SaberToothTigerEntity entity) {
+    public ResourceLocation getEntityTexture(@Nonnull SaberToothTigerEntity entity) {
         return SABER_TOOTH_TIGER_TEXTURE;
     }
 

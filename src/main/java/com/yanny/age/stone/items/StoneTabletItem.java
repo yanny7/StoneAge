@@ -30,7 +30,7 @@ public class StoneTabletItem extends Item implements INamedContainerProvider {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, @Nonnull Hand handIn) {
         if (!worldIn.isRemote && playerIn instanceof ServerPlayerEntity) {
             playerIn.openContainer(this);
-            return ActionResult.newResult(ActionResultType.SUCCESS, playerIn.getHeldItem(handIn));
+            return ActionResult.func_226248_a_(playerIn.getHeldItem(handIn));
         }
 
         return super.onItemRightClick(worldIn, playerIn, handIn);

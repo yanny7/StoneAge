@@ -106,7 +106,7 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
         super.remove();
     }
 
-    boolean blockActivated(PlayerEntity player) {
+    ActionResultType blockActivated(PlayerEntity player) {
         assert world != null;
         ItemStack itemStack = player.getHeldItemMainhand();
         TanningRackRecipe recipe = getRecipe(itemStack);
@@ -116,7 +116,7 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
             stacks.set(pos, itemStack.split(1));
 
             world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
-            return true;
+            return ActionResultType.CONSUME;
         }
 
         //noinspection ConstantConditions
@@ -134,7 +134,7 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
                 world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
             }
 
-            return true;
+            return ActionResultType.CONSUME;
         }
 
         if (itemStack.isEmpty() && !stacks.get(pos + ITEMS).isEmpty()) {
@@ -146,10 +146,10 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
 
             world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
             world.playSound(null, getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
-            return true;
+            return ActionResultType.CONSUME;
         }
 
-        return false;
+        return ActionResultType.FAIL;
     }
 
     @Nullable

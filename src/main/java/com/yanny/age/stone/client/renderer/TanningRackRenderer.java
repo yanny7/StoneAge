@@ -1,21 +1,31 @@
 package com.yanny.age.stone.client.renderer;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.yanny.age.stone.blocks.TanningRackTileEntity;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.Direction;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
+import static net.minecraft.client.renderer.model.ItemCameraTransforms.TransformType;
+
 @OnlyIn(Dist.CLIENT)
 public class TanningRackRenderer extends TileEntityRenderer<TanningRackTileEntity> {
-    @SuppressWarnings("deprecation")
+    public TanningRackRenderer(TileEntityRendererDispatcher rendererDispatcher) {
+        super(rendererDispatcher);
+    }
+
     @Override
-    public void render(TanningRackTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
-        Direction direction = tileEntityIn.getBlockState().get(HorizontalBlock.HORIZONTAL_FACING);
+    public void render(@Nonnull TanningRackTileEntity tileEntity, float partialTicks, @Nonnull MatrixStack matrixStack,
+                       @Nonnull IRenderTypeBuffer renderTypeBuffer, int overlayUV, int lightmapUV) {
+        Direction direction = tileEntity.getBlockState().get(HorizontalBlock.HORIZONTAL_FACING);
 
         for (int i = 0; i < TanningRackTileEntity.ITEMS; i++) {
             boolean n = direction == Direction.NORTH;
@@ -25,19 +35,18 @@ public class TanningRackRenderer extends TileEntityRenderer<TanningRackTileEntit
             float xOffset = (w || e) ? (w ? 0.3f : 0.7f) : 0.5f;
             float zOffset = (n || s) ? (n ? 0.3f : 0.7f) : 0.5f;
 
-            GlStateManager.pushMatrix();
-            GlStateManager.translatef((float)x + xOffset, (float)y + 0.5f, (float)z + zOffset);
-            GlStateManager.rotatef((e || w) ? 90 : 0, 0.0F, 1.0F, 0.0F);
-            GlStateManager.rotatef((n || w) ? 22.5f : -22.5f, 1.0f, 0.0f, 0.0f);
-            GlStateManager.scalef(0.9f, 0.9f, 0.9f);
+            matrixStack.push();
+            matrixStack.translate(xOffset, 0.5f, zOffset);
+            matrixStack.rotate(Vector3f.YP.rotationDegrees((e || w) ? 90 : 0));
+            matrixStack.rotate(Vector3f.XP.rotationDegrees((n || w) ? 22.5f : -22.5f));
+            matrixStack.scale(0.9f, 0.9f, 0.9f);
 
-            Minecraft.getInstance().getItemRenderer().renderItem(tileEntityIn.getInventory().getStackInSlot(i),
-                    ItemCameraTransforms.TransformType.FIXED);
-            Minecraft.getInstance().getItemRenderer().renderItem(tileEntityIn.getInventory().getStackInSlot(i + TanningRackTileEntity.ITEMS),
-                    ItemCameraTransforms.TransformType.FIXED);
+            Minecraft.getInstance().getItemRenderer().renderItem(tileEntity.getInventory().getStackInSlot(i), TransformType.FIXED,
+                    overlayUV, lightmapUV, matrixStack, renderTypeBuffer);
+            Minecraft.getInstance().getItemRenderer().renderItem(tileEntity.getInventory().getStackInSlot(i + TanningRackTileEntity.ITEMS), TransformType.FIXED,
+                    overlayUV, lightmapUV, matrixStack, renderTypeBuffer);
 
-            GlStateManager.enableLighting();
-            GlStateManager.popMatrix();
+            matrixStack.pop();
         }
     }
 }

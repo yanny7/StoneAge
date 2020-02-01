@@ -56,13 +56,13 @@ public class BlockSubscriber {
                 .setRegistryName(MODID, "drying_rack"));
         registry.register(new BlockItem(tanning_rack, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "tanning_rack"));
-        registry.register(new BlockItem(stone_chest, new Item.Properties().group(ModItemGroup.AGES).setTEISR(() -> StoneChestItemRenderer::new))
+        registry.register(new BlockItem(stone_chest, new Item.Properties().group(ModItemGroup.AGES).setISTER(() -> StoneChestItemRenderer::new))
                 .setRegistryName(MODID, "stone_chest"));
         registry.register(new BlockItem(tree_stump, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "tree_stump"));
         registry.register(new BlockItem(aquaduct, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "aquaduct"));
-        registry.register(new BedItem(drought_grass_bed, new Item.Properties().group(ModItemGroup.AGES).setTEISR(() -> DroughtGrassBedItemRenderer::new))
+        registry.register(new BedItem(drought_grass_bed, new Item.Properties().group(ModItemGroup.AGES).setISTER(() -> DroughtGrassBedItemRenderer::new))
                 .setRegistryName(MODID, "drought_grass_bed"));
         registry.register(new BlockItem(feeder, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "feeder"));
