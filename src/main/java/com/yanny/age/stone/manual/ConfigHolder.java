@@ -54,8 +54,8 @@ class ConfigHolder {
             ConfigHolder::getList, ConfigHolder::checkList));
     public static final Pair<String, Obj<?, ?>> BULLET = new Pair<>("bullet", new Obj<>(String.class, String.class, "•", true, s -> s, s -> true));
 
-    private Map<String, Obj<?, ?>> objMap = new HashMap<>();
-    private Map<String, ?> values = new HashMap<>();
+    private final Map<String, Obj<?, ?>> objMap = new HashMap<>();
+    private final Map<String, ?> values = new HashMap<>();
 
     @SafeVarargs
     ConfigHolder(@Nonnull Pair<String, Obj<?, ?>> ...types) {
@@ -161,12 +161,12 @@ class ConfigHolder {
     }
 
     static class Obj<T, R> {
-        private Class<T> param;
-        private Class<R> result;
-        private T defaultValue;
-        private boolean optional;
-        private Function<T, R> transform;
-        private Predicate<T> check;
+        private final Class<T> param;
+        private final Class<R> result;
+        private final T defaultValue;
+        private final boolean optional;
+        private final Function<T, R> transform;
+        private final Predicate<T> check;
 
         public Obj(Class<T> param, Class<R> result, T defaultValue, boolean optional, Function<T, R> transform, Predicate<T> check) {
             this.param = param;

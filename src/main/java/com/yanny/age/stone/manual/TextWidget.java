@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.yanny.age.stone.manual.ConfigHolder.*;
-import static com.yanny.age.stone.manual.ConfigHolder.HEIGHT;
 
 public class TextWidget extends ConfigurableWidget {
     public static final String TYPE = "text";
