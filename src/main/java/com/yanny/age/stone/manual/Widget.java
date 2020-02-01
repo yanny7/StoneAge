@@ -9,8 +9,8 @@ public abstract class Widget {
     protected final Minecraft mc = Minecraft.getInstance();
 
     private int x, y, width, height;
-    protected boolean enabled;
-    protected boolean visible;
+    protected final boolean enabled;
+    protected final boolean visible;
 
     public Widget() {
         this.enabled = true;
@@ -30,8 +30,6 @@ public abstract class Widget {
     }
 
     public void mouseMoved(int mx, int my) {}
-
-    public void keyTyped(char c, int code) {}
 
     public void setPos(int x, int y) {
         this.x = x;

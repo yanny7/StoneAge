@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomFontRenderer {
-    private FontRenderer fontRenderer;
+    private final FontRenderer fontRenderer;
 
     CustomFontRenderer(FontRenderer fontRenderer) {
         this.fontRenderer = fontRenderer;
@@ -521,7 +521,7 @@ public class CustomFontRenderer {
     }
 
     static class Link {
-        List<Rect> rects = new ArrayList<>();
+        final List<Rect> rects = new ArrayList<>();
         String key;
 
         boolean hasUnclosedLink() {
@@ -589,8 +589,8 @@ public class CustomFontRenderer {
     }
 
     static class Size {
-        int count;
-        float size;
+        final int count;
+        final float size;
 
         Size(int count, float size) {
             this.count = count;
