@@ -1,3 +1,4 @@
+- fixed issue with flint workbench wrong recipe detection
 - render ghost crafting result when valid recipe available in flint workbench
 v1.0.5
 - added generated structures - abandoned camp and burial place
