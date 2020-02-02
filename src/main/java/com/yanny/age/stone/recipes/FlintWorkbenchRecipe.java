@@ -78,8 +78,8 @@ public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
 
     @Override
     public boolean matches(@Nonnull IInventory inv, @Nonnull World worldIn) {
-        for(int x = 0; x < MAX_WIDTH; ++x) {
-            for(int y = 0; y < MAX_HEIGHT; ++y) {
+        for(int x = 0; x <= MAX_WIDTH - recipeWidth; ++x) {
+            for(int y = 0; y <= MAX_HEIGHT - recipeHeight; ++y) {
                 if (this.checkMatch(inv, x, y, true)) {
                     return true;
                 }
@@ -116,6 +116,7 @@ public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
                 int x1 = x - dx;
                 int y1 = y - dy;
                 Ingredient ingredient = Ingredient.EMPTY;
+
                 if (x1 >= 0 && y1 >= 0 && x1 < this.recipeWidth && y1 < this.recipeHeight) {
                     if (reversed) {
                         ingredient = this.recipeItems.get(this.recipeWidth - x1 - 1 + y1 * this.recipeWidth);
