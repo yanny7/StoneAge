@@ -32,6 +32,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
     private final IItemHandlerModifiable nonSidedItemHandler = createNonSidedInventoryHandler(stacks);
     private final LazyOptional<IItemHandlerModifiable> nonSidedInventoryHandler = LazyOptional.of(() -> nonSidedItemHandler);
     private final RecipeWrapper inventoryWrapper = new RecipeWrapper(nonSidedItemHandler);
+    private ItemStack recipeOutput = ItemStack.EMPTY;
 
     public FlintWorkbenchTileEntity() {
         //noinspection ConstantConditions
@@ -41,7 +42,9 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
     @Override
     public void read(CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
+        CompoundNBT outTag = tag.getCompound("output");
         ItemStackUtils.deserializeStacks(invTag, stacks);
+        recipeOutput = ItemStack.read(outTag);
         super.read(tag);
     }
 
@@ -49,6 +52,9 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
     @Nonnull
     public CompoundNBT write(CompoundNBT tag) {
         tag.put("inv", ItemStackUtils.serializeStacks(stacks));
+        CompoundNBT outTag = new CompoundNBT();
+        recipeOutput.write(outTag);
+        tag.put("output", outTag);
         return super.write(tag);
     }
 
@@ -97,29 +103,30 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
         return stacks;
     }
 
+    public ItemStack getRecipeOutput() {
+        return recipeOutput;
+    }
+
     ActionResultType blockActivated(PlayerEntity player, BlockRayTraceResult hit) {
         assert world != null;
         ItemStack itemStack = player.getHeldItemMainhand();
 
         //noinspection ConstantConditions
         if (itemStack.getItem().equals(ToolSubscriber.flint_knife)) {
-            Optional<FlintWorkbenchRecipe> recipe = findMatchingRecipe();
+            findMatchingRecipe().ifPresent(flintWorkbenchRecipe -> {
+                ItemStack result = flintWorkbenchRecipe.getCraftingResult(getInventory());
+                NonNullList<ItemStack> itemStacks = NonNullList.create();
+                itemStacks.add(result);
+                InventoryHelper.dropItems(world, getPos(), itemStacks);
 
-            if (recipe.isPresent()) {
-                recipe.ifPresent(flintWorkbenchRecipe -> {
-                    ItemStack result = flintWorkbenchRecipe.getCraftingResult(getInventory());
-                    NonNullList<ItemStack> itemStacks = NonNullList.create();
-                    itemStacks.add(result);
-                    InventoryHelper.dropItems(world, getPos(), itemStacks);
+                for (int i = 0; i < stacks.size(); i++) {
+                    stacks.set(i, ItemStack.EMPTY);
+                }
 
-                    for (int i = 0; i < stacks.size(); i++) {
-                        stacks.set(i, ItemStack.EMPTY);
-                    }
-
-                    itemStack.damageItem(1, player, playerEntity -> playerEntity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
-                    world.playSound(null, getPos(), SoundEvents.BLOCK_DISPENSER_DISPENSE, SoundCategory.BLOCKS, 1.0f, 1.0f);
-                });
-            }
+                recipeOutput = ItemStack.EMPTY;
+                itemStack.damageItem(1, player, playerEntity -> playerEntity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+                world.playSound(null, getPos(), SoundEvents.BLOCK_DISPENSER_DISPENSE, SoundCategory.BLOCKS, 1.0f, 1.0f);
+            });
         } else {
             if (hit.getFace() == Direction.UP) {
                 Direction dir = getBlockState().get(HorizontalBlock.HORIZONTAL_FACING);
@@ -150,6 +157,14 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
 
                 if (!itemStack.isEmpty() && stack.isEmpty()) {
                     stacks.set(y * FlintWorkbenchRecipe.MAX_WIDTH + x, itemStack.split(1));
+                    Optional<FlintWorkbenchRecipe> recipe = findMatchingRecipe();
+
+                    if (recipe.isPresent()) {
+                        recipe.ifPresent(flintWorkbenchRecipe -> recipeOutput = flintWorkbenchRecipe.getRecipeOutput().copy());
+                    } else {
+                        recipeOutput = ItemStack.EMPTY;
+                    }
+
                     return ActionResultType.CONSUME;
                 }
 
@@ -159,6 +174,14 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
                     InventoryHelper.dropItems(world, getPos(), itemStacks);
                     stacks.set(y * FlintWorkbenchRecipe.MAX_WIDTH + x, ItemStack.EMPTY);
                     world.playSound(null, getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                    Optional<FlintWorkbenchRecipe> recipe = findMatchingRecipe();
+
+                    if (recipe.isPresent()) {
+                        recipe.ifPresent(flintWorkbenchRecipe -> recipeOutput = flintWorkbenchRecipe.getRecipeOutput().copy());
+                    } else {
+                        recipeOutput = ItemStack.EMPTY;
+                    }
+
                     return ActionResultType.CONSUME;
                 }
             }
