@@ -2,6 +2,7 @@ package com.yanny.age.stone.client.renderer;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.yanny.age.stone.blocks.FlintWorkbenchTileEntity;
+import com.yanny.age.stone.utils.ItemStackUtils;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
@@ -65,9 +66,35 @@ public class FlintWorkbenchRenderer extends TileEntityRenderer<FlintWorkbenchTil
                 GlStateManager.scalef(0.25F, 0.25F, 0.25F);
                 Minecraft.getInstance().getItemRenderer().renderItem(tileEntityIn.getInventory().getStackInSlot(i * 3 + j),
                         ItemCameraTransforms.TransformType.FIXED);
-                GlStateManager.enableLighting();
                 GlStateManager.popMatrix();
             }
+        }
+
+        if (!tileEntityIn.getRecipeOutput().isEmpty()) {
+            GlStateManager.pushMatrix();
+
+            switch (direction) {
+                case NORTH:
+                    GlStateManager.translatef((float)dx + 0.5f, (float)dy + 0.4f, (float)dz + 0.95f);
+                    break;
+                case SOUTH:
+                    GlStateManager.translatef((float)dx + 0.5f, (float)dy + 0.4f, (float)dz + 0.05f);
+                    GlStateManager.rotatef(180f, 0.0F, 1.0F, 0.0F);
+                    break;
+                case WEST:
+                    GlStateManager.translatef((float)dx + 0.95f, (float)dy + 0.4f, (float)dz + 0.5f);
+                    GlStateManager.rotatef(90f, 0.0F, 1.0F, 0.0F);
+                    break;
+                case EAST:
+                    GlStateManager.translatef((float)dx + 0.05f, (float)dy + 0.4f, (float)dz + 0.5f);
+                    GlStateManager.rotatef(270f, 0.0F, 1.0F, 0.0F);
+                    break;
+            }
+
+            GlStateManager.scalef(0.5F, 0.5F, 0.5F);
+            ItemStackUtils.renderItem(tileEntityIn.getRecipeOutput(), 0.6f, ItemCameraTransforms.TransformType.FIXED);
+
+            GlStateManager.popMatrix();
         }
     }
 }
