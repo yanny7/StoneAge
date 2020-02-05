@@ -2,9 +2,9 @@ package com.yanny.age.stone.items;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.yanny.age.stone.Reference;
-import com.yanny.age.stone.manual.ManualWidget;
 import com.yanny.age.stone.recipes.handlers.*;
 import com.yanny.age.stone.subscribers.RecipeSubscriber;
+import com.yanny.ages.api.manual.ManualWidget;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
