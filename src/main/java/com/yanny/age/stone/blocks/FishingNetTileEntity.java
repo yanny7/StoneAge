@@ -1,9 +1,9 @@
 package com.yanny.age.stone.blocks;
 
 import com.yanny.age.stone.config.Config;
-import com.yanny.age.stone.subscribers.ItemSubscriber;
 import com.yanny.age.stone.subscribers.TileEntitySubscriber;
 import com.yanny.age.stone.utils.ItemStackUtils;
+import com.yanny.ages.api.utils.Tags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluids;
@@ -183,10 +183,9 @@ public class FishingNetTileEntity extends TileEntity implements IInventoryInterf
                 return super.extractItem(slot, amount, simulate);
             }
 
-            @SuppressWarnings("ConstantConditions")
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                return (slot == 0) && (stack.getItem() == ItemSubscriber.grass_mesh);
+                return (slot == 0) && Tags.Items.FISHING_NET_MESHES.contains(stack.getItem());
             }
 
             @Override

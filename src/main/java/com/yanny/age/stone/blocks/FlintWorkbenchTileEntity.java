@@ -2,8 +2,8 @@ package com.yanny.age.stone.blocks;
 
 import com.yanny.age.stone.recipes.FlintWorkbenchRecipe;
 import com.yanny.age.stone.subscribers.TileEntitySubscriber;
-import com.yanny.age.stone.subscribers.ToolSubscriber;
 import com.yanny.age.stone.utils.ItemStackUtils;
+import com.yanny.ages.api.utils.Tags;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -111,8 +111,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
         assert world != null;
         ItemStack itemStack = player.getHeldItemMainhand();
 
-        //noinspection ConstantConditions
-        if (itemStack.getItem().equals(ToolSubscriber.flint_knife)) {
+        if (Tags.Items.KNIFES.contains(itemStack.getItem())) {
             findMatchingRecipe().ifPresent(flintWorkbenchRecipe -> {
                 ItemStack result = flintWorkbenchRecipe.getCraftingResult(getInventory());
                 NonNullList<ItemStack> itemStacks = NonNullList.create();
