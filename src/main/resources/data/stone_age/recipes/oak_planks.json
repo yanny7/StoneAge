@@ -4,7 +4,7 @@
     "item": "minecraft:oak_log"
   },
   "tool": {
-    "tag": "stone_age:axes"
+    "tag": "ages_api:axes"
   },
   "result": {
     "item": "minecraft:oak_planks",

@@ -4,7 +4,7 @@
     "item": "minecraft:spruce_log"
   },
   "tool": {
-    "tag": "stone_age:axes"
+    "tag": "ages_api:axes"
   },
   "result": {
     "item": "minecraft:spruce_planks",

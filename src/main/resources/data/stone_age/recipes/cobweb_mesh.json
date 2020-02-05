@@ -1,0 +1,15 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "GG",
+    "GG"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "minecraft:cobweb"
+  }
+}

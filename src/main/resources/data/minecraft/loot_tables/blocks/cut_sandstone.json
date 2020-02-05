@@ -13,7 +13,7 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "tag": "stone_age:hammers"
+                    "tag": "ages_api:hammers"
                   }
                 }
               ],

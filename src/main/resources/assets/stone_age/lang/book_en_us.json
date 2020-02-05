@@ -531,7 +531,8 @@
             "§plead §oLead§r§p",
             "§pleather §oLeather§r§p",
             "§psugar §oSugar§r§p",
-            "§pgrass_mesh §oGrash mesh§r§p"
+            "§pgrass_mesh §oGrash mesh§r§p",
+            "§pcobweb_mesh §oCobweb mesh§r§p"
           ]
         }
       ]
@@ -908,6 +909,27 @@
         {
           "type": "text",
           "text": "Used in §pfishing_net §ofishing net§r§p, have 15 uses before breaking up."
+        }
+      ]
+    },
+    {
+      "key": "cobweb_mesh",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Cobweb mesh",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:cobweb_mesh"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Used in §pfishing_net §ofishing net§r§p, have 30 uses before breaking up."
         }
       ]
     },
