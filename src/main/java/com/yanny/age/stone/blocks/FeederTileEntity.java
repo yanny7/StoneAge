@@ -19,10 +19,10 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -35,12 +35,10 @@ import javax.annotation.Nullable;
 import java.util.*;
 
 public class FeederTileEntity extends TileEntity implements IInventoryInterface, ITickableTileEntity, INamedContainerProvider {
-    private static final ItemTags.Wrapper SEEDS = new ItemTags.Wrapper(new ResourceLocation("forge", "seeds"));
-    private static final ItemTags.Wrapper CROPS = new ItemTags.Wrapper(new ResourceLocation("forge", "crops"));
     private static final Set<Item> VALID_ITEMS = new HashSet<>();
     static {
-        VALID_ITEMS.addAll(SEEDS.getAllElements());
-        VALID_ITEMS.addAll(CROPS.getAllElements());
+        VALID_ITEMS.addAll(Tags.Items.SEEDS.getAllElements());
+        VALID_ITEMS.addAll(Tags.Items.CROPS.getAllElements());
     }
 
     public static final int ITEMS = 4;
