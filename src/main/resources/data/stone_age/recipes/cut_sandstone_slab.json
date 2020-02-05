@@ -4,7 +4,7 @@
     "item": "minecraft:cut_sandstone"
   },
   "tool": {
-    "tag": "stone_age:hammers"
+    "tag": "ages_api:hammers"
   },
   "result": {
     "item": "minecraft:cut_sandstone_slab",

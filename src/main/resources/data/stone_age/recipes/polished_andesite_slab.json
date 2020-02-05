@@ -4,7 +4,7 @@
     "item": "minecraft:polished_andesite"
   },
   "tool": {
-    "tag": "stone_age:hammers"
+    "tag": "ages_api:hammers"
   },
   "result": {
     "item": "minecraft:polished_andesite_slab",

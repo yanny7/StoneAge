@@ -4,7 +4,7 @@
     "item": "minecraft:polished_granite"
   },
   "tool": {
-    "tag": "stone_age:hammers"
+    "tag": "ages_api:hammers"
   },
   "result": {
     "item": "minecraft:polished_granite_slab",

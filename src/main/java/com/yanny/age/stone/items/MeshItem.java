@@ -3,10 +3,10 @@ package com.yanny.age.stone.items;
 import com.yanny.ages.api.group.ModItemGroup;
 import net.minecraft.item.Item;
 
-public class GrassMesh extends Item {
+public class MeshItem extends Item {
 
-    public GrassMesh() {
-        super(new Item.Properties().group(ModItemGroup.AGES).maxDamage(15));
+    public MeshItem(Properties properties) {
+        super(properties);
     }
 
     @Override

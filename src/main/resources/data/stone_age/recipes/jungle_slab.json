@@ -4,7 +4,7 @@
     "item": "minecraft:jungle_planks"
   },
   "tool": {
-    "tag": "stone_age:axes"
+    "tag": "ages_api:axes"
   },
   "result": {
     "item": "minecraft:jungle_slab",

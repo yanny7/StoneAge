@@ -4,7 +4,7 @@
     "item": "minecraft:sandstone"
   },
   "tool": {
-    "tag": "stone_age:hammers"
+    "tag": "ages_api:hammers"
   },
   "result": {
     "item": "minecraft:sandstone_slab",
