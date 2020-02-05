@@ -2,7 +2,7 @@ package com.yanny.age.stone.items;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.yanny.age.stone.Reference;
-import com.yanny.age.stone.manual.ManualWidget;
+import com.yanny.ages.api.manual.ManualWidget;
 import com.yanny.age.stone.recipes.handlers.*;
 import com.yanny.age.stone.subscribers.RecipeSubscriber;
 import net.minecraft.client.Minecraft;

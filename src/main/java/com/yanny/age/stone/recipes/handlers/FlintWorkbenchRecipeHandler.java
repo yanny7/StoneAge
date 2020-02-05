@@ -1,9 +1,9 @@
 package com.yanny.age.stone.recipes.handlers;
 
 import com.yanny.age.stone.Reference;
-import com.yanny.age.stone.manual.IRecipeHandler;
-import com.yanny.age.stone.manual.RecipeBackground;
-import com.yanny.age.stone.manual.RecipeIngredient;
+import com.yanny.ages.api.manual.IRecipeHandler;
+import com.yanny.ages.api.manual.RecipeBackground;
+import com.yanny.ages.api.manual.RecipeIngredient;
 import com.yanny.age.stone.recipes.FlintWorkbenchRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
