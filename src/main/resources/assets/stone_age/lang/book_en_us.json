@@ -494,7 +494,7 @@
         },
         {
           "type": "text",
-          "text": "Used for passive fishing, just craft §pgrass_mesh §ograss mesh§r§p, put it into fishing net and wait. Around fishing net must be still water."
+          "text": "Used for passive fishing, just craft §pgrass_mesh §6grass mesh§r§p, put it into fishing net and wait. Around fishing net must be still water."
         }
       ]
     },
@@ -908,7 +908,7 @@
         },
         {
           "type": "text",
-          "text": "Used in §pfishing_net §ofishing net§r§p, have 15 uses before breaking up."
+          "text": "Used in §pfishing_net §6fishing net§r§p, have 15 uses before breaking up."
         }
       ]
     },
@@ -929,7 +929,7 @@
         },
         {
           "type": "text",
-          "text": "Used in §pfishing_net §ofishing net§r§p, have 30 uses before breaking up."
+          "text": "Used in §pfishing_net §6fishing net§r§p, have 30 uses before breaking up."
         }
       ]
     },
