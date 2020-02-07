@@ -2,7 +2,7 @@ package com.yanny.age.stone.client.renderer;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.yanny.age.stone.blocks.FlintWorkbenchTileEntity;
-import com.yanny.age.stone.utils.ItemStackUtils;
+import com.yanny.ages.api.utils.ItemStackUtils;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
