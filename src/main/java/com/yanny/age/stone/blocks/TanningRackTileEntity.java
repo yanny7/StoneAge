@@ -3,7 +3,7 @@ package com.yanny.age.stone.blocks;
 import com.yanny.age.stone.config.Config;
 import com.yanny.age.stone.recipes.TanningRackRecipe;
 import com.yanny.age.stone.subscribers.TileEntitySubscriber;
-import com.yanny.age.stone.utils.ItemStackUtils;
+import com.yanny.ages.api.utils.ItemStackUtils;
 import com.yanny.ages.api.utils.Tags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;

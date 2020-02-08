@@ -2,7 +2,7 @@ package com.yanny.age.stone.blocks;
 
 import com.yanny.age.stone.recipes.MillstoneRecipe;
 import com.yanny.age.stone.subscribers.TileEntitySubscriber;
-import com.yanny.age.stone.utils.ItemStackUtils;
+import com.yanny.ages.api.utils.ItemStackUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;

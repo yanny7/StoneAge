@@ -1,7 +1,7 @@
 package com.yanny.age.stone.items;
 
-import com.yanny.age.stone.utils.ItemStackUtils;
 import com.yanny.ages.api.group.ModItemGroup;
+import com.yanny.ages.api.utils.ItemStackUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
