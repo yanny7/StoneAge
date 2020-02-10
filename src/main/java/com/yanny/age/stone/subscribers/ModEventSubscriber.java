@@ -20,6 +20,8 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.EnumSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static com.yanny.age.stone.Reference.MODID;
 import static com.yanny.age.stone.subscribers.ToolSubscriber.*;
@@ -27,8 +29,14 @@ import static net.minecraft.world.biome.Biome.Category.*;
 
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventSubscriber {
+    public static final Set<Biome> DEFAULT_BIOMES;
+
     private static final EnumSet<Biome.Category> INVALID_BIOMES = EnumSet.of(OCEAN, RIVER, THEEND, NETHER);
-    private static final int OVERLAY_BONE = 0xe8e5d2;
+    private static final int OVERLAY_BONE_COLOR = 0xe8e5d2;
+
+    static {
+        DEFAULT_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> !INVALID_BIOMES.contains(biome.getCategory())).collect(Collectors.toSet());
+    }
 
     @SubscribeEvent
     public static void init(FMLCommonSetupEvent event) {
@@ -60,29 +68,23 @@ public class ModEventSubscriber {
     @SubscribeEvent
     public static void FMLLoadCompleteEvent(FMLLoadCompleteEvent event) {
         for (Biome biome : ForgeRegistries.BIOMES) {
-            if (INVALID_BIOMES.contains(biome.getCategory())) {
-                continue;
+            if (Config.abandonedCampAllowedBiomes.contains(biome)) {
+                biome.addStructure(FeatureSubscriber.abandoned_camp_structure, new ProbabilityConfig((float) Config.abandonedCampSpawnChance));
+                biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(FeatureSubscriber.abandoned_camp_structure,
+                        new ProbabilityConfig((float) Config.abandonedCampSpawnChance), Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
             }
 
-            biome.addStructure(FeatureSubscriber.abandoned_camp_structure, new ProbabilityConfig((float) Config.abandonedCampSpawnChance));
-            biome.addStructure(FeatureSubscriber.burial_place_structure, new ProbabilityConfig((float) Config.burialPlaceSpawnChance));
-
-            biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(FeatureSubscriber.abandoned_camp_structure,
-                    new ProbabilityConfig((float) Config.abandonedCampSpawnChance), Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
-            biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(FeatureSubscriber.burial_place_structure,
-                    new ProbabilityConfig((float) Config.burialPlaceSpawnChance), Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
+            if (Config.burialPlaceAllowedBiomes.contains(biome)) {
+                biome.addStructure(FeatureSubscriber.burial_place_structure, new ProbabilityConfig((float) Config.burialPlaceSpawnChance));
+                biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(FeatureSubscriber.burial_place_structure,
+                        new ProbabilityConfig((float) Config.burialPlaceSpawnChance), Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
+            }
         }
     }
 
     @SubscribeEvent
     public static void onColorRegister(ColorHandlerEvent.Item event) {
-        event.getItemColors().register((itemStack, index) -> OVERLAY_BONE, bone_axe_head, bone_pickaxe_head, bone_hoe_head, bone_shovel_head, bone_sword_head);
-        event.getItemColors().register((itemStack, index) -> {
-            if (index == 0) {
-                return OVERLAY_BONE;
-            }
-
-            return -1;
-        }, bone_axe, bone_pickaxe, bone_hoe, bone_shovel, bone_sword);
+        event.getItemColors().register((itemStack, index) -> OVERLAY_BONE_COLOR, bone_axe_head, bone_pickaxe_head, bone_hoe_head, bone_shovel_head, bone_sword_head);
+        event.getItemColors().register((itemStack, index) -> index == 0 ? OVERLAY_BONE_COLOR : -1, bone_axe, bone_pickaxe, bone_hoe, bone_shovel, bone_sword);
     }
 }

@@ -1,8 +1,9 @@
 package com.yanny.age.stone.config;
 
-import net.minecraftforge.fml.config.ModConfig;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 
-import javax.annotation.Nonnull;
+import java.util.stream.Collectors;
 
 public class ConfigHelper {
 
@@ -24,6 +25,13 @@ public class ConfigHelper {
 
         Config.abandonedCampSpawnChance = ConfigHolder.SERVER.abandonedCampSpawnChance.get();
         Config.burialPlaceSpawnChance = ConfigHolder.SERVER.burialPlaceSpawnChance.get();
+
+        Config.abandonedCampAllowedBiomes.clear();
+        Config.abandonedCampAllowedBiomes.addAll(ConfigHolder.SERVER.abandonedCampAllowedBiomes.get().stream()
+                .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toList()));
+        Config.burialPlaceAllowedBiomes.clear();
+        Config.burialPlaceAllowedBiomes.addAll(ConfigHolder.SERVER.burialPlaceAllowedBiomes.get().stream()
+                .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toList()));
 
         Config.spawnDeerEnable = ConfigHolder.SERVER.spawnDeerEnable.get();
         Config.spawnDeerWeight = ConfigHolder.SERVER.spawnDeerWeight.get();
@@ -60,10 +68,5 @@ public class ConfigHelper {
     }
 
     public static void bakeClient() {
-    }
-
-    public static void setValueAndSave(@Nonnull final ModConfig modConfig, @Nonnull final String path, @Nonnull final Object newValue) {
-        modConfig.getConfigData().set(path, newValue);
-        modConfig.save();
     }
 }
