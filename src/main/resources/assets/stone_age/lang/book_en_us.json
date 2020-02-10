@@ -609,7 +609,7 @@
         },
         {
           "type": "text",
-          "text": "Antler drops from §pdeer §6deers§r§p. It is used for making antler tools."
+          "text": "Antler drops from §pdeer §6deers§r§p. It is used for making bone tools."
         }
       ]
     },
@@ -948,11 +948,11 @@
           "color": "LIST",
           "list":
           [
-            "§pantler_axe §oAntler axe§r§p",
-            "§pantler_hoe §oAntler hoe§r§p",
-            "§pantler_pickaxe §oAntler pickaxe§r§p",
-            "§pantler_shovel §oAntler shovel§r§p",
-            "§pantler_sickle §oAntler sickle§r§p",
+            "§pbone_axe §oBone axe§r§p",
+            "§pbone_hoe §oBone hoe§r§p",
+            "§pbone_pickaxe §oBone pickaxe§r§p",
+            "§pbone_shovel §oBone shovel§r§p",
+            "§pbone_shears §oBone shears§r§p",
             "§pbone_sword §oBone sword§r§p",
             "§pbow §oBow§r§p",
             "§pflint_knife §oFlint knife§r§p",
@@ -968,86 +968,86 @@
       ]
     },
     {
-      "key": "antler_axe",
+      "key": "bone_axe",
       "content":
       [
         {
           "type": "title",
-          "text": "Antler axe",
+          "text": "Bone axe",
           "color": "TITLE",
           "margin_bottom": 10
         },
         {
           "type": "recipe",
-          "recipe": ["stone_age:antler_axe"],
+          "recipe": ["stone_age:bone_axe"],
           "margin_bottom": 5
         }
       ]
     },
     {
-      "key": "antler_hoe",
+      "key": "bone_hoe",
       "content":
       [
         {
           "type": "title",
-          "text": "Antler hoe",
+          "text": "Bone hoe",
           "color": "TITLE",
           "margin_bottom": 10
         },
         {
           "type": "recipe",
-          "recipe": ["stone_age:antler_hoe"],
+          "recipe": ["stone_age:bone_hoe"],
           "margin_bottom": 5
         }
       ]
     },
     {
-      "key": "antler_pickaxe",
+      "key": "bone_pickaxe",
       "content":
       [
         {
           "type": "title",
-          "text": "Antler pickaxe",
+          "text": "Bone pickaxe",
           "color": "TITLE",
           "margin_bottom": 10
         },
         {
           "type": "recipe",
-          "recipe": ["stone_age:antler_pickaxe"],
+          "recipe": ["stone_age:bone_pickaxe"],
           "margin_bottom": 5
         }
       ]
     },
     {
-      "key": "antler_shovel",
+      "key": "bone_shovel",
       "content":
       [
         {
           "type": "title",
-          "text": "Antler shovel",
+          "text": "Bone shovel",
           "color": "TITLE",
           "margin_bottom": 10
         },
         {
           "type": "recipe",
-          "recipe": ["stone_age:antler_shovel"],
+          "recipe": ["stone_age:bone_shovel"],
           "margin_bottom": 5
         }
       ]
     },
     {
-      "key": "antler_sickle",
+      "key": "bone_shears",
       "content":
       [
         {
           "type": "title",
-          "text": "Antler sickle",
+          "text": "Bone shears",
           "color": "TITLE",
           "margin_bottom": 10
         },
         {
           "type": "recipe",
-          "recipe": ["stone_age:antler_sickle"],
+          "recipe": ["stone_age:bone_shears"],
           "margin_bottom": 5
         },
         {
