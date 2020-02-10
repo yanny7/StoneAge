@@ -1,0 +1,15 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    " #",
+    "# "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:bone"
+    }
+  },
+  "result": {
+    "item": "stone_age:bone_shears"
+  }
+}
