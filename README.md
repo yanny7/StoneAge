@@ -7,3 +7,7 @@ For more information, see [wiki](https://github.com/yanny7/StoneAge/wiki).
 Found bug? Please report [here](https://github.com/yanny7/StoneAge/issues).
 
 This mod depends on [Ages api](https://github.com/yanny7/AgesApi).
+
+## Wanna help with translations? Or found bug in translation?
+
+Please download language files in [path](https://github.com/yanny7/StoneAge/tree/master/src/main/resources/assets/stone_age/lang) then open new issue and attach updated/translated files.
