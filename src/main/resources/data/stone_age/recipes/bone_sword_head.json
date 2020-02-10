@@ -1,15 +1,16 @@
 {
   "type": "stone_age:flint_workbench",
   "pattern": [
-    "#"
+    "X",
+    "X",
+    "X"
   ],
   "key": {
-    "#": {
+    "X": {
       "tag": "ages_api:bones"
     }
   },
   "result": {
-    "item": "stone_age:bone_arrow_head",
-    "count": 2
+    "item": "stone_age:bone_sword_head"
   }
 }

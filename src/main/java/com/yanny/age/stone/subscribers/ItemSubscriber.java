@@ -34,6 +34,7 @@ public class ItemSubscriber {
     public static final Item stone_tablet = null;
     public static final Item grass_mesh = null;
     public static final Item cobweb_mesh = null;
+    public static final Item grass_lead = null;
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
@@ -54,5 +55,6 @@ public class ItemSubscriber {
         registry.register(new StoneTabletItem().setRegistryName(MODID, "stone_tablet"));
         registry.register(new MeshItem(new Item.Properties().group(ModItemGroup.AGES).maxDamage(15)).setRegistryName(MODID, "grass_mesh"));
         registry.register(new MeshItem(new Item.Properties().group(ModItemGroup.AGES).maxDamage(30)).setRegistryName(MODID, "cobweb_mesh"));
+        registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "grass_lead"));
     }
 }

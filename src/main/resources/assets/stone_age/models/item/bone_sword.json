@@ -1,6 +1,7 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "stone_age:item/bone_sword"
+        "layer0": "ages_api:item/sword_head_mask",
+        "layer1": "ages_api:item/sword_rod_mask"
     }
 }
