@@ -22,24 +22,13 @@ import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.EnumSet;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import static com.yanny.age.stone.Reference.MODID;
 import static com.yanny.age.stone.subscribers.ToolSubscriber.*;
-import static net.minecraft.world.biome.Biome.Category.*;
 
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventSubscriber {
-    public static final Set<Biome> DEFAULT_BIOMES;
 
-    private static final EnumSet<Biome.Category> INVALID_BIOMES = EnumSet.of(OCEAN, RIVER, THEEND, NETHER);
     private static final int OVERLAY_BONE_COLOR = 0xe8e5d2;
-
-    static {
-        DEFAULT_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> !INVALID_BIOMES.contains(biome.getCategory())).collect(Collectors.toSet());
-    }
 
     @SubscribeEvent
     public static void init(FMLCommonSetupEvent event) {

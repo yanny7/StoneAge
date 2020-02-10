@@ -1,7 +1,6 @@
 package com.yanny.age.stone.config;
 
 import com.yanny.age.stone.Reference;
-import com.yanny.age.stone.subscribers.ModEventSubscriber;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -65,6 +64,15 @@ class ServerConfig {
     final ForgeConfigSpec.IntValue spawnWoollyRhinoWeight;
     final ForgeConfigSpec.IntValue spawnWoollyRhinoMinCount;
     final ForgeConfigSpec.IntValue spawnWoollyRhinoMaxCount;
+
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnDeerAllowedBiomes;
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnBoarAllowedBiomes;
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnAurochAllowedBiomes;
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnFowlAllowedBiomes;
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnMouflonAllowedBiomes;
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnMammothAllowedBiomes;
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnSaberToothTigerAllowedBiomes;
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnWoollyRhinoAllowedBiomes;
 
     ServerConfig(@Nonnull final ForgeConfigSpec.Builder builder) {
         builder.push("general");
@@ -134,7 +142,7 @@ class ServerConfig {
         abandonedCampAllowedBiomes = builder
                 .comment("Abandoned camp allowed biomes")
                 .translation(Reference.MODID + ".config.abandoned_camp_allowed_biomes")
-                .defineList("abandonedCampAllowedBiomes", ModEventSubscriber.DEFAULT_BIOMES.stream()
+                .defineList("abandonedCampAllowedBiomes", Config.DEFAULT_STRUCTURE_BIOMES.stream()
                         .map(value -> Objects.requireNonNull(value.getRegistryName()).toString()).collect(Collectors.toList()),
                         string -> ForgeRegistries.BIOMES.containsKey(new ResourceLocation((String) string)));
         burialPlaceSpawnChance = builder
@@ -144,12 +152,13 @@ class ServerConfig {
         burialPlaceAllowedBiomes = builder
                 .comment("Burial place allowed biomes")
                 .translation(Reference.MODID + ".config.burial_place_allowed_biomes")
-                .defineList("burialPlaceAllowedBiomes", ModEventSubscriber.DEFAULT_BIOMES.stream()
+                .defineList("burialPlaceAllowedBiomes", Config.DEFAULT_STRUCTURE_BIOMES.stream()
                         .map(value -> Objects.requireNonNull(value.getRegistryName()).toString()).collect(Collectors.toList()),
                         string -> ForgeRegistries.BIOMES.containsKey(new ResourceLocation((String) string)));
         builder.pop();
 
         builder.push("mob spawning");
+        builder.push("deer");
         spawnDeerEnable = builder
                 .comment("Enable spawning of mob")
                 .translation(Reference.MODID + ".config.spawn_deer_enable")
@@ -166,7 +175,14 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_deer_max_count")
                 .defineInRange("spawnDeerMaxCount", 10, 1, 100);
-
+        spawnDeerAllowedBiomes = builder
+                .comment("Spawn deer in allowed biomes")
+                .translation(Reference.MODID + ".config.spawn_deer_allowed_biomes")
+                .defineList("spawnDeerAllowedBiomes", Config.DEFAULT_DEER_BIOMES.stream()
+                        .map(value -> Objects.requireNonNull(value.getRegistryName()).toString()).collect(Collectors.toList()),
+                        string -> ForgeRegistries.BIOMES.containsKey(new ResourceLocation((String) string)));
+        builder.pop();
+        builder.push("boar");
         spawnBoarEnable = builder
                 .comment("Enable spawning of mob")
                 .translation(Reference.MODID + ".config.spawn_boar_enable")
@@ -183,7 +199,14 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_boar_max_count")
                 .defineInRange("spawnBoarMaxCount", 6, 1, 100);
-
+        spawnBoarAllowedBiomes = builder
+                .comment("Spawn boar in allowed biomes")
+                .translation(Reference.MODID + ".config.spawn_boar_allowed_biomes")
+                .defineList("spawnBoarAllowedBiomes", Config.DEFAULT_BOAR_BIOMES.stream()
+                        .map(value -> Objects.requireNonNull(value.getRegistryName()).toString()).collect(Collectors.toList()),
+                        string -> ForgeRegistries.BIOMES.containsKey(new ResourceLocation((String) string)));
+        builder.pop();
+        builder.push("auroch");
         spawnAurochEnable = builder
                 .comment("Enable spawning of mob")
                 .translation(Reference.MODID + ".config.spawn_auroch_enable")
@@ -200,7 +223,14 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_auroch_max_count")
                 .defineInRange("spawnAurochMaxCount", 8, 1, 100);
-
+        spawnAurochAllowedBiomes = builder
+                .comment("Spawn auroch in allowed biomes")
+                .translation(Reference.MODID + ".config.spawn_auroch_allowed_biomes")
+                .defineList("spawnAurochAllowedBiomes", Config.DEFAULT_AUROCH_BIOMES.stream()
+                        .map(value -> Objects.requireNonNull(value.getRegistryName()).toString()).collect(Collectors.toList()),
+                        string -> ForgeRegistries.BIOMES.containsKey(new ResourceLocation((String) string)));
+        builder.pop();
+        builder.push("fowl");
         spawnFowlEnable = builder
                 .comment("Enable spawning of mob")
                 .translation(Reference.MODID + ".config.spawn_fowl_enable")
@@ -217,7 +247,14 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_fowl_max_count")
                 .defineInRange("spawnFowlMaxCount", 8, 1, 100);
-
+        spawnFowlAllowedBiomes = builder
+                .comment("Spawn fowl in allowed biomes")
+                .translation(Reference.MODID + ".config.spawn_fowl_allowed_biomes")
+                .defineList("spawnFowlAllowedBiomes", Config.DEFAULT_FOWL_BIOMES.stream()
+                        .map(value -> Objects.requireNonNull(value.getRegistryName()).toString()).collect(Collectors.toList()),
+                        string -> ForgeRegistries.BIOMES.containsKey(new ResourceLocation((String) string)));
+        builder.pop();
+        builder.push("mouflon");
         spawnMouflonEnable = builder
                 .comment("Enable spawning of mob")
                 .translation(Reference.MODID + ".config.spawn_mouflon_enable")
@@ -234,7 +271,14 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_mouflon_max_count")
                 .defineInRange("spawnMouflonMaxCount", 8, 1, 100);
-
+        spawnMouflonAllowedBiomes = builder
+                .comment("Spawn mouflon in allowed biomes")
+                .translation(Reference.MODID + ".config.spawn_mouflon_allowed_biomes")
+                .defineList("spawnMouflonAllowedBiomes", Config.DEFAULT_MOUFLON_BIOMES.stream()
+                        .map(value -> Objects.requireNonNull(value.getRegistryName()).toString()).collect(Collectors.toList()),
+                        string -> ForgeRegistries.BIOMES.containsKey(new ResourceLocation((String) string)));
+        builder.pop();
+        builder.push("mammoth");
         spawnMammothEnable = builder
                 .comment("Enable spawning of mob")
                 .translation(Reference.MODID + ".config.spawn_saberToothTiger_enable")
@@ -251,7 +295,14 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_mammoth_max_count")
                 .defineInRange("spawnMammothMaxCount", 4, 1, 100);
-
+        spawnMammothAllowedBiomes = builder
+                .comment("Spawn mammoth in allowed biomes")
+                .translation(Reference.MODID + ".config.spawn_mammoth_allowed_biomes")
+                .defineList("spawnMammothAllowedBiomes", Config.DEFAULT_MAMMOTH_BIOMES.stream()
+                        .map(value -> Objects.requireNonNull(value.getRegistryName()).toString()).collect(Collectors.toList()),
+                        string -> ForgeRegistries.BIOMES.containsKey(new ResourceLocation((String) string)));
+        builder.pop();
+        builder.push("saber tooth tiger");
         spawnSaberToothTigerEnable = builder
                 .comment("Enable spawning of mob")
                 .translation(Reference.MODID + ".config.spawn_saber_tooth_tiger_enable")
@@ -268,7 +319,14 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_saber_tooth_tiger_max_count")
                 .defineInRange("spawnSaberToothTigerMaxCount", 2, 1, 100);
-
+        spawnSaberToothTigerAllowedBiomes = builder
+                .comment("Spawn saber-tooth tiger in allowed biomes")
+                .translation(Reference.MODID + ".config.spawn_saber_tooth_tiger_allowed_biomes")
+                .defineList("spawnSaberToothTigerAllowedBiomes", Config.DEFAULT_TIGER_BIOMES.stream()
+                        .map(value -> Objects.requireNonNull(value.getRegistryName()).toString()).collect(Collectors.toList()),
+                        string -> ForgeRegistries.BIOMES.containsKey(new ResourceLocation((String) string)));
+        builder.pop();
+        builder.push("woolly rhino");
         spawnWoollyRhinoEnable = builder
                 .comment("Enable spawning of mob")
                 .translation(Reference.MODID + ".config.spawn_woolly_rhino_enable")
@@ -285,6 +343,13 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_woolly_rhino_max_count")
                 .defineInRange("spawnWoollyRhinoMaxCount", 6, 1, 100);
+        spawnWoollyRhinoAllowedBiomes = builder
+                .comment("Spawn woolly rhino in allowed biomes")
+                .translation(Reference.MODID + ".config.spawn_woolly_rhino_allowed_biomes")
+                .defineList("spawnWoollyRhinoAllowedBiomes", Config.DEFAULT_RHINO_BIOMES.stream()
+                         .map(value -> Objects.requireNonNull(value.getRegistryName()).toString()).collect(Collectors.toList()),
+                        string -> ForgeRegistries.BIOMES.containsKey(new ResourceLocation((String) string)));
+        builder.pop();
         builder.pop();
     }
 }

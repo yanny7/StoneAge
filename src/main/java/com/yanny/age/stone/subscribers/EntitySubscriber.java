@@ -16,12 +16,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
-import java.util.EnumSet;
-import java.util.Set;
-
 import static net.minecraft.entity.EntityClassification.CREATURE;
 import static net.minecraft.entity.EntityType.*;
-import static net.minecraft.world.biome.Biome.Category.*;
 
 @SuppressWarnings({"unused", "unchecked"})
 @ObjectHolder(Reference.MODID)
@@ -55,17 +51,6 @@ public class EntitySubscriber {
     public static final Item saber_tooth_tiger_spawn_egg = null;
     public static final Item woolly_rhino_spawn_egg = null;
 
-    private static final EnumSet<Biome.Category> deer_biomes = EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, BEACH, SWAMP, JUNGLE, MESA, ICY);
-    private static final EnumSet<Biome.Category> boar_biomes = EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, SWAMP, JUNGLE);
-    private static final EnumSet<Biome.Category> auroch_biomes = EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, BEACH);
-    private static final EnumSet<Biome.Category> fowl_biomes = EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, SWAMP, JUNGLE, BEACH, MESA);
-    private static final EnumSet<Biome.Category> mouflon_biomes = EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SWAMP, MESA);
-    private static final EnumSet<Biome.Category> mammoth_biomes = EnumSet.of(PLAINS, SAVANNA, ICY, TAIGA, EXTREME_HILLS, DESERT, SAVANNA);
-    private static final EnumSet<Biome.Category> saber_tooth_tiger_biomes = EnumSet.of(PLAINS, SAVANNA, ICY, TAIGA, DESERT, FOREST, BEACH, JUNGLE, MUSHROOM);
-    private static final EnumSet<Biome.Category> woolly_rhino_biomes = EnumSet.of(PLAINS, SAVANNA, ICY, TAIGA, BEACH, SAVANNA, MUSHROOM, RIVER, SWAMP);
-
-    private static final Set<EntityType<?>> vanillaAnimals = Sets.newHashSet(COW, SHEEP, PIG, CHICKEN);
-
     @SubscribeEvent
     public static void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
         IForgeRegistry<EntityType<?>> registry = event.getRegistry();
@@ -80,33 +65,37 @@ public class EntitySubscriber {
         registry.register(woolly_rhino);
 
         for (Biome biome : ForgeRegistries.BIOMES) {
-            if (deer_biomes.contains(biome.getCategory()) && Config.spawnDeerEnable) {
+            if (Config.spawnDeerAllowedBiomes.contains(biome) && Config.spawnDeerEnable) {
                 biome.getSpawns(deer.getClassification()).add(new Biome.SpawnListEntry(deer, Config.spawnDeerWeight, Config.spawnDeerMinCount, Config.spawnDeerMaxCount));
             }
-            if (boar_biomes.contains(biome.getCategory()) && Config.spawnBoarEnable) {
+            if (Config.spawnBoarAllowedBiomes.contains(biome) && Config.spawnBoarEnable) {
                 biome.getSpawns(boar.getClassification()).add(new Biome.SpawnListEntry(boar, Config.spawnBoarWeight, Config.spawnBoarMinCount, Config.spawnBoarMaxCount));
             }
-            if (auroch_biomes.contains(biome.getCategory()) && Config.spawnAurochEnable) {
+            if (Config.spawnAurochAllowedBiomes.contains(biome) && Config.spawnAurochEnable) {
                 biome.getSpawns(auroch.getClassification()).add(new Biome.SpawnListEntry(auroch, Config.spawnAurochWeight, Config.spawnAurochMinCount, Config.spawnAurochMaxCount));
             }
-            if (fowl_biomes.contains(biome.getCategory()) && Config.spawnFowlEnable) {
+            if (Config.spawnFowlAllowedBiomes.contains(biome) && Config.spawnFowlEnable) {
                 biome.getSpawns(fowl.getClassification()).add(new Biome.SpawnListEntry(fowl, Config.spawnFowlWeight, Config.spawnFowlMinCount, Config.spawnFowlMaxCount));
             }
-            if (mouflon_biomes.contains(biome.getCategory()) && Config.spawnMouflonEnable) {
+            if (Config.spawnMouflonAllowedBiomes.contains(biome) && Config.spawnMouflonEnable) {
                 biome.getSpawns(mouflon.getClassification()).add(new Biome.SpawnListEntry(mouflon, Config.spawnMouflonWeight, Config.spawnMouflonMinCount, Config.spawnMouflonMaxCount));
             }
-            if (mammoth_biomes.contains(biome.getCategory()) && Config.spawnMammothEnable) {
+            if (Config.spawnMammothAllowedBiomes.contains(biome) && Config.spawnMammothEnable) {
                 biome.getSpawns(mammoth.getClassification()).add(new Biome.SpawnListEntry(mammoth, Config.spawnMammothWeight, Config.spawnMammothMinCount, Config.spawnMammothMaxCount));
             }
-            if (saber_tooth_tiger_biomes.contains(biome.getCategory()) && Config.spawnSaberToothTigerEnable) {
+            if (Config.spawnSaberToothTigerAllowedBiomes.contains(biome) && Config.spawnSaberToothTigerEnable) {
                 biome.getSpawns(saber_tooth_tiger.getClassification()).add(new Biome.SpawnListEntry(saber_tooth_tiger, Config.spawnSaberToothTigerWeight, Config.spawnSaberToothTigerMinCount, Config.spawnSaberToothTigerMaxCount));
             }
-            if (woolly_rhino_biomes.contains(biome.getCategory()) && Config.spawnWoollyRhinoEnable) {
+            if (Config.spawnWoollyRhinoAllowedBiomes.contains(biome) && Config.spawnWoollyRhinoEnable) {
                 biome.getSpawns(woolly_rhino.getClassification()).add(new Biome.SpawnListEntry(woolly_rhino, Config.spawnWoollyRhinoWeight, Config.spawnWoollyRhinoMinCount, Config.spawnWoollyRhinoMaxCount));
             }
 
             if (Config.removeVanillaGeneratedAnimals) {
-                biome.getSpawns(CREATURE).removeIf(entry -> vanillaAnimals.contains(entry.entityType));
+                biome.getSpawns(CREATURE).removeIf(entry -> Sets.newHashSet(COW, SHEEP, PIG, CHICKEN).contains(entry.entityType));
+                // COW -> AUROCH
+                // SHEEP -> MOUFLON
+                // PIG -> BOAR
+                // CHICKEN -> FOWL
             }
         }
     }
