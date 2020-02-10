@@ -1,9 +1,15 @@
 package com.yanny.age.stone.config;
 
 import com.yanny.age.stone.Reference;
+import com.yanny.age.stone.subscribers.ModEventSubscriber;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 class ServerConfig {
     final ForgeConfigSpec.BooleanValue removeVanillaRecipes;
@@ -23,6 +29,9 @@ class ServerConfig {
 
     final ForgeConfigSpec.DoubleValue abandonedCampSpawnChance;
     final ForgeConfigSpec.DoubleValue burialPlaceSpawnChance;
+
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> abandonedCampAllowedBiomes;
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> burialPlaceAllowedBiomes;
 
     final ForgeConfigSpec.BooleanValue spawnDeerEnable;
     final ForgeConfigSpec.IntValue spawnDeerWeight;
@@ -122,10 +131,22 @@ class ServerConfig {
                 .comment("Abandoned camp spawn chance")
                 .translation(Reference.MODID + ".config.abandoned_camp_spawn_chance")
                 .defineInRange("abandonedCampSpawnChance", 0.009, Double.MIN_VALUE, 1.0);
+        abandonedCampAllowedBiomes = builder
+                .comment("Abandoned camp allowed biomes")
+                .translation(Reference.MODID + ".config.abandoned_camp_allowed_biomes")
+                .defineList("abandonedCampAllowedBiomes", ModEventSubscriber.DEFAULT_BIOMES.stream()
+                        .map(value -> Objects.requireNonNull(value.getRegistryName()).toString()).collect(Collectors.toList()),
+                        string -> ForgeRegistries.BIOMES.containsKey(new ResourceLocation((String) string)));
         burialPlaceSpawnChance = builder
                 .comment("Burial place spawn chance")
                 .translation(Reference.MODID + ".config.burial_place_spawn_chance")
                 .defineInRange("burialPlaceSpawnChance", 0.01, Double.MIN_VALUE, 1.0);
+        burialPlaceAllowedBiomes = builder
+                .comment("Burial place allowed biomes")
+                .translation(Reference.MODID + ".config.burial_place_allowed_biomes")
+                .defineList("burialPlaceAllowedBiomes", ModEventSubscriber.DEFAULT_BIOMES.stream()
+                        .map(value -> Objects.requireNonNull(value.getRegistryName()).toString()).collect(Collectors.toList()),
+                        string -> ForgeRegistries.BIOMES.containsKey(new ResourceLocation((String) string)));
         builder.pop();
 
         builder.push("mob spawning");

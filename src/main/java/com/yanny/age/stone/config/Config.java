@@ -1,5 +1,11 @@
 package com.yanny.age.stone.config;
 
+import com.yanny.age.stone.subscribers.ModEventSubscriber;
+import net.minecraft.world.biome.Biome;
+
+import java.util.List;
+import java.util.Set;
+
 public class Config {
     public static boolean removeVanillaRecipes = true;
     public static boolean removeVanillaGeneratedAnimals = true;
@@ -18,6 +24,9 @@ public class Config {
 
     public static double abandonedCampSpawnChance = 0.009f;
     public static double burialPlaceSpawnChance = 0.01f;
+
+    public static Set<Biome> abandonedCampAllowedBiomes = ModEventSubscriber.DEFAULT_BIOMES;
+    public static Set<Biome> burialPlaceAllowedBiomes = ModEventSubscriber.DEFAULT_BIOMES;
 
     public static boolean spawnDeerEnable = true;
     public static int spawnDeerWeight = 20;
