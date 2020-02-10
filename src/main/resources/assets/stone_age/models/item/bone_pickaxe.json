@@ -1,0 +1,7 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "ages_api:item/pickaxe_head_mask",
+        "layer1": "ages_api:item/pickaxe_rod_mask"
+    }
+}

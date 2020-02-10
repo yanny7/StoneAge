@@ -1,0 +1,14 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "stone_age:drought_grass"
+    }
+  },
+  "result": {
+    "item": "stone_age:grass_lead"
+  }
+}

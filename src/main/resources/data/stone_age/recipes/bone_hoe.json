@@ -6,7 +6,7 @@
   ],
   "key": {
     "H": {
-      "item": "stone_age:bone_sword_head"
+      "item": "stone_age:bone_hoe_head"
     },
     "S": {
       "item": "minecraft:stick"
@@ -16,6 +16,6 @@
     }
   },
   "result": {
-    "item": "stone_age:bone_sword"
+    "item": "stone_age:bone_hoe"
   }
 }

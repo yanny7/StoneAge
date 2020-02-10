@@ -10,6 +10,7 @@ import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -21,11 +22,13 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.EnumSet;
 
 import static com.yanny.age.stone.Reference.MODID;
+import static com.yanny.age.stone.subscribers.ToolSubscriber.*;
 import static net.minecraft.world.biome.Biome.Category.*;
 
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventSubscriber {
     private static final EnumSet<Biome.Category> INVALID_BIOMES = EnumSet.of(OCEAN, RIVER, THEEND, NETHER);
+    private static final int OVERLAY_BONE = 0xe8e5d2;
 
     @SubscribeEvent
     public static void init(FMLCommonSetupEvent event) {
@@ -69,5 +72,17 @@ public class ModEventSubscriber {
             biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(FeatureSubscriber.burial_place_structure,
                     new ProbabilityConfig((float) Config.burialPlaceSpawnChance), Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
         }
+    }
+
+    @SubscribeEvent
+    public static void onColorRegister(ColorHandlerEvent.Item event) {
+        event.getItemColors().register((itemStack, index) -> OVERLAY_BONE, bone_axe_head, bone_pickaxe_head, bone_hoe_head, bone_shovel_head, bone_sword_head);
+        event.getItemColors().register((itemStack, index) -> {
+            if (index == 0) {
+                return OVERLAY_BONE;
+            }
+
+            return -1;
+        }, bone_axe, bone_pickaxe, bone_hoe, bone_shovel, bone_sword);
     }
 }

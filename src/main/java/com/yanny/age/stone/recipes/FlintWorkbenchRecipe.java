@@ -1,6 +1,8 @@
 package com.yanny.age.stone.recipes;
 
 import com.yanny.age.stone.subscribers.RecipeSubscriber;
+import com.yanny.ages.api.items.AgesPartItem;
+import com.yanny.ages.api.items.AgesToolItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -10,10 +12,15 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
 
+import static com.yanny.ages.api.items.AgesToolItem.*;
+
 public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
+    private static final Logger LOGGER = LogManager.getLogger();
     public static final IRecipeType<FlintWorkbenchRecipe> flint_workbench = IRecipeType.register("flint_workbench");
     public static final int MAX_WIDTH = 3;
     public static final int MAX_HEIGHT = 3;
@@ -96,7 +103,30 @@ public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
     @Nonnull
     @Override
     public ItemStack getCraftingResult(@Nonnull IInventory inv) {
-        return this.getRecipeOutput().copy();
+        ItemStack result = getRecipeOutput().copy();
+
+        if (result.getItem() instanceof AgesPartItem) {
+            AgesPartItem item = (AgesPartItem) result.getItem();
+            item.applyStats(result);
+        } else if (result.getItem() instanceof AgesToolItem) {
+            ItemStack part = null;
+
+            for (int i = 0; i < inv.getSizeInventory(); i++) {
+                ItemStack itemStack = inv.getStackInSlot(i);
+
+                if (itemStack.getItem() instanceof AgesPartItem) {
+                    part = itemStack;
+                }
+            }
+
+            if (part != null) {
+                setAdditionalModifiers(result, getAdditionalAttackDamage(part), getAdditionalAttackSpeed(part), getAdditionalEfficiency(part));
+            } else {
+                LOGGER.warn("Expected item with AgesToolItem parent '{}' recipe", recipeOutput.getDisplayName());
+            }
+        }
+
+        return result;
     }
 
     public int getWidth() {
