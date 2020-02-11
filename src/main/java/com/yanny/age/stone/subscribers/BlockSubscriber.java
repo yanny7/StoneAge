@@ -23,8 +23,8 @@ public class BlockSubscriber {
     public static final Block tanning_rack = null;
     public static final Block stone_chest = null;
     public static final Block tree_stump = null;
-    public static final Block aquaduct = null;
-    public static final Block drought_grass_bed = null;
+    public static final Block aqueduct = null;
+    public static final Block dried_grass_bed = null;
     public static final Block feeder = null;
     public static final Block millstone = null;
     public static final Block fishing_net = null;
@@ -37,8 +37,8 @@ public class BlockSubscriber {
         registry.register(new TanningRackBlock().setRegistryName(MODID, "tanning_rack"));
         registry.register(new StoneChestBlock().setRegistryName(MODID, "stone_chest"));
         registry.register(new TreeStumpBlock().setRegistryName(MODID, "tree_stump"));
-        registry.register(new AquaductBlock().setRegistryName(MODID, "aquaduct"));
-        registry.register(new DroughtGrassBedBlock().setRegistryName(MODID, "drought_grass_bed"));
+        registry.register(new AqueductBlock().setRegistryName(MODID, "aqueduct"));
+        registry.register(new DriedGrassBedBlock().setRegistryName(MODID, "dried_grass_bed"));
         registry.register(new FeederBlock().setRegistryName(MODID, "feeder"));
         registry.register(new MillstoneBlock().setRegistryName(MODID, "millstone"));
         registry.register(new FishingNetBlock().setRegistryName(MODID, "fishing_net"));
@@ -58,10 +58,10 @@ public class BlockSubscriber {
                 .setRegistryName(MODID, "stone_chest"));
         registry.register(new BlockItem(tree_stump, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "tree_stump"));
-        registry.register(new BlockItem(aquaduct, new Item.Properties().group(ModItemGroup.AGES))
-                .setRegistryName(MODID, "aquaduct"));
-        registry.register(new BedItem(drought_grass_bed, new Item.Properties().group(ModItemGroup.AGES))
-                .setRegistryName(MODID, "drought_grass_bed"));
+        registry.register(new BlockItem(aqueduct, new Item.Properties().group(ModItemGroup.AGES))
+                .setRegistryName(MODID, "aqueduct"));
+        registry.register(new BedItem(dried_grass_bed, new Item.Properties().group(ModItemGroup.AGES))
+                .setRegistryName(MODID, "dried_grass_bed"));
         registry.register(new BlockItem(feeder, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "feeder"));
         registry.register(new BlockItem(millstone, new Item.Properties().group(ModItemGroup.AGES))

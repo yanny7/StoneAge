@@ -3,6 +3,6 @@
   "ingredient": {
     "item": "minecraft:grass"
   },
-  "result": "stone_age:drought_grass",
+  "result": "stone_age:dried_grass",
   "dryingTime": 1200
 }

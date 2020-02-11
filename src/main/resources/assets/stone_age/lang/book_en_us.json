@@ -22,7 +22,7 @@
         },
         {
           "type": "text",
-          "text": "Welcome to stone age mod manual! If you find any bug in this manual or in mod, please report it to §phttps://github.com/yanny7/StoneAge/issues §6github§r.",
+          "text": "Welcome to the manual for Stone Age! If you find any bugs within this manual or mod, please report them on §phttps://github.com/yanny7/StoneAge/issues §6Github§r.",
           "margin_bottom": 10
         },
         {
@@ -32,11 +32,11 @@
           [
             "§pblocks §oBlocks§r§p",
             "§pitems §oItems§r§p",
-            "§ptools §oWeapons and tools§r§p",
-            "§parmor §oArmors§r§p",
-            "§pfoods §oFoods§r§p",
+            "§ptools §oWeapons and Tools§r§p",
+            "§parmor §oArmor§r§p",
+            "§pfood §oFood§r§p",
             "§pmobs §oMobs§r§p",
-            "§pfire §oMaking fire§r§p"
+            "§pfire §oMaking Fire§r§p"
           ]
         }
       ]
@@ -56,23 +56,23 @@
           "color": "LIST",
           "list":
           [
-            "§pflint_workbench §oFlint workbench§r§p",
-            "§pdrying_rack §oDrying rack§r§p",
-            "§ptanning_rack §oTanning rack§r§p",
-            "§pstone_chest §oStone chest§r§p",
-            "§ptree_stump §oTree stump§r§p",
-            "§paquaduct §oAquaduct§r§p",
-            "§pdrought_grass_bed §oDrought grass bed§r§p",
-            "§pfeeder §oFeeder§r§p",
+            "§pflint_workbench §oFlint Workbench§r§p",
+            "§pdrying_rack §oDrying Rack§r§p",
+            "§ptanning_rack §oTanning Rack§r§p",
+            "§pstone_chest §oStone Chest§r§p",
+            "§ptree_stump §oTree Stump§r§p",
+            "§paqueduct §oAqueduct§r§p",
+            "§pdried_grass_bed §oDried Grass Bed§r§p",
+            "§pfeeder §oFeeding Trough§r§p",
             "§pmillstone §oMillstone§r§p",
             "§pcampfire §oCampfire§r§p",
-            "§pcrafting_table §oCrafting table§r§p",
+            "§pcrafting_table §oCrafting Table§r§p",
             "§pfurnace §oFurnace§r§p",
-            "§phay_block §oHay block§r§p",
-            "§pfences §oWooden fences and gates§r§p",
-            "§pslabs §oWooden and rocky slabs§r§p",
+            "§phay_block §oHay Block§r§p",
+            "§pfences §oWooden Fences and Gates§r§p",
+            "§pslabs §oWooden and Stone Slabs§r§p",
             "§pplanks §oPlanks§r§p",
-            "§pfishing_net §oFishing net§r§p"
+            "§pfishing_net §oFishing Net§r§p"
           ]
         }
       ]
@@ -83,7 +83,7 @@
       [
         {
           "type": "title",
-          "text": "Flint workbench",
+          "text": "Flint Workbench",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -94,7 +94,7 @@
         },
         {
           "type": "text",
-          "text": "Allow you to craft primitive items. Just put required items into workbench by right-click and then right-click with §pflint_knife §6flint knife§r§p to craft an item.",
+          "text": "This workbench allows you to craft primitive items. You just have to arrange the required items on the workbench with right-click, and then right-click with the §pflint_knife §6flint knife§r§p to craft the item.",
           "margin_bottom": 5
         },
         {
@@ -113,7 +113,7 @@
       [
         {
           "type": "title",
-          "text": "Drying rack",
+          "text": "Drying Rack",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -124,7 +124,7 @@
         },
         {
           "type": "text",
-          "text": "Drying rack is used for drying items like grass. Just right-click with item on drying rack and wait. Note that item is dried only during day."
+          "text": "The drying rack is used for drying items like grass. Just right-click the drying rack with an item and wait. Note that the item is only dried during the day."
         }
       ]
     },
@@ -134,7 +134,7 @@
       [
         {
           "type": "title",
-          "text": "Tanning rack",
+          "text": "Tanning Rack",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -145,7 +145,7 @@
         },
         {
           "type": "text",
-          "text": "Tanning rack is used for tanning §praw_hide §6raw hide§r§p to leather. Just put raw hide to tanning rack by right-click and then multiple times right-click on hide with §pflint_knife §6flint knife§r§p."
+          "text": "The tanning rack is used for tanning §praw_hide §6raw hide§r§p into leather. You can place raw hide on the tanning rack with right-click and then right-click on the hide several times with a §pflint_knife §6flint knife§r§p."
         }
       ]
     },
@@ -155,7 +155,7 @@
       [
         {
           "type": "title",
-          "text": "Stone chest",
+          "text": "Stone Chest",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -166,7 +166,7 @@
         },
         {
           "type": "text",
-          "text": "Stone chest allow you to store small amount of items. Still better than nothing!"
+          "text": "The stone chest allows you to store a small amount of items. It is still better than nothing!"
         }
       ]
     },
@@ -176,7 +176,7 @@
       [
         {
           "type": "title",
-          "text": "Tree stump",
+          "text": "Tree Stump",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -187,49 +187,49 @@
         },
         {
           "type": "text",
-          "text": "Tree stump is way to get planks or half-slabs. Just put valid item on tree stump by right-click and then left-click with tool: for wood use axe, for stone use hammer."
+          "text": "The tree stump is a way to get planks of half-slabs. You can just place a valid item on the tree stump with right-click and then left-click with the required tool; an axe for wood, or a hammer for stone."
         }
       ]
     },
     {
-      "key": "aquaduct",
+      "key": "aqueduct",
       "content":
       [
         {
           "type": "title",
-          "text": "Aquaduct",
+          "text": "Aqueduct",
           "color": "TITLE",
           "margin_bottom": 10
         },
         {
           "type": "recipe",
-          "recipe": ["stone_age:aquaduct"],
+          "recipe": ["stone_age:aqueduct"],
           "margin_bottom": 5
         },
         {
           "type": "text",
-          "text": "Aquaduct allow you to transfer water near your crops. To fill aquaduct with water, put it near water source. To water nearby farmland, activate aquaduct with right-click. You will see bubbles when aquaduct is active and has water. Aquaduct transfer water horizontally and downward. Activated aquaduct also apply around §lbonemeal effect§r."
+          "text": "The aqueduct allows you to transfer water to hydrate your crops. To fill the aqueduct with water, place one near a water source block. You can activate the aqueduct with a right-click, which will result in bubbles from it. Aqueduct can transfer water horizontally and downward. Activated aqueducts also speed up crop growth."
         }
       ]
     },
     {
-      "key": "drought_grass_bed",
+      "key": "dried_grass_bed",
       "content":
       [
         {
           "type": "title",
-          "text": "Drought grass bed",
+          "text": "Dried Grass Bed",
           "color": "TITLE",
           "margin_bottom": 10
         },
         {
           "type": "recipe",
-          "recipe": ["stone_age:drought_grass_bed"],
+          "recipe": ["stone_age:dried_grass_bed"],
           "margin_bottom": 5
         },
         {
           "type": "text",
-          "text": "When wool is not available for you, you can still sleep on bed made of dried grass."
+          "text": "Due to wool being unavailable to you, you can still sleep on a bed made from dried grass."
         }
       ]
     },
@@ -239,7 +239,7 @@
       [
         {
           "type": "title",
-          "text": "Feeder",
+          "text": "Feeding Trough",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -250,7 +250,7 @@
         },
         {
           "type": "text",
-          "text": "Feeder as name says, provide food for animals around. Just right-click to open menu and put inside food like wheat or seeds. Feeder with food inside speed-up growth rate of baby animals and for adult animals activate breeding randomly."
+          "text": "The animal trough feeds animals nearby. You can right click the trough to open the menu and place feed inside for your animals, such as wheat or seeds. An animal trough with food inside will speed-up the growth rate of baby animals and cause adult animals to breed."
         }
       ]
     },
@@ -271,7 +271,7 @@
         },
         {
           "type": "text",
-          "text": "Millstone is used for milling wheat into grain. Right-click while sneak to open menu. There you can place wheat. Then right-click with empty hand to mill wheat."
+          "text": "The millstone is used for milling wheat into flour, and sugar cane into sugar. Right-click while sneaking to open the menu, and place wheat or sugar cane inside. Then you can right-click the millstone with an open hand to mill these items."
         }
       ]
     },
@@ -292,7 +292,7 @@
         },
         {
           "type": "text",
-          "text": "Campfire is used for cooking food."
+          "text": "The campfire is used for cooking food."
         }
       ]
     },
@@ -302,7 +302,7 @@
       [
         {
           "type": "title",
-          "text": "Crafting table",
+          "text": "Crafting Table",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -313,7 +313,7 @@
         },
         {
           "type": "text",
-          "text": "Vanilla crafting table, access to crafting table ends stone age."
+          "text": "The vanilla crafting table is the final step to finish the stone age."
         }
       ]
     },
@@ -334,7 +334,7 @@
         },
         {
           "type": "text",
-          "text": "Vanilla furnace."
+          "text": "The vanilla furnace."
         }
       ]
     },
@@ -344,7 +344,7 @@
       [
         {
           "type": "title",
-          "text": "Hay block",
+          "text": "Hay Block",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -355,7 +355,7 @@
         },
         {
           "type": "text",
-          "text": "Hay block, used for larger smoke when under campfire."
+          "text": "A hay bale can be placed under a campfire for more smoke."
         }
       ]
     },
@@ -365,7 +365,7 @@
       [
         {
           "type": "title",
-          "text": "Wooden fences and gates",
+          "text": "Wooden Fences and Gates",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -403,7 +403,7 @@
       [
         {
           "type": "title",
-          "text": "Wooden and rocky slabs",
+          "text": "Wooden and Stone Slabs",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -480,7 +480,7 @@
       [
         {
           "type": "title",
-          "text": "Fishing net",
+          "text": "Fishing Net",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -494,7 +494,7 @@
         },
         {
           "type": "text",
-          "text": "Used for passive fishing, just craft §pgrass_mesh §6grass mesh§r§p, put it into fishing net and wait. Around fishing net must be still water."
+          "text": "The fishing net allows you to passively catch fish by placing a §pgrass_mesh §6grass mesh§r§p or §pcobweb_mesh §6cobweb mesh§r§p into it. The fishing net must be placed in water to function."
         }
       ]
     },
@@ -513,26 +513,26 @@
           "color": "LIST",
           "list":
           [
-            "§pbone_meal §oBone meal§r§p",
+            "§pbone_meal §oBone Meal§r§p",
             "§parrow §oArrows§r§p",
-            "§praw_hide §oRaw hide§r§p",
+            "§praw_hide §oRaw Hide§r§p",
             "§pantler §oAntler§r§p",
-            "§punlit_torch §oUnlit torch§r§p",
-            "§pbone_arrow_head §oBone arrow head§r§p",
-            "§pdrought_grass §oDrought grass§r§p",
-            "§pleather_strip §oLeather strip§r§p",
-            "§pfish_bone §oFish bone§r§p",
+            "§punlit_torch §oUnlit Torch§r§p",
+            "§pbone_arrow_head §oBone Arrow Head§r§p",
+            "§pdried_grass §oDried Grass§r§p",
+            "§pleather_strip §oLeather Strip§r§p",
+            "§pfish_bone §oFish Bone§r§p",
             "§pflour §oFlour§r§p",
-            "§pbread_dough §oBread dough§r§p",
-            "§pmammoth_tusk §oMammoth tusk§r§p",
-            "§psabber_tooth_teeth §oSaber-tooth teeth§r§p",
-            "§prhino_tusk §oRhino tusk§r§p",
+            "§pbread_dough §oBread Dough§r§p",
+            "§pmammoth_tusk §oMammoth Tusk§r§p",
+            "§psabber_tooth_teeth §oSaber-Tooth Tiger Teeth§r§p",
+            "§prhino_tusk §oRhino Tusk§r§p",
             "§pbackpack §oBackpack§r§p",
             "§plead §oLead§r§p",
             "§pleather §oLeather§r§p",
             "§psugar §oSugar§r§p",
-            "§pgrass_mesh §oGrash mesh§r§p",
-            "§pcobweb_mesh §oCobweb mesh§r§p"
+            "§pgrass_mesh §oGrass Mesh§r§p",
+            "§pcobweb_mesh §oCobweb Mesh§r§p"
           ]
         }
       ]
@@ -543,7 +543,7 @@
       [
         {
           "type": "title",
-          "text": "Bone meal",
+          "text": "Bone Meal",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -587,13 +587,13 @@
       [
         {
           "type": "title",
-          "text": "Raw hide",
+          "text": "Raw Hide",
           "color": "TITLE",
           "margin_bottom": 10
         },
         {
           "type": "text",
-          "text": "Raw hide drops from §pdeer §6deers§r§p, §pauroch §6aurochs§r§p, §pmammoth §6mammoths§r§p, §pwoolly_rhino §6woolly rhinos§r§p and from cows. Raw hide can be tanned into leather using §ptanning_rack §6tanning rack§r§p."
+          "text": "Raw hide is dropped by §pdeer §6deer§r§p, §pauroch §6aurochs§r§p, §pmammoth §6mammoths§r§p, §pwoolly_rhino §6woolly rhinos§r§p, and cows. Raw hide can be tanned into leather using the §ptanning_rack §6tanning rack§r§p."
         }
       ]
     },
@@ -609,7 +609,7 @@
         },
         {
           "type": "text",
-          "text": "Antler drops from §pdeer §6deers§r§p. It is used for making bone tools."
+          "text": "Antlers are dropped by §pdeer §6deer§r§p. It is used for making tools."
         }
       ]
     },
@@ -619,7 +619,7 @@
       [
         {
           "type": "title",
-          "text": "Unlit torch",
+          "text": "Unlit Torch",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -630,7 +630,7 @@
         },
         {
           "type": "text",
-          "text": "Unlit torch can be lit by right-click on fire, campfire or another torch"
+          "text": "An unlit torch can be lit by right-click on a fire, campfire, or another torch."
         }
       ]
     },
@@ -640,7 +640,7 @@
       [
         {
           "type": "title",
-          "text": "Bone arrow head",
+          "text": "Bone Arrow Head",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -651,28 +651,28 @@
         },
         {
           "type": "text",
-          "text": "Bone arrow head is used for crafting §parrow §6arrows§r§p."
+          "text": "Bone arrow heads are used for crafting §parrow §6arrows§r§p."
         }
       ]
     },
     {
-      "key": "drought_grass",
+      "key": "dried_grass",
       "content":
       [
         {
           "type": "title",
-          "text": "Drought grass",
+          "text": "Dried Grass",
           "color": "TITLE",
           "margin_bottom": 10
         },
         {
           "type": "recipe",
-          "recipe": ["stone_age:drought_grass"],
+          "recipe": ["stone_age:dried_grass"],
           "margin_bottom": 5
         },
         {
           "type": "text",
-          "text": "Drought grass is used as crafting item or for making §pfire §6fire§r§p."
+          "text": "Dried grass is used as a crafting item and for making §pfire §6fire§r§p."
         }
       ]
     },
@@ -682,7 +682,7 @@
       [
         {
           "type": "title",
-          "text": "Leather strip",
+          "text": "Leather Strip",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -693,7 +693,7 @@
         },
         {
           "type": "text",
-          "text": "Leather strips is used as crafting item."
+          "text": "Leather strips are used for crafting."
         }
       ]
     },
@@ -703,13 +703,13 @@
       [
         {
           "type": "title",
-          "text": "Fish bone",
+          "text": "Fish Bone",
           "color": "TITLE",
           "margin_bottom": 10
         },
         {
           "type": "text",
-          "text": "Fish bone drops from fishs and is used as crafting item."
+          "text": "Fish bones are dropped by fish and are used for crafting."
         }
       ]
     },
@@ -730,7 +730,7 @@
         },
         {
           "type": "text",
-          "text": "Flour is used as crafting item."
+          "text": "Flour is used for making bread dough."
         }
       ]
     },
@@ -740,7 +740,7 @@
       [
         {
           "type": "title",
-          "text": "Bread dough",
+          "text": "Bread Dough",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -765,13 +765,13 @@
       [
         {
           "type": "title",
-          "text": "Mammoth tusk",
+          "text": "Mammoth Tusk",
           "color": "TITLE",
           "margin_bottom": 10
         },
         {
           "type": "text",
-          "text": "Mammoth tusk drops from §pmammoth §6mammoth§r§p."
+          "text": "Mammoth tusks are dropped by §pmammoth §6mammoths§r§p."
         }
       ]
     },
@@ -781,13 +781,13 @@
       [
         {
           "type": "title",
-          "text": "Saber tooth teeth",
+          "text": "Saber-Tooth Tiger Teeth",
           "color": "TITLE",
           "margin_bottom": 10
         },
         {
           "type": "text",
-          "text": "Saber-tooth teeth drops from §psaber_tooth_tiger §6saber-tooth tiger§r§p."
+          "text": "Saber-tooth tiger teeth are dropped by §psaber_tooth_tiger §6saber-tooth tigers§r§p."
         }
       ]
     },
@@ -797,13 +797,13 @@
       [
         {
           "type": "title",
-          "text": "Woolly rhino tusk",
+          "text": "Woolly Rhino Tusk",
           "color": "TITLE",
           "margin_bottom": 10
         },
         {
           "type": "text",
-          "text": "Woolly rhino tusk drops from §pwoolly_rhino §6woolly rhino§r§p."
+          "text": "Woolly rhino tusks are dropped by §pwoolly_rhino §6woolly rhinos§r§p."
         }
       ]
     },
@@ -824,7 +824,7 @@
         },
         {
           "type": "text",
-          "text": "Backpack is used for increase carrying capacity. Right-click with backpack to open it's inventory"
+          "text": "Backpacks can be used to increase your carrying capacity. Right-click the backpack to open it's inventory."
         }
       ]
     },
@@ -845,7 +845,7 @@
         },
         {
           "type": "text",
-          "text": "Lead is used for leash animals and moving them around."
+          "text": "Leads are used to leash animals and lead them around."
         }
       ]
     },
@@ -866,7 +866,7 @@
         },
         {
           "type": "text",
-          "text": "Leather is made in §ptanning_rack §6Tanning rack§r§p. Right-click with §praw_hide §6raw hide§r§p on tanning rack and then right-click multiple times with §pflint_knife §6flint knife§r§p."
+          "text": "Leather is made on a §ptanning_rack §6tanning rack§r§p. Right click the rack with a §praw_hide §6raw hide§r§p and then right-click multiple times with a §pflint_knife §6flint knife§r§p."
         }
       ]
     },
@@ -887,7 +887,7 @@
         },
         {
           "type": "text",
-          "text": "Used as crafting item"
+          "text": "Used as a crafting item."
         }
       ]
     },
@@ -897,7 +897,7 @@
       [
         {
           "type": "title",
-          "text": "Grass mesh",
+          "text": "Grass Mesh",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -908,7 +908,7 @@
         },
         {
           "type": "text",
-          "text": "Used in §pfishing_net §6fishing net§r§p, have 15 uses before breaking up."
+          "text": "The grass mesh is used in a §pfishing_net §6fishing net§r§p. It has 15 uses before it breaks."
         }
       ]
     },
@@ -918,7 +918,7 @@
       [
         {
           "type": "title",
-          "text": "Cobweb mesh",
+          "text": "Cobweb Mesh",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -929,7 +929,7 @@
         },
         {
           "type": "text",
-          "text": "Used in §pfishing_net §6fishing net§r§p, have 30 uses before breaking up."
+          "text": "The cobweb mesh is used in a §pfishing_net §6fishing net§r§p. It has 30 uses before it breaks."
         }
       ]
     },
@@ -939,7 +939,7 @@
       [
         {
           "type": "title",
-          "text": "Weapons and tools",
+          "text": "Weapons and Tools",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -948,21 +948,21 @@
           "color": "LIST",
           "list":
           [
-            "§pbone_axe §oBone axe§r§p",
-            "§pbone_hoe §oBone hoe§r§p",
-            "§pbone_pickaxe §oBone pickaxe§r§p",
-            "§pbone_shovel §oBone shovel§r§p",
-            "§pbone_shears §oBone shears§r§p",
-            "§pbone_sword §oBone sword§r§p",
+            "§pbone_axe §oBone Axe§r§p",
+            "§pbone_hoe §oBone Hoe§r§p",
+            "§pbone_pickaxe §oBone Pickaxe§r§p",
+            "§pbone_shovel §oBone Shovel§r§p",
+            "§pbone_shears §oBone Shears§r§p",
+            "§pbone_sword §oBone Sword§r§p",
             "§pbow §oBow§r§p",
-            "§pflint_knife §oFlint knife§r§p",
-            "§pflint_spear §oFlint spear§r§p",
-            "§pstone_axe §oStone axe§r§p",
-            "§pstone_hammer §oStone hammer§r§p",
-            "§pstone_hoe §oStone hoe§r§p",
-            "§pstone_pickaxe §oStone pickaxe§r§p",
-            "§pstone_shovel §oStone shovel§r§p",
-            "§pstone_sword §oStone sword§r§p"
+            "§pflint_knife §oFlint Knife§r§p",
+            "§pflint_spear §oFlint Spear§r§p",
+            "§pstone_axe §oStone Axe§r§p",
+            "§pstone_hammer §oStone Hammer§r§p",
+            "§pstone_hoe §oStone Hoe§r§p",
+            "§pstone_pickaxe §oStone Pickaxe§r§p",
+            "§pstone_shovel §oStone Shovel§r§p",
+            "§pstone_sword §oStone Sword§r§p"
           ]
         }
       ]
@@ -973,7 +973,7 @@
       [
         {
           "type": "title",
-          "text": "Bone axe",
+          "text": "Bone Axe",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -990,7 +990,7 @@
       [
         {
           "type": "title",
-          "text": "Bone hoe",
+          "text": "Bone Hoe",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1007,7 +1007,7 @@
       [
         {
           "type": "title",
-          "text": "Bone pickaxe",
+          "text": "Bone Pickaxe",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1024,7 +1024,7 @@
       [
         {
           "type": "title",
-          "text": "Bone shovel",
+          "text": "Bone Shovel",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1041,7 +1041,7 @@
       [
         {
           "type": "title",
-          "text": "Bone shears",
+          "text": "Bone Shears",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1052,7 +1052,7 @@
         },
         {
           "type": "text",
-          "text": "Used for mowing grass."
+          "text": "Bone shears are used for gathering grass."
         }
       ]
     },
@@ -1062,7 +1062,7 @@
       [
         {
           "type": "title",
-          "text": "Bone sword",
+          "text": "Bone Sword",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1096,7 +1096,7 @@
       [
         {
           "type": "title",
-          "text": "Flint knife",
+          "text": "Flint Knife",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1107,7 +1107,7 @@
         },
         {
           "type": "text",
-          "text": "Your first weapon, not very efficient, but help you survive and hunt animals. Also used for crafting items in §pflint_workbench §6flint workbench§r§p and for §ptanning_rack §6tanning§r§p."
+          "text": "The flint knife is your first weapon. It's not very efficient, but it will help you survive and hunt animals. It is also used for crafting items on the §pflint_workbench §6flint workbench§r§p and for §ptanning_rack §6tanning§r§p."
         }
       ]
     },
@@ -1117,7 +1117,7 @@
       [
         {
           "type": "title",
-          "text": "Flint spear",
+          "text": "Flint Spear",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1128,7 +1128,7 @@
         },
         {
           "type": "text",
-          "text": "Ranged weapon, similar to trident, but less efficient. Still very usefull for surviving and hunting in wild."
+          "text": "The flint spear is a ranged weapon which is similar to the trident, but less efficient. It is still very useful for surviving and hunting in the wild."
         }
       ]
     },
@@ -1138,7 +1138,7 @@
       [
         {
           "type": "title",
-          "text": "Stone axe",
+          "text": "Stone Axe",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1155,7 +1155,7 @@
       [
         {
           "type": "title",
-          "text": "Stone hammer",
+          "text": "Stone Hammer",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1172,7 +1172,7 @@
       [
         {
           "type": "title",
-          "text": "Stone hoe",
+          "text": "Stone Hoe",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1189,7 +1189,7 @@
       [
         {
           "type": "title",
-          "text": "Stone pickaxe",
+          "text": "Stone Pickaxe",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1206,7 +1206,7 @@
       [
         {
           "type": "title",
-          "text": "Stone shovel",
+          "text": "Stone Shovel",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1223,7 +1223,7 @@
       [
         {
           "type": "title",
-          "text": "Stone sword",
+          "text": "Stone Sword",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1249,10 +1249,10 @@
           "color": "LIST",
           "list":
           [
-            "§pleather_boots §oLeather boots§r§p",
-            "§pleather_chestplate §oLeather chestplate§r§p",
-            "§pleather_helmet §oLeather helmet§r§p",
-            "§pleather_leggings §oLeather leggings§r§p"
+            "§pleather_boots §oLeather Boots§r§p",
+            "§pleather_chestplate §oLeather Tunic§r§p",
+            "§pleather_helmet §oLeather Cap§r§p",
+            "§pleather_leggings §oLeather Pants§r§p"
           ]
         }
       ]
@@ -1263,7 +1263,7 @@
       [
         {
           "type": "title",
-          "text": "Leather boots",
+          "text": "Leather Boots",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1280,7 +1280,7 @@
       [
         {
           "type": "title",
-          "text": "Leather chestplate",
+          "text": "Leather Tunic",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1297,7 +1297,7 @@
       [
         {
           "type": "title",
-          "text": "Leather helmet",
+          "text": "Leather Cap",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1314,7 +1314,7 @@
       [
         {
           "type": "title",
-          "text": "Leather leggings",
+          "text": "Leather Pants",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1326,12 +1326,12 @@
       ]
     },
     {
-      "key": "foods",
+      "key": "food",
       "content":
       [
         {
           "type": "title",
-          "text": "Foods",
+          "text": "Food",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1343,13 +1343,13 @@
             "§pbread §oBread§r§p",
             "§pfat §oFat§r§p",
             "§pvenison §oVenison§r§p",
-            "§pfowl_meat §oFowl meat§r§p",
-            "§pauroch_meat §oAuroch meat§r§p",
-            "§pmouflon_meat §oMouflon meat§r§p",
-            "§pboar_meat §oBoar meat§r§p",
-            "§pmammoth_meat §oMammoth meat§r§p",
-            "§prhino_meat §oWoolly rhino meat§r§p",
-            "§ptiger_meat §oSaber-tooth tiger meat§r§p"
+            "§pfowl_meat §oFowl Meat§r§p",
+            "§pauroch_meat §oAuroch Meat§r§p",
+            "§pmouflon_meat §oMouflon Meat§r§p",
+            "§pboar_meat §oBoar Meat§r§p",
+            "§pmammoth_meat §oMammoth Meat§r§p",
+            "§prhino_meat §oWoolly Rhino Meat§r§p",
+            "§ptiger_meat §oSaber-Tooth Tiger Meat§r§p"
           ]
         }
       ]
@@ -1371,7 +1371,7 @@
         },
         {
           "type": "text",
-          "text": "Bread is baked from §pbread_dough §6Bread dough§r§p."
+          "text": "Bread is baked from §pbread_dough §6bread dough§r§p."
         }
       ]
     },
@@ -1397,7 +1397,7 @@
         },
         {
           "type": "text",
-          "text": "Fat drops from §pauroch §6aurochs§r§p, §pboar §6boars§r§p, §pdeer §6deers§r§p, §pdeer §6deers§r§p, §pmammoth §6mammoths§r§p, §pmouflon §6mouflons§r§p, §psaber_tooth_tiger §6saber-tooth tigers§r§p, §pwoolly_rhino §6woolly rhinos§r§p, cows, pigs and sheeps."
+          "text": "Fat is dropped by §pauroch §6aurochs§r§p, §pboar §6boars§r§p, §pdeer §6deer§r§p, §pmammoth §6mammoths§r§p, §pmouflon §6mouflons§r§p, §psaber_tooth_tiger §6saber-tooth tigers§r§p, §pwoolly_rhino §6woolly rhinos§r§p, cows, pigs, and sheep."
         }
       ]
     },
@@ -1423,7 +1423,7 @@
         },
         {
           "type": "text",
-          "text": "Venison drops from from §pdeer §6deers§r§p."
+          "text": "Venison is dropped by §pdeer §6deer§r§p."
         }
       ]
     },
@@ -1433,7 +1433,7 @@
       [
         {
           "type": "title",
-          "text": "Fowl meat",
+          "text": "Fowl Meat",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1449,7 +1449,7 @@
         },
         {
           "type": "text",
-          "text": "Fowl meat drops from from §pfowl §6fowls§r§p."
+          "text": "Fowl meat is dropped by §pfowl §6fowl§r§p."
         }
       ]
     },
@@ -1459,7 +1459,7 @@
       [
         {
           "type": "title",
-          "text": "Auroch meat",
+          "text": "Auroch Meat",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1475,7 +1475,7 @@
         },
         {
           "type": "text",
-          "text": "Auroch meat drops from from §pauroch §6aurochs§r§p."
+          "text": "Auroch meat is dropped by §pauroch §6aurochs§r§p."
         }
       ]
     },
@@ -1485,7 +1485,7 @@
       [
         {
           "type": "title",
-          "text": "Mouflon meat",
+          "text": "Mouflon Meat",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1501,7 +1501,7 @@
         },
         {
           "type": "text",
-          "text": "Mouflon meat drops from from §pmouflon §6mouflons§r§p."
+          "text": "Mouflon meat is dropped by §pmouflon §6mouflons§r§p."
         }
       ]
     },
@@ -1511,7 +1511,7 @@
       [
         {
           "type": "title",
-          "text": "Boar meat",
+          "text": "Boar Meat",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1527,7 +1527,7 @@
         },
         {
           "type": "text",
-          "text": "Boar meat drops from from §pboar §6boars§r§p."
+          "text": "Boar meat is dropped by §pboar §6boars§r§p."
         }
       ]
     },
@@ -1537,7 +1537,7 @@
       [
         {
           "type": "title",
-          "text": "Mammoth meat",
+          "text": "Mammoth Meat",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1553,7 +1553,7 @@
         },
         {
           "type": "text",
-          "text": "Mammoth meat drops from from §pmammoth §6mammoths§r§p."
+          "text": "Mammoth meat is dropped by §pmammoth §6mammoths§r§p."
         }
       ]
     },
@@ -1563,7 +1563,7 @@
       [
         {
           "type": "title",
-          "text": "Rhino meat",
+          "text": "Woolly Rhino Meat",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1579,7 +1579,7 @@
         },
         {
           "type": "text",
-          "text": "Rhino meat drops from from §pwoolly_rhino §6woolly rhinos§r§p."
+          "text": "Rhino meat is dropped by §pwoolly_rhino §6woolly rhinos§r§p."
         }
       ]
     },
@@ -1589,7 +1589,7 @@
       [
         {
           "type": "title",
-          "text": "Tiger meat",
+          "text": "Saber-Tooth Tiger Meat",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -1605,7 +1605,7 @@
         },
         {
           "type": "text",
-          "text": "Tiger meat drops from from §psaber_tooth_tiger §6saber-tooth tigers§r§p."
+          "text": "Tiger meat is dropped by §psaber_tooth_tiger §6saber-tooth tigers§r§p."
         }
       ]
     },
@@ -1630,8 +1630,8 @@
             "§pfowl §oFowl§r§p",
             "§pmammoth §oMammoth§r§p",
             "§pmouflon §oMouflon§r§p",
-            "§psaber_tooth_tiger §oSaber-tooth tiger§r§p",
-            "§pwoolly_rhino §oWoolly rhino§r§p"
+            "§psaber_tooth_tiger §oSaber-Tooth Tiger§r§p",
+            "§pwoolly_rhino §oWoolly Rhino§r§p"
           ]
         }
       ]
@@ -1706,7 +1706,7 @@
         },
         {
           "type": "text",
-          "text": "Ancestor of cows, you must breed them few generations until you get cow. It is passive mob, but when you attack it, all same species around will attack you."
+          "text": "An ancestor of cows, aurochs must be bred for several generations before they are domesticated as cows. Aurochs are passive until attacked, after which all aurochs nearby will attack you."
         }
       ]
     },
@@ -1776,7 +1776,7 @@
         },
         {
           "type": "text",
-          "text": "Ancestor of pigs, you must breed them few generations until you get pig. It is passive mob, but when you attack it, all same species around will attack you."
+          "text": "An ancestor of pigs, boars must be bred for several generations before they are domesticated as pigs. Boars are passive until attacked, after which all boars nearby will attack you."
         }
       ]
     },
@@ -1860,7 +1860,7 @@
         },
         {
           "type": "text",
-          "text": "Passive fearful mob, only source of antlers used for crafting first tools."
+          "text": "Deer are skittish, and will flee if you get too close. They are the only source of antlers, which are used for crafting your first tools."
         }
       ]
     },
@@ -1938,7 +1938,7 @@
         },
         {
           "type": "text",
-          "text": "Ancestor of chickens, you must breed them few generations until you get chicken. It is passive mob, but when you attack it, all same species around will attack you."
+          "text": "An ancestor of chickens, fowl must be bred for several generations before they are domesticated as chickens. Fowl are passive until attacked, after which all fowl nearby will attack you."
         }
       ]
     },
@@ -2022,7 +2022,7 @@
         },
         {
           "type": "text",
-          "text": "Big and strong animal. It is passive mob, but when you attack it, all same species around will attack you."
+          "text": "Mammoths are large, strong beasts. They are passive until attacked, after which all mammoths nearby will attack you."
         }
       ]
     },
@@ -2092,7 +2092,7 @@
         },
         {
           "type": "text",
-          "text": "Ancestor of sheeps, you must breed them few generations until you get sheep. It is passive mob, but when you attack it, all same species around will attack you."
+          "text": "An ancestor of sheep, mouflons must be bred for several generations before they are domesticated as sheep. Mouflons are passive until attacked, after which all mouflons nearby will attack you."
         }
       ]
     },
@@ -2102,7 +2102,7 @@
       [
         {
           "type": "title",
-          "text": "Saber-tooth tiger",
+          "text": "Saber-Tooth Tiger",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -2166,7 +2166,7 @@
         },
         {
           "type": "text",
-          "text": "Big and dangerous animal, hunts down other smaller passive mobs like deers, fowls or §lyou§r."
+          "text": "Saber-tooth tigers are large, dangerous beasts. They hunt down smaller prey such as deer, fowl, and §lyou§r."
         }
       ]
     },
@@ -2176,7 +2176,7 @@
       [
         {
           "type": "title",
-          "text": "Woolly rhino",
+          "text": "Woolly Rhino",
           "color": "TITLE",
           "margin_bottom": 10
         },
@@ -2250,7 +2250,7 @@
         },
         {
           "type": "text",
-          "text": "It is passive mob, but when you attack it, all same species around will attack you."
+          "text": "Woolly rhinos are passive until attack, after which all woolly rhinos nearby will attack you."
         }
       ]
     },
@@ -2260,13 +2260,13 @@
       [
         {
           "type": "title",
-          "text": "Making fire",
+          "text": "Making Fire",
           "color": "TITLE",
           "margin_bottom": 10
         },
         {
           "type": "text",
-          "text": "You can make fire with two sticks: Drop §pdrought_grass §6drought grass§r§p into world, put stick into your right and left hand and righ-click on dropped drought grass.",
+          "text": "Drop §pdried_grass §6dried grass§r§p on the ground, and right-click on it with a stick in each hand to start a fire.",
           "margin_bottom": 5
         },
         {

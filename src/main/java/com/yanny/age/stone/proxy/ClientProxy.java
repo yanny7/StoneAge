@@ -39,8 +39,8 @@ public class ClientProxy implements IProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TanningRackTileEntity.class, new TanningRackRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(StoneChestTileEntity.class, new StoneChestRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TreeStumpTileEntity.class, new TreeStumpRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(AquaductTileEntity.class, new AquaductRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(DroughtGrassBedTileEntity.class, new DroughtGrassBedRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(AqueductTileEntity.class, new AqueductRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(DriedGrassBedTileEntity.class, new DriedGrassBedRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(FeederTileEntity.class, new FeederRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(MillstoneTileEntity.class, new MillstoneRenderer());
     }

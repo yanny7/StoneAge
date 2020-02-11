@@ -2,8 +2,8 @@ package com.yanny.age.stone.client.renderer;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.yanny.age.stone.Reference;
-import com.yanny.age.stone.blocks.DroughtGrassBedTileEntity;
-import com.yanny.age.stone.client.models.DroughtGrassBedModel;
+import com.yanny.age.stone.blocks.DriedGrassBedTileEntity;
+import com.yanny.age.stone.client.models.DriedGrassBedModel;
 import com.yanny.age.stone.subscribers.ItemSubscriber;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
@@ -18,13 +18,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class DroughtGrassBedRenderer extends TileEntityRenderer<DroughtGrassBedTileEntity> {
-    private static final ResourceLocation TEXTURE_NORMAL = new ResourceLocation(Reference.MODID, "textures/entity/drought_grass_bed.png");
-    private static final ItemStack GRASS = new ItemStack(ItemSubscriber.drought_grass);
-    private final DroughtGrassBedModel model = new DroughtGrassBedModel();
+public class DriedGrassBedRenderer extends TileEntityRenderer<DriedGrassBedTileEntity> {
+    private static final ResourceLocation TEXTURE_NORMAL = new ResourceLocation(Reference.MODID, "textures/entity/dried_grass_bed.png");
+    private static final ItemStack GRASS = new ItemStack(ItemSubscriber.dried_grass);
+    private final DriedGrassBedModel model = new DriedGrassBedModel();
 
     @Override
-    public void render(DroughtGrassBedTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(DriedGrassBedTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
         if (tileEntityIn.hasWorld()) {
             BlockState blockstate = tileEntityIn.getBlockState();
             this.render(blockstate.get(BedBlock.PART) == BedPart.HEAD, x, y, z, blockstate.get(BedBlock.HORIZONTAL_FACING));

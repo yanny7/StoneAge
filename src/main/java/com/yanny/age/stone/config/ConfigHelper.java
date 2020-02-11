@@ -13,10 +13,10 @@ public class ConfigHelper {
         Config.domesticateAfterGenerations = ConfigHolder.SERVER.domesticateAfterGenerations.get();
         Config.tanningRackFinishChance = ConfigHolder.SERVER.tanningRackFinishChance.get();
         Config.changeMiningLevelForVanillaBlocks = ConfigHolder.SERVER.changeMiningLevelForVanillaBlocks.get();
-        Config.aquaductTickChanceBoneMealEffect = ConfigHolder.SERVER.aquaductTickChanceBoneMealEffect.get();
-        Config.aquaductEffectRange = ConfigHolder.SERVER.aquaductEffectRange.get();
-        Config.aquaductFillPerTick = ConfigHolder.SERVER.aquaductFillPerTick.get();
-        Config.aquaductUsePerTick = ConfigHolder.SERVER.aquaductUsePerTick.get();
+        Config.aqueductTickChanceBoneMealEffect = ConfigHolder.SERVER.aqueductTickChanceBoneMealEffect.get();
+        Config.aqueductEffectRange = ConfigHolder.SERVER.aqueductEffectRange.get();
+        Config.aqueductFillPerTick = ConfigHolder.SERVER.aqueductFillPerTick.get();
+        Config.aqueductUsePerTick = ConfigHolder.SERVER.aqueductUsePerTick.get();
         Config.feederTickChanceBreedAnimalEffect = ConfigHolder.SERVER.feederTickChanceBreedAnimalEffect.get();
         Config.feederEffectRange = ConfigHolder.SERVER.feederEffectRange.get();
         Config.forceToolForWood = ConfigHolder.SERVER.forceToolForWood.get();

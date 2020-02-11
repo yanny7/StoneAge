@@ -1,7 +1,7 @@
 package com.yanny.age.stone.client.renderer;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-import com.yanny.age.stone.blocks.AquaductTileEntity;
+import com.yanny.age.stone.blocks.AqueductTileEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.RenderHelper;
@@ -14,11 +14,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.lwjgl.opengl.GL11;
 
 @OnlyIn(Dist.CLIENT)
-public class AquaductRenderer extends TileEntityRenderer<AquaductTileEntity> {
+public class AqueductRenderer extends TileEntityRenderer<AqueductTileEntity> {
     private static final ResourceLocation WATER = new ResourceLocation("minecraft", "textures/block/water_still.png");
 
     @Override
-    public void render(AquaductTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(AqueductTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
         if (tileEntityIn.getCapacity() < 0.01) {
             return;
         }

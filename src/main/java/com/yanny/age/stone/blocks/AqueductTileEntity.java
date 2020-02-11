@@ -2,7 +2,7 @@ package com.yanny.age.stone.blocks;
 
 import com.google.common.collect.Maps;
 import com.yanny.age.stone.config.Config;
-import com.yanny.age.stone.handlers.AquaductHandler;
+import com.yanny.age.stone.handlers.AqueductHandler;
 import com.yanny.age.stone.subscribers.TileEntitySubscriber;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
@@ -30,7 +30,7 @@ import java.util.Map;
 
 import static net.minecraft.state.properties.BlockStateProperties.WATERLOGGED;
 
-public class AquaductTileEntity extends TileEntity implements ITickableTileEntity {
+public class AqueductTileEntity extends TileEntity implements ITickableTileEntity {
     private static final float LEVELS = 20f;
     private static final FluidStack WATER = new FluidStack(Fluids.WATER, 0);
 
@@ -45,9 +45,9 @@ public class AquaductTileEntity extends TileEntity implements ITickableTileEntit
     private int filled = 0;
     private int fullCapacity = 0;
 
-    public AquaductTileEntity() {
+    public AqueductTileEntity() {
         //noinspection ConstantConditions
-        super(TileEntitySubscriber.aquaduct);
+        super(TileEntitySubscriber.aqueduct);
         sources.put(Direction.NORTH, false);
         sources.put(Direction.SOUTH, false);
         sources.put(Direction.EAST, false);
@@ -63,7 +63,7 @@ public class AquaductTileEntity extends TileEntity implements ITickableTileEntit
 
             HorizontalBlock.HORIZONTAL_FACING.getAllowedValues().forEach(direction -> {
                 BlockPos pos = getPos().offset(direction);
-                setSource(direction, AquaductBlock.isWater(world.getBlockState(pos).getBlock(), world.getFluidState(pos)));
+                setSource(direction, AqueductBlock.isWater(world.getBlockState(pos).getBlock(), world.getFluidState(pos)));
             });
         }
 
@@ -73,7 +73,7 @@ public class AquaductTileEntity extends TileEntity implements ITickableTileEntit
                 tick++;
             }
         } else {
-            LazyOptional<FluidTank> fluidTank = AquaductHandler.getInstance(world).getCapability(pos);
+            LazyOptional<FluidTank> fluidTank = AqueductHandler.getInstance(world).getCapability(pos);
             fluidTank.ifPresent(tank -> {
                 int oldLevel = level;
 
@@ -86,22 +86,22 @@ public class AquaductTileEntity extends TileEntity implements ITickableTileEntit
                     world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), 3);
                 }
 
-                LazyOptional<FluidTank> upperTank = AquaductHandler.getInstance(world).getCapability(pos.up());
+                LazyOptional<FluidTank> upperTank = AqueductHandler.getInstance(world).getCapability(pos.up());
 
                 if (sources.containsValue(true)) {
                     activated = false;
-                    WATER.setAmount(Config.aquaductFillPerTick);
+                    WATER.setAmount(Config.aqueductFillPerTick);
                     tank.fill(WATER, IFluidHandler.FluidAction.EXECUTE);
                 } else if (upperTank.isPresent()) {
                     upperTank.ifPresent(upTank -> {
                         activated = false;
-                        if (tank.getSpace() >= Config.aquaductFillPerTick) {
-                            tank.fill(upTank.drain(Config.aquaductFillPerTick, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
+                        if (tank.getSpace() >= Config.aqueductFillPerTick) {
+                            tank.fill(upTank.drain(Config.aqueductFillPerTick, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
                         }
                     });
                 } else {
                     if (activated) {
-                        FluidStack fluidStack = tank.drain(Config.aquaductUsePerTick, IFluidHandler.FluidAction.EXECUTE);
+                        FluidStack fluidStack = tank.drain(Config.aqueductUsePerTick, IFluidHandler.FluidAction.EXECUTE);
 
                         if (fluidStack.isEmpty()) {
                             if (world.getBlockState(pos).get(WATERLOGGED)) {
@@ -112,7 +112,7 @@ public class AquaductTileEntity extends TileEntity implements ITickableTileEntit
                                 world.setBlockState(pos, world.getBlockState(pos).with(WATERLOGGED, true));
                             }
 
-                            if (world.rand.nextInt(Config.aquaductTickChanceBoneMealEffect) == 0) {
+                            if (world.rand.nextInt(Config.aqueductTickChanceBoneMealEffect) == 0) {
                                 boneMealEffect(pos, world);
                             }
                         }
@@ -130,7 +130,7 @@ public class AquaductTileEntity extends TileEntity implements ITickableTileEntit
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
         if (world != null && !world.isRemote && cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-            return AquaductHandler.getInstance(world).getCapability(pos);
+            return AqueductHandler.getInstance(world).getCapability(pos);
         }
 
         return super.getCapability(cap, side);
@@ -174,14 +174,14 @@ public class AquaductTileEntity extends TileEntity implements ITickableTileEntit
         super.validate();
 
         if (world != null && !world.isRemote) {
-            AquaductHandler.getInstance(world).register(pos);
+            AqueductHandler.getInstance(world).register(pos);
         }
     }
 
     @Override
     public void remove() {
         if (world != null && !world.isRemote) {
-            AquaductHandler.getInstance(world).remove(pos);
+            AqueductHandler.getInstance(world).remove(pos);
         }
 
         super.remove();
@@ -213,7 +213,7 @@ public class AquaductTileEntity extends TileEntity implements ITickableTileEntit
     }
 
     private static void boneMealEffect(BlockPos pos, World world) {
-        int r = Config.aquaductEffectRange;
+        int r = Config.aqueductEffectRange;
         BlockPos cropPos = pos.up().north(world.rand.nextInt(r * 2 + 1) - r).east(world.rand.nextInt(r * 2 + 1) - r);
         BlockState blockstate = world.getBlockState(cropPos);
 

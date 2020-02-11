@@ -9,13 +9,13 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "stone_age:drought_grass_bed",
+              "block": "stone_age:dried_grass_bed",
               "properties": {
                 "part": "head"
               }
             }
           ],
-          "name": "stone_age:drought_grass_bed"
+          "name": "stone_age:dried_grass_bed"
         }
       ],
       "conditions": [

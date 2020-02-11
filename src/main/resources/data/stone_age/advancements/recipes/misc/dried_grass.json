@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "stone_age:aquaduct"
+      "stone_age:dried_grass"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:terracotta"
+            "item": "minecraft:grass"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "stone_age:aquaduct"
+        "recipe": "stone_age:dried_grass"
       }
     }
   },

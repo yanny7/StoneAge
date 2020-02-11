@@ -4,11 +4,11 @@ import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.Model;
 import net.minecraft.client.renderer.model.ModelBox;
 
-public class DroughtGrassBedModel extends Model {
+public class DriedGrassBedModel extends Model {
 	private final RendererModel head;
 	private final RendererModel foot;
 
-	public DroughtGrassBedModel() {
+	public DriedGrassBedModel() {
 		textureWidth = 64;
 		textureHeight = 64;
 

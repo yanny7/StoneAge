@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "stone_age:aquaduct"
+          "name": "stone_age:aqueduct"
         }
       ],
       "conditions": [

@@ -189,7 +189,7 @@ public class ForgeEventSubscriber {
 
     @SuppressWarnings("ConstantConditions")
     @SubscribeEvent
-    public static void makeFireWithSticksAndDroughtGrass(PlayerInteractEvent.RightClickBlock event) {
+    public static void makeFireWithSticksAndDriedGrass(PlayerInteractEvent.RightClickBlock event) {
         PlayerEntity player = event.getPlayer();
         ItemStack mainItem = player.getHeldItemMainhand();
         ItemStack offItem = player.getHeldItemOffhand();
@@ -198,10 +198,10 @@ public class ForgeEventSubscriber {
             World world = event.getWorld();
             BlockPos position = event.getPos().offset(event.getFace());
             BlockState blockState = world.getBlockState(position);
-            List<ItemEntity> droughtGrassList = world.getEntitiesWithinAABB(ItemEntity.class, new AxisAlignedBB(position),
-                    itemEntity -> itemEntity.getItem().getItem().equals(ItemSubscriber.drought_grass));
+            List<ItemEntity> driedGrassList = world.getEntitiesWithinAABB(ItemEntity.class, new AxisAlignedBB(position),
+                    itemEntity -> itemEntity.getItem().getItem().equals(ItemSubscriber.dried_grass));
 
-            if (blockState.isAir(world, position) && !droughtGrassList.isEmpty()) {
+            if (blockState.isAir(world, position) && !driedGrassList.isEmpty()) {
                 world.setBlockState(position, FIRE.getDefaultState(), 11);
                 player.sendBreakAnimation(Hand.MAIN_HAND);
                 player.sendBreakAnimation(Hand.OFF_HAND);
@@ -217,7 +217,7 @@ public class ForgeEventSubscriber {
                     player.setHeldItem(Hand.OFF_HAND, ItemStack.EMPTY);
                 }
 
-                droughtGrassList.forEach(Entity::remove);
+                driedGrassList.forEach(Entity::remove);
             }
         }
     }

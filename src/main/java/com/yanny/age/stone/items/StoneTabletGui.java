@@ -21,10 +21,10 @@ public class StoneTabletGui extends ContainerScreen<Container> {
 
     public StoneTabletGui(Container screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
-        xSize = 176;
-        ySize = 200;
+        xSize = 210;
+        ySize = 240;
 
-        manual = new ManualWidget(this, xSize, ySize);
+        manual = new ManualWidget(this, 210, 220);
 
         manual.addRecipeHandler(RecipeSubscriber.flint_workbench, new FlintWorkbenchRecipeHandler());
         manual.addRecipeHandler(RecipeSubscriber.drying_rack, new DryingRackRecipeHandler());
@@ -51,7 +51,7 @@ public class StoneTabletGui extends ContainerScreen<Container> {
 
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         minecraft.getTextureManager().bindTexture(GUI);
-        blit(guiLeft, guiTop, 0, 0, 0, xSize, ySize, 255, 255);
+        blit(guiLeft, guiTop, 0, 0, 0, 210, 220, 255, 255);
 
         manual.drawBackgroundLayer(this, mouseX, mouseY);
     }

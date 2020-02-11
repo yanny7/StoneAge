@@ -6,7 +6,7 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:bone"
+      "tag": "ages_api:bones"
     }
   },
   "result": {
