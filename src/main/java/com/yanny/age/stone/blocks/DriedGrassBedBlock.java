@@ -16,13 +16,13 @@ import net.minecraft.world.IBlockReader;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class DroughtGrassBedBlock extends BedBlock {
+public class DriedGrassBedBlock extends BedBlock {
     private static final VoxelShape NORTH = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 16.0D);
     private static final VoxelShape SOUTH = Block.makeCuboidShape(2.0D, 0.0D, 0.0D, 14.0D, 3.0D, 14.0D);
     private static final VoxelShape WEST = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 16.0D, 3.0D, 14.0D);
     private static final VoxelShape EAST = Block.makeCuboidShape(0.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
 
-    public DroughtGrassBedBlock() {
+    public DriedGrassBedBlock() {
         super(DyeColor.BLACK, Properties.create(Material.WOOL).hardnessAndResistance(2.0f));
     }
 
@@ -34,12 +34,12 @@ public class DroughtGrassBedBlock extends BedBlock {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new DroughtGrassBedTileEntity();
+        return new DriedGrassBedTileEntity();
     }
 
     @Override
     public TileEntity createNewTileEntity(IBlockReader worldIn) {
-        return new DroughtGrassBedTileEntity();
+        return new DriedGrassBedTileEntity();
     }
 
     @Nonnull

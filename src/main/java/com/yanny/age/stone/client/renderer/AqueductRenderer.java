@@ -3,7 +3,7 @@ package com.yanny.age.stone.client.renderer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.yanny.age.stone.blocks.AquaductTileEntity;
+import com.yanny.age.stone.blocks.AqueductTileEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.Matrix3f;
 import net.minecraft.client.renderer.Matrix4f;
@@ -19,15 +19,15 @@ import javax.annotation.Nonnull;
 import java.util.Objects;
 
 @OnlyIn(Dist.CLIENT)
-public class AquaductRenderer extends TileEntityRenderer<AquaductTileEntity> {
+public class AqueductRenderer extends TileEntityRenderer<AqueductTileEntity> {
     private static final ResourceLocation WATER = new ResourceLocation("minecraft", "textures/block/water_still.png");
 
-    public AquaductRenderer(TileEntityRendererDispatcher p_i226006_1_) {
+    public AqueductRenderer(TileEntityRendererDispatcher p_i226006_1_) {
         super(p_i226006_1_);
     }
 
     @Override
-    public void render(AquaductTileEntity tileEntityIn, float partialTicks, @Nonnull MatrixStack matrixStack,
+    public void render(AqueductTileEntity tileEntityIn, float partialTicks, @Nonnull MatrixStack matrixStack,
                        @Nonnull IRenderTypeBuffer renderTypeBuffer, int overlayUV, int lightmapUV) {
         if (!tileEntityIn.hasWorld()) { //TODO rendering not working
             return;

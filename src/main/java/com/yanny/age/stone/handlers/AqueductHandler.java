@@ -14,10 +14,10 @@ import java.util.Set;
 
 import static com.yanny.ages.api.capability.fluid.GenericFluidEntityHandler.Setup;
 
-public class AquaductHandler {
+public class AqueductHandler {
     private static final int VERSION = 1;
-    private static final String ID = Reference.MODID + "_aquaduct_handler";
-    private static final Setup SETUP = new AquaductSetup();
+    private static final String ID = Reference.MODID + "_aqueduct_handler";
+    private static final Setup SETUP = new AqueductSetup();
     private static final HashMap<World, GenericFluidEntityHandler> INSTANCE = new HashMap<>();
 
     @Nonnull
@@ -41,10 +41,10 @@ public class AquaductHandler {
         return handler;
     }
 
-    private static final class AquaductSetup extends Setup {
+    private static final class AqueductSetup extends Setup {
         private static final Set<Direction> DIRECTIONS = Sets.newHashSet(Direction.Plane.HORIZONTAL);
 
-        AquaductSetup() {
+        AqueductSetup() {
             super(500, ID, DIRECTIONS, VERSION);
         }
 

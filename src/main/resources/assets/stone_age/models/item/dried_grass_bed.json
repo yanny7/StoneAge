@@ -1,7 +1,7 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
     "textures": {
-        "drought_grass": "stone_age:item/drought_grass",
+        "dried_grass": "stone_age:item/dried_grass",
         "flint_workbench_side": "stone_age:block/flint_workbench_side"
     },
     "display": {
@@ -56,8 +56,8 @@
             "to": [ 8, 1, 12 ], 
             "rotation": { "origin": [ 8, 8, 8 ], "axis": "x", "angle": 22.5 },
             "faces": {
-                "up": { "texture": "#drought_grass", "uv": [ 0, 2, 16, 16 ] },
-                "down": { "texture": "#drought_grass", "uv": [ 0, 2, 16, 16 ], "rotation": 180 }
+                "up": { "texture": "#dried_grass", "uv": [ 0, 2, 16, 16 ] },
+                "down": { "texture": "#dried_grass", "uv": [ 0, 2, 16, 16 ], "rotation": 180 }
             }
         },
         {
@@ -66,8 +66,8 @@
             "to": [ 16, 1, 12 ], 
             "rotation": { "origin": [ 8, 8, 8 ], "axis": "x", "angle": 22.5 },
             "faces": {
-                "up": { "texture": "#drought_grass", "uv": [ 0, 2, 16, 16 ] },
-                "down": { "texture": "#drought_grass", "uv": [ 0, 3, 16, 16 ], "rotation": 180 }
+                "up": { "texture": "#dried_grass", "uv": [ 0, 2, 16, 16 ] },
+                "down": { "texture": "#dried_grass", "uv": [ 0, 3, 16, 16 ], "rotation": 180 }
             }
         },
         {
@@ -76,8 +76,8 @@
             "to": [ 16, 1, 12 ], 
             "rotation": { "origin": [ 8, 8, 8 ], "axis": "x", "angle": -22.5 },
             "faces": {
-                "up": { "texture": "#drought_grass", "uv": [ 0, 2, 16, 16 ], "rotation": 180 },
-                "down": { "texture": "#drought_grass", "uv": [ 0, 2, 16, 16 ] }
+                "up": { "texture": "#dried_grass", "uv": [ 0, 2, 16, 16 ], "rotation": 180 },
+                "down": { "texture": "#dried_grass", "uv": [ 0, 2, 16, 16 ] }
             }
         },
         {
@@ -86,8 +86,8 @@
             "to": [ 8, 1, 12 ], 
             "rotation": { "origin": [ 8, 8, 8 ], "axis": "x", "angle": -22.5 },
             "faces": {
-                "up": { "texture": "#drought_grass", "uv": [ 0, 2, 16, 16 ], "rotation": 180 },
-                "down": { "texture": "#drought_grass", "uv": [ 0, 2, 16, 16 ] }
+                "up": { "texture": "#dried_grass", "uv": [ 0, 2, 16, 16 ], "rotation": 180 },
+                "down": { "texture": "#dried_grass", "uv": [ 0, 2, 16, 16 ] }
             }
         },
         {
@@ -96,8 +96,8 @@
             "to": [ 9, -0.3, 12 ], 
             "rotation": { "origin": [ 8, 8, 8 ], "axis": "z", "angle": -22.5 },
             "faces": {
-                "up": { "texture": "#drought_grass", "uv": [ 0, 2, 16, 16 ], "rotation": 270 },
-                "down": { "texture": "#drought_grass", "uv": [ 0, 2, 16, 16 ], "rotation": 270 }
+                "up": { "texture": "#dried_grass", "uv": [ 0, 2, 16, 16 ], "rotation": 270 },
+                "down": { "texture": "#dried_grass", "uv": [ 0, 2, 16, 16 ], "rotation": 270 }
             }
         },
         {
@@ -106,8 +106,8 @@
             "to": [ 15, -0.3, 12 ], 
             "rotation": { "origin": [ 8, 8, 8 ], "axis": "z", "angle": 22.5 },
             "faces": {
-                "up": { "texture": "#drought_grass", "uv": [ 0, 2, 16, 16 ], "rotation": 90 },
-                "down": { "texture": "#drought_grass", "uv": [ 0, 2, 16, 16 ], "rotation": 90 }
+                "up": { "texture": "#dried_grass", "uv": [ 0, 2, 16, 16 ], "rotation": 90 },
+                "down": { "texture": "#dried_grass", "uv": [ 0, 2, 16, 16 ], "rotation": 90 }
             }
         }
     ]

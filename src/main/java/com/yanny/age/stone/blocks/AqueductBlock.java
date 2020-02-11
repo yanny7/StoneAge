@@ -46,7 +46,7 @@ import java.util.Random;
 
 import static net.minecraft.state.properties.BlockStateProperties.WATERLOGGED;
 
-public class AquaductBlock extends Block implements ITopBlockProvider {
+public class AqueductBlock extends Block implements ITopBlockProvider {
     private static final Map<Integer, VoxelShape> SHAPES = new HashMap<>();
 
     static {
@@ -80,7 +80,7 @@ public class AquaductBlock extends Block implements ITopBlockProvider {
         map.put(Direction.WEST, WEST);
     });
 
-    public AquaductBlock() {
+    public AqueductBlock() {
         super(Properties.create(Material.ROCK).hardnessAndResistance(2.0f));
         setDefaultState(getStateContainer().getBaseState()
                 .with(NORTH, false)
@@ -98,7 +98,7 @@ public class AquaductBlock extends Block implements ITopBlockProvider {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new AquaductTileEntity();
+        return new AqueductTileEntity();
     }
 
     @Override
@@ -135,7 +135,7 @@ public class AquaductBlock extends Block implements ITopBlockProvider {
     @SuppressWarnings("deprecation")
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        AquaductTileEntity tile = (AquaductTileEntity) worldIn.getTileEntity(pos);
+        AqueductTileEntity tile = (AqueductTileEntity) worldIn.getTileEntity(pos);
 
         if (tile != null) {
             ItemStack heldItem = player.getHeldItem(handIn);
@@ -163,7 +163,7 @@ public class AquaductBlock extends Block implements ITopBlockProvider {
             BlockPos blockpos = pos.up();
 
             if (worldIn.isAirBlock(blockpos)) {
-                AquaductTileEntity tileEntity = (AquaductTileEntity) worldIn.getTileEntity(pos);
+                AqueductTileEntity tileEntity = (AqueductTileEntity) worldIn.getTileEntity(pos);
 
                 if (tileEntity != null && tileEntity.getCapacity() > 0.01) {
                     double d0 = pos.getX() + rand.nextFloat() / 2 + 0.25;
@@ -191,9 +191,9 @@ public class AquaductBlock extends Block implements ITopBlockProvider {
     public void addProbeInfo(ProbeMode probeMode, IProbeInfo iProbeInfo, PlayerEntity playerEntity, World world, BlockState blockState, IProbeHitData iProbeHitData) {
         TileEntity te = world.getTileEntity(iProbeHitData.getPos());
 
-        if (te instanceof AquaductTileEntity) {
-            AquaductTileEntity aquaductTileEntity = (AquaductTileEntity) te;
-            iProbeInfo.horizontal().progress(aquaductTileEntity.getFilled(), aquaductTileEntity.getFullCapacity(), iProbeInfo.defaultProgressStyle().suffix("mB"));
+        if (te instanceof AqueductTileEntity) {
+            AqueductTileEntity aqueductTileEntity = (AqueductTileEntity) te;
+            iProbeInfo.horizontal().progress(aqueductTileEntity.getFilled(), aqueductTileEntity.getFullCapacity(), iProbeInfo.defaultProgressStyle().suffix("mB"));
         }
     }
 
@@ -210,13 +210,13 @@ public class AquaductBlock extends Block implements ITopBlockProvider {
     }
 
     private boolean checkSideConnection(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull BlockPos sidePos, Direction direction) {
-        AquaductTileEntity aquaductTileEntity = (AquaductTileEntity) world.getTileEntity(pos);
+        AqueductTileEntity aqueductTileEntity = (AqueductTileEntity) world.getTileEntity(pos);
         BlockState facingBlockState = world.getBlockState(sidePos);
         Block block = facingBlockState.getBlock();
         boolean isWater = isWater(block, world.getFluidState(sidePos));
 
-        if (aquaductTileEntity != null) {
-            aquaductTileEntity.setSource(direction, isWater);
+        if (aqueductTileEntity != null) {
+            aqueductTileEntity.setSource(direction, isWater);
         }
 
         return block == this || isWater;

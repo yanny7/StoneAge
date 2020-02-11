@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "stone_age:drought_grass_bed"
+      "stone_age:dried_grass_bed"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "stone_age:drought_grass"
+            "item": "stone_age:dried_grass"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "stone_age:drought_grass_bed"
+        "recipe": "stone_age:dried_grass_bed"
       }
     }
   },

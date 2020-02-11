@@ -22,7 +22,7 @@ public class ItemSubscriber {
     public static final Item antler = null;
     public static final Item unlit_torch = null;
     public static final Item bone_arrow_head = null;
-    public static final Item drought_grass = null;
+    public static final Item dried_grass = null;
     public static final Item leather_strip = null;
     public static final Item fish_bone = null;
     public static final Item flour = null;
@@ -43,7 +43,7 @@ public class ItemSubscriber {
         registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "antler"));
         registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "unlit_torch"));
         registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "bone_arrow_head"));
-        registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "drought_grass"));
+        registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "dried_grass"));
         registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "leather_strip"));
         registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "fish_bone"));
         registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64)).setRegistryName(MODID, "flour"));

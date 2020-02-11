@@ -51,9 +51,9 @@ public class AbandonedCampPiece extends BasePiece {
 
         setBlockState(worldIn, Blocks.CAMPFIRE.getDefaultState().with(LIT, false), 3, 0, 3, structureBoundingBoxIn);
         //noinspection ConstantConditions
-        setBlockState(worldIn, BlockSubscriber.drought_grass_bed.getDefaultState().with(HORIZONTAL_FACING, Direction.EAST).with(BED_PART, BedPart.HEAD), 3, 0, 5, structureBoundingBoxIn);
+        setBlockState(worldIn, BlockSubscriber.dried_grass_bed.getDefaultState().with(HORIZONTAL_FACING, Direction.EAST).with(BED_PART, BedPart.HEAD), 3, 0, 5, structureBoundingBoxIn);
         //noinspection ConstantConditions
-        setBlockState(worldIn, BlockSubscriber.drought_grass_bed.getDefaultState().with(HORIZONTAL_FACING, Direction.EAST).with(BED_PART, BedPart.FOOT), 2, 0, 5, structureBoundingBoxIn);
+        setBlockState(worldIn, BlockSubscriber.dried_grass_bed.getDefaultState().with(HORIZONTAL_FACING, Direction.EAST).with(BED_PART, BedPart.FOOT), 2, 0, 5, structureBoundingBoxIn);
         generateFlintWorkbench(worldIn, structureBoundingBoxIn, randomIn, 0, 0, 3, Direction.EAST);
         generateStoneChest(worldIn, structureBoundingBoxIn, randomIn, 0, 0, 2, new ResourceLocation(Reference.MODID, "chests/stone_chest"), Direction.EAST);
 

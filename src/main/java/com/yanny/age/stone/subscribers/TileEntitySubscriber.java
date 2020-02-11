@@ -18,8 +18,8 @@ public class TileEntitySubscriber {
     public static final TileEntityType<TanningRackTileEntity> tanning_rack = null;
     public static final TileEntityType<StoneChestTileEntity> stone_chest = null;
     public static final TileEntityType<TreeStumpTileEntity> tree_stump = null;
-    public static final TileEntityType<AquaductTileEntity> aquaduct = null;
-    public static final TileEntityType<DroughtGrassBedTileEntity> drought_grass_bed = null;
+    public static final TileEntityType<AqueductTileEntity> aqueduct = null;
+    public static final TileEntityType<DriedGrassBedTileEntity> dried_grass_bed = null;
     public static final TileEntityType<FeederTileEntity> feeder = null;
     public static final TileEntityType<MillstoneTileEntity> millstone = null;
     public static final TileEntityType<FishingNetTileEntity> fishing_net = null;
@@ -38,10 +38,10 @@ public class TileEntitySubscriber {
                 .build(null).setRegistryName("stone_chest"));
         registry.register(TileEntityType.Builder.create(TreeStumpTileEntity::new, BlockSubscriber.tree_stump)
                 .build(null).setRegistryName("tree_stump"));
-        registry.register(TileEntityType.Builder.create(AquaductTileEntity::new, BlockSubscriber.aquaduct)
-                .build(null).setRegistryName("aquaduct"));
-        registry.register(TileEntityType.Builder.create(DroughtGrassBedTileEntity::new, BlockSubscriber.drought_grass_bed)
-                .build(null).setRegistryName("drought_grass_bed"));
+        registry.register(TileEntityType.Builder.create(AqueductTileEntity::new, BlockSubscriber.aqueduct)
+                .build(null).setRegistryName("aqueduct"));
+        registry.register(TileEntityType.Builder.create(DriedGrassBedTileEntity::new, BlockSubscriber.dried_grass_bed)
+                .build(null).setRegistryName("dried_grass_bed"));
         registry.register(TileEntityType.Builder.create(FeederTileEntity::new, BlockSubscriber.feeder)
                 .build(null).setRegistryName("feeder"));
         registry.register(TileEntityType.Builder.create(MillstoneTileEntity::new, BlockSubscriber.millstone)

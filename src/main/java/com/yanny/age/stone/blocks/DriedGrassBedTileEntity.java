@@ -4,10 +4,10 @@ import com.yanny.age.stone.subscribers.TileEntitySubscriber;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 
-public class DroughtGrassBedTileEntity extends TileEntity {
-    public DroughtGrassBedTileEntity() {
+public class DriedGrassBedTileEntity extends TileEntity {
+    public DriedGrassBedTileEntity() {
         //noinspection ConstantConditions
-        super(TileEntitySubscriber.drought_grass_bed);
+        super(TileEntitySubscriber.dried_grass_bed);
     }
 
     @Override

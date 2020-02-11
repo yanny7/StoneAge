@@ -90,7 +90,7 @@ public abstract class BasePiece extends ScatteredStructurePiece {
                     for (int i = stacks.size() / 2; i < stacks.size(); i++) {
                         if (random.nextDouble() < 0.5) {
                             //noinspection ConstantConditions
-                            stacks.set(i, ItemSubscriber.drought_grass.getDefaultInstance());
+                            stacks.set(i, ItemSubscriber.dried_grass.getDefaultInstance());
                         }
                     }
                 }

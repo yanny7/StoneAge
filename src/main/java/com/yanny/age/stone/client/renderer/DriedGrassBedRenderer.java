@@ -3,8 +3,8 @@ package com.yanny.age.stone.client.renderer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.yanny.age.stone.Reference;
-import com.yanny.age.stone.blocks.DroughtGrassBedTileEntity;
-import com.yanny.age.stone.client.models.DroughtGrassBedModel;
+import com.yanny.age.stone.blocks.DriedGrassBedTileEntity;
+import com.yanny.age.stone.client.models.DriedGrassBedModel;
 import com.yanny.age.stone.subscribers.ItemSubscriber;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
@@ -26,17 +26,17 @@ import javax.annotation.Nonnull;
 import static net.minecraft.client.renderer.model.ItemCameraTransforms.TransformType;
 
 @OnlyIn(Dist.CLIENT)
-public class DroughtGrassBedRenderer extends TileEntityRenderer<DroughtGrassBedTileEntity> {
-    private static final ResourceLocation TEXTURE_NORMAL = new ResourceLocation(Reference.MODID, "textures/entity/drought_grass_bed.png");
-    private static final ItemStack GRASS = new ItemStack(ItemSubscriber.drought_grass);
-    private final DroughtGrassBedModel model = new DroughtGrassBedModel();
+public class DriedGrassBedRenderer extends TileEntityRenderer<DriedGrassBedTileEntity> {
+    private static final ResourceLocation TEXTURE_NORMAL = new ResourceLocation(Reference.MODID, "textures/entity/dried_grass_bed.png");
+    private static final ItemStack GRASS = new ItemStack(ItemSubscriber.dried_grass);
+    private final DriedGrassBedModel model = new DriedGrassBedModel();
 
-    public DroughtGrassBedRenderer(TileEntityRendererDispatcher p_i226006_1_) {
+    public DriedGrassBedRenderer(TileEntityRendererDispatcher p_i226006_1_) {
         super(p_i226006_1_);
     }
 
     @Override
-    public void render(@Nonnull DroughtGrassBedTileEntity tileEntityIn, float partialTicks, @Nonnull MatrixStack matrixStack,
+    public void render(@Nonnull DriedGrassBedTileEntity tileEntityIn, float partialTicks, @Nonnull MatrixStack matrixStack,
                        @Nonnull IRenderTypeBuffer iRenderTypeBuffer, int overlayUV, int lightmapUV) {
         if (tileEntityIn.hasWorld()) {
             BlockState blockState = tileEntityIn.getBlockState();

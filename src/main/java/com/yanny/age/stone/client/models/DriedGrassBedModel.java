@@ -8,11 +8,11 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 
 import javax.annotation.Nonnull;
 
-public class DroughtGrassBedModel extends Model {
+public class DriedGrassBedModel extends Model {
 	private final ModelRenderer head;
 	private final ModelRenderer foot;
 
-	public DroughtGrassBedModel() {
+	public DriedGrassBedModel() {
 		super(RenderType::entityCutoutNoCull);
 		textureWidth = 64;
 		textureHeight = 64;
