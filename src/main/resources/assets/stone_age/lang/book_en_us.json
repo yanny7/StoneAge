@@ -509,30 +509,45 @@
           "margin_bottom": 10
         },
         {
-          "type": "list",
-          "color": "LIST",
-          "list":
-          [
-            "§pbone_meal §oBone Meal§r§p",
-            "§parrow §oArrows§r§p",
-            "§praw_hide §oRaw Hide§r§p",
-            "§pantler §oAntler§r§p",
-            "§punlit_torch §oUnlit Torch§r§p",
-            "§pbone_arrow_head §oBone Arrow Head§r§p",
-            "§pdried_grass §oDried Grass§r§p",
-            "§pleather_strip §oLeather Strip§r§p",
-            "§pfish_bone §oFish Bone§r§p",
-            "§pflour §oFlour§r§p",
-            "§pbread_dough §oBread Dough§r§p",
-            "§pmammoth_tusk §oMammoth Tusk§r§p",
-            "§psabber_tooth_teeth §oSaber-Tooth Tiger Teeth§r§p",
-            "§prhino_tusk §oRhino Tusk§r§p",
-            "§pbackpack §oBackpack§r§p",
-            "§plead §oLead§r§p",
-            "§pleather §oLeather§r§p",
-            "§psugar §oSugar§r§p",
-            "§pgrass_mesh §oGrass Mesh§r§p",
-            "§pcobweb_mesh §oCobweb Mesh§r§p"
+          "type": "hlayout",
+          "content": [
+            {
+              "type": "list",
+              "color": "LIST",
+              "list": [
+                "§pbone_meal §oBone Meal§r§p",
+                "§parrow §oArrows§r§p",
+                "§praw_hide §oRaw Hide§r§p",
+                "§pantler §oAntler§r§p",
+                "§punlit_torch §oUnlit Torch§r§p",
+                "§pbone_arrow_head §oBone Arrow Head§r§p",
+                "§pdried_grass §oDried Grass§r§p",
+                "§pleather_strip §oLeather Strip§r§p",
+                "§pfish_bone §oFish Bone§r§p",
+                "§pflour §oFlour§r§p",
+                "§pbread_dough §oBread Dough§r§p",
+                "§pmammoth_tusk §oMammoth Tusk§r§p",
+                "§psabber_tooth_teeth §oSaber-Tooth Tiger Teeth§r§p",
+                "§prhino_tusk §oRhino Tusk§r§p",
+                "§pbackpack §oBackpack§r§p",
+                "§plead §oLead§r§p",
+                "§pleather §oLeather§r§p",
+                "§psugar §oSugar§r§p",
+                "§pgrass_mesh §oGrass Mesh§r§p",
+                "§pcobweb_mesh §oCobweb Mesh§r§p"
+              ]
+            },
+            {
+              "type": "list",
+              "color": "LIST",
+              "list": [
+                "§pbone_axe_head §oBone Axe Head§r§p",
+                "§pbone_pickaxe_head §oBone Pickaxe Head§r§p",
+                "§pbone_hoe_head §oBone Hoe Head§r§p",
+                "§pbone_shovel_head §oBone Shovel Head§r§p",
+                "§pbone_sword_head §oBone Sword Head§r§p"
+              ]
+            }
           ]
         }
       ]
@@ -930,6 +945,111 @@
         {
           "type": "text",
           "text": "The cobweb mesh is used in a §pfishing_net §6fishing net§r§p. It has 30 uses before it breaks."
+        }
+      ]
+    },
+    {
+      "key": "bone_axe_head",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Bone Axe Head",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:bone_axe_head"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "The bone axe head is used for crafting §pbone_axe §6bone axe§r§p"
+        }
+      ]
+    },
+    {
+      "key": "bone_pickaxe_head",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Bone Pickaxe Head",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:bone_pickaxe_head"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "The bone pickaxe head is used for crafting §pbone_pickaxe §6bone pickaxe§r§p"
+        }
+      ]
+    },
+    {
+      "key": "bone_hoe_head",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Bone Hoe Head",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:bone_hoe_head"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "The bone hoe head is used for crafting §pbone_hoe §6bone hoe§r§p"
+        }
+      ]
+    },
+    {
+      "key": "bone_shovel_head",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Bone Shovel Head",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:bone_shovel_head"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "The bone shovel head is used for crafting §pbone_shovel §6bone shovel§r§p"
+        }
+      ]
+    },
+    {
+      "key": "bone_sword_head",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Bone Sword Head",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:bone_sword_head"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "The bone sword head is used for crafting §pbone_sword §6bone sword§r§p"
         }
       ]
     },
