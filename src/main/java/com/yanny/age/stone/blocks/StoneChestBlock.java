@@ -28,7 +28,7 @@ public class StoneChestBlock extends HorizontalBlock {
     private static final VoxelShape SHAPE = Block.makeCuboidShape(1, 0, 1, 15, 14, 15);
 
     public StoneChestBlock() {
-        super(Properties.create(Material.WOOD).hardnessAndResistance(2.0f));
+        super(Properties.create(Material.ROCK).hardnessAndResistance(2.0f));
     }
 
     @Override
