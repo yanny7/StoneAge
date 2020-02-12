@@ -1,8 +1,10 @@
 package com.yanny.age.stone.client.renderer;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.client.models.MammothModel;
 import com.yanny.age.stone.entities.MammothEntity;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -19,6 +21,12 @@ public class MammothRenderer extends MobRenderer<MammothEntity, MammothModel> {
 
     private MammothRenderer(EntityRendererManager rendererManager) {
         super(rendererManager, new MammothModel(), 1.0f);
+    }
+
+    @Override
+    public void render(@Nonnull MammothEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, @Nonnull IRenderTypeBuffer bufferIn, int packedLightIn) {
+        matrixStackIn.scale(1.5f, 1.5f, 1.5f);
+        super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
     }
 
     @Nonnull
