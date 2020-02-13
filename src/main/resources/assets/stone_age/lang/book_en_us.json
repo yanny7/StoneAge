@@ -545,7 +545,8 @@
                 "§pbone_pickaxe_head §oBone Pickaxe Head§r§p",
                 "§pbone_hoe_head §oBone Hoe Head§r§p",
                 "§pbone_shovel_head §oBone Shovel Head§r§p",
-                "§pbone_sword_head §oBone Sword Head§r§p"
+                "§pbone_sword_head §oBone Sword Head§r§p",
+                "§pgrass_lead §oGrass Lead§r§p"
               ]
             }
           ]
@@ -1050,6 +1051,27 @@
         {
           "type": "text",
           "text": "The bone sword head is used for crafting §pbone_sword §6bone sword§r§p"
+        }
+      ]
+    },
+    {
+      "key": "grass_lead",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Grass Lead",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:grass_lead"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Used as a crafting item."
         }
       ]
     },
