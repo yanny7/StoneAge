@@ -1,3 +1,8 @@
+v1.1.0
+- improved configuration for better mod setup by modders
+- added cobweb mesh
+- fixed grammar, thanks to 'n00balakis'
+- renamed and reworked antler tools to bone tools, tools now have random chance to good/bad additional properties
 - fixed issue with flint workbench wrong recipe detection
 - render ghost crafting result when valid recipe available in flint workbench
 v1.0.5
