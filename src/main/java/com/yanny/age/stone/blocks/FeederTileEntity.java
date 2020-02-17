@@ -122,7 +122,7 @@ public class FeederTileEntity extends TileEntity implements IInventoryInterface,
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             if (side != null) {
-                if (side == Direction.UP) {
+                if (side != Direction.UP) {
                     return sidedInventoryHandler.cast();
                 }
             } else {

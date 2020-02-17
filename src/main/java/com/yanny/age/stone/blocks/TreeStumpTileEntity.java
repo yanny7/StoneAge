@@ -212,7 +212,13 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
                 if (getStackInSlot(slot).isEmpty() && world != null) {
                     TreeStumpRecipe recipe = getRecipe(stack);
 
-                    if (recipe != null) {
+                    if (recipe != null && stacks.get(0).isEmpty()) {
+                        totalChops = recipe.getChopTimes();
+                        chopLeft = recipe.getChopTimes();
+                        recipeResult = recipe.getCraftingResult(null);
+                        tools.addAll(recipe.getTools());
+
+                        world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
                         return super.insertItem(slot, stack, simulate);
                     }
                 }

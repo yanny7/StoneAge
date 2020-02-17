@@ -124,7 +124,7 @@ public class FishingNetTileEntity extends TileEntity implements IInventoryInterf
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             if (side != null) {
-                if (side == Direction.DOWN) {
+                if (side == Direction.DOWN || side == Direction.UP) {
                     return sidedInventoryHandler.cast();
                 }
             } else {
