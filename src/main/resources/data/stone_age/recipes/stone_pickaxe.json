@@ -1,22 +1,21 @@
 {
   "type": "stone_age:flint_workbench",
   "pattern": [
-    "XXX",
-    " #S",
-    " # "
+    "H#",
+    "S "
   ],
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "X": {
-      "item": "minecraft:stone"
+    "H": {
+      "item": "stone_age:stone_pickaxe_head"
     },
     "S": {
+      "item": "minecraft:stick"
+    },
+    "#": {
       "item": "stone_age:leather_strip"
     }
   },
   "result": {
-    "item": "minecraft:stone_pickaxe"
+    "item": "stone_age:stone_pickaxe"
   }
 }

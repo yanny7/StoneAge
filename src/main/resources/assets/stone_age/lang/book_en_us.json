@@ -546,7 +546,12 @@
                 "§pbone_hoe_head §oBone Hoe Head§r§p",
                 "§pbone_shovel_head §oBone Shovel Head§r§p",
                 "§pbone_sword_head §oBone Sword Head§r§p",
-                "§pgrass_lead §oGrass Lead§r§p"
+                "§pgrass_lead §oGrass Lead§r§p",
+                "§pstone_axe_head §oStone Axe Head§r§p",
+                "§pstone_pickaxe_head §oStone Pickaxe Head§r§p",
+                "§pstone_hoe_head §oStone Hoe Head§r§p",
+                "§pstone_shovel_head §oStone Shovel Head§r§p",
+                "§pstone_sword_head §oStone Sword Head§r§p"
               ]
             }
           ]
@@ -1072,6 +1077,111 @@
         {
           "type": "text",
           "text": "Used as a crafting item."
+        }
+      ]
+    },
+    {
+      "key": "stone_axe_head",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Stone Axe Head",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:stone_axe_head"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "The stone axe head is used for crafting §pstone_axe §6stone axe§r§p"
+        }
+      ]
+    },
+    {
+      "key": "stone_pickaxe_head",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Stone Pickaxe Head",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:stone_pickaxe_head"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "The stone pickaxe head is used for crafting §pstone_pickaxe §6stone pickaxe§r§p"
+        }
+      ]
+    },
+    {
+      "key": "stone_hoe_head",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Stone Hoe Head",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:stone_hoe_head"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "The stone hoe head is used for crafting §pstone_hoe §6stone hoe§r§p"
+        }
+      ]
+    },
+    {
+      "key": "stone_shovel_head",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Stone Shovel Head",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:stone_shovel_head"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "The stone shovel head is used for crafting §pstone_shovel §6stone shovel§r§p"
+        }
+      ]
+    },
+    {
+      "key": "stone_sword_head",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Stone Sword Head",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": ["stone_age:stone_sword_head"],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "The stone sword head is used for crafting §pstone_sword §6stone sword§r§p"
         }
       ]
     },

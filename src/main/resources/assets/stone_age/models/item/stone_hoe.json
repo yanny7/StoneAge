@@ -1,0 +1,7 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "ages_api:item/hoe_head_mask",
+        "layer1": "ages_api:item/hoe_rod_mask"
+    }
+}

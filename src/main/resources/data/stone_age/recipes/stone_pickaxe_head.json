@@ -1,0 +1,14 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "item": "stone_age:stone_pickaxe_head"
+  }
+}

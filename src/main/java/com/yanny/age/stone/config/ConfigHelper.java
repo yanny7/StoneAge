@@ -12,7 +12,6 @@ public class ConfigHelper {
         Config.removeVanillaGeneratedAnimals = ConfigHolder.SERVER.removeVanillaGeneratedAnimals.get();
         Config.domesticateAfterGenerations = ConfigHolder.SERVER.domesticateAfterGenerations.get();
         Config.tanningRackFinishChance = ConfigHolder.SERVER.tanningRackFinishChance.get();
-        Config.changeMiningLevelForVanillaBlocks = ConfigHolder.SERVER.changeMiningLevelForVanillaBlocks.get();
         Config.aqueductTickChanceBoneMealEffect = ConfigHolder.SERVER.aqueductTickChanceBoneMealEffect.get();
         Config.aqueductEffectRange = ConfigHolder.SERVER.aqueductEffectRange.get();
         Config.aqueductFillPerTick = ConfigHolder.SERVER.aqueductFillPerTick.get();

@@ -15,7 +15,6 @@ class ServerConfig {
     final ForgeConfigSpec.BooleanValue removeVanillaGeneratedAnimals;
     final ForgeConfigSpec.IntValue domesticateAfterGenerations;
     final ForgeConfigSpec.DoubleValue tanningRackFinishChance;
-    final ForgeConfigSpec.BooleanValue changeMiningLevelForVanillaBlocks;
     final ForgeConfigSpec.IntValue aqueductTickChanceBoneMealEffect;
     final ForgeConfigSpec.IntValue aqueductEffectRange;
     final ForgeConfigSpec.IntValue aqueductFillPerTick;
@@ -92,10 +91,6 @@ class ServerConfig {
                 .comment("Chance of finishing recipe in tanning rack")
                 .translation(Reference.MODID + ".config.tanning_rack_finish_chance")
                 .defineInRange("tanningRackFinishChance", 0.1, 0.001, 1.0);
-        changeMiningLevelForVanillaBlocks = builder
-                .comment("Change mining level for vanilla items (change it to -1, to be mineable by antler pickaxe)")
-                .translation(Reference.MODID + ".config.change_mining_level_for_vanilla_blocks")
-                .define("changeMiningLevelForVanillaBlocks", true);
         aqueductTickChanceBoneMealEffect = builder
                 .comment("Chance of bonemeal efect from aqueduct every 1/X tick (randomly)")
                 .translation(Reference.MODID + ".config.aqueduct_tick_chance_bone_meal_effect")
