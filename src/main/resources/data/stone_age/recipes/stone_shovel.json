@@ -1,22 +1,21 @@
 {
   "type": "stone_age:flint_workbench",
   "pattern": [
-    "XS",
-    "# ",
-    "# "
+    "H#",
+    "S "
   ],
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "X": {
-      "item": "minecraft:stone"
+    "H": {
+      "item": "stone_age:stone_shovel_head"
     },
     "S": {
+      "item": "minecraft:stick"
+    },
+    "#": {
       "item": "stone_age:leather_strip"
     }
   },
   "result": {
-    "item": "minecraft:stone_shovel"
+    "item": "stone_age:stone_shovel"
   }
 }

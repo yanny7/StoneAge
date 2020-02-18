@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "stone_age:bone_axe"
+    "stone_age:bone_axe",
+    "stone_age:stone_axe"
   ]
 }

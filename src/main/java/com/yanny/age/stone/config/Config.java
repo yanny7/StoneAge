@@ -46,7 +46,6 @@ public class Config {
     public static boolean removeVanillaGeneratedAnimals = true;
     public static int domesticateAfterGenerations = 3;
     public static double tanningRackFinishChance = 0.1;
-    public static boolean changeMiningLevelForVanillaBlocks = true;
     public static int aqueductTickChanceBoneMealEffect = 200;
     public static int aqueductEffectRange = 4;
     public static int aqueductFillPerTick = 4;

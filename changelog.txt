@@ -1,3 +1,6 @@
+- replaced vanilla stone tools with improved stone tools
+- fixed crash when running server-side only
+- fixed interaction with another mods
 v1.1.0
 - improved configuration for better mod setup by modders
 - added cobweb mesh

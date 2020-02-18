@@ -1,6 +1,5 @@
 package com.yanny.age.stone.blocks;
 
-import com.yanny.age.stone.subscribers.ToolSubscriber;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,6 +8,7 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemTier;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
@@ -40,7 +40,7 @@ public class FishingNetBlock extends HorizontalBlock implements IWaterLoggable {
     );
 
     public FishingNetBlock() {
-        super(Properties.create(Material.WOOD).harvestLevel(ToolSubscriber.Tiers.BONE_TIER.getHarvestLevel()).harvestTool(ToolType.AXE).hardnessAndResistance(2.0f));
+        super(Properties.create(Material.WOOD).harvestLevel(ItemTier.WOOD.getHarvestLevel()).harvestTool(ToolType.AXE).hardnessAndResistance(2.0f));
         setDefaultState(getDefaultState().with(WATERLOGGED, false).with(ATTACHED, false));
     }
 

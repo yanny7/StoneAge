@@ -1,7 +1,6 @@
 package com.yanny.age.stone.subscribers;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.yanny.age.stone.config.Config;
@@ -9,7 +8,6 @@ import com.yanny.age.stone.entities.SaberToothTigerEntity;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementList;
 import net.minecraft.advancements.AdvancementManager;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -26,7 +24,6 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -44,7 +41,6 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -62,6 +58,11 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "wooden_hoe"),        // removed
             new ResourceLocation("minecraft", "wooden_shovel"),     // removed
             new ResourceLocation("minecraft", "wooden_sword"),      // removed
+            new ResourceLocation("minecraft", "stone_axe"),        // removed
+            new ResourceLocation("minecraft", "stone_pickaxe"),    // removed
+            new ResourceLocation("minecraft", "stone_hoe"),        // removed
+            new ResourceLocation("minecraft", "stone_shovel"),     // removed
+            new ResourceLocation("minecraft", "stone_sword"),      // removed
             new ResourceLocation("minecraft", "torch"),             // lit by using on fire or campfire
 
             new ResourceLocation("minecraft", "crafting_table")     // changed recipe
@@ -75,6 +76,11 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "recipes/tools/wooden_hoe"),
             new ResourceLocation("minecraft", "recipes/tools/wooden_shovel"),
             new ResourceLocation("minecraft", "recipes/combat/wooden_sword"),
+            new ResourceLocation("minecraft", "recipes/tools/stone_axe"),
+            new ResourceLocation("minecraft", "recipes/tools/stone_pickaxe"),
+            new ResourceLocation("minecraft", "recipes/tools/stone_hoe"),
+            new ResourceLocation("minecraft", "recipes/tools/stone_shovel"),
+            new ResourceLocation("minecraft", "recipes/combat/stone_sword"),
             new ResourceLocation("minecraft", "recipes/decorations/torch")
     );
 
@@ -124,32 +130,8 @@ public class ForgeEventSubscriber {
             }
         }
 
-        if (Config.changeMiningLevelForVanillaBlocks) {
-            Set<Block> set = ImmutableSet.of(COAL_ORE, COBBLESTONE, ICE, MOSSY_COBBLESTONE, NETHERRACK, PACKED_ICE, BLUE_ICE, SANDSTONE, CHISELED_SANDSTONE,
-                    CUT_SANDSTONE, CHISELED_RED_SANDSTONE, CUT_RED_SANDSTONE, RED_SANDSTONE, STONE, GRANITE, POLISHED_GRANITE, DIORITE, POLISHED_DIORITE, ANDESITE,
-                    POLISHED_ANDESITE, STONE_SLAB, SMOOTH_STONE_SLAB, SANDSTONE_SLAB, PETRIFIED_OAK_SLAB, COBBLESTONE_SLAB, BRICK_SLAB, STONE_BRICK_SLAB,
-                    NETHER_BRICK_SLAB, RED_SANDSTONE_SLAB, SMOOTH_RED_SANDSTONE, SMOOTH_SANDSTONE, SMOOTH_STONE, STONE_BUTTON, STONE_PRESSURE_PLATE,
-                    POLISHED_GRANITE_SLAB, SMOOTH_RED_SANDSTONE_SLAB, MOSSY_STONE_BRICK_SLAB, POLISHED_DIORITE_SLAB, MOSSY_COBBLESTONE_SLAB, SMOOTH_SANDSTONE_SLAB,
-                    GRANITE_SLAB, ANDESITE_SLAB, RED_NETHER_BRICK_SLAB, POLISHED_ANDESITE_SLAB, DIORITE_SLAB, SHULKER_BOX, BLACK_SHULKER_BOX, BLUE_SHULKER_BOX,
-                    BROWN_SHULKER_BOX, CYAN_SHULKER_BOX, GRAY_SHULKER_BOX, GREEN_SHULKER_BOX, LIGHT_BLUE_SHULKER_BOX, LIGHT_GRAY_SHULKER_BOX, LIME_SHULKER_BOX,
-                    MAGENTA_SHULKER_BOX, ORANGE_SHULKER_BOX, PINK_SHULKER_BOX, PURPLE_SHULKER_BOX, RED_SHULKER_BOX, WHITE_SHULKER_BOX, YELLOW_SHULKER_BOX); // FROM tag
-            set.forEach(block -> setHarvestLevel(block, ToolSubscriber.Tiers.BONE_TIER.getHarvestLevel()));
-        }
-
         if (Config.forceToolForWood) {
             setUseToolForWood();
-
-            Set<Block> set = new HashSet<>();
-            set.addAll(BlockTags.LOGS.getAllElements());
-            set.addAll(BlockTags.PLANKS.getAllElements());
-            set.addAll(BlockTags.WOODEN_FENCES.getAllElements());
-            set.addAll(BlockTags.WOODEN_BUTTONS.getAllElements());
-            set.addAll(BlockTags.WOODEN_DOORS.getAllElements());
-            set.addAll(BlockTags.WOODEN_PRESSURE_PLATES.getAllElements());
-            set.addAll(BlockTags.WOODEN_SLABS.getAllElements());
-            set.addAll(BlockTags.WOODEN_STAIRS.getAllElements());
-            set.addAll(BlockTags.WOODEN_TRAPDOORS.getAllElements());
-            set.forEach(block -> setHarvestLevel(block, ToolSubscriber.Tiers.BONE_TIER.getHarvestLevel()));
         }
     }
 
@@ -252,17 +234,6 @@ public class ForgeEventSubscriber {
         if (!persistent.contains(PLAYER_MANUAL_NBT)) {
             persistent.putBoolean(PLAYER_MANUAL_NBT, true);
             event.getPlayer().inventory.addItemStackToInventory(new ItemStack(ItemSubscriber.stone_tablet));
-        }
-    }
-
-    private static void setHarvestLevel(Block block, @SuppressWarnings("SameParameterValue") int harvestLevel) {
-        Field harvestLevelField = ObfuscationReflectionHelper.findField(Block.class, "harvestLevel");
-        harvestLevelField.setAccessible(true);
-
-        try {
-            harvestLevelField.set(block, harvestLevel);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
         }
     }
 
