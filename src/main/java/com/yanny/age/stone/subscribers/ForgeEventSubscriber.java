@@ -6,6 +6,8 @@ import com.google.common.collect.Sets;
 import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.config.Config;
 import com.yanny.age.stone.entities.SaberToothTigerEntity;
+import com.yanny.ages.api.enums.Age;
+import com.yanny.ages.api.utils.AgeUtils;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementList;
 import net.minecraft.advancements.AdvancementManager;
@@ -32,6 +34,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -147,6 +150,23 @@ public class ForgeEventSubscriber {
         if (entity instanceof ChickenEntity) {
             ChickenEntity chickenEntity = (ChickenEntity) entity;
             chickenEntity.goalSelector.addGoal(4, new AvoidEntityGoal<>(chickenEntity, SaberToothTigerEntity.class, 14.0F, 1.5D, 2.2D));
+        }
+    }
+
+    @SubscribeEvent
+    public static void rightClickBlockEvent(PlayerInteractEvent.RightClickBlock event) {
+        BlockPos blockPos = event.getPos();
+        BlockState blockState = event.getWorld().getBlockState(blockPos);
+
+        if (Config.disableVanillaCraftingTable && (blockState.getBlock() == CRAFTING_TABLE) && (AgeUtils.getPlayerAge(event.getPlayer()) <= Age.STONE_AGE.value)) {
+            event.setUseBlock(Event.Result.DENY);
+        }
+    }
+
+    @SubscribeEvent
+    public static void advancementEvent(AdvancementEvent event) {
+        if (event.getAdvancement().getId().equals(new ResourceLocation(MODID, "stone_age/end_of_stone_age")) && (AgeUtils.getPlayerAge(event.getPlayer()) <= Age.STONE_AGE.value)) {
+            AgeUtils.setPlayerAge(event.getPlayer(), Age.BRONZE_AGE);
         }
     }
 

@@ -24,6 +24,7 @@ class ServerConfig {
     final ForgeConfigSpec.BooleanValue forceToolForWood;
     final ForgeConfigSpec.BooleanValue givePlayerManualOnFirstConnect;
     final ForgeConfigSpec.IntValue fishingNetChance;
+    final ForgeConfigSpec.BooleanValue disableVanillaCraftingTable;
 
     final ForgeConfigSpec.DoubleValue abandonedCampSpawnChance;
     final ForgeConfigSpec.DoubleValue burialPlaceSpawnChance;
@@ -127,6 +128,10 @@ class ServerConfig {
                 .comment("Chance of successfull fishing every 1/X tick (randomly)")
                 .translation(Reference.MODID + ".config.fishing_net_chance")
                 .defineInRange("fishingNetChance", 3600, 1, Integer.MAX_VALUE);
+        disableVanillaCraftingTable = builder
+                .comment("Disable use of vanilla crafting table until end of Stone Age")
+                .translation(Reference.MODID + ".config.disable_vanilla_crafting_table")
+                .define("disableVanillaCraftingTable", true);
         builder.pop();
 
         builder.push("structures");

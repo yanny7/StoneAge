@@ -55,6 +55,7 @@ public class Config {
     public static boolean forceToolForWood = true;
     public static boolean givePlayerManualOnFirstConnect = true;
     public static int fishingNetChance = 3600;
+    public static boolean disableVanillaCraftingTable = true;
 
     public static double abandonedCampSpawnChance = 0.009f;
     public static double burialPlaceSpawnChance = 0.01f;

@@ -21,6 +21,7 @@ public class ConfigHelper {
         Config.forceToolForWood = ConfigHolder.SERVER.forceToolForWood.get();
         Config.givePlayerManualOnFirstConnect = ConfigHolder.SERVER.givePlayerManualOnFirstConnect.get();
         Config.fishingNetChance = ConfigHolder.SERVER.fishingNetChance.get();
+        Config.disableVanillaCraftingTable = ConfigHolder.SERVER.disableVanillaCraftingTable.get();
 
         Config.abandonedCampSpawnChance = ConfigHolder.SERVER.abandonedCampSpawnChance.get();
         Config.burialPlaceSpawnChance = ConfigHolder.SERVER.burialPlaceSpawnChance.get();
