@@ -1,7 +1,6 @@
 package com.yanny.age.stone.subscribers;
 
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -10,8 +9,7 @@ import static com.yanny.age.stone.Reference.MODID;
 import static com.yanny.age.stone.subscribers.ToolSubscriber.*;
 import static com.yanny.age.stone.subscribers.ToolSubscriber.bone_sword;
 
-@OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ColorSubscriber {
 
     private static final int OVERLAY_BONE_COLOR = 0xe8e5d2;
