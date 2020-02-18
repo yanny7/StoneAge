@@ -10,7 +10,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle'
 
-version = "${game_version}"
+version = "${mc_version}-${game_version}"
 group = 'com.yanny.age.stone' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'stone-age'
 
