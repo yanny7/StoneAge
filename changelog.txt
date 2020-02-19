@@ -1,3 +1,4 @@
+- completed advancement tree, fixed grammar thanks to 'n00balakis'
 - gated usage of vanilla crafting table after finishing stone age
 - replaced vanilla stone tools with improved stone tools
 - fixed crash when running server-side only
