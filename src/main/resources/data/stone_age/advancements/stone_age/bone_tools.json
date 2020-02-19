@@ -16,22 +16,50 @@
     "hidden": false
   },
   "criteria": {
-    "get_item": {
+    "bone_pickaxe": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "item": "stone_age:bone_pickaxe"
-          },
+          }
+        ]
+      }
+    },
+    "bone_axe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "stone_age:bone_axe"
-          },
+          }
+        ]
+      }
+    },
+    "bone_shovel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "stone_age:bone_shovel"
-          },
+          }
+        ]
+      }
+    },
+    "bone_hoe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "stone_age:bone_hoe"
-          },
+          }
+        ]
+      }
+    },
+    "bone_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "stone_age:bone_sword"
           }
@@ -41,7 +69,19 @@
   },
   "requirements": [
     [
-      "get_item"
+      "bone_axe"
+    ],
+    [
+      "bone_pickaxe"
+    ],
+    [
+      "bone_shovel"
+    ],
+    [
+      "bone_hoe"
+    ],
+    [
+      "bone_sword"
     ]
   ]
 }

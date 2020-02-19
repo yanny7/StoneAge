@@ -16,36 +16,92 @@
     "hidden": false
   },
   "criteria": {
-    "get_item": {
+    "cooked_fat": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "item": "stone_age:cooked_fat"
-          },
+          }
+        ]
+      }
+    },
+    "cooked_auroch_meat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "stone_age:cooked_auroch_meat"
-          },
+          }
+        ]
+      }
+    },
+    "cooked_boar_meat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "stone_age:cooked_boar_meat"
-          },
+          }
+        ]
+      }
+    },
+    "cooked_fowl_meat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "stone_age:cooked_fowl_meat"
-          },
+          }
+        ]
+      }
+    },
+    "cooked_mammoth_meat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "stone_age:cooked_mammoth_meat"
-          },
+          }
+        ]
+      }
+    },
+    "cooked_mouflon_meat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "stone_age:cooked_mouflon_meat"
-          },
+          }
+        ]
+      }
+    },
+    "cooked_rhino_meat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "stone_age:cooked_rhino_meat"
-          },
+          }
+        ]
+      }
+    },
+    "cooked_tiger_meat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "stone_age:cooked_tiger_meat"
-          },
+          }
+        ]
+      }
+    },
+    "cooked_venison": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
-            "item": "stone_age:cooked_venison_meat"
+            "item": "stone_age:cooked_venison"
           }
         ]
       }
@@ -53,7 +109,31 @@
   },
   "requirements": [
     [
-      "get_item"
+      "cooked_fat"
+    ],
+    [
+      "cooked_auroch_meat"
+    ],
+    [
+      "cooked_boar_meat"
+    ],
+    [
+      "cooked_fowl_meat"
+    ],
+    [
+      "cooked_mammoth_meat"
+    ],
+    [
+      "cooked_mouflon_meat"
+    ],
+    [
+      "cooked_rhino_meat"
+    ],
+    [
+      "cooked_tiger_meat"
+    ],
+    [
+      "cooked_venison"
     ]
   ]
 }

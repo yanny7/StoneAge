@@ -16,22 +16,50 @@
     "hidden": false
   },
   "criteria": {
-    "get_item": {
+    "wool": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "tag": "minecraft:wool"
-          },
+          }
+        ]
+      }
+    },
+    "chicken": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "minecraft:chicken"
-          },
+          }
+        ]
+      }
+    },
+    "beef": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "minecraft:beef"
-          },
+          }
+        ]
+      }
+    },
+    "mutton": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "minecraft:mutton"
-          },
+          }
+        ]
+      }
+    },
+    "porkchop": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "minecraft:porkchop"
           }
@@ -41,7 +69,19 @@
   },
   "requirements": [
     [
-      "get_item"
+      "wool"
+    ],
+    [
+      "chicken"
+    ],
+    [
+      "beef"
+    ],
+    [
+      "mutton"
+    ],
+    [
+      "porkchop"
     ]
   ]
 }

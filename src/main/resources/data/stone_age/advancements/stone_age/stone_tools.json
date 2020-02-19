@@ -16,27 +16,52 @@
     "hidden": false
   },
   "criteria": {
-    "get_item": {
+    "stone_pickaxe": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "item": "stone_age:stone_pickaxe"
-          },
+          }
+        ]
+      }
+    },
+    "stone_axe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "stone_age:stone_axe"
-          },
+          }
+        ]
+      }
+    },
+    "stone_shovel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "stone_age:stone_shovel"
-          },
+          }
+        ]
+      }
+    },
+    "stone_hoe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "stone_age:stone_hoe"
-          },
+          }
+        ]
+      }
+    },
+    "stone_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "stone_age:stone_sword"
-          },
-          {
-            "item": "stone_age:stone_hammer"
           }
         ]
       }
@@ -44,7 +69,19 @@
   },
   "requirements": [
     [
-      "get_item"
+      "stone_axe"
+    ],
+    [
+      "stone_pickaxe"
+    ],
+    [
+      "stone_shovel"
+    ],
+    [
+      "stone_hoe"
+    ],
+    [
+      "stone_sword"
     ]
   ]
 }
