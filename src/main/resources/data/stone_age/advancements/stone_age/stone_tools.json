@@ -1,0 +1,50 @@
+{
+  "parent": "stone_age:stone_age/advanced_stone",
+  "display": {
+    "icon": {
+      "item": "stone_age:stone_pickaxe"
+    },
+    "title": {
+      "translate": "advancements.stone_age.stone_tools.title"
+    },
+    "description": {
+      "translate": "advancements.stone_age.stone_tools.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "get_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "stone_age:stone_pickaxe"
+          },
+          {
+            "item": "stone_age:stone_axe"
+          },
+          {
+            "item": "stone_age:stone_shovel"
+          },
+          {
+            "item": "stone_age:stone_hoe"
+          },
+          {
+            "item": "stone_age:stone_sword"
+          },
+          {
+            "item": "stone_age:stone_hammer"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_item"
+    ]
+  ]
+}

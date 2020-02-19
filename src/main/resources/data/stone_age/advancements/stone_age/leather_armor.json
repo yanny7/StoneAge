@@ -1,0 +1,44 @@
+{
+  "parent": "stone_age:stone_age/tanning_leather",
+  "display": {
+    "icon": {
+      "item": "minecraft:leather_chestplate"
+    },
+    "title": {
+      "translate": "advancements.stone_age.leather_armor.title"
+    },
+    "description": {
+      "translate": "advancements.stone_age.leather_armor.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "get_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:leather_helmet"
+          },
+          {
+            "item": "minecraft:leather_chestplate"
+          },
+          {
+            "item": "minecraft:leather_leggings"
+          },
+          {
+            "item": "minecraft:leather_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_item"
+    ]
+  ]
+}

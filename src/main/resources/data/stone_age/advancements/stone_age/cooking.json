@@ -1,0 +1,59 @@
+{
+  "parent": "stone_age:stone_age/camping",
+  "display": {
+    "icon": {
+      "item": "stone_age:cooked_fat"
+    },
+    "title": {
+      "translate": "advancements.stone_age.cooking.title"
+    },
+    "description": {
+      "translate": "advancements.stone_age.cooking.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "get_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "stone_age:cooked_fat"
+          },
+          {
+            "item": "stone_age:cooked_auroch_meat"
+          },
+          {
+            "item": "stone_age:cooked_boar_meat"
+          },
+          {
+            "item": "stone_age:cooked_fowl_meat"
+          },
+          {
+            "item": "stone_age:cooked_mammoth_meat"
+          },
+          {
+            "item": "stone_age:cooked_mouflon_meat"
+          },
+          {
+            "item": "stone_age:cooked_rhino_meat"
+          },
+          {
+            "item": "stone_age:cooked_tiger_meat"
+          },
+          {
+            "item": "stone_age:cooked_venison_meat"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_item"
+    ]
+  ]
+}
