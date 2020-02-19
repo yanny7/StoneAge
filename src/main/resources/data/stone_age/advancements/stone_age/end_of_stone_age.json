@@ -1,5 +1,5 @@
 {
-  "parent": "stone_age:stone_age/flint_workbench",
+  "parent": "stone_age:stone_age/livestock",
   "display": {
     "icon": {
       "item": "minecraft:crafting_table"
@@ -10,7 +10,7 @@
     "description": {
       "translate": "advancements.stone_age.end_of_stone_age.description"
     },
-    "frame": "task",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
@@ -22,6 +22,27 @@
         "items": [
           {
             "item": "minecraft:crafting_table"
+          },
+          {
+            "item": "minecraft:cooked_chicken"
+          },
+          {
+            "item": "minecraft:cooked_mutton"
+          },
+          {
+            "item": "minecraft:cooked_beef"
+          },
+          {
+            "item": "minecraft:cooked_porkchop"
+          },
+          {
+            "item": "minecraft:bread"
+          },
+          {
+            "item": "stone_age:stone_chest"
+          },
+          {
+            "tag": "minecraft:wooden_slabs"
           }
         ]
       }

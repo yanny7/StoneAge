@@ -1,0 +1,47 @@
+{
+  "parent": "stone_age:stone_age/advanced_stone",
+  "display": {
+    "icon": {
+      "item": "minecraft:white_wool"
+    },
+    "title": {
+      "translate": "advancements.stone_age.livestock.title"
+    },
+    "description": {
+      "translate": "advancements.stone_age.livestock.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "get_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "minecraft:wool"
+          },
+          {
+            "item": "minecraft:chicken"
+          },
+          {
+            "item": "minecraft:beef"
+          },
+          {
+            "item": "minecraft:mutton"
+          },
+          {
+            "item": "minecraft:porkchop"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_item"
+    ]
+  ]
+}

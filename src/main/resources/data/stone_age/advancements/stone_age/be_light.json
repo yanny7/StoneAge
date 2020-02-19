@@ -1,0 +1,35 @@
+{
+  "parent": "stone_age:stone_age/flint_workbench",
+  "display": {
+    "icon": {
+      "item": "minecraft:torch"
+    },
+    "title": {
+      "translate": "advancements.stone_age.be_light.title"
+    },
+    "description": {
+      "translate": "advancements.stone_age.be_light.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "get_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:torch"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_item"
+    ]
+  ]
+}

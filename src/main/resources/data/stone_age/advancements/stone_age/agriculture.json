@@ -1,0 +1,35 @@
+{
+  "parent": "stone_age:stone_age/flint_workbench",
+  "display": {
+    "icon": {
+      "item": "stone_age:aqueduct"
+    },
+    "title": {
+      "translate": "advancements.stone_age.agriculture.title"
+    },
+    "description": {
+      "translate": "advancements.stone_age.agriculture.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "get_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "stone_age:aqueduct"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_item"
+    ]
+  ]
+}

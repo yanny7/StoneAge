@@ -1,0 +1,35 @@
+{
+  "parent": "stone_age:stone_age/advanced_stone",
+  "display": {
+    "icon": {
+      "item": "stone_age:stone_chest"
+    },
+    "title": {
+      "translate": "advancements.stone_age.sarcophagus.title"
+    },
+    "description": {
+      "translate": "advancements.stone_age.sarcophagus.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "get_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "stone_age:stone_chest"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_item"
+    ]
+  ]
+}
