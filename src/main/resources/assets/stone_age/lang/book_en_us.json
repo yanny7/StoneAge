@@ -73,7 +73,9 @@
             "§pslabs §oWooden and Stone Slabs§r§p",
             "§pplanks §oPlanks§r§p",
             "§pfishing_net §oFishing Net§r§p",
-            "§pthatch_blocks §oThatch Blocks§r§p"
+            "§pthatch_blocks §oThatch Blocks§r§p",
+            "§pterracotta §oTerracotta Blocks§r§p",
+            "§pflower_pot §oFlower Pot§r§p"
           ]
         }
       ]
@@ -522,6 +524,60 @@
         {
           "type": "text",
           "text": "Make your house more stone-age looking"
+        }
+      ]
+    },
+    {
+      "key": "terracotta",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Terracotta Blocks",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "minecraft:terracotta",
+            "stone_age:black_terracotta",
+            "stone_age:blue_terracotta",
+            "stone_age:brown_terracotta",
+            "stone_age:cyan_terracotta",
+            "stone_age:gray_terracotta",
+            "stone_age:green_terracotta",
+            "stone_age:light_blue_terracotta",
+            "stone_age:light_gray_terracotta",
+            "stone_age:lime_terracotta",
+            "stone_age:magenta_terracotta",
+            "stone_age:orange_terracotta",
+            "stone_age:pink_terracotta",
+            "stone_age:purple_terracotta",
+            "stone_age:red_terracotta",
+            "stone_age:white_terracotta",
+            "stone_age:yellow_terracotta"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "flower_pot",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Flower Pot",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:flower_pot"
+          ]
         }
       ]
     },
