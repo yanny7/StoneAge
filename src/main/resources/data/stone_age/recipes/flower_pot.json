@@ -1,0 +1,15 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "A A",
+    " A "
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:brick"
+    }
+  },
+  "result": {
+    "item": "minecraft:flower_pot"
+  }
+}

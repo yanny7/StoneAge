@@ -1,0 +1,20 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:terracotta"
+    },
+    "X": {
+      "item": "minecraft:green_dye"
+    }
+  },
+  "result": {
+    "item": "minecraft:green_terracotta",
+    "count": 8
+  }
+}
