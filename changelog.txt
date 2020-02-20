@@ -1,3 +1,4 @@
+- added thatch block, stairs and slab
 v1.1.1
 - completed advancement tree, fixed grammar thanks to 'n00balakis'
 - gated usage of vanilla crafting table after finishing stone age

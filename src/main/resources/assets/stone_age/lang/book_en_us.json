@@ -72,7 +72,8 @@
             "§pfences §oWooden Fences and Gates§r§p",
             "§pslabs §oWooden and Stone Slabs§r§p",
             "§pplanks §oPlanks§r§p",
-            "§pfishing_net §oFishing Net§r§p"
+            "§pfishing_net §oFishing Net§r§p",
+            "§pthatch_blocks §oThatch Blocks§r§p"
           ]
         }
       ]
@@ -495,6 +496,32 @@
         {
           "type": "text",
           "text": "The fishing net allows you to passively catch fish by placing a §pgrass_mesh §6grass mesh§r§p or §pcobweb_mesh §6cobweb mesh§r§p into it. The fishing net must be placed in water to function."
+        }
+      ]
+    },
+    {
+      "key": "thatch_blocks",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Thatch Blocks",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe":
+          [
+            "stone_age:thatch_block",
+            "stone_age:thatch_stairs",
+            "stone_age:thatch_slab"
+          ],
+          "margin_bottom": 5
+        },
+        {
+          "type": "text",
+          "text": "Make your house more stone-age looking"
         }
       ]
     },

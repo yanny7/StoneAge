@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "stone_age:block/thatch_slab" },
+        "type=top": { "model": "stone_age:block/thatch_slab_top" },
+        "type=double": { "model": "stone_age:block/thatch_block" }
+    }
+}

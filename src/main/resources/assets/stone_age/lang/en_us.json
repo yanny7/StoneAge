@@ -81,6 +81,9 @@
     "block.stone_age.feeder": "Feeding Trough",
     "block.stone_age.millstone": "Millstone",
     "block.stone_age.fishing_net": "Fishing Net",
+    "block.stone_age.thatch_block": "Thatch Block",
+    "block.stone_age.thatch_stairs": "Thatch Stairs",
+    "block.stone_age.thatch_slab": "Thatch Slab",
 
     "entity.stone_age.deer": "Deer",
     "entity.stone_age.boar": "Boar",

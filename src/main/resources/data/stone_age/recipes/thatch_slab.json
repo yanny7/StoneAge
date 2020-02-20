@@ -1,15 +1,15 @@
 {
   "type": "stone_age:flint_workbench",
   "pattern": [
-    "GG",
-    "GG"
+    "GGG"
   ],
   "key": {
     "G": {
-      "item": "stone_age:dried_grass"
+      "item": "stone_age:thatch_block"
     }
   },
   "result": {
-    "item": "stone_age:grass_mesh"
+    "item": "stone_age:thatch_slab",
+    "count": 6
   }
 }
