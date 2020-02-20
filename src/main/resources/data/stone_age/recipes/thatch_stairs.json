@@ -1,0 +1,17 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "G  ",
+    "GG ",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "stone_age:thatch_block"
+    }
+  },
+  "result": {
+    "item": "stone_age:thatch_stairs",
+    "count": 4
+  }
+}

@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "stone_age:block/thatch_block" }
+    }
+}

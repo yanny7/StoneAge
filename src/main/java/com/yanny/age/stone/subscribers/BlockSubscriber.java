@@ -3,6 +3,10 @@ package com.yanny.age.stone.subscribers;
 import com.yanny.age.stone.blocks.*;
 import com.yanny.ages.api.group.ModItemGroup;
 import net.minecraft.block.Block;
+import net.minecraft.block.SlabBlock;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.StairsBlock;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.BedItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -28,9 +32,15 @@ public class BlockSubscriber {
     public static final Block feeder = null;
     public static final Block millstone = null;
     public static final Block fishing_net = null;
+    public static final Block thatch_block = null;
+    public static final Block thatch_stairs = null;
+    public static final Block thatch_slab = null;
 
+    @SuppressWarnings({"ConstantConditions", "Convert2MethodRef"})
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
+        Block.Properties thatchProperties = Block.Properties.create(Material.ORGANIC).hardnessAndResistance(1.0f).sound(SoundType.PLANT);
+
         IForgeRegistry<Block> registry = event.getRegistry();
         registry.register(new FlintWorkbenchBlock().setRegistryName(MODID, "flint_workbench"));
         registry.register(new DryingRackBlock().setRegistryName(MODID, "drying_rack"));
@@ -42,6 +52,9 @@ public class BlockSubscriber {
         registry.register(new FeederBlock().setRegistryName(MODID, "feeder"));
         registry.register(new MillstoneBlock().setRegistryName(MODID, "millstone"));
         registry.register(new FishingNetBlock().setRegistryName(MODID, "fishing_net"));
+        registry.register(new Block(thatchProperties).setRegistryName(MODID, "thatch_block"));
+        registry.register(new StairsBlock(() -> thatch_block.getDefaultState(), thatchProperties).setRegistryName(MODID, "thatch_stairs"));
+        registry.register(new SlabBlock(thatchProperties).setRegistryName(MODID, "thatch_slab"));
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -68,5 +81,11 @@ public class BlockSubscriber {
                 .setRegistryName(MODID, "millstone"));
         registry.register(new BlockItem(fishing_net, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "fishing_net"));
+        registry.register(new BlockItem(thatch_block, new Item.Properties().group(ModItemGroup.AGES))
+                .setRegistryName(MODID, "thatch_block"));
+        registry.register(new BlockItem(thatch_stairs, new Item.Properties().group(ModItemGroup.AGES))
+                .setRegistryName(MODID, "thatch_stairs"));
+        registry.register(new BlockItem(thatch_slab, new Item.Properties().group(ModItemGroup.AGES))
+                .setRegistryName(MODID, "thatch_slab"));
     }
 }

@@ -1,8 +1,9 @@
 {
   "type": "stone_age:flint_workbench",
   "pattern": [
-    "GG",
-    "GG"
+    "GGG",
+    "GGG",
+    "GGG"
   ],
   "key": {
     "G": {
@@ -10,6 +11,6 @@
     }
   },
   "result": {
-    "item": "stone_age:grass_mesh"
+    "item": "stone_age:thatch_block"
   }
 }
