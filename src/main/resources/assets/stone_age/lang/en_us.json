@@ -104,6 +104,16 @@
     "stone_age.subtitle.woolly_rhino_hit": "Woolly rhino was hit",
     "stone_age.subtitle.woolly_rhino_death": "Woolly rhino died",
 
+    "effect.stone_age.leprosy": "Leprosy",
+
+    "item.minecraft.potion.effect.leprosy": "Potion of Leprosy",
+
+    "item.minecraft.splash_potion.effect.leprosy": "Splash Leprosy Potion",
+
+    "item.minecraft.lingering_potion.effect.leprosy": "Lingering Leprosy Potion",
+
+    "item.minecraft.tipped_arrow.effect.leprosy": "Arrow of Leprosy",
+
     "advancements.stone_age.root.title": "Stone Age",
     "advancements.stone_age.root.description": "Welcome to Stone Age",
     "advancements.stone_age.flint_and_stick.title": "Flint and Stick",
