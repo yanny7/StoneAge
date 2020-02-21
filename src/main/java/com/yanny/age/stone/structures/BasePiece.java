@@ -66,8 +66,7 @@ public abstract class BasePiece extends ScatteredStructurePiece {
 
                 for (int i = 0; i < stacks.size(); i++) {
                     if (rand.nextDouble() < 0.25) {
-                        //noinspection ConstantConditions
-                        stacks.set(i, ItemSubscriber.antler.getDefaultInstance());
+                        stacks.set(i, new ItemStack(ItemSubscriber.antler));
                     }
                 }
             }
@@ -89,8 +88,7 @@ public abstract class BasePiece extends ScatteredStructurePiece {
 
                     for (int i = stacks.size() / 2; i < stacks.size(); i++) {
                         if (random.nextDouble() < 0.5) {
-                            //noinspection ConstantConditions
-                            stacks.set(i, ItemSubscriber.dried_grass.getDefaultInstance());
+                            stacks.set(i, new ItemStack(ItemSubscriber.dried_grass));
                         }
                     }
                 }
@@ -104,8 +102,7 @@ public abstract class BasePiece extends ScatteredStructurePiece {
 
                     for (int i = 0; i < stacks.size() / 2; i++) {
                         if (random.nextDouble() < 0.7) {
-                            //noinspection ConstantConditions
-                            stacks.set(i, ItemSubscriber.raw_hide.getDefaultInstance());
+                            stacks.set(i, new ItemStack(ItemSubscriber.raw_hide));
                         }
                     }
                 }
