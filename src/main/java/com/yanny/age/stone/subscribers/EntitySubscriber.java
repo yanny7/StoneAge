@@ -1,23 +1,18 @@
 package com.yanny.age.stone.subscribers;
 
-import com.google.common.collect.Sets;
 import com.yanny.age.stone.Reference;
-import com.yanny.age.stone.config.Config;
 import com.yanny.age.stone.entities.*;
 import com.yanny.ages.api.group.ModItemGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
 import static net.minecraft.entity.EntityClassification.CREATURE;
-import static net.minecraft.entity.EntityType.*;
 
 @SuppressWarnings({"unused", "unchecked"})
 @ObjectHolder(Reference.MODID)
@@ -63,41 +58,6 @@ public class EntitySubscriber {
         registry.register(mammoth);
         registry.register(saber_tooth_tiger);
         registry.register(woolly_rhino);
-
-        for (Biome biome : ForgeRegistries.BIOMES) {
-            if (Config.spawnDeerAllowedBiomes.contains(biome) && Config.spawnDeerEnable) {
-                biome.getSpawns(deer.getClassification()).add(new Biome.SpawnListEntry(deer, Config.spawnDeerWeight, Config.spawnDeerMinCount, Config.spawnDeerMaxCount));
-            }
-            if (Config.spawnBoarAllowedBiomes.contains(biome) && Config.spawnBoarEnable) {
-                biome.getSpawns(boar.getClassification()).add(new Biome.SpawnListEntry(boar, Config.spawnBoarWeight, Config.spawnBoarMinCount, Config.spawnBoarMaxCount));
-            }
-            if (Config.spawnAurochAllowedBiomes.contains(biome) && Config.spawnAurochEnable) {
-                biome.getSpawns(auroch.getClassification()).add(new Biome.SpawnListEntry(auroch, Config.spawnAurochWeight, Config.spawnAurochMinCount, Config.spawnAurochMaxCount));
-            }
-            if (Config.spawnFowlAllowedBiomes.contains(biome) && Config.spawnFowlEnable) {
-                biome.getSpawns(fowl.getClassification()).add(new Biome.SpawnListEntry(fowl, Config.spawnFowlWeight, Config.spawnFowlMinCount, Config.spawnFowlMaxCount));
-            }
-            if (Config.spawnMouflonAllowedBiomes.contains(biome) && Config.spawnMouflonEnable) {
-                biome.getSpawns(mouflon.getClassification()).add(new Biome.SpawnListEntry(mouflon, Config.spawnMouflonWeight, Config.spawnMouflonMinCount, Config.spawnMouflonMaxCount));
-            }
-            if (Config.spawnMammothAllowedBiomes.contains(biome) && Config.spawnMammothEnable) {
-                biome.getSpawns(mammoth.getClassification()).add(new Biome.SpawnListEntry(mammoth, Config.spawnMammothWeight, Config.spawnMammothMinCount, Config.spawnMammothMaxCount));
-            }
-            if (Config.spawnSaberToothTigerAllowedBiomes.contains(biome) && Config.spawnSaberToothTigerEnable) {
-                biome.getSpawns(saber_tooth_tiger.getClassification()).add(new Biome.SpawnListEntry(saber_tooth_tiger, Config.spawnSaberToothTigerWeight, Config.spawnSaberToothTigerMinCount, Config.spawnSaberToothTigerMaxCount));
-            }
-            if (Config.spawnWoollyRhinoAllowedBiomes.contains(biome) && Config.spawnWoollyRhinoEnable) {
-                biome.getSpawns(woolly_rhino.getClassification()).add(new Biome.SpawnListEntry(woolly_rhino, Config.spawnWoollyRhinoWeight, Config.spawnWoollyRhinoMinCount, Config.spawnWoollyRhinoMaxCount));
-            }
-
-            if (Config.removeVanillaGeneratedAnimals) {
-                biome.getSpawns(CREATURE).removeIf(entry -> Sets.newHashSet(COW, SHEEP, PIG, CHICKEN).contains(entry.entityType));
-                // COW -> AUROCH
-                // SHEEP -> MOUFLON
-                // PIG -> BOAR
-                // CHICKEN -> FOWL
-            }
-        }
     }
 
     @SubscribeEvent
