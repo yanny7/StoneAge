@@ -31,6 +31,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.ProbabilityConfig;
+import net.minecraft.world.gen.placement.IPlacementConfig;
+import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
@@ -40,7 +45,9 @@ import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -49,7 +56,10 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.yanny.age.stone.Reference.MODID;
+import static com.yanny.age.stone.subscribers.EntitySubscriber.*;
 import static net.minecraft.block.Blocks.*;
+import static net.minecraft.entity.EntityClassification.CREATURE;
+import static net.minecraft.entity.EntityType.*;
 
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeEventSubscriber {
@@ -219,6 +229,56 @@ public class ForgeEventSubscriber {
                 }
 
                 driedGrassList.forEach(Entity::remove);
+            }
+        }
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    @SubscribeEvent
+    public static void serverAboutToStartEvent(FMLServerAboutToStartEvent event) {
+        for (Biome biome : ForgeRegistries.BIOMES) {
+            if (Config.spawnDeerAllowedBiomes.contains(biome) && Config.spawnDeerEnable) {
+                biome.getSpawns(deer.getClassification()).add(new Biome.SpawnListEntry(deer, Config.spawnDeerWeight, Config.spawnDeerMinCount, Config.spawnDeerMaxCount));
+            }
+            if (Config.spawnBoarAllowedBiomes.contains(biome) && Config.spawnBoarEnable) {
+                biome.getSpawns(boar.getClassification()).add(new Biome.SpawnListEntry(boar, Config.spawnBoarWeight, Config.spawnBoarMinCount, Config.spawnBoarMaxCount));
+            }
+            if (Config.spawnAurochAllowedBiomes.contains(biome) && Config.spawnAurochEnable) {
+                biome.getSpawns(auroch.getClassification()).add(new Biome.SpawnListEntry(auroch, Config.spawnAurochWeight, Config.spawnAurochMinCount, Config.spawnAurochMaxCount));
+            }
+            if (Config.spawnFowlAllowedBiomes.contains(biome) && Config.spawnFowlEnable) {
+                biome.getSpawns(fowl.getClassification()).add(new Biome.SpawnListEntry(fowl, Config.spawnFowlWeight, Config.spawnFowlMinCount, Config.spawnFowlMaxCount));
+            }
+            if (Config.spawnMouflonAllowedBiomes.contains(biome) && Config.spawnMouflonEnable) {
+                biome.getSpawns(mouflon.getClassification()).add(new Biome.SpawnListEntry(mouflon, Config.spawnMouflonWeight, Config.spawnMouflonMinCount, Config.spawnMouflonMaxCount));
+            }
+            if (Config.spawnMammothAllowedBiomes.contains(biome) && Config.spawnMammothEnable) {
+                biome.getSpawns(mammoth.getClassification()).add(new Biome.SpawnListEntry(mammoth, Config.spawnMammothWeight, Config.spawnMammothMinCount, Config.spawnMammothMaxCount));
+            }
+            if (Config.spawnSaberToothTigerAllowedBiomes.contains(biome) && Config.spawnSaberToothTigerEnable) {
+                biome.getSpawns(saber_tooth_tiger.getClassification()).add(new Biome.SpawnListEntry(saber_tooth_tiger, Config.spawnSaberToothTigerWeight, Config.spawnSaberToothTigerMinCount, Config.spawnSaberToothTigerMaxCount));
+            }
+            if (Config.spawnWoollyRhinoAllowedBiomes.contains(biome) && Config.spawnWoollyRhinoEnable) {
+                biome.getSpawns(woolly_rhino.getClassification()).add(new Biome.SpawnListEntry(woolly_rhino, Config.spawnWoollyRhinoWeight, Config.spawnWoollyRhinoMinCount, Config.spawnWoollyRhinoMaxCount));
+            }
+
+            if (Config.removeVanillaGeneratedAnimals) {
+                //noinspection unchecked
+                biome.getSpawns(CREATURE).removeIf(entry -> Sets.newHashSet(COW, SHEEP, PIG, CHICKEN).contains(entry.entityType));
+            }
+
+            if (Config.abandonedCampAllowedBiomes.contains(biome)) {
+                biome.addStructure(FeatureSubscriber.abandoned_camp_structure.withConfiguration(new ProbabilityConfig((float) Config.abandonedCampSpawnChance)));
+                biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
+                        FeatureSubscriber.abandoned_camp_structure.withConfiguration(new ProbabilityConfig((float) Config.abandonedCampSpawnChance)).
+                                func_227228_a_(Placement.NOPE.func_227446_a_(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+            }
+
+            if (Config.burialPlaceAllowedBiomes.contains(biome)) {
+                biome.addStructure(FeatureSubscriber.burial_place_structure.withConfiguration(new ProbabilityConfig((float) Config.burialPlaceSpawnChance)));
+                biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
+                        FeatureSubscriber.burial_place_structure.withConfiguration(new ProbabilityConfig((float) Config.burialPlaceSpawnChance)).
+                                func_227228_a_(Placement.NOPE.func_227446_a_(IPlacementConfig.NO_PLACEMENT_CONFIG)));
             }
         }
     }

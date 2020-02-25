@@ -24,19 +24,19 @@ public class Config {
     static {
         DEFAULT_DEER_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, BEACH, SWAMP, JUNGLE, MESA, ICY)
                 .contains(biome.getCategory())).collect(Collectors.toSet());
-        DEFAULT_BOAR_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> !EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, SWAMP, JUNGLE)
+        DEFAULT_BOAR_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, SWAMP, JUNGLE)
                 .contains(biome.getCategory())).collect(Collectors.toSet());
-        DEFAULT_AUROCH_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> !EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, BEACH)
+        DEFAULT_AUROCH_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, BEACH)
                 .contains(biome.getCategory())).collect(Collectors.toSet());
-        DEFAULT_FOWL_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> !EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, SWAMP, JUNGLE, BEACH, MESA)
+        DEFAULT_FOWL_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, SWAMP, JUNGLE, BEACH, MESA)
                 .contains(biome.getCategory())).collect(Collectors.toSet());
-        DEFAULT_MOUFLON_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> !EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SWAMP, MESA)
+        DEFAULT_MOUFLON_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SWAMP, MESA)
                 .contains(biome.getCategory())).collect(Collectors.toSet());
-        DEFAULT_MAMMOTH_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> !EnumSet.of(PLAINS, SAVANNA, ICY, TAIGA, EXTREME_HILLS, DESERT, SAVANNA)
+        DEFAULT_MAMMOTH_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> EnumSet.of(PLAINS, SAVANNA, ICY, TAIGA, EXTREME_HILLS, DESERT, SAVANNA)
                 .contains(biome.getCategory())).collect(Collectors.toSet());
-        DEFAULT_TIGER_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> !EnumSet.of(PLAINS, SAVANNA, ICY, TAIGA, DESERT, FOREST, BEACH, JUNGLE, MUSHROOM)
+        DEFAULT_TIGER_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> EnumSet.of(PLAINS, SAVANNA, ICY, TAIGA, DESERT, FOREST, BEACH, JUNGLE, MUSHROOM)
                 .contains(biome.getCategory())).collect(Collectors.toSet());
-        DEFAULT_RHINO_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> !EnumSet.of(PLAINS, SAVANNA, ICY, TAIGA, BEACH, SAVANNA, MUSHROOM, RIVER, SWAMP)
+        DEFAULT_RHINO_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> EnumSet.of(PLAINS, SAVANNA, ICY, TAIGA, BEACH, SAVANNA, MUSHROOM, RIVER, SWAMP)
                 .contains(biome.getCategory())).collect(Collectors.toSet());
 
         DEFAULT_STRUCTURE_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> !EnumSet.of(OCEAN, RIVER, THEEND, NETHER).contains(biome.getCategory())).collect(Collectors.toSet());
