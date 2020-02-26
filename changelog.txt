@@ -1,3 +1,5 @@
+- chopping with wood in offhand
+- fixed problem with animal and structure spawning configuration
 v1.1.2
 - fixed server only crash #9
 - added terracotta and pot recipes for flint workbench
