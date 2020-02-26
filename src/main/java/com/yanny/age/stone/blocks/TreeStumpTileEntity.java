@@ -144,6 +144,11 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
         ItemStack itemStack = player.getHeldItemMainhand();
         TreeStumpRecipe recipe = getRecipe(itemStack);
 
+        if (recipe == null) {
+            itemStack = player.getHeldItemOffhand();
+            recipe = getRecipe(itemStack);
+        }
+
         if (stacks.get(0).isEmpty() && recipe != null) {
             stacks.set(0, itemStack.split(1));
             totalChops = recipe.getChopTimes();
