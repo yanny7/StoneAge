@@ -67,7 +67,7 @@ public class StoneChestTileEntity extends LockableLootTileEntity implements IInv
         this.prevLidAngle = this.lidAngle;
 
         if (this.numPlayersUsing > 0 && this.lidAngle == 0.0F) {
-            this.playSound(SoundEvents.BLOCK_CHEST_OPEN);
+            this.playSound();
         }
 
         if (this.numPlayersUsing == 0 && this.lidAngle > 0.0F || this.numPlayersUsing > 0 && this.lidAngle < 1.0F) {
@@ -83,7 +83,7 @@ public class StoneChestTileEntity extends LockableLootTileEntity implements IInv
             }
 
             if (this.lidAngle < 0.5F && f1 >= 0.5F) {
-                this.playSound(SoundEvents.BLOCK_CHEST_CLOSE);
+                this.playSound();
             }
 
             if (this.lidAngle < 0.0F) {
@@ -237,12 +237,12 @@ public class StoneChestTileEntity extends LockableLootTileEntity implements IInv
         }
     }
 
-    private void playSound(SoundEvent soundIn) {
+    private void playSound() {
         assert this.world != null;
         double d0 = (double)this.pos.getX() + 0.5D;
         double d1 = (double)this.pos.getY() + 0.5D;
         double d2 = (double)this.pos.getZ() + 0.5D;
-        this.world.playSound(null, d0, d1, d2, soundIn, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
+        this.world.playSound(null, d0, d1, d2, SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
     }
 
     private IItemHandlerModifiable createNonSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {
