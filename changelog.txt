@@ -1,3 +1,6 @@
+- added flint workbench recipe for boats
+- oak sapling drops from dirt with low chance
+- bones and sticks drops also from gravel, sand or dirt
 - changed stone chest opening/closing sound
 - chopping with wood in offhand
 - fixed problem with animal and structure spawning configuration

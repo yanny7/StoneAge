@@ -634,7 +634,10 @@
                 "§pstone_pickaxe_head §oStone Pickaxe Head§r§p",
                 "§pstone_hoe_head §oStone Hoe Head§r§p",
                 "§pstone_shovel_head §oStone Shovel Head§r§p",
-                "§pstone_sword_head §oStone Sword Head§r§p"
+                "§pstone_sword_head §oStone Sword Head§r§p",
+                "§pbone §oBone§r§p",
+                "§pstick §oStick§r§p",
+                "§pboats §oBoats§r§p"
               ]
             }
           ]
@@ -1265,6 +1268,68 @@
         {
           "type": "text",
           "text": "The stone sword head is used for crafting §pstone_sword §6stone sword§r§p"
+        }
+      ]
+    },
+    {
+      "key": "bone",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Bone",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "Bones drop not only from animals, but you can also find them in sand, gravel, or dirt."
+        }
+      ]
+    },
+    {
+      "key": "stick",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Stick",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "text",
+          "text": "Sticks drop not only from leaves, but you can also find them in sand, gravel, or dirt."
+        }
+      ]
+    },
+    {
+      "key": "boats",
+      "content":
+      [
+        {
+          "type": "title",
+          "text": "Boats",
+          "color": "TITLE",
+          "margin_bottom": 10
+        },
+        {
+          "type": "recipe",
+          "recipe": [
+            "minecraft:oak_boat",
+            "minecraft:birch_boat",
+            "minecraft:acacia_boat",
+            "minecraft:jungle_boat",
+            "minecraft:spruce_boat",
+            "minecraft:dark_oak_boat",
+            "stone_age:oak_boat",
+            "stone_age:birch_boat",
+            "stone_age:acacia_boat",
+            "stone_age:jungle_boat",
+            "stone_age:spruce_boat",
+            "stone_age:dark_oak_boat"
+          ],
+          "margin_bottom": 5
         }
       ]
     },
