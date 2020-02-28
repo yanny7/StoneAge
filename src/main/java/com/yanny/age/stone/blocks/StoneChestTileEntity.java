@@ -15,7 +15,6 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.IChestLid;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableLootTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
@@ -70,7 +69,7 @@ public class StoneChestTileEntity extends LockableLootTileEntity implements IInv
             this.playSound();
         }
 
-        if (this.numPlayersUsing == 0 && this.lidAngle > 0.0F || this.numPlayersUsing > 0 && this.lidAngle < 1.0F) {
+        if ((this.numPlayersUsing == 0 && this.lidAngle > 0.0F) || (this.numPlayersUsing > 0 && this.lidAngle < 1.0F)) {
             float f1 = this.lidAngle;
             if (this.numPlayersUsing > 0) {
                 this.lidAngle += 0.05F;
@@ -256,7 +255,7 @@ public class StoneChestTileEntity extends LockableLootTileEntity implements IInv
         };
     }
 
-    private static int calculatePlayersUsingSync(World world, TileEntity tileEntity, int tickSinceSync, int x, int y, int z, int numUsing) {
+    private static int calculatePlayersUsingSync(World world, StoneChestTileEntity tileEntity, int tickSinceSync, int x, int y, int z, int numUsing) {
         if (!world.isRemote && numUsing != 0 && (tickSinceSync + x + y + z) % 200 == 0) {
             numUsing = calculatePlayersUsing(world, tileEntity, x, y, z);
         }
@@ -264,7 +263,7 @@ public class StoneChestTileEntity extends LockableLootTileEntity implements IInv
         return numUsing;
     }
 
-    private static int calculatePlayersUsing(World world, TileEntity tileEntity, int x, int y, int z) {
+    private static int calculatePlayersUsing(World world, StoneChestTileEntity tileEntity, int x, int y, int z) {
         int i = 0;
         float f = 5.0F;
 
@@ -272,7 +271,7 @@ public class StoneChestTileEntity extends LockableLootTileEntity implements IInv
                 new AxisAlignedBB(x - f, y - f, z - f, (x + 1) + f, (y + 1) + f, (z + 1) + f))) {
             if (playerentity.openContainer instanceof StoneChestContainer) {
                 IInventory iinventory = ((StoneChestContainer)playerentity.openContainer).getIInventory();
-                if (iinventory == tileEntity) {
+                if (iinventory == tileEntity.inventoryWrapper) {
                     ++i;
                 }
             }
