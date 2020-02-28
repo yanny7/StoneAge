@@ -105,6 +105,10 @@ public class FowlEntity extends WildAnimalEntity implements ITopEntityProvider {
         this.wingRotation += this.wingRotDelta * 2.0F;
     }
 
+    public boolean onLivingFall(float distance, float damageMultiplier) {
+        return false;
+    }
+
     @Override
     protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_CHICKEN_AMBIENT;
