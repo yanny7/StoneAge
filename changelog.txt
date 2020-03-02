@@ -1,3 +1,4 @@
+- injecting loot table instead of providing data pack
 - added flint workbench recipe for boats
 - oak sapling drops from dirt with low chance
 - bones and sticks drops also from gravel, sand or dirt
