@@ -55,6 +55,7 @@ public class LootHandler {
         entryItem.setAccessible(true);
 
         REMOVE_LOOT.put("minecraft:entities/horse", new Pair<>("main", Items.LEATHER));
+        REMOVE_LOOT.put("minecraft:entities/cow", new Pair<>("main", Items.LEATHER));
 
         INJECT_POOL.put("minecraft:blocks/dirt", "stone_age:inject/blocks/bones_and_sticks");
         INJECT_POOL.put("minecraft:blocks/coarse_dirt", "stone_age:inject/blocks/bones_and_sticks");
