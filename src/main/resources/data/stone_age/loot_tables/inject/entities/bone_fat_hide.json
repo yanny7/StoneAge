@@ -8,6 +8,40 @@
           "type": "minecraft:item",
           "functions": [
             {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 0.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            },
+            {
+              "function": "minecraft:looting_enchant",
+              "count": {
+                "min": 0.0,
+                "max": 1.0
+              }
+            }
+          ],
+          "name": "minecraft:bone"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            },
+            {
               "function": "minecraft:furnace_smelt",
               "conditions": [
                 {
@@ -20,24 +54,16 @@
                   "entity": "this"
                 }
               ]
+            },
+            {
+              "function": "minecraft:looting_enchant",
+              "count": {
+                "min": 0.0,
+                "max": 1.0
+              }
             }
           ],
-          "name": "minecraft:cod"
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:bone_meal"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:random_chance",
-          "chance": 0.05
+          "name": "stone_age:fat"
         }
       ]
     },
@@ -59,11 +85,11 @@
               "function": "minecraft:looting_enchant",
               "count": {
                 "min": 0.0,
-                "max": 2.0
+                "max": 1.0
               }
             }
           ],
-          "name": "stone_age:fish_bone"
+          "name": "stone_age:raw_hide"
         }
       ]
     }

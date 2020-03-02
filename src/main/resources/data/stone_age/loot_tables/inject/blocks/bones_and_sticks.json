@@ -1,13 +1,8 @@
 {
-  "type": "minecraft:block",
   "pools": [
     {
       "rolls": 1,
       "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:sand"
-        },
         {
           "type": "minecraft:alternatives",
           "conditions": [
@@ -47,10 +42,6 @@
                 }
               ],
               "name": "minecraft:bone"
-            },
-            {
-              "type": "minecraft:item",
-              "name": "minecraft:sand"
             }
           ]
         }
