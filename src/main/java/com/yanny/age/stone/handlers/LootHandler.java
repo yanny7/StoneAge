@@ -43,15 +43,15 @@ public class LootHandler {
     private static Constructor<AlternativesLootEntry> constructAlternative;
 
     static {
-        lootEntries = ObfuscationReflectionHelper.findField(LootPool.class, "lootEntries");
+        lootEntries = ObfuscationReflectionHelper.findField(LootPool.class, "field_186453_a");
         lootEntries.setAccessible(true);
         alternativeEntries = ObfuscationReflectionHelper.findField(ParentedLootEntry.class, "field_216147_c");
         alternativeEntries.setAccessible(true);
-        alternativeConditions = ObfuscationReflectionHelper.findField(LootEntry.class, "conditions");
+        alternativeConditions = ObfuscationReflectionHelper.findField(LootEntry.class, "field_216144_d");
         alternativeConditions.setAccessible(true);
         constructAlternative = ObfuscationReflectionHelper.findConstructor(AlternativesLootEntry.class, LootEntry[].class, ILootCondition[].class);
         constructAlternative.setAccessible(true);
-        entryItem = ObfuscationReflectionHelper.findField(ItemLootEntry.class, "item");
+        entryItem = ObfuscationReflectionHelper.findField(ItemLootEntry.class, "field_186368_a");
         entryItem.setAccessible(true);
 
         REMOVE_LOOT.put("minecraft:entities/horse", new Pair<>("main", Items.LEATHER));
