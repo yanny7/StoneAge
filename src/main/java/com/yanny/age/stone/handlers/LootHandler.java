@@ -33,6 +33,7 @@ public class LootHandler {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Map<String, Pair<String, Item>> REMOVE_LOOT = Maps.newHashMap();
     private static final Map<String, String> INJECT_POOL = Maps.newHashMap();
+    private static final Map<String, Pair<Block, Tag<Item>>> INJECT_ITEM_POOL = Maps.newHashMap();
     private static final Map<String, Pair<Block, Tag<Item>>> INJECT_ALTERNATE_ENTRIES = Maps.newHashMap();
     private static final Map<String, Pair<Block, Tag<Item>>> CHANGE_ALTERNATE_ENTRIES = Maps.newHashMap();
 
@@ -72,6 +73,9 @@ public class LootHandler {
         INJECT_POOL.put("minecraft:entities/pig", "stone_age:inject/entities/bone_fat");
         INJECT_POOL.put("minecraft:entities/sheep", "stone_age:inject/entities/bone_fat");
 
+        INJECT_ITEM_POOL.put("minecraft:blocks/seagrass", new Pair<>(Blocks.SEAGRASS, Tags.Items.SHEARS));
+        INJECT_ITEM_POOL.put("minecraft:blocks/vine", new Pair<>(Blocks.VINE, Tags.Items.SHEARS));
+
         INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/stone", new Pair<>(Blocks.GRAVEL, Tags.Items.HAMMERS));
         INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/acacia_leaves", new Pair<>(Blocks.ACACIA_LEAVES, Tags.Items.SHEARS));
         INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/birch_leaves", new Pair<>(Blocks.BIRCH_LEAVES, Tags.Items.SHEARS));
@@ -83,11 +87,9 @@ public class LootHandler {
         INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/jungle_leaves", new Pair<>(Blocks.JUNGLE_LEAVES, Tags.Items.SHEARS));
         INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/large_fern", new Pair<>(Blocks.FERN, Tags.Items.SHEARS));
         INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/oak_leaves", new Pair<>(Blocks.OAK_LEAVES, Tags.Items.SHEARS));
-        INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/seagrass", new Pair<>(Blocks.SEAGRASS, Tags.Items.SHEARS));
         INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/spruce_leaves", new Pair<>(Blocks.SPRUCE_LEAVES, Tags.Items.SHEARS));
         INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/tall_grass", new Pair<>(Blocks.GRASS, Tags.Items.SHEARS));
         INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/tall_seagrass", new Pair<>(Blocks.SEAGRASS, Tags.Items.SHEARS));
-        INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/vine", new Pair<>(Blocks.VINE, Tags.Items.SHEARS));
 
         CHANGE_ALTERNATE_ENTRIES.put("minecraft:blocks/sandstone", new Pair<>(Blocks.SAND, Tags.Items.HAMMERS));
         CHANGE_ALTERNATE_ENTRIES.put("minecraft:blocks/chiseled_sandstone", new Pair<>(Blocks.SAND, Tags.Items.HAMMERS));
@@ -109,6 +111,9 @@ public class LootHandler {
         if (INJECT_POOL.containsKey(name)) {
             event.getTable().addPool(getInjectPool(INJECT_POOL.get(name)));
         }
+        if (INJECT_ITEM_POOL.containsKey(name)) {
+            injectItemPool(event.getTable(), INJECT_ITEM_POOL.get(name));
+        }
         if (INJECT_ALTERNATE_ENTRIES.containsKey(name)) {
             injectMainAlternativeEntries(event.getTable(), INJECT_ALTERNATE_ENTRIES.get(name));
         }
@@ -124,6 +129,13 @@ public class LootHandler {
     private static LootEntry.Builder<?> getInjectEntry(String name) {
         ResourceLocation table = new ResourceLocation(name);
         return TableLootEntry.builder(table).weight(1);
+    }
+
+    private static void injectItemPool(LootTable table, Pair<Block, Tag<Item>> data) {
+        ItemPredicate.Builder predicate = ItemPredicate.Builder.create().tag(data.getSecond());
+        LootEntry.Builder<?> itemLootEntry = ItemLootEntry.builder(data.getFirst()).acceptCondition(MatchTool.builder(predicate)).weight(1);
+        LootPool.Builder pool = LootPool.builder().addEntry(itemLootEntry).bonusRolls(0, 1).name("stone_age:inject");
+        table.addPool(pool.build());
     }
 
     @SuppressWarnings("unchecked")
@@ -146,13 +158,13 @@ public class LootHandler {
                         AlternativesLootEntry newAlternative = constructAlternative.newInstance(list.toArray(new LootEntry[0]), aConditions);
                         entries.set(0, newAlternative);
                     } else {
-                        LOGGER.warn("Fields not available!");
+                        LOGGER.warn("Fields not available! {}", data.toString());
                     }
                 } else {
-                    LOGGER.warn("Alternatives not available!");
+                    LOGGER.warn("Alternatives not available! {}", data.toString());
                 }
             } else {
-                LOGGER.warn("Main pool not available!");
+                LOGGER.warn("Main pool not available! {}", data.toString());
             }
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
@@ -175,10 +187,10 @@ public class LootHandler {
                     AlternativesLootEntry a = constructAlternative.newInstance(list.toArray(new LootEntry[0]), new ILootCondition[0]);
                     entries.set(0, a);
                 } else {
-                    LOGGER.warn("Alternatives not available!");
+                    LOGGER.warn("Alternatives not available! {}", data.toString());
                 }
             } else {
-                LOGGER.warn("Main pool not available!");
+                LOGGER.warn("Main pool not available! {}", data.toString());
             }
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
