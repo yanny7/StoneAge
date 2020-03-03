@@ -62,7 +62,7 @@ public class LootHandler {
         INJECT_POOL.put("minecraft:blocks/gravel", "stone_age:inject/blocks/bones_and_sticks");
         INJECT_POOL.put("minecraft:blocks/sand", "stone_age:inject/blocks/bones_and_sticks");
         INJECT_POOL.put("minecraft:blocks/red_sand", "stone_age:inject/blocks/bones_and_sticks");
-        INJECT_POOL.put("minecraft:blocks/grass", "stone_age:inject/blocks/saplings");
+        INJECT_POOL.put("minecraft:blocks/grass_block", "stone_age:inject/blocks/saplings");
         INJECT_POOL.put("minecraft:entities/cod", "stone_age:inject/entities/fish_bone");
         INJECT_POOL.put("minecraft:entities/salmon", "stone_age:inject/entities/fish_bone");
         INJECT_POOL.put("minecraft:entities/tropical_fish", "stone_age:inject/entities/fish_bone");
@@ -73,6 +73,21 @@ public class LootHandler {
         INJECT_POOL.put("minecraft:entities/sheep", "stone_age:inject/entities/bone_fat");
 
         INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/stone", new Pair<>(Blocks.GRAVEL, Tags.Items.HAMMERS));
+        INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/acacia_leaves", new Pair<>(Blocks.ACACIA_LEAVES, Tags.Items.SHEARS));
+        INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/birch_leaves", new Pair<>(Blocks.BIRCH_LEAVES, Tags.Items.SHEARS));
+        INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/cobweb", new Pair<>(Blocks.COBWEB, Tags.Items.SHEARS));
+        INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/dark_oak_leaves", new Pair<>(Blocks.DARK_OAK_LEAVES, Tags.Items.SHEARS));
+        INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/dead_bush", new Pair<>(Blocks.DEAD_BUSH, Tags.Items.SHEARS));
+        INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/fern", new Pair<>(Blocks.FERN, Tags.Items.SHEARS));
+        INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/grass", new Pair<>(Blocks.GRASS, Tags.Items.SHEARS));
+        INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/jungle_leaves", new Pair<>(Blocks.JUNGLE_LEAVES, Tags.Items.SHEARS));
+        INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/large_fern", new Pair<>(Blocks.FERN, Tags.Items.SHEARS));
+        INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/oak_leaves", new Pair<>(Blocks.OAK_LEAVES, Tags.Items.SHEARS));
+        INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/seagrass", new Pair<>(Blocks.SEAGRASS, Tags.Items.SHEARS));
+        INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/spruce_leaves", new Pair<>(Blocks.SPRUCE_LEAVES, Tags.Items.SHEARS));
+        INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/tall_grass", new Pair<>(Blocks.GRASS, Tags.Items.SHEARS));
+        INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/tall_seagrass", new Pair<>(Blocks.SEAGRASS, Tags.Items.SHEARS));
+        INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/vine", new Pair<>(Blocks.VINE, Tags.Items.SHEARS));
 
         CHANGE_ALTERNATE_ENTRIES.put("minecraft:blocks/sandstone", new Pair<>(Blocks.SAND, Tags.Items.HAMMERS));
         CHANGE_ALTERNATE_ENTRIES.put("minecraft:blocks/chiseled_sandstone", new Pair<>(Blocks.SAND, Tags.Items.HAMMERS));
@@ -121,8 +136,7 @@ public class LootHandler {
 
                 if (entries != null && entries.size() > 0 && entries.get(0) instanceof AlternativesLootEntry) {
                     ItemPredicate.Builder predicate = ItemPredicate.Builder.create().tag(data.getSecond());
-                    LootEntry.Builder<?> hammer = ItemLootEntry.builder(data.getFirst()).acceptCondition(MatchTool.builder(predicate));
-                    LootEntry itemLootEntry = hammer.build();
+                    LootEntry itemLootEntry = ItemLootEntry.builder(data.getFirst()).acceptCondition(MatchTool.builder(predicate)).build();
                     LootEntry[] aEntries = (LootEntry[]) alternativeEntries.get(entries.get(0));
                     ILootCondition[] aConditions = (ILootCondition[]) alternativeConditions.get(entries.get(0));
 
@@ -155,8 +169,8 @@ public class LootHandler {
 
                 if (entries != null && entries.size() > 0) {
                     ItemPredicate.Builder predicate = ItemPredicate.Builder.create().tag(data.getSecond());
-                    LootEntry.Builder<?> hammer = ItemLootEntry.builder(data.getFirst()).acceptCondition(MatchTool.builder(predicate));
-                    List<LootEntry> list = Lists.newArrayList(hammer.build());
+                    LootEntry.Builder<?> itemLootEntry = ItemLootEntry.builder(data.getFirst()).acceptCondition(MatchTool.builder(predicate));
+                    List<LootEntry> list = Lists.newArrayList(itemLootEntry.build());
                     list.addAll(entries);
                     AlternativesLootEntry a = constructAlternative.newInstance(list.toArray(new LootEntry[0]), new ILootCondition[0]);
                     entries.set(0, a);
