@@ -26,6 +26,6 @@ Stone Age gives you feeling of man from stone age. No more magically created pla
 [[dependencies.stone_age]]
     modId="ages_api"
     mandatory=true
-    versionRange="[1.0.3,)"
+    versionRange="[1.0.5,)"
     ordering="NONE"
     side="BOTH"
