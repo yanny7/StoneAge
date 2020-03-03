@@ -74,6 +74,7 @@ public class LootHandler {
         INJECT_POOL.put("minecraft:entities/sheep", "stone_age:inject/entities/bone_fat");
 
         INJECT_ITEM_POOL.put("minecraft:blocks/seagrass", new Pair<>(Blocks.SEAGRASS, Tags.Items.SHEARS));
+        INJECT_ITEM_POOL.put("minecraft:blocks/tall_seagrass", new Pair<>(Blocks.SEAGRASS, Tags.Items.SHEARS));
         INJECT_ITEM_POOL.put("minecraft:blocks/vine", new Pair<>(Blocks.VINE, Tags.Items.SHEARS));
 
         INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/stone", new Pair<>(Blocks.GRAVEL, Tags.Items.HAMMERS));
@@ -89,7 +90,6 @@ public class LootHandler {
         INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/oak_leaves", new Pair<>(Blocks.OAK_LEAVES, Tags.Items.SHEARS));
         INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/spruce_leaves", new Pair<>(Blocks.SPRUCE_LEAVES, Tags.Items.SHEARS));
         INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/tall_grass", new Pair<>(Blocks.GRASS, Tags.Items.SHEARS));
-        INJECT_ALTERNATE_ENTRIES.put("minecraft:blocks/tall_seagrass", new Pair<>(Blocks.SEAGRASS, Tags.Items.SHEARS));
 
         CHANGE_ALTERNATE_ENTRIES.put("minecraft:blocks/sandstone", new Pair<>(Blocks.SAND, Tags.Items.HAMMERS));
         CHANGE_ALTERNATE_ENTRIES.put("minecraft:blocks/chiseled_sandstone", new Pair<>(Blocks.SAND, Tags.Items.HAMMERS));
