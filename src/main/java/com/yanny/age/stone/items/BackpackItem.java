@@ -60,7 +60,7 @@ public class BackpackItem extends Item implements INamedContainerProvider {
 
         if (!worldIn.isRemote && playerIn instanceof ServerPlayerEntity) {
             playerIn.openContainer(this);
-            return ActionResult.func_226248_a_(stack);
+            return ActionResult.resultPass(stack);
         }
 
         return super.onItemRightClick(worldIn, playerIn, handIn);

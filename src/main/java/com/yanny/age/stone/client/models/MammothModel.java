@@ -117,7 +117,7 @@ public class MammothModel extends AgeableModel<MammothEntity> {
 	}
 
 	@Override
-	public void render(@Nonnull MammothEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setRotationAngles(@Nonnull MammothEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.setRotationAngles(limbSwing, limbSwingAmount, netHeadYaw, headPitch);
 	}
 

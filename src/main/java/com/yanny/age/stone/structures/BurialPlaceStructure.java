@@ -23,7 +23,7 @@ public class BurialPlaceStructure extends Structure<ProbabilityConfig> {
 
     @SuppressWarnings("ConstantConditions")
     @Override
-    public boolean func_225558_a_(@Nonnull BiomeManager biomeManager, @Nonnull ChunkGenerator<?> chunkGen, @Nonnull Random rand, int chunkPosX, int chunkPosZ, @Nonnull Biome biome) {
+    public boolean canBeGenerated(@Nonnull BiomeManager biomeManager, @Nonnull ChunkGenerator<?> chunkGen, @Nonnull Random rand, int chunkPosX, int chunkPosZ, @Nonnull Biome biome) {
         ((SharedSeedRandom)rand).setLargeFeatureSeedWithSalt(chunkGen.getSeed(), chunkPosX, chunkPosZ, 121381454);
 
         if (chunkGen.hasStructure(biome, FeatureSubscriber.burial_place_structure)) {

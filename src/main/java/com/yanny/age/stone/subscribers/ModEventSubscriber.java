@@ -47,7 +47,7 @@ public class ModEventSubscriber {
     @SuppressWarnings("ConstantConditions")
     @SubscribeEvent
     public static void onClientSetupEvent(FMLClientSetupEvent event) {
-        RenderTypeLookup.setRenderLayer(BlockSubscriber.fishing_net, RenderType.cutoutMipped());
-        RenderTypeLookup.setRenderLayer(BlockSubscriber.aqueduct, RenderType.cutoutMipped());
+        RenderTypeLookup.setRenderLayer(BlockSubscriber.fishing_net, RenderType.getCutoutMipped());
+        RenderTypeLookup.setRenderLayer(BlockSubscriber.aqueduct, RenderType.getCutoutMipped());
     }
 }

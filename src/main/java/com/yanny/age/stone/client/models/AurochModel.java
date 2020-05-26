@@ -70,7 +70,7 @@ public class AurochModel extends AgeableModel<AurochEntity> {
 	}
 
 	@Override
-	public void render(@Nonnull AurochEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setRotationAngles(@Nonnull AurochEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.setRotationAngles(limbSwing, limbSwingAmount, netHeadYaw, headPitch);
 	}
 

@@ -76,7 +76,7 @@ public class DriedGrassBedRenderer extends TileEntityRenderer<DriedGrassBedTileE
 
         matrixStack.push();
         matrixStack.translate(0, 0.09375, 0);
-        model.render(matrixStack, renderTypeBuffer.getBuffer(RenderType.entityCutoutNoCull(TEXTURE_NORMAL)), overlayUV, lightmapUV, 1f, 1f, 1f, 1f);
+        model.render(matrixStack, renderTypeBuffer.getBuffer(RenderType.getEntityCutoutNoCull(TEXTURE_NORMAL)), overlayUV, lightmapUV, 1f, 1f, 1f, 1f);
         matrixStack.pop();
 
         if (isHead) {

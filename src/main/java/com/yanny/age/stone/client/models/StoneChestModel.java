@@ -16,7 +16,7 @@ public class StoneChestModel extends Model {
 	private final ModelRenderer lid;
 
 	public StoneChestModel() {
-		super(RenderType::entityCutoutNoCull);
+		super(RenderType::getEntityCutoutNoCull);
 		textureWidth = 64;
 		textureHeight = 64;
 

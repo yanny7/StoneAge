@@ -51,7 +51,7 @@ public class StoneChestRenderer extends TileEntityRenderer<StoneChestTileEntity>
         matrixStack.translate(0.5, -0.5, 0.5);
 
         this.applyLidRotation(tileEntity, partialTicks, model);
-        model.render(matrixStack, renderTypeBuffer.getBuffer(RenderType.entityCutoutNoCull(TEXTURE_NORMAL)), overlayUV, lightmapUV, 1f, 1f, 1f, 1f);
+        model.render(matrixStack, renderTypeBuffer.getBuffer(RenderType.getEntityCutoutNoCull(TEXTURE_NORMAL)), overlayUV, lightmapUV, 1f, 1f, 1f, 1f);
 
         matrixStack.pop();
     }

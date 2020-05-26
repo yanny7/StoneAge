@@ -139,7 +139,7 @@ public class SaberToothTigerModel extends AgeableModel<SaberToothTigerEntity> {
 	}
 
 	@Override
-	public void render(@Nonnull SaberToothTigerEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setRotationAngles(@Nonnull SaberToothTigerEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.setRotationAngles(limbSwing, limbSwingAmount, netHeadYaw, headPitch);
 	}
 

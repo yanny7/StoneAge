@@ -1,7 +1,7 @@
 package com.yanny.age.stone.blocks;
 
 import com.google.common.collect.Maps;
-import com.yanny.age.stone.compatibility.top.ITopBlockProvider;
+import com.yanny.age.stone.compatibility.top.TopBlockInfoProvider;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.ProbeMode;
@@ -46,7 +46,7 @@ import java.util.Random;
 
 import static net.minecraft.state.properties.BlockStateProperties.WATERLOGGED;
 
-public class AqueductBlock extends Block implements ITopBlockProvider {
+public class AqueductBlock extends Block implements TopBlockInfoProvider {
     private static final Map<Integer, VoxelShape> SHAPES = new HashMap<>();
 
     static {

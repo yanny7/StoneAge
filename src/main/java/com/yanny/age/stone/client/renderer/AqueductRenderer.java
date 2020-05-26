@@ -50,10 +50,10 @@ public class AqueductRenderer extends TileEntityRenderer<AqueductTileEntity> {
         RenderSystem.defaultBlendFunc();
         RenderSystem.disableTexture();
 
-        IVertexBuilder vertexBuilder = renderTypeBuffer.getBuffer(RenderType.entityTranslucentCull(WATER));
+        IVertexBuilder vertexBuilder = renderTypeBuffer.getBuffer(RenderType.getEntityTranslucentCull(WATER));
         MatrixStack.Entry matrix = matrixStack.getLast();
-        Matrix4f matrix4f = matrix.getPositionMatrix();
-        Matrix3f matrix3f = matrix.getNormalMatrix();
+        Matrix4f matrix4f = matrix.getMatrix();
+        Matrix3f matrix3f = matrix.getNormal();
 
         func_229132_a_(tileEntityIn, vertexBuilder, matrix4f, matrix3f, 0, v, 1, 0, off + 1/32f, overlayUV, lightmapUV);
         func_229132_a_(tileEntityIn, vertexBuilder, matrix4f, matrix3f, 1, v, 1, 1, off + 1/32f, overlayUV, lightmapUV);

@@ -38,7 +38,7 @@ public class FlintSpearRenderer extends EntityRenderer<FlintSpearEntity> {
         matrixStack.scale(1, -1, 1);
         matrixStack.translate(0, -1.5, 0);
         RenderSystem.color4f(1, 1, 1, 1);
-        int i = OverlayTexture.packLight(OverlayTexture.lightToInt(0), OverlayTexture.getV(false));
+        int i = OverlayTexture.getPackedUV(OverlayTexture.getU(0), OverlayTexture.getV(false));
         IVertexBuilder vertexBuilder = ItemRenderer.getBuffer(renderTypeBuffer, model.getRenderType(this.getEntityTexture(entity)), false, false);
         model.render(matrixStack, vertexBuilder, packedLightIn, i, 1.0F, 1.0F, 1.0F, 1.0F);
         matrixStack.pop();

@@ -30,7 +30,7 @@ public class BurialPlacePiece extends BasePiece {
     }
 
     @Override
-    public boolean func_225577_a_(@Nonnull IWorld worldIn, @Nonnull ChunkGenerator<?> chunkGenerator, @Nonnull Random randomIn,
+    public boolean create(@Nonnull IWorld worldIn, @Nonnull ChunkGenerator<?> chunkGenerator, @Nonnull Random randomIn,
                                   @Nonnull MutableBoundingBox structureBoundingBoxIn, @Nonnull ChunkPos chunkPos) {
         if (!isInsideBounds(worldIn, structureBoundingBoxIn, 0)) {
             return false;

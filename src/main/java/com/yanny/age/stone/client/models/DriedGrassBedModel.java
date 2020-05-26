@@ -13,7 +13,7 @@ public class DriedGrassBedModel extends Model {
 	private final ModelRenderer foot;
 
 	public DriedGrassBedModel() {
-		super(RenderType::entityCutoutNoCull);
+		super(RenderType::getEntityCutoutNoCull);
 		textureWidth = 64;
 		textureHeight = 64;
 

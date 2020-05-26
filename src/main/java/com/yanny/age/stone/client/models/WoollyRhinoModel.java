@@ -96,7 +96,7 @@ public class WoollyRhinoModel extends AgeableModel<WoollyRhinoEntity> {
 	}
 
 	@Override
-	public void render(@Nonnull WoollyRhinoEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setRotationAngles(@Nonnull WoollyRhinoEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.setRotationAngles(limbSwing, limbSwingAmount, netHeadYaw, headPitch);
 	}
 

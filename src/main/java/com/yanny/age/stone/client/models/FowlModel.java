@@ -65,7 +65,7 @@ public class FowlModel extends AgeableModel<FowlEntity> {
 	}
 
 	@Override
-	public void render(@Nonnull FowlEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setRotationAngles(@Nonnull FowlEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 	}
 

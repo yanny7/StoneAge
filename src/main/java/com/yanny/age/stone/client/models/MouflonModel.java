@@ -65,7 +65,7 @@ public class MouflonModel extends AgeableModel<MouflonEntity> {
 	}
 
 	@Override
-	public void render(@Nonnull MouflonEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setRotationAngles(@Nonnull MouflonEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.setRotationAngles(limbSwing, limbSwingAmount, netHeadYaw, headPitch);
 	}
 

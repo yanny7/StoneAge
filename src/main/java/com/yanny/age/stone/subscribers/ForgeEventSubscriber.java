@@ -282,14 +282,14 @@ public class ForgeEventSubscriber {
                 biome.addStructure(FeatureSubscriber.abandoned_camp_structure.withConfiguration(new ProbabilityConfig((float) Config.abandonedCampSpawnChance)));
                 biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
                         FeatureSubscriber.abandoned_camp_structure.withConfiguration(new ProbabilityConfig((float) Config.abandonedCampSpawnChance)).
-                                func_227228_a_(Placement.NOPE.func_227446_a_(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+                                withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
             }
 
             if (Config.burialPlaceAllowedBiomes.contains(biome)) {
                 biome.addStructure(FeatureSubscriber.burial_place_structure.withConfiguration(new ProbabilityConfig((float) Config.burialPlaceSpawnChance)));
                 biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
                         FeatureSubscriber.burial_place_structure.withConfiguration(new ProbabilityConfig((float) Config.burialPlaceSpawnChance)).
-                                func_227228_a_(Placement.NOPE.func_227446_a_(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+                                withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
             }
         }
     }
