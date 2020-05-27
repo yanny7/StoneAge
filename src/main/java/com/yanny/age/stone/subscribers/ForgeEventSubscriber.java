@@ -248,28 +248,28 @@ public class ForgeEventSubscriber {
     @SubscribeEvent
     public static void serverAboutToStartEvent(FMLServerAboutToStartEvent event) {
         for (Biome biome : ForgeRegistries.BIOMES) {
-            if (Config.spawnDeerAllowedBiomes.contains(biome) && Config.spawnDeerEnable) {
+            if (Config.spawnDeerEnable && (!Config.spawnDeerAllowedBiomesBlacklist == Config.spawnDeerAllowedBiomes.contains(biome))) {
                 biome.getSpawns(deer.getClassification()).add(new Biome.SpawnListEntry(deer, Config.spawnDeerWeight, Config.spawnDeerMinCount, Config.spawnDeerMaxCount));
             }
-            if (Config.spawnBoarAllowedBiomes.contains(biome) && Config.spawnBoarEnable) {
+            if (Config.spawnBoarEnable && (!Config.spawnBoarAllowedBiomesBlacklist == Config.spawnBoarAllowedBiomes.contains(biome))) {
                 biome.getSpawns(boar.getClassification()).add(new Biome.SpawnListEntry(boar, Config.spawnBoarWeight, Config.spawnBoarMinCount, Config.spawnBoarMaxCount));
             }
-            if (Config.spawnAurochAllowedBiomes.contains(biome) && Config.spawnAurochEnable) {
+            if (Config.spawnAurochEnable && (!Config.spawnAurochAllowedBiomesBlacklist == Config.spawnAurochAllowedBiomes.contains(biome))) {
                 biome.getSpawns(auroch.getClassification()).add(new Biome.SpawnListEntry(auroch, Config.spawnAurochWeight, Config.spawnAurochMinCount, Config.spawnAurochMaxCount));
             }
-            if (Config.spawnFowlAllowedBiomes.contains(biome) && Config.spawnFowlEnable) {
+            if (Config.spawnFowlEnable && (!Config.spawnFowlAllowedBiomesBlacklist == Config.spawnFowlAllowedBiomes.contains(biome))) {
                 biome.getSpawns(fowl.getClassification()).add(new Biome.SpawnListEntry(fowl, Config.spawnFowlWeight, Config.spawnFowlMinCount, Config.spawnFowlMaxCount));
             }
-            if (Config.spawnMouflonAllowedBiomes.contains(biome) && Config.spawnMouflonEnable) {
+            if (Config.spawnMouflonEnable && (!Config.spawnMouflonAllowedBiomesBlacklist == Config.spawnMouflonAllowedBiomes.contains(biome))) {
                 biome.getSpawns(mouflon.getClassification()).add(new Biome.SpawnListEntry(mouflon, Config.spawnMouflonWeight, Config.spawnMouflonMinCount, Config.spawnMouflonMaxCount));
             }
-            if (Config.spawnMammothAllowedBiomes.contains(biome) && Config.spawnMammothEnable) {
+            if (Config.spawnMammothEnable && (!Config.spawnMammothAllowedBiomesBlacklist == Config.spawnMammothAllowedBiomes.contains(biome))) {
                 biome.getSpawns(mammoth.getClassification()).add(new Biome.SpawnListEntry(mammoth, Config.spawnMammothWeight, Config.spawnMammothMinCount, Config.spawnMammothMaxCount));
             }
-            if (Config.spawnSaberToothTigerAllowedBiomes.contains(biome) && Config.spawnSaberToothTigerEnable) {
+            if (Config.spawnSaberToothTigerEnable && (!Config.spawnSaberToothTigerAllowedBiomesBlacklist == Config.spawnSaberToothTigerAllowedBiomes.contains(biome))) {
                 biome.getSpawns(saber_tooth_tiger.getClassification()).add(new Biome.SpawnListEntry(saber_tooth_tiger, Config.spawnSaberToothTigerWeight, Config.spawnSaberToothTigerMinCount, Config.spawnSaberToothTigerMaxCount));
             }
-            if (Config.spawnWoollyRhinoAllowedBiomes.contains(biome) && Config.spawnWoollyRhinoEnable) {
+            if (Config.spawnWoollyRhinoEnable && (!Config.spawnWoollyRhinoAllowedBiomesBlacklist == Config.spawnWoollyRhinoAllowedBiomes.contains(biome))) {
                 biome.getSpawns(woolly_rhino.getClassification()).add(new Biome.SpawnListEntry(woolly_rhino, Config.spawnWoollyRhinoWeight, Config.spawnWoollyRhinoMinCount, Config.spawnWoollyRhinoMaxCount));
             }
 

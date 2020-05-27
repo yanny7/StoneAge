@@ -67,47 +67,55 @@ public class Config {
     public static int spawnDeerWeight = 20;
     public static int spawnDeerMinCount = 4;
     public static int spawnDeerMaxCount = 10;
+    public static boolean spawnDeerAllowedBiomesBlacklist = false;
     public static Set<Biome> spawnDeerAllowedBiomes = DEFAULT_DEER_BIOMES;
 
     public static boolean spawnBoarEnable = true;
     public static int spawnBoarWeight = 10;
     public static int spawnBoarMinCount = 4;
     public static int spawnBoarMaxCount = 6;
+    public static boolean spawnBoarAllowedBiomesBlacklist = false;
     public static Set<Biome> spawnBoarAllowedBiomes = DEFAULT_BOAR_BIOMES;
 
     public static boolean spawnAurochEnable = true;
     public static int spawnAurochWeight = 10;
     public static int spawnAurochMinCount = 4;
     public static int spawnAurochMaxCount = 8;
+    public static boolean spawnAurochAllowedBiomesBlacklist = false;
     public static Set<Biome> spawnAurochAllowedBiomes = DEFAULT_AUROCH_BIOMES;
 
     public static boolean spawnFowlEnable = true;
     public static int spawnFowlWeight = 10;
     public static int spawnFowlMinCount = 6;
     public static int spawnFowlMaxCount = 8;
+    public static boolean spawnFowlAllowedBiomesBlacklist = false;
     public static Set<Biome> spawnFowlAllowedBiomes = DEFAULT_FOWL_BIOMES;
 
     public static boolean spawnMouflonEnable = true;
     public static int spawnMouflonWeight = 10;
     public static int spawnMouflonMinCount = 4;
     public static int spawnMouflonMaxCount = 8;
+    public static boolean spawnMouflonAllowedBiomesBlacklist = false;
     public static Set<Biome> spawnMouflonAllowedBiomes = DEFAULT_MOUFLON_BIOMES;
 
     public static boolean spawnMammothEnable = true;
     public static int spawnMammothWeight = 10;
     public static int spawnMammothMinCount = 2;
     public static int spawnMammothMaxCount = 4;
+    public static boolean spawnMammothAllowedBiomesBlacklist = false;
     public static Set<Biome> spawnMammothAllowedBiomes = DEFAULT_MAMMOTH_BIOMES;
 
     public static boolean spawnSaberToothTigerEnable = true;
     public static int spawnSaberToothTigerWeight = 5;
     public static int spawnSaberToothTigerMinCount = 1;
     public static int spawnSaberToothTigerMaxCount = 2;
+    public static boolean spawnSaberToothTigerAllowedBiomesBlacklist = false;
     public static Set<Biome> spawnSaberToothTigerAllowedBiomes = DEFAULT_TIGER_BIOMES;
 
     public static boolean spawnWoollyRhinoEnable = true;
     public static int spawnWoollyRhinoWeight = 10;
     public static int spawnWoollyRhinoMinCount = 2;
     public static int spawnWoollyRhinoMaxCount = 6;
+    public static boolean spawnWoollyRhinoAllowedBiomesBlacklist = false;
     public static Set<Biome> spawnWoollyRhinoAllowedBiomes = DEFAULT_RHINO_BIOMES;
 }
