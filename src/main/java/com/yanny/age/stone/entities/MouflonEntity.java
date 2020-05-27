@@ -1,6 +1,6 @@
 package com.yanny.age.stone.entities;
 
-import com.yanny.age.stone.compatibility.top.ITopEntityProvider;
+import com.yanny.age.stone.compatibility.top.TopEntityInfoProvider;
 import com.yanny.age.stone.config.Config;
 import com.yanny.age.stone.subscribers.EntitySubscriber;
 import mcjty.theoneprobe.api.IProbeHitEntityData;
@@ -13,7 +13,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -27,7 +26,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class MouflonEntity extends WildAnimalEntity implements ITopEntityProvider {
+public class MouflonEntity extends WildAnimalEntity implements TopEntityInfoProvider {
 
     public MouflonEntity(EntityType<MouflonEntity> type, World worldIn) {
         super(type, worldIn);
@@ -103,7 +102,7 @@ public class MouflonEntity extends WildAnimalEntity implements ITopEntityProvide
     }
 
     @Override
-    public void addProbeEntityInfo(ProbeMode mode, IProbeInfo probeInfo, PlayerEntity player, World world, Entity entity, IProbeHitEntityData data) {
+    public void addProbeInfo(ProbeMode mode, IProbeInfo probeInfo, PlayerEntity player, World world, Entity entity, IProbeHitEntityData data) {
         probeInfo.horizontal().text("Generation: " + dataManager.get(GENERATION));
     }
 }

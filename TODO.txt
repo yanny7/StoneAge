@@ -1,2 +1,3 @@
 - Crocodile entity
 - Emu entity
+- Add bait to fishing traps to speed up their catching.
