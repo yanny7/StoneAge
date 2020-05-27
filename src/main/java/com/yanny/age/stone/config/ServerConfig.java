@@ -36,42 +36,56 @@ class ServerConfig {
     final ForgeConfigSpec.IntValue spawnDeerWeight;
     final ForgeConfigSpec.IntValue spawnDeerMinCount;
     final ForgeConfigSpec.IntValue spawnDeerMaxCount;
+    final ForgeConfigSpec.BooleanValue spawnDeerAllowedBiomesBlacklist;
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnDeerAllowedBiomes;
+
     final ForgeConfigSpec.BooleanValue spawnBoarEnable;
     final ForgeConfigSpec.IntValue spawnBoarWeight;
     final ForgeConfigSpec.IntValue spawnBoarMinCount;
     final ForgeConfigSpec.IntValue spawnBoarMaxCount;
+    final ForgeConfigSpec.BooleanValue spawnBoarAllowedBiomesBlacklist;
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnBoarAllowedBiomes;
+
     final ForgeConfigSpec.BooleanValue spawnAurochEnable;
     final ForgeConfigSpec.IntValue spawnAurochWeight;
     final ForgeConfigSpec.IntValue spawnAurochMinCount;
     final ForgeConfigSpec.IntValue spawnAurochMaxCount;
+    final ForgeConfigSpec.BooleanValue spawnAurochAllowedBiomesBlacklist;
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnAurochAllowedBiomes;
+
     final ForgeConfigSpec.BooleanValue spawnFowlEnable;
     final ForgeConfigSpec.IntValue spawnFowlWeight;
     final ForgeConfigSpec.IntValue spawnFowlMinCount;
     final ForgeConfigSpec.IntValue spawnFowlMaxCount;
+    final ForgeConfigSpec.BooleanValue spawnFowlAllowedBiomesBlacklist;
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnFowlAllowedBiomes;
+
     final ForgeConfigSpec.BooleanValue spawnMouflonEnable;
     final ForgeConfigSpec.IntValue spawnMouflonWeight;
     final ForgeConfigSpec.IntValue spawnMouflonMinCount;
     final ForgeConfigSpec.IntValue spawnMouflonMaxCount;
+    final ForgeConfigSpec.BooleanValue spawnMouflonAllowedBiomesBlacklist;
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnMouflonAllowedBiomes;
+
     final ForgeConfigSpec.BooleanValue spawnMammothEnable;
     final ForgeConfigSpec.IntValue spawnMammothWeight;
     final ForgeConfigSpec.IntValue spawnMammothMinCount;
     final ForgeConfigSpec.IntValue spawnMammothMaxCount;
+    final ForgeConfigSpec.BooleanValue spawnMammothAllowedBiomesBlacklist;
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnMammothAllowedBiomes;
+
     final ForgeConfigSpec.BooleanValue spawnSaberToothTigerEnable;
     final ForgeConfigSpec.IntValue spawnSaberToothTigerWeight;
     final ForgeConfigSpec.IntValue spawnSaberToothTigerMinCount;
     final ForgeConfigSpec.IntValue spawnSaberToothTigerMaxCount;
+    final ForgeConfigSpec.BooleanValue spawnSaberToothTigerAllowedBiomesBlacklist;
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnSaberToothTigerAllowedBiomes;
+
     final ForgeConfigSpec.BooleanValue spawnWoollyRhinoEnable;
     final ForgeConfigSpec.IntValue spawnWoollyRhinoWeight;
     final ForgeConfigSpec.IntValue spawnWoollyRhinoMinCount;
     final ForgeConfigSpec.IntValue spawnWoollyRhinoMaxCount;
-
-    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnDeerAllowedBiomes;
-    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnBoarAllowedBiomes;
-    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnAurochAllowedBiomes;
-    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnFowlAllowedBiomes;
-    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnMouflonAllowedBiomes;
-    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnMammothAllowedBiomes;
-    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnSaberToothTigerAllowedBiomes;
+    final ForgeConfigSpec.BooleanValue spawnWoollyRhinoAllowedBiomesBlacklist;
     final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnWoollyRhinoAllowedBiomes;
 
     ServerConfig(@Nonnull final ForgeConfigSpec.Builder builder) {
@@ -175,6 +189,10 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_deer_max_count")
                 .defineInRange("spawnDeerMaxCount", 10, 1, 100);
+        spawnDeerAllowedBiomesBlacklist = builder
+                .comment("If spawnDeerAllowedBiomes is blacklist")
+                .translation(Reference.MODID + ".config.spawn_deer_allowed_biomes_blacklist")
+                .define("spawnDeerAllowedBiomesBlacklist", false);
         spawnDeerAllowedBiomes = builder
                 .comment("Spawn deer in allowed biomes")
                 .translation(Reference.MODID + ".config.spawn_deer_allowed_biomes")
@@ -199,6 +217,10 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_boar_max_count")
                 .defineInRange("spawnBoarMaxCount", 6, 1, 100);
+        spawnBoarAllowedBiomesBlacklist = builder
+                .comment("If spawnBoarAllowedBiomes is blacklist")
+                .translation(Reference.MODID + ".config.spawn_boar_allowed_biomes_blacklist")
+                .define("spawnBoarAllowedBiomesBlacklist", false);
         spawnBoarAllowedBiomes = builder
                 .comment("Spawn boar in allowed biomes")
                 .translation(Reference.MODID + ".config.spawn_boar_allowed_biomes")
@@ -223,6 +245,10 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_auroch_max_count")
                 .defineInRange("spawnAurochMaxCount", 8, 1, 100);
+        spawnAurochAllowedBiomesBlacklist = builder
+                .comment("If spawnAurochAllowedBiomes is blacklist")
+                .translation(Reference.MODID + ".config.spawn_auroch_allowed_biomes_blacklist")
+                .define("spawnAurochAllowedBiomesBlacklist", false);
         spawnAurochAllowedBiomes = builder
                 .comment("Spawn auroch in allowed biomes")
                 .translation(Reference.MODID + ".config.spawn_auroch_allowed_biomes")
@@ -247,6 +273,10 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_fowl_max_count")
                 .defineInRange("spawnFowlMaxCount", 8, 1, 100);
+        spawnFowlAllowedBiomesBlacklist = builder
+                .comment("If spawnFowlAllowedBiomes is blacklist")
+                .translation(Reference.MODID + ".config.spawn_fowl_allowed_biomes_blacklist")
+                .define("spawnFowlAllowedBiomesBlacklist", false);
         spawnFowlAllowedBiomes = builder
                 .comment("Spawn fowl in allowed biomes")
                 .translation(Reference.MODID + ".config.spawn_fowl_allowed_biomes")
@@ -271,6 +301,10 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_mouflon_max_count")
                 .defineInRange("spawnMouflonMaxCount", 8, 1, 100);
+        spawnMouflonAllowedBiomesBlacklist = builder
+                .comment("If spawnMouflonAllowedBiomes is blacklist")
+                .translation(Reference.MODID + ".config.spawn_mouflon_allowed_biomes_blacklist")
+                .define("spawnMouflonAllowedBiomesBlacklist", false);
         spawnMouflonAllowedBiomes = builder
                 .comment("Spawn mouflon in allowed biomes")
                 .translation(Reference.MODID + ".config.spawn_mouflon_allowed_biomes")
@@ -295,6 +329,10 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_mammoth_max_count")
                 .defineInRange("spawnMammothMaxCount", 4, 1, 100);
+        spawnMammothAllowedBiomesBlacklist = builder
+                .comment("If spawnMammothAllowedBiomes is blacklist")
+                .translation(Reference.MODID + ".config.spawn_mammoth_allowed_biomes_blacklist")
+                .define("spawnMammothAllowedBiomesBlacklist", false);
         spawnMammothAllowedBiomes = builder
                 .comment("Spawn mammoth in allowed biomes")
                 .translation(Reference.MODID + ".config.spawn_mammoth_allowed_biomes")
@@ -319,6 +357,10 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_saber_tooth_tiger_max_count")
                 .defineInRange("spawnSaberToothTigerMaxCount", 2, 1, 100);
+        spawnSaberToothTigerAllowedBiomesBlacklist = builder
+                .comment("If spawnSaberToothTigerAllowedBiomes is blacklist")
+                .translation(Reference.MODID + ".config.spawn_saber_tooth_tiger_allowed_biomes_blacklist")
+                .define("spawnSaberToothTigerAllowedBiomesBlacklist", false);
         spawnSaberToothTigerAllowedBiomes = builder
                 .comment("Spawn saber-tooth tiger in allowed biomes")
                 .translation(Reference.MODID + ".config.spawn_saber_tooth_tiger_allowed_biomes")
@@ -343,6 +385,10 @@ class ServerConfig {
                 .comment("Spawn max count of mob")
                 .translation(Reference.MODID + ".config.spawn_woolly_rhino_max_count")
                 .defineInRange("spawnWoollyRhinoMaxCount", 6, 1, 100);
+        spawnWoollyRhinoAllowedBiomesBlacklist = builder
+                .comment("If spawnWoollyRhinoAllowedBiomes is blacklist")
+                .translation(Reference.MODID + ".config.spawn_woolly_rhino_allowed_biomes_blacklist")
+                .define("spawnWoollyRhinoAllowedBiomesBlacklist", false);
         spawnWoollyRhinoAllowedBiomes = builder
                 .comment("Spawn woolly rhino in allowed biomes")
                 .translation(Reference.MODID + ".config.spawn_woolly_rhino_allowed_biomes")
