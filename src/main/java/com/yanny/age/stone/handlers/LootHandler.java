@@ -57,6 +57,10 @@ public class LootHandler {
 
         REMOVE_LOOT.put("minecraft:entities/horse", new Pair<>("main", Items.LEATHER));
         REMOVE_LOOT.put("minecraft:entities/cow", new Pair<>("main", Items.LEATHER));
+        REMOVE_LOOT.put("minecraft:entities/donkey", new Pair<>("main", Items.LEATHER));
+        REMOVE_LOOT.put("minecraft:entities/llama", new Pair<>("main", Items.LEATHER));
+        REMOVE_LOOT.put("minecraft:entities/mooshroom", new Pair<>("main", Items.LEATHER));
+        REMOVE_LOOT.put("minecraft:entities/trader_llama", new Pair<>("main", Items.LEATHER));
 
         INJECT_POOL.put("minecraft:blocks/dirt", "stone_age:inject/blocks/bones_and_sticks");
         INJECT_POOL.put("minecraft:blocks/coarse_dirt", "stone_age:inject/blocks/bones_and_sticks");
@@ -70,6 +74,10 @@ public class LootHandler {
         INJECT_POOL.put("minecraft:entities/dolphin", "stone_age:inject/entities/fish_bone");
         INJECT_POOL.put("minecraft:entities/cow", "stone_age:inject/entities/bone_fat_hide");
         INJECT_POOL.put("minecraft:entities/horse", "stone_age:inject/entities/bone_fat_hide");
+        INJECT_POOL.put("minecraft:entities/donkey", "stone_age:inject/entities/bone_fat_hide");
+        INJECT_POOL.put("minecraft:entities/llama", "stone_age:inject/entities/bone_fat_hide");
+        INJECT_POOL.put("minecraft:entities/mooshroom", "stone_age:inject/entities/bone_fat_hide");
+        INJECT_POOL.put("minecraft:entities/trader_llama", "stone_age:inject/entities/bone_fat_hide");
         INJECT_POOL.put("minecraft:entities/pig", "stone_age:inject/entities/bone_fat");
         INJECT_POOL.put("minecraft:entities/sheep", "stone_age:inject/entities/bone_fat");
 
