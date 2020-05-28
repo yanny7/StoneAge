@@ -7,7 +7,7 @@ import net.minecraftforge.fml.ModList;
 public class TopCompatibility {
     public static final String ID = Reference.MODID + ":default";
     public static final String TOP_MOD_ID = "theoneprobe";
-    private static boolean registered;
+    private static boolean registered = false;
 
     public static void register() {
         if (registered) {

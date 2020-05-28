@@ -1,5 +1,6 @@
 package com.yanny.age.stone.recipes;
 
+import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.subscribers.RecipeSubscriber;
 import com.yanny.ages.api.items.AgesPartItem;
 import com.yanny.ages.api.items.AgesToolItem;
@@ -21,7 +22,7 @@ import static com.yanny.ages.api.items.AgesToolItem.*;
 
 public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
     private static final Logger LOGGER = LogManager.getLogger();
-    public static final IRecipeType<FlintWorkbenchRecipe> flint_workbench = IRecipeType.register("flint_workbench");
+    public static final IRecipeType<FlintWorkbenchRecipe> flint_workbench = IRecipeType.register(Reference.MODID + ":flint_workbench");
     public static final int MAX_WIDTH = 3;
     public static final int MAX_HEIGHT = 3;
 
@@ -32,7 +33,7 @@ public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
     private final ResourceLocation id;
     private final String group;
 
-    FlintWorkbenchRecipe(ResourceLocation id, String group, int recipeWidth, int recipeHeight, NonNullList<Ingredient> ingredients, ItemStack output) {
+    public FlintWorkbenchRecipe(ResourceLocation id, String group, int recipeWidth, int recipeHeight, NonNullList<Ingredient> ingredients, ItemStack output) {
         this.id = id;
         this.group = group;
         this.recipeWidth = recipeWidth;

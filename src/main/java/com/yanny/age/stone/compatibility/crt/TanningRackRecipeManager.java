@@ -1,0 +1,32 @@
+package com.yanny.age.stone.compatibility.crt;
+
+import com.blamejared.crafttweaker.api.CraftTweakerAPI;
+import com.blamejared.crafttweaker.api.annotations.ZenRegister;
+import com.blamejared.crafttweaker.api.item.IIngredient;
+import com.blamejared.crafttweaker.api.item.IItemStack;
+import com.blamejared.crafttweaker.api.managers.IRecipeManager;
+import com.blamejared.crafttweaker.impl.actions.recipes.ActionAddRecipe;
+import com.yanny.age.stone.recipes.TanningRackRecipe;
+import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.util.ResourceLocation;
+
+import static org.openzen.zencode.java.ZenCodeType.*;
+
+@ZenRegister
+@Name("mods.stone_age.DryingRackManager")
+public class TanningRackRecipeManager implements IRecipeManager {
+    @SuppressWarnings("unused")
+    public static final TanningRackRecipeManager INSTANCE = new TanningRackRecipeManager();
+
+    @SuppressWarnings("rawtypes")
+    @Override
+    public IRecipeType getRecipeType() {
+        return TanningRackRecipe.tanning_rack;
+    }
+
+    @Method
+    public void addRecipe(String name, IItemStack output, IIngredient input, @OptionalString String group) {
+        TanningRackRecipe recipe = new TanningRackRecipe(new ResourceLocation("crafttweaker", name), group, input.asVanillaIngredient(), output.getInternal());
+        CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
+    }
+}
