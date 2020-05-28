@@ -8,6 +8,9 @@
       "item": "stone_age:dried_grass"
     }
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": {
     "item": "stone_age:grass_lead"
   }

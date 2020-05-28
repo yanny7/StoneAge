@@ -16,6 +16,9 @@
       "item": "minecraft:wheat"
     }
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": {
     "item": "stone_age:feeder"
   }

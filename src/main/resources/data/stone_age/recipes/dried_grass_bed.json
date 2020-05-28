@@ -13,6 +13,9 @@
       "tag": "minecraft:wooden_slabs"
     }
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": {
     "item": "stone_age:dried_grass_bed"
   }

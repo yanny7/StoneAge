@@ -13,6 +13,9 @@
       "item": "minecraft:dark_oak_planks"
     }
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": {
     "item": "minecraft:dark_oak_fence_gate"
   }

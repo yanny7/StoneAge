@@ -16,6 +16,9 @@
       "item": "minecraft:feather"
     }
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": {
     "item": "minecraft:arrow"
   }

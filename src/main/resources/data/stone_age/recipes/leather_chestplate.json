@@ -16,6 +16,9 @@
       "item": "stone_age:fish_bone"
     }
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": {
     "item": "minecraft:leather_chestplate"
   }

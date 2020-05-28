@@ -32,14 +32,16 @@ public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
     private final ItemStack recipeOutput;
     private final ResourceLocation id;
     private final String group;
+    private final Ingredient tool;
 
-    public FlintWorkbenchRecipe(ResourceLocation id, String group, int recipeWidth, int recipeHeight, NonNullList<Ingredient> ingredients, ItemStack output) {
+    public FlintWorkbenchRecipe(ResourceLocation id, String group, int recipeWidth, int recipeHeight, Ingredient tool, NonNullList<Ingredient> ingredients, ItemStack output) {
         this.id = id;
         this.group = group;
         this.recipeWidth = recipeWidth;
         this.recipeHeight = recipeHeight;
         this.recipeItems = ingredients;
         this.recipeOutput = output;
+        this.tool = tool;
     }
 
     @Nonnull
@@ -163,5 +165,9 @@ public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
         }
 
         return true;
+    }
+
+    public Ingredient getTool() {
+        return tool;
     }
 }

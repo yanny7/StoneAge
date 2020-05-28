@@ -9,6 +9,9 @@
       "item": "minecraft:string"
     }
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": {
     "item": "stone_age:cobweb_mesh"
   }

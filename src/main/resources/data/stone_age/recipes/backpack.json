@@ -22,6 +22,9 @@
       "item": "stone_age:mammoth_tusk"
     }
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": {
     "item": "stone_age:backpack"
   }

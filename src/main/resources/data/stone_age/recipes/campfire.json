@@ -19,6 +19,9 @@
       "item": "minecraft:torch"
     }
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": {
     "item": "minecraft:campfire"
   }

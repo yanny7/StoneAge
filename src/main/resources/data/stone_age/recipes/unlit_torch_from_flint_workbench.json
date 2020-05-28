@@ -12,6 +12,9 @@
       "item": "stone_age:fat"
     }
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": {
     "item": "stone_age:unlit_torch"
   }

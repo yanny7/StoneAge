@@ -10,6 +10,9 @@
       "tag": "ages_api:bones"
     }
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": {
     "item": "stone_age:bone_sword_head"
   }
