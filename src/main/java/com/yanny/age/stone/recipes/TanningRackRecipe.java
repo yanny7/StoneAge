@@ -1,5 +1,6 @@
 package com.yanny.age.stone.recipes;
 
+import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.subscribers.BlockSubscriber;
 import com.yanny.age.stone.subscribers.RecipeSubscriber;
 import net.minecraft.inventory.IInventory;
@@ -16,7 +17,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class TanningRackRecipe implements IRecipe<IInventory> {
-    public static final IRecipeType<TanningRackRecipe> tanning_rack = IRecipeType.register("tanning_rack");
+    public static final IRecipeType<TanningRackRecipe> tanning_rack = IRecipeType.register(Reference.MODID + ":tanning_rack");
 
     private final IRecipeType<?> type;
     private final ResourceLocation id;
