@@ -15,6 +15,9 @@
       "item": "stone_age:grass_lead"
     }
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": {
     "item": "stone_age:bone_shovel"
   }

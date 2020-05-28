@@ -10,6 +10,9 @@
       "item": "minecraft:wheat"
     }
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": {
     "item": "minecraft:hay_block"
   }

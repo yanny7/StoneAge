@@ -28,6 +28,9 @@
       "tag": "minecraft:wooden_slabs"
     }
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": {
     "item": "minecraft:crafting_table"
   }

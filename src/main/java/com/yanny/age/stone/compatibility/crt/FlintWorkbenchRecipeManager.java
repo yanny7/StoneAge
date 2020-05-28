@@ -28,10 +28,10 @@ public class FlintWorkbenchRecipeManager implements IRecipeManager {
     }
 
     @Method
-    public void addRecipe(String name, IItemStack output, IIngredient[][] inputMatrix, @OptionalString String group) {
+    public void addRecipe(String name, IItemStack output, IIngredient[][] inputMatrix, IIngredient tool, @OptionalString String group) {
         Triple<NonNullList<Ingredient>, Integer, Integer> ingredient = CrtUtils.convert(inputMatrix);
         FlintWorkbenchRecipe recipe = new FlintWorkbenchRecipe(new ResourceLocation("crafttweaker", name), group, ingredient.getMiddle(),
-                ingredient.getRight(), ingredient.getLeft(), output.getInternal());
+                ingredient.getRight(), tool.asVanillaIngredient(), ingredient.getLeft(), output.getInternal());
         CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
     }
 }

@@ -13,6 +13,9 @@
       "item": "minecraft:light_blue_dye"
     }
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": {
     "item": "minecraft:light_blue_terracotta",
     "count": 8

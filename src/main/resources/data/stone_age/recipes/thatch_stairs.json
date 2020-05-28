@@ -10,6 +10,9 @@
       "item": "stone_age:thatch_block"
     }
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": {
     "item": "stone_age:thatch_stairs",
     "count": 4

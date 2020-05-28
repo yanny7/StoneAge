@@ -13,6 +13,9 @@
       "item": "stone_age:leather_strip"
     }
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": {
     "item": "minecraft:bow"
   }

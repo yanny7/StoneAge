@@ -16,6 +16,9 @@
       "item": "minecraft:clay_ball"
     }
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": {
     "item": "stone_age:stone_chest",
     "count": 1
