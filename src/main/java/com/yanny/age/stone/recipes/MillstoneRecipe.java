@@ -24,13 +24,15 @@ public class MillstoneRecipe implements IRecipe<IInventory> {
     final String group;
     final Ingredient ingredient;
     final ItemStack result;
+    final int activateCount;
 
-    public MillstoneRecipe(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result) {
+    public MillstoneRecipe(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result, int activateCount) {
         type = millstone;
         id = resourceLocation;
         this.group = group;
         this.ingredient = ingredient;
         this.result = result;
+        this.activateCount = activateCount;
     }
 
     @Override
@@ -86,5 +88,9 @@ public class MillstoneRecipe implements IRecipe<IInventory> {
     @Nonnull
     public ItemStack getIcon() {
         return new ItemStack(BlockSubscriber.millstone);
+    }
+
+    public int getActivateCount() {
+        return activateCount;
     }
 }

@@ -3,6 +3,7 @@
   "ingredient": {
     "item": "minecraft:sugar_cane"
   },
+  "activateCount": 2,
   "result": {
     "item": "minecraft:sugar",
     "count": 2

@@ -45,7 +45,9 @@ public class MillstoneRecipeSerializer extends ForgeRegistryEntry<IRecipeSeriali
             itemstack = new ItemStack(Registry.ITEM.getValue(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
         }
 
-        return this.factory.create(recipeId, s, ingredient, itemstack);
+        int activateCount = JSONUtils.getInt(json, "activateCount");
+
+        return this.factory.create(recipeId, s, ingredient, itemstack, activateCount);
     }
 
     @Nullable
@@ -54,8 +56,9 @@ public class MillstoneRecipeSerializer extends ForgeRegistryEntry<IRecipeSeriali
         String s = buffer.readString(32767);
         Ingredient ingredient = Ingredient.read(buffer);
         ItemStack itemstack = buffer.readItemStack();
+        int activateCount = buffer.readInt();
 
-        return this.factory.create(recipeId, s, ingredient, itemstack);
+        return this.factory.create(recipeId, s, ingredient, itemstack, activateCount);
     }
 
     @Override
@@ -63,9 +66,10 @@ public class MillstoneRecipeSerializer extends ForgeRegistryEntry<IRecipeSeriali
         buffer.writeString(recipe.group);
         recipe.ingredient.write(buffer);
         buffer.writeItemStack(recipe.result);
+        buffer.writeInt(recipe.activateCount);
     }
 
     public interface IFactory<T extends MillstoneRecipe> {
-        T create(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result);
+        T create(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result, int activateCount);
     }
 }

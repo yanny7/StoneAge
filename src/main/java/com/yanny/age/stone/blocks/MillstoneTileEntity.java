@@ -32,7 +32,6 @@ import java.util.Optional;
 public class MillstoneTileEntity extends TileEntity implements IInventoryInterface, ITickableTileEntity, INamedContainerProvider {
     static final int ITEMS = 2;
     private static final double PI2 = Math.PI * 2;
-    private static final int TICKS_TO_FINISH = 100;
 
     private final NonNullList<ItemStack> stacks = NonNullList.withSize(ITEMS, ItemStack.EMPTY);
     private final IItemHandlerModifiable nonSidedItemHandler = createNonSidedInventoryHandler(stacks);
@@ -45,7 +44,8 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
 
     private float rotation = 0f;
     private boolean active = false;
-    private int partCnt = 0;
+    private int activateTicks = 0;
+    private int ticks = 0;
     private ItemStack result = ItemStack.EMPTY;
 
     public MillstoneTileEntity() {
@@ -58,8 +58,6 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
         assert world != null;
 
         if (active) {
-            float oldRot = rotation;
-
             if (world.rand.nextInt(5) == 0) {
                 double d0 = pos.getX() + world.rand.nextFloat() / 2 + 0.25;
                 double d1 = pos.getY() + 7 / 16f + 0.025D;
@@ -67,34 +65,23 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
                 world.addParticle(ParticleTypes.CRIT, d0, d1, d2, 0, world.rand.nextFloat(), 0);
             }
 
-            rotation += PI2 / TICKS_TO_FINISH;
+            rotation += PI2 / 80;
             rotation = (float) (rotation % PI2);
+            ticks++;
 
-            if (partCnt > 0) {
-                partCnt--;
-            }
-
-            if (rotation < oldRot) {
+            if (ticks % 20 == 0) {
                 active = false;
-                partCnt = 0;
 
-                if (!world.isRemote) {
+                if (!world.isRemote && (ticks == activateTicks)) {
                     if (stacks.get(1).isEmpty()) {
                         stacks.set(1, result);
                     } else {
                         stacks.get(1).grow(result.getCount());
                     }
 
+                    ticks = 0;
                     result = ItemStack.EMPTY;
                     world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
-                }
-            } else {
-                if (partCnt == 0) {
-                    active = false;
-
-                    if (!world.isRemote) {
-                        world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
-                    }
                 }
             }
         }
@@ -126,8 +113,9 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
         ItemStackUtils.deserializeStacks(invTag, stacks);
         active = tag.getBoolean("active");
         rotation = tag.getFloat("rotation");
-        partCnt = tag.getInt("partCnt");
+        ticks = tag.getInt("ticks");
         result = ItemStack.read(tag.getCompound("result"));
+        activateTicks = tag.getInt("activateTicks");
         super.read(tag);
     }
 
@@ -137,10 +125,11 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
         tag.put("inv", ItemStackUtils.serializeStacks(stacks));
         tag.putBoolean("active", active);
         tag.putFloat("rotation", rotation);
-        tag.putInt("partCnt", partCnt);
+        tag.putInt("ticks", ticks);
         CompoundNBT resTag = new CompoundNBT();
         result.write(resTag);
         tag.put("result", resTag);
+        tag.putInt("activateTicks", activateTicks);
         return super.write(tag);
     }
 
@@ -187,7 +176,7 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
     }
 
     int getPerc() {
-        return (int) Math.round(rotation / PI2 * 100);
+        return Math.round(ticks / (float) activateTicks * 100);
     }
 
     boolean isItemValid(ItemStack itemStack) {
@@ -264,7 +253,8 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
 
                         result = recipeResult;
                         active = true;
-                        partCnt = TICKS_TO_FINISH / 4;
+                        activateTicks = millstoneRecipe.getActivateCount() * 20;
+                        ticks = 0;
 
                         world.playSound(null, getPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 0.5f, 1.0f);
                         world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
@@ -272,7 +262,6 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
                 });
             } else if (!result.isEmpty()) {
                 active = true;
-                partCnt = TICKS_TO_FINISH / 4;
 
                 world.playSound(null, getPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 0.5f, 1.0f);
                 world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
@@ -292,12 +281,12 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
         return new IIntArray() {
             @Override
             public int get(int index) {
-                return Math.round(rotation * 15.9154943092f);
+                return Math.round(ticks / (float) activateTicks * 100);
             }
 
             @Override
             public void set(int index, int value) {
-                rotation = value * 0.0628318530718f;
+
             }
 
             @Override
