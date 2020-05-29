@@ -3,6 +3,7 @@
   "ingredient": {
     "item": "minecraft:wheat"
   },
+  "activateCount": 2,
   "result": {
     "item": "stone_age:flour",
     "count": 2
