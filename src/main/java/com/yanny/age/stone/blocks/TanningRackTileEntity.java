@@ -4,7 +4,6 @@ import com.yanny.age.stone.config.Config;
 import com.yanny.age.stone.recipes.TanningRackRecipe;
 import com.yanny.age.stone.subscribers.TileEntitySubscriber;
 import com.yanny.ages.api.utils.ItemStackUtils;
-import com.yanny.ages.api.utils.Tags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.IInventory;
@@ -108,27 +107,23 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
 
     ActionResultType blockActivated(PlayerEntity player) {
         assert world != null;
-        ItemStack itemStack = player.getHeldItemMainhand();
-        TanningRackRecipe recipe = getRecipe(itemStack);
+        ItemStack itemMainhand = player.getHeldItemMainhand();
+        TanningRackRecipe recipe = getRecipe(itemMainhand);
         int pos = 0;
 
         if (stacks.get(pos).isEmpty() && stacks.get(pos + ITEMS).isEmpty() && recipe != null) {
-            stacks.set(pos, itemStack.split(1));
+            stacks.set(pos, itemMainhand.split(1));
 
             world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
             return ActionResultType.CONSUME;
         }
 
-        if (Tags.Items.KNIFES.contains(itemStack.getItem()) && !stacks.get(pos).isEmpty()) {
-            itemStack.damageItem(1, player, playerEntity -> playerEntity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+        recipe = getRecipe(stacks.get(pos));
+        if (recipe != null && recipe.getTool().test(itemMainhand) && !stacks.get(pos).isEmpty()) {
+            itemMainhand.damageItem(1, player, playerEntity -> playerEntity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
 
             if (random.nextDouble() < Config.tanningRackFinishChance) {
-                TanningRackRecipe rackRecipe = getRecipe(stacks.get(pos));
-
-                if (rackRecipe != null) {
-                    stacks.set(pos + ITEMS, rackRecipe.getCraftingResult(null));
-                }
-
+                stacks.set(pos + ITEMS, recipe.getCraftingResult(null));
                 stacks.set(pos, ItemStack.EMPTY);
                 world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
             }
@@ -136,7 +131,7 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
             return ActionResultType.CONSUME;
         }
 
-        if (itemStack.isEmpty() && !stacks.get(pos + ITEMS).isEmpty()) {
+        if (itemMainhand.isEmpty() && !stacks.get(pos + ITEMS).isEmpty()) {
             NonNullList<ItemStack> itemStacks = NonNullList.create();
             itemStacks.add(stacks.get(pos + ITEMS).copy());
             stacks.set(pos + ITEMS, ItemStack.EMPTY);

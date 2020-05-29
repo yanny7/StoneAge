@@ -25,8 +25,9 @@ public class TanningRackRecipeManager implements IRecipeManager {
     }
 
     @Method
-    public void addRecipe(String name, IItemStack output, IIngredient input, @OptionalString String group) {
-        TanningRackRecipe recipe = new TanningRackRecipe(new ResourceLocation("crafttweaker", name), group, input.asVanillaIngredient(), output.getInternal());
+    public void addRecipe(String name, IItemStack output, IIngredient input, IIngredient tool, @OptionalString String group) {
+        TanningRackRecipe recipe = new TanningRackRecipe(new ResourceLocation("crafttweaker", name), group,
+                input.asVanillaIngredient(), output.getInternal(), tool.asVanillaIngredient());
         CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
     }
 }
