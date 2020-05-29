@@ -3,5 +3,8 @@
   "ingredient": {
     "item": "stone_age:raw_hide"
   },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
   "result": "minecraft:leather"
 }

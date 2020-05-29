@@ -45,7 +45,12 @@ public class TanningRackRecipeSerializer extends ForgeRegistryEntry<IRecipeSeria
             itemstack = new ItemStack(Registry.ITEM.getValue(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
         }
 
-        return this.factory.create(recipeId, s, ingredient, itemstack);
+        JsonElement toolElement = JSONUtils.isJsonArray(json, "tool")
+                ? JSONUtils.getJsonArray(json, "tool")
+                : JSONUtils.getJsonObject(json, "tool");
+        Ingredient tool = Ingredient.deserialize(toolElement);
+
+        return this.factory.create(recipeId, s, ingredient, itemstack, tool);
     }
 
     @Nullable
@@ -54,8 +59,9 @@ public class TanningRackRecipeSerializer extends ForgeRegistryEntry<IRecipeSeria
         String s = buffer.readString(32767);
         Ingredient ingredient = Ingredient.read(buffer);
         ItemStack itemstack = buffer.readItemStack();
+        Ingredient tool = Ingredient.read(buffer);
 
-        return this.factory.create(recipeId, s, ingredient, itemstack);
+        return this.factory.create(recipeId, s, ingredient, itemstack, tool);
     }
 
     @Override
@@ -63,9 +69,10 @@ public class TanningRackRecipeSerializer extends ForgeRegistryEntry<IRecipeSeria
         buffer.writeString(recipe.group);
         recipe.ingredient.write(buffer);
         buffer.writeItemStack(recipe.result);
+        recipe.tool.write(buffer);
     }
 
     public interface IFactory<T extends TanningRackRecipe> {
-        T create(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result);
+        T create(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result, Ingredient tool);
     }
 }

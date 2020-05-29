@@ -24,13 +24,15 @@ public class TanningRackRecipe implements IRecipe<IInventory> {
     final String group;
     final Ingredient ingredient;
     final ItemStack result;
+    final Ingredient tool;
 
-    public TanningRackRecipe(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result) {
+    public TanningRackRecipe(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result, Ingredient tool) {
         type = tanning_rack;
         id = resourceLocation;
         this.group = group;
         this.ingredient = ingredient;
         this.result = result;
+        this.tool = tool;
     }
 
     @Override
@@ -86,5 +88,9 @@ public class TanningRackRecipe implements IRecipe<IInventory> {
     @Nonnull
     public ItemStack getIcon() {
         return new ItemStack(BlockSubscriber.tanning_rack);
+    }
+
+    public Ingredient getTool() {
+        return tool;
     }
 }
