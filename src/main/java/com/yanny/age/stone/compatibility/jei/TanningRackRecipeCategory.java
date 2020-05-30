@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.recipes.TanningRackRecipe;
 import com.yanny.age.stone.subscribers.BlockSubscriber;
-import com.yanny.age.stone.subscribers.ToolSubscriber;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -71,6 +70,7 @@ public class TanningRackRecipeCategory implements IRecipeCategory<TanningRackRec
         ImmutableList.Builder<ItemStack> outputBuilder = ImmutableList.builder();
 
         inputBuilder.add(Arrays.asList(tanningRackRecipe.getIngredients().get(0).getMatchingStacks()));
+        inputBuilder.add(Arrays.asList(tanningRackRecipe.getTool().getMatchingStacks()));
         outputBuilder.add(tanningRackRecipe.getRecipeOutput());
 
         ingredients.setInputLists(VanillaTypes.ITEM, inputBuilder.build());
@@ -89,7 +89,6 @@ public class TanningRackRecipeCategory implements IRecipeCategory<TanningRackRec
         recipeLayout.getItemStacks().set(2, Collections.singletonList(new ItemStack(BlockSubscriber.tanning_rack)));
 
         recipeLayout.getItemStacks().init(3, false, 51, 29);
-        //noinspection ConstantConditions
-        recipeLayout.getItemStacks().set(3, Collections.singletonList(ToolSubscriber.flint_knife.getDefaultInstance()));
+        recipeLayout.getItemStacks().set(3, ingredients.getInputs(VanillaTypes.ITEM).get(1));
     }
 }

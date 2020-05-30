@@ -732,7 +732,10 @@
         },
         {
           "type": "recipe",
-          "recipe": ["stone_age:unlit_torch"],
+          "recipe": [
+            "stone_age:unlit_torch",
+            "stone_age:unlit_torch_from_flint_workbench"
+          ],
           "margin_bottom": 5
         },
         {

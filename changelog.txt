@@ -1,3 +1,8 @@
+- fixed TOP mod integration
+- added recipe for unlit torch in flint workbench
+- removed leather from llama, donkey and trading llama loot table
+- added blacklist/whitelist for spawning biomes for mod entities
+- added support for CraftTweaker
 v1.1.4
 - fixed injecting loot tables
 v1.1.3

@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.recipes.FlintWorkbenchRecipe;
 import com.yanny.age.stone.subscribers.BlockSubscriber;
-import com.yanny.age.stone.subscribers.ToolSubscriber;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -18,7 +17,6 @@ import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class FlintWorkbenchRecipeCategory implements IRecipeCategory<FlintWorkbenchRecipe> {
@@ -78,6 +76,7 @@ public class FlintWorkbenchRecipeCategory implements IRecipeCategory<FlintWorkbe
             }
         }
 
+        inputBuilder.add(Arrays.asList(flintWorkbenchRecipe.getTool().getMatchingStacks()));
         outputBuilder.add(flintWorkbenchRecipe.getRecipeOutput());
         ingredients.setInputLists(VanillaTypes.ITEM, inputBuilder.build());
         ingredients.setOutputLists(VanillaTypes.ITEM, ImmutableList.of(outputBuilder.build()));
@@ -99,7 +98,6 @@ public class FlintWorkbenchRecipeCategory implements IRecipeCategory<FlintWorkbe
         recipeLayout.getItemStacks().set(width * height, ingredients.getOutputs(VanillaTypes.ITEM).get(0));
 
         recipeLayout.getItemStacks().init(width * height + 1, false, 66, 20);
-        //noinspection ConstantConditions
-        recipeLayout.getItemStacks().set(width * height + 1, Collections.singletonList(ToolSubscriber.flint_knife.getDefaultInstance()));
+        recipeLayout.getItemStacks().set(width * height + 1, ingredients.getInputs(VanillaTypes.ITEM).get(width * height));
     }
 }
