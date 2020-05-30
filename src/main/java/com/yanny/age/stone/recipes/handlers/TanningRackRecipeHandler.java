@@ -2,7 +2,6 @@ package com.yanny.age.stone.recipes.handlers;
 
 import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.recipes.TanningRackRecipe;
-import com.yanny.age.stone.subscribers.ToolSubscriber;
 import com.yanny.ages.api.manual.IRecipeHandler;
 import com.yanny.ages.api.manual.RecipeBackground;
 import com.yanny.ages.api.manual.RecipeIngredient;
@@ -24,7 +23,7 @@ public class TanningRackRecipeHandler implements IRecipeHandler {
 
         list.add(new RecipeIngredient(tanningRackRecipe.getIngredients().get(0), 22, 22));
         list.add(new RecipeIngredient(Ingredient.fromItems(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, "tanning_rack"))), 52, 14));
-        list.add(new RecipeIngredient(Ingredient.fromItems(ToolSubscriber.flint_knife), 52, 30));
+        list.add(new RecipeIngredient(tanningRackRecipe.getTool(), 52, 30));
         list.add(new RecipeIngredient(Ingredient.fromStacks(tanningRackRecipe.getRecipeOutput()), 85, 23));
         return list;
     }
