@@ -1,3 +1,5 @@
+v1.2.1
+- fixed CraftTweaker function names
 v1.2.0
 - fixed TOP mod integration
 - added recipe for unlit torch in flint workbench
