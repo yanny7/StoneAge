@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import static org.openzen.zencode.java.ZenCodeType.*;
 
 @ZenRegister
-@Name("mods.stone_age.DryingRackManager")
+@Name("mods.stone_age.TanningRackManager")
 public class TanningRackRecipeManager implements IRecipeManager {
     @SuppressWarnings("unused")
     public static final TanningRackRecipeManager INSTANCE = new TanningRackRecipeManager();

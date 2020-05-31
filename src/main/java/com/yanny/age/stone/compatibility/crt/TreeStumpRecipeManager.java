@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import static org.openzen.zencode.java.ZenCodeType.*;
 
 @ZenRegister
-@Name("mods.stone_age.DryingRackManager")
+@Name("mods.stone_age.TreeStumpManager")
 public class TreeStumpRecipeManager implements IRecipeManager {
     @SuppressWarnings("unused")
     public static final TreeStumpRecipeManager INSTANCE = new TreeStumpRecipeManager();
