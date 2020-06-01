@@ -115,8 +115,8 @@ public class AqueductBlock extends Block implements TopBlockInfoProvider {
     @SuppressWarnings("deprecation")
     @Override
     @Nonnull
-    public BlockState updatePostPlacement(@Nonnull BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn,
-                                          BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updatePostPlacement(@Nonnull BlockState stateIn, @Nonnull Direction facing, @Nonnull BlockState facingState, @Nonnull IWorld worldIn,
+                                          @Nonnull BlockPos currentPos, @Nonnull BlockPos facingPos) {
         if (facing != Direction.DOWN && facing != Direction.UP) {
             return stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), checkSideConnection(worldIn.getWorld(), currentPos, facingPos, facing));
         }
@@ -134,7 +134,8 @@ public class AqueductBlock extends Block implements TopBlockInfoProvider {
     @Nonnull
     @SuppressWarnings("deprecation")
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(@Nonnull BlockState state, World worldIn, @Nonnull BlockPos pos, @Nonnull PlayerEntity player,
+                                             @Nonnull Hand handIn, @Nonnull BlockRayTraceResult hit) {
         AqueductTileEntity tile = (AqueductTileEntity) worldIn.getTileEntity(pos);
 
         if (tile != null) {
@@ -158,7 +159,7 @@ public class AqueductBlock extends Block implements TopBlockInfoProvider {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+    public void animateTick(@Nonnull BlockState stateIn, @Nonnull World worldIn, @Nonnull BlockPos pos, Random rand) {
         if (rand.nextInt(2) == 0 && stateIn.get(WATERLOGGED)) {
             BlockPos blockpos = pos.up();
 
@@ -178,7 +179,7 @@ public class AqueductBlock extends Block implements TopBlockInfoProvider {
     @SuppressWarnings("deprecation")
     @Nonnull
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, @Nonnull IBlockReader worldIn, @Nonnull BlockPos pos, @Nonnull ISelectionContext context) {
         int flag = 0;
         flag |= !state.get(NORTH) ? 1 : 0;
         flag |= !state.get(EAST) ? 2 : 0;

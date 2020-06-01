@@ -168,7 +168,7 @@ public class FlintSpearEntity extends AbstractArrowEntity {
     }
 
     @Override
-    public void readAdditional(CompoundNBT compound) {
+    public void readAdditional(@Nonnull CompoundNBT compound) {
         super.readAdditional(compound);
 
         if (compound.contains("Trident", 10)) {
@@ -180,7 +180,7 @@ public class FlintSpearEntity extends AbstractArrowEntity {
     }
 
     @Override
-    public void writeAdditional(CompoundNBT compound) {
+    public void writeAdditional(@Nonnull CompoundNBT compound) {
         super.writeAdditional(compound);
         compound.put("Trident", this.thrownStack.write(new CompoundNBT()));
         compound.putBoolean("DealtDamage", this.dealtDamage);

@@ -1,6 +1,5 @@
 package com.yanny.age.stone.items;
 
-import com.yanny.ages.api.group.ModItemGroup;
 import net.minecraft.item.Item;
 
 public class MeshItem extends Item {

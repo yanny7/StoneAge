@@ -38,13 +38,13 @@ public class DriedGrassBedBlock extends BedBlock {
     }
 
     @Override
-    public TileEntity createNewTileEntity(IBlockReader worldIn) {
+    public TileEntity createNewTileEntity(@Nonnull IBlockReader worldIn) {
         return new DriedGrassBedTileEntity();
     }
 
     @Nonnull
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, @Nonnull IBlockReader worldIn, @Nonnull BlockPos pos, @Nonnull ISelectionContext context) {
         Direction direction = state.get(HORIZONTAL_FACING);
         Direction direction1 = state.get(PART) == BedPart.HEAD ? direction : direction.getOpposite();
         switch(direction1) {

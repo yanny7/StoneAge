@@ -39,29 +39,29 @@ public class SpearItem extends Item {
     }
 
     @Override
-    public boolean canPlayerBreakBlockWhileHolding(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
+    public boolean canPlayerBreakBlockWhileHolding(@Nonnull BlockState state, @Nonnull World worldIn, @Nonnull BlockPos pos, PlayerEntity player) {
         return !player.isCreative();
     }
 
     @Nonnull
     @Override
-    public UseAction getUseAction(ItemStack stack) {
+    public UseAction getUseAction(@Nonnull ItemStack stack) {
         return UseAction.SPEAR;
     }
 
     @Override
-    public int getUseDuration(ItemStack stack) {
+    public int getUseDuration(@Nonnull ItemStack stack) {
         return 72000;
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean hasEffect(@Nonnull ItemStack stack) {
         return false;
     }
 
     @Override
-    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
+    public void onPlayerStoppedUsing(@Nonnull ItemStack stack, @Nonnull World worldIn, @Nonnull LivingEntity entityLiving, int timeLeft) {
         if (entityLiving instanceof PlayerEntity) {
             PlayerEntity playerentity = (PlayerEntity)entityLiving;
             int i = this.getUseDuration(stack) - timeLeft;
@@ -131,7 +131,7 @@ public class SpearItem extends Item {
 
     @Nonnull
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, @Nonnull Hand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(@Nonnull World worldIn, PlayerEntity playerIn, @Nonnull Hand handIn) {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
 
         if (itemstack.getDamage() >= itemstack.getMaxDamage()) {
@@ -145,13 +145,13 @@ public class SpearItem extends Item {
     }
 
     @Override
-    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+    public boolean hitEntity(ItemStack stack, @Nonnull LivingEntity target, @Nonnull LivingEntity attacker) {
         stack.damageItem(1, attacker, (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
         return true;
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+    public boolean onBlockDestroyed(@Nonnull ItemStack stack, @Nonnull World worldIn, BlockState state, @Nonnull BlockPos pos, @Nonnull LivingEntity entityLiving) {
         if ((double)state.getBlockHardness(worldIn, pos) != 0.0D) {
             stack.damageItem(2, entityLiving, (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
         }
@@ -162,7 +162,7 @@ public class SpearItem extends Item {
     @SuppressWarnings("deprecation")
     @Nonnull
     @Override
-    public Multimap<String, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
+    public Multimap<String, AttributeModifier> getAttributeModifiers(@Nonnull EquipmentSlotType equipmentSlot) {
         Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(equipmentSlot);
         if (equipmentSlot == EquipmentSlotType.MAINHAND) {
             multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER,

@@ -45,7 +45,7 @@ public class StoneChestBlock extends HorizontalBlock {
     @SuppressWarnings("deprecation")
     @Override
     @Nonnull
-    public BlockRenderType getRenderType(BlockState state) {
+    public BlockRenderType getRenderType(@Nonnull BlockState state) {
         return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 
@@ -67,7 +67,7 @@ public class StoneChestBlock extends HorizontalBlock {
     @SuppressWarnings("deprecation")
     @Nonnull
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(@Nonnull BlockState state, @Nonnull IBlockReader worldIn, @Nonnull BlockPos pos, @Nonnull ISelectionContext context) {
         return SHAPE;
     }
 
@@ -88,7 +88,8 @@ public class StoneChestBlock extends HorizontalBlock {
     @Nonnull
     @SuppressWarnings("deprecation")
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(@Nonnull BlockState state, World worldIn, @Nonnull BlockPos pos, @Nonnull PlayerEntity player,
+                                             @Nonnull Hand handIn, @Nonnull BlockRayTraceResult hit) {
         StoneChestTileEntity tile = (StoneChestTileEntity) worldIn.getTileEntity(pos);
 
         if (tile != null) {

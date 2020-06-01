@@ -63,7 +63,7 @@ public class FishingNetBlock extends HorizontalBlock implements IWaterLoggable {
     @SuppressWarnings("deprecation")
     @Nonnull
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(@Nonnull BlockState state, @Nonnull IBlockReader worldIn, @Nonnull BlockPos pos, @Nonnull ISelectionContext context) {
         return SHAPE;
     }
 
@@ -80,7 +80,7 @@ public class FishingNetBlock extends HorizontalBlock implements IWaterLoggable {
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void fillStateContainer(@Nonnull StateContainer.Builder<Block, BlockState> builder) {
         super.fillStateContainer(builder);
         builder.add(WATERLOGGED);
         builder.add(ATTACHED);
@@ -103,7 +103,8 @@ public class FishingNetBlock extends HorizontalBlock implements IWaterLoggable {
     @Nonnull
     @SuppressWarnings("deprecation")
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(@Nonnull BlockState state, World worldIn, @Nonnull BlockPos pos, @Nonnull PlayerEntity player,
+                                             @Nonnull Hand handIn, @Nonnull BlockRayTraceResult hit) {
         FishingNetTileEntity tile = (FishingNetTileEntity) worldIn.getTileEntity(pos);
 
         if (tile != null) {
@@ -119,7 +120,8 @@ public class FishingNetBlock extends HorizontalBlock implements IWaterLoggable {
     @SuppressWarnings("deprecation")
     @Nonnull
     @Override
-    public BlockState updatePostPlacement(@Nonnull BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updatePostPlacement(@Nonnull BlockState stateIn, @Nonnull Direction facing, @Nonnull BlockState facingState,
+                                          IWorld worldIn, @Nonnull BlockPos currentPos, @Nonnull BlockPos facingPos) {
         worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
         return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
@@ -127,7 +129,7 @@ public class FishingNetBlock extends HorizontalBlock implements IWaterLoggable {
     @SuppressWarnings("deprecation")
     @Override
     @Nonnull
-    public BlockRenderType getRenderType(BlockState state) {
+    public BlockRenderType getRenderType(@Nonnull BlockState state) {
         return BlockRenderType.MODEL;
     }
 }

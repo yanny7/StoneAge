@@ -115,7 +115,7 @@ public class FowlEntity extends WildAnimalEntity implements TopEntityInfoProvide
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+    protected SoundEvent getHurtSound(@Nonnull DamageSource damageSourceIn) {
         return SoundEvents.ENTITY_CHICKEN_HURT;
     }
 
@@ -125,12 +125,12 @@ public class FowlEntity extends WildAnimalEntity implements TopEntityInfoProvide
     }
 
     @Override
-    protected void playStepSound(@Nonnull BlockPos pos, BlockState blockIn) {
+    protected void playStepSound(@Nonnull BlockPos pos, @Nonnull BlockState blockIn) {
         this.playSound(SoundEvents.ENTITY_CHICKEN_STEP, 0.15F, 1.0F);
     }
 
     @Override
-    public boolean isBreedingItem(ItemStack stack) {
+    public boolean isBreedingItem(@Nonnull ItemStack stack) {
         return TEMPTATION_ITEMS.test(stack);
     }
 

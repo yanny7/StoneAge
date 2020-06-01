@@ -48,7 +48,7 @@ public class FeederBlock extends HorizontalBlock {
     @SuppressWarnings("deprecation")
     @Nonnull
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, @Nonnull IBlockReader worldIn, @Nonnull BlockPos pos, @Nonnull ISelectionContext context) {
         if (state.get(HORIZONTAL_FACING).getAxis() == Direction.Axis.Z) {
             return SHAPE_NS;
         } else {
@@ -83,7 +83,8 @@ public class FeederBlock extends HorizontalBlock {
     @Nonnull
     @SuppressWarnings("deprecation")
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(@Nonnull BlockState state, World worldIn, @Nonnull BlockPos pos, @Nonnull PlayerEntity player,
+                                             @Nonnull Hand handIn, @Nonnull BlockRayTraceResult hit) {
         FeederTileEntity tile = (FeederTileEntity) worldIn.getTileEntity(pos);
 
         if (tile != null) {

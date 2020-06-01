@@ -16,7 +16,7 @@ public class FlintSpearItemRenderer extends ItemStackTileEntityRenderer {
     private final FlintSpearItemModel model = new FlintSpearItemModel();
 
     @Override
-    public void render(ItemStack itemStack, @Nonnull MatrixStack matrixStack, @Nonnull IRenderTypeBuffer renderTypeBuffer, int overlayUV, int lightmapUV) {
+    public void render(@Nonnull ItemStack itemStack, @Nonnull MatrixStack matrixStack, @Nonnull IRenderTypeBuffer renderTypeBuffer, int overlayUV, int lightmapUV) {
         matrixStack.push();
         matrixStack.translate(0.5, -1, 0.5);
         model.render(matrixStack, renderTypeBuffer.getBuffer(RenderType.getEntityCutoutNoCull(FlintSpearRenderer.TEXTURE)), overlayUV, lightmapUV, 1f, 1f, 1f, 1f);
