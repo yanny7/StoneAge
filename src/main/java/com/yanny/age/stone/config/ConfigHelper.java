@@ -37,6 +37,7 @@ public class ConfigHelper {
         Config.spawnDeerWeight = ConfigHolder.SERVER.spawnDeerWeight.get();
         Config.spawnDeerMinCount = ConfigHolder.SERVER.spawnDeerMinCount.get();
         Config.spawnDeerMaxCount = ConfigHolder.SERVER.spawnDeerMaxCount.get();
+        Config.spawnDeerAllowedBiomesBlacklist = ConfigHolder.SERVER.spawnDeerAllowedBiomesBlacklist.get();
         Config.spawnDeerAllowedBiomes.clear();
         Config.spawnDeerAllowedBiomes.addAll(ConfigHolder.SERVER.spawnDeerAllowedBiomes.get().stream()
                 .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toSet()));
@@ -45,6 +46,7 @@ public class ConfigHelper {
         Config.spawnBoarWeight = ConfigHolder.SERVER.spawnBoarWeight.get();
         Config.spawnBoarMinCount = ConfigHolder.SERVER.spawnBoarMinCount.get();
         Config.spawnBoarMaxCount = ConfigHolder.SERVER.spawnBoarMaxCount.get();
+        Config.spawnBoarAllowedBiomesBlacklist = ConfigHolder.SERVER.spawnBoarAllowedBiomesBlacklist.get();
         Config.spawnBoarAllowedBiomes.clear();
         Config.spawnBoarAllowedBiomes.addAll(ConfigHolder.SERVER.spawnBoarAllowedBiomes.get().stream()
                 .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toSet()));
@@ -53,6 +55,7 @@ public class ConfigHelper {
         Config.spawnAurochWeight = ConfigHolder.SERVER.spawnAurochWeight.get();
         Config.spawnAurochMinCount = ConfigHolder.SERVER.spawnAurochMinCount.get();
         Config.spawnAurochMaxCount = ConfigHolder.SERVER.spawnAurochMaxCount.get();
+        Config.spawnAurochAllowedBiomesBlacklist = ConfigHolder.SERVER.spawnAurochAllowedBiomesBlacklist.get();
         Config.spawnAurochAllowedBiomes.clear();
         Config.spawnAurochAllowedBiomes.addAll(ConfigHolder.SERVER.spawnAurochAllowedBiomes.get().stream()
                 .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toSet()));
@@ -61,6 +64,7 @@ public class ConfigHelper {
         Config.spawnFowlWeight = ConfigHolder.SERVER.spawnFowlWeight.get();
         Config.spawnFowlMinCount = ConfigHolder.SERVER.spawnFowlMinCount.get();
         Config.spawnFowlMaxCount = ConfigHolder.SERVER.spawnFowlMaxCount.get();
+        Config.spawnFowlAllowedBiomesBlacklist = ConfigHolder.SERVER.spawnFowlAllowedBiomesBlacklist.get();
         Config.spawnFowlAllowedBiomes.clear();
         Config.spawnFowlAllowedBiomes.addAll(ConfigHolder.SERVER.spawnFowlAllowedBiomes.get().stream()
                 .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toSet()));
@@ -69,6 +73,7 @@ public class ConfigHelper {
         Config.spawnMouflonWeight = ConfigHolder.SERVER.spawnMouflonWeight.get();
         Config.spawnMouflonMinCount = ConfigHolder.SERVER.spawnMouflonMinCount.get();
         Config.spawnMouflonMaxCount = ConfigHolder.SERVER.spawnMouflonMaxCount.get();
+        Config.spawnMouflonAllowedBiomesBlacklist = ConfigHolder.SERVER.spawnMouflonAllowedBiomesBlacklist.get();
         Config.spawnMouflonAllowedBiomes.clear();
         Config.spawnMouflonAllowedBiomes.addAll(ConfigHolder.SERVER.spawnMouflonAllowedBiomes.get().stream()
                 .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toSet()));
@@ -77,6 +82,7 @@ public class ConfigHelper {
         Config.spawnMammothWeight = ConfigHolder.SERVER.spawnMammothWeight.get();
         Config.spawnMammothMinCount = ConfigHolder.SERVER.spawnMammothMinCount.get();
         Config.spawnMammothMaxCount = ConfigHolder.SERVER.spawnMammothMaxCount.get();
+        Config.spawnMammothAllowedBiomesBlacklist = ConfigHolder.SERVER.spawnMammothAllowedBiomesBlacklist.get();
         Config.spawnMammothAllowedBiomes.clear();
         Config.spawnMammothAllowedBiomes.addAll(ConfigHolder.SERVER.spawnMammothAllowedBiomes.get().stream()
                 .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toSet()));
@@ -85,6 +91,7 @@ public class ConfigHelper {
         Config.spawnSaberToothTigerWeight = ConfigHolder.SERVER.spawnSaberToothTigerWeight.get();
         Config.spawnSaberToothTigerMinCount = ConfigHolder.SERVER.spawnSaberToothTigerMinCount.get();
         Config.spawnSaberToothTigerMaxCount = ConfigHolder.SERVER.spawnSaberToothTigerMaxCount.get();
+        Config.spawnSaberToothTigerAllowedBiomesBlacklist = ConfigHolder.SERVER.spawnSaberToothTigerAllowedBiomesBlacklist.get();
         Config.spawnSaberToothTigerAllowedBiomes.clear();
         Config.spawnSaberToothTigerAllowedBiomes.addAll(ConfigHolder.SERVER.spawnSaberToothTigerAllowedBiomes.get().stream()
                 .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toSet()));
@@ -93,6 +100,7 @@ public class ConfigHelper {
         Config.spawnWoollyRhinoWeight = ConfigHolder.SERVER.spawnWoollyRhinoWeight.get();
         Config.spawnWoollyRhinoMinCount = ConfigHolder.SERVER.spawnWoollyRhinoMinCount.get();
         Config.spawnWoollyRhinoMaxCount = ConfigHolder.SERVER.spawnWoollyRhinoMaxCount.get();
+        Config.spawnWoollyRhinoAllowedBiomesBlacklist = ConfigHolder.SERVER.spawnWoollyRhinoAllowedBiomesBlacklist.get();
         Config.spawnWoollyRhinoAllowedBiomes.clear();
         Config.spawnWoollyRhinoAllowedBiomes.addAll(ConfigHolder.SERVER.spawnWoollyRhinoAllowedBiomes.get().stream()
                 .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toSet()));
