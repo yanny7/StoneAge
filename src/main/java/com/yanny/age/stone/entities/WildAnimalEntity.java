@@ -69,7 +69,7 @@ abstract class WildAnimalEntity extends AnimalEntity implements IBecomeAngry {
     }
 
     @Override
-    public void writeAdditional(CompoundNBT compound) {
+    public void writeAdditional(@Nonnull CompoundNBT compound) {
         super.writeAdditional(compound);
         compound.putShort("Anger", (short)this.angerLevel);
         compound.putInt("Generation", dataManager.get(GENERATION));
@@ -81,7 +81,7 @@ abstract class WildAnimalEntity extends AnimalEntity implements IBecomeAngry {
     }
 
     @Override
-    public void readAdditional(CompoundNBT compound) {
+    public void readAdditional(@Nonnull CompoundNBT compound) {
         super.readAdditional(compound);
         this.angerLevel = compound.getShort("Anger");
         this.setGeneration(compound.getInt("Generation"));

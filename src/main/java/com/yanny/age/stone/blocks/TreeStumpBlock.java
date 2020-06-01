@@ -54,13 +54,13 @@ public class TreeStumpBlock extends Block implements TopBlockInfoProvider {
     @SuppressWarnings("deprecation")
     @Nonnull
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(@Nonnull BlockState state, @Nonnull IBlockReader worldIn, @Nonnull BlockPos pos, @Nonnull ISelectionContext context) {
         return SHAPE;
     }
 
     @SuppressWarnings("deprecation")
     @Override
-    public void onBlockClicked(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
+    public void onBlockClicked(@Nonnull BlockState state, World worldIn, @Nonnull BlockPos pos, @Nonnull PlayerEntity player) {
         if (!worldIn.isRemote) {
             TreeStumpTileEntity tileEntity = (TreeStumpTileEntity) worldIn.getTileEntity(pos);
 
@@ -75,7 +75,8 @@ public class TreeStumpBlock extends Block implements TopBlockInfoProvider {
 
     @SuppressWarnings("deprecation")
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public boolean onBlockActivated(@Nonnull BlockState state, World worldIn, @Nonnull BlockPos pos, @Nonnull PlayerEntity player,
+                                    @Nonnull Hand handIn, @Nonnull BlockRayTraceResult hit) {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
         if ((tileentity instanceof TreeStumpTileEntity) && !worldIn.isRemote && (handIn == Hand.MAIN_HAND)) {
@@ -88,13 +89,13 @@ public class TreeStumpBlock extends Block implements TopBlockInfoProvider {
     @SuppressWarnings("deprecation")
     @OnlyIn(Dist.CLIENT)
     @Override
-    public boolean hasCustomBreakingProgress(BlockState state) {
+    public boolean hasCustomBreakingProgress(@Nonnull BlockState state) {
         return true;
     }
 
     @SuppressWarnings("deprecation")
     @Override
-    public float getPlayerRelativeBlockHardness(BlockState state, @Nonnull PlayerEntity player, @Nonnull IBlockReader worldIn, @Nonnull BlockPos pos) {
+    public float getPlayerRelativeBlockHardness(@Nonnull BlockState state, @Nonnull PlayerEntity player, @Nonnull IBlockReader worldIn, @Nonnull BlockPos pos) {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
         if ((tileentity instanceof TreeStumpTileEntity) && ((TreeStumpTileEntity) tileentity).hasTool(player.getHeldItemMainhand())) {

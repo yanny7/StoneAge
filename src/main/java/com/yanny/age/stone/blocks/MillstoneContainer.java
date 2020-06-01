@@ -65,7 +65,7 @@ public class MillstoneContainer extends Container {
 
     @Nonnull
     @Override
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+    public ItemStack transferStackInSlot(@Nonnull PlayerEntity playerIn, int index) {
         Slot slot = inventorySlots.get(index);
 
         if (slot != null && slot.getHasStack()) {

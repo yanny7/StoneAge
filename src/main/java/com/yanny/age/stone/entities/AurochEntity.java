@@ -81,7 +81,7 @@ public class AurochEntity extends WildAnimalEntity implements TopEntityInfoProvi
     }
 
     @Override
-    public SoundEvent getHurtSound(DamageSource damageSourceIn) {
+    public SoundEvent getHurtSound(@Nonnull DamageSource damageSourceIn) {
         return SoundEvents.ENTITY_COW_HURT;
     }
 
@@ -91,7 +91,7 @@ public class AurochEntity extends WildAnimalEntity implements TopEntityInfoProvi
     }
 
     @Override
-    public void playStepSound(@Nonnull BlockPos pos, BlockState blockIn) {
+    public void playStepSound(@Nonnull BlockPos pos, @Nonnull BlockState blockIn) {
         this.playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);
     }
 

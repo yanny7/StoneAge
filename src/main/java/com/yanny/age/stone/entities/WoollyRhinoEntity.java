@@ -52,7 +52,7 @@ public class WoollyRhinoEntity extends WildAnimalEntity {
     }
 
     @Override
-    public boolean attackEntityAsMob(Entity entityIn) {
+    public boolean attackEntityAsMob(@Nonnull Entity entityIn) {
         //noinspection ConstantConditions
         this.playSound(SoundSubscriber.woolly_rhino_hit, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 
@@ -71,7 +71,7 @@ public class WoollyRhinoEntity extends WildAnimalEntity {
     }
 
     @Override
-    public SoundEvent getHurtSound(DamageSource damageSourceIn) {
+    public SoundEvent getHurtSound(@Nonnull DamageSource damageSourceIn) {
         return SoundSubscriber.woolly_rhino_hit;
     }
 
@@ -81,7 +81,7 @@ public class WoollyRhinoEntity extends WildAnimalEntity {
     }
 
     @Override
-    public void playStepSound(@Nonnull BlockPos pos, BlockState blockIn) {
+    public void playStepSound(@Nonnull BlockPos pos, @Nonnull BlockState blockIn) {
         this.playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);
     }
 

@@ -7,6 +7,8 @@ import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.ModelBox;
 import net.minecraft.util.math.MathHelper;
 
+import javax.annotation.Nonnull;
+
 public class SaberToothTigerModel extends EntityModel<SaberToothTigerEntity> {
 	private final RendererModel body;
 	private final RendererModel foot1;
@@ -108,7 +110,7 @@ public class SaberToothTigerModel extends EntityModel<SaberToothTigerEntity> {
 	}
 
 	@Override
-	public void render(SaberToothTigerEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+	public void render(@Nonnull SaberToothTigerEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 		this.setRotationAngles(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 		GlStateManager.pushMatrix();
 
@@ -136,7 +138,7 @@ public class SaberToothTigerModel extends EntityModel<SaberToothTigerEntity> {
 	}
 
 	@Override
-	public void setRotationAngles(SaberToothTigerEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+	public void setRotationAngles(@Nonnull SaberToothTigerEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
 		this.head.rotateAngleX = headPitch * ((float)Math.PI / 180F);
 		this.head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
 		this.foot1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;

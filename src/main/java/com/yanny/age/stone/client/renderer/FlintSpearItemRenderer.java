@@ -8,12 +8,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class FlintSpearItemRenderer extends ItemStackTileEntityRenderer {
     private final FlintSpearItemModel model = new FlintSpearItemModel();
 
     @Override
-    public void renderByItem(ItemStack itemStackIn) {
+    public void renderByItem(@Nonnull ItemStack itemStackIn) {
         Minecraft.getInstance().getTextureManager().bindTexture(FlintSpearRenderer.TEXTURE);
 
         GlStateManager.pushMatrix();

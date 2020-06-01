@@ -20,7 +20,12 @@ import java.util.stream.Collectors;
 
 @JeiPlugin
 public class JeiCompatPlugin implements IModPlugin {
-    private static final RecipeManager recipeManager = Minecraft.getInstance().world.getRecipeManager();
+    private static final RecipeManager recipeManager;
+
+    static {
+        assert Minecraft.getInstance().world != null;
+        recipeManager = Minecraft.getInstance().world.getRecipeManager();
+    }
 
     @Nonnull
     @Override

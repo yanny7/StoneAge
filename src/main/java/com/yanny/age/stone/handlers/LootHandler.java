@@ -37,11 +37,11 @@ public class LootHandler {
     private static final Map<String, Pair<Block, Tag<Item>>> INJECT_ALTERNATE_ENTRIES = Maps.newHashMap();
     private static final Map<String, Pair<Block, Tag<Item>>> CHANGE_ALTERNATE_ENTRIES = Maps.newHashMap();
 
-    private static Field lootEntries;
-    private static Field entryItem;
-    private static Field alternativeEntries;
-    private static Field alternativeConditions;
-    private static Constructor<AlternativesLootEntry> constructAlternative;
+    private static final Field lootEntries;
+    private static final Field entryItem;
+    private static final Field alternativeEntries;
+    private static final Field alternativeConditions;
+    private static final Constructor<AlternativesLootEntry> constructAlternative;
 
     static {
         lootEntries = ObfuscationReflectionHelper.findField(LootPool.class, "field_186453_a");

@@ -9,6 +9,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class DeerModel extends EntityModel<DeerEntity> {
 	private final RendererModel body;
@@ -73,7 +75,7 @@ public class DeerModel extends EntityModel<DeerEntity> {
 	}
 
 	@Override
-	public void render(DeerEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+	public void render(@Nonnull DeerEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 		this.setRotationAngles(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 		GlStateManager.pushMatrix();
 
@@ -100,7 +102,7 @@ public class DeerModel extends EntityModel<DeerEntity> {
 	}
 
 	@Override
-	public void setRotationAngles(DeerEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+	public void setRotationAngles(@Nonnull DeerEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
 		this.head.rotateAngleX = headPitch * ((float)Math.PI / 180F) - 0.7854F;
 		this.head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
 		this.feet1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;

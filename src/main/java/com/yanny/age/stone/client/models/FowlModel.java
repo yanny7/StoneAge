@@ -9,6 +9,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class FowlModel extends EntityModel<FowlEntity> {
 	private final RendererModel body;
@@ -52,7 +54,7 @@ public class FowlModel extends EntityModel<FowlEntity> {
 	}
 
 	@Override
-	public void render(FowlEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+	public void render(@Nonnull FowlEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 		if (isChild) {
 			GlStateManager.pushMatrix();
 			GlStateManager.scalef(0.75F, 0.75F, 0.75F);
@@ -75,7 +77,7 @@ public class FowlModel extends EntityModel<FowlEntity> {
 	}
 
 	@Override
-	public void setRotationAngles(FowlEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+	public void setRotationAngles(@Nonnull FowlEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
 		this.head.rotateAngleX = headPitch * ((float)Math.PI / 180F);
 		this.head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
 		this.foot1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;

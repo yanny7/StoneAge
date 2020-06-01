@@ -110,7 +110,7 @@ public class StoneChestTileEntity extends LockableLootTileEntity implements IInv
 
     @Override
     @Nonnull
-    public CompoundNBT write(CompoundNBT tag) {
+    public CompoundNBT write(@Nonnull CompoundNBT tag) {
         if (!this.checkLootAndWrite(tag)) {
             tag.put("inv", ItemStackUtils.serializeStacks(stacks));
         }
