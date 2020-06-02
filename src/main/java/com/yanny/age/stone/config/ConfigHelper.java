@@ -47,6 +47,7 @@ public class ConfigHelper {
         Config.spawnBoarMinCount = ConfigHolder.SERVER.spawnBoarMinCount.get();
         Config.spawnBoarMaxCount = ConfigHolder.SERVER.spawnBoarMaxCount.get();
         Config.spawnBoarAllowedBiomesBlacklist = ConfigHolder.SERVER.spawnBoarAllowedBiomesBlacklist.get();
+        Config.boarBreedingResult = ConfigHolder.SERVER.boarBreedingResult.get();
         Config.spawnBoarAllowedBiomes.clear();
         Config.spawnBoarAllowedBiomes.addAll(ConfigHolder.SERVER.spawnBoarAllowedBiomes.get().stream()
                 .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toSet()));
@@ -56,6 +57,7 @@ public class ConfigHelper {
         Config.spawnAurochMinCount = ConfigHolder.SERVER.spawnAurochMinCount.get();
         Config.spawnAurochMaxCount = ConfigHolder.SERVER.spawnAurochMaxCount.get();
         Config.spawnAurochAllowedBiomesBlacklist = ConfigHolder.SERVER.spawnAurochAllowedBiomesBlacklist.get();
+        Config.aurochBreedingResult = ConfigHolder.SERVER.aurochBreedingResult.get();
         Config.spawnAurochAllowedBiomes.clear();
         Config.spawnAurochAllowedBiomes.addAll(ConfigHolder.SERVER.spawnAurochAllowedBiomes.get().stream()
                 .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toSet()));
@@ -65,6 +67,7 @@ public class ConfigHelper {
         Config.spawnFowlMinCount = ConfigHolder.SERVER.spawnFowlMinCount.get();
         Config.spawnFowlMaxCount = ConfigHolder.SERVER.spawnFowlMaxCount.get();
         Config.spawnFowlAllowedBiomesBlacklist = ConfigHolder.SERVER.spawnFowlAllowedBiomesBlacklist.get();
+        Config.fowlBreedingResult = ConfigHolder.SERVER.fowlBreedingResult.get();
         Config.spawnFowlAllowedBiomes.clear();
         Config.spawnFowlAllowedBiomes.addAll(ConfigHolder.SERVER.spawnFowlAllowedBiomes.get().stream()
                 .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toSet()));
@@ -74,6 +77,7 @@ public class ConfigHelper {
         Config.spawnMouflonMinCount = ConfigHolder.SERVER.spawnMouflonMinCount.get();
         Config.spawnMouflonMaxCount = ConfigHolder.SERVER.spawnMouflonMaxCount.get();
         Config.spawnMouflonAllowedBiomesBlacklist = ConfigHolder.SERVER.spawnMouflonAllowedBiomesBlacklist.get();
+        Config.mouflonBreedingResult = ConfigHolder.SERVER.mouflonBreedingResult.get();
         Config.spawnMouflonAllowedBiomes.clear();
         Config.spawnMouflonAllowedBiomes.addAll(ConfigHolder.SERVER.spawnMouflonAllowedBiomes.get().stream()
                 .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toSet()));
