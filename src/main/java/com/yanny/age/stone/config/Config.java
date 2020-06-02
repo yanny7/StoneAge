@@ -1,9 +1,11 @@
 package com.yanny.age.stone.config;
 
+import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.EnumSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -76,6 +78,7 @@ public class Config {
     public static int spawnBoarMaxCount = 6;
     public static boolean spawnBoarAllowedBiomesBlacklist = false;
     public static final Set<Biome> spawnBoarAllowedBiomes = DEFAULT_BOAR_BIOMES;
+    public static String boarBreedingResult = Objects.requireNonNull(EntityType.PIG.getRegistryName()).toString();
 
     public static boolean spawnAurochEnable = true;
     public static int spawnAurochWeight = 10;
@@ -83,6 +86,7 @@ public class Config {
     public static int spawnAurochMaxCount = 8;
     public static boolean spawnAurochAllowedBiomesBlacklist = false;
     public static final Set<Biome> spawnAurochAllowedBiomes = DEFAULT_AUROCH_BIOMES;
+    public static String aurochBreedingResult = Objects.requireNonNull(EntityType.COW.getRegistryName()).toString();
 
     public static boolean spawnFowlEnable = true;
     public static int spawnFowlWeight = 10;
@@ -90,6 +94,7 @@ public class Config {
     public static int spawnFowlMaxCount = 8;
     public static boolean spawnFowlAllowedBiomesBlacklist = false;
     public static final Set<Biome> spawnFowlAllowedBiomes = DEFAULT_FOWL_BIOMES;
+    public static String fowlBreedingResult = Objects.requireNonNull(EntityType.CHICKEN.getRegistryName()).toString();
 
     public static boolean spawnMouflonEnable = true;
     public static int spawnMouflonWeight = 10;
@@ -97,6 +102,7 @@ public class Config {
     public static int spawnMouflonMaxCount = 8;
     public static boolean spawnMouflonAllowedBiomesBlacklist = false;
     public static final Set<Biome> spawnMouflonAllowedBiomes = DEFAULT_MOUFLON_BIOMES;
+    public static String mouflonBreedingResult = Objects.requireNonNull(EntityType.SHEEP.getRegistryName()).toString();
 
     public static boolean spawnMammothEnable = true;
     public static int spawnMammothWeight = 10;

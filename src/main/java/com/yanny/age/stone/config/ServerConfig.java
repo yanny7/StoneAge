@@ -1,6 +1,7 @@
 package com.yanny.age.stone.config;
 
 import com.yanny.age.stone.Reference;
+import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -44,6 +45,7 @@ class ServerConfig {
     final ForgeConfigSpec.IntValue spawnBoarMinCount;
     final ForgeConfigSpec.IntValue spawnBoarMaxCount;
     final ForgeConfigSpec.BooleanValue spawnBoarAllowedBiomesBlacklist;
+    final ForgeConfigSpec.ConfigValue<String> boarBreedingResult;
     final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnBoarAllowedBiomes;
 
     final ForgeConfigSpec.BooleanValue spawnAurochEnable;
@@ -51,6 +53,7 @@ class ServerConfig {
     final ForgeConfigSpec.IntValue spawnAurochMinCount;
     final ForgeConfigSpec.IntValue spawnAurochMaxCount;
     final ForgeConfigSpec.BooleanValue spawnAurochAllowedBiomesBlacklist;
+    final ForgeConfigSpec.ConfigValue<String> aurochBreedingResult;
     final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnAurochAllowedBiomes;
 
     final ForgeConfigSpec.BooleanValue spawnFowlEnable;
@@ -58,6 +61,7 @@ class ServerConfig {
     final ForgeConfigSpec.IntValue spawnFowlMinCount;
     final ForgeConfigSpec.IntValue spawnFowlMaxCount;
     final ForgeConfigSpec.BooleanValue spawnFowlAllowedBiomesBlacklist;
+    final ForgeConfigSpec.ConfigValue<String> fowlBreedingResult;
     final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnFowlAllowedBiomes;
 
     final ForgeConfigSpec.BooleanValue spawnMouflonEnable;
@@ -65,6 +69,7 @@ class ServerConfig {
     final ForgeConfigSpec.IntValue spawnMouflonMinCount;
     final ForgeConfigSpec.IntValue spawnMouflonMaxCount;
     final ForgeConfigSpec.BooleanValue spawnMouflonAllowedBiomesBlacklist;
+    final ForgeConfigSpec.ConfigValue<String> mouflonBreedingResult;
     final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnMouflonAllowedBiomes;
 
     final ForgeConfigSpec.BooleanValue spawnMammothEnable;
@@ -221,6 +226,10 @@ class ServerConfig {
                 .comment("If spawnBoarAllowedBiomes is blacklist")
                 .translation(Reference.MODID + ".config.spawn_boar_allowed_biomes_blacklist")
                 .define("spawnBoarAllowedBiomesBlacklist", false);
+        boarBreedingResult = builder
+                .comment("Result of breeding after generations in captivity")
+                .translation(Reference.MODID + ".config.boar_breeding_result")
+                .define("boarBreedingResult", Objects.requireNonNull(EntityType.PIG.getRegistryName()).toString());
         spawnBoarAllowedBiomes = builder
                 .comment("Spawn boar in allowed biomes")
                 .translation(Reference.MODID + ".config.spawn_boar_allowed_biomes")
@@ -249,6 +258,10 @@ class ServerConfig {
                 .comment("If spawnAurochAllowedBiomes is blacklist")
                 .translation(Reference.MODID + ".config.spawn_auroch_allowed_biomes_blacklist")
                 .define("spawnAurochAllowedBiomesBlacklist", false);
+        aurochBreedingResult = builder
+                .comment("Result of breeding after generations in captivity")
+                .translation(Reference.MODID + ".config.auroch_breeding_result")
+                .define("aurochBreedingResult", Objects.requireNonNull(EntityType.COW.getRegistryName()).toString());
         spawnAurochAllowedBiomes = builder
                 .comment("Spawn auroch in allowed biomes")
                 .translation(Reference.MODID + ".config.spawn_auroch_allowed_biomes")
@@ -277,6 +290,10 @@ class ServerConfig {
                 .comment("If spawnFowlAllowedBiomes is blacklist")
                 .translation(Reference.MODID + ".config.spawn_fowl_allowed_biomes_blacklist")
                 .define("spawnFowlAllowedBiomesBlacklist", false);
+        fowlBreedingResult = builder
+                .comment("Result of breeding after generations in captivity")
+                .translation(Reference.MODID + ".config.fowl_breeding_result")
+                .define("fowlBreedingResult", Objects.requireNonNull(EntityType.CHICKEN.getRegistryName()).toString());
         spawnFowlAllowedBiomes = builder
                 .comment("Spawn fowl in allowed biomes")
                 .translation(Reference.MODID + ".config.spawn_fowl_allowed_biomes")
@@ -305,6 +322,10 @@ class ServerConfig {
                 .comment("If spawnMouflonAllowedBiomes is blacklist")
                 .translation(Reference.MODID + ".config.spawn_mouflon_allowed_biomes_blacklist")
                 .define("spawnMouflonAllowedBiomesBlacklist", false);
+        mouflonBreedingResult = builder
+                .comment("Result of breeding after generations in captivity")
+                .translation(Reference.MODID + ".config.mouflon_breeding_result")
+                .define("mouflonBreedingResult", Objects.requireNonNull(EntityType.SHEEP.getRegistryName()).toString());
         spawnMouflonAllowedBiomes = builder
                 .comment("Spawn mouflon in allowed biomes")
                 .translation(Reference.MODID + ".config.spawn_mouflon_allowed_biomes")

@@ -18,10 +18,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.registries.ForgeRegistries;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -36,6 +40,20 @@ public class AurochEntity extends WildAnimalEntity implements TopEntityInfoProvi
     @Override
     public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
         if (Math.min(dataManager.get(GENERATION), ageable.getDataManager().get(GENERATION)) >= Config.domesticateAfterGenerations) {
+            EntityType<?> child = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(Config.aurochBreedingResult));
+
+            if (child != null) {
+                Entity result = child.create(world);
+
+                if (result instanceof AgeableEntity) {
+                    return (AgeableEntity) child.create(world);
+                } else {
+                    LOGGER.warn("'{}' is not instance of Ageable entity! Spawning default COW entity", Config.aurochBreedingResult);
+                }
+            } else {
+                LOGGER.warn("'{}' does not exists! Spawning default COW entity", Config.aurochBreedingResult);
+            }
+
             return EntityType.COW.create(world);
         } else {
             AurochEntity entity = EntitySubscriber.auroch.create(world);
