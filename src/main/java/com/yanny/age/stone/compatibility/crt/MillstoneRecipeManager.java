@@ -9,6 +9,7 @@ import com.blamejared.crafttweaker.impl.actions.recipes.ActionAddRecipe;
 import com.yanny.age.stone.recipes.MillstoneRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.ResourceLocation;
+import org.openzen.zencode.java.ZenCodeType;
 
 import static org.openzen.zencode.java.ZenCodeType.*;
 
@@ -16,6 +17,7 @@ import static org.openzen.zencode.java.ZenCodeType.*;
 @Name("mods.stone_age.MillstoneManager")
 public class MillstoneRecipeManager implements IRecipeManager {
     @SuppressWarnings("unused")
+    @ZenCodeType.Field
     public static final MillstoneRecipeManager INSTANCE = new MillstoneRecipeManager();
 
     @SuppressWarnings("rawtypes")

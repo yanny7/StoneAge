@@ -12,6 +12,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import org.apache.commons.lang3.tuple.Triple;
+import org.openzen.zencode.java.ZenCodeType;
 
 import static org.openzen.zencode.java.ZenCodeType.*;
 
@@ -19,6 +20,7 @@ import static org.openzen.zencode.java.ZenCodeType.*;
 @Name("mods.stone_age.FlintWorkbenchManager")
 public class FlintWorkbenchRecipeManager implements IRecipeManager {
     @SuppressWarnings("unused")
+    @ZenCodeType.Field
     public static final FlintWorkbenchRecipeManager INSTANCE = new FlintWorkbenchRecipeManager();
 
     @SuppressWarnings("rawtypes")
