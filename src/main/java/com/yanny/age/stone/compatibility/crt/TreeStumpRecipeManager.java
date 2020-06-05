@@ -9,6 +9,7 @@ import com.blamejared.crafttweaker.impl.actions.recipes.ActionAddRecipe;
 import com.yanny.age.stone.recipes.TreeStumpRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.ResourceLocation;
+import org.openzen.zencode.java.ZenCodeType;
 
 import static org.openzen.zencode.java.ZenCodeType.*;
 
@@ -16,6 +17,7 @@ import static org.openzen.zencode.java.ZenCodeType.*;
 @Name("mods.stone_age.TreeStumpManager")
 public class TreeStumpRecipeManager implements IRecipeManager {
     @SuppressWarnings("unused")
+    @ZenCodeType.Field
     public static final TreeStumpRecipeManager INSTANCE = new TreeStumpRecipeManager();
 
     @SuppressWarnings("rawtypes")
