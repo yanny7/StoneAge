@@ -6,7 +6,7 @@ import com.blamejared.crafttweaker.api.item.IIngredient;
 import com.blamejared.crafttweaker.api.item.IItemStack;
 import com.blamejared.crafttweaker.api.managers.IRecipeManager;
 import com.blamejared.crafttweaker.impl.actions.recipes.ActionAddRecipe;
-import com.yanny.age.stone.recipes.DryingRackRecipe;
+import com.yanny.age.stone.recipes.TreeStumpRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.ResourceLocation;
 import org.openzen.zencode.java.ZenCodeType;
@@ -14,21 +14,22 @@ import org.openzen.zencode.java.ZenCodeType;
 import static org.openzen.zencode.java.ZenCodeType.*;
 
 @ZenRegister
-@Name("mods.stone_age.DryingRackManager")
-public class DryingRackRecipeManager implements IRecipeManager {
+@Name("mods.stone_age.TreeStumpManager")
+public class TreeStumpManager implements IRecipeManager {
     @SuppressWarnings("unused")
     @ZenCodeType.Field
-    public static final DryingRackRecipeManager INSTANCE = new DryingRackRecipeManager();
+    public static final TreeStumpManager INSTANCE = new TreeStumpManager();
 
     @SuppressWarnings("rawtypes")
     @Override
     public IRecipeType getRecipeType() {
-        return DryingRackRecipe.drying_rack;
+        return TreeStumpRecipe.tree_stump;
     }
 
     @Method
-    public void addRecipe(String name, IItemStack output, IIngredient input, int dryingTime, @OptionalString String group) {
-        DryingRackRecipe recipe = new DryingRackRecipe(new ResourceLocation("crafttweaker", name), group, input.asVanillaIngredient(), output.getInternal(), dryingTime);
+    public void addRecipe(String name, IItemStack output, IIngredient tool, IIngredient input, int chopTimes, @OptionalString String group) {
+        TreeStumpRecipe recipe = new TreeStumpRecipe(new ResourceLocation("crafttweaker", name), group, input.asVanillaIngredient(),
+                tool.asVanillaIngredient(), output.getInternal(), chopTimes);
         CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
     }
 }
