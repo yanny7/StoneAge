@@ -2,6 +2,7 @@ package com.yanny.age.stone.blocks;
 
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.DyeColor;
@@ -40,6 +41,12 @@ public class DriedGrassBedBlock extends BedBlock {
     @Override
     public TileEntity createNewTileEntity(@Nonnull IBlockReader worldIn) {
         return new DriedGrassBedTileEntity();
+    }
+
+    @Nonnull
+    @Override
+    public BlockRenderType getRenderType(@Nonnull BlockState state) {
+        return BlockRenderType.MODEL;
     }
 
     @Nonnull
