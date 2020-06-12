@@ -15,7 +15,7 @@ public class FlintSpearModel extends Model {
 	private final ModelRenderer bone;
 
 	public FlintSpearModel() {
-		super(RenderType::getEntityCutoutNoCull);
+		super(RenderType::getEntityCutout);
 		textureWidth = 32;
 		textureHeight = 32;
 

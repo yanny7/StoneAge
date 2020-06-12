@@ -15,7 +15,7 @@ public class MillstoneModel extends Model {
 	private final ModelRenderer body;
 
 	public MillstoneModel() {
-		super(RenderType::getEntityCutoutNoCull);
+		super(RenderType::getEntityCutout);
 		textureWidth = 64;
 		textureHeight = 64;
 
