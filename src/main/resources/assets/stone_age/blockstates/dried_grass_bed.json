@@ -1,5 +1,36 @@
 {
-    "variants": {
-        "": { "model": "stone_age:block/dried_grass_bed" }
-    }
+    "multipart": [
+        {
+            "when": { "facing": "north", "part": "head" },
+            "apply": { "model": "stone_age:block/dried_grass_bed" }
+        },
+        {
+            "when": { "facing": "east", "part": "head" },
+            "apply": { "model": "stone_age:block/dried_grass_bed", "y": 90 }
+        },
+        {
+            "when": { "facing": "south", "part": "head" },
+            "apply": { "model": "stone_age:block/dried_grass_bed", "y": 180 }
+        },
+        {
+            "when": { "facing": "west", "part": "head" },
+            "apply": { "model": "stone_age:block/dried_grass_bed", "y": 270 }
+        },
+        {
+            "when": { "facing": "north", "part": "foot" },
+            "apply": { "model": "stone_age:block/dried_grass_bed", "y": 180 }
+        },
+        {
+            "when": { "facing": "east", "part": "foot" },
+            "apply": { "model": "stone_age:block/dried_grass_bed", "y": 270 }
+        },
+        {
+            "when": { "facing": "south", "part": "foot" },
+            "apply": { "model": "stone_age:block/dried_grass_bed" }
+        },
+        {
+            "when": { "facing": "west", "part": "foot" },
+            "apply": { "model": "stone_age:block/dried_grass_bed", "y": 90 }
+        }
+    ]
 }

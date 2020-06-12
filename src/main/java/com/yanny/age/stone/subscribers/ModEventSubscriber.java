@@ -49,5 +49,6 @@ public class ModEventSubscriber {
     public static void onClientSetupEvent(FMLClientSetupEvent event) {
         RenderTypeLookup.setRenderLayer(BlockSubscriber.fishing_net, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(BlockSubscriber.aqueduct, RenderType.getCutoutMipped());
+        RenderTypeLookup.setRenderLayer(BlockSubscriber.dried_grass_bed, RenderType.getCutoutMipped());
     }
 }
