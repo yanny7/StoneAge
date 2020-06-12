@@ -29,10 +29,8 @@ public class MillstoneRenderer extends TileEntityRenderer<MillstoneTileEntity> {
                        @Nonnull IRenderTypeBuffer renderTypeBuffer, int overlayUV, int lightmapUV) {
         matrixStack.push();
         matrixStack.translate(0.5, 0.05 * (1 / 16.0), 0.5);
-        RenderSystem.enableRescaleNormal();
         model.rotate(tileEntity.rotateAngle());
         model.render(matrixStack, renderTypeBuffer.getBuffer(RenderType.getEntityTranslucentCull(TEXTURE_NORMAL)), overlayUV, lightmapUV, 1f, 1f, 1f, 1f);
-        RenderSystem.disableRescaleNormal();
         matrixStack.pop();
     }
 }

@@ -1,26 +1,28 @@
 package com.yanny.age.stone.client.renderer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.yanny.age.stone.blocks.AqueductTileEntity;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.Matrix3f;
-import net.minecraft.client.renderer.Matrix4f;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.texture.AtlasTexture;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.world.ILightReader;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.MinecraftForgeClient;
 
 import javax.annotation.Nonnull;
-import java.util.Objects;
+
+import static com.yanny.age.stone.client.renderer.RendererUtils.add;
 
 @OnlyIn(Dist.CLIENT)
 public class AqueductRenderer extends TileEntityRenderer<AqueductTileEntity> {
-    private static final ResourceLocation WATER = new ResourceLocation("minecraft", "textures/block/water_still.png");
 
     public AqueductRenderer(TileEntityRendererDispatcher p_i226006_1_) {
         super(p_i226006_1_);
@@ -29,47 +31,26 @@ public class AqueductRenderer extends TileEntityRenderer<AqueductTileEntity> {
     @Override
     public void render(AqueductTileEntity tileEntityIn, float partialTicks, @Nonnull MatrixStack matrixStack,
                        @Nonnull IRenderTypeBuffer renderTypeBuffer, int overlayUV, int lightmapUV) {
-        if (!tileEntityIn.hasWorld()) { //TODO rendering not working
+        if (!tileEntityIn.hasWorld() || tileEntityIn.getCapacity() < 0.01) {
             return;
         }
 
-        if (tileEntityIn.getCapacity() < 0.01) {
-            return;
-        }
-
-        float off;
-        int tick = tileEntityIn.getTick();
         float v = tileEntityIn.getCapacity() * (10 / 16f) + 4 / 16f;
-
-        off = (tick % 32) * (1 / 32f);
 
         matrixStack.push();
 
-        RenderSystem.enableBlend();
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0f);
-        RenderSystem.defaultBlendFunc();
-        RenderSystem.disableTexture();
+        Fluid fluid = Fluids.WATER.getFluid();
+        ILightReader lightReader =  MinecraftForgeClient.getRegionRenderCache(tileEntityIn.getWorld(), tileEntityIn.getPos());
+        //noinspection deprecation
+        TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(AtlasTexture.LOCATION_BLOCKS_TEXTURE)
+                .apply(fluid.getAttributes().getStillTexture(tileEntityIn.getWorld(), tileEntityIn.getPos()));
+        IVertexBuilder builder = renderTypeBuffer.getBuffer(RenderType.getTranslucent());
 
-        IVertexBuilder vertexBuilder = renderTypeBuffer.getBuffer(RenderType.getEntityTranslucentCull(WATER));
-        MatrixStack.Entry matrix = matrixStack.getLast();
-        Matrix4f matrix4f = matrix.getMatrix();
-        Matrix3f matrix3f = matrix.getNormal();
-
-        func_229132_a_(tileEntityIn, vertexBuilder, matrix4f, matrix3f, 0, v, 1, 0, off + 1/32f, overlayUV, lightmapUV);
-        func_229132_a_(tileEntityIn, vertexBuilder, matrix4f, matrix3f, 1, v, 1, 1, off + 1/32f, overlayUV, lightmapUV);
-        func_229132_a_(tileEntityIn, vertexBuilder, matrix4f, matrix3f, 1, v, 0, 1, off, overlayUV, lightmapUV);
-        func_229132_a_(tileEntityIn, vertexBuilder, matrix4f, matrix3f, 0, v, 0, 0, off, overlayUV, lightmapUV);
+        add(fluid, lightReader, tileEntityIn.getPos(), builder, matrixStack, 0.0f, v, 1.0f, sprite.getMinU(), sprite.getMaxV());
+        add(fluid, lightReader, tileEntityIn.getPos(),builder, matrixStack, 1.0f, v, 1.0f, sprite.getMaxU(), sprite.getMaxV());
+        add(fluid, lightReader, tileEntityIn.getPos(),builder, matrixStack, 1.0f, v, 0.0f, sprite.getMaxU(), sprite.getMinV());
+        add(fluid, lightReader, tileEntityIn.getPos(),builder, matrixStack, 0.0f, v, 0.0f, sprite.getMinU(), sprite.getMinV());
 
         matrixStack.pop();
-    }
-
-    private static void func_229132_a_(TileEntity tileEntity, IVertexBuilder vertexBuilder, Matrix4f matrix4f, Matrix3f matrix3f,
-                                       float x, float y, float z, float u, float v, int overlayUV, int lightmapUV) {
-        int color = Objects.requireNonNull(tileEntity.getWorld()).getBiome(tileEntity.getPos()).getWaterColor();
-        float r = (color & 0xff0000) >> 16;
-        float g = (color & 0xff00) >> 8;
-        float b = (color & 0xff);
-        vertexBuilder.pos(matrix4f, x, y, z).color(r / 16f, g / 16f, b / 16f, 1.0f)
-                .tex(u, v).overlay(overlayUV).lightmap(lightmapUV).normal(matrix3f, 0.0F, 1.0F, 0.0F).endVertex();
     }
 }
