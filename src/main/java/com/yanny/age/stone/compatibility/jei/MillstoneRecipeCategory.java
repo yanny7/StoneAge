@@ -77,10 +77,10 @@ public class MillstoneRecipeCategory implements IRecipeCategory<MillstoneRecipe>
 
     @Override
     public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull MillstoneRecipe MillstoneRecipe, @Nonnull IIngredients ingredients) {
-        recipeLayout.getItemStacks().init(0, true, 26, 22);
+        recipeLayout.getItemStacks().init(0, true, 25, 21);
         recipeLayout.getItemStacks().set(0, ingredients.getInputs(VanillaTypes.ITEM).get(0));
 
-        recipeLayout.getItemStacks().init(1, false, 78, 22);
+        recipeLayout.getItemStacks().init(1, false, 77, 21);
         recipeLayout.getItemStacks().set(1, ingredients.getOutputs(VanillaTypes.ITEM).get(0));
     }
 }
