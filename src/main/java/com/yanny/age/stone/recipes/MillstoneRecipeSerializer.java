@@ -10,6 +10,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.common.crafting.NBTIngredient;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
@@ -29,7 +30,7 @@ public class MillstoneRecipeSerializer extends ForgeRegistryEntry<IRecipeSeriali
         JsonElement jsonelement = JSONUtils.isJsonArray(json, "ingredient")
                 ? JSONUtils.getJsonArray(json, "ingredient")
                 : JSONUtils.getJsonObject(json, "ingredient");
-        Ingredient ingredient = Ingredient.deserialize(jsonelement);
+        Ingredient ingredient = NBTIngredient.deserialize(jsonelement);
         ItemStack itemstack;
 
         if (!json.has("result")) {

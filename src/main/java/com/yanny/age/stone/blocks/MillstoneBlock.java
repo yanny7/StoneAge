@@ -83,7 +83,7 @@ public class MillstoneBlock extends HorizontalBlock implements TopBlockInfoProvi
                     tile.onActivated();
                 }
             }
-            return ActionResultType.CONSUME;
+            return ActionResultType.SUCCESS;
         } else {
             throw new IllegalStateException("Named container provider is missing");
         }

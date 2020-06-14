@@ -1,4 +1,4 @@
-package com.yanny.age.stone.client.renderer;
+package com.yanny.age.stone.utils;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;

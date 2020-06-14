@@ -1,7 +1,9 @@
 {
   "type": "stone_age:millstone",
   "ingredient": {
-    "item": "minecraft:sugar_cane"
+    "type": "forge:nbt",
+    "item": "minecraft:sugar_cane",
+    "count": 1
   },
   "activateCount": 2,
   "result": {

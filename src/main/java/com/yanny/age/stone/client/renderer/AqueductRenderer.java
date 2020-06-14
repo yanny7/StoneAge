@@ -19,7 +19,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 
 import javax.annotation.Nonnull;
 
-import static com.yanny.age.stone.client.renderer.RendererUtils.add;
+import static com.yanny.age.stone.utils.RendererUtils.add;
 
 @OnlyIn(Dist.CLIENT)
 public class AqueductRenderer extends TileEntityRenderer<AqueductTileEntity> {
