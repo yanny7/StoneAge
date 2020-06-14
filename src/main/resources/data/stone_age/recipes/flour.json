@@ -1,7 +1,9 @@
 {
   "type": "stone_age:millstone",
   "ingredient": {
-    "item": "minecraft:wheat"
+    "type": "forge:nbt",
+    "item": "minecraft:wheat",
+    "count": 1
   },
   "activateCount": 2,
   "result": {

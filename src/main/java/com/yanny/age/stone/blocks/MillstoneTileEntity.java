@@ -243,15 +243,13 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
         assert world != null;
 
         if (!active) {
-            if (result.isEmpty() && !stacks.get(0).isEmpty()) {
-                getRecipe(stacks.get(0)).ifPresent(millstoneRecipe -> {
-                    ItemStack recipeResult = millstoneRecipe.getRecipeOutput().copy();
+            ItemStack inputStack = stacks.get(0);
 
-                    if (stacks.get(1).isEmpty() || (stacks.get(1).getItem().equals(recipeResult.getItem()) &&
-                            stacks.get(1).getCount() < stacks.get(1).getMaxStackSize() - recipeResult.getCount())) {
-                        stacks.get(0).shrink(1);
-
-                        result = recipeResult;
+            if (result.isEmpty() && !inputStack.isEmpty()) {
+                getRecipe(inputStack).ifPresent(millstoneRecipe -> {
+                    if (canCraft(millstoneRecipe)) {
+                        inputStack.shrink(millstoneRecipe.getIngredients().get(0).getMatchingStacks()[0].getCount());
+                        result = millstoneRecipe.getCraftingResult(null);
                         active = true;
                         activateTicks = millstoneRecipe.getActivateCount() * 20;
                         ticks = 0;
@@ -294,5 +292,27 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
                 return 1;
             }
         };
+    }
+
+    public boolean canCraft(@Nonnull MillstoneRecipe recipe) {
+        ItemStack inputStack = stacks.get(0);
+        ItemStack outputStack = stacks.get(1);
+        ItemStack recipeInput = recipe.getIngredients().get(0).getMatchingStacks()[0];
+        ItemStack recipeOutput = recipe.getRecipeOutput();
+        int inputCount = inputStack.getCount();
+        int inputRecipeCount = recipeInput.getCount();
+        int outputCount = outputStack.getCount();
+        int outputMaxCount = outputStack.getMaxStackSize();
+        int outputRecipeCount = recipeOutput.getCount();
+
+        if (inputCount >= inputRecipeCount) {
+            if (outputStack.isEmpty()) {
+                return true;
+            }
+
+            return outputStack.isItemEqual(recipeOutput) && outputCount < outputMaxCount - outputRecipeCount;
+        }
+
+        return false;
     }
 }
