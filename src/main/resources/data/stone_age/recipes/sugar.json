@@ -9,5 +9,10 @@
   "result": {
     "item": "minecraft:sugar",
     "count": 2
-  }
+  },
+  "secondResult": {
+    "item": "minecraft:sugar",
+    "count": 1
+  },
+  "secondChance": 0.1
 }

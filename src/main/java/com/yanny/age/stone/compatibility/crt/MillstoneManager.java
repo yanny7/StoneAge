@@ -27,8 +27,9 @@ public class MillstoneManager implements IRecipeManager {
     }
 
     @Method
-    public void addRecipe(String name, IItemStack output, IIngredient input, int activateCount, @OptionalString String group) {
-        MillstoneRecipe recipe = new MillstoneRecipe(new ResourceLocation("crafttweaker", name), group, input.asVanillaIngredient(), output.getInternal(), activateCount);
+    public void addRecipe(String name, IItemStack output, IItemStack secondOutput, IIngredient input, double secondChance, int activateCount, @OptionalString String group) {
+        MillstoneRecipe recipe = new MillstoneRecipe(new ResourceLocation("crafttweaker", name), group, input.asVanillaIngredient(), output.getInternal(),
+                secondOutput.getInternal(), secondChance, activateCount);
         CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
     }
 }
