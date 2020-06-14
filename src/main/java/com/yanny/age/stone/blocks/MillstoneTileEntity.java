@@ -30,7 +30,7 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 
 public class MillstoneTileEntity extends TileEntity implements IInventoryInterface, ITickableTileEntity, INamedContainerProvider {
-    static final int ITEMS = 2;
+    static final int ITEMS = 3;
     private static final double PI2 = Math.PI * 2;
 
     private final NonNullList<ItemStack> stacks = NonNullList.withSize(ITEMS, ItemStack.EMPTY);
@@ -46,7 +46,9 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
     private boolean active = false;
     private int activateTicks = 0;
     private int ticks = 0;
+    private double secondChance = 0.0D;
     private ItemStack result = ItemStack.EMPTY;
+    private ItemStack secondResult = ItemStack.EMPTY;
 
     public MillstoneTileEntity() {
         //noinspection ConstantConditions
@@ -77,6 +79,14 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
                         stacks.set(1, result);
                     } else {
                         stacks.get(1).grow(result.getCount());
+                    }
+
+                    if (world.rand.nextDouble() < secondChance) {
+                        if (stacks.get(2).isEmpty()) {
+                            stacks.set(2, secondResult);
+                        } else {
+                            stacks.get(2).grow(secondResult.getCount());
+                        }
                     }
 
                     ticks = 0;
@@ -115,6 +125,8 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
         rotation = tag.getFloat("rotation");
         ticks = tag.getInt("ticks");
         result = ItemStack.read(tag.getCompound("result"));
+        secondResult = ItemStack.read(tag.getCompound("secondResult"));
+        secondChance = tag.getDouble("secondChance");
         activateTicks = tag.getInt("activateTicks");
         super.read(tag);
     }
@@ -126,9 +138,9 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
         tag.putBoolean("active", active);
         tag.putFloat("rotation", rotation);
         tag.putInt("ticks", ticks);
-        CompoundNBT resTag = new CompoundNBT();
-        result.write(resTag);
-        tag.put("result", resTag);
+        tag.put("result", result.write(new CompoundNBT()));
+        tag.put("secondResult", secondResult.write(new CompoundNBT()));
+        tag.putDouble("secondChance", secondChance);
         tag.putInt("activateTicks", activateTicks);
         return super.write(tag);
     }
@@ -171,18 +183,20 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
         super.remove();
     }
 
+    @Nonnull
     ItemStack getResult() {
         return result;
     }
 
-    int getPerc() {
+    int getCraftingProgress() {
         return Math.round(ticks / (float) activateTicks * 100);
     }
 
-    boolean isItemValid(ItemStack itemStack) {
+    boolean isItemValid(@Nonnull ItemStack itemStack) {
         return getRecipe(itemStack).isPresent();
     }
 
+    @Nonnull
     private IItemHandlerModifiable createNonSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {
         return new ItemStackHandler(stacks) {
             @Nonnull
@@ -204,12 +218,13 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
         };
     }
 
+    @Nonnull
     private IItemHandlerModifiable createSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {
         return new ItemStackHandler(stacks) {
             @Nonnull
             @Override
             public ItemStack extractItem(int slot, int amount, boolean simulate) {
-                if (slot == 1) {
+                if (slot > 0) {
                     return super.extractItem(slot, amount, simulate);
                 }
 
@@ -250,6 +265,8 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
                     if (canCraft(millstoneRecipe)) {
                         inputStack.shrink(millstoneRecipe.getIngredients().get(0).getMatchingStacks()[0].getCount());
                         result = millstoneRecipe.getCraftingResult(null);
+                        secondResult = millstoneRecipe.getCraftingSecondResult();
+                        secondChance = millstoneRecipe.getSecondChance();
                         active = true;
                         activateTicks = millstoneRecipe.getActivateCount() * 20;
                         ticks = 0;
@@ -258,7 +275,7 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
                         world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
                     }
                 });
-            } else if (!result.isEmpty()) {
+            } else if (!result.isEmpty() || !secondResult.isEmpty()) {
                 active = true;
 
                 world.playSound(null, getPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 0.5f, 1.0f);
@@ -297,20 +314,26 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
     public boolean canCraft(@Nonnull MillstoneRecipe recipe) {
         ItemStack inputStack = stacks.get(0);
         ItemStack outputStack = stacks.get(1);
+        ItemStack outputSecondStack = stacks.get(2);
         ItemStack recipeInput = recipe.getIngredients().get(0).getMatchingStacks()[0];
         ItemStack recipeOutput = recipe.getRecipeOutput();
+        ItemStack recipeSecondOutput = recipe.getRecipeSecondOutput();
+        boolean emptyOutput = outputStack.isEmpty();
+        boolean emptyRecipe = recipeOutput.isEmpty();
+        boolean emptySecondOutput = outputSecondStack.isEmpty();
+        boolean emptySecondRecipe = recipeSecondOutput.isEmpty();
         int inputCount = inputStack.getCount();
         int inputRecipeCount = recipeInput.getCount();
         int outputCount = outputStack.getCount();
         int outputMaxCount = outputStack.getMaxStackSize();
+        int outputSecondCount = outputSecondStack.getCount();
+        int outputSecondMaxCount = outputSecondStack.getMaxStackSize();
         int outputRecipeCount = recipeOutput.getCount();
+        int outputRecipeSecondCount = recipeSecondOutput.getCount();
 
         if (inputCount >= inputRecipeCount) {
-            if (outputStack.isEmpty()) {
-                return true;
-            }
-
-            return outputStack.isItemEqual(recipeOutput) && outputCount < outputMaxCount - outputRecipeCount;
+            return (emptyOutput || emptyRecipe || (outputStack.isItemEqual(recipeOutput) && outputCount < outputMaxCount - outputRecipeCount)) &&
+                    (emptySecondOutput || emptySecondRecipe || (outputSecondStack.isItemEqual(recipeSecondOutput) && outputSecondCount < outputSecondMaxCount - outputRecipeSecondCount));
         }
 
         return false;

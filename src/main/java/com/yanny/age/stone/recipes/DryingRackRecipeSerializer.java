@@ -5,11 +5,11 @@ import com.google.gson.JsonObject;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipe;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
@@ -37,7 +37,7 @@ public class DryingRackRecipeSerializer extends ForgeRegistryEntry<IRecipeSerial
         }
 
         if (json.get("result").isJsonObject()) {
-            itemstack = ShapedRecipe.deserializeItem(JSONUtils.getJsonObject(json, "result"));
+            itemstack = CraftingHelper.getItemStack(JSONUtils.getJsonObject(json, "result"), true);
         } else {
             String s1 = JSONUtils.getString(json, "result");
             ResourceLocation resourcelocation = new ResourceLocation(s1);

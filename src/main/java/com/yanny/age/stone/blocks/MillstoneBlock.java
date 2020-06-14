@@ -97,7 +97,7 @@ public class MillstoneBlock extends HorizontalBlock implements TopBlockInfoProvi
             MillstoneTileEntity millstone = (MillstoneTileEntity) te;
 
             if (!millstone.getResult().isEmpty()) {
-                iProbeInfo.horizontal().item(millstone.getResult()).progress(millstone.getPerc(), 100, iProbeInfo.defaultProgressStyle().suffix("%"));
+                iProbeInfo.horizontal().item(millstone.getResult()).progress(millstone.getCraftingProgress(), 100, iProbeInfo.defaultProgressStyle().suffix("%"));
             }
         }
     }

@@ -46,7 +46,8 @@ public class MillstoneContainer extends Container {
 
         tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
             addSlot(new SlotItemHandler(h, 0, 62, 35));
-            addSlot(new SlotItemHandler(h, 1, 98, 35));
+            addSlot(new SlotItemHandler(h, 1, 98, 24));
+            addSlot(new SlotItemHandler(h, 2, 98, 46));
         });
 
         layoutPlayerInventorySlots(8, 84);

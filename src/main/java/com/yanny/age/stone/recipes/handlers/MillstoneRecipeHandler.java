@@ -21,15 +21,16 @@ public class MillstoneRecipeHandler implements IRecipeHandler {
         MillstoneRecipe millstoneRecipe = (MillstoneRecipe) recipe;
         List<RecipeIngredient> list = new ArrayList<>();
 
-        list.add(new RecipeIngredient(millstoneRecipe.getIngredients().get(0), 22, 22));
-        list.add(new RecipeIngredient(Ingredient.fromItems(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, "millstone"))), 52, 22));
-        list.add(new RecipeIngredient(Ingredient.fromStacks(millstoneRecipe.getRecipeOutput()), 85, 23));
+        list.add(new RecipeIngredient(millstoneRecipe.getIngredients().get(0), 26, 22));
+        list.add(new RecipeIngredient(Ingredient.fromItems(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, "millstone"))), 52, 26));
+        list.add(new RecipeIngredient(Ingredient.fromStacks(millstoneRecipe.getRecipeOutput()), 78, 11));
+        list.add(new RecipeIngredient(Ingredient.fromStacks(millstoneRecipe.getRecipeSecondOutput()), 78, 33));
         return list;
     }
 
     @Nonnull
     @Override
     public RecipeBackground getRecipeBackground() {
-        return new RecipeBackground(new ResourceLocation(Reference.MODID, "textures/gui/jei/gui_layouts.png"), 0, 61, 120, 60, 256, 256);
+        return new RecipeBackground(new ResourceLocation(Reference.MODID, "textures/gui/jei/gui_layouts.png"), 0, 122, 120, 60, 256, 256);
     }
 }

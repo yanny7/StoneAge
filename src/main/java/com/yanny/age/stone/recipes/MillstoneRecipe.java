@@ -24,14 +24,19 @@ public class MillstoneRecipe implements IRecipe<IInventory> {
     final String group;
     final Ingredient ingredient;
     final ItemStack result;
+    final ItemStack secondResult;
+    final double secondChance;
     final int activateCount;
 
-    public MillstoneRecipe(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result, int activateCount) {
+    public MillstoneRecipe(@Nonnull ResourceLocation resourceLocation, @Nonnull String group, @Nonnull Ingredient ingredient,
+                           @Nonnull ItemStack result, @Nonnull ItemStack secondResult, double secondChance, int activateCount) {
         type = millstone;
         id = resourceLocation;
         this.group = group;
         this.ingredient = ingredient;
         this.result = result;
+        this.secondResult = secondResult;
+        this.secondChance = secondChance;
         this.activateCount = activateCount;
     }
 
@@ -43,7 +48,12 @@ public class MillstoneRecipe implements IRecipe<IInventory> {
     @Override
     @Nonnull
     public ItemStack getCraftingResult(@Nullable IInventory inv) {
-        return this.result.copy();
+        return result.copy();
+    }
+
+    @Nonnull
+    public ItemStack getCraftingSecondResult() {
+        return secondResult.copy();
     }
 
     @Override
@@ -55,6 +65,11 @@ public class MillstoneRecipe implements IRecipe<IInventory> {
     @Nonnull
     public ItemStack getRecipeOutput() {
         return result;
+    }
+
+    @Nonnull
+    public ItemStack getRecipeSecondOutput() {
+        return secondResult;
     }
 
     @Override
@@ -88,6 +103,10 @@ public class MillstoneRecipe implements IRecipe<IInventory> {
     @Nonnull
     public ItemStack getIcon() {
         return new ItemStack(BlockSubscriber.millstone);
+    }
+
+    public double getSecondChance() {
+        return secondChance;
     }
 
     public int getActivateCount() {
