@@ -30,7 +30,7 @@ import javax.annotation.Nullable;
 
 public class BoarEntity extends WildAnimalEntity implements TopEntityInfoProvider {
 
-    public BoarEntity(EntityType<BoarEntity> type, World worldIn) {
+    public BoarEntity(@Nonnull EntityType<BoarEntity> type, @Nonnull World worldIn) {
         super(type, worldIn);
     }
 
@@ -118,7 +118,7 @@ public class BoarEntity extends WildAnimalEntity implements TopEntityInfoProvide
     }
 
     @Override
-    public void addProbeInfo(ProbeMode mode, IProbeInfo probeInfo, PlayerEntity player, World world, Entity entity, IProbeHitEntityData data) {
+    public void addProbeInfo(@Nonnull ProbeMode mode, @Nonnull IProbeInfo probeInfo, @Nonnull PlayerEntity player, @Nonnull World world, @Nonnull Entity entity, @Nonnull IProbeHitEntityData data) {
         probeInfo.horizontal().text("Generation: " + dataManager.get(GENERATION));
     }
 }

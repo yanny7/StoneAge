@@ -24,8 +24,8 @@ import static com.yanny.age.stone.utils.RendererUtils.add;
 @OnlyIn(Dist.CLIENT)
 public class AqueductRenderer extends TileEntityRenderer<AqueductTileEntity> {
 
-    public AqueductRenderer(TileEntityRendererDispatcher p_i226006_1_) {
-        super(p_i226006_1_);
+    public AqueductRenderer(@Nonnull TileEntityRendererDispatcher rendererDispatcher) {
+        super(rendererDispatcher);
     }
 
     @Override

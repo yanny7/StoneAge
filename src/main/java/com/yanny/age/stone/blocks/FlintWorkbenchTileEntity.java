@@ -107,11 +107,13 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
         return stacks;
     }
 
+    @Nonnull
     public ItemStack getRecipeOutput() {
         return recipeOutput;
     }
 
-    ActionResultType blockActivated(PlayerEntity player, BlockRayTraceResult hit) {
+    @Nonnull
+    ActionResultType blockActivated(@Nonnull PlayerEntity player, @Nonnull BlockRayTraceResult hit) {
         assert world != null;
         ItemStack heldItemMainhand = player.getHeldItemMainhand();
         List<FlintWorkbenchRecipe> recipes = findMatchingRecipes(heldItemMainhand);
@@ -205,6 +207,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
         return ActionResultType.FAIL;
     }
 
+    @Nonnull
     private IItemHandlerModifiable createNonSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {
         return new ItemStackHandler(stacks) {
             @Override
@@ -216,7 +219,8 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
         };
     }
 
-    private List<FlintWorkbenchRecipe> findMatchingRecipes(ItemStack heldItemMainhand) {
+    @Nonnull
+    private List<FlintWorkbenchRecipe> findMatchingRecipes(@Nonnull ItemStack heldItemMainhand) {
         assert this.world != null;
         List<FlintWorkbenchRecipe> recipes = stacks.stream().allMatch(ItemStack::isEmpty) ? Lists.newArrayList()
                 : this.world.getRecipeManager().getRecipes(FlintWorkbenchRecipe.flint_workbench, inventoryWrapper, this.world);
@@ -224,6 +228,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
         return recipes.stream().filter(flintWorkbenchRecipe -> flintWorkbenchRecipe.getTool().test(heldItemMainhand)).collect(Collectors.toList());
     }
 
+    @Nonnull
     private List<FlintWorkbenchRecipe> findMatchingRecipes() {
         assert this.world != null;
         return stacks.stream().allMatch(ItemStack::isEmpty) ? Lists.newArrayList()

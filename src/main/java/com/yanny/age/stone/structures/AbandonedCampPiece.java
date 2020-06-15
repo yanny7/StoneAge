@@ -22,14 +22,14 @@ import static net.minecraft.state.properties.BlockStateProperties.*;
 public class AbandonedCampPiece extends BasePiece {
     public static IStructurePieceType CAMP;
 
-    public AbandonedCampPiece(Random rand, int xIn, int zIn) {
+    public AbandonedCampPiece(@Nonnull Random rand, int xIn, int zIn) {
         super(CAMP, new Random(), xIn, 0, zIn, 7, 5, 7);
         setCoordBaseMode(Direction.Plane.HORIZONTAL.random(rand));
         LOGGER.info("Generated AbandonedCamp at x:" + xIn + " z:" + zIn);
     }
 
     @SuppressWarnings("unused")
-    public AbandonedCampPiece(TemplateManager templateManager, CompoundNBT compoundNBT) {
+    public AbandonedCampPiece(@Nonnull TemplateManager templateManager, @Nonnull CompoundNBT compoundNBT) {
         super(CAMP, compoundNBT);
     }
 

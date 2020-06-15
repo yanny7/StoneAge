@@ -19,7 +19,7 @@ public class StoneTabletGui extends ContainerScreen<Container> {
 
     private final ManualWidget manual;
 
-    public StoneTabletGui(Container screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+    public StoneTabletGui(@Nonnull Container screenContainer, @Nonnull PlayerInventory inv, @Nonnull ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
         xSize = 210;
         ySize = 240;
@@ -73,7 +73,6 @@ public class StoneTabletGui extends ContainerScreen<Container> {
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int p_keyPressed_3_) {
-        //manual.keyTyped();
         return super.keyPressed(keyCode, scanCode, p_keyPressed_3_);
     }
 

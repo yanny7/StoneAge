@@ -39,7 +39,7 @@ public class FowlEntity extends WildAnimalEntity implements TopEntityInfoProvide
     public float oFlap;
     private float wingRotDelta = 1.0F;
 
-    public FowlEntity(EntityType<? extends FowlEntity> type, World worldIn) {
+    public FowlEntity(@Nonnull EntityType<? extends FowlEntity> type, @Nonnull World worldIn) {
         super(type, worldIn);
         this.setPathPriority(PathNodeType.WATER, 0.0F);
     }
@@ -151,7 +151,7 @@ public class FowlEntity extends WildAnimalEntity implements TopEntityInfoProvide
     }
 
     @Override
-    public void addProbeInfo(ProbeMode mode, IProbeInfo probeInfo, PlayerEntity player, World world, Entity entity, IProbeHitEntityData data) {
+    public void addProbeInfo(@Nonnull ProbeMode mode, @Nonnull IProbeInfo probeInfo, @Nonnull PlayerEntity player, @Nonnull World world, @Nonnull Entity entity, @Nonnull IProbeHitEntityData data) {
         probeInfo.horizontal().text("Generation: " + dataManager.get(GENERATION));
     }
 }

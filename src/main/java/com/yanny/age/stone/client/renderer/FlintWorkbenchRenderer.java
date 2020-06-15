@@ -19,7 +19,7 @@ import static net.minecraft.client.renderer.model.ItemCameraTransforms.*;
 
 @OnlyIn(Dist.CLIENT)
 public class FlintWorkbenchRenderer extends TileEntityRenderer<FlintWorkbenchTileEntity> {
-    public FlintWorkbenchRenderer(TileEntityRendererDispatcher rendererDispatcher) {
+    public FlintWorkbenchRenderer(@Nonnull TileEntityRendererDispatcher rendererDispatcher) {
         super(rendererDispatcher);
     }
 

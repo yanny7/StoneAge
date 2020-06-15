@@ -19,7 +19,7 @@ import javax.annotation.Nonnull;
 public class SaberToothTigerRenderer extends MobRenderer<SaberToothTigerEntity, SaberToothTigerModel> {
     private static final ResourceLocation SABER_TOOTH_TIGER_TEXTURE = new ResourceLocation(Reference.MODID, "textures/entity/saber_tooth_tiger.png");
 
-    private SaberToothTigerRenderer(EntityRendererManager rendererManager) {
+    private SaberToothTigerRenderer(@Nonnull EntityRendererManager rendererManager) {
         super(rendererManager, new SaberToothTigerModel(), 0.5f);
     }
 

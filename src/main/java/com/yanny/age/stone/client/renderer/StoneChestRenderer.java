@@ -25,8 +25,8 @@ public class StoneChestRenderer extends TileEntityRenderer<StoneChestTileEntity>
     private static final ResourceLocation TEXTURE_NORMAL = new ResourceLocation(Reference.MODID, "textures/entity/stone_chest.png");
     private final StoneChestModel model = new StoneChestModel();
 
-    public StoneChestRenderer(TileEntityRendererDispatcher p_i226006_1_) {
-        super(p_i226006_1_);
+    public StoneChestRenderer(@Nonnull TileEntityRendererDispatcher rendererDispatcher) {
+        super(rendererDispatcher);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class StoneChestRenderer extends TileEntityRenderer<StoneChestTileEntity>
         matrixStack.pop();
     }
 
-    private void applyLidRotation(StoneChestTileEntity tileEntity, float angle, StoneChestModel model) {
+    private void applyLidRotation(@Nonnull StoneChestTileEntity tileEntity, float angle, @Nonnull StoneChestModel model) {
         float f = ((IChestLid)tileEntity).getLidAngle(angle);
         f = 1.0F - f;
         f = 1.0F - f * f * f;

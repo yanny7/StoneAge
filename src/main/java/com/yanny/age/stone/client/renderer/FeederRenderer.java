@@ -18,8 +18,8 @@ import static net.minecraft.client.renderer.model.ItemCameraTransforms.Transform
 
 @OnlyIn(Dist.CLIENT)
 public class FeederRenderer extends TileEntityRenderer<FeederTileEntity> {
-    public FeederRenderer(TileEntityRendererDispatcher p_i226006_1_) {
-        super(p_i226006_1_);
+    public FeederRenderer(@Nonnull TileEntityRendererDispatcher rendererDispatcher) {
+        super(rendererDispatcher);
     }
 
     @Override

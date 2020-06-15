@@ -16,6 +16,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
+import javax.annotation.Nonnull;
+
 import static com.yanny.age.stone.Reference.MODID;
 
 @SuppressWarnings("WeakerAccess")
@@ -38,7 +40,7 @@ public class BlockSubscriber {
 
     @SuppressWarnings({"ConstantConditions", "Convert2MethodRef"})
     @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
+    public static void registerBlocks(@Nonnull RegistryEvent.Register<Block> event) {
         Block.Properties thatchProperties = Block.Properties.create(Material.ORGANIC).hardnessAndResistance(1.0f).sound(SoundType.PLANT);
 
         IForgeRegistry<Block> registry = event.getRegistry();
@@ -59,7 +61,7 @@ public class BlockSubscriber {
 
     @SuppressWarnings("ConstantConditions")
     @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
+    public static void registerItems(@Nonnull RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
         registry.register(new BlockItem(flint_workbench, new Item.Properties().group(ModItemGroup.AGES))
                 .setRegistryName(MODID, "flint_workbench"));

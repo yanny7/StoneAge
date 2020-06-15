@@ -8,11 +8,13 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
+import javax.annotation.Nonnull;
+
 public class BackpackGui extends ContainerScreen<Container> {
 
     private final ResourceLocation GUI = new ResourceLocation(Reference.MODID, "textures/gui/container/stone_chest.png");
 
-    public BackpackGui(Container screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+    public BackpackGui(@Nonnull Container screenContainer, @Nonnull PlayerInventory inv, @Nonnull ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
     }
 

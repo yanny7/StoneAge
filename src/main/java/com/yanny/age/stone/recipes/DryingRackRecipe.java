@@ -26,7 +26,8 @@ public class DryingRackRecipe implements IRecipe<IInventory> {
     final ItemStack result;
     final int dryingTime;
 
-    public DryingRackRecipe(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result, int dryingTime) {
+    public DryingRackRecipe(@Nonnull ResourceLocation resourceLocation, @Nonnull String group, @Nonnull Ingredient ingredient,
+                            @Nonnull ItemStack result, int dryingTime) {
         type = drying_rack;
         id = resourceLocation;
         this.group = group;

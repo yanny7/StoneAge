@@ -12,6 +12,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
+import javax.annotation.Nonnull;
+
 import static net.minecraft.entity.EntityClassification.CREATURE;
 
 @SuppressWarnings({"unused", "unchecked"})
@@ -47,7 +49,7 @@ public class EntitySubscriber {
     public static final Item woolly_rhino_spawn_egg = null;
 
     @SubscribeEvent
-    public static void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
+    public static void registerEntities(@Nonnull RegistryEvent.Register<EntityType<?>> event) {
         IForgeRegistry<EntityType<?>> registry = event.getRegistry();
         registry.register(deer);
         registry.register(boar);
@@ -61,7 +63,7 @@ public class EntitySubscriber {
     }
 
     @SubscribeEvent
-    public static void registerSpawnEggs(RegistryEvent.Register<Item> event) {
+    public static void registerSpawnEggs(@Nonnull RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
         registry.register(new SpawnEggItem(deer, 0x00ffff, 0xff00ff,
                 new Item.Properties().group(ModItemGroup.AGES)).setRegistryName(Reference.MODID, "deer_spawn_egg"));

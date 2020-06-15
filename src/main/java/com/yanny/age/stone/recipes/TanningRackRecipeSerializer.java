@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 public class TanningRackRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<TanningRackRecipe> {
     private final TanningRackRecipeSerializer.IFactory<TanningRackRecipe> factory;
 
-    public TanningRackRecipeSerializer(TanningRackRecipeSerializer.IFactory<TanningRackRecipe> factory) {
+    public TanningRackRecipeSerializer(@Nonnull TanningRackRecipeSerializer.IFactory<TanningRackRecipe> factory) {
         this.factory = factory;
     }
 
@@ -73,6 +73,6 @@ public class TanningRackRecipeSerializer extends ForgeRegistryEntry<IRecipeSeria
     }
 
     public interface IFactory<T extends TanningRackRecipe> {
-        T create(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result, Ingredient tool);
+        T create(@Nonnull ResourceLocation resourceLocation, @Nonnull String group, @Nonnull Ingredient ingredient, @Nonnull ItemStack result, @Nonnull Ingredient tool);
     }
 }

@@ -18,7 +18,7 @@ import static net.minecraft.client.renderer.model.ItemCameraTransforms.Transform
 
 @OnlyIn(Dist.CLIENT)
 public class TanningRackRenderer extends TileEntityRenderer<TanningRackTileEntity> {
-    public TanningRackRenderer(TileEntityRendererDispatcher rendererDispatcher) {
+    public TanningRackRenderer(@Nonnull TileEntityRendererDispatcher rendererDispatcher) {
         super(rendererDispatcher);
     }
 

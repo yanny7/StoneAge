@@ -30,7 +30,7 @@ public class SpearItem extends Item {
     private final float attackDamage;
     private final float attackSpeed;
     
-    public SpearItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, Item.Properties builder) {
+    public SpearItem(@Nonnull IItemTier tier, float attackDamageIn, float attackSpeedIn, @Nonnull Item.Properties builder) {
         super(builder);
         this.addPropertyOverride(new ResourceLocation("throwing"),
                 (itemStack, world, livingEntity) -> livingEntity != null && livingEntity.isHandActive() && livingEntity.getActiveItemStack() == itemStack ? 1.0F : 0.0F);

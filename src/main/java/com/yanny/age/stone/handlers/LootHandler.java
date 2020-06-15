@@ -21,6 +21,7 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nonnull;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -130,16 +131,18 @@ public class LootHandler {
         }
     }
 
-    private static LootPool getInjectPool(String entryName) {
+    @Nonnull
+    private static LootPool getInjectPool(@Nonnull String entryName) {
         return LootPool.builder().addEntry(getInjectEntry(entryName)).bonusRolls(0, 1).name("stone_age:inject").build();
     }
 
-    private static LootEntry.Builder<?> getInjectEntry(String name) {
+    @Nonnull
+    private static LootEntry.Builder<?> getInjectEntry(@Nonnull String name) {
         ResourceLocation table = new ResourceLocation(name);
         return TableLootEntry.builder(table).weight(1);
     }
 
-    private static void injectItemPool(LootTable table, Pair<Block, Tag<Item>> data) {
+    private static void injectItemPool(@Nonnull LootTable table, @Nonnull Pair<Block, Tag<Item>> data) {
         ItemPredicate.Builder predicate = ItemPredicate.Builder.create().tag(data.getSecond());
         LootEntry.Builder<?> itemLootEntry = ItemLootEntry.builder(data.getFirst()).acceptCondition(MatchTool.builder(predicate)).weight(1);
         LootPool.Builder pool = LootPool.builder().addEntry(itemLootEntry).bonusRolls(0, 1).name("stone_age:inject");
@@ -147,7 +150,7 @@ public class LootHandler {
     }
 
     @SuppressWarnings("unchecked")
-    private static void injectMainAlternativeEntries(LootTable table, Pair<Block, Tag<Item>> data) {
+    private static void injectMainAlternativeEntries(@Nonnull LootTable table, @Nonnull Pair<Block, Tag<Item>> data) {
         try {
             LootPool pool = table.getPool("main");
             //noinspection ConstantConditions
@@ -180,7 +183,7 @@ public class LootHandler {
     }
 
     @SuppressWarnings("unchecked")
-    private static void changeToMainAlternativeEntries(LootTable table, Pair<Block, Tag<Item>> data) {
+    private static void changeToMainAlternativeEntries(@Nonnull LootTable table, @Nonnull Pair<Block, Tag<Item>> data) {
         try {
             LootPool pool = table.getPool("main");
             //noinspection ConstantConditions
@@ -207,7 +210,7 @@ public class LootHandler {
 
 
     @SuppressWarnings("unchecked")
-    public static void removeLootFromTable(LootTable table, Pair<String, Item> data) {
+    public static void removeLootFromTable(@Nonnull LootTable table, @Nonnull Pair<String, Item> data) {
         try {
             LootPool pool = table.getPool(data.getFirst());
             List<LootEntry> entries = (List<LootEntry>) lootEntries.get(pool);

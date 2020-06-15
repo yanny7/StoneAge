@@ -34,7 +34,8 @@ public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
     private final String group;
     private final Ingredient tool;
 
-    public FlintWorkbenchRecipe(ResourceLocation id, String group, int recipeWidth, int recipeHeight, Ingredient tool, NonNullList<Ingredient> ingredients, ItemStack output) {
+    public FlintWorkbenchRecipe(@Nonnull ResourceLocation id, @Nonnull String group, int recipeWidth, int recipeHeight, @Nonnull Ingredient tool,
+                                @Nonnull NonNullList<Ingredient> ingredients, @Nonnull ItemStack output) {
         this.id = id;
         this.group = group;
         this.recipeWidth = recipeWidth;
@@ -143,7 +144,7 @@ public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
     /**
      * Checks if the region of a crafting inventory is match for the recipe.
      */
-    private boolean checkMatch(IInventory inventory, int dx, int dy, boolean reversed) {
+    private boolean checkMatch(@Nonnull IInventory inventory, int dx, int dy, boolean reversed) {
         for(int x = 0; x < MAX_WIDTH; ++x) {
             for(int y = 0; y < MAX_HEIGHT; ++y) {
                 int x1 = x - dx;
@@ -167,6 +168,7 @@ public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
         return true;
     }
 
+    @Nonnull
     public Ingredient getTool() {
         return tool;
     }

@@ -24,7 +24,7 @@ abstract class WildAnimalEntity extends AnimalEntity implements IBecomeAngry {
     private int angerLevel;
     private UUID angerTargetUUID;
 
-    WildAnimalEntity(EntityType<? extends AnimalEntity> type, World worldIn) {
+    WildAnimalEntity(@Nonnull EntityType<? extends AnimalEntity> type, @Nonnull World worldIn) {
         super(type, worldIn);
     }
 
@@ -112,7 +112,7 @@ abstract class WildAnimalEntity extends AnimalEntity implements IBecomeAngry {
     }
 
     @Override
-    public boolean becomeAngryAt(Entity entity) {
+    public boolean becomeAngryAt(@Nonnull Entity entity) {
         this.angerLevel = this.nextRand();
         if (entity instanceof LivingEntity) {
             this.setRevengeTarget((LivingEntity)entity);

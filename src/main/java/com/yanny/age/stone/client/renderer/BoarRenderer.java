@@ -17,7 +17,7 @@ import javax.annotation.Nonnull;
 public class BoarRenderer extends MobRenderer<BoarEntity, BoarModel> {
     private static final ResourceLocation BOAR_TEXTURE = new ResourceLocation(Reference.MODID, "textures/entity/boar.png");
 
-    private BoarRenderer(EntityRendererManager rendererManager) {
+    private BoarRenderer(@Nonnull EntityRendererManager rendererManager) {
         super(rendererManager, new BoarModel(), 0.5f);
     }
 

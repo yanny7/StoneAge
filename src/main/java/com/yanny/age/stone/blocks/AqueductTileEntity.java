@@ -39,8 +39,6 @@ public class AqueductTileEntity extends TileEntity implements ITickableTileEntit
     private boolean activated = false;
     private boolean initialized = false;
     private float capacity = 0f;
-    private int tick = 0;
-    private int tmpTick = 0;
     private int level = 0;
     private int filled = 0;
     private int fullCapacity = 0;
@@ -67,12 +65,7 @@ public class AqueductTileEntity extends TileEntity implements ITickableTileEntit
             });
         }
 
-        if (world.isRemote) {
-            tmpTick++;
-            if (tmpTick % 2 == 0) {
-                tick++;
-            }
-        } else {
+        if (!world.isRemote) {
             LazyOptional<FluidTank> fluidTank = AqueductHandler.getInstance(world).getCapability(pos);
             fluidTank.ifPresent(tank -> {
                 int oldLevel = level;
@@ -199,11 +192,7 @@ public class AqueductTileEntity extends TileEntity implements ITickableTileEntit
         return fullCapacity;
     }
 
-    public int getTick() {
-        return tick;
-    }
-
-    void setSource(Direction direction, boolean isSource) {
+    void setSource(@Nonnull Direction direction, boolean isSource) {
         sources.replace(direction, isSource);
     }
 
@@ -212,7 +201,7 @@ public class AqueductTileEntity extends TileEntity implements ITickableTileEntit
         activated = !activated;
     }
 
-    private static void boneMealEffect(BlockPos pos, ServerWorld world) {
+    private static void boneMealEffect(@Nonnull BlockPos pos, @Nonnull ServerWorld world) {
         int r = Config.aqueductEffectRange;
         BlockPos cropPos = pos.up().north(world.rand.nextInt(r * 2 + 1) - r).east(world.rand.nextInt(r * 2 + 1) - r);
         BlockState blockstate = world.getBlockState(cropPos);

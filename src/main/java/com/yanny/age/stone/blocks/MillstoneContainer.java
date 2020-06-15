@@ -3,9 +3,9 @@ package com.yanny.age.stone.blocks;
 import com.yanny.age.stone.ExampleMod;
 import com.yanny.age.stone.subscribers.BlockSubscriber;
 import com.yanny.age.stone.subscribers.ContainerSubscriber;
+import com.yanny.age.stone.utils.ContainerUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
@@ -20,23 +20,24 @@ import net.minecraftforge.items.SlotItemHandler;
 
 import javax.annotation.Nonnull;
 
+import java.util.Objects;
+
 import static com.yanny.age.stone.blocks.MillstoneTileEntity.ITEMS;
 
 public class MillstoneContainer extends Container {
     private final MillstoneTileEntity tile;
     private final PlayerEntity player;
-    private final IInventory inventory;
     private final IIntArray data;
 
-    public MillstoneContainer(int windowId, PlayerInventory inv, PacketBuffer extraData) {
-        this(windowId, extraData.readBlockPos(), ExampleMod.proxy.getClientWorld(), inv, ExampleMod.proxy.getClientPlayer(), new IntArray(1));
+    public MillstoneContainer(int windowId, @Nonnull PlayerInventory inv, @Nonnull PacketBuffer extraData) {
+        this(windowId, extraData.readBlockPos(), Objects.requireNonNull(ExampleMod.proxy.getClientWorld()), inv, Objects.requireNonNull(ExampleMod.proxy.getClientPlayer()),
+                new IntArray(1));
     }
 
-    MillstoneContainer(int id, BlockPos pos, World world, PlayerInventory inventory, PlayerEntity player, IIntArray data) {
+    MillstoneContainer(int id, @Nonnull BlockPos pos, @Nonnull World world, @Nonnull PlayerInventory inventory, @Nonnull PlayerEntity player, @Nonnull IIntArray data) {
         super(ContainerSubscriber.millstone, id);
         tile = (MillstoneTileEntity) world.getTileEntity(pos);
         this.player = player;
-        this.inventory = inventory;
         this.data = data;
 
         if (tile == null) {
@@ -49,7 +50,7 @@ public class MillstoneContainer extends Container {
             addSlot(new SlotItemHandler(h, 2, 98, 46));
         });
 
-        layoutPlayerInventorySlots(8, 84);
+        ContainerUtils.layoutPlayerInventorySlots(((slot, x, y) -> addSlot(new Slot(inventory, slot, x, y))), 8, 84);
 
         trackIntArray(data);
     }
@@ -98,33 +99,6 @@ public class MillstoneContainer extends Container {
         }
 
         return ItemStack.EMPTY;
-    }
-
-    private int addSlotRange(IInventory handler, int index, int x, int y, int amount, int dx) {
-        for (int i = 0 ; i < amount ; i++) {
-            addSlot(new Slot(handler, index, x, y));
-            x += dx;
-            index++;
-        }
-
-        return index;
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private void addSlotBox(IInventory handler, int index, int x, int y, int horAmount, int dx, int verAmount, int dy) {
-        for (int j = 0 ; j < verAmount ; j++) {
-            index = addSlotRange(handler, index, x, y, horAmount, dx);
-            y += dy;
-        }
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private void layoutPlayerInventorySlots(int leftCol, int topRow) {
-        addSlotBox(inventory, 9, leftCol, topRow, 9, 18, 3, 18);
-
-        // Hotbar offset
-        topRow += 58;
-        addSlotRange(inventory, 0, leftCol, topRow, 9, 18);
     }
 
     int getProgress() {

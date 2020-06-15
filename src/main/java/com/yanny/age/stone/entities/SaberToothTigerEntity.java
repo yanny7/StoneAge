@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 
 public class SaberToothTigerEntity extends WildAnimalEntity {
 
-    public SaberToothTigerEntity(EntityType<SaberToothTigerEntity> type, World worldIn) {
+    public SaberToothTigerEntity(@Nonnull EntityType<SaberToothTigerEntity> type, @Nonnull World worldIn) {
         super(type, worldIn);
     }
 

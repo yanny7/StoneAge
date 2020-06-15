@@ -49,6 +49,7 @@ import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import javax.annotation.Nonnull;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.List;
@@ -110,7 +111,7 @@ public class ForgeEventSubscriber {
 
     @SuppressWarnings("unchecked")
     @SubscribeEvent
-    public static void FMLServerStartingEvent(FMLServerStartingEvent event) {
+    public static void FMLServerStartingEvent(@Nonnull FMLServerStartingEvent event) {
         if (Config.removeVanillaRecipes) {
             RecipeManager recipeManager = event.getServer().getRecipeManager();
             Class<?> recipeManagerClass = recipeManager.getClass();
@@ -160,7 +161,7 @@ public class ForgeEventSubscriber {
     }
 
     @SubscribeEvent
-    public static void entitySpawnEvent(EntityJoinWorldEvent event) {
+    public static void entitySpawnEvent(@Nonnull EntityJoinWorldEvent event) {
         Entity entity = event.getEntity();
 
         if (entity instanceof SheepEntity) {
@@ -174,7 +175,7 @@ public class ForgeEventSubscriber {
     }
 
     @SubscribeEvent
-    public static void rightClickBlockEvent(PlayerInteractEvent.RightClickBlock event) {
+    public static void rightClickBlockEvent(@Nonnull PlayerInteractEvent.RightClickBlock event) {
         BlockPos blockPos = event.getPos();
         BlockState blockState = event.getWorld().getBlockState(blockPos);
 
@@ -184,7 +185,7 @@ public class ForgeEventSubscriber {
     }
 
     @SubscribeEvent
-    public static void advancementEvent(AdvancementEvent event) {
+    public static void advancementEvent(@Nonnull AdvancementEvent event) {
         if (event.getAdvancement().getId().equals(new ResourceLocation(MODID, "stone_age/end_of_stone_age")) && (AgeUtils.getPlayerAge(event.getPlayer()) <= Age.STONE_AGE.value)) {
             AgeUtils.setPlayerAge(event.getPlayer(), Age.BRONZE_AGE);
         }
@@ -192,7 +193,7 @@ public class ForgeEventSubscriber {
 
     @SuppressWarnings("ConstantConditions")
     @SubscribeEvent
-    public static void litTorch(PlayerInteractEvent.RightClickBlock event) {
+    public static void litTorch(@Nonnull PlayerInteractEvent.RightClickBlock event) {
         PlayerEntity player = event.getPlayer();
 
         if (event.getHand() == Hand.MAIN_HAND && player.getHeldItemMainhand().getItem().equals(ItemSubscriber.unlit_torch)) {
@@ -211,7 +212,7 @@ public class ForgeEventSubscriber {
 
     @SuppressWarnings("ConstantConditions")
     @SubscribeEvent
-    public static void makeFireWithSticksAndDriedGrass(PlayerInteractEvent.RightClickBlock event) {
+    public static void makeFireWithSticksAndDriedGrass(@Nonnull PlayerInteractEvent.RightClickBlock event) {
         PlayerEntity player = event.getPlayer();
         ItemStack mainItem = player.getHeldItemMainhand();
         ItemStack offItem = player.getHeldItemOffhand();
@@ -246,7 +247,7 @@ public class ForgeEventSubscriber {
 
     @SuppressWarnings("ConstantConditions")
     @SubscribeEvent
-    public static void serverAboutToStartEvent(FMLServerAboutToStartEvent event) {
+    public static void serverAboutToStartEvent(@Nonnull FMLServerAboutToStartEvent event) {
         for (Biome biome : ForgeRegistries.BIOMES) {
             if (Config.spawnDeerEnable && (!Config.spawnDeerAllowedBiomesBlacklist == Config.spawnDeerAllowedBiomes.contains(biome))) {
                 biome.getSpawns(deer.getClassification()).add(new Biome.SpawnListEntry(deer, Config.spawnDeerWeight, Config.spawnDeerMinCount, Config.spawnDeerMaxCount));
@@ -295,7 +296,7 @@ public class ForgeEventSubscriber {
     }
 
     @SubscribeEvent
-    public static void axeHarvestCheck(PlayerEvent.HarvestCheck event) {
+    public static void axeHarvestCheck(@Nonnull PlayerEvent.HarvestCheck event) {
         BlockState state = event.getTargetBlock();
         PlayerEntity entity = event.getPlayer();
         ItemStack stack = entity.getHeldItem(Hand.MAIN_HAND);
@@ -308,7 +309,7 @@ public class ForgeEventSubscriber {
     }
 
     @SubscribeEvent
-    public static void addManualToPlayer(PlayerEvent.PlayerLoggedInEvent event) {
+    public static void addManualToPlayer(@Nonnull PlayerEvent.PlayerLoggedInEvent event) {
         if (!Config.givePlayerManualOnFirstConnect) {
             return;
         }

@@ -26,7 +26,7 @@ public class FlintSpearRenderer extends EntityRenderer<FlintSpearEntity> {
     static final ResourceLocation TEXTURE = new ResourceLocation(Reference.MODID, "textures/entity/flint_spear.png");
     private final FlintSpearModel model = new FlintSpearModel();
 
-    private FlintSpearRenderer(EntityRendererManager renderManagerIn) {
+    private FlintSpearRenderer(@Nonnull EntityRendererManager renderManagerIn) {
         super(renderManagerIn);
     }
 

@@ -1,7 +1,6 @@
 package com.yanny.age.stone.client.renderer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.blocks.MillstoneTileEntity;
 import com.yanny.age.stone.client.models.MillstoneModel;
@@ -20,7 +19,7 @@ public class MillstoneRenderer extends TileEntityRenderer<MillstoneTileEntity> {
     private static final ResourceLocation TEXTURE_NORMAL = new ResourceLocation(Reference.MODID, "textures/entity/millstone.png");
     private final MillstoneModel model = new MillstoneModel();
 
-    public MillstoneRenderer(TileEntityRendererDispatcher rendererDispatcher) {
+    public MillstoneRenderer(@Nonnull TileEntityRendererDispatcher rendererDispatcher) {
         super(rendererDispatcher);
     }
 

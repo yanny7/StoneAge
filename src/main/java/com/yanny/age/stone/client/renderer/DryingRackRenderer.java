@@ -18,8 +18,8 @@ import static net.minecraft.client.renderer.model.ItemCameraTransforms.*;
 
 @OnlyIn(Dist.CLIENT)
 public class DryingRackRenderer extends TileEntityRenderer<DryingRackTileEntity> {
-    public DryingRackRenderer(TileEntityRendererDispatcher p_i226006_1_) {
-        super(p_i226006_1_);
+    public DryingRackRenderer(@Nonnull TileEntityRendererDispatcher rendererDispatcher) {
+        super(rendererDispatcher);
     }
 
     @Override

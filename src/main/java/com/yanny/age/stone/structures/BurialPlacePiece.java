@@ -18,14 +18,14 @@ import java.util.Random;
 public class BurialPlacePiece extends BasePiece {
     public static IStructurePieceType BURIAL_PLACE;
 
-    public BurialPlacePiece(Random rand, int xIn, int zIn) {
+    public BurialPlacePiece(@Nonnull Random rand, int xIn, int zIn) {
         super(BURIAL_PLACE, rand, xIn, 0, zIn, 9, 5, 9);
         setCoordBaseMode(Direction.Plane.HORIZONTAL.random(rand));
         LOGGER.info("Generated BurialPlace at x:" + xIn + " z:" + zIn);
     }
 
     @SuppressWarnings("unused")
-    public BurialPlacePiece(TemplateManager templateManager, CompoundNBT compoundNBT) {
+    public BurialPlacePiece(@Nonnull TemplateManager templateManager, @Nonnull CompoundNBT compoundNBT) {
         super(BURIAL_PLACE, compoundNBT);
     }
 

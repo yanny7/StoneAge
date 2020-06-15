@@ -10,6 +10,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
+import javax.annotation.Nonnull;
+
 import static com.yanny.age.stone.Reference.MODID;
 
 @SuppressWarnings("unused")
@@ -55,7 +57,7 @@ public class FoodSubscriber {
     private static final Food COOKED_TIGER_MEAT = (new Food.Builder()).hunger(10).saturation(1.0f).meat().build();
 
     @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
+    public static void registerItems(@Nonnull RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
         registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64).food(FAT)).setRegistryName(MODID, "fat"));
         registry.register(new Item(new Item.Properties().group(ModItemGroup.AGES).maxStackSize(64).food(COOKED_FAT)).setRegistryName(MODID, "cooked_fat"));

@@ -31,11 +31,11 @@ import static net.minecraft.state.properties.BlockStateProperties.HORIZONTAL_FAC
 public abstract class BasePiece extends ScatteredStructurePiece {
     protected static final Logger LOGGER = LogManager.getLogger();
 
-    protected BasePiece(IStructurePieceType structurePieceTypeIn, Random rand, int xIn, int yIn, int zIn, int widthIn, int heightIn, int depthIn) {
+    protected BasePiece(@Nonnull IStructurePieceType structurePieceTypeIn, @Nonnull Random rand, int xIn, int yIn, int zIn, int widthIn, int heightIn, int depthIn) {
         super(structurePieceTypeIn, rand, xIn, yIn, zIn, widthIn, heightIn, depthIn);
     }
 
-    protected BasePiece(IStructurePieceType structurePieceTypeIn, CompoundNBT nbt) {
+    protected BasePiece(@Nonnull IStructurePieceType structurePieceTypeIn, @Nonnull CompoundNBT nbt) {
         super(structurePieceTypeIn, nbt);
     }
 
@@ -53,7 +53,7 @@ public abstract class BasePiece extends ScatteredStructurePiece {
     }
 
     @SuppressWarnings("SameParameterValue")
-    protected void generateFlintWorkbench(@Nonnull IWorld worldIn, MutableBoundingBox boundsIn, @Nonnull Random rand, int x, int y, int z, Direction direction) {
+    protected void generateFlintWorkbench(@Nonnull IWorld worldIn, @Nonnull MutableBoundingBox boundsIn, @Nonnull Random rand, int x, int y, int z, @Nonnull Direction direction) {
         BlockPos blockpos = new BlockPos(getXWithOffset(x, z), getYWithOffset(y), getZWithOffset(x, z));
 
         if (boundsIn.isVecInside(blockpos)) {
@@ -74,7 +74,7 @@ public abstract class BasePiece extends ScatteredStructurePiece {
     }
 
     @SuppressWarnings("SameParameterValue")
-    protected void generateRandomRack(@Nonnull IWorld worldIn, MutableBoundingBox boundsIn, @Nonnull Random random, int x, int y, int z, Direction direction) {
+    protected void generateRandomRack(@Nonnull IWorld worldIn, @Nonnull MutableBoundingBox boundsIn, @Nonnull Random random, int x, int y, int z, @Nonnull Direction direction) {
         BlockPos blockpos = new BlockPos(getXWithOffset(x, z), getYWithOffset(y), getZWithOffset(x, z));
 
         if (boundsIn.isVecInside(blockpos)) {
@@ -111,7 +111,7 @@ public abstract class BasePiece extends ScatteredStructurePiece {
     }
 
     @SuppressWarnings("SameParameterValue")
-    protected void replaceAirAndLiquidDownwards(@Nonnull IWorld worldIn, MutableBoundingBox boundingboxIn, int x, int y, int z, @Nonnull BlockState blockstateIn) {
+    protected void replaceAirAndLiquidDownwards(@Nonnull IWorld worldIn, @Nonnull MutableBoundingBox boundingboxIn, int x, int y, int z, @Nonnull BlockState blockstateIn) {
         int i = getXWithOffset(x, z);
         int j = getYWithOffset(y);
         int k = getZWithOffset(x, z);
@@ -123,7 +123,7 @@ public abstract class BasePiece extends ScatteredStructurePiece {
         }
     }
 
-    private boolean isNotSolid(IWorld worldIn, BlockPos pos) {
+    private boolean isNotSolid(@Nonnull IWorld worldIn, @Nonnull BlockPos pos) {
         BlockState state = worldIn.getBlockState(pos);
         return worldIn.isAirBlock(pos) || state.getMaterial().isLiquid() || state.getMaterial().isReplaceable() || state.getMaterial().equals(Material.SAND)
                 || state.getMaterial().equals(Material.EARTH) || state.getMaterial().equals(Material.ORGANIC);

@@ -14,6 +14,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
+import javax.annotation.Nonnull;
+
 import static com.yanny.age.stone.Reference.*;
 
 @ObjectHolder(MODID)
@@ -27,7 +29,7 @@ public class ContainerSubscriber {
     public static final ContainerType<FishingNetContainer> fishing_net = IForgeContainerType.create(FishingNetContainer::new);
 
     @SubscribeEvent
-    public static void registerContainer(RegistryEvent.Register<ContainerType<?>> event) {
+    public static void registerContainer(@Nonnull RegistryEvent.Register<ContainerType<?>> event) {
         IForgeRegistry<ContainerType<?>> registry = event.getRegistry();
         registry.register(stone_chest.setRegistryName(MODID, "stone_chest"));
         registry.register(feeder.setRegistryName(MODID, "feeder"));

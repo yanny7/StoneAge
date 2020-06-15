@@ -17,7 +17,7 @@ import java.util.Random;
 import java.util.function.Function;
 
 public class BurialPlaceStructure extends Structure<ProbabilityConfig> {
-    public BurialPlaceStructure(Function<Dynamic<?>, ? extends ProbabilityConfig> configFactoryIn) {
+    public BurialPlaceStructure(@Nonnull Function<Dynamic<?>, ? extends ProbabilityConfig> configFactoryIn) {
         super(configFactoryIn);
     }
 
@@ -52,7 +52,7 @@ public class BurialPlaceStructure extends Structure<ProbabilityConfig> {
     }
 
     public static class Start extends StructureStart {
-        public Start(Structure<?> structure, int chunkX, int chunkZ, MutableBoundingBox bounds, int reference, long seed) {
+        public Start(@Nonnull Structure<?> structure, int chunkX, int chunkZ, @Nonnull MutableBoundingBox bounds, int reference, long seed) {
             super(structure, chunkX, chunkZ, bounds, reference, seed);
         }
 

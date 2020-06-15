@@ -27,7 +27,7 @@ public class TanningRackRecipeCategory implements IRecipeCategory<TanningRackRec
     private final IDrawableStatic background;
     private final IDrawable icon;
 
-    TanningRackRecipeCategory(IGuiHelper guiHelper) {
+    TanningRackRecipeCategory(@Nonnull IGuiHelper guiHelper) {
         ResourceLocation location = new ResourceLocation(Reference.MODID, "textures/gui/jei/gui_layouts.png");
         background = guiHelper.createDrawable(location, 0, 61, 120, 60);
         localizedName = I18n.format("block.stone_age.tanning_rack");

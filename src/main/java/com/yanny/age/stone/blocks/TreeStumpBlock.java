@@ -92,14 +92,15 @@ public class TreeStumpBlock extends Block implements TopBlockInfoProvider {
     }
 
     @Override
-    public void addProbeInfo(ProbeMode probeMode, IProbeInfo iProbeInfo, PlayerEntity playerEntity, World world, BlockState blockState, IProbeHitData iProbeHitData) {
+    public void addProbeInfo(@Nonnull ProbeMode probeMode, @Nonnull IProbeInfo iProbeInfo, @Nonnull PlayerEntity playerEntity,
+                             @Nonnull World world, @Nonnull BlockState blockState, @Nonnull IProbeHitData iProbeHitData) {
         TileEntity te = world.getTileEntity(iProbeHitData.getPos());
 
         if (te instanceof TreeStumpTileEntity) {
             TreeStumpTileEntity treeStump = (TreeStumpTileEntity) te;
 
             if (!treeStump.getResult().isEmpty()) {
-                iProbeInfo.horizontal().item(treeStump.getResult()).progress(treeStump.getPerc(), 100, iProbeInfo.defaultProgressStyle().suffix("%"));
+                iProbeInfo.horizontal().item(treeStump.getResult()).progress(treeStump.getProgress(), 100, iProbeInfo.defaultProgressStyle().suffix("%"));
             }
         }
     }

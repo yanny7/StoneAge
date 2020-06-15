@@ -18,7 +18,7 @@ class RaidFarmGoal<T extends AnimalEntity> extends MoveToBlockGoal {
     private boolean wantsToRaid;
     private boolean canRaid;
 
-    RaidFarmGoal(T entity, Class<? extends CropsBlock> cropsBlock, IntegerProperty ageProperty) {
+    RaidFarmGoal(@Nonnull T entity, @Nonnull Class<? extends CropsBlock> cropsBlock, @Nonnull IntegerProperty ageProperty) {
         super(entity, 0.7F, 16);
         this.entity = entity;
         this.cropsBlock = cropsBlock;

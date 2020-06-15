@@ -105,7 +105,8 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
         super.remove();
     }
 
-    ActionResultType blockActivated(PlayerEntity player) {
+    @Nonnull
+    ActionResultType blockActivated(@Nonnull PlayerEntity player) {
         assert world != null;
         ItemStack itemMainhand = player.getHeldItemMainhand();
         TanningRackRecipe recipe = getRecipe(itemMainhand);
@@ -119,6 +120,7 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
         }
 
         recipe = getRecipe(stacks.get(pos));
+
         if (recipe != null && recipe.getTool().test(itemMainhand) && !stacks.get(pos).isEmpty()) {
             itemMainhand.damageItem(1, player, playerEntity -> playerEntity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
 
@@ -147,12 +149,13 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
     }
 
     @Nullable
-    private TanningRackRecipe getRecipe(ItemStack item) {
+    private TanningRackRecipe getRecipe(@Nonnull ItemStack item) {
         assert world != null;
         tmpItemHandler.setStackInSlot(0, item);
         return world.getRecipeManager().getRecipe(TanningRackRecipe.tanning_rack, tmpItemHandlerWrapper, world).orElse(null);
     }
 
+    @Nonnull
     private IItemHandlerModifiable createNonSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {
         return new ItemStackHandler(stacks) {
             @Override
@@ -164,6 +167,7 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
         };
     }
 
+    @Nonnull
     private IItemHandlerModifiable createSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {
         return new ItemStackHandler(stacks) {
             @Nonnull

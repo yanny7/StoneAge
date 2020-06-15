@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 public class TreeStumpRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<TreeStumpRecipe> {
     private final TreeStumpRecipeSerializer.IFactory<TreeStumpRecipe> factory;
 
-    public TreeStumpRecipeSerializer(TreeStumpRecipeSerializer.IFactory<TreeStumpRecipe> factory) {
+    public TreeStumpRecipeSerializer(@Nonnull TreeStumpRecipeSerializer.IFactory<TreeStumpRecipe> factory) {
         this.factory = factory;
     }
 
@@ -77,6 +77,7 @@ public class TreeStumpRecipeSerializer extends ForgeRegistryEntry<IRecipeSeriali
     }
 
     public interface IFactory<T extends TreeStumpRecipe> {
-        T create(ResourceLocation resourceLocation, String group, Ingredient ingredient, Ingredient tool, ItemStack result, int chopTimes);
+        T create(@Nonnull ResourceLocation resourceLocation, @Nonnull String group, @Nonnull Ingredient ingredient, @Nonnull Ingredient tool,
+                 @Nonnull ItemStack result, int chopTimes);
     }
 }

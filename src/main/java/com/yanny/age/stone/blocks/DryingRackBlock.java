@@ -111,7 +111,8 @@ public class DryingRackBlock extends HorizontalBlock implements TopBlockInfoProv
     }
 
     @Override
-    public void addProbeInfo(ProbeMode probeMode, IProbeInfo iProbeInfo, PlayerEntity playerEntity, World world, BlockState blockState, IProbeHitData iProbeHitData) {
+    public void addProbeInfo(@Nonnull ProbeMode probeMode, @Nonnull IProbeInfo iProbeInfo, @Nonnull PlayerEntity playerEntity,
+                             @Nonnull World world, @Nonnull BlockState blockState, @Nonnull IProbeHitData iProbeHitData) {
         TileEntity te = world.getTileEntity(iProbeHitData.getPos());
 
         if (te instanceof DryingRackTileEntity) {

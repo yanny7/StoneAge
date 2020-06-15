@@ -16,7 +16,7 @@ import static net.minecraft.client.renderer.model.ItemCameraTransforms.Transform
 
 @OnlyIn(Dist.CLIENT)
 public class TreeStumpRenderer extends TileEntityRenderer<TreeStumpTileEntity> {
-    public TreeStumpRenderer(TileEntityRendererDispatcher rendererDispatcher) {
+    public TreeStumpRenderer(@Nonnull TileEntityRendererDispatcher rendererDispatcher) {
         super(rendererDispatcher);
     }
 

@@ -8,11 +8,13 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
+import javax.annotation.Nonnull;
+
 public class FishingNetGui extends ContainerScreen<Container> {
 
     private final ResourceLocation GUI = new ResourceLocation(Reference.MODID, "textures/gui/container/fishing_net.png");
 
-    public FishingNetGui(Container screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+    public FishingNetGui(@Nonnull Container screenContainer, @Nonnull PlayerInventory inv, @Nonnull ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
     }
 

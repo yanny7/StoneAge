@@ -11,6 +11,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
+import javax.annotation.Nonnull;
+
 import static com.yanny.age.stone.Reference.MODID;
 
 @SuppressWarnings("WeakerAccess")
@@ -21,7 +23,7 @@ public class FeatureSubscriber {
     public static final Structure<ProbabilityConfig> burial_place_structure = null;
 
     @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Feature<?>> event) {
+    public static void registerBlocks(@Nonnull RegistryEvent.Register<Feature<?>> event) {
         IForgeRegistry<Feature<?>> registry = event.getRegistry();
         registry.register(new AbandonedCampStructure(ProbabilityConfig::deserialize).setRegistryName(MODID, "abandoned_camp_structure"));
         registry.register(new BurialPlaceStructure(ProbabilityConfig::deserialize).setRegistryName(MODID, "burial_place_structure"));

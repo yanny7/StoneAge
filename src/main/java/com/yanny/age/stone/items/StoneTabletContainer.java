@@ -9,7 +9,7 @@ import net.minecraft.network.PacketBuffer;
 import javax.annotation.Nonnull;
 
 public class StoneTabletContainer extends Container {
-    public StoneTabletContainer(int windowId, @SuppressWarnings("unused") PlayerInventory inv, @SuppressWarnings("unused") PacketBuffer extraData) {
+    public StoneTabletContainer(int windowId, @SuppressWarnings("unused") @Nonnull PlayerInventory inv, @SuppressWarnings("unused") @Nonnull PacketBuffer extraData) {
         this(windowId);
     }
 

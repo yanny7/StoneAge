@@ -38,11 +38,11 @@ public class FlintSpearEntity extends AbstractArrowEntity {
     private boolean dealtDamage;
     public int returningTicks;
 
-    public FlintSpearEntity(EntityType<? extends FlintSpearEntity> type, World worldIn) {
+    public FlintSpearEntity(@Nonnull EntityType<? extends FlintSpearEntity> type, @Nonnull World worldIn) {
         super(type, worldIn);
     }
 
-    public FlintSpearEntity(World worldIn, LivingEntity thrower, ItemStack thrownStackIn) {
+    public FlintSpearEntity(@Nonnull World worldIn, @Nonnull LivingEntity thrower, @Nonnull ItemStack thrownStackIn) {
         super(EntitySubscriber.flint_spear, thrower, worldIn);
         this.thrownStack = thrownStackIn.copy();
         this.dataManager.set(LOYALTY_LEVEL, (byte) EnchantmentHelper.getLoyaltyModifier(thrownStackIn));

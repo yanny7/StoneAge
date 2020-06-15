@@ -90,7 +90,7 @@ public class DeerModel extends AgeableModel<DeerEntity> {
 		this.setRotationAngles(limbSwing, limbSwingAmount, netHeadYaw, headPitch);
 	}
 
-	private void setRotationAngle(ModelRenderer ModelRenderer, float x, float z) {
+	private void setRotationAngle(@Nonnull ModelRenderer ModelRenderer, float x, float z) {
 		ModelRenderer.rotateAngleX = x;
 		ModelRenderer.rotateAngleZ = z;
 	}

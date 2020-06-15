@@ -5,6 +5,8 @@ import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import javax.annotation.Nonnull;
+
 import static com.yanny.age.stone.Reference.MODID;
 import static com.yanny.age.stone.subscribers.ToolSubscriber.*;
 
@@ -15,7 +17,7 @@ public class ColorSubscriber {
     private static final int OVERLAY_STONE_COLOR = 0x6c6c6c;
 
     @SubscribeEvent
-    public static void onColorRegister(ColorHandlerEvent.Item event) {
+    public static void onColorRegister(@Nonnull ColorHandlerEvent.Item event) {
         event.getItemColors().register((itemStack, index) -> OVERLAY_BONE_COLOR, bone_axe_head, bone_pickaxe_head, bone_hoe_head, bone_shovel_head, bone_sword_head);
         event.getItemColors().register((itemStack, index) -> index == 0 ? OVERLAY_BONE_COLOR : -1, bone_axe, bone_pickaxe, bone_hoe, bone_shovel, bone_sword);
         event.getItemColors().register((itemStack, index) -> OVERLAY_STONE_COLOR, stone_axe_head, stone_pickaxe_head, stone_hoe_head, stone_shovel_head, stone_sword_head);

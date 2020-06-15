@@ -143,7 +143,7 @@ public class SaberToothTigerModel extends AgeableModel<SaberToothTigerEntity> {
 		this.setRotationAngles(limbSwing, limbSwingAmount, netHeadYaw, headPitch);
 	}
 
-	public void setRotationAngle(ModelRenderer ModelRenderer, float x, float y, float z) {
+	public void setRotationAngle(@Nonnull ModelRenderer ModelRenderer, float x, float y, float z) {
 		ModelRenderer.rotateAngleX = x;
 		ModelRenderer.rotateAngleY = y;
 		ModelRenderer.rotateAngleZ = z;

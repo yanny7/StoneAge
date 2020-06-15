@@ -138,11 +138,12 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
         super.remove();
     }
 
+    @Nonnull
     DryingItem getItem(int index) {
         return items[index];
     }
 
-    void blockActivated(PlayerEntity player) {
+    void blockActivated(@Nonnull PlayerEntity player) {
         assert world != null;
 
         if (!world.isRemote) {

@@ -8,6 +8,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
+import javax.annotation.Nonnull;
+
 import static com.yanny.age.stone.Reference.MODID;
 
 @SuppressWarnings("unused")
@@ -21,7 +23,7 @@ public class RecipeSubscriber {
     public static final MillstoneRecipeSerializer millstone = null;
 
     @SubscribeEvent
-    public static void registerTileEntity(RegistryEvent.Register<IRecipeSerializer<?>> event) {
+    public static void registerTileEntity(@Nonnull RegistryEvent.Register<IRecipeSerializer<?>> event) {
         IForgeRegistry<IRecipeSerializer<?>> registry = event.getRegistry();
         registry.register(new FlintWorkbenchRecipeSerializer().setRegistryName(MODID, "flint_workbench"));
         registry.register(new DryingRackRecipeSerializer(DryingRackRecipe::new).setRegistryName(MODID, "drying_rack"));

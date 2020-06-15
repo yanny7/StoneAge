@@ -159,6 +159,7 @@ public class AqueductBlock extends Block implements TopBlockInfoProvider {
     }
 
     @OnlyIn(Dist.CLIENT)
+    @Override
     public void animateTick(@Nonnull BlockState stateIn, @Nonnull World worldIn, @Nonnull BlockPos pos, Random rand) {
         if (rand.nextInt(2) == 0 && stateIn.get(WATERLOGGED)) {
             BlockPos blockpos = pos.up();
@@ -189,7 +190,8 @@ public class AqueductBlock extends Block implements TopBlockInfoProvider {
     }
 
     @Override
-    public void addProbeInfo(ProbeMode probeMode, IProbeInfo iProbeInfo, PlayerEntity playerEntity, World world, BlockState blockState, IProbeHitData iProbeHitData) {
+    public void addProbeInfo(@Nonnull ProbeMode probeMode, @Nonnull IProbeInfo iProbeInfo, @Nonnull PlayerEntity playerEntity,
+                             @Nonnull World world, @Nonnull BlockState blockState, @Nonnull IProbeHitData iProbeHitData) {
         TileEntity te = world.getTileEntity(iProbeHitData.getPos());
 
         if (te instanceof AqueductTileEntity) {
@@ -198,7 +200,7 @@ public class AqueductBlock extends Block implements TopBlockInfoProvider {
         }
     }
 
-    static boolean isWater(Block block, IFluidState fluidBlockState) {
+    static boolean isWater(@Nonnull Block block, @Nonnull IFluidState fluidBlockState) {
         return block.equals(Blocks.WATER) && (fluidBlockState.getLevel() == 8);
     }
 
@@ -210,7 +212,7 @@ public class AqueductBlock extends Block implements TopBlockInfoProvider {
                 .with(WEST, checkSideConnection(world, pos, pos.west(), Direction.WEST));
     }
 
-    private boolean checkSideConnection(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull BlockPos sidePos, Direction direction) {
+    private boolean checkSideConnection(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull BlockPos sidePos, @Nonnull Direction direction) {
         AqueductTileEntity aqueductTileEntity = (AqueductTileEntity) world.getTileEntity(pos);
         BlockState facingBlockState = world.getBlockState(sidePos);
         Block block = facingBlockState.getBlock();
@@ -223,6 +225,7 @@ public class AqueductBlock extends Block implements TopBlockInfoProvider {
         return block == this || isWater;
     }
 
+    @Nonnull
     static private VoxelShape getBaseShape() {
         VoxelShape base = Block.makeCuboidShape(0, 0, 0, 16, 4, 16);
         VoxelShape b1 = Block.makeCuboidShape(0, 4, 0, 4, 16, 4);
@@ -232,18 +235,22 @@ public class AqueductBlock extends Block implements TopBlockInfoProvider {
         return VoxelShapes.or(base, b1, b2, b3, b4);
     }
 
+    @Nonnull
     static private VoxelShape getNorthShape() {
         return Block.makeCuboidShape(4, 4, 0, 12, 16, 4);
     }
 
+    @Nonnull
     static private VoxelShape getEastShape() {
         return Block.makeCuboidShape(12, 4, 4, 16, 16, 12);
     }
 
+    @Nonnull
     static private VoxelShape getSouthShape() {
         return Block.makeCuboidShape(4, 4, 12, 12, 16, 16);
     }
 
+    @Nonnull
     static private VoxelShape getWestShape() {
         return Block.makeCuboidShape(0, 4, 4, 4, 16, 12);
     }

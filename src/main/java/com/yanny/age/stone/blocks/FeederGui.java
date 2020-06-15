@@ -8,11 +8,13 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
+import javax.annotation.Nonnull;
+
 public class FeederGui extends ContainerScreen<Container> {
 
     private final ResourceLocation GUI = new ResourceLocation(Reference.MODID, "textures/gui/container/feeder.png");
 
-    public FeederGui(Container screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+    public FeederGui(@Nonnull Container screenContainer, @Nonnull PlayerInventory inv, @Nonnull ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
     }
 

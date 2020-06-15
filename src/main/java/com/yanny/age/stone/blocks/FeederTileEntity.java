@@ -146,10 +146,11 @@ public class FeederTileEntity extends TileEntity implements IInventoryInterface,
         super.remove();
     }
 
-    boolean isItemValid(ItemStack itemStack) {
+    boolean isItemValid(@Nonnull ItemStack itemStack) {
         return VALID_ITEMS.contains(itemStack.getItem());
     }
 
+    @Nonnull
     private IItemHandlerModifiable createNonSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {
         return new ItemStackHandler(stacks) {
 
@@ -172,6 +173,7 @@ public class FeederTileEntity extends TileEntity implements IInventoryInterface,
         };
     }
 
+    @Nonnull
     private IItemHandlerModifiable createSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {
         return new ItemStackHandler(stacks) {
             @Nonnull
@@ -199,6 +201,7 @@ public class FeederTileEntity extends TileEntity implements IInventoryInterface,
         };
     }
 
+    @Nonnull
     private Optional<ItemStack> getItem() {
         return stacks.stream().filter(itemStack -> !itemStack.isEmpty()).findFirst();
     }
