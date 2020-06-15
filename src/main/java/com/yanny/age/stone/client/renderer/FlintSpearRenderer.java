@@ -8,6 +8,7 @@ import com.yanny.age.stone.client.models.FlintSpearModel;
 import com.yanny.age.stone.entities.FlintSpearEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -39,7 +40,7 @@ public class FlintSpearRenderer extends EntityRenderer<FlintSpearEntity> {
         matrixStack.translate(0, -1.5, 0);
         RenderSystem.color4f(1, 1, 1, 1);
         int i = OverlayTexture.getPackedUV(OverlayTexture.getU(0), OverlayTexture.getV(false));
-        IVertexBuilder vertexBuilder = ItemRenderer.getBuffer(renderTypeBuffer, model.getRenderType(this.getEntityTexture(entity)), false, false);
+        IVertexBuilder vertexBuilder = ItemRenderer.getBuffer(renderTypeBuffer, RenderType.getEntityCutoutNoCull(TEXTURE), false, false);
         model.render(matrixStack, vertexBuilder, packedLightIn, i, 1.0F, 1.0F, 1.0F, 1.0F);
         matrixStack.pop();
         super.render(entity, entityYaw, partialTicks, matrixStack, renderTypeBuffer, packedLightIn);
