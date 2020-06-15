@@ -29,7 +29,7 @@ public class HammerItem extends ToolItem {
             Blocks.LIGHT_BLUE_SHULKER_BOX, Blocks.LIGHT_GRAY_SHULKER_BOX, Blocks.LIME_SHULKER_BOX, Blocks.MAGENTA_SHULKER_BOX, Blocks.ORANGE_SHULKER_BOX,
             Blocks.PINK_SHULKER_BOX, Blocks.PURPLE_SHULKER_BOX, Blocks.RED_SHULKER_BOX, Blocks.WHITE_SHULKER_BOX, Blocks.YELLOW_SHULKER_BOX);
 
-    public HammerItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, Item.Properties builder) {
+    public HammerItem(@Nonnull IItemTier tier, float attackDamageIn, float attackSpeedIn, @Nonnull Item.Properties builder) {
         super(attackDamageIn, attackSpeedIn, tier, EFFECTIVE_ON, builder);
     }
 
@@ -39,7 +39,7 @@ public class HammerItem extends ToolItem {
         return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getDestroySpeed(stack, state) : this.efficiency;
     }
 
-    public boolean canHarvestBlock(BlockState blockIn) {
+    public boolean canHarvestBlock(@Nonnull BlockState blockIn) {
         int i = this.getTier().getHarvestLevel();
         Material material = blockIn.getMaterial();
         return (material == Material.ROCK || material == Material.IRON || material == Material.ANVIL) && (i >= blockIn.getHarvestLevel())

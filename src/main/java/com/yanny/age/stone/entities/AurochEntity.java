@@ -24,15 +24,13 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class AurochEntity extends WildAnimalEntity implements TopEntityInfoProvider {
 
-    public AurochEntity(EntityType<AurochEntity> type, World worldIn) {
+    public AurochEntity(@Nonnull EntityType<AurochEntity> type, @Nonnull World worldIn) {
         super(type, worldIn);
     }
 
@@ -119,7 +117,7 @@ public class AurochEntity extends WildAnimalEntity implements TopEntityInfoProvi
     }
 
     @Override
-    public void addProbeInfo(ProbeMode mode, IProbeInfo probeInfo, PlayerEntity player, World world, Entity entity, IProbeHitEntityData data) {
+    public void addProbeInfo(@Nonnull ProbeMode mode, @Nonnull IProbeInfo probeInfo, @Nonnull PlayerEntity player, @Nonnull World world, @Nonnull Entity entity, @Nonnull IProbeHitEntityData data) {
         probeInfo.horizontal().text("Generation: " + dataManager.get(GENERATION));
     }
 }

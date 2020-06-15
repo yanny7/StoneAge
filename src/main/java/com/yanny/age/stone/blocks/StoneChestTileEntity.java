@@ -207,9 +207,10 @@ public class StoneChestTileEntity extends LockableLootTileEntity implements IInv
         return false;
     }
 
-    public void openInventory(PlayerEntity player) {
+    public void openInventory(@Nonnull PlayerEntity player) {
         if (!player.isSpectator()) {
             assert this.world != null;
+
             if (this.numPlayersUsing < 0) {
                 this.numPlayersUsing = 0;
             }
@@ -219,7 +220,7 @@ public class StoneChestTileEntity extends LockableLootTileEntity implements IInv
         }
     }
 
-    public void closeInventory(PlayerEntity player) {
+    public void closeInventory(@Nonnull PlayerEntity player) {
         if (!player.isSpectator()) {
             --this.numPlayersUsing;
             this.onOpenOrClose();
@@ -244,6 +245,7 @@ public class StoneChestTileEntity extends LockableLootTileEntity implements IInv
         this.world.playSound(null, d0, d1, d2, SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
     }
 
+    @Nonnull
     private IItemHandlerModifiable createNonSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {
         return new ItemStackHandler(stacks) {
             @Override
@@ -255,7 +257,7 @@ public class StoneChestTileEntity extends LockableLootTileEntity implements IInv
         };
     }
 
-    private static int calculatePlayersUsingSync(World world, StoneChestTileEntity tileEntity, int tickSinceSync, int x, int y, int z, int numUsing) {
+    private static int calculatePlayersUsingSync(@Nonnull World world, @Nonnull StoneChestTileEntity tileEntity, int tickSinceSync, int x, int y, int z, int numUsing) {
         if (!world.isRemote && numUsing != 0 && (tickSinceSync + x + y + z) % 200 == 0) {
             numUsing = calculatePlayersUsing(world, tileEntity, x, y, z);
         }
@@ -263,15 +265,16 @@ public class StoneChestTileEntity extends LockableLootTileEntity implements IInv
         return numUsing;
     }
 
-    private static int calculatePlayersUsing(World world, StoneChestTileEntity tileEntity, int x, int y, int z) {
+    private static int calculatePlayersUsing(@Nonnull World world, @Nonnull StoneChestTileEntity tileEntity, int x, int y, int z) {
         int i = 0;
         float f = 5.0F;
 
         for(PlayerEntity playerentity : world.getEntitiesWithinAABB(PlayerEntity.class,
                 new AxisAlignedBB(x - f, y - f, z - f, (x + 1) + f, (y + 1) + f, (z + 1) + f))) {
             if (playerentity.openContainer instanceof StoneChestContainer) {
-                IInventory iinventory = ((StoneChestContainer)playerentity.openContainer).getIInventory();
-                if (iinventory == tileEntity.inventoryWrapper) {
+                IInventory inventory = ((StoneChestContainer)playerentity.openContainer).getIInventory();
+
+                if (inventory == tileEntity.inventoryWrapper) {
                     ++i;
                 }
             }

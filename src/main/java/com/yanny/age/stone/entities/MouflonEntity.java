@@ -30,7 +30,7 @@ import javax.annotation.Nullable;
 
 public class MouflonEntity extends WildAnimalEntity implements TopEntityInfoProvider {
 
-    public MouflonEntity(EntityType<MouflonEntity> type, World worldIn) {
+    public MouflonEntity(@Nonnull EntityType<MouflonEntity> type, @Nonnull World worldIn) {
         super(type, worldIn);
     }
 
@@ -118,7 +118,7 @@ public class MouflonEntity extends WildAnimalEntity implements TopEntityInfoProv
     }
 
     @Override
-    public void addProbeInfo(ProbeMode mode, IProbeInfo probeInfo, PlayerEntity player, World world, Entity entity, IProbeHitEntityData data) {
+    public void addProbeInfo(@Nonnull ProbeMode mode, @Nonnull IProbeInfo probeInfo, @Nonnull PlayerEntity player, @Nonnull World world, @Nonnull Entity entity, @Nonnull IProbeHitEntityData data) {
         probeInfo.horizontal().text("Generation: " + dataManager.get(GENERATION));
     }
 }

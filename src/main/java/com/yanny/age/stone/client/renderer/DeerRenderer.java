@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 public class DeerRenderer extends MobRenderer<DeerEntity, DeerModel> {
     private static final ResourceLocation DEER_TEXTURE = new ResourceLocation(Reference.MODID, "textures/entity/deer.png");
 
-    private DeerRenderer(EntityRendererManager rendererManager) {
+    private DeerRenderer(@Nonnull EntityRendererManager rendererManager) {
         super(rendererManager, new DeerModel(), 0.5f);
     }
 

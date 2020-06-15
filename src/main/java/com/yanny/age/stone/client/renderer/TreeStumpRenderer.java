@@ -8,11 +8,13 @@ import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class TreeStumpRenderer extends TileEntityRenderer<TreeStumpTileEntity> {
     @SuppressWarnings("deprecation")
     @Override
-    public void render(TreeStumpTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(@Nonnull TreeStumpTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
         GlStateManager.pushMatrix();
         GlStateManager.translatef((float)x + 0.5f, (float)y + 0.75f, (float)z + 0.5f);
         GlStateManager.rotatef(90, 1.0F, 0.0F, 0.0F);

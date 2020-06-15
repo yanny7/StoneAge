@@ -7,11 +7,13 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
+import javax.annotation.Nonnull;
+
 public class MillstoneGui extends ContainerScreen<MillstoneContainer> {
 
     private final ResourceLocation GUI = new ResourceLocation(Reference.MODID, "textures/gui/container/millstone.png");
 
-    public MillstoneGui(MillstoneContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+    public MillstoneGui(@Nonnull MillstoneContainer screenContainer, @Nonnull PlayerInventory inv, @Nonnull ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
     }
 

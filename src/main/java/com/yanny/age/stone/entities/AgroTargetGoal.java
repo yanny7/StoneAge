@@ -10,6 +10,7 @@ import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.Difficulty;
 
+import javax.annotation.Nonnull;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +21,7 @@ class AgroTargetGoal extends TargetGoal {
     private final Class<? extends IBecomeAngry> reinforcement;
     private final Class<?>[] excludedReinforcementTypes;
 
-    AgroTargetGoal(CreatureEntity creatureIn, Class<? extends IBecomeAngry> reinforcement, Class<?>... excludeReinforcement) {
+    AgroTargetGoal(@Nonnull CreatureEntity creatureIn, @Nonnull Class<? extends IBecomeAngry> reinforcement, @Nonnull Class<?>... excludeReinforcement) {
         super(creatureIn, true);
         this.reinforcement = reinforcement;
         this.excludedReinforcementTypes = excludeReinforcement;
@@ -81,7 +82,7 @@ class AgroTargetGoal extends TargetGoal {
         }
     }
 
-    private void setAttackTarget(MobEntity mobIn, LivingEntity targetIn) {
+    private void setAttackTarget(@Nonnull MobEntity mobIn, @Nonnull LivingEntity targetIn) {
         if (reinforcement.isAssignableFrom(mobIn.getClass()) && this.goalOwner.canEntityBeSeen(targetIn) && reinforcement.cast(mobIn).becomeAngryAt(targetIn)) {
             mobIn.setAttackTarget(targetIn);
         }

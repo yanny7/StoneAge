@@ -9,13 +9,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class MillstoneRenderer extends TileEntityRenderer<MillstoneTileEntity> {
     private static final ResourceLocation TEXTURE_NORMAL = new ResourceLocation(Reference.MODID, "textures/entity/millstone.png");
     private final MillstoneModel model = new MillstoneModel();
 
     @Override
-    public void render(MillstoneTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(@Nonnull MillstoneTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
         GlStateManager.pushMatrix();
         GlStateManager.enableRescaleNormal();
         GlStateManager.translatef((float)x + 0.5f, (float)y + 0.05f * 1/16f, (float)z + 0.5f);

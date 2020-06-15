@@ -14,13 +14,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class StoneChestRenderer extends TileEntityRenderer<StoneChestTileEntity> {
     private static final ResourceLocation TEXTURE_NORMAL = new ResourceLocation(Reference.MODID, "textures/entity/stone_chest.png");
     private final StoneChestModel model = new StoneChestModel();
 
     @Override
-    public void render(StoneChestTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(@Nonnull StoneChestTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
         GlStateManager.enableDepthTest();
         GlStateManager.depthFunc(515);
         GlStateManager.depthMask(true);
@@ -68,6 +70,7 @@ public class StoneChestRenderer extends TileEntityRenderer<StoneChestTileEntity>
         }
     }
 
+    @Nonnull
     private StoneChestModel getChestModel(int destroyStage) {
         ResourceLocation resourcelocation;
 
@@ -81,7 +84,7 @@ public class StoneChestRenderer extends TileEntityRenderer<StoneChestTileEntity>
         return model;
     }
 
-    private void applyLidRotation(StoneChestTileEntity tileEntity, float angle, StoneChestModel model) {
+    private void applyLidRotation(@Nonnull StoneChestTileEntity tileEntity, float angle, @Nonnull StoneChestModel model) {
         float f = ((IChestLid)tileEntity).getLidAngle(angle);
         f = 1.0F - f;
         f = 1.0F - f * f * f;

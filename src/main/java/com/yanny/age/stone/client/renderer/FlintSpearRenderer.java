@@ -25,7 +25,7 @@ public class FlintSpearRenderer extends EntityRenderer<FlintSpearEntity> {
     static final ResourceLocation TEXTURE = new ResourceLocation(Reference.MODID, "textures/entity/flint_spear.png");
     private final FlintSpearModel model = new FlintSpearModel();
 
-    private FlintSpearRenderer(EntityRendererManager renderManagerIn) {
+    private FlintSpearRenderer(@Nonnull EntityRendererManager renderManagerIn) {
         super(renderManagerIn);
     }
 
@@ -40,7 +40,7 @@ public class FlintSpearRenderer extends EntityRenderer<FlintSpearEntity> {
         GlStateManager.rotatef(lerp(partialTicks, entity.prevRotationPitch, entity.rotationPitch) + 90.0F, 0.0F, 0.0F, 1.0F);
         this.model.render(1 / 16f);
         GlStateManager.popMatrix();
-        this.func_203085_b(entity, x, y, z, partialTicks);
+        this.render(entity, x, y, z, partialTicks);
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
         GlStateManager.enableLighting();
     }
@@ -50,7 +50,7 @@ public class FlintSpearRenderer extends EntityRenderer<FlintSpearEntity> {
         return TEXTURE;
     }
 
-    private void func_203085_b(FlintSpearEntity spearEntity, double x, double y, double z, float partialTicks) {
+    private void render(@Nonnull FlintSpearEntity spearEntity, double x, double y, double z, float partialTicks) {
         Entity entity = spearEntity.getShooter();
         if (entity != null && spearEntity.getNoClip()) {
             Tessellator tessellator = Tessellator.getInstance();

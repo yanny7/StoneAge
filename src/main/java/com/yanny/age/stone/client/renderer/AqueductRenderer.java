@@ -13,12 +13,14 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.lwjgl.opengl.GL11;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class AqueductRenderer extends TileEntityRenderer<AqueductTileEntity> {
     private static final ResourceLocation WATER = new ResourceLocation("minecraft", "textures/block/water_still.png");
 
     @Override
-    public void render(AqueductTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(@Nonnull AqueductTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
         if (tileEntityIn.getCapacity() < 0.01) {
             return;
         }

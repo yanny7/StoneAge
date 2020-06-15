@@ -10,11 +10,13 @@ import net.minecraft.util.Direction;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class TanningRackRenderer extends TileEntityRenderer<TanningRackTileEntity> {
     @SuppressWarnings("deprecation")
     @Override
-    public void render(TanningRackTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(@Nonnull TanningRackTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
         Direction direction = tileEntityIn.getBlockState().get(HorizontalBlock.HORIZONTAL_FACING);
 
         for (int i = 0; i < TanningRackTileEntity.ITEMS; i++) {

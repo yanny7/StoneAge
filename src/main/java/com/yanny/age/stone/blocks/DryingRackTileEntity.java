@@ -138,11 +138,12 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
         super.remove();
     }
 
+    @Nonnull
     DryingItem getItem(int index) {
         return items[index];
     }
 
-    void blockActivated(PlayerEntity player) {
+    void blockActivated(@Nonnull PlayerEntity player) {
         assert world != null;
 
         if (!world.isRemote) {
@@ -184,6 +185,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
         return world.getRecipeManager().getRecipe(DryingRackRecipe.drying_rack, tmpItemHandlerWrapper, world);
     }
 
+    @Nonnull
     private IItemHandlerModifiable createNonSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {
         return new ItemStackHandler(stacks) {
             @Override
@@ -195,6 +197,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
         };
     }
 
+    @Nonnull
     private IItemHandlerModifiable createSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {
         return new ItemStackHandler(stacks) {
             @Nonnull
@@ -245,7 +248,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
             return active && remaining <= 0;
         }
 
-        void setup(boolean active, int dryingTime, ItemStack result) {
+        void setup(boolean active, int dryingTime, @Nonnull ItemStack result) {
             this.active = active;
             this.dryingTime = this.remaining = dryingTime;
             this.result = result;
@@ -256,6 +259,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
             this.result = ItemStack.EMPTY;
         }
 
+        @Nonnull
         CompoundNBT write() {
             CompoundNBT nbt = new CompoundNBT();
             nbt.putBoolean("active", active);
@@ -267,7 +271,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
             return nbt;
         }
 
-        void read(CompoundNBT nbt) {
+        void read(@Nonnull CompoundNBT nbt) {
             active = nbt.getBoolean("active");
             dryingTime = nbt.getInt("dryingTime");
             remaining = nbt.getInt("remaining");

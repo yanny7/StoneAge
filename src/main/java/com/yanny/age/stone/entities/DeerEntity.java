@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 
 public class DeerEntity extends AnimalEntity {
 
-    public DeerEntity(EntityType<DeerEntity> type, World worldIn) {
+    public DeerEntity(@Nonnull EntityType<DeerEntity> type, @Nonnull World worldIn) {
         super(type, worldIn);
     }
 

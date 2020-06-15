@@ -5,8 +5,11 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import org.apache.commons.lang3.tuple.Triple;
 
+import javax.annotation.Nonnull;
+
 class CrtUtils {
-    public static Triple<NonNullList<Ingredient>, Integer, Integer> convert(IIngredient[][] input) {
+    @Nonnull
+    public static Triple<NonNullList<Ingredient>, Integer, Integer> convert(@Nonnull IIngredient[][] input) {
         int height = input.length;
         int tempWidth = input[0].length;
 

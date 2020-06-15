@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 public class FowlRenderer extends MobRenderer<FowlEntity, FowlModel> {
     private static final ResourceLocation FOWL_TEXTURE = new ResourceLocation(Reference.MODID, "textures/entity/fowl.png");
 
-    private FowlRenderer(EntityRendererManager rendererManager) {
+    private FowlRenderer(@Nonnull EntityRendererManager rendererManager) {
         super(rendererManager, new FowlModel(), 0.3f);
     }
 

@@ -67,7 +67,8 @@ public class FlintWorkbenchRecipeSerializer extends ForgeRegistryEntry<IRecipeSe
         recipe.getTool().write(buffer);
     }
 
-    private static Map<String, Ingredient> deserializeKey(JsonObject json) {
+    @Nonnull
+    private static Map<String, Ingredient> deserializeKey(@Nonnull JsonObject json) {
         Map<String, Ingredient> map = Maps.newHashMap();
 
         for(Map.Entry<String, JsonElement> entry : json.entrySet()) {
@@ -86,7 +87,8 @@ public class FlintWorkbenchRecipeSerializer extends ForgeRegistryEntry<IRecipeSe
         return map;
     }
 
-    private static String[] shrink(String... toShrink) {
+    @Nonnull
+    private static String[] shrink(@Nonnull String... toShrink) {
         int i = Integer.MAX_VALUE;
         int j = 0;
         int k = 0;
@@ -121,7 +123,7 @@ public class FlintWorkbenchRecipeSerializer extends ForgeRegistryEntry<IRecipeSe
         }
     }
 
-    private static int firstNonSpace(String str) {
+    private static int firstNonSpace(@Nonnull String str) {
         int i;
         //noinspection StatementWithEmptyBody
         for(i = 0; i < str.length() && str.charAt(i) == ' '; ++i) {}
@@ -129,7 +131,7 @@ public class FlintWorkbenchRecipeSerializer extends ForgeRegistryEntry<IRecipeSe
         return i;
     }
 
-    private static int lastNonSpace(String str) {
+    private static int lastNonSpace(@Nonnull String str) {
         int i;
         //noinspection StatementWithEmptyBody
         for(i = str.length() - 1; i >= 0 && str.charAt(i) == ' '; --i) {}
@@ -137,7 +139,8 @@ public class FlintWorkbenchRecipeSerializer extends ForgeRegistryEntry<IRecipeSe
         return i;
     }
 
-    private static NonNullList<Ingredient> deserializeIngredients(String[] pattern, Map<String, Ingredient> keys, int patternWidth, int patternHeight) {
+    @Nonnull
+    private static NonNullList<Ingredient> deserializeIngredients(@Nonnull String[] pattern, @Nonnull Map<String, Ingredient> keys, int patternWidth, int patternHeight) {
         NonNullList<Ingredient> nonnulllist = NonNullList.withSize(patternWidth * patternHeight, Ingredient.EMPTY);
         Set<String> set = Sets.newHashSet(keys.keySet());
         set.remove(" ");
@@ -162,7 +165,8 @@ public class FlintWorkbenchRecipeSerializer extends ForgeRegistryEntry<IRecipeSe
         }
     }
 
-    private static String[] patternFromJson(JsonArray jsonArr) {
+    @Nonnull
+    private static String[] patternFromJson(@Nonnull JsonArray jsonArr) {
         String[] astring = new String[jsonArr.size()];
         if (astring.length > 3) {
             throw new JsonSyntaxException("Invalid pattern: too many rows, " + 3 + " is maximum");

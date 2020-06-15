@@ -8,6 +8,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
+import javax.annotation.Nonnull;
+
 import static com.yanny.age.stone.Reference.MODID;
 
 @ObjectHolder(MODID)
@@ -26,7 +28,7 @@ public class TileEntitySubscriber {
 
     @SuppressWarnings("ConstantConditions")
     @SubscribeEvent
-    public static void registerTileEntity(RegistryEvent.Register<TileEntityType<?>> event) {
+    public static void registerTileEntity(@Nonnull RegistryEvent.Register<TileEntityType<?>> event) {
         IForgeRegistry<TileEntityType<?>> registry = event.getRegistry();
         registry.register(TileEntityType.Builder.create(FlintWorkbenchTileEntity::new, BlockSubscriber.flint_workbench)
                 .build(null).setRegistryName("flint_workbench"));

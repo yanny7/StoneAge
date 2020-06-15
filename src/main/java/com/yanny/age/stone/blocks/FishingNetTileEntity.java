@@ -158,6 +158,7 @@ public class FishingNetTileEntity extends TileEntity implements IInventoryInterf
         ItemStackUtils.insertItems(loot, stacks, 1, ITEMS);
     }
 
+    @Nonnull
     private IItemHandlerModifiable createInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {
         return new ItemStackHandler(stacks) {
 

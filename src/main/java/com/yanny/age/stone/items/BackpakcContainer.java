@@ -1,6 +1,7 @@
 package com.yanny.age.stone.items;
 
 import com.yanny.age.stone.subscribers.ContainerSubscriber;
+import com.yanny.age.stone.utils.ContainerUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -18,17 +19,16 @@ import javax.annotation.Nonnull;
 import static com.yanny.age.stone.items.BackpackItem.*;
 
 public class BackpakcContainer extends Container {
-    private final IItemHandler inventory;
     private final ItemStack backpack;
     private final NonNullList<ItemStack> backpackItems;
 
-    public BackpakcContainer(int windowId, PlayerInventory inv, @SuppressWarnings("unused") PacketBuffer extraData) {
+    public BackpakcContainer(int windowId, @Nonnull PlayerInventory inv, @SuppressWarnings("unused") @Nonnull PacketBuffer extraData) {
         this(windowId, inv, inv.getCurrentItem());
     }
 
-    BackpakcContainer(int id, PlayerInventory inventory, ItemStack current) {
+    BackpakcContainer(int id, @Nonnull PlayerInventory inventory, @Nonnull ItemStack current) {
         super(ContainerSubscriber.backpack, id);
-        this.inventory = new InvWrapper(inventory);
+        IItemHandler inv = new InvWrapper(inventory);
 
         backpack = current;
         backpackItems = BackpackItem.getBackpackItems(backpack);
@@ -52,7 +52,7 @@ public class BackpakcContainer extends Container {
             }
         }
 
-        layoutPlayerInventorySlots(8, 84);
+        ContainerUtils.layoutPlayerInventorySlots((slot, x, y) -> addSlot(new LimitedSlotItemHandler(inv, slot, x, y)), 8, 84);
     }
 
     @Override
@@ -102,35 +102,8 @@ public class BackpakcContainer extends Container {
         return ItemStack.EMPTY;
     }
 
-    private int addSlotRange(IItemHandler handler, int index, int x, int y, int amount, int dx) {
-        for (int i = 0 ; i < amount ; i++) {
-            addSlot(new LimitedSlotItemHandler(handler, index, x, y));
-            x += dx;
-            index++;
-        }
-
-        return index;
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private void addSlotBox(IItemHandler handler, int index, int x, int y, int horAmount, int dx, int verAmount, int dy) {
-        for (int j = 0 ; j < verAmount ; j++) {
-            index = addSlotRange(handler, index, x, y, horAmount, dx);
-            y += dy;
-        }
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private void layoutPlayerInventorySlots(int leftCol, int topRow) {
-        addSlotBox(inventory, 9, leftCol, topRow, 9, 18, 3, 18);
-
-        // Hotbar offset
-        topRow += 58;
-        addSlotRange(inventory, 0, leftCol, topRow, 9, 18);
-    }
-
     class LimitedSlotItemHandler extends SlotItemHandler {
-        public LimitedSlotItemHandler(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
+        public LimitedSlotItemHandler(@Nonnull IItemHandler itemHandler, int index, int xPosition, int yPosition) {
             super(itemHandler, index, xPosition, yPosition);
         }
 

@@ -3,6 +3,7 @@ package com.yanny.age.stone.blocks;
 import com.yanny.age.stone.ExampleMod;
 import com.yanny.age.stone.subscribers.BlockSubscriber;
 import com.yanny.age.stone.subscribers.ContainerSubscriber;
+import com.yanny.age.stone.utils.ContainerUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -18,23 +19,23 @@ import net.minecraftforge.items.SlotItemHandler;
 
 import javax.annotation.Nonnull;
 
+import java.util.Objects;
+
 import static com.yanny.age.stone.blocks.StoneChestTileEntity.INVENTORY_HEIGHT;
 import static com.yanny.age.stone.blocks.StoneChestTileEntity.INVENTORY_WIDTH;
 
 public class StoneChestContainer extends Container {
     private final StoneChestTileEntity tile;
     private final PlayerEntity player;
-    private final IInventory inventory;
 
-    public StoneChestContainer(int windowId, PlayerInventory inv, PacketBuffer extraData) {
-        this(windowId, extraData.readBlockPos(), ExampleMod.proxy.getClientWorld(), inv, ExampleMod.proxy.getClientPlayer());
+    public StoneChestContainer(int windowId, @Nonnull PlayerInventory inv, @Nonnull PacketBuffer extraData) {
+        this(windowId, extraData.readBlockPos(), Objects.requireNonNull(ExampleMod.proxy.getClientWorld()), inv, Objects.requireNonNull(ExampleMod.proxy.getClientPlayer()));
     }
 
-    StoneChestContainer(int id, BlockPos pos, World world, PlayerInventory inventory, PlayerEntity player) {
+    StoneChestContainer(int id, @Nonnull BlockPos pos, @Nonnull World world, @Nonnull PlayerInventory inventory, @Nonnull PlayerEntity player) {
         super(ContainerSubscriber.stone_chest, id);
         tile = (StoneChestTileEntity) world.getTileEntity(pos);
         this.player = player;
-        this.inventory = inventory;
 
         if (tile == null) {
             throw new IllegalStateException("TileEntity does not exists!");
@@ -48,7 +49,8 @@ public class StoneChestContainer extends Container {
                 }
             }
         });
-        layoutPlayerInventorySlots(8, 84);
+
+        ContainerUtils.layoutPlayerInventorySlots(((slot, x, y) -> addSlot(new Slot(inventory, slot, x, y))), 8, 84);
     }
 
     @Override
@@ -100,34 +102,8 @@ public class StoneChestContainer extends Container {
         tile.closeInventory(playerIn);
     }
 
-    private int addSlotRange(IInventory handler, int index, int x, int y, int amount, int dx) {
-        for (int i = 0 ; i < amount ; i++) {
-            addSlot(new Slot(handler, index, x, y));
-            x += dx;
-            index++;
-        }
-
-        return index;
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private void addSlotBox(IInventory handler, int index, int x, int y, int horAmount, int dx, int verAmount, int dy) {
-        for (int j = 0 ; j < verAmount ; j++) {
-            index = addSlotRange(handler, index, x, y, horAmount, dx);
-            y += dy;
-        }
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private void layoutPlayerInventorySlots(int leftCol, int topRow) {
-        addSlotBox(inventory, 9, leftCol, topRow, 9, 18, 3, 18);
-
-        // Hotbar offset
-        topRow += 58;
-        addSlotRange(inventory, 0, leftCol, topRow, 9, 18);
-    }
-
-    IInventory getIInventory() {
-        return tile.getInventory();
+    @Nonnull
+    public IInventory getIInventory() {
+        return player.inventory;
     }
 }

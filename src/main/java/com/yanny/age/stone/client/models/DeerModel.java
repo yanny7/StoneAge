@@ -96,7 +96,7 @@ public class DeerModel extends EntityModel<DeerEntity> {
 		GlStateManager.popMatrix();
 	}
 
-	private void setRotationAngle(RendererModel RendererModel, float x, float z) {
+	private void setRotationAngle(@Nonnull RendererModel RendererModel, float x, float z) {
 		RendererModel.rotateAngleX = x;
 		RendererModel.rotateAngleZ = z;
 	}

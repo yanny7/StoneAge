@@ -47,7 +47,7 @@ public class BackpackItem extends Item implements INamedContainerProvider {
         return list;
     }
 
-    public static void saveBackpackItems(@Nonnull ItemStack backpack, NonNullList<ItemStack> list) {
+    public static void saveBackpackItems(@Nonnull ItemStack backpack, @Nonnull NonNullList<ItemStack> list) {
         backpack.getOrCreateChildTag("backpack").put("inv", ItemStackUtils.serializeStacks(list));
     }
 

@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 public class AurochRenderer extends MobRenderer<AurochEntity, AurochModel> {
     private static final ResourceLocation AUROCH_TEXTURE = new ResourceLocation(Reference.MODID, "textures/entity/auroch.png");
 
-    private AurochRenderer(EntityRendererManager rendererManager) {
+    private AurochRenderer(@Nonnull EntityRendererManager rendererManager) {
         super(rendererManager, new AurochModel(), 0.5f);
     }
 

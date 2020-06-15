@@ -203,7 +203,7 @@ public class AqueductTileEntity extends TileEntity implements ITickableTileEntit
         return tick;
     }
 
-    void setSource(Direction direction, boolean isSource) {
+    void setSource(@Nonnull Direction direction, boolean isSource) {
         sources.replace(direction, isSource);
     }
 
@@ -212,7 +212,7 @@ public class AqueductTileEntity extends TileEntity implements ITickableTileEntit
         activated = !activated;
     }
 
-    private static void boneMealEffect(BlockPos pos, World world) {
+    private static void boneMealEffect(@Nonnull BlockPos pos, @Nonnull World world) {
         int r = Config.aqueductEffectRange;
         BlockPos cropPos = pos.up().north(world.rand.nextInt(r * 2 + 1) - r).east(world.rand.nextInt(r * 2 + 1) - r);
         BlockState blockstate = world.getBlockState(cropPos);

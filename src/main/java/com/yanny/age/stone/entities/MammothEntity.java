@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
 
 public class MammothEntity extends WildAnimalEntity {
 
-    public MammothEntity(EntityType<MammothEntity> type, World worldIn) {
+    public MammothEntity(@Nonnull EntityType<MammothEntity> type, @Nonnull World worldIn) {
         super(type, worldIn);
     }
 

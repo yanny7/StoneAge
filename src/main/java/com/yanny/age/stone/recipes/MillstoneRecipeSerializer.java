@@ -89,6 +89,7 @@ public class MillstoneRecipeSerializer extends ForgeRegistryEntry<IRecipeSeriali
     }
 
     public interface IFactory<T extends MillstoneRecipe> {
-        T create(ResourceLocation resourceLocation, String group, Ingredient ingredient, ItemStack result, ItemStack secondResult, double secondChance, int activateCount);
+        T create(@Nonnull ResourceLocation resourceLocation, @Nonnull String group, @Nonnull Ingredient ingredient, @Nonnull ItemStack result,
+                 @Nonnull ItemStack secondResult, double secondChance, int activateCount);
     }
 }

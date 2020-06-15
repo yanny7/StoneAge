@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 public class MammothRenderer extends MobRenderer<MammothEntity, MammothModel> {
     private static final ResourceLocation MAMMOTH_TEXTURE = new ResourceLocation(Reference.MODID, "textures/entity/mammoth.png");
 
-    private MammothRenderer(EntityRendererManager rendererManager) {
+    private MammothRenderer(@Nonnull EntityRendererManager rendererManager) {
         super(rendererManager, new MammothModel(), 1.0f);
     }
 

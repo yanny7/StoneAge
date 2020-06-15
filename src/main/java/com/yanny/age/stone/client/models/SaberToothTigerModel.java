@@ -131,7 +131,7 @@ public class SaberToothTigerModel extends EntityModel<SaberToothTigerEntity> {
 		GlStateManager.popMatrix();
 	}
 
-	public void setRotationAngle(RendererModel RendererModel, float x, float y, float z) {
+	public void setRotationAngle(@Nonnull RendererModel RendererModel, float x, float y, float z) {
 		RendererModel.rotateAngleX = x;
 		RendererModel.rotateAngleY = y;
 		RendererModel.rotateAngleZ = z;

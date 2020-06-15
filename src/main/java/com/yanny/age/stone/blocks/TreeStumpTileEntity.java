@@ -114,7 +114,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
         super.remove();
     }
 
-    void onBlockRightClicked(PlayerEntity player) {
+    void onBlockRightClicked(@Nonnull PlayerEntity player) {
         assert world != null;
 
         if (hasTool(player.getHeldItemMainhand())) {
@@ -139,7 +139,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
         }
     }
 
-    void blockActivated(PlayerEntity player) {
+    void blockActivated(@Nonnull PlayerEntity player) {
         assert world != null;
         ItemStack itemStack = player.getHeldItemMainhand();
         TreeStumpRecipe recipe = getRecipe(itemStack);
@@ -173,25 +173,27 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
         }
     }
 
-    boolean hasTool(ItemStack toolInHand) {
+    boolean hasTool(@Nonnull ItemStack toolInHand) {
         return tools.stream().anyMatch(ingredient -> ingredient.test(toolInHand));
     }
 
+    @Nonnull
     ItemStack getResult() {
         return recipeResult;
     }
 
-    int getPerc() {
+    int getProgress() {
         return (int) (100 - chopLeft / (float)totalChops * 100);
     }
 
     @Nullable
-    private TreeStumpRecipe getRecipe(ItemStack item) {
+    private TreeStumpRecipe getRecipe(@Nonnull ItemStack item) {
         assert world != null;
         tmpItemHandler.setStackInSlot(0, item);
         return world.getRecipeManager().getRecipe(TreeStumpRecipe.tree_stump, tmpItemHandlerWrapper, world).orElse(null);
     }
 
+    @Nonnull
     private IItemHandlerModifiable createNonSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {
         return new ItemStackHandler(stacks) {
             @Override
@@ -203,6 +205,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
         };
     }
 
+    @Nonnull
     private IItemHandlerModifiable createSidedInventoryHandler(@Nonnull NonNullList<ItemStack> stacks) {
         return new ItemStackHandler(stacks) {
             @Nonnull

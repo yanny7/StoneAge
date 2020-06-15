@@ -5,10 +5,12 @@ import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.Difficulty;
 
+import javax.annotation.Nonnull;
+
 class TargetAggressorGoal<T extends MobEntity> extends NearestAttackableTargetGoal<PlayerEntity> {
     private final Class<? extends IBecomeAngry> entity;
 
-    TargetAggressorGoal(T entity, Class<? extends IBecomeAngry> clazz) {
+    TargetAggressorGoal(@Nonnull T entity, @Nonnull Class<? extends IBecomeAngry> clazz) {
         super(entity, PlayerEntity.class, true);
         this.entity = clazz;
     }

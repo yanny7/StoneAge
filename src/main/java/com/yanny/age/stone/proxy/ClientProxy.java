@@ -13,6 +13,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
+import javax.annotation.Nullable;
+
 public class ClientProxy implements IProxy {
 
     @Override
@@ -45,11 +47,13 @@ public class ClientProxy implements IProxy {
     }
 
     @Override
+    @Nullable
     public World getClientWorld() {
         return Minecraft.getInstance().world;
     }
 
     @Override
+    @Nullable
     public PlayerEntity getClientPlayer() {
         return Minecraft.getInstance().player;
     }

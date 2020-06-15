@@ -18,6 +18,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
+import javax.annotation.Nonnull;
+
 import static com.yanny.age.stone.Reference.MODID;
 
 @SuppressWarnings("unused")
@@ -53,7 +55,7 @@ public class ToolSubscriber {
     public static final Item stone_sword_head = null;
 
     @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
+    public static void registerItems(@Nonnull RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
         BoneTierProperties boneTierProperties = new BoneTierProperties();
         StoneTierProperties stoneTierProperties = new StoneTierProperties();

@@ -27,7 +27,7 @@ public class DryingRackRecipeCategory implements IRecipeCategory<DryingRackRecip
     private final IDrawableStatic background;
     private final IDrawable icon;
 
-    DryingRackRecipeCategory(IGuiHelper guiHelper) {
+    DryingRackRecipeCategory(@Nonnull IGuiHelper guiHelper) {
         ResourceLocation location = new ResourceLocation(Reference.MODID, "textures/gui/jei/gui_layouts.png");
         background = guiHelper.createDrawable(location, 0, 61, 120, 60);
         localizedName = I18n.format("block.stone_age.drying_rack");
