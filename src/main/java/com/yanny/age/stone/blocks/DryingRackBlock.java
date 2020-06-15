@@ -30,8 +30,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class DryingRackBlock extends HorizontalBlock implements TopBlockInfoProvider {
-    private static final VoxelShape SHAPE_NS = Block.makeCuboidShape(0.0D, 15.0D, 7.5D, 16.0D, 16.0D, 8.5D);
-    private static final VoxelShape SHAPE_EW = Block.makeCuboidShape(7.5D, 15.0D, 0.0D, 8.5D, 16.0D, 16.0D);
+    private static final VoxelShape SHAPE_NS = Block.makeCuboidShape(0.0D, 0.0D, 7.5D, 16.0D, 16.0D, 8.5D);
+    private static final VoxelShape SHAPE_EW = Block.makeCuboidShape(7.5D, 0.0D, 0.0D, 8.5D, 16.0D, 16.0D);
 
     public DryingRackBlock() {
         super(Block.Properties.create(Material.WOOD).harvestLevel(ItemTier.WOOD.getHarvestLevel()).harvestTool(ToolType.AXE).hardnessAndResistance(2.0f));
