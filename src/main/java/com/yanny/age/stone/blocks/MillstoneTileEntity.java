@@ -332,8 +332,8 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
         int outputRecipeSecondCount = recipeSecondOutput.getCount();
 
         if (inputCount >= inputRecipeCount) {
-            return (emptyOutput || emptyRecipe || (outputStack.isItemEqual(recipeOutput) && outputCount < outputMaxCount - outputRecipeCount)) &&
-                    (emptySecondOutput || emptySecondRecipe || (outputSecondStack.isItemEqual(recipeSecondOutput) && outputSecondCount < outputSecondMaxCount - outputRecipeSecondCount));
+            return (emptyOutput || emptyRecipe || (outputStack.isItemEqual(recipeOutput) && outputCount <= outputMaxCount - outputRecipeCount)) &&
+                    (emptySecondOutput || emptySecondRecipe || (outputSecondStack.isItemEqual(recipeSecondOutput) && outputSecondCount <= outputSecondMaxCount - outputRecipeSecondCount));
         }
 
         return false;
