@@ -108,6 +108,9 @@ dependencies {
 
     compileOnly fg.deobf("com.blamejared.crafttweaker:CraftTweaker-${mc_version}:${crt_version}")
 
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
+
     // look for ages-api library
     compileOnly fileTree(include: ['*.jar'], dir: 'libs')
 
