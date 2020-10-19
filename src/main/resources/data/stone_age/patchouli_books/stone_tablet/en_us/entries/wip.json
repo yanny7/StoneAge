@@ -1,0 +1,16 @@
+{
+  "name": "Link to Wiki",
+  "icon": "minecraft:writable_book",
+  "category": "stone_age:wip",
+  "pages": [
+    {
+      "type": "text",
+      "text": "For now you can use online Wiki page"
+    },
+    {
+      "type": "link",
+      "link_text": "Stone Age Wiki",
+      "url": "https://github.com/yanny7/StoneAge/wiki"
+    }
+  ]
+}
