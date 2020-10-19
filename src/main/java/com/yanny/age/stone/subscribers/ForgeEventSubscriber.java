@@ -10,14 +10,18 @@ import com.yanny.ages.api.utils.AgeUtils;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementList;
 import net.minecraft.advancements.AdvancementManager;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,28 +29,31 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
-import net.minecraft.world.gen.placement.IPlacementConfig;
-import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.common.world.MobSpawnInfoBuilder;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
+import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
@@ -64,7 +71,6 @@ import static net.minecraft.entity.EntityType.*;
 
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeEventSubscriber {
-    private static final String PLAYER_MANUAL_NBT = MODID + "_manual";
 
     private static final Set<ResourceLocation> RECIPES_TO_REMOVE = Sets.newHashSet(
             new ResourceLocation("minecraft", "wooden_axe"),        // removed
@@ -185,6 +191,17 @@ public class ForgeEventSubscriber {
     }
 
     @SubscribeEvent
+    public static void rightClickMillstone(@Nonnull PlayerInteractEvent.RightClickBlock event) {
+        BlockPos blockPos = event.getPos();
+
+        TileEntity tileEntity = event.getWorld().getTileEntity(blockPos);
+
+        if (tileEntity instanceof INamedContainerProvider && !event.getWorld().isRemote && event.getPlayer().isSneaking()) {
+            NetworkHooks.openGui((ServerPlayerEntity) event.getPlayer(), (INamedContainerProvider) tileEntity, tileEntity.getPos());
+        }
+    }
+
+    @SubscribeEvent
     public static void advancementEvent(@Nonnull AdvancementEvent event) {
         if (event.getAdvancement().getId().equals(new ResourceLocation(MODID, "stone_age/end_of_stone_age")) && (AgeUtils.getPlayerAge(event.getPlayer()) <= Age.STONE_AGE.value)) {
             AgeUtils.setPlayerAge(event.getPlayer(), Age.BRONZE_AGE);
@@ -224,7 +241,7 @@ public class ForgeEventSubscriber {
             List<ItemEntity> driedGrassList = world.getEntitiesWithinAABB(ItemEntity.class, new AxisAlignedBB(position),
                     itemEntity -> itemEntity.getItem().getItem().equals(ItemSubscriber.dried_grass));
 
-            if (blockState.isAir(world, position) && !driedGrassList.isEmpty()) {
+            if (blockState.getBlock().isAir(blockState, world, position) && !driedGrassList.isEmpty()) {
                 world.setBlockState(position, FIRE.getDefaultState(), 11);
                 player.sendBreakAnimation(Hand.MAIN_HAND);
                 player.sendBreakAnimation(Hand.OFF_HAND);
@@ -244,54 +261,53 @@ public class ForgeEventSubscriber {
             }
         }
     }
+    
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void biomeLoadingEventAdd(@Nonnull BiomeLoadingEvent event) {
+        MobSpawnInfoBuilder spawns = event.getSpawns();
 
-    @SuppressWarnings("ConstantConditions")
-    @SubscribeEvent
-    public static void serverAboutToStartEvent(@Nonnull FMLServerAboutToStartEvent event) {
-        for (Biome biome : ForgeRegistries.BIOMES) {
-            if (Config.spawnDeerEnable && (!Config.spawnDeerAllowedBiomesBlacklist == Config.spawnDeerAllowedBiomes.contains(biome))) {
-                biome.getSpawns(deer.getClassification()).add(new Biome.SpawnListEntry(deer, Config.spawnDeerWeight, Config.spawnDeerMinCount, Config.spawnDeerMaxCount));
-            }
-            if (Config.spawnBoarEnable && (!Config.spawnBoarAllowedBiomesBlacklist == Config.spawnBoarAllowedBiomes.contains(biome))) {
-                biome.getSpawns(boar.getClassification()).add(new Biome.SpawnListEntry(boar, Config.spawnBoarWeight, Config.spawnBoarMinCount, Config.spawnBoarMaxCount));
-            }
-            if (Config.spawnAurochEnable && (!Config.spawnAurochAllowedBiomesBlacklist == Config.spawnAurochAllowedBiomes.contains(biome))) {
-                biome.getSpawns(auroch.getClassification()).add(new Biome.SpawnListEntry(auroch, Config.spawnAurochWeight, Config.spawnAurochMinCount, Config.spawnAurochMaxCount));
-            }
-            if (Config.spawnFowlEnable && (!Config.spawnFowlAllowedBiomesBlacklist == Config.spawnFowlAllowedBiomes.contains(biome))) {
-                biome.getSpawns(fowl.getClassification()).add(new Biome.SpawnListEntry(fowl, Config.spawnFowlWeight, Config.spawnFowlMinCount, Config.spawnFowlMaxCount));
-            }
-            if (Config.spawnMouflonEnable && (!Config.spawnMouflonAllowedBiomesBlacklist == Config.spawnMouflonAllowedBiomes.contains(biome))) {
-                biome.getSpawns(mouflon.getClassification()).add(new Biome.SpawnListEntry(mouflon, Config.spawnMouflonWeight, Config.spawnMouflonMinCount, Config.spawnMouflonMaxCount));
-            }
-            if (Config.spawnMammothEnable && (!Config.spawnMammothAllowedBiomesBlacklist == Config.spawnMammothAllowedBiomes.contains(biome))) {
-                biome.getSpawns(mammoth.getClassification()).add(new Biome.SpawnListEntry(mammoth, Config.spawnMammothWeight, Config.spawnMammothMinCount, Config.spawnMammothMaxCount));
-            }
-            if (Config.spawnSaberToothTigerEnable && (!Config.spawnSaberToothTigerAllowedBiomesBlacklist == Config.spawnSaberToothTigerAllowedBiomes.contains(biome))) {
-                biome.getSpawns(saber_tooth_tiger.getClassification()).add(new Biome.SpawnListEntry(saber_tooth_tiger, Config.spawnSaberToothTigerWeight, Config.spawnSaberToothTigerMinCount, Config.spawnSaberToothTigerMaxCount));
-            }
-            if (Config.spawnWoollyRhinoEnable && (!Config.spawnWoollyRhinoAllowedBiomesBlacklist == Config.spawnWoollyRhinoAllowedBiomes.contains(biome))) {
-                biome.getSpawns(woolly_rhino.getClassification()).add(new Biome.SpawnListEntry(woolly_rhino, Config.spawnWoollyRhinoWeight, Config.spawnWoollyRhinoMinCount, Config.spawnWoollyRhinoMaxCount));
-            }
+        if (Config.spawnDeerEnable && (!Config.spawnDeerAllowedBiomesBlacklist == Config.spawnDeerAllowedBiomes.stream().anyMatch(biome -> biomeComparator(biome, event)))) {
+            spawns.getSpawner(deer.getClassification()).add(new MobSpawnInfo.Spawners(deer, Config.spawnDeerWeight, Config.spawnDeerMinCount, Config.spawnDeerMaxCount));
+        }
+        if (Config.spawnBoarEnable && (!Config.spawnBoarAllowedBiomesBlacklist == Config.spawnBoarAllowedBiomes.stream().anyMatch(biome -> biomeComparator(biome, event)))) {
+            spawns.getSpawner(boar.getClassification()).add(new MobSpawnInfo.Spawners(boar, Config.spawnBoarWeight, Config.spawnBoarMinCount, Config.spawnBoarMaxCount));
+        }
+        if (Config.spawnAurochEnable && (!Config.spawnAurochAllowedBiomesBlacklist == Config.spawnAurochAllowedBiomes.stream().anyMatch(biome -> biomeComparator(biome, event)))) {
+            spawns.getSpawner(auroch.getClassification()).add(new MobSpawnInfo.Spawners(auroch, Config.spawnAurochWeight, Config.spawnAurochMinCount, Config.spawnAurochMaxCount));
+        }
+        if (Config.spawnFowlEnable && (!Config.spawnFowlAllowedBiomesBlacklist == Config.spawnFowlAllowedBiomes.stream().anyMatch(biome -> biomeComparator(biome, event)))) {
+            spawns.getSpawner(fowl.getClassification()).add(new MobSpawnInfo.Spawners(fowl, Config.spawnFowlWeight, Config.spawnFowlMinCount, Config.spawnFowlMaxCount));
+        }
+        if (Config.spawnMouflonEnable && (!Config.spawnMouflonAllowedBiomesBlacklist == Config.spawnMouflonAllowedBiomes.stream().anyMatch(biome -> biomeComparator(biome, event)))) {
+            spawns.getSpawner(mouflon.getClassification()).add(new MobSpawnInfo.Spawners(mouflon, Config.spawnMouflonWeight, Config.spawnMouflonMinCount, Config.spawnMouflonMaxCount));
+        }
+        if (Config.spawnMammothEnable && (!Config.spawnMammothAllowedBiomesBlacklist == Config.spawnMammothAllowedBiomes.stream().anyMatch(biome -> biomeComparator(biome, event)))) {
+            spawns.getSpawner(mammoth.getClassification()).add(new MobSpawnInfo.Spawners(mammoth, Config.spawnMammothWeight, Config.spawnMammothMinCount, Config.spawnMammothMaxCount));
+        }
+        if (Config.spawnSaberToothTigerEnable && (!Config.spawnSaberToothTigerAllowedBiomesBlacklist == Config.spawnSaberToothTigerAllowedBiomes.stream().anyMatch(biome -> biomeComparator(biome, event)))) {
+            spawns.getSpawner(saber_tooth_tiger.getClassification()).add(new MobSpawnInfo.Spawners(saber_tooth_tiger, Config.spawnSaberToothTigerWeight, Config.spawnSaberToothTigerMinCount, Config.spawnSaberToothTigerMaxCount));
+        }
+        if (Config.spawnWoollyRhinoEnable && (!Config.spawnWoollyRhinoAllowedBiomesBlacklist == Config.spawnWoollyRhinoAllowedBiomes.stream().anyMatch(biome -> biomeComparator(biome, event)))) {
+            spawns.getSpawner(woolly_rhino.getClassification()).add(new MobSpawnInfo.Spawners(woolly_rhino, Config.spawnWoollyRhinoWeight, Config.spawnWoollyRhinoMinCount, Config.spawnWoollyRhinoMaxCount));
+        }
 
-            if (Config.removeVanillaGeneratedAnimals) {
-                //noinspection unchecked
-                biome.getSpawns(CREATURE).removeIf(entry -> Sets.newHashSet(COW, SHEEP, PIG, CHICKEN).contains(entry.entityType));
-            }
+        if (Config.abandonedCampAllowedBiomes.stream().anyMatch(biome -> biomeComparator(biome, event))) {
+            event.getGeneration().getFeatures(GenerationStage.Decoration.SURFACE_STRUCTURES).add(() ->
+                    FeatureSubscriber.abandoned_camp_feature.withConfiguration(new ProbabilityConfig((float) Config.abandonedCampSpawnChance)).withPlacement(Features.Placements.field_244001_l));
+        }
+        if (Config.burialPlaceAllowedBiomes.stream().anyMatch(biome -> biomeComparator(biome, event))) {
+            event.getGeneration().getFeatures(GenerationStage.Decoration.SURFACE_STRUCTURES).add(() ->
+                    FeatureSubscriber.burial_place_feature.withConfiguration(new ProbabilityConfig((float) Config.burialPlaceSpawnChance)).withPlacement(Features.Placements.field_244001_l));
+        }
+    }
 
-            if (Config.abandonedCampAllowedBiomes.contains(biome)) {
-                biome.addStructure(FeatureSubscriber.abandoned_camp_structure.withConfiguration(new ProbabilityConfig((float) Config.abandonedCampSpawnChance)));
-                biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
-                        FeatureSubscriber.abandoned_camp_structure.withConfiguration(new ProbabilityConfig((float) Config.abandonedCampSpawnChance)).
-                                withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
-            }
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void biomeLoadingEventRemove(@Nonnull BiomeLoadingEvent event) {
+        MobSpawnInfoBuilder spawns = event.getSpawns();
 
-            if (Config.burialPlaceAllowedBiomes.contains(biome)) {
-                biome.addStructure(FeatureSubscriber.burial_place_structure.withConfiguration(new ProbabilityConfig((float) Config.burialPlaceSpawnChance)));
-                biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
-                        FeatureSubscriber.burial_place_structure.withConfiguration(new ProbabilityConfig((float) Config.burialPlaceSpawnChance)).
-                                withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
-            }
+        if (Config.removeVanillaGeneratedAnimals) {
+            Set<EntityType<?>> vanillaEntities = Sets.newHashSet(COW, SHEEP, PIG, CHICKEN);
+            spawns.getSpawner(CREATURE).removeIf(entry -> vanillaEntities.contains(entry.field_242588_c));
         }
     }
 
@@ -308,36 +324,35 @@ public class ForgeEventSubscriber {
         }
     }
 
-    @SubscribeEvent
-    public static void addManualToPlayer(@Nonnull PlayerEvent.PlayerLoggedInEvent event) {
-        if (!Config.givePlayerManualOnFirstConnect) {
-            return;
-        }
-
-        CompoundNBT nbt = event.getPlayer().getPersistentData();
-        CompoundNBT persistent;
-
-        if (!nbt.contains(PlayerEntity.PERSISTED_NBT_TAG)) {
-            nbt.put(PlayerEntity.PERSISTED_NBT_TAG, (persistent = new CompoundNBT()));
+    private static boolean biomeComparator(Biome biome, BiomeLoadingEvent event) {
+        if (biome.getRegistryName() != null) {
+            return biome.getRegistryName().compareTo(event.getName()) == 0;
         } else {
-            persistent = nbt.getCompound(PlayerEntity.PERSISTED_NBT_TAG);
-        }
-
-        if (!persistent.contains(PLAYER_MANUAL_NBT)) {
-            persistent.putBoolean(PLAYER_MANUAL_NBT, true);
-            event.getPlayer().inventory.addItemStackToInventory(new ItemStack(ItemSubscriber.stone_tablet));
+            return false;
         }
     }
 
     private static void setUseToolForWood() {
-        Field field = ObfuscationReflectionHelper.findField(Material.class, "field_76241_J");
-        field.setAccessible(true);
+        Field useTool = ObfuscationReflectionHelper.findField(AbstractBlock.AbstractBlockState.class, "field_235706_j_");
+        Field material = AbstractBlock.class.getDeclaredFields()[1];
+
+        useTool.setAccessible(true);
+        material.setAccessible(true);
 
         try {
             Field modifiersField = Field.class.getDeclaredField("modifiers");
             modifiersField.setAccessible(true);
-            modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-            field.setBoolean(Material.WOOD, false);
+            modifiersField.setInt(useTool, useTool.getModifiers() & ~Modifier.FINAL);
+
+            ForgeRegistries.BLOCKS.forEach(block -> {
+                try {
+                    if (material.get(block).equals(Material.WOOD)) {
+                        useTool.setBoolean(block.getDefaultState(), true);
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            });
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }

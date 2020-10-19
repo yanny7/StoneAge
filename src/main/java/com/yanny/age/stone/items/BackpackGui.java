@@ -1,5 +1,6 @@
 package com.yanny.age.stone.items;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.yanny.age.stone.Reference;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -19,20 +20,12 @@ public class BackpackGui extends ContainerScreen<Container> {
     }
 
     @Override
-    public void render(int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground();
-        super.render(mouseX, mouseY, partialTicks);
-        this.renderHoveredToolTip(mouseX, mouseY);
-    }
-
-    @Override
-    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        if (minecraft == null) {
+    protected void func_230450_a_(@Nonnull MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
+        if (field_230706_i_ == null) {
             return;
         }
 
-        RenderSystem.color4f(1, 1, 1, 1);
-        minecraft.getTextureManager().bindTexture(GUI);
-        blit(guiLeft, guiTop, 0, 0, xSize, ySize);
+        field_230706_i_.getTextureManager().bindTexture(GUI);
+        func_238474_b_(matrixStack, guiLeft, guiTop, 0, 0, xSize, ySize);
     }
 }

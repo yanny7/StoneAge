@@ -55,6 +55,7 @@ public class MillstoneContainer extends Container {
         trackIntArray(data);
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
         if (tile == null || tile.getWorld() == null) {

@@ -10,8 +10,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.ItemStack;
@@ -118,7 +118,7 @@ public class AqueductBlock extends Block implements TopBlockInfoProvider {
     public BlockState updatePostPlacement(@Nonnull BlockState stateIn, @Nonnull Direction facing, @Nonnull BlockState facingState, @Nonnull IWorld worldIn,
                                           @Nonnull BlockPos currentPos, @Nonnull BlockPos facingPos) {
         if (facing != Direction.DOWN && facing != Direction.UP) {
-            return stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), checkSideConnection(worldIn.getWorld(), currentPos, facingPos, facing));
+            return stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), checkSideConnection((World) worldIn, currentPos, facingPos, facing));
         }
 
         return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
@@ -127,7 +127,7 @@ public class AqueductBlock extends Block implements TopBlockInfoProvider {
     @SuppressWarnings("deprecation")
     @Nonnull
     @Override
-    public IFluidState getFluidState(BlockState state) {
+    public FluidState getFluidState(BlockState state) {
         return state.get(WATERLOGGED) ? Fluids.WATER.getFlowingFluidState(1, false) : super.getFluidState(state);
     }
 
@@ -200,7 +200,7 @@ public class AqueductBlock extends Block implements TopBlockInfoProvider {
         }
     }
 
-    static boolean isWater(@Nonnull Block block, @Nonnull IFluidState fluidBlockState) {
+    static boolean isWater(@Nonnull Block block, @Nonnull FluidState fluidBlockState) {
         return block.equals(Blocks.WATER) && (fluidBlockState.getLevel() == 8);
     }
 

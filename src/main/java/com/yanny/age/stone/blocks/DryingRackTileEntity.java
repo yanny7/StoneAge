@@ -3,6 +3,7 @@ package com.yanny.age.stone.blocks;
 import com.yanny.age.stone.recipes.DryingRackRecipe;
 import com.yanny.age.stone.subscribers.TileEntitySubscriber;
 import com.yanny.ages.api.utils.ItemStackUtils;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
@@ -76,7 +77,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
     }
 
     @Override
-    public void read(CompoundNBT tag) {
+    public void func_230337_a_(@Nonnull BlockState blockState, CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
         ItemStackUtils.deserializeStacks(invTag, stacks);
 
@@ -84,7 +85,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
             items[i].read(tag.getCompound("items" + i));
         }
 
-        super.read(tag);
+        super.func_230337_a_(blockState, tag);
     }
 
     @Override
@@ -114,7 +115,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         super.onDataPacket(net, pkt);
-        read(pkt.getNbtCompound());
+        func_230337_a_(getBlockState(), pkt.getNbtCompound());
     }
 
     @Nonnull

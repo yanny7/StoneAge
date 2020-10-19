@@ -60,6 +60,15 @@ public class EntitySubscriber {
         registry.register(mammoth);
         registry.register(saber_tooth_tiger);
         registry.register(woolly_rhino);
+
+        DeerEntity.registerAttributes();
+        BoarEntity.registerAttributes();
+        AurochEntity.registerAttributes();
+        FowlEntity.registerAttributes();
+        MouflonEntity.registerAttributes();
+        MammothEntity.registerAttributes();
+        SaberToothTigerEntity.registerAttributes();
+        WoollyRhinoEntity.registerAttributes();
     }
 
     @SubscribeEvent

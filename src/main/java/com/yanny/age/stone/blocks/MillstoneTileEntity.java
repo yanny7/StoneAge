@@ -3,6 +3,7 @@ package com.yanny.age.stone.blocks;
 import com.yanny.age.stone.recipes.MillstoneRecipe;
 import com.yanny.age.stone.subscribers.TileEntitySubscriber;
 import com.yanny.ages.api.utils.ItemStackUtils;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -118,7 +119,7 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
     }
 
     @Override
-    public void read(CompoundNBT tag) {
+    public void func_230337_a_(@Nonnull BlockState blockState, CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
         ItemStackUtils.deserializeStacks(invTag, stacks);
         active = tag.getBoolean("active");
@@ -128,7 +129,7 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
         secondResult = ItemStack.read(tag.getCompound("secondResult"));
         secondChance = tag.getDouble("secondChance");
         activateTicks = tag.getInt("activateTicks");
-        super.read(tag);
+        super.func_230337_a_(blockState, tag);
     }
 
     @Override
@@ -160,7 +161,7 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         super.onDataPacket(net, pkt);
-        read(pkt.getNbtCompound());
+        func_230337_a_(getBlockState(), pkt.getNbtCompound());
     }
 
     @Nonnull
@@ -254,7 +255,7 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
         return rotation;
     }
 
-    void onActivated() {
+    public void onActivated() {
         assert world != null;
 
         if (!active) {

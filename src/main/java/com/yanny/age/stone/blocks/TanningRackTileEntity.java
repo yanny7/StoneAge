@@ -4,6 +4,7 @@ import com.yanny.age.stone.config.Config;
 import com.yanny.age.stone.recipes.TanningRackRecipe;
 import com.yanny.age.stone.subscribers.TileEntitySubscriber;
 import com.yanny.ages.api.utils.ItemStackUtils;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.IInventory;
@@ -54,10 +55,10 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
     }
 
     @Override
-    public void read(CompoundNBT tag) {
+    public void func_230337_a_(@Nonnull BlockState blockState, CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
         ItemStackUtils.deserializeStacks(invTag, stacks);
-        super.read(tag);
+        super.func_230337_a_(blockState, tag);
     }
 
     @Override
@@ -82,7 +83,7 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         super.onDataPacket(net, pkt);
-        read(pkt.getNbtCompound());
+        func_230337_a_(getBlockState(), pkt.getNbtCompound());
     }
 
     @Nonnull

@@ -4,14 +4,16 @@ import com.yanny.age.stone.config.Config;
 import com.yanny.age.stone.subscribers.TileEntitySubscriber;
 import com.yanny.ages.api.utils.ItemStackUtils;
 import com.yanny.ages.api.utils.Tags;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
@@ -20,10 +22,10 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.loot.*;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -88,10 +90,10 @@ public class FishingNetTileEntity extends TileEntity implements IInventoryInterf
     }
 
     @Override
-    public void read(CompoundNBT tag) {
+    public void func_230337_a_(@Nonnull BlockState blockState, CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
         ItemStackUtils.deserializeStacks(invTag, stacks);
-        super.read(tag);
+        super.func_230337_a_(blockState, tag);
     }
 
     @Override
@@ -116,7 +118,7 @@ public class FishingNetTileEntity extends TileEntity implements IInventoryInterf
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         super.onDataPacket(net, pkt);
-        read(pkt.getNbtCompound());
+        func_230337_a_(getBlockState(), pkt.getNbtCompound());
     }
 
     @Nonnull
@@ -150,7 +152,7 @@ public class FishingNetTileEntity extends TileEntity implements IInventoryInterf
         assert world != null;
         LootTable lootTable = ((ServerWorld) world).getServer().getLootTableManager().getLootTableFromLocation(LootTables.GAMEPLAY_FISHING);
         LootContext lootContext = new LootContext.Builder((ServerWorld) world)
-                .withParameter(LootParameters.POSITION, getPos())
+                .withParameter(LootParameters.field_237457_g_, Vector3d.func_237489_a_(getPos()))
                 .withParameter(LootParameters.TOOL, stacks.get(0))
                 .build(LootParameterSets.FISHING);
 
@@ -186,7 +188,7 @@ public class FishingNetTileEntity extends TileEntity implements IInventoryInterf
 
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                return (slot == 0) && Tags.Items.FISHING_NET_MESHES.contains(stack.getItem());
+                return (slot == 0) && Tags.Items.FISHING_NET_MESHES.func_230235_a_(stack.getItem());
             }
 
             @Override
@@ -202,7 +204,7 @@ public class FishingNetTileEntity extends TileEntity implements IInventoryInterf
         assert world != null;
 
         for (Direction direction : Direction.Plane.HORIZONTAL) {
-            IFluidState fluidState = world.getFluidState(pos.offset(direction));
+            FluidState fluidState = world.getFluidState(pos.offset(direction));
 
             if (!fluidState.isSource() || fluidState.getFluid() != Fluids.WATER) {
                 return false;

@@ -4,6 +4,9 @@ import com.yanny.age.stone.subscribers.EntitySubscriber;
 import com.yanny.age.stone.subscribers.SoundSubscriber;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -15,6 +18,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -27,7 +31,7 @@ public class MammothEntity extends WildAnimalEntity {
 
     @Nullable
     @Override
-    public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
+    public AgeableEntity func_241840_a(@Nonnull ServerWorld serverWorld, @Nonnull AgeableEntity ageable) {
         return EntitySubscriber.mammoth.create(world);
     }
 
@@ -45,10 +49,12 @@ public class MammothEntity extends WildAnimalEntity {
         this.targetSelector.addGoal(2, new TargetAggressorGoal<>(this, MammothEntity.class));
     }
 
-    public void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
+    private static AttributeModifierMap.MutableAttribute getAttributes() {
+        return MobEntity.func_233666_p_().func_233815_a_(Attributes.field_233818_a_, 40.0D).func_233815_a_(Attributes.field_233821_d_, 0.3F);
+    }
+
+    public static void registerAttributes() {
+        GlobalEntityTypeAttributes.put(EntitySubscriber.mammoth, getAttributes().func_233813_a_());
     }
 
     @Override
@@ -57,7 +63,7 @@ public class MammothEntity extends WildAnimalEntity {
         this.playSound(SoundSubscriber.mammoth_hit, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 
         if (entityIn instanceof LivingEntity) {
-            ((LivingEntity) entityIn).knockBack(this, 2.0F,
+            ((LivingEntity) entityIn).func_233627_a_(2.0F,
                     MathHelper.sin(this.rotationYaw * ((float)Math.PI / 180F)),
                     -MathHelper.cos(this.rotationYaw * ((float)Math.PI / 180F)));
         }

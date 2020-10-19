@@ -1,6 +1,7 @@
 package com.yanny.age.stone.compatibility.jei;
 
 import com.google.common.collect.ImmutableList;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.recipes.MillstoneRecipe;
 import com.yanny.age.stone.subscribers.BlockSubscriber;
@@ -97,9 +98,9 @@ public class MillstoneRecipeCategory implements IRecipeCategory<MillstoneRecipe>
     }
 
     @Override
-    public void draw(MillstoneRecipe recipe, double mouseX, double mouseY) {
+    public void draw(MillstoneRecipe recipe, MatrixStack matrixStack, double mouseX, double mouseY) {
         if (!recipe.getRecipeSecondOutput().isEmpty()) {
-            Minecraft.getInstance().fontRenderer.drawString(String.format(Locale.ENGLISH, "%.0f%%", recipe.getSecondChance() * 100), 96, 38, -1);
+            //Minecraft.getInstance().fontRenderer.drawString(String.format(Locale.ENGLISH, "%.0f%%", recipe.getSecondChance() * 100), 96, 38, -1); TODO 1.16 ???
         }
     }
 }

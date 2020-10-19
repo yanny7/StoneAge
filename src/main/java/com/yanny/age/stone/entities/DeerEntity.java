@@ -4,7 +4,10 @@ import com.yanny.age.stone.subscribers.EntitySubscriber;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -14,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -26,8 +30,8 @@ public class DeerEntity extends AnimalEntity {
 
     @Nullable
     @Override
-    public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
-        return EntitySubscriber.deer.create(world);
+    public AgeableEntity func_241840_a(@Nonnull ServerWorld serverWorld, @Nonnull AgeableEntity ageable) {
+        return EntitySubscriber.deer.create(serverWorld);
     }
 
     @Override
@@ -47,11 +51,12 @@ public class DeerEntity extends AnimalEntity {
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
     }
 
-    @Override
-    public void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2F);
+    private static AttributeModifierMap.MutableAttribute getAttributes() {
+        return MobEntity.func_233666_p_().func_233815_a_(Attributes.field_233818_a_, 12.0D).func_233815_a_(Attributes.field_233821_d_, 0.2F);
+    }
+
+    public static void registerAttributes() {
+        GlobalEntityTypeAttributes.put(EntitySubscriber.deer, getAttributes().func_233813_a_());
     }
 
     @Override

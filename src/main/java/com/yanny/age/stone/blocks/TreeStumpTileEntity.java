@@ -3,6 +3,7 @@ package com.yanny.age.stone.blocks;
 import com.yanny.age.stone.recipes.TreeStumpRecipe;
 import com.yanny.age.stone.subscribers.TileEntitySubscriber;
 import com.yanny.ages.api.utils.ItemStackUtils;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.IInventory;
@@ -52,7 +53,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
     }
 
     @Override
-    public void read(CompoundNBT tag) {
+    public void func_230337_a_(@Nonnull BlockState blockState, CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
         ItemStackUtils.deserializeStacks(invTag, stacks);
         chopLeft = tag.getInt("chopLeft");
@@ -60,7 +61,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
         recipeResult = ItemStack.read(tag.getCompound("result"));
         CompoundNBT toolTag = tag.getCompound("tool");
         ItemStackUtils.deserializeIngredients(toolTag, tools);
-        super.read(tag);
+        super.func_230337_a_(blockState, tag);
     }
 
     @Override
@@ -91,7 +92,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         super.onDataPacket(net, pkt);
-        read(pkt.getNbtCompound());
+        func_230337_a_(getBlockState(), pkt.getNbtCompound());
     }
 
     @Nonnull

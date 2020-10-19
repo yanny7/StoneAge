@@ -1,5 +1,6 @@
 package com.yanny.age.stone.blocks;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.yanny.age.stone.Reference;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -18,25 +19,24 @@ public class MillstoneGui extends ContainerScreen<MillstoneContainer> {
     }
 
     @Override
-    public void render(int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground();
-        super.render(mouseX, mouseY, partialTicks);
-        this.renderHoveredToolTip(mouseX, mouseY);
+    public void func_230430_a_(@Nonnull MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+        this.func_230446_a_(matrixStack);
+        super.func_230430_a_(matrixStack, mouseX, mouseY, partialTicks);
+        this.func_230459_a_(matrixStack, mouseX, mouseY);
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        if (minecraft == null) {
+    protected void func_230450_a_(@Nonnull MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
+        if (field_230706_i_ == null) {
             return;
         }
 
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        minecraft.getTextureManager().bindTexture(GUI);
-        blit(guiLeft, guiTop, 0, 0, xSize, ySize);
+        field_230706_i_.getTextureManager().bindTexture(GUI);
+        func_238474_b_(matrixStack, guiLeft, guiTop, 0, 0, xSize, ySize);
 
         if (container.getProgress() > 0) {
             int l = (int) Math.ceil(container.getProgress() / 100.0 * 16);
-            blit(guiLeft + 80, guiTop + 35, 176, 0, l, 16);
+            func_238474_b_(matrixStack, guiLeft + 80, guiTop + 35, 176, 0, l, 16);
         }
     }
 }

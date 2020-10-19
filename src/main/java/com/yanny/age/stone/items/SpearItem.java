@@ -1,13 +1,15 @@
 package com.yanny.age.stone.items;
 
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.yanny.age.stone.entities.FlintSpearEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -19,7 +21,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -32,8 +34,8 @@ public class SpearItem extends Item {
     
     public SpearItem(@Nonnull IItemTier tier, float attackDamageIn, float attackSpeedIn, @Nonnull Item.Properties builder) {
         super(builder);
-        this.addPropertyOverride(new ResourceLocation("throwing"),
-                (itemStack, world, livingEntity) -> livingEntity != null && livingEntity.isHandActive() && livingEntity.getActiveItemStack() == itemStack ? 1.0F : 0.0F);
+        /*this.addPropertyOverride(new ResourceLocation("throwing"),
+                (itemStack, world, livingEntity) -> livingEntity != null && livingEntity.isHandActive() && livingEntity.getActiveItemStack() == itemStack ? 1.0F : 0.0F);*/
         this.attackDamage = attackDamageIn + tier.getAttackDamage();
         this.attackSpeed = attackSpeedIn;
     }
@@ -75,7 +77,7 @@ public class SpearItem extends Item {
 
                         if (j == 0) {
                             FlintSpearEntity spearEntity = new FlintSpearEntity(worldIn, playerentity, stack);
-                            spearEntity.shoot(playerentity, playerentity.rotationPitch, playerentity.rotationYaw,
+                            spearEntity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw,
                                     0.0F, 2.5F + (float)j * 0.5F, 1.0F);
 
                             if (playerentity.abilities.isCreativeMode) {
@@ -107,8 +109,8 @@ public class SpearItem extends Item {
                         playerentity.addVelocity(f1, f2, f3);
                         playerentity.startSpinAttack(20);
 
-                        if (playerentity.onGround) {
-                            playerentity.move(MoverType.SELF, new Vec3d(0.0D, 1.1999999F, 0.0D));
+                        if (playerentity.func_233570_aj_()) {
+                            playerentity.move(MoverType.SELF, new Vector3d(0.0D, 1.1999999F, 0.0D));
                         }
 
                         SoundEvent soundevent;
@@ -162,16 +164,15 @@ public class SpearItem extends Item {
     @SuppressWarnings("deprecation")
     @Nonnull
     @Override
-    public Multimap<String, AttributeModifier> getAttributeModifiers(@Nonnull EquipmentSlotType equipmentSlot) {
-        Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(equipmentSlot);
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(@Nonnull EquipmentSlotType equipmentSlot) {
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> attributeModifierBuilder = ImmutableMultimap.builder();
         if (equipmentSlot == EquipmentSlotType.MAINHAND) {
-            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER,
+            attributeModifierBuilder.put(Attributes.field_233823_f_, new AttributeModifier(ATTACK_DAMAGE_MODIFIER,
                     "Tool modifier", attackDamage, AttributeModifier.Operation.ADDITION));
-            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER,
+            attributeModifierBuilder.put(Attributes.field_233825_h_, new AttributeModifier(ATTACK_SPEED_MODIFIER,
                     "Tool modifier", attackSpeed, AttributeModifier.Operation.ADDITION));
         }
-
-        return multimap;
+        return attributeModifierBuilder.build();
     }
 
     @Override

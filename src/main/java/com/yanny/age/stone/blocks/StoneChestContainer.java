@@ -53,6 +53,7 @@ public class StoneChestContainer extends Container {
         ContainerUtils.layoutPlayerInventorySlots(((slot, x, y) -> addSlot(new Slot(inventory, slot, x, y))), 8, 84);
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
         if (tile == null || tile.getWorld() == null) {

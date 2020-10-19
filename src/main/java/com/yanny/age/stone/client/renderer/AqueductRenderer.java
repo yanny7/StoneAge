@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.world.ILightReader;
+import net.minecraft.world.IBlockDisplayReader;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -40,7 +40,7 @@ public class AqueductRenderer extends TileEntityRenderer<AqueductTileEntity> {
         matrixStack.push();
 
         Fluid fluid = Fluids.WATER.getFluid();
-        ILightReader lightReader =  MinecraftForgeClient.getRegionRenderCache(tileEntityIn.getWorld(), tileEntityIn.getPos());
+        IBlockDisplayReader lightReader =  MinecraftForgeClient.getRegionRenderCache(tileEntityIn.getWorld(), tileEntityIn.getPos());
         //noinspection deprecation
         TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(AtlasTexture.LOCATION_BLOCKS_TEXTURE)
                 .apply(fluid.getAttributes().getStillTexture(tileEntityIn.getWorld(), tileEntityIn.getPos()));

@@ -9,11 +9,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.tags.Tag;
+import net.minecraft.loot.*;
+import net.minecraft.loot.conditions.ILootCondition;
+import net.minecraft.loot.conditions.MatchTool;
+import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.storage.loot.*;
-import net.minecraft.world.storage.loot.conditions.ILootCondition;
-import net.minecraft.world.storage.loot.conditions.MatchTool;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -34,9 +34,9 @@ public class LootHandler {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Map<String, Pair<String, Item>> REMOVE_LOOT = Maps.newHashMap();
     private static final Map<String, String> INJECT_POOL = Maps.newHashMap();
-    private static final Map<String, Pair<Block, Tag<Item>>> INJECT_ITEM_POOL = Maps.newHashMap();
-    private static final Map<String, Pair<Block, Tag<Item>>> INJECT_ALTERNATE_ENTRIES = Maps.newHashMap();
-    private static final Map<String, Pair<Block, Tag<Item>>> CHANGE_ALTERNATE_ENTRIES = Maps.newHashMap();
+    private static final Map<String, Pair<Block, ITag.INamedTag<Item>>> INJECT_ITEM_POOL = Maps.newHashMap();
+    private static final Map<String, Pair<Block, ITag.INamedTag<Item>>> INJECT_ALTERNATE_ENTRIES = Maps.newHashMap();
+    private static final Map<String, Pair<Block, ITag.INamedTag<Item>>> CHANGE_ALTERNATE_ENTRIES = Maps.newHashMap();
 
     private static final Field lootEntries;
     private static final Field entryItem;
@@ -142,7 +142,7 @@ public class LootHandler {
         return TableLootEntry.builder(table).weight(1);
     }
 
-    private static void injectItemPool(@Nonnull LootTable table, @Nonnull Pair<Block, Tag<Item>> data) {
+    private static void injectItemPool(@Nonnull LootTable table, @Nonnull Pair<Block, ITag.INamedTag<Item>> data) {
         ItemPredicate.Builder predicate = ItemPredicate.Builder.create().tag(data.getSecond());
         LootEntry.Builder<?> itemLootEntry = ItemLootEntry.builder(data.getFirst()).acceptCondition(MatchTool.builder(predicate)).weight(1);
         LootPool.Builder pool = LootPool.builder().addEntry(itemLootEntry).bonusRolls(0, 1).name("stone_age:inject");
@@ -150,7 +150,7 @@ public class LootHandler {
     }
 
     @SuppressWarnings("unchecked")
-    private static void injectMainAlternativeEntries(@Nonnull LootTable table, @Nonnull Pair<Block, Tag<Item>> data) {
+    private static void injectMainAlternativeEntries(@Nonnull LootTable table, @Nonnull Pair<Block, ITag.INamedTag<Item>> data) {
         try {
             LootPool pool = table.getPool("main");
             //noinspection ConstantConditions
@@ -183,7 +183,7 @@ public class LootHandler {
     }
 
     @SuppressWarnings("unchecked")
-    private static void changeToMainAlternativeEntries(@Nonnull LootTable table, @Nonnull Pair<Block, Tag<Item>> data) {
+    private static void changeToMainAlternativeEntries(@Nonnull LootTable table, @Nonnull Pair<Block, ITag.INamedTag<Item>> data) {
         try {
             LootPool pool = table.getPool("main");
             //noinspection ConstantConditions

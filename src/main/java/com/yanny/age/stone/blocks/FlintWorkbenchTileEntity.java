@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.yanny.age.stone.recipes.FlintWorkbenchRecipe;
 import com.yanny.age.stone.subscribers.TileEntitySubscriber;
 import com.yanny.ages.api.utils.ItemStackUtils;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -44,12 +45,12 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
     }
 
     @Override
-    public void read(CompoundNBT tag) {
+    public void func_230337_a_(@Nonnull BlockState blockState, CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
         CompoundNBT outTag = tag.getCompound("output");
         ItemStackUtils.deserializeStacks(invTag, stacks);
         recipeOutput = ItemStack.read(outTag);
-        super.read(tag);
+        super.func_230337_a_(blockState, tag);
     }
 
     @Override
@@ -77,7 +78,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         super.onDataPacket(net, pkt);
-        read(pkt.getNbtCompound());
+        func_230337_a_(getBlockState(), pkt.getNbtCompound());
     }
 
     @Nonnull

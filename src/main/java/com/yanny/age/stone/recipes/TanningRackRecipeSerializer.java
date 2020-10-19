@@ -8,8 +8,8 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
@@ -41,8 +41,7 @@ public class TanningRackRecipeSerializer extends ForgeRegistryEntry<IRecipeSeria
         } else {
             String s1 = JSONUtils.getString(json, "result");
             ResourceLocation resourcelocation = new ResourceLocation(s1);
-            //noinspection deprecation
-            itemstack = new ItemStack(Registry.ITEM.getValue(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
+            itemstack = new ItemStack(ForgeRegistries.ITEMS.getValue(resourcelocation));
         }
 
         JsonElement toolElement = JSONUtils.isJsonArray(json, "tool")

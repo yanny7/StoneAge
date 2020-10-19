@@ -11,7 +11,10 @@ import net.minecraft.block.CropsBlock;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -24,8 +27,10 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
@@ -44,8 +49,9 @@ public class FowlEntity extends WildAnimalEntity implements TopEntityInfoProvide
         this.setPathPriority(PathNodeType.WATER, 0.0F);
     }
 
+    @Nonnull
     @Override
-    public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
+    public AgeableEntity func_241840_a(@Nonnull ServerWorld serverWorld, @Nonnull AgeableEntity ageable) {
         if (Math.min(dataManager.get(GENERATION), ageable.getDataManager().get(GENERATION)) >= Config.domesticateAfterGenerations) {
             EntityType<?> child = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(Config.fowlBreedingResult));
 
@@ -88,11 +94,12 @@ public class FowlEntity extends WildAnimalEntity implements TopEntityInfoProvide
         this.targetSelector.addGoal(2, new TargetAggressorGoal<>(this, FowlEntity.class));
     }
 
-    @Override
-    public void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(6.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
+    private static AttributeModifierMap.MutableAttribute getAttributes() {
+        return MobEntity.func_233666_p_().func_233815_a_(Attributes.field_233818_a_, 6.0D).func_233815_a_(Attributes.field_233821_d_, 0.3F);
+    }
+
+    public static void registerAttributes() {
+        GlobalEntityTypeAttributes.put(EntitySubscriber.fowl, getAttributes().func_233813_a_());
     }
 
     @Override
@@ -113,7 +120,7 @@ public class FowlEntity extends WildAnimalEntity implements TopEntityInfoProvide
         }
 
         this.wingRotDelta = (float)((double)this.wingRotDelta * 0.9D);
-        Vec3d vec3d = this.getMotion();
+        Vector3d vec3d = this.getMotion();
         if (!this.onGround && vec3d.y < 0.0D) {
             this.setMotion(vec3d.mul(1.0D, 0.6D, 1.0D));
         }
@@ -152,6 +159,6 @@ public class FowlEntity extends WildAnimalEntity implements TopEntityInfoProvide
 
     @Override
     public void addProbeInfo(@Nonnull ProbeMode mode, @Nonnull IProbeInfo probeInfo, @Nonnull PlayerEntity player, @Nonnull World world, @Nonnull Entity entity, @Nonnull IProbeHitEntityData data) {
-        probeInfo.horizontal().text("Generation: " + dataManager.get(GENERATION));
+        probeInfo.horizontal().text(ITextComponent.func_244388_a("Generation: " + dataManager.get(GENERATION)));
     }
 }

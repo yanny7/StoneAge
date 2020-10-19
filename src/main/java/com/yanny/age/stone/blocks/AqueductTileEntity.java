@@ -130,10 +130,10 @@ public class AqueductTileEntity extends TileEntity implements ITickableTileEntit
     }
 
     @Override
-    public void read(CompoundNBT tag) {
+    public void func_230337_a_(@Nonnull BlockState blockState, CompoundNBT tag) {
         capacity = tag.getFloat("capacity");
         activated = tag.getBoolean("activated");
-        super.read(tag);
+        super.func_230337_a_(blockState, tag);
     }
 
     @Override
@@ -159,7 +159,7 @@ public class AqueductTileEntity extends TileEntity implements ITickableTileEntit
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         super.onDataPacket(net, pkt);
-        read(pkt.getNbtCompound());
+        func_230337_a_(getBlockState(), pkt.getNbtCompound());
     }
 
     @Override

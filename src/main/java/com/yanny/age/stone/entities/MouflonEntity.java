@@ -11,7 +11,10 @@ import net.minecraft.block.CropsBlock;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -22,7 +25,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
@@ -36,7 +41,7 @@ public class MouflonEntity extends WildAnimalEntity implements TopEntityInfoProv
 
     @Nullable
     @Override
-    public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
+    public AgeableEntity func_241840_a(@Nonnull ServerWorld serverWorld, @Nonnull AgeableEntity ageable) {
         if (Math.min(dataManager.get(GENERATION), ageable.getDataManager().get(GENERATION)) >= Config.domesticateAfterGenerations) {
             EntityType<?> child = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(Config.mouflonBreedingResult));
 
@@ -80,10 +85,12 @@ public class MouflonEntity extends WildAnimalEntity implements TopEntityInfoProv
         this.targetSelector.addGoal(2, new TargetAggressorGoal<>(this, MouflonEntity.class));
     }
 
-    public void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
+    private static AttributeModifierMap.MutableAttribute getAttributes() {
+        return MobEntity.func_233666_p_().func_233815_a_(Attributes.field_233818_a_, 20.0D).func_233815_a_(Attributes.field_233821_d_, 0.3F);
+    }
+
+    public static void registerAttributes() {
+        GlobalEntityTypeAttributes.put(EntitySubscriber.mouflon, getAttributes().func_233813_a_());
     }
 
     @Override
@@ -119,6 +126,6 @@ public class MouflonEntity extends WildAnimalEntity implements TopEntityInfoProv
 
     @Override
     public void addProbeInfo(@Nonnull ProbeMode mode, @Nonnull IProbeInfo probeInfo, @Nonnull PlayerEntity player, @Nonnull World world, @Nonnull Entity entity, @Nonnull IProbeHitEntityData data) {
-        probeInfo.horizontal().text("Generation: " + dataManager.get(GENERATION));
+        probeInfo.horizontal().text(ITextComponent.func_244388_a("Generation: " + dataManager.get(GENERATION)));
     }
 }

@@ -3,6 +3,7 @@ package com.yanny.age.stone.blocks;
 import com.yanny.age.stone.config.Config;
 import com.yanny.age.stone.subscribers.TileEntitySubscriber;
 import com.yanny.ages.api.utils.ItemStackUtils;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -36,8 +37,8 @@ import java.util.*;
 public class FeederTileEntity extends TileEntity implements IInventoryInterface, ITickableTileEntity, INamedContainerProvider {
     private static final Set<Item> VALID_ITEMS = new HashSet<>();
     static {
-        VALID_ITEMS.addAll(Tags.Items.SEEDS.getAllElements());
-        VALID_ITEMS.addAll(Tags.Items.CROPS.getAllElements());
+        VALID_ITEMS.addAll(Tags.Items.SEEDS.func_230236_b_());
+        VALID_ITEMS.addAll(Tags.Items.CROPS.func_230236_b_());
     }
 
     public static final int ITEMS = 4;
@@ -86,10 +87,10 @@ public class FeederTileEntity extends TileEntity implements IInventoryInterface,
     }
 
     @Override
-    public void read(CompoundNBT tag) {
+    public void func_230337_a_(@Nonnull BlockState blockState, CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
         ItemStackUtils.deserializeStacks(invTag, stacks);
-        super.read(tag);
+        super.func_230337_a_(blockState, tag);
     }
 
     @Override
@@ -114,7 +115,7 @@ public class FeederTileEntity extends TileEntity implements IInventoryInterface,
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         super.onDataPacket(net, pkt);
-        read(pkt.getNbtCompound());
+        func_230337_a_(getBlockState(), pkt.getNbtCompound());
     }
 
     @Nonnull

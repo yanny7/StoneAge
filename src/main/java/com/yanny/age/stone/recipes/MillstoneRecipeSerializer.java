@@ -8,9 +8,9 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.NBTIngredient;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
@@ -45,8 +45,7 @@ public class MillstoneRecipeSerializer extends ForgeRegistryEntry<IRecipeSeriali
         } else {
             String s1 = JSONUtils.getString(json, "result");
             ResourceLocation resourcelocation = new ResourceLocation(s1);
-            //noinspection deprecation
-            result = new ItemStack(Registry.ITEM.getValue(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
+            result = new ItemStack(ForgeRegistries.ITEMS.getValue(resourcelocation));
         }
 
         if (json.has("secondResult")) {
@@ -55,8 +54,7 @@ public class MillstoneRecipeSerializer extends ForgeRegistryEntry<IRecipeSeriali
             } else {
                 String string = JSONUtils.getString(json, "secondResult");
                 ResourceLocation resourceLocation = new ResourceLocation(string);
-                //noinspection deprecation
-                secondResult = new ItemStack(Registry.ITEM.getValue(resourceLocation).orElseThrow(() -> new IllegalStateException("Item: " + string + " does not exist")));
+                secondResult = new ItemStack(ForgeRegistries.ITEMS.getValue(resourceLocation));
             }
         } else {
             secondChance = 0;

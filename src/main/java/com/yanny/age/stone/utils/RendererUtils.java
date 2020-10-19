@@ -5,13 +5,13 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ILightReader;
+import net.minecraft.world.IBlockDisplayReader;
 
 import javax.annotation.Nonnull;
 
 public class RendererUtils {
 
-    public static void add(@Nonnull Fluid fluid, @Nonnull ILightReader lightReader, @Nonnull BlockPos posIn, @Nonnull IVertexBuilder renderer,
+    public static void add(@Nonnull Fluid fluid, @Nonnull IBlockDisplayReader lightReader, @Nonnull BlockPos posIn, @Nonnull IVertexBuilder renderer,
                            @Nonnull MatrixStack stack, float x, float y, float z, float u, float v) {
         int i = fluid.getFluid().getAttributes().getColor(lightReader, posIn);
         float alpha = (float)(i >> 24 & 255) / 255.0F;
@@ -27,7 +27,7 @@ public class RendererUtils {
                 .endVertex();
     }
 
-    public static int getCombinedAverageLight(@Nonnull ILightReader lightReaderIn, @Nonnull BlockPos posIn) {
+    public static int getCombinedAverageLight(@Nonnull IBlockDisplayReader lightReaderIn, @Nonnull BlockPos posIn) {
         int i = WorldRenderer.getCombinedLight(lightReaderIn, posIn);
         int j = WorldRenderer.getCombinedLight(lightReaderIn, posIn.up());
         int k = i & 255;
