@@ -25,7 +25,6 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -64,7 +63,6 @@ import static net.minecraft.entity.EntityType.*;
 
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeEventSubscriber {
-    private static final String PLAYER_MANUAL_NBT = MODID + "_manual";
 
     private static final Set<ResourceLocation> RECIPES_TO_REMOVE = Sets.newHashSet(
             new ResourceLocation("minecraft", "wooden_axe"),        // removed
@@ -305,27 +303,6 @@ public class ForgeEventSubscriber {
         if ((entity.getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem) && (state.getMaterial() == Material.WOOD) &&
                 (state.getBlock().getHarvestLevel(state) <= item.getHarvestLevel(stack, ToolType.AXE, entity, state))) {
             event.setCanHarvest(true);
-        }
-    }
-
-    @SubscribeEvent
-    public static void addManualToPlayer(@Nonnull PlayerEvent.PlayerLoggedInEvent event) {
-        if (!Config.givePlayerManualOnFirstConnect) {
-            return;
-        }
-
-        CompoundNBT nbt = event.getPlayer().getPersistentData();
-        CompoundNBT persistent;
-
-        if (!nbt.contains(PlayerEntity.PERSISTED_NBT_TAG)) {
-            nbt.put(PlayerEntity.PERSISTED_NBT_TAG, (persistent = new CompoundNBT()));
-        } else {
-            persistent = nbt.getCompound(PlayerEntity.PERSISTED_NBT_TAG);
-        }
-
-        if (!persistent.contains(PLAYER_MANUAL_NBT)) {
-            persistent.putBoolean(PLAYER_MANUAL_NBT, true);
-            event.getPlayer().inventory.addItemStackToInventory(new ItemStack(ItemSubscriber.stone_tablet));
         }
     }
 
