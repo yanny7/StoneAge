@@ -1,0 +1,22 @@
+{
+  "name": "Saber-Tooth Tiger",
+  "category": "stone_age:entities",
+  "icon": "stone_age:saber_tooth_tiger_spawn_egg",
+  "pages": [
+    {
+      "type": "text",
+      "title": "Saber-Tooth Tiger",
+      "text": "Saber-tooth tigers are large, dangerous beasts. They hunt down smaller prey such as deer, fowl, and $(1)you$()."
+    },
+    {
+      "type": "entity",
+      "entity": "stone_age:saber_tooth_tiger",
+      "scale": 0.6,
+      "text": "Breeding items: beef"
+    },
+    {
+      "type": "text",
+      "text": "Mob drops:$(br)$(li)$(l:food/fat)fat$()$(li)$(l:items/bone)bone$()$(li)$(l:items/saber_teeth)saber teeth$()$(li)$(l:food/tiger_meat)tiger meat$()"
+    }
+  ]
+}

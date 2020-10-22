@@ -1,0 +1,17 @@
+{
+  "name": "Flint Workbench",
+  "category": "stone_age:blocks",
+  "icon": "stone_age:flint_workbench",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Flint Workbench",
+      "text": "This workbench allows you to craft primitive items. You just have to arrange the required items on the workbench with right-click, and then right-click with the $(l:tools/flint_knife)flint knife$() to craft the item.",
+      "item": "stone_age:flint_workbench"
+    },
+    {
+      "type": "crafting",
+      "recipe": "stone_age:flint_workbench"
+    }
+  ]
+}

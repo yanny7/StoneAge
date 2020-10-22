@@ -1,0 +1,17 @@
+{
+  "name": "Campfire",
+  "category": "stone_age:blocks",
+  "icon": "minecraft:campfire",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Campfire",
+      "text": "The campfire is used for cooking food.",
+      "item": "minecraft:campfire"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:campfire"
+    }
+  ]
+}

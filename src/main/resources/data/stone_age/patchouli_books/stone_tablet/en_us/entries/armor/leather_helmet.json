@@ -1,0 +1,11 @@
+{
+  "name": "Leather Cap",
+  "category": "stone_age:armor",
+  "icon": "minecraft:leather_helmet",
+  "pages": [
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:leather_helmet"
+    }
+  ]
+}

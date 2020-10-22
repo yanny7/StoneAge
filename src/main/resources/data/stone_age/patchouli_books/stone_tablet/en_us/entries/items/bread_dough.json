@@ -1,0 +1,21 @@
+{
+  "name": "Bread Dough",
+  "category": "stone_age:items",
+  "icon": "stone_age:raw_bread",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Bread Dough",
+      "text": "Bread dough is used for cooking $(l:food/bread)bread$().",
+      "item": "stone_age:raw_bread"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:raw_bread_flint_workbench"
+    },
+    {
+      "type": "crafting",
+      "recipe": "stone_age:raw_bread"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Tanning Rack",
+  "category": "stone_age:blocks",
+  "icon": "stone_age:tanning_rack",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Tanning Rack",
+      "text": "The tanning rack is used for tanning $(l:items/raw_hide)raw hide$() into leather. You can place raw hide on the tanning rack with right-click and then right-click on the hide several times with a $(l:tools/flint_knife)flint knife$().",
+      "item": "stone_age:tanning_rack"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:tanning_rack"
+    }
+  ]
+}

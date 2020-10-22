@@ -1,0 +1,17 @@
+{
+  "name": "Saber-Tooth Tiger Meat",
+  "category": "stone_age:food",
+  "icon": "stone_age:cooked_tiger_meat",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Saber-Tooth Tiger Meat",
+      "text": "Tiger meat is dropped by $(l:entities/saber_tooth_tiger)saber-tooth tigers$().",
+      "item": "stone_age:cooked_tiger_meat"
+    },
+    {
+      "type": "smelting",
+      "recipe": "stone_age:cooked_tiger_meat"
+    }
+  ]
+}

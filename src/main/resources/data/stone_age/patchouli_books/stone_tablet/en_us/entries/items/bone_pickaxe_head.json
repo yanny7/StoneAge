@@ -1,0 +1,17 @@
+{
+  "name": "Bone Pickaxe Head",
+  "category": "stone_age:items",
+  "icon": "stone_age:bone_pickaxe_head",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Bone Pickaxe Head",
+      "text": "The bone pickaxe head is used for crafting $(l:tools/bone_pickaxe)bone pickaxe$()",
+      "item": "stone_age:bone_pickaxe_head"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:bone_pickaxe_head"
+    }
+  ]
+}

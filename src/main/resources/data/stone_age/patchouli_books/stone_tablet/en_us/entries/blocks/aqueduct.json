@@ -1,0 +1,17 @@
+{
+  "name": "Aqueduct",
+  "category": "stone_age:blocks",
+  "icon": "stone_age:aqueduct",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Aqueduct",
+      "text": "The aqueduct allows you to transfer water to hydrate your crops. To fill the aqueduct with water, place one near a water source block. You can activate the aqueduct with a right-click, which will result in bubbles from it. Aqueduct can transfer water horizontally and downward. Activated aqueducts also speed up crop growth.",
+      "item": "stone_age:aqueduct"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:aqueduct"
+    }
+  ]
+}

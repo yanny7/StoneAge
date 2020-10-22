@@ -1,0 +1,21 @@
+{
+  "name": "Unlit Torch",
+  "category": "stone_age:items",
+  "icon": "stone_age:unlit_torch",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Unlit Torch",
+      "text": "An unlit torch can be lit by right-click on a fire, campfire, or another torch.",
+      "item": "stone_age:unlit_torch"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:unlit_torch_from_flint_workbench"
+    },
+    {
+      "type": "crafting",
+      "recipe": "stone_age:unlit_torch"
+    }
+  ]
+}

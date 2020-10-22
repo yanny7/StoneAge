@@ -1,0 +1,13 @@
+{
+  "name": "Making Fire",
+  "category": "stone_age:other",
+  "icon": "minecraft:campfire",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Making Fire",
+      "text": "Drop $(l:items/dried_grass)dried grass$() on the ground, and right-click on it with a stick in each hand to start a fire.",
+      "item": "minecraft:campfire"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "name": "Wooden and Stone Slabs",
+  "category": "stone_age:blocks",
+  "icon": "minecraft:oak_slab",
+  "pages": [
+    {
+      "type": "stone_age:tree_stump_double",
+      "recipe": "stone_age:acacia_slab",
+      "recipe2": "stone_age:stone_slab"
+    },
+    {
+      "type": "stone_age:tree_stump_double",
+      "recipe": "stone_age:birch_slab",
+      "recipe2": "stone_age:andesite_slab"
+    },
+    {
+      "type": "stone_age:tree_stump_double",
+      "recipe": "stone_age:oak_slab",
+      "recipe2": "stone_age:cobblestone_slab"
+    },
+    {
+      "type": "stone_age:tree_stump_double",
+      "recipe": "stone_age:dark_oak_slab",
+      "recipe2": "stone_age:granite_slab"
+    },
+    {
+      "type": "stone_age:tree_stump_double",
+      "recipe": "stone_age:jungle_slab",
+      "recipe2": "stone_age:sandstone_slab"
+    },
+    {
+      "type": "stone_age:tree_stump_double",
+      "recipe": "stone_age:spruce_slab",
+      "recipe2": "stone_age:brick_slab"
+    }
+  ]
+}

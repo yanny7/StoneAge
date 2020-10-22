@@ -1,0 +1,11 @@
+{
+  "name": "Stone Axe",
+  "category": "stone_age:tools",
+  "icon": "stone_age:stone_axe",
+  "pages": [
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:stone_axe"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Leather Tunic",
+  "category": "stone_age:armor",
+  "icon": "minecraft:leather_chestplate",
+  "pages": [
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:leather_chestplate"
+    }
+  ]
+}

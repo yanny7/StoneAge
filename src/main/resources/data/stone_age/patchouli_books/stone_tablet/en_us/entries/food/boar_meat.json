@@ -1,0 +1,17 @@
+{
+  "name": "Boar Meat",
+  "category": "stone_age:food",
+  "icon": "stone_age:cooked_boar_meat",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Boar Meat",
+      "text": "Boar meat is dropped by $(l:entities/boar)boars$().",
+      "item": "stone_age:cooked_boar_meat"
+    },
+    {
+      "type": "smelting",
+      "recipe": "stone_age:cooked_boar_meat"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Grass Lead",
+  "category": "stone_age:items",
+  "icon": "stone_age:grass_lead",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Grass Lead",
+      "text": "Used as a crafting item.",
+      "item": "stone_age:grass_lead"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:grass_lead"
+    }
+  ]
+}

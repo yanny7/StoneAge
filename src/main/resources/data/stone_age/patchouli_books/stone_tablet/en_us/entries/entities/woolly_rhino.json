@@ -1,0 +1,22 @@
+{
+  "name": "Woolly Rhino",
+  "category": "stone_age:entities",
+  "icon": "stone_age:woolly_rhino_spawn_egg",
+  "pages": [
+    {
+      "type": "text",
+      "title": "Woolly Rhino",
+      "text": "Woolly rhinos are passive until attack, after which all woolly rhinos nearby will attack you."
+    },
+    {
+      "type": "entity",
+      "entity": "stone_age:woolly_rhino",
+      "scale": 0.8,
+      "text": "Breeding items: $(l:blocks/hay_bale)hay bale$()"
+    },
+    {
+      "type": "text",
+      "text": "Mob drops:$(br)$(li)$(l:items/raw_hide)raw hide$()$(li)$(l:food/fat)fat$()$(li)$(l:items/bone)bone$()$(li)$(l:items/rhino_tusk)rhino tusk$()$(li)$(l:food/rhino_meat)rhino meat$()"
+    }
+  ]
+}

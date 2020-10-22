@@ -1,0 +1,26 @@
+{
+  "name": "Bone Meal",
+  "category": "stone_age:items",
+  "icon": "minecraft:bone_meal",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Bone Meal",
+      "text": "Bone meal can be made from crushed bones.",
+      "item": "minecraft:bone_meal"
+    },
+    {
+      "type": "stone_age:tree_stump_double",
+      "recipe": "stone_age:bone_meal_from_mammoth_tusk",
+      "recipe2": "stone_age:bone_meal_from_rhino_tusk"
+    },
+    {
+      "type": "stone_age:tree_stump",
+      "recipe": "stone_age:bone_meal_from_saber_teeth"
+    },
+    {
+      "type": "crafting",
+      "recipe": "minecraft:bone_meal"
+    }
+  ]
+}

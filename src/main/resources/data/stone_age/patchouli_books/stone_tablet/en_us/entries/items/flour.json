@@ -1,0 +1,17 @@
+{
+  "name": "Flour",
+  "category": "stone_age:items",
+  "icon": "stone_age:flour",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Flour",
+      "text": "Flour is used for making $(l:items/bread_dough)bread dough$().",
+      "item": "stone_age:flour"
+    },
+    {
+      "type": "stone_age:millstone",
+      "recipe": "stone_age:flour"
+    }
+  ]
+}

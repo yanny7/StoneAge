@@ -1,0 +1,17 @@
+{
+  "name": "Leather Strip",
+  "category": "stone_age:items",
+  "icon": "stone_age:leather_strip",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Leather Strip",
+      "text": "Leather strips are used for crafting.",
+      "item": "stone_age:leather_strip"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:leather_strip"
+    }
+  ]
+}

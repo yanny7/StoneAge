@@ -1,0 +1,22 @@
+{
+  "include": [
+  {
+    "template": "stone_age:flint_workbench",
+    "as": "recipe1",
+    "using": {
+      "recipe": "#recipe"
+    },
+    "y": -30
+  },
+  {
+    "template": "stone_age:flint_workbench",
+    "as": "recipe2",
+    "using": {
+      "recipe": "#recipe2"
+    },
+    "y": 50
+  }
+],
+  "components": [
+  ]
+}

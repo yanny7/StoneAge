@@ -1,0 +1,13 @@
+{
+  "name": "Woolly Rhino Tusk",
+  "category": "stone_age:items",
+  "icon": "stone_age:rhino_tusk",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Woolly Rhino Tusk",
+      "text": "Woolly rhino tusks are dropped by $(l:entities/woolly_rhino)woolly rhinos$().",
+      "item": "stone_age:rhino_tusk"
+    }
+  ]
+}

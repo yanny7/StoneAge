@@ -1,0 +1,17 @@
+{
+  "name": "Tree Stump",
+  "category": "stone_age:blocks",
+  "icon": "stone_age:tree_stump",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Tree Stump",
+      "text": "The tree stump is a way to get planks of half-slabs. You can just place a valid item on the tree stump with right-click and then left-click with the required tool (an axe for wood, or a hammer for stone).",
+      "item": "stone_age:tree_stump"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:tree_stump"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Drying_rack",
+  "category": "stone_age:blocks",
+  "icon": "stone_age:drying_rack",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Drying Rack",
+      "text": "The drying rack is used for drying items like grass. Just right-click the drying rack with an item and wait. Note that the item is only dried during the day.",
+      "item": "stone_age:drying_rack"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:drying_rack"
+    }
+  ]
+}

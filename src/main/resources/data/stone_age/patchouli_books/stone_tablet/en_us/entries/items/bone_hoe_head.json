@@ -1,0 +1,17 @@
+{
+  "name": "Bone Hoe Head",
+  "category": "stone_age:items",
+  "icon": "stone_age:bone_hoe_head",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Bone Hoe Head",
+      "text": "The bone hoe head is used for crafting $(l:tools/bone_hoe)bone hoe$()",
+      "item": "stone_age:bone_hoe_head"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:bone_hoe_head"
+    }
+  ]
+}

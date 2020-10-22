@@ -1,0 +1,22 @@
+{
+  "name": "Deer",
+  "category": "stone_age:entities",
+  "icon": "stone_age:deer_spawn_egg",
+  "pages": [
+    {
+      "type": "text",
+      "title": "Deer",
+      "text": "Deer are skittish, and will flee if you get too close. They are the only source of antlers, which are used for crafting your first tools."
+    },
+    {
+      "type": "entity",
+      "entity": "stone_age:deer",
+      "scale": 0.8,
+      "text": "Breeding items: wheat"
+    },
+    {
+      "type": "text",
+      "text": "Mob drops:$(br)$(li)$(l:items/antler)antler$()$(li)$(l:food/fat)fat$()$(li)$(l:items/bone)bone$()$(li)$(l:items/raw_hide)raw hide$()$(li)$(l:food/venison)venison$()"
+    }
+  ]
+}

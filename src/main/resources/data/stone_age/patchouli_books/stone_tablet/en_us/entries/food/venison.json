@@ -1,0 +1,17 @@
+{
+  "name": "Venison",
+  "category": "stone_age:food",
+  "icon": "stone_age:cooked_venison",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Venison",
+      "text": "Venison is dropped by $(l:entities/deer)deer$().",
+      "item": "stone_age:cooked_venison"
+    },
+    {
+      "type": "smelting",
+      "recipe": "stone_age:cooked_venison"
+    }
+  ]
+}

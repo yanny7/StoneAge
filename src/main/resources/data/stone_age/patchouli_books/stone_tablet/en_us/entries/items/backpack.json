@@ -1,0 +1,17 @@
+{
+  "name": "Backpack",
+  "category": "stone_age:items",
+  "icon": "stone_age:backpack",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Backpack",
+      "text": "Backpacks can be used to increase your carrying capacity. Right-click the backpack to open it's inventory.",
+      "item": "stone_age:backpack"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:backpack"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Flint Spear",
+  "category": "stone_age:tools",
+  "icon": "stone_age:flint_spear",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Flint Spear",
+      "text": "The flint spear is a ranged weapon which is similar to the trident, but less efficient. It is still very useful for surviving and hunting in the wild.",
+      "item": "stone_age:flint_spear"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:flint_spear"
+    }
+  ]
+}

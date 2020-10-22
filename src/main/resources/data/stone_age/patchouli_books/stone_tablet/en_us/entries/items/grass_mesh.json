@@ -1,0 +1,17 @@
+{
+  "name": "Grass Mesh",
+  "category": "stone_age:items",
+  "icon": "stone_age:grass_mesh",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Grass Mesh",
+      "text": "The grass mesh is used in a $(l:blocks/fishing_net)fishing net$(). It has 15 uses before it breaks.",
+      "item": "stone_age:grass_mesh"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:grass_mesh"
+    }
+  ]
+}

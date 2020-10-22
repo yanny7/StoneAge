@@ -1,0 +1,17 @@
+{
+  "name": "Dried Grass Bed",
+  "category": "stone_age:blocks",
+  "icon": "stone_age:dried_grass_bed",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Dried Grass Bed",
+      "text": "Due to wool being unavailable to you, you can still sleep on a bed made from dried grass.",
+      "item": "stone_age:dried_grass_bed"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:dried_grass_bed"
+    }
+  ]
+}

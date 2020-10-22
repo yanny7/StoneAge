@@ -1,0 +1,17 @@
+{
+  "name": "Auroch Meat",
+  "category": "stone_age:food",
+  "icon": "stone_age:cooked_auroch_meat",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Auroch Meat",
+      "text": "Auroch meat is dropped by $(l:entities/auroch)aurochs$().",
+      "item": "stone_age:cooked_auroch_meat"
+    },
+    {
+      "type": "smelting",
+      "recipe": "stone_age:cooked_auroch_meat"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Boats",
+  "category": "stone_age:items",
+  "icon": "minecraft:oak_boat",
+  "pages": [
+    {
+      "type": "stone_age:flint_workbench_double",
+      "recipe": "stone_age:oak_boat",
+      "recipe2": "stone_age:birch_boat"
+    },
+    {
+      "type": "stone_age:flint_workbench_double",
+      "recipe": "stone_age:acacia_boat",
+      "recipe2": "stone_age:jungle_boat"
+    },
+    {
+      "type": "stone_age:flint_workbench_double",
+      "recipe": "stone_age:spruce_boat",
+      "recipe2": "stone_age:dark_oak_boat"
+    }
+  ]
+}

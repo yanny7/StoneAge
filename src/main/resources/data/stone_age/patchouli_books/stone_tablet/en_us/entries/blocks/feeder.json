@@ -1,0 +1,17 @@
+{
+  "name": "Feeding Trough",
+  "category": "stone_age:blocks",
+  "icon": "stone_age:feeder",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Feeding Trough",
+      "text": "The animal trough feeds animals nearby. You can right click the trough to open the menu and place feed inside for your animals, such as wheat or seeds. An animal trough with food inside will speed-up the growth rate of baby animals and cause adult animals to breed.",
+      "item": "stone_age:feeder"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:feeder"
+    }
+  ]
+}

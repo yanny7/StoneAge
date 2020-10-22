@@ -1,0 +1,17 @@
+{
+  "name": "Mouflon Meat",
+  "category": "stone_age:food",
+  "icon": "stone_age:cooked_mouflon_meat",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Mouflon Meat",
+      "text": "Mouflon meat is dropped by $(l:entities/mouflon)mouflons$().",
+      "item": "stone_age:cooked_mouflon_meat"
+    },
+    {
+      "type": "smelting",
+      "recipe": "stone_age:cooked_mouflon_meat"
+    }
+  ]
+}

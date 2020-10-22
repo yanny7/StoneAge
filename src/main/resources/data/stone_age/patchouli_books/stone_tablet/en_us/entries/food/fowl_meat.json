@@ -1,0 +1,17 @@
+{
+  "name": "Fowl Meat",
+  "category": "stone_age:food",
+  "icon": "stone_age:cooked_fowl_meat",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Fowl Meat",
+      "text": "Fowl meat is dropped by $(l:entities/fowl)fowl$().",
+      "item": "stone_age:cooked_fowl_meat"
+    },
+    {
+      "type": "smelting",
+      "recipe": "stone_age:cooked_fowl_meat"
+    }
+  ]
+}

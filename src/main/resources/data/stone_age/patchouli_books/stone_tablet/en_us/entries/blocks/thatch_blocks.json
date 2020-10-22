@@ -1,0 +1,22 @@
+{
+  "name": "Thatch Blocks",
+  "category": "stone_age:blocks",
+  "icon": "stone_age:thatch_stairs",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Thatch Blocks",
+      "text": "Make your house more stone-age looking",
+      "item": "stone_age:thatch_stairs"
+    },
+    {
+      "type": "stone_age:flint_workbench_double",
+      "recipe": "stone_age:thatch_block",
+      "recipe2": "stone_age:thatch_stairs"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:thatch_slab"
+    }
+  ]
+}

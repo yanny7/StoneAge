@@ -1,0 +1,22 @@
+{
+  "name": "Mouflon",
+  "category": "stone_age:entities",
+  "icon": "stone_age:mouflon_spawn_egg",
+  "pages": [
+    {
+      "type": "text",
+      "title": "Mouflon",
+      "text": "An ancestor of sheep, mouflons must be bred for several generations before they are domesticated as sheep. Mouflons are passive until attacked, after which all mouflons nearby will attack you."
+    },
+    {
+      "type": "entity",
+      "entity": "stone_age:mouflon",
+      "scale": 0.8,
+      "text": "Breeding items: wheat"
+    },
+    {
+      "type": "text",
+      "text": "Mob drops:$(br)$(li)$(l:food/fat)fat$()$(li)$(l:items/bone)bone$()$(li)$(l:food/mouflon_meat)mouflon meat$()"
+    }
+  ]
+}

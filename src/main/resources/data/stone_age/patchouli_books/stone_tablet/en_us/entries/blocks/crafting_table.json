@@ -1,0 +1,17 @@
+{
+  "name": "Crafting Table",
+  "category": "stone_age:blocks",
+  "icon": "minecraft:crafting_table",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Crafting Table",
+      "text": "The vanilla crafting table is the final step to finish the stone age.",
+      "item": "minecraft:crafting_table"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:crafting_table"
+    }
+  ]
+}

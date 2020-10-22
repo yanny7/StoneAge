@@ -1,5 +1,9 @@
 {
   "name": "Stone Tablet",
-  "landing_text": "[WIP] Be Patient...",
-  "version": 1
+  "landing_text": "Welcome to the manual for Stone Age! If you find any bugs within this manual or mod, please report them on $(l:https://github.com/yanny7/StoneAge/issues)Github$()",
+  "version": 1,
+  "book_texture": "patchouli:textures/gui/book_gray.png",
+  "model": "stone_age:stone_tablet",
+  "show_progress": false,
+  "creative_tab": "ages_api"
 }

@@ -1,0 +1,17 @@
+{
+  "name": "Bone Axe Head",
+  "category": "stone_age:items",
+  "icon": "stone_age:bone_axe_head",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Bone Axe Head",
+      "text": "The bone axe head is used for crafting $(l:tools/bone_axe)bone axe$()",
+      "item": "stone_age:bone_axe_head"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:bone_axe_head"
+    }
+  ]
+}
