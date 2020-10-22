@@ -1,8 +1,10 @@
 package com.yanny.age.stone.compatibility.patchouli;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.yanny.age.stone.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.ResourceLocation;
 import vazkii.patchouli.api.ICustomComponent;
 
@@ -20,7 +22,11 @@ public abstract class BaseComponent implements ICustomComponent  {
         y = componentY;
     }
 
-    protected void drawCenteredStringNoShadow(String s, int x, int y, int color, FontRenderer fontRenderer) {
+    /*protected void drawCenteredStringNoShadow(String s, int x, int y, int color, FontRenderer fontRenderer) {
         fontRenderer.drawString(s, x - fontRenderer.getStringWidth(s) / 2.0F, y, color);
+    }*/
+
+    public void drawCenteredStringNoShadow(MatrixStack ms, IReorderingProcessor s, int x, int y, int color, FontRenderer fontRenderer) {
+        fontRenderer.func_238422_b_(ms, s, x - fontRenderer.func_243245_a(s) / 2.0F, y, color);
     }
 }
