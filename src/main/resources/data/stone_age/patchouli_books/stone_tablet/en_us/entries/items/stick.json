@@ -1,0 +1,13 @@
+{
+  "name": "Stick",
+  "category": "stone_age:items",
+  "icon": "minecraft:stick",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Stick",
+      "text": "Sticks drop not only from leaves, but you can also find them in sand, gravel, or dirt.",
+      "item": "minecraft:stick"
+    }
+  ]
+}

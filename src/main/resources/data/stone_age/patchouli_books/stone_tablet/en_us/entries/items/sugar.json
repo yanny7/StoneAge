@@ -1,0 +1,17 @@
+{
+  "name": "Sugar",
+  "category": "stone_age:items",
+  "icon": "minecraft:sugar",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Sugar",
+      "text": "Used as a crafting item.",
+      "item": "minecraft:sugar"
+    },
+    {
+      "type": "stone_age:millstone",
+      "recipe": "stone_age:sugar"
+    }
+  ]
+}

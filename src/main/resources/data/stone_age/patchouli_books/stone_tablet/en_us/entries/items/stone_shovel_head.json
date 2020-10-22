@@ -1,0 +1,17 @@
+{
+  "name": "Stone Shovel Head",
+  "category": "stone_age:items",
+  "icon": "stone_age:stone_shovel_head",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Stone Shovel Head",
+      "text": "The stone shovel head is used for crafting $(l:tools/stone_shovel)stone shovel$()",
+      "item": "stone_age:stone_shovel_head"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:stone_shovel_head"
+    }
+  ]
+}

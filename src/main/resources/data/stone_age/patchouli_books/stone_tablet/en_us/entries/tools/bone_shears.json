@@ -1,0 +1,17 @@
+{
+  "name": "Bone Shears",
+  "category": "stone_age:tools",
+  "icon": "stone_age:bone_shears",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Bone Shears",
+      "text": "Bone shears are used for gathering grass.",
+      "item": "stone_age:bone_shears"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:bone_shears"
+    }
+  ]
+}

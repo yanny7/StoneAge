@@ -1,0 +1,17 @@
+{
+  "name": "Lead",
+  "category": "stone_age:items",
+  "icon": "minecraft:lead",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Lead",
+      "text": "Leads are used to leash animals and lead them around.",
+      "item": "minecraft:lead"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:lead"
+    }
+  ]
+}

@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 import java.util.UUID;
 
 abstract class WildAnimalEntity extends AnimalEntity implements IBecomeAngry {
-    static final DataParameter<Integer> GENERATION = EntityDataManager.createKey(AurochEntity.class, DataSerializers.VARINT);
+    static final DataParameter<Integer> GENERATION = EntityDataManager.createKey(WildAnimalEntity.class, DataSerializers.VARINT);
 
     private int angerLevel;
     private UUID angerTargetUUID;

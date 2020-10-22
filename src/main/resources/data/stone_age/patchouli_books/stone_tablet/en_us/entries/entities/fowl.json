@@ -1,0 +1,22 @@
+{
+  "name": "Fowl",
+  "category": "stone_age:entities",
+  "icon": "stone_age:fowl_spawn_egg",
+  "pages": [
+    {
+      "type": "text",
+      "title": "Fowl",
+      "text": "An ancestor of chickens, fowl must be bred for several generations before they are domesticated as chickens. Fowl are passive until attacked, after which all fowl nearby will attack you."
+    },
+    {
+      "type": "entity",
+      "entity": "stone_age:fowl",
+      "scale": 0.8,
+      "text": "Breeding items: wheat, melon, pumpkin and beetroot seeds"
+    },
+    {
+      "type": "text",
+      "text": "Mob drops:$(br)$(li)feather$()$(li)$(l:food/fowl_meat)fowl meat$()"
+    }
+  ]
+}

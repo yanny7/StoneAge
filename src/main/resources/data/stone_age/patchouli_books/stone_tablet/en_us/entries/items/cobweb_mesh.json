@@ -1,0 +1,17 @@
+{
+  "name": "Cobweb Mesh",
+  "category": "stone_age:items",
+  "icon": "stone_age:cobweb_mesh",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Cobweb Mesh",
+      "text": "The cobweb mesh is used in a $(l:blocks/fishing_net)fishing net$(). It has 30 uses before it breaks.",
+      "item": "stone_age:cobweb_mesh"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:cobweb_mesh"
+    }
+  ]
+}

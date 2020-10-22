@@ -1,0 +1,37 @@
+{
+  "name": "Wooden Fences and Gates",
+  "category": "stone_age:blocks",
+  "icon": "minecraft:oak_fence",
+  "pages": [
+    {
+      "type": "stone_age:flint_workbench_double",
+      "recipe": "stone_age:acacia_fence",
+      "recipe2": "stone_age:acacia_fence_gate"
+    },
+    {
+      "type": "stone_age:flint_workbench_double",
+      "recipe": "stone_age:birch_fence",
+      "recipe2": "stone_age:birch_fence_gate"
+    },
+    {
+      "type": "stone_age:flint_workbench_double",
+      "recipe": "stone_age:dark_oak_fence",
+      "recipe2": "stone_age:dark_oak_fence_gate"
+    },
+    {
+      "type": "stone_age:flint_workbench_double",
+      "recipe": "stone_age:jungle_fence",
+      "recipe2": "stone_age:jungle_fence_gate"
+    },
+    {
+      "type": "stone_age:flint_workbench_double",
+      "recipe": "stone_age:oak_fence",
+      "recipe2": "stone_age:oak_fence_gate"
+    },
+    {
+      "type": "stone_age:flint_workbench_double",
+      "recipe": "stone_age:spruce_fence",
+      "recipe2": "stone_age:spruce_fence_gate"
+    }
+  ]
+}

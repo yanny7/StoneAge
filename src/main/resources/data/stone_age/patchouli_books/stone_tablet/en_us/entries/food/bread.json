@@ -1,0 +1,17 @@
+{
+  "name": "Bread",
+  "category": "stone_age:food",
+  "icon": "minecraft:bread",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Bread",
+      "text": "Bread is baked from $(l:items/bread_dough)bread dough$().",
+      "item": "minecraft:bread"
+    },
+    {
+      "type": "smelting",
+      "recipe": "minecraft:bread"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "name": "Terracotta Blocks",
+  "category": "stone_age:blocks",
+  "icon": "minecraft:terracotta",
+  "pages": [
+    {
+      "type": "smelting",
+      "recipe": "minecraft:terracotta"
+    },
+    {
+      "type": "stone_age:flint_workbench_double",
+      "recipe": "stone_age:black_terracotta",
+      "recipe2": "stone_age:blue_terracotta"
+    },
+    {
+      "type": "stone_age:flint_workbench_double",
+      "recipe": "stone_age:brown_terracotta",
+      "recipe2": "stone_age:cyan_terracotta"
+    },
+    {
+      "type": "stone_age:flint_workbench_double",
+      "recipe": "stone_age:gray_terracotta",
+      "recipe2": "stone_age:green_terracotta"
+    },
+    {
+      "type": "stone_age:flint_workbench_double",
+      "recipe": "stone_age:light_blue_terracotta",
+      "recipe2": "stone_age:light_gray_terracotta"
+    },
+    {
+      "type": "stone_age:flint_workbench_double",
+      "recipe": "stone_age:lime_terracotta",
+      "recipe2": "stone_age:magenta_terracotta"
+    },
+    {
+      "type": "stone_age:flint_workbench_double",
+      "recipe": "stone_age:orange_terracotta",
+      "recipe2": "stone_age:pink_terracotta"
+    },
+    {
+      "type": "stone_age:flint_workbench_double",
+      "recipe": "stone_age:purple_terracotta",
+      "recipe2": "stone_age:red_terracotta"
+    },
+    {
+      "type": "stone_age:flint_workbench_double",
+      "recipe": "stone_age:white_terracotta",
+      "recipe2": "stone_age:yellow_terracotta"
+    }
+  ]
+}

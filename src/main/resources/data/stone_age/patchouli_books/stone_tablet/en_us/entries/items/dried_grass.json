@@ -1,0 +1,17 @@
+{
+  "name": "Dried Grass",
+  "category": "stone_age:items",
+  "icon": "stone_age:dried_grass",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Dried Grass",
+      "text": "Dried grass is used as a crafting item and for making $(l:other/fire)fire$().",
+      "item": "stone_age:dried_grass"
+    },
+    {
+      "type": "stone_age:drying_rack",
+      "recipe": "stone_age:dried_grass"
+    }
+  ]
+}

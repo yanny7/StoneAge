@@ -1,0 +1,17 @@
+{
+  "name": "Woolly Rhino Meat",
+  "category": "stone_age:food",
+  "icon": "stone_age:cooked_rhino_meat",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Woolly Rhino Meat",
+      "text": "Rhino meat is dropped by $(l:entities/woolly_rhino)woolly rhinos$().",
+      "item": "stone_age:cooked_rhino_meat"
+    },
+    {
+      "type": "smelting",
+      "recipe": "stone_age:cooked_rhino_meat"
+    }
+  ]
+}

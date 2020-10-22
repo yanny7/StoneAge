@@ -1,0 +1,17 @@
+{
+  "name": "Leather",
+  "category": "stone_age:items",
+  "icon": "minecraft:leather",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Leather",
+      "text": "Leather is made on a $(l:blocks/tanning_rack)tanning rack$(). Right click the rack with a $(l:items/raw_hide)raw hide$() and then right-click multiple times with a $(l:tools/flint_knife)flint knife$().",
+      "item": "minecraft:leather"
+    },
+    {
+      "type": "stone_age:tanning_rack",
+      "recipe": "stone_age:leather"
+    }
+  ]
+}

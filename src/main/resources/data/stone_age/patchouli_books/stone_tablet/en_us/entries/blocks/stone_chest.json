@@ -1,0 +1,17 @@
+{
+  "name": "Stone Chest",
+  "category": "stone_age:blocks",
+  "icon": "stone_age:stone_chest",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Stone Chest",
+      "text": "The stone chest allows you to store a small amount of items. It is still better than nothing!",
+      "item": "stone_age:stone_chest"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:stone_chest"
+    }
+  ]
+}

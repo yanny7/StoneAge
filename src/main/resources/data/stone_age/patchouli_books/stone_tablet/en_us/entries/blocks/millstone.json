@@ -1,0 +1,17 @@
+{
+  "name": "Millstone",
+  "category": "stone_age:blocks",
+  "icon": "stone_age:millstone",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Millstone",
+      "text": "The millstone is used for milling wheat into flour, and sugar cane into sugar. Right-click while sneaking to open the menu, and place wheat or sugar cane inside. Then you can right-click the millstone with an open hand to mill these items.",
+      "item": "stone_age:millstone"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:millstone"
+    }
+  ]
+}

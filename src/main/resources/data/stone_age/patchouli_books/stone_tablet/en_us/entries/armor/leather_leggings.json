@@ -1,0 +1,11 @@
+{
+  "name": "Leather Pants",
+  "category": "stone_age:armor",
+  "icon": "minecraft:leather_leggings",
+  "pages": [
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:leather_leggings"
+    }
+  ]
+}

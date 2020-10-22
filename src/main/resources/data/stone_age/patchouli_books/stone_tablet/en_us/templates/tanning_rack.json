@@ -1,0 +1,10 @@
+{
+  "components": [
+    {
+      "type": "custom",
+      "class": "com.yanny.age.stone.compatibility.patchouli.TanningRackRecipeComponent",
+      "x": 10,
+      "y": 40
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Boar",
+  "category": "stone_age:entities",
+  "icon": "stone_age:boar_spawn_egg",
+  "pages": [
+    {
+      "type": "text",
+      "title": "Boar",
+      "text": "An ancestor of pigs, boars must be bred for several generations before they are domesticated as pigs. Boars are passive until attacked, after which all boars nearby will attack you."
+    },
+    {
+      "type": "entity",
+      "entity": "stone_age:boar",
+      "scale": 0.5,
+      "text": "Breeding items: carrot"
+    },
+    {
+      "type": "text",
+      "text": "Mob drops:$(br)$(li)$(l:food/fat)fat$()$(li)$(l:items/bone)bone$()$(li)$(l:food/boar_meat)boar meat$()"
+    }
+  ]
+}

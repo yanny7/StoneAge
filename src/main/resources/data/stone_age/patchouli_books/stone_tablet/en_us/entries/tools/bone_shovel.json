@@ -1,0 +1,11 @@
+{
+  "name": "Bone Shovel",
+  "category": "stone_age:tools",
+  "icon": "stone_age:bone_shovel",
+  "pages": [
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:bone_shovel"
+    }
+  ]
+}

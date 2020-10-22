@@ -1,0 +1,13 @@
+{
+  "name": "Saber-Tooth Tiger Teeth",
+  "category": "stone_age:items",
+  "icon": "stone_age:saber_teeth",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Saber-Tooth Tiger Teeth",
+      "text": "Saber-tooth tiger teeth are dropped by $(l:entities/saber_tooth_tiger)saber-tooth tigers$().",
+      "item": "stone_age:saber_teeth"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 {
   "name": "Online Wiki",
   "description": "Link to Wiki",
-  "icon": "minecraft:writable_book"
+  "icon": "minecraft:writable_book",
+  "sortnum": 999
 }

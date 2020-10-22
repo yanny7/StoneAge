@@ -1,0 +1,17 @@
+{
+  "name": "Flint Knife",
+  "category": "stone_age:tools",
+  "icon": "stone_age:flint_knife",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Flint Knife",
+      "text": "The flint knife is your first weapon. It's not very efficient, but it will help you survive and hunt animals. It is also used for crafting items on the $(l:blocks/flint_workbench)flint workbench$() and for $(l:blocks/tanning_rack)tanning$().",
+      "item": "stone_age:flint_knife"
+    },
+    {
+      "type": "crafting",
+      "recipe": "stone_age:flint_knife"
+    }
+  ]
+}

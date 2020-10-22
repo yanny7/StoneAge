@@ -1,0 +1,13 @@
+{
+  "name": "Bone",
+  "category": "stone_age:items",
+  "icon": "minecraft:bone",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Bone",
+      "text": "Bones drop not only from animals, but you can also find them in sand, gravel, or dirt.",
+      "item": "minecraft:bone"
+    }
+  ]
+}

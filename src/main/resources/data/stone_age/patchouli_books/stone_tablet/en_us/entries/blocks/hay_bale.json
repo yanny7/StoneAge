@@ -1,0 +1,17 @@
+{
+  "name": "Hay Bale",
+  "category": "stone_age:blocks",
+  "icon": "minecraft:hay_block",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Hay Bale",
+      "text": "A hay bale can be placed under a campfire for more smoke.",
+      "item": "minecraft:hay_block"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:hay_block"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Fishing Net",
+  "category": "stone_age:blocks",
+  "icon": "stone_age:fishing_net",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Fishing Net",
+      "text": "The fishing net allows you to passively catch fish by placing a $(l:items/grass_mesh)grass mesh or $(l:items/cobweb_mesh)cobweb mesh$() into it. The fishing net must be placed in water to function.",
+      "item": "stone_age:fishing_net"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:fishing_net"
+    }
+  ]
+}

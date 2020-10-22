@@ -1,0 +1,13 @@
+{
+  "name": "Mammoth Tusk",
+  "category": "stone_age:items",
+  "icon": "stone_age:mammoth_tusk",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Mammoth Tusk",
+      "text": "Mammoth tusks are dropped by $(l:entities/mammoth)mammoths$().",
+      "item": "stone_age:mammoth_tusk"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Fish Bone",
+  "category": "stone_age:items",
+  "icon": "stone_age:fish_bone",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Fish Bone",
+      "text": "Fish bones are dropped by fish and are used for crafting.",
+      "item": "stone_age:fish_bone"
+    }
+  ]
+}

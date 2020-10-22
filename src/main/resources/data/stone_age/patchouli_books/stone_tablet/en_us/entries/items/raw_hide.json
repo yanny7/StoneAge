@@ -1,0 +1,13 @@
+{
+  "name": "Raw Hide",
+  "category": "stone_age:items",
+  "icon": "stone_age:raw_hide",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Raw Hide",
+      "text": "Raw hide is dropped by $(l:entities/deer)deer$(), $(l:entities/auroch)aurochs$(), $(l:entities/mammoth)mammoths$(), $(l:entities/woolly_rhino)woolly rhinos$(), and cows. Raw hide can be tanned into leather using the $(l:blocks/tanning_rack)tanning rack$().",
+      "item": "stone_age:raw_hide"
+    }
+  ]
+}

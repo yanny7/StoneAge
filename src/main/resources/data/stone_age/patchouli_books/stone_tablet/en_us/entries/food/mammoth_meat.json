@@ -1,0 +1,17 @@
+{
+  "name": "Mammoth Meat",
+  "category": "stone_age:food",
+  "icon": "stone_age:cooked_mammoth_meat",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Mammoth Meat",
+      "text": "Mammoth meat is dropped by $(l:entities/mammoth)mammoths$().",
+      "item": "stone_age:cooked_mammoth_meat"
+    },
+    {
+      "type": "smelting",
+      "recipe": "stone_age:cooked_mammoth_meat"
+    }
+  ]
+}

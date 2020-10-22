@@ -1,0 +1,17 @@
+{
+  "name": "Fat",
+  "category": "stone_age:food",
+  "icon": "stone_age:cooked_fat",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Fat",
+      "text": "Fat is dropped by $(l:entities/auroch)aurochs$(), $(l:entities/boar)boars$(), $(l:entities/deer)deer$(), $(l:entities/mammoth)mammoths$(), $(l:entities/mouflon)mouflons$(), $(l:entities/saber_tooth_tiger)saber-tooth tigers$(), $(l:entities/woolly_rhino)woolly rhinos$(), cows, pigs, and sheep.",
+      "item": "stone_age:cooked_fat"
+    },
+    {
+      "type": "smelting",
+      "recipe": "stone_age:cooked_fat"
+    }
+  ]
+}

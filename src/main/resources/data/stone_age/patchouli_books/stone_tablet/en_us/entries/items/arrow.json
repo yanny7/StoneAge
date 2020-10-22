@@ -1,0 +1,11 @@
+{
+  "name": "Arrows",
+  "category": "stone_age:items",
+  "icon": "minecraft:arrow",
+  "pages": [
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:arrow"
+    }
+  ]
+}

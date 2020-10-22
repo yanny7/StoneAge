@@ -1,0 +1,11 @@
+{
+  "name": "Stone Sword",
+  "category": "stone_age:tools",
+  "icon": "stone_age:stone_sword",
+  "pages": [
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:stone_sword"
+    }
+  ]
+}

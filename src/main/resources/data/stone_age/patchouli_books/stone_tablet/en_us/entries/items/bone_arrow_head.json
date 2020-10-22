@@ -1,0 +1,17 @@
+{
+  "name": "Bone Arrow Head",
+  "category": "stone_age:items",
+  "icon": "stone_age:bone_arrow_head",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Bone Arrow Head",
+      "text": "Bone arrow heads are used for crafting $(l:items/arrow)arrows$().",
+      "item": "stone_age:bone_arrow_head"
+    },
+    {
+      "type": "stone_age:flint_workbench",
+      "recipe": "stone_age:bone_arrow_head"
+    }
+  ]
+}

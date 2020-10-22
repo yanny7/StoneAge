@@ -1,0 +1,13 @@
+{
+  "name": "Antler",
+  "category": "stone_age:items",
+  "icon": "stone_age:antler",
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Antler",
+      "text": "Antlers are dropped by $(l:entities/deer)deer$(). It is used for making tools.",
+      "item": "stone_age:antler"
+    }
+  ]
+}
