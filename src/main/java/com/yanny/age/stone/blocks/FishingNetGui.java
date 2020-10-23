@@ -1,7 +1,6 @@
 package com.yanny.age.stone.blocks;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.yanny.age.stone.Reference;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
@@ -20,19 +19,19 @@ public class FishingNetGui extends ContainerScreen<Container> {
     }
 
     @Override
-    public void func_230430_a_(@Nonnull MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-        this.func_230446_a_(matrixStack);
-        super.func_230430_a_(matrixStack, mouseX, mouseY, partialTicks);
-        this.func_230459_a_(matrixStack, mouseX, mouseY);
+    public void render(@Nonnull MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+        this.renderBackground(matrixStack);
+        super.render(matrixStack, mouseX, mouseY, partialTicks);
+        this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
     }
 
     @Override
-    protected void func_230450_a_(@Nonnull MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
-        if (field_230706_i_ == null) {
+    protected void drawGuiContainerBackgroundLayer(@Nonnull MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
+        if (minecraft == null) {
             return;
         }
 
-        field_230706_i_.getTextureManager().bindTexture(GUI);
-        func_238474_b_(matrixStack, guiLeft, guiTop, 0, 0, xSize, ySize);
+        minecraft.getTextureManager().bindTexture(GUI);
+        blit(matrixStack, guiLeft, guiTop, 0, 0, xSize, ySize);
     }
 }

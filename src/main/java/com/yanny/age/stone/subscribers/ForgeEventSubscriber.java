@@ -29,6 +29,7 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
@@ -71,6 +72,7 @@ import static net.minecraft.entity.EntityType.*;
 
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeEventSubscriber {
+    private static final String PLAYER_MANUAL_NBT = MODID + "_manual";
 
     private static final Set<ResourceLocation> RECIPES_TO_REMOVE = Sets.newHashSet(
             new ResourceLocation("minecraft", "wooden_axe"),        // removed
@@ -293,11 +295,11 @@ public class ForgeEventSubscriber {
 
         if (Config.abandonedCampAllowedBiomes.stream().anyMatch(biome -> biomeComparator(biome, event))) {
             event.getGeneration().getFeatures(GenerationStage.Decoration.SURFACE_STRUCTURES).add(() ->
-                    FeatureSubscriber.abandoned_camp_feature.withConfiguration(new ProbabilityConfig((float) Config.abandonedCampSpawnChance)).withPlacement(Features.Placements.field_244001_l));
+                    FeatureSubscriber.abandoned_camp_feature.withConfiguration(new ProbabilityConfig((float) Config.abandonedCampSpawnChance)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT));
         }
         if (Config.burialPlaceAllowedBiomes.stream().anyMatch(biome -> biomeComparator(biome, event))) {
             event.getGeneration().getFeatures(GenerationStage.Decoration.SURFACE_STRUCTURES).add(() ->
-                    FeatureSubscriber.burial_place_feature.withConfiguration(new ProbabilityConfig((float) Config.burialPlaceSpawnChance)).withPlacement(Features.Placements.field_244001_l));
+                    FeatureSubscriber.burial_place_feature.withConfiguration(new ProbabilityConfig((float) Config.burialPlaceSpawnChance)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT));
         }
     }
 
@@ -307,7 +309,7 @@ public class ForgeEventSubscriber {
 
         if (Config.removeVanillaGeneratedAnimals) {
             Set<EntityType<?>> vanillaEntities = Sets.newHashSet(COW, SHEEP, PIG, CHICKEN);
-            spawns.getSpawner(CREATURE).removeIf(entry -> vanillaEntities.contains(entry.field_242588_c));
+            spawns.getSpawner(CREATURE).removeIf(entry -> vanillaEntities.contains(entry.type));
         }
     }
 
@@ -321,6 +323,33 @@ public class ForgeEventSubscriber {
         if ((entity.getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem) && (state.getMaterial() == Material.WOOD) &&
                 (state.getBlock().getHarvestLevel(state) <= item.getHarvestLevel(stack, ToolType.AXE, entity, state))) {
             event.setCanHarvest(true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void addManualToPlayer(@Nonnull PlayerEvent.PlayerLoggedInEvent event) {
+        if (!Config.givePlayerManualOnFirstConnect) {
+            return;
+        }
+
+        CompoundNBT nbt = event.getPlayer().getPersistentData();
+        CompoundNBT persistent;
+
+        if (!nbt.contains(PlayerEntity.PERSISTED_NBT_TAG)) {
+            nbt.put(PlayerEntity.PERSISTED_NBT_TAG, (persistent = new CompoundNBT()));
+        } else {
+            persistent = nbt.getCompound(PlayerEntity.PERSISTED_NBT_TAG);
+        }
+
+        if (!persistent.contains(PLAYER_MANUAL_NBT)) {
+            persistent.putBoolean(PLAYER_MANUAL_NBT, true);
+
+            ItemStack book = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("patchouli", "guide_book")));
+
+            if (!book.isEmpty()) {
+                book.getOrCreateTag().putString("patchouli:book", "stone_age:stone_tablet");
+                event.getPlayer().inventory.addItemStackToInventory(book);
+            }
         }
     }
 

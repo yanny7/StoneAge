@@ -28,7 +28,7 @@ public class DryingRackRecipeComponent extends BaseComponent {
     public void render(@Nonnull MatrixStack matrixStack, @Nonnull IComponentRenderContext context, float partialTicks, int mouseX, int mouseY) {
         mc.textureManager.bindTexture(TEXTURE);
         RenderSystem.enableBlend();
-        AbstractGui.func_238463_a_(matrixStack, x, y, 11, 71, 96, 24, 128, 128);
+        AbstractGui.blit(matrixStack, x, y, 11, 71, 96, 24, 128, 128);
         drawCenteredStringNoShadow(matrixStack, title, PAGE_WIDTH / 2, y - 10, context.getHeaderColor(), mc.fontRenderer);
 
         context.renderIngredient(matrixStack, x + 4, y + 4, mouseX, mouseY, recipe.getIngredients().get(0));

@@ -45,12 +45,12 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
     }
 
     @Override
-    public void func_230337_a_(@Nonnull BlockState blockState, CompoundNBT tag) {
+    public void read(@Nonnull BlockState blockState, CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
         CompoundNBT outTag = tag.getCompound("output");
         ItemStackUtils.deserializeStacks(invTag, stacks);
         recipeOutput = ItemStack.read(outTag);
-        super.func_230337_a_(blockState, tag);
+        super.read(blockState, tag);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         super.onDataPacket(net, pkt);
-        func_230337_a_(getBlockState(), pkt.getNbtCompound());
+        read(getBlockState(), pkt.getNbtCompound());
     }
 
     @Nonnull

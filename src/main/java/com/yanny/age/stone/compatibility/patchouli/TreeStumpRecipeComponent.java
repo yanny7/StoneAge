@@ -11,7 +11,6 @@ import vazkii.patchouli.api.IComponentRenderContext;
 import vazkii.patchouli.api.IVariable;
 
 import javax.annotation.Nonnull;
-import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
 public class TreeStumpRecipeComponent extends BaseComponent {
@@ -29,7 +28,7 @@ public class TreeStumpRecipeComponent extends BaseComponent {
     public void render(@Nonnull MatrixStack matrixStack, @Nonnull IComponentRenderContext context, float partialTicks, int mouseX, int mouseY) {
         mc.textureManager.bindTexture(TEXTURE);
         RenderSystem.enableBlend();
-        AbstractGui.func_238463_a_(matrixStack, x, y, 11, 71, 96, 24, 128, 128);
+        AbstractGui.blit(matrixStack, x, y, 11, 71, 96, 24, 128, 128);
         drawCenteredStringNoShadow(matrixStack, title, PAGE_WIDTH / 2, y - 12, context.getHeaderColor(), mc.fontRenderer);
 
         context.renderIngredient(matrixStack, x + 4, y + 4, mouseX, mouseY, recipe.getIngredients().get(0));

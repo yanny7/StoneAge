@@ -53,7 +53,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
     }
 
     @Override
-    public void func_230337_a_(@Nonnull BlockState blockState, CompoundNBT tag) {
+    public void read(@Nonnull BlockState blockState, CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
         ItemStackUtils.deserializeStacks(invTag, stacks);
         chopLeft = tag.getInt("chopLeft");
@@ -61,7 +61,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
         recipeResult = ItemStack.read(tag.getCompound("result"));
         CompoundNBT toolTag = tag.getCompound("tool");
         ItemStackUtils.deserializeIngredients(toolTag, tools);
-        super.func_230337_a_(blockState, tag);
+        super.read(blockState, tag);
     }
 
     @Override
@@ -92,7 +92,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         super.onDataPacket(net, pkt);
-        func_230337_a_(getBlockState(), pkt.getNbtCompound());
+        read(getBlockState(), pkt.getNbtCompound());
     }
 
     @Nonnull

@@ -7,9 +7,6 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -140,14 +137,14 @@ public class FlintSpearEntity extends AbstractArrowEntity {
         float f1 = 1.0F;
 
         if (this.world instanceof ServerWorld && this.world.isThundering() && EnchantmentHelper.hasChanneling(this.thrownStack)) {
-            BlockPos blockpos = entity.func_233580_cy_();
+            BlockPos blockpos = entity.getPosition();
 
             if (this.world.canSeeSky(blockpos)) {
                 LightningBoltEntity lightningboltentity = EntityType.LIGHTNING_BOLT.create(this.world);
 
                 if (lightningboltentity != null) {
-                    lightningboltentity.func_233576_c_(Vector3d.func_237492_c_(blockpos));
-                    lightningboltentity.setCaster(entity1 instanceof ServerPlayerEntity ? (ServerPlayerEntity) entity1 : null);
+                    lightningboltentity.moveForced(Vector3d.copyCenteredHorizontally(blockpos));
+                    lightningboltentity.setCaster(entity1 instanceof ServerPlayerEntity ? (ServerPlayerEntity)entity1 : null);
                     this.world.addEntity(lightningboltentity);
                 }
 

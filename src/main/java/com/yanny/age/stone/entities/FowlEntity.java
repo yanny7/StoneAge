@@ -95,11 +95,11 @@ public class FowlEntity extends WildAnimalEntity implements TopEntityInfoProvide
     }
 
     private static AttributeModifierMap.MutableAttribute getAttributes() {
-        return MobEntity.func_233666_p_().func_233815_a_(Attributes.field_233818_a_, 6.0D).func_233815_a_(Attributes.field_233821_d_, 0.3F);
+        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 6.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3F);
     }
 
-    public static void registerAttributes() {
-        GlobalEntityTypeAttributes.put(EntitySubscriber.fowl, getAttributes().func_233813_a_());
+    public static void registerCustomAttributes() {
+        GlobalEntityTypeAttributes.put(EntitySubscriber.fowl, getAttributes().create());
     }
 
     @Override
@@ -159,6 +159,6 @@ public class FowlEntity extends WildAnimalEntity implements TopEntityInfoProvide
 
     @Override
     public void addProbeInfo(@Nonnull ProbeMode mode, @Nonnull IProbeInfo probeInfo, @Nonnull PlayerEntity player, @Nonnull World world, @Nonnull Entity entity, @Nonnull IProbeHitEntityData data) {
-        probeInfo.horizontal().text(ITextComponent.func_244388_a("Generation: " + dataManager.get(GENERATION)));
+        probeInfo.horizontal().text(ITextComponent.getTextComponentOrEmpty("Generation: " + dataManager.get(GENERATION)));
     }
 }

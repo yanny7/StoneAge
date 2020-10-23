@@ -37,8 +37,8 @@ import java.util.*;
 public class FeederTileEntity extends TileEntity implements IInventoryInterface, ITickableTileEntity, INamedContainerProvider {
     private static final Set<Item> VALID_ITEMS = new HashSet<>();
     static {
-        VALID_ITEMS.addAll(Tags.Items.SEEDS.func_230236_b_());
-        VALID_ITEMS.addAll(Tags.Items.CROPS.func_230236_b_());
+        VALID_ITEMS.addAll(Tags.Items.SEEDS.getAllElements());
+        VALID_ITEMS.addAll(Tags.Items.CROPS.getAllElements());
     }
 
     public static final int ITEMS = 4;
@@ -87,10 +87,10 @@ public class FeederTileEntity extends TileEntity implements IInventoryInterface,
     }
 
     @Override
-    public void func_230337_a_(@Nonnull BlockState blockState, CompoundNBT tag) {
+    public void read(@Nonnull BlockState blockState, CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
         ItemStackUtils.deserializeStacks(invTag, stacks);
-        super.func_230337_a_(blockState, tag);
+        super.read(blockState, tag);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class FeederTileEntity extends TileEntity implements IInventoryInterface,
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         super.onDataPacket(net, pkt);
-        func_230337_a_(getBlockState(), pkt.getNbtCompound());
+        read(getBlockState(), pkt.getNbtCompound());
     }
 
     @Nonnull

@@ -52,11 +52,11 @@ public class DeerEntity extends AnimalEntity {
     }
 
     private static AttributeModifierMap.MutableAttribute getAttributes() {
-        return MobEntity.func_233666_p_().func_233815_a_(Attributes.field_233818_a_, 12.0D).func_233815_a_(Attributes.field_233821_d_, 0.2F);
+        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 12.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2F);
     }
 
-    public static void registerAttributes() {
-        GlobalEntityTypeAttributes.put(EntitySubscriber.deer, getAttributes().func_233813_a_());
+    public static void registerCustomAttributes() {
+        GlobalEntityTypeAttributes.put(EntitySubscriber.deer, getAttributes().create());
     }
 
     @Override

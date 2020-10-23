@@ -57,11 +57,11 @@ public class SaberToothTigerEntity extends WildAnimalEntity {
     }
 
     private static AttributeModifierMap.MutableAttribute getAttributes() {
-        return MobEntity.func_233666_p_().func_233815_a_(Attributes.field_233818_a_, 30.0D).func_233815_a_(Attributes.field_233821_d_, 0.3F);
+        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 30.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3F);
     }
 
-    public static void registerAttributes() {
-        GlobalEntityTypeAttributes.put(EntitySubscriber.saber_tooth_tiger, getAttributes().func_233813_a_());
+    public static void registerCustomAttributes() {
+        GlobalEntityTypeAttributes.put(EntitySubscriber.saber_tooth_tiger, getAttributes().create());
     }
 
     @Override
@@ -79,7 +79,7 @@ public class SaberToothTigerEntity extends WildAnimalEntity {
         this.playSound(SoundSubscriber.saber_tooth_tiger_hit, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 
         if (entityIn instanceof LivingEntity) {
-            ((LivingEntity) entityIn).func_233627_a_(2.0F,
+            ((LivingEntity) entityIn).applyKnockback(2.0F,
                     MathHelper.sin(this.rotationYaw * ((float)Math.PI / 180F)),
                     -MathHelper.cos(this.rotationYaw * ((float)Math.PI / 180F)));
         }

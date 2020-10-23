@@ -90,10 +90,10 @@ public class FishingNetTileEntity extends TileEntity implements IInventoryInterf
     }
 
     @Override
-    public void func_230337_a_(@Nonnull BlockState blockState, CompoundNBT tag) {
+    public void read(@Nonnull BlockState blockState, CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
         ItemStackUtils.deserializeStacks(invTag, stacks);
-        super.func_230337_a_(blockState, tag);
+        super.read(blockState, tag);
     }
 
     @Override
@@ -118,7 +118,7 @@ public class FishingNetTileEntity extends TileEntity implements IInventoryInterf
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         super.onDataPacket(net, pkt);
-        func_230337_a_(getBlockState(), pkt.getNbtCompound());
+        read(getBlockState(), pkt.getNbtCompound());
     }
 
     @Nonnull
@@ -152,7 +152,7 @@ public class FishingNetTileEntity extends TileEntity implements IInventoryInterf
         assert world != null;
         LootTable lootTable = ((ServerWorld) world).getServer().getLootTableManager().getLootTableFromLocation(LootTables.GAMEPLAY_FISHING);
         LootContext lootContext = new LootContext.Builder((ServerWorld) world)
-                .withParameter(LootParameters.field_237457_g_, Vector3d.func_237489_a_(getPos()))
+                .withParameter(LootParameters.field_237457_g_, Vector3d.copyCenteredHorizontally(getPos()))
                 .withParameter(LootParameters.TOOL, stacks.get(0))
                 .build(LootParameterSets.FISHING);
 
@@ -188,7 +188,7 @@ public class FishingNetTileEntity extends TileEntity implements IInventoryInterf
 
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                return (slot == 0) && Tags.Items.FISHING_NET_MESHES.func_230235_a_(stack.getItem());
+                return (slot == 0) && Tags.Items.FISHING_NET_MESHES.contains(stack.getItem());
             }
 
             @Override

@@ -77,7 +77,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
     }
 
     @Override
-    public void func_230337_a_(@Nonnull BlockState blockState, CompoundNBT tag) {
+    public void read(@Nonnull BlockState blockState, CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
         ItemStackUtils.deserializeStacks(invTag, stacks);
 
@@ -85,7 +85,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
             items[i].read(tag.getCompound("items" + i));
         }
 
-        super.func_230337_a_(blockState, tag);
+        super.read(blockState, tag);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         super.onDataPacket(net, pkt);
-        func_230337_a_(getBlockState(), pkt.getNbtCompound());
+        read(getBlockState(), pkt.getNbtCompound());
     }
 
     @Nonnull

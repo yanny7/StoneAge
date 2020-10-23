@@ -2,7 +2,7 @@ package com.yanny.age.stone.subscribers;
 
 import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.entities.*;
-import com.yanny.ages.api.group.ModItemGroup;
+import com.yanny.age.stone.group.ModItemGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
@@ -61,14 +61,14 @@ public class EntitySubscriber {
         registry.register(saber_tooth_tiger);
         registry.register(woolly_rhino);
 
-        DeerEntity.registerAttributes();
-        BoarEntity.registerAttributes();
-        AurochEntity.registerAttributes();
-        FowlEntity.registerAttributes();
-        MouflonEntity.registerAttributes();
-        MammothEntity.registerAttributes();
-        SaberToothTigerEntity.registerAttributes();
-        WoollyRhinoEntity.registerAttributes();
+        DeerEntity.registerCustomAttributes();
+        BoarEntity.registerCustomAttributes();
+        AurochEntity.registerCustomAttributes();
+        FowlEntity.registerCustomAttributes();
+        MouflonEntity.registerCustomAttributes();
+        MammothEntity.registerCustomAttributes();
+        SaberToothTigerEntity.registerCustomAttributes();
+        WoollyRhinoEntity.registerCustomAttributes();
     }
 
     @SubscribeEvent

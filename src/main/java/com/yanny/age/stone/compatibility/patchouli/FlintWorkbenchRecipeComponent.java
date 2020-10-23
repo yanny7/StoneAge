@@ -2,7 +2,6 @@ package com.yanny.age.stone.compatibility.patchouli;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.recipes.FlintWorkbenchRecipe;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.item.crafting.Ingredient;
@@ -13,7 +12,6 @@ import vazkii.patchouli.api.IComponentRenderContext;
 import vazkii.patchouli.api.IVariable;
 
 import javax.annotation.Nonnull;
-import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
 public class FlintWorkbenchRecipeComponent extends BaseComponent {
@@ -25,7 +23,7 @@ public class FlintWorkbenchRecipeComponent extends BaseComponent {
     public void render(@Nonnull MatrixStack matrixStack, @Nonnull IComponentRenderContext context, float partialTicks, int mouseX, int mouseY) {
         mc.textureManager.bindTexture(TEXTURE);
         RenderSystem.enableBlend();
-        AbstractGui.func_238463_a_(matrixStack, x - 2, y - 2, 0, 0, 100, 62, 128, 128);
+        AbstractGui.blit(matrixStack, x - 2, y - 2, 0, 0, 100, 62, 128, 128);
 
         drawCenteredStringNoShadow(matrixStack, title, PAGE_WIDTH / 2, y - 12, context.getHeaderColor(), mc.fontRenderer);
         context.renderItemStack(matrixStack, x + 79, y + 22, mouseX, mouseY, recipe.getRecipeOutput());

@@ -82,6 +82,8 @@ minecraft {
     }
 }
 
+jar.finalizedBy('reobfJar')
+
 repositories {
     maven {
         url "http://dvs1.progwml6.com/files/maven"
@@ -92,12 +94,6 @@ repositories {
     maven {
         url "https://maven.blamejared.com/"
     }
-}
-
-task copyApiLib(type: Copy) {
-    from "$buildDir/../../AgesApi/build/libs"
-    include "*.jar"
-    into "$buildDir/../run/mods"
 }
 
 dependencies {

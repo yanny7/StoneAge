@@ -109,7 +109,7 @@ public class SpearItem extends Item {
                         playerentity.addVelocity(f1, f2, f3);
                         playerentity.startSpinAttack(20);
 
-                        if (playerentity.func_233570_aj_()) {
+                        if (playerentity.isOnGround()) {
                             playerentity.move(MoverType.SELF, new Vector3d(0.0D, 1.1999999F, 0.0D));
                         }
 
@@ -167,9 +167,9 @@ public class SpearItem extends Item {
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(@Nonnull EquipmentSlotType equipmentSlot) {
         ImmutableMultimap.Builder<Attribute, AttributeModifier> attributeModifierBuilder = ImmutableMultimap.builder();
         if (equipmentSlot == EquipmentSlotType.MAINHAND) {
-            attributeModifierBuilder.put(Attributes.field_233823_f_, new AttributeModifier(ATTACK_DAMAGE_MODIFIER,
+            attributeModifierBuilder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER,
                     "Tool modifier", attackDamage, AttributeModifier.Operation.ADDITION));
-            attributeModifierBuilder.put(Attributes.field_233825_h_, new AttributeModifier(ATTACK_SPEED_MODIFIER,
+            attributeModifierBuilder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER,
                     "Tool modifier", attackSpeed, AttributeModifier.Operation.ADDITION));
         }
         return attributeModifierBuilder.build();

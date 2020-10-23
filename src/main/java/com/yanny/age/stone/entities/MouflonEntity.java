@@ -86,11 +86,11 @@ public class MouflonEntity extends WildAnimalEntity implements TopEntityInfoProv
     }
 
     private static AttributeModifierMap.MutableAttribute getAttributes() {
-        return MobEntity.func_233666_p_().func_233815_a_(Attributes.field_233818_a_, 20.0D).func_233815_a_(Attributes.field_233821_d_, 0.3F);
+        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 20.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3F);
     }
 
-    public static void registerAttributes() {
-        GlobalEntityTypeAttributes.put(EntitySubscriber.mouflon, getAttributes().func_233813_a_());
+    public static void registerCustomAttributes() {
+        GlobalEntityTypeAttributes.put(EntitySubscriber.mouflon, getAttributes().create());
     }
 
     @Override
@@ -126,6 +126,6 @@ public class MouflonEntity extends WildAnimalEntity implements TopEntityInfoProv
 
     @Override
     public void addProbeInfo(@Nonnull ProbeMode mode, @Nonnull IProbeInfo probeInfo, @Nonnull PlayerEntity player, @Nonnull World world, @Nonnull Entity entity, @Nonnull IProbeHitEntityData data) {
-        probeInfo.horizontal().text(ITextComponent.func_244388_a("Generation: " + dataManager.get(GENERATION)));
+        probeInfo.horizontal().text(ITextComponent.getTextComponentOrEmpty("Generation: " + dataManager.get(GENERATION)));
     }
 }

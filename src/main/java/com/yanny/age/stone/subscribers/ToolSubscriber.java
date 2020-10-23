@@ -6,7 +6,7 @@ import com.yanny.age.stone.items.BoneTierProperties;
 import com.yanny.age.stone.items.HammerItem;
 import com.yanny.age.stone.items.SpearItem;
 import com.yanny.age.stone.items.StoneTierProperties;
-import com.yanny.ages.api.group.ModItemGroup;
+import com.yanny.age.stone.group.ModItemGroup;
 import com.yanny.ages.api.items.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;
