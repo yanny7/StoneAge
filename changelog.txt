@@ -1,3 +1,10 @@
+v1.2.2
+- fixed config spawn biome blacklist/whitelist
+- configurable breeding result after generations in captivity
+- fixed rendering of blocks
+- millstone returning two outputs
+- fixed compatibility with sorting mods
+- added Patchouli manual
 v1.2.1
 - fixed CraftTweaker function names
 v1.2.0
