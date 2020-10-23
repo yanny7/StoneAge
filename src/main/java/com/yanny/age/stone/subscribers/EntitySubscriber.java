@@ -2,7 +2,7 @@ package com.yanny.age.stone.subscribers;
 
 import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.entities.*;
-import com.yanny.ages.api.group.ModItemGroup;
+import com.yanny.age.stone.group.ModItemGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;

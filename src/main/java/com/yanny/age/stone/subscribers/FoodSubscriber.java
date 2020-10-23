@@ -1,7 +1,7 @@
 package com.yanny.age.stone.subscribers;
 
 import com.yanny.age.stone.Reference;
-import com.yanny.ages.api.group.ModItemGroup;
+import com.yanny.age.stone.group.ModItemGroup;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
