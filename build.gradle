@@ -82,6 +82,11 @@ minecraft {
     }
 }
 
+task release {
+    dependsOn(jar)
+    jar.finalizedBy('reobfJar')
+}
+
 repositories {
     maven {
         url "http://dvs1.progwml6.com/files/maven"
@@ -93,8 +98,6 @@ repositories {
         url "https://maven.blamejared.com/"
     }
 }
-
-jar.finalizedBy('reobfJar')
 
 dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
