@@ -19,6 +19,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -108,8 +109,7 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
     @Nonnull
     @Override
     public ITextComponent getDisplayName() {
-        assert getType().getRegistryName() != null;
-        return new StringTextComponent(getType().getRegistryName().getPath());
+        return new TranslationTextComponent("block.stone_age.millstone");
     }
 
     @Nonnull

@@ -19,6 +19,11 @@ public class FeederGui extends ContainerScreen<Container> {
     }
 
     @Override
+    public ITextComponent getTitle() {
+        return super.getTitle();
+    }
+
+    @Override
     public void render(@Nonnull MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(matrixStack);
         super.render(matrixStack, mouseX, mouseY, partialTicks);

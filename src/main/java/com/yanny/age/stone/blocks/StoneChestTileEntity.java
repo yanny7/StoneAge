@@ -21,6 +21,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -172,8 +173,7 @@ public class StoneChestTileEntity extends LockableLootTileEntity implements IInv
     @Nonnull
     @Override
     public ITextComponent getDisplayName() {
-        assert getType().getRegistryName() != null;
-        return new StringTextComponent(getType().getRegistryName().getPath());
+        return new TranslationTextComponent("block.stone_age.stone_chest");
     }
 
     @Nonnull

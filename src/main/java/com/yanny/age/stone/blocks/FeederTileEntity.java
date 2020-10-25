@@ -22,6 +22,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -76,8 +77,7 @@ public class FeederTileEntity extends TileEntity implements IInventoryInterface,
     @Nonnull
     @Override
     public ITextComponent getDisplayName() {
-        assert getType().getRegistryName() != null;
-        return new StringTextComponent(getType().getRegistryName().getPath());
+        return new TranslationTextComponent("block.stone_age.feeder");
     }
 
     @Nonnull

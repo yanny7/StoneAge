@@ -25,6 +25,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -79,8 +80,7 @@ public class FishingNetTileEntity extends TileEntity implements IInventoryInterf
     @Nonnull
     @Override
     public ITextComponent getDisplayName() {
-        assert getType().getRegistryName() != null;
-        return new StringTextComponent(getType().getRegistryName().getPath());
+        return new TranslationTextComponent("block.stone_age.fishing_net");
     }
 
     @Nonnull
