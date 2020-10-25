@@ -82,7 +82,10 @@ minecraft {
     }
 }
 
-jar.finalizedBy('reobfJar')
+task release {
+    dependsOn(jar)
+    jar.finalizedBy('reobfJar')
+}
 
 repositories {
     maven {
