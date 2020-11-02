@@ -48,6 +48,7 @@ import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.event.world.StructureSpawnListGatherEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -73,6 +74,7 @@ import static net.minecraft.entity.EntityType.*;
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeEventSubscriber {
     private static final String PLAYER_MANUAL_NBT = MODID + "_manual";
+    private static final Set<EntityType<?>> VANILLA_ENTITIES = Sets.newHashSet(COW, SHEEP, PIG, CHICKEN);
 
     private static final Set<ResourceLocation> RECIPES_TO_REMOVE = Sets.newHashSet(
             new ResourceLocation("minecraft", "wooden_axe"),        // removed
@@ -263,6 +265,17 @@ public class ForgeEventSubscriber {
             }
         }
     }
+
+    @SubscribeEvent(priority = EventPriority.NORMAL)
+    public static void structureLoadingEventRemove(@Nonnull StructureSpawnListGatherEvent event) {
+        if (Config.removeVanillaGeneratedAnimals) {
+            event.getEntitySpawns().forEach(((classification, spawners) -> spawners.forEach(spawner -> {
+                if (VANILLA_ENTITIES.contains(spawner.type)) {
+                    event.removeEntitySpawn(classification, spawner);
+                }
+            })));
+        }
+    }
     
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void biomeLoadingEventAdd(@Nonnull BiomeLoadingEvent event) {
@@ -303,13 +316,12 @@ public class ForgeEventSubscriber {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.LOW)
+    @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void biomeLoadingEventRemove(@Nonnull BiomeLoadingEvent event) {
         MobSpawnInfoBuilder spawns = event.getSpawns();
 
         if (Config.removeVanillaGeneratedAnimals) {
-            Set<EntityType<?>> vanillaEntities = Sets.newHashSet(COW, SHEEP, PIG, CHICKEN);
-            spawns.getSpawner(CREATURE).removeIf(entry -> vanillaEntities.contains(entry.type));
+            spawns.getSpawner(CREATURE).removeIf(entry -> VANILLA_ENTITIES.contains(entry.type));
         }
     }
 
