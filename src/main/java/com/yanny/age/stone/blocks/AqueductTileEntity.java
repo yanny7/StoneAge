@@ -1,12 +1,15 @@
 package com.yanny.age.stone.blocks;
 
 import com.google.common.collect.Maps;
+import com.mojang.datafixers.util.Pair;
 import com.yanny.age.stone.config.Config;
 import com.yanny.age.stone.handlers.AqueductHandler;
 import com.yanny.age.stone.subscribers.TileEntitySubscriber;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.IGrowable;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
@@ -16,6 +19,7 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -23,9 +27,11 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import org.apache.logging.log4j.LogManager;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.lang.reflect.Array;
 import java.util.Map;
 
 import static net.minecraft.state.properties.BlockStateProperties.WATERLOGGED;
@@ -42,6 +48,7 @@ public class AqueductTileEntity extends TileEntity implements ITickableTileEntit
     private int level = 0;
     private int filled = 0;
     private int fullCapacity = 0;
+    private int drainedAmount = 0;
 
     public AqueductTileEntity() {
         //noinspection ConstantConditions
@@ -61,7 +68,7 @@ public class AqueductTileEntity extends TileEntity implements ITickableTileEntit
 
             HorizontalBlock.HORIZONTAL_FACING.getAllowedValues().forEach(direction -> {
                 BlockPos pos = getPos().offset(direction);
-                setSource(direction, AqueductBlock.isWater(world.getBlockState(pos).getBlock(), world.getFluidState(pos)));
+                setSource(direction, AqueductBlock.isWater(world.getBlockState(pos).getBlock()));
             });
         }
 
@@ -84,12 +91,12 @@ public class AqueductTileEntity extends TileEntity implements ITickableTileEntit
                 if (sources.containsValue(true)) {
                     activated = false;
                     WATER.setAmount(Config.aqueductFillPerTick);
-                    tank.fill(WATER, IFluidHandler.FluidAction.EXECUTE);
+                    drainedAmount += tank.fill(WATER, IFluidHandler.FluidAction.EXECUTE);
                 } else if (upperTank.isPresent()) {
                     upperTank.ifPresent(upTank -> {
                         activated = false;
                         if (tank.getSpace() >= Config.aqueductFillPerTick) {
-                            tank.fill(upTank.drain(Config.aqueductFillPerTick, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
+                            drainedAmount += tank.fill(upTank.drain(Config.aqueductFillPerTick, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
                         }
                     });
                 } else {
@@ -115,6 +122,17 @@ public class AqueductTileEntity extends TileEntity implements ITickableTileEntit
                         }
                     }
                 }
+
+                if (Config.aqueductRemoveWaterSource && drainedAmount / 1000 > 0) {
+                    drainedAmount = drainedAmount % 1000;
+
+                    BlockPos blockPos = findWaterSource(world, pos);
+
+                    if (blockPos != null) {
+                        System.out.println(blockPos);
+                        world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
+                    }
+                }
             });
         }
     }
@@ -133,6 +151,7 @@ public class AqueductTileEntity extends TileEntity implements ITickableTileEntit
     public void read(@Nonnull BlockState blockState, CompoundNBT tag) {
         capacity = tag.getFloat("capacity");
         activated = tag.getBoolean("activated");
+        drainedAmount = tag.getInt("drainedAmount");
         super.read(blockState, tag);
     }
 
@@ -141,6 +160,7 @@ public class AqueductTileEntity extends TileEntity implements ITickableTileEntit
     public CompoundNBT write(CompoundNBT tag) {
         tag.putFloat("capacity", capacity);
         tag.putBoolean("activated", activated);
+        tag.putInt("drainedAmount", drainedAmount);
         return super.write(tag);
     }
 
@@ -225,5 +245,55 @@ public class AqueductTileEntity extends TileEntity implements ITickableTileEntit
                 }
             }
         }
+    }
+
+    @Nullable
+    private BlockPos findWaterSource(IWorldReader reader, BlockPos pos) {
+        Pair<BlockPos, BlockState>[] aqueduct = getBlockStatesAround(reader, pos);
+        Pair<BlockPos, Integer> level = getHighestWaterLevel(aqueduct);
+        int cnt = 0;
+
+        while(level != null && level.getSecond() < 8) {
+            aqueduct = getBlockStatesAround(reader, level.getFirst());
+            level = getHighestWaterLevel(aqueduct);
+
+            if (cnt++ > 64) {
+                LogManager.getLogger(AqueductTileEntity.class.getSimpleName()).warn("Skipping search for water source from {}", pos);
+                return null;
+            }
+        }
+
+        return level == null ? null : level.getFirst();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Nonnull
+    private Pair<BlockPos, BlockState>[] getBlockStatesAround(IWorldReader reader, BlockPos pos) {
+        Pair<BlockPos, BlockState>[] around = (Pair<BlockPos, BlockState>[]) Array.newInstance(Pair.class, 4);
+
+        Direction.Plane.HORIZONTAL.forEach(direction -> {
+            BlockPos p = pos.offset(direction);
+            around[direction.getHorizontalIndex()] = new Pair<>(p, reader.getBlockState(p));
+        });
+
+        return around;
+    }
+
+    @Nullable
+    private Pair<BlockPos, Integer> getHighestWaterLevel(Pair<BlockPos, BlockState>[] pairs) {
+        Pair<BlockPos, Integer> result = null;
+
+        for (Pair<BlockPos, BlockState> pair : pairs) {
+            FluidState state = pair.getSecond().getFluidState();
+            if (state.getFluid() == Fluids.WATER || state.getFluid() == Fluids.FLOWING_WATER) {
+                int level = state.getFluid() == Fluids.WATER ? 8 : state.getLevel();
+
+                if (result == null || result.getSecond() < level) {
+                    result = new Pair<>(pair.getFirst(), level);
+                }
+            }
+        }
+
+        return result;
     }
 }

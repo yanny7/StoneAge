@@ -93,6 +93,9 @@ class ServerConfig {
     final ForgeConfigSpec.BooleanValue spawnWoollyRhinoAllowedBiomesBlacklist;
     final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnWoollyRhinoAllowedBiomes;
 
+    final ForgeConfigSpec.BooleanValue aqueductRemoveWaterSource;
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> infinityWaterSourceBiomeList;
+
     ServerConfig(@Nonnull final ForgeConfigSpec.Builder builder) {
         builder.push("general");
         removeVanillaRecipes = builder
@@ -417,6 +420,18 @@ class ServerConfig {
                          .map(value -> Objects.requireNonNull(value.getRegistryName()).toString()).collect(Collectors.toList()),
                         string -> ForgeRegistries.BIOMES.containsKey(new ResourceLocation((String) string)));
         builder.pop();
+        builder.pop();
+        builder.push("aqueduct");
+        aqueductRemoveWaterSource = builder
+                .comment("If aqueduct remove water source after draining 1000mB")
+                .translation(Reference.MODID + ".config.aqueduct_remove_water_source")
+                .define("aqueductRemoveWaterSource", true);
+        infinityWaterSourceBiomeList = builder
+                .comment("List of biomes where aqueduct doesn't remove water source")
+                .translation(Reference.MODID + ".config.infinity_water_source_biome_list")
+                .defineList("infinityWaterSourceBiomeList", Config.DEFAULT_INFINITY_WATER_SOURCE_BIOMES.stream()
+                                .map(value -> Objects.requireNonNull(value.getRegistryName()).toString()).collect(Collectors.toList()),
+                        string -> ForgeRegistries.BIOMES.containsKey(new ResourceLocation((String) string)));
         builder.pop();
     }
 }
