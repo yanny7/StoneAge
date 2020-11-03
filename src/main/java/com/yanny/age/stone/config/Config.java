@@ -20,8 +20,8 @@ public class Config {
     static final Set<Biome> DEFAULT_MAMMOTH_BIOMES;
     static final Set<Biome> DEFAULT_TIGER_BIOMES;
     static final Set<Biome> DEFAULT_RHINO_BIOMES;
-
     static final Set<Biome> DEFAULT_STRUCTURE_BIOMES;
+    static final Set<Biome> DEFAULT_INFINITY_WATER_SOURCE_BIOMES;
 
     static {
         DEFAULT_DEER_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, BEACH, SWAMP, JUNGLE, MESA, ICY)
@@ -40,8 +40,10 @@ public class Config {
                 .contains(biome.getCategory())).collect(Collectors.toSet());
         DEFAULT_RHINO_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> EnumSet.of(PLAINS, SAVANNA, ICY, TAIGA, BEACH, SAVANNA, MUSHROOM, RIVER, SWAMP)
                 .contains(biome.getCategory())).collect(Collectors.toSet());
-
-        DEFAULT_STRUCTURE_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> !EnumSet.of(OCEAN, RIVER, THEEND, NETHER).contains(biome.getCategory())).collect(Collectors.toSet());
+        DEFAULT_STRUCTURE_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> !EnumSet.of(OCEAN, RIVER, THEEND, NETHER)
+                .contains(biome.getCategory())).collect(Collectors.toSet());
+        DEFAULT_INFINITY_WATER_SOURCE_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> EnumSet.of(OCEAN, RIVER, SWAMP)
+                .contains(biome.getCategory())).collect(Collectors.toSet());
     }
 
     public static boolean removeVanillaRecipes = true;
@@ -124,4 +126,7 @@ public class Config {
     public static int spawnWoollyRhinoMaxCount = 6;
     public static boolean spawnWoollyRhinoAllowedBiomesBlacklist = false;
     public static final Set<Biome> spawnWoollyRhinoAllowedBiomes = DEFAULT_RHINO_BIOMES;
+
+    public static boolean aqueductRemoveWaterSource = true;
+    public static final Set<Biome> infinityWaterSourceBiomeList = DEFAULT_INFINITY_WATER_SOURCE_BIOMES;
 }

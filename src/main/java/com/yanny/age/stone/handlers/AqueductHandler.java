@@ -31,11 +31,11 @@ public class AqueductHandler {
         if (handler == null) {
             handler = new GenericFluidEntityHandler(world, SETUP);
             INSTANCE.put(world, handler);
-        }
 
-        if (world instanceof ServerWorld) {
-            ServerWorld server = (ServerWorld) world;
-            server.getSavedData().getOrCreate(() -> INSTANCE.get(world), ID);
+            if (world instanceof ServerWorld) {
+                ServerWorld server = (ServerWorld) world;
+                server.getSavedData().getOrCreate(() -> INSTANCE.get(world), ID);
+            }
         }
 
         return handler;

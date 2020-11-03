@@ -200,8 +200,8 @@ public class AqueductBlock extends Block implements TopBlockInfoProvider {
         }
     }
 
-    static boolean isWater(@Nonnull Block block, @Nonnull IFluidState fluidBlockState) {
-        return block.equals(Blocks.WATER) && (fluidBlockState.getLevel() == 8);
+    static boolean isWater(@Nonnull Block block) {
+        return block.equals(Blocks.WATER);
     }
 
     private BlockState makeConnections(@Nonnull World world, @Nonnull BlockPos pos) {
@@ -216,7 +216,7 @@ public class AqueductBlock extends Block implements TopBlockInfoProvider {
         AqueductTileEntity aqueductTileEntity = (AqueductTileEntity) world.getTileEntity(pos);
         BlockState facingBlockState = world.getBlockState(sidePos);
         Block block = facingBlockState.getBlock();
-        boolean isWater = isWater(block, world.getFluidState(sidePos));
+        boolean isWater = isWater(block);
 
         if (aqueductTileEntity != null) {
             aqueductTileEntity.setSource(direction, isWater);
