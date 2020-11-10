@@ -26,8 +26,8 @@ public class FeatureSubscriber {
     public static void registerFeature(@Nonnull RegistryEvent.Register<Feature<?>>  event) {
         IForgeRegistry<Feature<?>> registry = event.getRegistry();
 
-        abandoned_camp_feature = (Feature<ProbabilityConfig>) new AbandonedCampFeature(ProbabilityConfig.field_236576_b_).setRegistryName(MODID, "abandoned_camp_feature");
-        burial_place_feature = (Feature<ProbabilityConfig>) new BurialPlaceFeature(ProbabilityConfig.field_236576_b_).setRegistryName(MODID, "burial_place_feature");
+        abandoned_camp_feature = (Feature<ProbabilityConfig>) new AbandonedCampFeature(ProbabilityConfig.CODEC).setRegistryName(MODID, "abandoned_camp_feature");
+        burial_place_feature = (Feature<ProbabilityConfig>) new BurialPlaceFeature(ProbabilityConfig.CODEC).setRegistryName(MODID, "burial_place_feature");
 
         registry.register(abandoned_camp_feature);
     }

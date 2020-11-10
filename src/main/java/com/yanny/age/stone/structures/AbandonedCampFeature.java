@@ -25,7 +25,7 @@ public class AbandonedCampFeature extends Feature<ProbabilityConfig> {
         super(configCodec);
     }
 
-    public boolean func_241855_a(@Nonnull ISeedReader seedReader, @Nonnull ChunkGenerator chunkGenerator, @Nonnull Random random, @Nonnull BlockPos pos, @Nonnull ProbabilityConfig featureConfig) {
+    public boolean generate(@Nonnull ISeedReader seedReader, @Nonnull ChunkGenerator chunkGenerator, @Nonnull Random random, @Nonnull BlockPos pos, @Nonnull ProbabilityConfig featureConfig) {
         if (random.nextFloat() < 0.5) {
             fillWithAir(seedReader, pos, -2, 0, -2, 2, 3, 2);
             fillWithBlocks(seedReader, pos, -2, -1, -2, 2, -1, 2, Blocks.GRASS_BLOCK.getDefaultState(), Blocks.GRASS_BLOCK.getDefaultState(), false);
