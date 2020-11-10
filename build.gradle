@@ -6,9 +6,12 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath "com.github.jengelman.gradle.plugins:shadow:4.0.2"
     }
 }
+
 apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 version = "${mc_version}-${game_version}"
 group = 'com.yanny.age.stone' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -82,7 +85,15 @@ minecraft {
     }
 }
 
-task release(dependsOn: [jar, 'reobfJar'])
+reobf {
+    shadowJar { }
+}
+
+task release(dependsOn: [build, 'reobfJar'])
+
+configurations {
+    shade
+}
 
 repositories {
     maven {
@@ -113,7 +124,9 @@ dependencies {
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
 
-    compile "org.joml:joml:1.9.25"
+    compileOnly "org.joml:joml:1.9.25"
+    runtimeOnly "org.joml:joml:1.9.25"
+    shade "org.joml:joml:1.9.25"
 
     // look for ages-api library
     compileOnly fileTree(include: ['*.jar'], dir: '../AgesApi/build/libs')
@@ -136,6 +149,11 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
+}
+
+shadowJar {
+    configurations = [project.configurations.shade]
+    classifier = null
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
