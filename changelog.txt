@@ -1,3 +1,7 @@
+v1.2.3
+  Finite water source, aqueduct draining water
+  Increased stick drop rate
+  Added stone tablet recipe
 v1.2.2
 - fixed config spawn biome blacklist/whitelist
 - configurable breeding result after generations in captivity
