@@ -113,6 +113,8 @@ dependencies {
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
 
+    compile "org.joml:joml:1.9.25"
+
     // look for ages-api library
     compileOnly fileTree(include: ['*.jar'], dir: '../AgesApi/build/libs')
 

@@ -17,10 +17,9 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Matrix3f;
-import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.world.ISeedReader;
-import net.minecraft.world.IWorld;
+import org.joml.Matrix3f;
+import org.joml.Vector3f;
 
 import javax.annotation.Nonnull;
 import java.util.Random;
@@ -98,8 +97,8 @@ public class FeatureUtils {
     private static final Vector3f vector = new Vector3f();
     public static BlockPos getRotatedPos(BlockPos pos, int x, int y, int z, Matrix3f normal) {
         vector.set(x, y, z);
-        vector.transform(normal);
-        return pos.add(Math.round(vector.getX()), Math.round(vector.getY()), Math.round(vector.getZ()));
+        vector.mulTranspose(normal);
+        return pos.add(Math.round(vector.x), Math.round(vector.y), Math.round(vector.z));
     }
 
     @SuppressWarnings("ConstantConditions")

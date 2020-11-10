@@ -25,7 +25,7 @@ public class BurialPlaceFeature extends Feature<ProbabilityConfig> {
 
     @Override
     public boolean func_241855_a(@Nonnull ISeedReader seedReader, @Nonnull ChunkGenerator chunkGenerator, @Nonnull Random random, @Nonnull BlockPos pos, @Nonnull ProbabilityConfig featureConfig) {
-        if (random.nextFloat() < featureConfig.probability && seedReader.getBlockState(pos.down()).isSolid()) {
+        if (random.nextFloat() < featureConfig.probability) {
             generateStoneChest(seedReader, pos.add(0, -2, 0), random, new ResourceLocation(Reference.MODID, "chests/stone_chest"), Direction.Plane.HORIZONTAL.random(random));
 
             replaceAirAndLiquidDownwards(seedReader, pos.add(-4, 2, 0), Blocks.STONE.getDefaultState());
