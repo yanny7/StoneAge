@@ -1,3 +1,24 @@
+v1.2.3
+  Fixed server crash in feature generation, Closes #45
+  Finite water source, aqueduct draining water
+  Does not spawn vanilla entities in structures, Closes #21
+  Increased stick drop rate
+  Added stone tablet recipe
+  Fixed item additional information and tile entities naming
+v1.2.2
+  Added patchouli manual book
+  Fixed flint spear rendering
+  Fixed milling does not do when result is almost full
+  Fixed problem with compatibility with inventory sorter mod
+  Millstone returns two outputs
+  Fixed millstone use animation, support for multiple items per input
+  Fixed position of items in JEI for millstone recipe
+  Reworked rendering of dried grass bed
+  Fixed wrong render type
+  Fixed aqueduct rendering
+  Fixed CraftTweaker INSTANCE field
+  Configurable breeding result of wild animals after generations in captivity
+  Fixed config spawn biome blacklist/whitelist
 v1.2.1
 - fixed CraftTweaker function names
 v1.2.0
