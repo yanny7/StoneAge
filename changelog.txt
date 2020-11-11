@@ -1,3 +1,6 @@
+v1.2.4
+  Fixed forced abandoned camp spawn rate
+  Added Terror Bird
 v1.2.3
   Fixed server crash in feature generation, Closes #45
   Finite water source, aqueduct draining water
