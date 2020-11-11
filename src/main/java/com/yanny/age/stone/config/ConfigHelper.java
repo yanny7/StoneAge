@@ -108,6 +108,20 @@ public class ConfigHelper {
         Config.spawnWoollyRhinoAllowedBiomes.clear();
         Config.spawnWoollyRhinoAllowedBiomes.addAll(ConfigHolder.SERVER.spawnWoollyRhinoAllowedBiomes.get().stream()
                 .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toSet()));
+
+        Config.spawnTerrorBirdEnable = ConfigHolder.SERVER.spawnTerrorBirdEnable.get();
+        Config.spawnTerrorBirdWeight = ConfigHolder.SERVER.spawnTerrorBirdWeight.get();
+        Config.spawnTerrorBirdMinCount = ConfigHolder.SERVER.spawnTerrorBirdMinCount.get();
+        Config.spawnTerrorBirdMaxCount = ConfigHolder.SERVER.spawnTerrorBirdMaxCount.get();
+        Config.spawnTerrorBirdAllowedBiomesBlacklist = ConfigHolder.SERVER.spawnTerrorBirdAllowedBiomesBlacklist.get();
+        Config.spawnTerrorBirdAllowedBiomes.clear();
+        Config.spawnTerrorBirdAllowedBiomes.addAll(ConfigHolder.SERVER.spawnTerrorBirdAllowedBiomes.get().stream()
+                .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toSet()));
+
+        Config.aqueductRemoveWaterSource = ConfigHolder.SERVER.aqueductRemoveWaterSource.get();
+        Config.infinityWaterSourceBiomeList.clear();
+        Config.infinityWaterSourceBiomeList.addAll(ConfigHolder.SERVER.infinityWaterSourceBiomeList.get().stream()
+                .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toSet()));
     }
 
     public static void bakeClient() {

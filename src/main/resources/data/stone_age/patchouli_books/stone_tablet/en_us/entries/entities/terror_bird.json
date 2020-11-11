@@ -1,0 +1,22 @@
+{
+  "name": "Terror Bird",
+  "category": "stone_age:entities",
+  "icon": "stone_age:terror_bird_spawn_egg",
+  "pages": [
+    {
+      "type": "text",
+      "title": "Terror Bird",
+      "text": "Terror Birds are large, dangerous beasts. They hunt mammals like $(1)you$()."
+    },
+    {
+      "type": "entity",
+      "entity": "stone_age:terror_bird",
+      "scale": 0.8,
+      "text": "Breeding items: wheat, melon, pumpkin and beetroot seeds"
+    },
+    {
+      "type": "text",
+      "text": "Mob drops:$(br)$(li)Feather$()$(li)Raw Chicken"
+    }
+  ]
+}

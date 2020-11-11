@@ -20,6 +20,7 @@ public class Config {
     static final Set<Biome> DEFAULT_MAMMOTH_BIOMES;
     static final Set<Biome> DEFAULT_TIGER_BIOMES;
     static final Set<Biome> DEFAULT_RHINO_BIOMES;
+    static final Set<Biome> DEFAULT_TERROR_BIRD_BIOMES;
     static final Set<Biome> DEFAULT_STRUCTURE_BIOMES;
     static final Set<Biome> DEFAULT_INFINITY_WATER_SOURCE_BIOMES;
 
@@ -39,6 +40,8 @@ public class Config {
         DEFAULT_TIGER_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> EnumSet.of(PLAINS, SAVANNA, ICY, TAIGA, DESERT, FOREST, BEACH, JUNGLE, MUSHROOM)
                 .contains(biome.getCategory())).collect(Collectors.toSet());
         DEFAULT_RHINO_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> EnumSet.of(PLAINS, SAVANNA, ICY, TAIGA, BEACH, SAVANNA, MUSHROOM, RIVER, SWAMP)
+                .contains(biome.getCategory())).collect(Collectors.toSet());
+        DEFAULT_TERROR_BIRD_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> EnumSet.of(PLAINS, SAVANNA, FOREST, JUNGLE, MUSHROOM)
                 .contains(biome.getCategory())).collect(Collectors.toSet());
         DEFAULT_STRUCTURE_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> !EnumSet.of(OCEAN, RIVER, THEEND, NETHER)
                 .contains(biome.getCategory())).collect(Collectors.toSet());
@@ -126,6 +129,13 @@ public class Config {
     public static int spawnWoollyRhinoMaxCount = 6;
     public static boolean spawnWoollyRhinoAllowedBiomesBlacklist = false;
     public static final Set<Biome> spawnWoollyRhinoAllowedBiomes = DEFAULT_RHINO_BIOMES;
+
+    public static boolean spawnTerrorBirdEnable = true;
+    public static int spawnTerrorBirdWeight = 5;
+    public static int spawnTerrorBirdMinCount = 1;
+    public static int spawnTerrorBirdMaxCount = 3;
+    public static boolean spawnTerrorBirdAllowedBiomesBlacklist = false;
+    public static final Set<Biome> spawnTerrorBirdAllowedBiomes = DEFAULT_TERROR_BIRD_BIOMES;
 
     public static boolean aqueductRemoveWaterSource = true;
     public static final Set<Biome> infinityWaterSourceBiomeList = DEFAULT_INFINITY_WATER_SOURCE_BIOMES;

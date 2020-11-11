@@ -38,6 +38,8 @@ public class EntitySubscriber {
             .size(1.4f, 1.4f).build("").setRegistryName(Reference.MODID, "saber_tooth_tiger");
     public static final EntityType<WoollyRhinoEntity> woolly_rhino = (EntityType<WoollyRhinoEntity>) EntityType.Builder.create(WoollyRhinoEntity::new, CREATURE)
             .size(1.7f, 1.4f).build("").setRegistryName(Reference.MODID, "woolly_rhino");
+    public static final EntityType<TerrorBirdEntity> terror_bird = (EntityType<TerrorBirdEntity>) EntityType.Builder.create(TerrorBirdEntity::new, CREATURE)
+            .size(0.9f, 1.9f).build("").setRegistryName(Reference.MODID, "terror_bird");
 
     public static final Item deer_spawn_egg = null;
     public static final Item boar_spawn_egg = null;
@@ -47,6 +49,7 @@ public class EntitySubscriber {
     public static final Item mammoth_spawn_egg = null;
     public static final Item saber_tooth_tiger_spawn_egg = null;
     public static final Item woolly_rhino_spawn_egg = null;
+    public static final Item terror_bird_spawn_egg = null;
 
     @SubscribeEvent
     public static void registerEntities(@Nonnull RegistryEvent.Register<EntityType<?>> event) {
@@ -60,6 +63,7 @@ public class EntitySubscriber {
         registry.register(mammoth);
         registry.register(saber_tooth_tiger);
         registry.register(woolly_rhino);
+        registry.register(terror_bird);
 
         DeerEntity.registerCustomAttributes();
         BoarEntity.registerCustomAttributes();
@@ -69,6 +73,7 @@ public class EntitySubscriber {
         MammothEntity.registerCustomAttributes();
         SaberToothTigerEntity.registerCustomAttributes();
         WoollyRhinoEntity.registerCustomAttributes();
+        TerrorBirdEntity.registerCustomAttributes();
     }
 
     @SubscribeEvent
@@ -90,5 +95,7 @@ public class EntitySubscriber {
                 new Item.Properties().group(ModItemGroup.AGES)).setRegistryName(Reference.MODID, "saber_tooth_tiger_spawn_egg"));
         registry.register(new SpawnEggItem(woolly_rhino, 0xec6512, 0xc33905,
                 new Item.Properties().group(ModItemGroup.AGES)).setRegistryName(Reference.MODID, "woolly_rhino_spawn_egg"));
+        registry.register(new SpawnEggItem(terror_bird, 0x925512, 0x225515,
+                new Item.Properties().group(ModItemGroup.AGES)).setRegistryName(Reference.MODID, "terror_bird_spawn_egg"));
     }
 }
