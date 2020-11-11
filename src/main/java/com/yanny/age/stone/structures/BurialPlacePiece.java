@@ -21,7 +21,6 @@ public class BurialPlacePiece extends BasePiece {
     public BurialPlacePiece(@Nonnull Random rand, int xIn, int zIn) {
         super(BURIAL_PLACE, rand, xIn, 0, zIn, 9, 5, 9);
         setCoordBaseMode(Direction.Plane.HORIZONTAL.random(rand));
-        LOGGER.info("Generated BurialPlace at x:" + xIn + " z:" + zIn);
     }
 
     @SuppressWarnings("unused")

@@ -25,7 +25,6 @@ public class AbandonedCampPiece extends BasePiece {
     public AbandonedCampPiece(@Nonnull Random rand, int xIn, int zIn) {
         super(CAMP, new Random(), xIn, 0, zIn, 7, 5, 7);
         setCoordBaseMode(Direction.Plane.HORIZONTAL.random(rand));
-        LOGGER.info("Generated AbandonedCamp at x:" + xIn + " z:" + zIn);
     }
 
     @SuppressWarnings("unused")
