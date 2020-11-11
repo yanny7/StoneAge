@@ -281,6 +281,9 @@ public class ForgeEventSubscriber {
             if (Config.spawnWoollyRhinoEnable && (!Config.spawnWoollyRhinoAllowedBiomesBlacklist == Config.spawnWoollyRhinoAllowedBiomes.contains(biome))) {
                 biome.getSpawns(woolly_rhino.getClassification()).add(new Biome.SpawnListEntry(woolly_rhino, Config.spawnWoollyRhinoWeight, Config.spawnWoollyRhinoMinCount, Config.spawnWoollyRhinoMaxCount));
             }
+            if (Config.spawnTerrorBirdEnable && (!Config.spawnTerrorBirdAllowedBiomesBlacklist == Config.spawnTerrorBirdAllowedBiomes.contains(biome))) {
+                biome.getSpawns(terror_bird.getClassification()).add(new Biome.SpawnListEntry(terror_bird, Config.spawnTerrorBirdWeight, Config.spawnTerrorBirdMinCount, Config.spawnTerrorBirdMaxCount));
+            }
 
             if (Config.removeVanillaGeneratedAnimals) {
                 //noinspection unchecked

@@ -93,6 +93,13 @@ class ServerConfig {
     final ForgeConfigSpec.BooleanValue spawnWoollyRhinoAllowedBiomesBlacklist;
     final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnWoollyRhinoAllowedBiomes;
 
+    final ForgeConfigSpec.BooleanValue spawnTerrorBirdEnable;
+    final ForgeConfigSpec.IntValue spawnTerrorBirdWeight;
+    final ForgeConfigSpec.IntValue spawnTerrorBirdMinCount;
+    final ForgeConfigSpec.IntValue spawnTerrorBirdMaxCount;
+    final ForgeConfigSpec.BooleanValue spawnTerrorBirdAllowedBiomesBlacklist;
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnTerrorBirdAllowedBiomes;
+
     final ForgeConfigSpec.BooleanValue aqueductRemoveWaterSource;
     final ForgeConfigSpec.ConfigValue<List<? extends String>> infinityWaterSourceBiomeList;
 
@@ -418,6 +425,34 @@ class ServerConfig {
                 .translation(Reference.MODID + ".config.spawn_woolly_rhino_allowed_biomes")
                 .defineList("spawnWoollyRhinoAllowedBiomes", Config.DEFAULT_RHINO_BIOMES.stream()
                          .map(value -> Objects.requireNonNull(value.getRegistryName()).toString()).collect(Collectors.toList()),
+                        string -> ForgeRegistries.BIOMES.containsKey(new ResourceLocation((String) string)));
+        builder.pop();
+        builder.push("terror bird");
+        spawnTerrorBirdEnable = builder
+                .comment("Enable spawning of mob")
+                .translation(Reference.MODID + ".config.spawn_terror_bird_enable")
+                .define("spawnTerrorBirdEnable", true);
+        spawnTerrorBirdWeight = builder
+                .comment("Spawn weight of mob")
+                .translation(Reference.MODID + ".config.spawn_terror_bird_weight")
+                .defineInRange("spawnTerrorBirdWeight", 5, 0, 100);
+        spawnTerrorBirdMinCount = builder
+                .comment("Spawn min count of mob")
+                .translation(Reference.MODID + ".config.spawn_terror_bird_min_count")
+                .defineInRange("spawnTerrorBirdMinCount", 1, 1, 100);
+        spawnTerrorBirdMaxCount = builder
+                .comment("Spawn max count of mob")
+                .translation(Reference.MODID + ".config.spawn_terror_bird_max_count")
+                .defineInRange("spawnTerrorBirdMaxCount", 3, 1, 100);
+        spawnTerrorBirdAllowedBiomesBlacklist = builder
+                .comment("If spawnTerrorBirdAllowedBiomes is blacklist")
+                .translation(Reference.MODID + ".config.spawn_terror_bird_allowed_biomes_blacklist")
+                .define("spawnTerrorBirdAllowedBiomesBlacklist", false);
+        spawnTerrorBirdAllowedBiomes = builder
+                .comment("Spawn terror bird in allowed biomes")
+                .translation(Reference.MODID + ".config.spawn_terror_bird_allowed_biomes")
+                .defineList("spawnTerrorBirdAllowedBiomes", Config.DEFAULT_TERROR_BIRD_BIOMES.stream()
+                                .map(value -> Objects.requireNonNull(value.getRegistryName()).toString()).collect(Collectors.toList()),
                         string -> ForgeRegistries.BIOMES.containsKey(new ResourceLocation((String) string)));
         builder.pop();
         builder.pop();

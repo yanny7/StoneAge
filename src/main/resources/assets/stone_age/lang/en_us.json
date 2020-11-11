@@ -72,6 +72,7 @@
     "item.stone_age.mammoth_spawn_egg": "Mammoth Spawn Egg",
     "item.stone_age.saber_tooth_tiger_spawn_egg": "Saber-Tooth Tiger Spawn Egg",
     "item.stone_age.woolly_rhino_spawn_egg": "Woolly Rhino Spawn Egg",
+    "item.stone_age.terror_bird_spawn_egg": "Terror Bird Spawn Egg",
 
     "block.stone_age.flint_workbench": "Flint Crafting Table",
     "block.stone_age.drying_rack": "Drying Rack",
@@ -95,6 +96,7 @@
     "entity.stone_age.mammoth": "Mammoth",
     "entity.stone_age.saber_tooth_tiger": "Saber-Tooth Tiger",
     "entity.stone_age.woolly_rhino": "Woolly Rhino",
+    "entity.stone_age.terror_bird": "Terror Bird",
 
     "stone_age.subtitle.mammoth_ambient": "Mammoth trumpet",
     "stone_age.subtitle.mammoth_hit": "Mammoth was hit",
