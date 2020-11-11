@@ -1,0 +1,1 @@
+{"meta":{"format_version":"3.0","model_format":"java_block","box_uv":true},"name":"FlintWorkbench","resolution":{"width":16,"height":16},"elements":[{"name":"cube","from":[0,0,0],"to":[16,10,16],"autouv":1,"color":4,"origin":[8,8,8],"uuid":"00390575-ecea-2986-b503-2c54b55a8659"}],"outliner":["00390575-ecea-2986-b503-2c54b55a8659"],"textures":[]}
