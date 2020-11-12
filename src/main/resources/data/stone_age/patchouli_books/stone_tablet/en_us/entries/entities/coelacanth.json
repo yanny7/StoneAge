@@ -1,0 +1,17 @@
+{
+  "name": "Coelacanth",
+  "category": "stone_age:entities",
+  "icon": "stone_age:coelacanth_spawn_egg",
+  "pages": [
+    {
+      "type": "text",
+      "title": "Coelacanth",
+      "text": "Also known as Living fossil"
+    },
+    {
+      "type": "entity",
+      "entity": "stone_age:coelacanth",
+      "scale": 1.0
+    }
+  ]
+}

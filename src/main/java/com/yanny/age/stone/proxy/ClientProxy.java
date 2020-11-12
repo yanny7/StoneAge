@@ -38,6 +38,7 @@ public class ClientProxy implements IProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntitySubscriber.saber_tooth_tiger, new SaberToothTigerRenderer.RenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(EntitySubscriber.woolly_rhino, new WoollyRhinoRenderer.RenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(EntitySubscriber.terror_bird, new TerrorBirdRenderer.RenderFactory());
+        RenderingRegistry.registerEntityRenderingHandler(EntitySubscriber.coelacanth, new CoelacanthRenderer.RenderFactory());
 
         ClientRegistry.bindTileEntityRenderer(TileEntitySubscriber.flint_workbench, FlintWorkbenchRenderer::new);
         ClientRegistry.bindTileEntityRenderer(TileEntitySubscriber.drying_rack, DryingRackRenderer::new);

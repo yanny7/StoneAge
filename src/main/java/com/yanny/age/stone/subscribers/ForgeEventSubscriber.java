@@ -284,6 +284,9 @@ public class ForgeEventSubscriber {
             if (Config.spawnTerrorBirdEnable && (!Config.spawnTerrorBirdAllowedBiomesBlacklist == Config.spawnTerrorBirdAllowedBiomes.contains(biome))) {
                 biome.getSpawns(terror_bird.getClassification()).add(new Biome.SpawnListEntry(terror_bird, Config.spawnTerrorBirdWeight, Config.spawnTerrorBirdMinCount, Config.spawnTerrorBirdMaxCount));
             }
+            if (Config.spawnCoelacanthEnable && (!Config.spawnCoelacanthAllowedBiomesBlacklist == Config.spawnCoelacanthAllowedBiomes.contains(biome))) {
+                biome.getSpawns(coelacanth.getClassification()).add(new Biome.SpawnListEntry(coelacanth, Config.spawnCoelacanthWeight, Config.spawnCoelacanthMinCount, Config.spawnCoelacanthMaxCount));
+            }
 
             if (Config.removeVanillaGeneratedAnimals) {
                 //noinspection unchecked

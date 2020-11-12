@@ -118,6 +118,15 @@ public class ConfigHelper {
         Config.spawnTerrorBirdAllowedBiomes.addAll(ConfigHolder.SERVER.spawnTerrorBirdAllowedBiomes.get().stream()
                 .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toSet()));
 
+        Config.spawnCoelacanthEnable = ConfigHolder.SERVER.spawnCoelacanthEnable.get();
+        Config.spawnCoelacanthWeight = ConfigHolder.SERVER.spawnCoelacanthWeight.get();
+        Config.spawnCoelacanthMinCount = ConfigHolder.SERVER.spawnCoelacanthMinCount.get();
+        Config.spawnCoelacanthMaxCount = ConfigHolder.SERVER.spawnCoelacanthMaxCount.get();
+        Config.spawnCoelacanthAllowedBiomesBlacklist = ConfigHolder.SERVER.spawnCoelacanthAllowedBiomesBlacklist.get();
+        Config.spawnCoelacanthAllowedBiomes.clear();
+        Config.spawnCoelacanthAllowedBiomes.addAll(ConfigHolder.SERVER.spawnCoelacanthAllowedBiomes.get().stream()
+                .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toSet()));
+
         Config.aqueductRemoveWaterSource = ConfigHolder.SERVER.aqueductRemoveWaterSource.get();
         Config.infinityWaterSourceBiomeList.clear();
         Config.infinityWaterSourceBiomeList.addAll(ConfigHolder.SERVER.infinityWaterSourceBiomeList.get().stream()
