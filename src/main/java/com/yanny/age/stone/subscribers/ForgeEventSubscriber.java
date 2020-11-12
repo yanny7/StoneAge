@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.yanny.age.stone.config.Config;
+import com.yanny.age.stone.entities.CoelacanthEntity;
 import com.yanny.age.stone.entities.SaberToothTigerEntity;
 import com.yanny.ages.api.enums.Age;
 import com.yanny.ages.api.utils.AgeUtils;
@@ -317,6 +318,9 @@ public class ForgeEventSubscriber {
         }
         if (Config.spawnTerrorBirdEnable && (!Config.spawnTerrorBirdAllowedBiomesBlacklist == Config.spawnTerrorBirdAllowedBiomes.stream().anyMatch(biome -> biomeComparator(biome, event)))) {
             spawns.getSpawner(terror_bird.getClassification()).add(new MobSpawnInfo.Spawners(terror_bird, Config.spawnTerrorBirdWeight, Config.spawnTerrorBirdMinCount, Config.spawnTerrorBirdMaxCount));
+        }
+        if (Config.spawnCoelacanthEnable && (!Config.spawnCoelacanthAllowedBiomesBlacklist == Config.spawnCoelacanthAllowedBiomes.stream().anyMatch(biome -> biomeComparator(biome, event)))) {
+            spawns.getSpawner(coelacanth.getClassification()).add(new MobSpawnInfo.Spawners(coelacanth, Config.spawnCoelacanthWeight, Config.spawnCoelacanthMinCount, Config.spawnCoelacanthMaxCount));
         }
 
         if (Config.abandonedCampAllowedBiomes.stream().anyMatch(biome -> biomeComparator(biome, event))) {

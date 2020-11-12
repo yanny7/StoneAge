@@ -15,6 +15,7 @@ import net.minecraftforge.registries.ObjectHolder;
 import javax.annotation.Nonnull;
 
 import static net.minecraft.entity.EntityClassification.CREATURE;
+import static net.minecraft.entity.EntityClassification.WATER_CREATURE;
 
 @SuppressWarnings({"unused", "unchecked"})
 @ObjectHolder(Reference.MODID)
@@ -40,6 +41,8 @@ public class EntitySubscriber {
             .size(1.7f, 1.4f).build("").setRegistryName(Reference.MODID, "woolly_rhino");
     public static final EntityType<TerrorBirdEntity> terror_bird = (EntityType<TerrorBirdEntity>) EntityType.Builder.create(TerrorBirdEntity::new, CREATURE)
             .size(0.9f, 1.9f).build("").setRegistryName(Reference.MODID, "terror_bird");
+    public static final EntityType<CoelacanthEntity> coelacanth = (EntityType<CoelacanthEntity>) EntityType.Builder.create(CoelacanthEntity::new, WATER_CREATURE)
+            .size(0.8f, 0.35f).build("").setRegistryName(Reference.MODID, "coelacanth");
 
     public static final Item deer_spawn_egg = null;
     public static final Item boar_spawn_egg = null;
@@ -50,6 +53,7 @@ public class EntitySubscriber {
     public static final Item saber_tooth_tiger_spawn_egg = null;
     public static final Item woolly_rhino_spawn_egg = null;
     public static final Item terror_bird_spawn_egg = null;
+    public static final Item coelacanth_spawn_egg = null;
 
     @SubscribeEvent
     public static void registerEntities(@Nonnull RegistryEvent.Register<EntityType<?>> event) {
@@ -64,6 +68,7 @@ public class EntitySubscriber {
         registry.register(saber_tooth_tiger);
         registry.register(woolly_rhino);
         registry.register(terror_bird);
+        registry.register(coelacanth);
 
         DeerEntity.registerCustomAttributes();
         BoarEntity.registerCustomAttributes();
@@ -74,6 +79,7 @@ public class EntitySubscriber {
         SaberToothTigerEntity.registerCustomAttributes();
         WoollyRhinoEntity.registerCustomAttributes();
         TerrorBirdEntity.registerCustomAttributes();
+        CoelacanthEntity.registerCustomAttributes();
     }
 
     @SubscribeEvent
@@ -97,5 +103,7 @@ public class EntitySubscriber {
                 new Item.Properties().group(ModItemGroup.AGES)).setRegistryName(Reference.MODID, "woolly_rhino_spawn_egg"));
         registry.register(new SpawnEggItem(terror_bird, 0x925512, 0x225515,
                 new Item.Properties().group(ModItemGroup.AGES)).setRegistryName(Reference.MODID, "terror_bird_spawn_egg"));
+        registry.register(new SpawnEggItem(coelacanth, 0xfa9987, 0x0977af,
+                new Item.Properties().group(ModItemGroup.AGES)).setRegistryName(Reference.MODID, "coelacanth_spawn_egg"));
     }
 }

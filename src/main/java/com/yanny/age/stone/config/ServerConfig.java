@@ -100,6 +100,13 @@ class ServerConfig {
     final ForgeConfigSpec.BooleanValue spawnTerrorBirdAllowedBiomesBlacklist;
     final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnTerrorBirdAllowedBiomes;
 
+    final ForgeConfigSpec.BooleanValue spawnCoelacanthEnable;
+    final ForgeConfigSpec.IntValue spawnCoelacanthWeight;
+    final ForgeConfigSpec.IntValue spawnCoelacanthMinCount;
+    final ForgeConfigSpec.IntValue spawnCoelacanthMaxCount;
+    final ForgeConfigSpec.BooleanValue spawnCoelacanthAllowedBiomesBlacklist;
+    final ForgeConfigSpec.ConfigValue<List<? extends String>> spawnCoelacanthAllowedBiomes;
+
     final ForgeConfigSpec.BooleanValue aqueductRemoveWaterSource;
     final ForgeConfigSpec.ConfigValue<List<? extends String>> infinityWaterSourceBiomeList;
 
@@ -452,6 +459,34 @@ class ServerConfig {
                 .comment("Spawn terror bird in allowed biomes")
                 .translation(Reference.MODID + ".config.spawn_terror_bird_allowed_biomes")
                 .defineList("spawnTerrorBirdAllowedBiomes", Config.DEFAULT_TERROR_BIRD_BIOMES.stream()
+                                .map(value -> Objects.requireNonNull(value.getRegistryName()).toString()).collect(Collectors.toList()),
+                        string -> ForgeRegistries.BIOMES.containsKey(new ResourceLocation((String) string)));
+        builder.pop();
+        builder.push("coelacanth");
+        spawnCoelacanthEnable = builder
+                .comment("Enable spawning of mob")
+                .translation(Reference.MODID + ".config.spawn_coelacanth_enable")
+                .define("spawnCoelacanthEnable", true);
+        spawnCoelacanthWeight = builder
+                .comment("Spawn weight of mob")
+                .translation(Reference.MODID + ".config.spawn_coelacanth_weight")
+                .defineInRange("spawnCoelacanthWeight", 5, 0, 100);
+        spawnCoelacanthMinCount = builder
+                .comment("Spawn min count of mob")
+                .translation(Reference.MODID + ".config.spawn_coelacanth_min_count")
+                .defineInRange("spawnCoelacanthMinCount", 1, 1, 100);
+        spawnCoelacanthMaxCount = builder
+                .comment("Spawn max count of mob")
+                .translation(Reference.MODID + ".config.spawn_coelacanth_max_count")
+                .defineInRange("spawnCoelacanthMaxCount", 3, 1, 100);
+        spawnCoelacanthAllowedBiomesBlacklist = builder
+                .comment("If spawnCoelacanthAllowedBiomes is blacklist")
+                .translation(Reference.MODID + ".config.spawn_coelacanth_allowed_biomes_blacklist")
+                .define("spawnCoelacanthAllowedBiomesBlacklist", false);
+        spawnCoelacanthAllowedBiomes = builder
+                .comment("Spawn coelacanth in allowed biomes")
+                .translation(Reference.MODID + ".config.spawn_coelacanth_allowed_biomes")
+                .defineList("spawnCoelacanthAllowedBiomes", Config.DEFAULT_COELACANTH_BIOMES.stream()
                                 .map(value -> Objects.requireNonNull(value.getRegistryName()).toString()).collect(Collectors.toList()),
                         string -> ForgeRegistries.BIOMES.containsKey(new ResourceLocation((String) string)));
         builder.pop();
