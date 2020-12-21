@@ -180,7 +180,7 @@ public class ForgeEventSubscriber {
         BlockPos blockPos = event.getPos();
         BlockState blockState = event.getWorld().getBlockState(blockPos);
 
-        if (Config.disableVanillaCraftingTable && (blockState.getBlock() == CRAFTING_TABLE) && (AgeUtils.getPlayerAge(event.getPlayer()) <= Age.STONE_AGE.value)) {
+        if (Config.disableVanillaCraftingTable && (AgeUtils.getPlayerAge(event.getPlayer()) <= Age.STONE_AGE.value) && Config.disabledUseInStoneAgeList.contains(blockState.getBlock())) {
             event.setUseBlock(Event.Result.DENY);
         }
     }

@@ -1,6 +1,10 @@
 package com.yanny.age.stone.config;
 
+import com.google.common.collect.Sets;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -24,6 +28,7 @@ public class Config {
     static final Set<Biome> DEFAULT_STRUCTURE_BIOMES;
     static final Set<Biome> DEFAULT_COELACANTH_BIOMES;
     static final Set<Biome> DEFAULT_INFINITY_WATER_SOURCE_BIOMES;
+    static final Set<Block> DEFAULT_DISABLED_USE_BLOCKS;
 
     static {
         DEFAULT_DEER_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> EnumSet.of(FOREST, PLAINS, TAIGA, EXTREME_HILLS, SAVANNA, BEACH, SWAMP, JUNGLE, MESA, ICY)
@@ -50,6 +55,7 @@ public class Config {
                 .contains(biome.getCategory())).collect(Collectors.toSet());
         DEFAULT_INFINITY_WATER_SOURCE_BIOMES = ForgeRegistries.BIOMES.getValues().stream().filter(biome -> EnumSet.of(OCEAN, RIVER, SWAMP)
                 .contains(biome.getCategory())).collect(Collectors.toSet());
+        DEFAULT_DISABLED_USE_BLOCKS = Sets.newHashSet(Blocks.CRAFTING_TABLE);
     }
 
     public static boolean removeVanillaRecipes = true;
@@ -66,10 +72,10 @@ public class Config {
     public static boolean givePlayerManualOnFirstConnect = true;
     public static int fishingNetChance = 3600;
     public static boolean disableVanillaCraftingTable = true;
+    public static final Set<Block> disabledUseInStoneAgeList = DEFAULT_DISABLED_USE_BLOCKS;
 
     public static double abandonedCampSpawnChance = 0.001f;
     public static double burialPlaceSpawnChance = 0.001f;
-
     public static final Set<Biome> abandonedCampAllowedBiomes = DEFAULT_STRUCTURE_BIOMES;
     public static final Set<Biome> burialPlaceAllowedBiomes = DEFAULT_STRUCTURE_BIOMES;
 

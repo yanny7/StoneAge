@@ -22,10 +22,12 @@ public class ConfigHelper {
         Config.givePlayerManualOnFirstConnect = ConfigHolder.SERVER.givePlayerManualOnFirstConnect.get();
         Config.fishingNetChance = ConfigHolder.SERVER.fishingNetChance.get();
         Config.disableVanillaCraftingTable = ConfigHolder.SERVER.disableVanillaCraftingTable.get();
+        Config.disabledUseInStoneAgeList.clear();
+        Config.disabledUseInStoneAgeList.addAll(ConfigHolder.SERVER.disabledUseInStoneAgeList.get().stream()
+                .map(value -> ForgeRegistries.BLOCKS.getValue(new ResourceLocation(value))).collect(Collectors.toList()));
 
         Config.abandonedCampSpawnChance = ConfigHolder.SERVER.abandonedCampSpawnChance.get();
         Config.burialPlaceSpawnChance = ConfigHolder.SERVER.burialPlaceSpawnChance.get();
-
         Config.abandonedCampAllowedBiomes.clear();
         Config.abandonedCampAllowedBiomes.addAll(ConfigHolder.SERVER.abandonedCampAllowedBiomes.get().stream()
                 .map(value -> ForgeRegistries.BIOMES.getValue(new ResourceLocation(value))).collect(Collectors.toSet()));
