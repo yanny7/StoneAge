@@ -67,8 +67,8 @@ public class Config {
     public static int fishingNetChance = 3600;
     public static boolean disableVanillaCraftingTable = true;
 
-    public static double abandonedCampSpawnChance = 0.009f;
-    public static double burialPlaceSpawnChance = 0.01f;
+    public static double abandonedCampSpawnChance = 0.001f;
+    public static double burialPlaceSpawnChance = 0.001f;
 
     public static final Set<Biome> abandonedCampAllowedBiomes = DEFAULT_STRUCTURE_BIOMES;
     public static final Set<Biome> burialPlaceAllowedBiomes = DEFAULT_STRUCTURE_BIOMES;
