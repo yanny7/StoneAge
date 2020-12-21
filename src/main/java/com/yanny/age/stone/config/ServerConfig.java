@@ -174,7 +174,7 @@ class ServerConfig {
         abandonedCampSpawnChance = builder
                 .comment("Abandoned camp spawn chance")
                 .translation(Reference.MODID + ".config.abandoned_camp_spawn_chance")
-                .defineInRange("abandonedCampSpawnChance", 0.009, Double.MIN_VALUE, 1.0);
+                .defineInRange("abandonedCampSpawnChance", 0.001, Double.MIN_VALUE, 1.0);
         abandonedCampAllowedBiomes = builder
                 .comment("Abandoned camp allowed biomes")
                 .translation(Reference.MODID + ".config.abandoned_camp_allowed_biomes")
@@ -184,7 +184,7 @@ class ServerConfig {
         burialPlaceSpawnChance = builder
                 .comment("Burial place spawn chance")
                 .translation(Reference.MODID + ".config.burial_place_spawn_chance")
-                .defineInRange("burialPlaceSpawnChance", 0.01, Double.MIN_VALUE, 1.0);
+                .defineInRange("burialPlaceSpawnChance", 0.001, Double.MIN_VALUE, 1.0);
         burialPlaceAllowedBiomes = builder
                 .comment("Burial place allowed biomes")
                 .translation(Reference.MODID + ".config.burial_place_allowed_biomes")
