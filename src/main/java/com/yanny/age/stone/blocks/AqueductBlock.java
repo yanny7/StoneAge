@@ -144,12 +144,12 @@ public class AqueductBlock extends Block implements TopBlockInfoProvider {
             if (heldItem.getItem() instanceof BucketItem) {
                 LazyOptional<IFluidHandler> fluidHandler = tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null);
                 fluidHandler.ifPresent(fluid -> FluidUtil.interactWithFluidHandler(player, handIn, fluid));
-                return ActionResultType.CONSUME;
+                return ActionResultType.SUCCESS;
             }
 
             if (heldItem.isEmpty()) {
                 tile.changedState();
-                return ActionResultType.CONSUME;
+                return ActionResultType.SUCCESS;
             }
 
             return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);

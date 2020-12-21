@@ -88,12 +88,25 @@ public class FeederBlock extends HorizontalBlock {
         FeederTileEntity tile = (FeederTileEntity) worldIn.getTileEntity(pos);
 
         if (tile != null) {
-            if (!worldIn.isRemote) {
-                NetworkHooks.openGui((ServerPlayerEntity) player, tile, tile.getPos());
+            if (!player.isSneaking()) {
+                if (!worldIn.isRemote) {
+                    NetworkHooks.openGui((ServerPlayerEntity) player, tile, tile.getPos());
+                }
+                return ActionResultType.SUCCESS;
             }
-            return ActionResultType.CONSUME;
+
+            ActionResultType resultType = super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+
+            if (player.isSneaking() && resultType == ActionResultType.PASS) {
+                if (!worldIn.isRemote) {
+                    NetworkHooks.openGui((ServerPlayerEntity) player, tile, tile.getPos());
+                }
+                return ActionResultType.SUCCESS;
+            }
         } else {
             throw new IllegalStateException("Named container provider is missing");
         }
+
+        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
     }
 }

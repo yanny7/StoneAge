@@ -162,7 +162,7 @@ public class DryingRackTileEntity extends TileEntity implements IInventoryInterf
                     return;
                 }
 
-                if (itemStack.isEmpty() && !stacks.get(i + ITEMS).isEmpty()) {
+                if (!stacks.get(i + ITEMS).isEmpty()) {
                     NonNullList<ItemStack> itemStacks = NonNullList.create();
                     itemStacks.add(stacks.get(i + ITEMS).copy());
 

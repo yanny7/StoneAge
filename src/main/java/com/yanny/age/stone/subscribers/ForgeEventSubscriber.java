@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.yanny.age.stone.config.Config;
-import com.yanny.age.stone.entities.CoelacanthEntity;
 import com.yanny.age.stone.entities.SaberToothTigerEntity;
 import com.yanny.ages.api.enums.Age;
 import com.yanny.ages.api.utils.AgeUtils;
@@ -21,8 +20,6 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -31,7 +28,6 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -57,7 +53,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
-import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
@@ -193,17 +188,6 @@ public class ForgeEventSubscriber {
 
         if (Config.disableVanillaCraftingTable && (blockState.getBlock() == CRAFTING_TABLE) && (AgeUtils.getPlayerAge(event.getPlayer()) <= Age.STONE_AGE.value)) {
             event.setUseBlock(Event.Result.DENY);
-        }
-    }
-
-    @SubscribeEvent
-    public static void rightClickMillstone(@Nonnull PlayerInteractEvent.RightClickBlock event) {
-        BlockPos blockPos = event.getPos();
-
-        TileEntity tileEntity = event.getWorld().getTileEntity(blockPos);
-
-        if (tileEntity instanceof INamedContainerProvider && !event.getWorld().isRemote && event.getPlayer().isSneaking()) {
-            NetworkHooks.openGui((ServerPlayerEntity) event.getPlayer(), (INamedContainerProvider) tileEntity, tileEntity.getPos());
         }
     }
 

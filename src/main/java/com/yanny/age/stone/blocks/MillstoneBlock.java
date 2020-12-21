@@ -76,14 +76,19 @@ public class MillstoneBlock extends HorizontalBlock implements TopBlockInfoProvi
         MillstoneTileEntity tile = (MillstoneTileEntity) worldIn.getTileEntity(pos);
 
         if (tile != null) {
-            if (!worldIn.isRemote) {
-                if (player.isSneaking()) {
+            if (player.isSneaking()) {
+                if (!worldIn.isRemote) {
                     NetworkHooks.openGui((ServerPlayerEntity) player, tile, tile.getPos());
-                } else {
+                }
+            } else {
+                if (!worldIn.isRemote) {
                     tile.onActivated();
                 }
+
+                return ActionResultType.SUCCESS;
             }
-            return ActionResultType.SUCCESS;
+
+            return ActionResultType.CONSUME;
         } else {
             throw new IllegalStateException("Named container provider is missing");
         }

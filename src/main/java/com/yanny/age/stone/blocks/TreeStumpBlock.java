@@ -76,7 +76,7 @@ public class TreeStumpBlock extends Block implements TopBlockInfoProvider {
             ((TreeStumpTileEntity) tileentity).blockActivated(player);
         }
 
-        return ActionResultType.CONSUME; // do not show ghost item
+        return ActionResultType.SUCCESS;
     }
 
     @SuppressWarnings("deprecation")
