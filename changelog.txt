@@ -1,3 +1,10 @@
+v1.2.5
+  Fixed flint spear attribute registration
+  Fixed spawning and bounding box of mobs
+  Added configurable list for disabled blocks until end of stone age
+  Fixed activation of blocks
+  Decreased structures spawn rate Closes #48
+  Added Coelacanth fish
 v1.2.4
   Added Terror Bird
 v1.2.3
