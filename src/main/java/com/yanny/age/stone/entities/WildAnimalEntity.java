@@ -3,6 +3,7 @@ package com.yanny.age.stone.entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.PrioritizedGoal;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,14 +12,18 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Random;
 import java.util.UUID;
 
-abstract class WildAnimalEntity extends AnimalEntity implements IBecomeAngry {
+public abstract class WildAnimalEntity extends AnimalEntity implements IBecomeAngry {
     static final DataParameter<Integer> GENERATION = EntityDataManager.createKey(WildAnimalEntity.class, DataSerializers.VARINT);
 
     private int angerLevel;
@@ -26,6 +31,10 @@ abstract class WildAnimalEntity extends AnimalEntity implements IBecomeAngry {
 
     WildAnimalEntity(@Nonnull EntityType<? extends AnimalEntity> type, @Nonnull World worldIn) {
         super(type, worldIn);
+    }
+
+    public static boolean canMonsterSpawn(EntityType<? extends WildAnimalEntity> type, IWorld worldIn, SpawnReason reason, BlockPos pos, Random randomIn) {
+        return worldIn.getDifficulty() != Difficulty.PEACEFUL && canSpawnOn(type, worldIn, reason, pos, randomIn);
     }
 
     @Override

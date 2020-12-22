@@ -1,6 +1,7 @@
 package com.yanny.age.stone.entities;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
@@ -18,15 +19,21 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import java.util.Random;
 
 public class CoelacanthEntity extends WaterMobEntity {
 
     public CoelacanthEntity(EntityType<? extends CoelacanthEntity> type, World worldIn) {
         super(type, worldIn);
         this.moveController = new CoelacanthEntity.MoveHelperController(this);
+    }
+
+    public static boolean canSpawn(EntityType<? extends CoelacanthEntity> type, IWorld worldIn, SpawnReason reason, BlockPos blockPos, Random randomIn) {
+        return worldIn.getBlockState(blockPos).getBlock() == Blocks.WATER && worldIn.getBlockState(blockPos.up()).getBlock() == Blocks.WATER;
     }
 
     @Override

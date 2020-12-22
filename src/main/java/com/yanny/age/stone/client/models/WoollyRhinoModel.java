@@ -1,6 +1,8 @@
 package com.yanny.age.stone.client.models;
 
 import com.google.common.collect.ImmutableList;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.yanny.age.stone.entities.WoollyRhinoEntity;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
@@ -81,6 +83,15 @@ public class WoollyRhinoModel extends AgeableModel<WoollyRhinoEntity> {
 		foot4 = new ModelRenderer(this, 0, 0);
 		foot4.setRotationPoint(-1.0F, 18.0F, 6.5F);
 		foot4.addBox(-3.0F, 0.0F, -1.5F, 3, 6, 3, 0.0F, false);
+	}
+
+	@Override
+	public void render(@Nonnull MatrixStack matrixStackIn, @Nonnull IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+		matrixStackIn.push();
+		matrixStackIn.scale(1.2f, 1.2f, 1.2f);
+		matrixStackIn.translate(0, -0.25, 0);
+		super.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+		matrixStackIn.pop();
 	}
 
 	@Nonnull

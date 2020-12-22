@@ -35,12 +35,9 @@ public class TerrorBirdEntity extends WildAnimalEntity {
         this.setPathPriority(PathNodeType.WATER, 0.0F);
     }
 
-    @Nonnull
     @Override
     public AgeableEntity createChild(@Nonnull AgeableEntity ageable) {
-        TerrorBirdEntity entity = EntitySubscriber.terror_bird.create(world);
-
-        return entity;
+        return EntitySubscriber.terror_bird.create(world);
     }
 
     @Override

@@ -3,9 +3,12 @@ package com.yanny.age.stone.subscribers;
 import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.entities.*;
 import com.yanny.age.stone.group.ModItemGroup;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -24,19 +27,19 @@ public class EntitySubscriber {
     public static final EntityType<DeerEntity> deer = (EntityType<DeerEntity>) EntityType.Builder.create(DeerEntity::new, CREATURE)
             .size(0.9f, 1.5f).build("").setRegistryName(Reference.MODID,"deer");
     public static final EntityType<BoarEntity> boar = (EntityType<BoarEntity>) EntityType.Builder.create(BoarEntity::new, CREATURE)
-            .size(0.9f, 0.9f).build("").setRegistryName(Reference.MODID,"boar");
+            .size(0.9f, 1.5f).build("").setRegistryName(Reference.MODID,"boar");
     public static final EntityType<AurochEntity> auroch = (EntityType<AurochEntity>) EntityType.Builder.create(AurochEntity::new, CREATURE)
-            .size(1.1f, 1.5f).build("").setRegistryName(Reference.MODID,"auroch");
+            .size(0.9f, 1.5f).build("").setRegistryName(Reference.MODID,"auroch");
     public static final EntityType<FowlEntity> fowl = (EntityType<FowlEntity>) EntityType.Builder.create(FowlEntity::new, CREATURE)
             .size(0.7f, 0.7f).build("").setRegistryName(Reference.MODID,"fowl");
     public static final EntityType<MouflonEntity> mouflon = (EntityType<MouflonEntity>) EntityType.Builder.create(MouflonEntity::new, CREATURE)
-            .size(0.9f, 1.2f).build("").setRegistryName(Reference.MODID,"mouflon");
+            .size(0.9f, 1.5f).build("").setRegistryName(Reference.MODID,"mouflon");
     public static final EntityType<FlintSpearEntity> flint_spear = (EntityType<FlintSpearEntity>) EntityType.Builder.<FlintSpearEntity>create(FlintSpearEntity::new, CREATURE)
             .size(0.5f, 0.5f).build("").setRegistryName(Reference.MODID,"flint_spear");
     public static final EntityType<MammothEntity> mammoth = (EntityType<MammothEntity>) EntityType.Builder.create(MammothEntity::new, CREATURE)
-            .size(1.9f, 3.5f).build("").setRegistryName(Reference.MODID,"mammoth");
+            .size(1.9f, 2.0f).build("").setRegistryName(Reference.MODID,"mammoth");
     public static final EntityType<SaberToothTigerEntity> saber_tooth_tiger = (EntityType<SaberToothTigerEntity>) EntityType.Builder.create(SaberToothTigerEntity::new, CREATURE)
-            .size(1.4f, 1.4f).build("").setRegistryName(Reference.MODID, "saber_tooth_tiger");
+            .size(0.9f, 1.1f).build("").setRegistryName(Reference.MODID, "saber_tooth_tiger");
     public static final EntityType<WoollyRhinoEntity> woolly_rhino = (EntityType<WoollyRhinoEntity>) EntityType.Builder.create(WoollyRhinoEntity::new, CREATURE)
             .size(1.7f, 1.4f).build("").setRegistryName(Reference.MODID, "woolly_rhino");
     public static final EntityType<TerrorBirdEntity> terror_bird = (EntityType<TerrorBirdEntity>) EntityType.Builder.create(TerrorBirdEntity::new, CREATURE)
@@ -69,6 +72,17 @@ public class EntitySubscriber {
         registry.register(woolly_rhino);
         registry.register(terror_bird);
         registry.register(coelacanth);
+
+        EntitySpawnPlacementRegistry.register(deer, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
+        EntitySpawnPlacementRegistry.register(boar, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
+        EntitySpawnPlacementRegistry.register(auroch, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
+        EntitySpawnPlacementRegistry.register(fowl, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
+        EntitySpawnPlacementRegistry.register(mouflon, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
+        EntitySpawnPlacementRegistry.register(mammoth, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
+        EntitySpawnPlacementRegistry.register(saber_tooth_tiger, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WildAnimalEntity::canMonsterSpawn);
+        EntitySpawnPlacementRegistry.register(woolly_rhino, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
+        EntitySpawnPlacementRegistry.register(terror_bird, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WildAnimalEntity::canMonsterSpawn);
+        EntitySpawnPlacementRegistry.register(coelacanth, EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, CoelacanthEntity::canSpawn);
     }
 
     @SubscribeEvent
