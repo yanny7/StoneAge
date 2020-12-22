@@ -17,35 +17,34 @@ import net.minecraftforge.registries.ObjectHolder;
 
 import javax.annotation.Nonnull;
 
-import static net.minecraft.entity.EntityClassification.CREATURE;
-import static net.minecraft.entity.EntityClassification.WATER_CREATURE;
+import static net.minecraft.entity.EntityClassification.*;
 
 @SuppressWarnings({"unused", "unchecked"})
 @ObjectHolder(Reference.MODID)
 @Mod.EventBusSubscriber(modid = Reference.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EntitySubscriber {
     public static final EntityType<DeerEntity> deer = (EntityType<DeerEntity>) EntityType.Builder.create(DeerEntity::new, CREATURE)
-            .size(0.9f, 1.5f).build("").setRegistryName(Reference.MODID,"deer");
+            .size(0.9f, 1.5f).trackingRange(10).build("").setRegistryName(Reference.MODID,"deer");
     public static final EntityType<BoarEntity> boar = (EntityType<BoarEntity>) EntityType.Builder.create(BoarEntity::new, CREATURE)
-            .size(0.9f, 1.5f).build("").setRegistryName(Reference.MODID,"boar");
+            .size(0.9f, 1.5f).trackingRange(10).build("").setRegistryName(Reference.MODID,"boar");
     public static final EntityType<AurochEntity> auroch = (EntityType<AurochEntity>) EntityType.Builder.create(AurochEntity::new, CREATURE)
-            .size(0.9f, 1.5f).build("").setRegistryName(Reference.MODID,"auroch");
+            .size(0.9f, 1.5f).trackingRange(10).build("").setRegistryName(Reference.MODID,"auroch");
     public static final EntityType<FowlEntity> fowl = (EntityType<FowlEntity>) EntityType.Builder.create(FowlEntity::new, CREATURE)
-            .size(0.7f, 0.7f).build("").setRegistryName(Reference.MODID,"fowl");
+            .size(0.7f, 0.7f).trackingRange(10).build("").setRegistryName(Reference.MODID,"fowl");
     public static final EntityType<MouflonEntity> mouflon = (EntityType<MouflonEntity>) EntityType.Builder.create(MouflonEntity::new, CREATURE)
-            .size(0.9f, 1.5f).build("").setRegistryName(Reference.MODID,"mouflon");
-    public static final EntityType<FlintSpearEntity> flint_spear = (EntityType<FlintSpearEntity>) EntityType.Builder.<FlintSpearEntity>create(FlintSpearEntity::new, CREATURE)
-            .size(0.5f, 0.5f).build("").setRegistryName(Reference.MODID,"flint_spear");
+            .size(0.9f, 1.5f).trackingRange(10).build("").setRegistryName(Reference.MODID,"mouflon");
+    public static final EntityType<FlintSpearEntity> flint_spear = (EntityType<FlintSpearEntity>) EntityType.Builder.<FlintSpearEntity>create(FlintSpearEntity::new, MISC)
+            .size(0.5f, 0.5f).trackingRange(4).func_233608_b_(20).build("").setRegistryName(Reference.MODID,"flint_spear");
     public static final EntityType<MammothEntity> mammoth = (EntityType<MammothEntity>) EntityType.Builder.create(MammothEntity::new, CREATURE)
-            .size(1.9f, 2.0f).build("").setRegistryName(Reference.MODID,"mammoth");
+            .size(1.9f, 2.0f).trackingRange(10).build("").setRegistryName(Reference.MODID,"mammoth");
     public static final EntityType<SaberToothTigerEntity> saber_tooth_tiger = (EntityType<SaberToothTigerEntity>) EntityType.Builder.create(SaberToothTigerEntity::new, CREATURE)
-            .size(0.9f, 1.1f).build("").setRegistryName(Reference.MODID, "saber_tooth_tiger");
+            .size(0.9f, 1.1f).trackingRange(8).build("").setRegistryName(Reference.MODID, "saber_tooth_tiger");
     public static final EntityType<WoollyRhinoEntity> woolly_rhino = (EntityType<WoollyRhinoEntity>) EntityType.Builder.create(WoollyRhinoEntity::new, CREATURE)
-            .size(1.7f, 1.4f).build("").setRegistryName(Reference.MODID, "woolly_rhino");
+            .size(1.7f, 1.4f).trackingRange(10).build("").setRegistryName(Reference.MODID, "woolly_rhino");
     public static final EntityType<TerrorBirdEntity> terror_bird = (EntityType<TerrorBirdEntity>) EntityType.Builder.create(TerrorBirdEntity::new, CREATURE)
-            .size(0.9f, 1.9f).build("").setRegistryName(Reference.MODID, "terror_bird");
+            .size(0.9f, 1.9f).trackingRange(8).build("").setRegistryName(Reference.MODID, "terror_bird");
     public static final EntityType<CoelacanthEntity> coelacanth = (EntityType<CoelacanthEntity>) EntityType.Builder.create(CoelacanthEntity::new, WATER_CREATURE)
-            .size(0.8f, 0.35f).build("").setRegistryName(Reference.MODID, "coelacanth");
+            .size(0.8f, 0.35f).trackingRange(4).build("").setRegistryName(Reference.MODID, "coelacanth");
 
     public static final Item deer_spawn_egg = null;
     public static final Item boar_spawn_egg = null;
