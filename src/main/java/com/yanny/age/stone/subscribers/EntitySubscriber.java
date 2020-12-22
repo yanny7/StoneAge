@@ -17,8 +17,7 @@ import net.minecraftforge.registries.ObjectHolder;
 
 import javax.annotation.Nonnull;
 
-import static net.minecraft.entity.EntityClassification.CREATURE;
-import static net.minecraft.entity.EntityClassification.WATER_CREATURE;
+import static net.minecraft.entity.EntityClassification.*;
 
 @SuppressWarnings({"unused", "unchecked"})
 @ObjectHolder(Reference.MODID)
@@ -34,7 +33,7 @@ public class EntitySubscriber {
             .size(0.7f, 0.7f).build("").setRegistryName(Reference.MODID,"fowl");
     public static final EntityType<MouflonEntity> mouflon = (EntityType<MouflonEntity>) EntityType.Builder.create(MouflonEntity::new, CREATURE)
             .size(0.9f, 1.5f).build("").setRegistryName(Reference.MODID,"mouflon");
-    public static final EntityType<FlintSpearEntity> flint_spear = (EntityType<FlintSpearEntity>) EntityType.Builder.<FlintSpearEntity>create(FlintSpearEntity::new, CREATURE)
+    public static final EntityType<FlintSpearEntity> flint_spear = (EntityType<FlintSpearEntity>) EntityType.Builder.<FlintSpearEntity>create(FlintSpearEntity::new, MISC)
             .size(0.5f, 0.5f).build("").setRegistryName(Reference.MODID,"flint_spear");
     public static final EntityType<MammothEntity> mammoth = (EntityType<MammothEntity>) EntityType.Builder.create(MammothEntity::new, CREATURE)
             .size(1.9f, 2.0f).build("").setRegistryName(Reference.MODID,"mammoth");
