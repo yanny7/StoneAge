@@ -79,7 +79,7 @@ public class DryingRackBlock extends HorizontalBlock implements TopBlockInfoProv
 
         if (tileentity instanceof DryingRackTileEntity) {
             ((DryingRackTileEntity) tileentity).blockActivated(player);
-            return ActionResultType.CONSUME;
+            return ActionResultType.SUCCESS;
         }
 
         return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);

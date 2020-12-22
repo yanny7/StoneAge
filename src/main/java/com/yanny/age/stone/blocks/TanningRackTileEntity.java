@@ -116,7 +116,7 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
             stacks.set(pos, itemMainhand.split(1));
 
             world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
-            return ActionResultType.CONSUME;
+            return ActionResultType.SUCCESS;
         }
 
         recipe = getRecipe(stacks.get(pos));
@@ -130,10 +130,10 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
                 world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
             }
 
-            return ActionResultType.CONSUME;
+            return ActionResultType.SUCCESS;
         }
 
-        if (itemMainhand.isEmpty() && !stacks.get(pos + ITEMS).isEmpty()) {
+        if (!stacks.get(pos + ITEMS).isEmpty()) {
             NonNullList<ItemStack> itemStacks = NonNullList.create();
             itemStacks.add(stacks.get(pos + ITEMS).copy());
             stacks.set(pos + ITEMS, ItemStack.EMPTY);
@@ -142,10 +142,10 @@ public class TanningRackTileEntity extends TileEntity implements IInventoryInter
 
             world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
             world.playSound(null, getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
-            return ActionResultType.CONSUME;
+            return ActionResultType.SUCCESS;
         }
 
-        return ActionResultType.FAIL;
+        return ActionResultType.PASS;
     }
 
     @Nullable

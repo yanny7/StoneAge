@@ -97,7 +97,7 @@ public class StoneChestBlock extends HorizontalBlock {
                 NetworkHooks.openGui((ServerPlayerEntity) player, tile, tile.getPos());
             }
 
-            return ActionResultType.CONSUME;
+            return ActionResultType.SUCCESS;
         } else {
             throw new IllegalStateException("Named container provider is missing");
         }

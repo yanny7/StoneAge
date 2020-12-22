@@ -136,6 +136,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
             recipeOutput = ItemStack.EMPTY;
             heldItemMainhand.damageItem(1, player, playerEntity -> playerEntity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
             world.playSound(null, getPos(), SoundEvents.BLOCK_DISPENSER_DISPENSE, SoundCategory.BLOCKS, 1.0f, 1.0f);
+            return ActionResultType.SUCCESS;
         } else {
             if (hit.getFace() == Direction.UP) {
                 Direction dir = getBlockState().get(HorizontalBlock.HORIZONTAL_FACING);
@@ -178,7 +179,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
                         recipeOutput = ItemStack.EMPTY;
                     }
 
-                    return ActionResultType.CONSUME;
+                    return ActionResultType.SUCCESS;
                 }
 
                 if (heldItemMainhand.isEmpty() && !stacks.get(y * FlintWorkbenchRecipe.MAX_WIDTH + x).isEmpty()) {
@@ -199,12 +200,12 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
                         recipeOutput = ItemStack.EMPTY;
                     }
 
-                    return ActionResultType.CONSUME;
+                    return ActionResultType.SUCCESS;
                 }
             }
         }
 
-        return ActionResultType.FAIL;
+        return ActionResultType.PASS;
     }
 
     @Nonnull
