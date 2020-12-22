@@ -1,6 +1,8 @@
 package com.yanny.age.stone.client.models;
 
 import com.google.common.collect.ImmutableList;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.yanny.age.stone.entities.DeerEntity;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
@@ -83,6 +85,15 @@ public class DeerModel extends AgeableModel<DeerEntity> {
 	@Override
 	protected Iterable<ModelRenderer> getBodyParts() {
 		return ImmutableList.of(head, body, feet1, feet2, feet3, feet4);
+	}
+
+	@Override
+	public void render(@Nonnull MatrixStack matrixStackIn, @Nonnull IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+		matrixStackIn.push();
+		matrixStackIn.scale(1.5f, 1.5f, 1.5f);
+		matrixStackIn.translate(0, -0.5, 0);
+		super.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+		matrixStackIn.pop();
 	}
 
 	@Override
