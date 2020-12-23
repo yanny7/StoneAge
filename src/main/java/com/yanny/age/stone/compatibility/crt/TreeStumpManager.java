@@ -16,7 +16,6 @@ import static org.openzen.zencode.java.ZenCodeType.*;
 @ZenRegister
 @Name("mods.stone_age.TreeStumpManager")
 public class TreeStumpManager implements IRecipeManager {
-    @SuppressWarnings("unused")
     @ZenCodeType.Field
     public static final TreeStumpManager INSTANCE = new TreeStumpManager();
 

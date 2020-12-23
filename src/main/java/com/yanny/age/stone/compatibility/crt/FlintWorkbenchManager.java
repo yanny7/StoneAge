@@ -19,7 +19,6 @@ import static org.openzen.zencode.java.ZenCodeType.*;
 @ZenRegister
 @Name("mods.stone_age.FlintWorkbenchManager")
 public class FlintWorkbenchManager implements IRecipeManager {
-    @SuppressWarnings("unused")
     @ZenCodeType.Field
     public static final FlintWorkbenchManager INSTANCE = new FlintWorkbenchManager();
 
