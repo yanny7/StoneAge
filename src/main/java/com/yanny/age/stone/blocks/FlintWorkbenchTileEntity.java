@@ -227,7 +227,7 @@ public class FlintWorkbenchTileEntity extends TileEntity implements IInventoryIn
         List<FlintWorkbenchRecipe> recipes = stacks.stream().allMatch(ItemStack::isEmpty) ? Lists.newArrayList()
                 : this.world.getRecipeManager().getRecipes(FlintWorkbenchRecipe.flint_workbench, inventoryWrapper, this.world);
 
-        return recipes.stream().filter(flintWorkbenchRecipe -> flintWorkbenchRecipe.getTool().test(heldItemMainhand)).collect(Collectors.toList());
+        return recipes.stream().filter(flintWorkbenchRecipe -> flintWorkbenchRecipe.testTool(heldItemMainhand)).collect(Collectors.toList());
     }
 
     @Nonnull

@@ -25,6 +25,7 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TreeStumpTileEntity extends TileEntity implements IInventoryInterface {
@@ -175,7 +176,7 @@ public class TreeStumpTileEntity extends TileEntity implements IInventoryInterfa
     }
 
     boolean hasTool(@Nonnull ItemStack toolInHand) {
-        return tools.stream().anyMatch(ingredient -> ingredient.test(toolInHand));
+        return tools.stream().anyMatch(ingredient -> Arrays.stream(ingredient.getMatchingStacks()).anyMatch(itemStack -> itemStack.getItem() == toolInHand.getItem()));
     }
 
     @Nonnull
