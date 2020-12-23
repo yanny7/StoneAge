@@ -30,9 +30,10 @@ public class FlintWorkbenchRecipeComponent extends BaseComponent {
         context.renderIngredient(matrixStack, x + 62, y + 9, mouseX, mouseY, recipe.getTool());
 
         NonNullList<Ingredient> ingredients = recipe.getIngredients();
+        int recipeWidth = recipe.getWidth();
 
         for (int i = 0; i < ingredients.size(); i++) {
-            context.renderIngredient(matrixStack, x + (i % 3) * 19 + 3, y + (i / 3) * 19 + 3, mouseX, mouseY, ingredients.get(i));
+            context.renderIngredient(matrixStack, x + (i % recipeWidth) * 19 + 3, y + (i / recipeWidth) * 19 + 3, mouseX, mouseY, ingredients.get(i));
         }
     }
 
