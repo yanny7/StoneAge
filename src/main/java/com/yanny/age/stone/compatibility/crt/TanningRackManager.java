@@ -16,7 +16,6 @@ import static org.openzen.zencode.java.ZenCodeType.*;
 @ZenRegister
 @Name("mods.stone_age.TanningRackManager")
 public class TanningRackManager implements IRecipeManager {
-    @SuppressWarnings("unused")
     @ZenCodeType.Field
     public static final TanningRackManager INSTANCE = new TanningRackManager();
 

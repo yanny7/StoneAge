@@ -16,7 +16,6 @@ import static org.openzen.zencode.java.ZenCodeType.*;
 @ZenRegister
 @Name("mods.stone_age.MillstoneManager")
 public class MillstoneManager implements IRecipeManager {
-    @SuppressWarnings("unused")
     @ZenCodeType.Field
     public static final MillstoneManager INSTANCE = new MillstoneManager();
 
