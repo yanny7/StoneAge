@@ -18,6 +18,8 @@ import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
 
+import java.util.Arrays;
+
 import static com.yanny.ages.api.items.AgesToolItem.*;
 
 public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
@@ -171,5 +173,9 @@ public class FlintWorkbenchRecipe implements IRecipe<IInventory> {
     @Nonnull
     public Ingredient getTool() {
         return tool;
+    }
+
+    public boolean testTool(ItemStack itemStack) {
+        return Arrays.stream(tool.getMatchingStacks()).anyMatch(item -> item.getItem() == itemStack.getItem());
     }
 }
