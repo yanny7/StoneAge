@@ -19,6 +19,10 @@ public class FlintWorkbenchRecipeComponent extends BaseComponent {
 
     @Override
     public void render(@Nonnull IComponentRenderContext context, float partialTicks, int mouseX, int mouseY) {
+        if (recipe == null) {
+            return;
+        }
+
         mc.textureManager.bindTexture(TEXTURE);
         RenderSystem.enableBlend();
         AbstractGui.blit(x - 2, y - 2, 0, 0, 100, 62, 128, 128);

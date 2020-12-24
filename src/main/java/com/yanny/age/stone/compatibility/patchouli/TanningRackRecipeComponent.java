@@ -23,6 +23,10 @@ public class TanningRackRecipeComponent extends BaseComponent {
     @SuppressWarnings("ConstantConditions")
     @Override
     public void render(@Nonnull IComponentRenderContext context, float partialTicks, int mouseX, int mouseY) {
+        if (recipe == null) {
+            return;
+        }
+
         mc.textureManager.bindTexture(TEXTURE);
         RenderSystem.enableBlend();
         AbstractGui.blit(x, y, 11, 71, 96, 24, 128, 128);
