@@ -4,10 +4,7 @@ import com.yanny.age.stone.ExampleMod;
 import com.yanny.age.stone.compatibility.top.TopCompatibility;
 import com.yanny.age.stone.config.ConfigHelper;
 import com.yanny.age.stone.config.ConfigHolder;
-import com.yanny.age.stone.datagen.AgesApiBlockTagGenerator;
-import com.yanny.age.stone.datagen.AgesApiItemTagGenerator;
-import com.yanny.age.stone.datagen.ForgeItemTagGenerator;
-import com.yanny.age.stone.datagen.RecipeGenerator;
+import com.yanny.age.stone.datagen.*;
 import com.yanny.ages.api.Reference;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -73,6 +70,10 @@ public class ModEventSubscriber {
             event.getGenerator().addProvider(agesApiItemTagGenerator);
             event.getGenerator().addProvider(forgeItemTagGenerator);
             event.getGenerator().addProvider(recipeGenerator);
+        }
+
+        if (event.includeClient()) {
+            event.getGenerator().addProvider(new LootTableGenerator(event.getGenerator()));
         }
     }
 }
