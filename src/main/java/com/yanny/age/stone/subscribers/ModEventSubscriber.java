@@ -4,6 +4,11 @@ import com.yanny.age.stone.ExampleMod;
 import com.yanny.age.stone.compatibility.top.TopCompatibility;
 import com.yanny.age.stone.config.ConfigHelper;
 import com.yanny.age.stone.config.ConfigHolder;
+import com.yanny.age.stone.datagen.AgesApiBlockTagGenerator;
+import com.yanny.age.stone.datagen.AgesApiItemTagGenerator;
+import com.yanny.age.stone.datagen.ForgeItemTagGenerator;
+import com.yanny.age.stone.datagen.RecipeGenerator;
+import com.yanny.ages.api.Reference;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -11,6 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 
 import javax.annotation.Nonnull;
@@ -52,5 +58,21 @@ public class ModEventSubscriber {
         RenderTypeLookup.setRenderLayer(BlockSubscriber.fishing_net, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(BlockSubscriber.aqueduct, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(BlockSubscriber.dried_grass_bed, RenderType.getCutoutMipped());
+    }
+
+    @SubscribeEvent
+    public static void dataGen(@Nonnull GatherDataEvent event) {
+        if (event.includeServer()) {
+            // ages_api MODID
+            AgesApiBlockTagGenerator agesApiBlockTagGenerator = new AgesApiBlockTagGenerator(event.getGenerator(), Reference.MODID, event.getExistingFileHelper());
+            AgesApiItemTagGenerator agesApiItemTagGenerator = new AgesApiItemTagGenerator(event.getGenerator(), agesApiBlockTagGenerator, Reference.MODID, event.getExistingFileHelper());
+            ForgeItemTagGenerator forgeItemTagGenerator = new ForgeItemTagGenerator(event.getGenerator(), agesApiBlockTagGenerator, "forge", event.getExistingFileHelper());
+            RecipeGenerator recipeGenerator = new RecipeGenerator(event.getGenerator());
+
+            event.getGenerator().addProvider(agesApiBlockTagGenerator);
+            event.getGenerator().addProvider(agesApiItemTagGenerator);
+            event.getGenerator().addProvider(forgeItemTagGenerator);
+            event.getGenerator().addProvider(recipeGenerator);
+        }
     }
 }

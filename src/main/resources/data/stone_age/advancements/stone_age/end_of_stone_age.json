@@ -26,46 +26,6 @@
         ]
       }
     },
-    "cooked_chicken": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "minecraft:cooked_chicken"
-          }
-        ]
-      }
-    },
-    "cooked_mutton": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "minecraft:cooked_mutton"
-          }
-        ]
-      }
-    },
-    "cooked_beef": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "minecraft:cooked_beef"
-          }
-        ]
-      }
-    },
-    "cooked_porkchop": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "minecraft:cooked_porkchop"
-          }
-        ]
-      }
-    },
     "bread": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -85,6 +45,16 @@
           }
         ]
       }
+    },
+    "millstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "stone_age:millstone"
+          }
+        ]
+      }
     }
   },
   "requirements": [
@@ -92,22 +62,13 @@
       "crafting_table"
     ],
     [
-      "cooked_chicken"
-    ],
-    [
-      "cooked_mutton"
-    ],
-    [
-      "cooked_beef"
-    ],
-    [
-      "cooked_porkchop"
-    ],
-    [
       "bread"
     ],
     [
       "stone_chest"
+    ],
+    [
+      "millstone"
     ]
   ]
 }

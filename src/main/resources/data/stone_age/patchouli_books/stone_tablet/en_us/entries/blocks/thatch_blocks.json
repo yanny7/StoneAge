@@ -15,7 +15,7 @@
       "recipe2": "stone_age:thatch_stairs"
     },
     {
-      "type": "stone_age:flint_workbench",
+      "type": "stone_age:tree_stump",
       "recipe": "stone_age:thatch_slab"
     }
   ]

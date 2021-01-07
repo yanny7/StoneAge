@@ -1,6 +1,8 @@
 buildscript {
     repositories {
-        maven { url = 'https://files.minecraftforge.net/maven' }
+        maven {
+            url = 'https://files.minecraftforge.net/maven'
+        }
         jcenter()
         mavenCentral()
     }
@@ -42,8 +44,11 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'info'
 
+            // Fix in-dev mixin problem - patchouli
+            property 'mixin.env.disableRefMap', 'true'
+
             mods {
-                ages_zero {
+                stone_age {
                     source sourceSets.main
                 }
             }
@@ -58,8 +63,11 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'info'
 
+            // Fix in-dev mixin problem - patchouli
+            property 'mixin.env.disableRefMap', 'true'
+
             mods {
-                ages_zero {
+                stone_age {
                     source sourceSets.main
                 }
             }
@@ -74,15 +82,23 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'info'
 
-            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/')
+            // Fix in-dev mixin problem - patchouli
+            property 'mixin.env.disableRefMap', 'true'
+
+            args '--mod', 'stone_age', '--all', '--output', file('src/generated/resources/')
 
             mods {
-                ages_zero {
+                stone_age {
                     source sourceSets.main
                 }
             }
         }
     }
+}
+
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+    exclude '**/.cache/**'
 }
 
 reobf {
