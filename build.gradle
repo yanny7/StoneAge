@@ -1,14 +1,19 @@
 buildscript {
     repositories {
-        maven { url = 'https://files.minecraftforge.net/maven' }
+        maven {
+            url = 'https://files.minecraftforge.net/maven'
+        }
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath "com.github.jengelman.gradle.plugins:shadow:4.0.2"
     }
 }
+
 apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 version = "${mc_version}-${game_version}"
 group = 'com.yanny.age.stone' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -39,8 +44,11 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'info'
 
+            // Fix in-dev mixin problem - patchouli
+            property 'mixin.env.disableRefMap', 'true'
+
             mods {
-                ages_zero {
+                stone_age {
                     source sourceSets.main
                 }
             }
@@ -55,8 +63,11 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'info'
 
+            // Fix in-dev mixin problem - patchouli
+            property 'mixin.env.disableRefMap', 'true'
+
             mods {
-                ages_zero {
+                stone_age {
                     source sourceSets.main
                 }
             }
@@ -71,10 +82,13 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'info'
 
-            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/')
+            // Fix in-dev mixin problem - patchouli
+            property 'mixin.env.disableRefMap', 'true'
+
+            args '--mod', 'stone_age', '--all', '--output', file('src/generated/resources/')
 
             mods {
-                ages_zero {
+                stone_age {
                     source sourceSets.main
                 }
             }
@@ -82,7 +96,20 @@ minecraft {
     }
 }
 
-task release(dependsOn: [jar, 'reobfJar'])
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+    exclude '**/.cache/**'
+}
+
+reobf {
+    shadowJar { }
+}
+
+task release(dependsOn: [build, 'reobfJar'])
+
+configurations {
+    shade
+}
 
 repositories {
     maven {
@@ -114,6 +141,10 @@ dependencies {
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
 
+    compileOnly "org.joml:joml:1.9.25"
+    runtimeOnly "org.joml:joml:1.9.25"
+    shade "org.joml:joml:1.9.25"
+
     // look for ages-api library
     compileOnly fileTree(include: ['*.jar'], dir: '../AgesApi/build/libs')
 
@@ -135,6 +166,11 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
+}
+
+shadowJar {
+    configurations = [project.configurations.shade]
+    classifier = null
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

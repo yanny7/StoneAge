@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "stone_age:rhino_meat"
-  },
-  "result": "stone_age:cooked_rhino_meat",
-  "experience": 0.35,
-  "cookingtime": 200
-}

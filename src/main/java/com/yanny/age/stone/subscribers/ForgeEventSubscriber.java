@@ -77,18 +77,7 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "stone_pickaxe"),     // removed
             new ResourceLocation("minecraft", "stone_hoe"),         // removed
             new ResourceLocation("minecraft", "stone_shovel"),      // removed
-            new ResourceLocation("minecraft", "stone_sword"),       // removed
-            new ResourceLocation("minecraft", "torch"),             // lit by using on fire or campfire
-            new ResourceLocation("minecraft", "oak_planks"),        // removed
-            new ResourceLocation("minecraft", "birch_planks"),      // removed
-            new ResourceLocation("minecraft", "acacia_planks"),     // removed
-            new ResourceLocation("minecraft", "jungle_planks"),     // removed
-            new ResourceLocation("minecraft", "spruce_planks"),     // removed
-            new ResourceLocation("minecraft", "dark_oak_planks"),   // removed
-            new ResourceLocation("minecraft", "crafting_table")     // changed recipe
-    );
-    private static final Set<ResourceLocation> RECIPES_TO_ADD = Sets.newHashSet(
-            new ResourceLocation(MODID, "crafting_table")
+            new ResourceLocation("minecraft", "stone_sword")        // removed
     );
     private static final Set<ResourceLocation> ADVANCEMENTS_TO_REMOVE = Sets.newHashSet(
             new ResourceLocation("minecraft", "recipes/tools/wooden_axe"),
@@ -100,14 +89,7 @@ public class ForgeEventSubscriber {
             new ResourceLocation("minecraft", "recipes/tools/stone_pickaxe"),
             new ResourceLocation("minecraft", "recipes/tools/stone_hoe"),
             new ResourceLocation("minecraft", "recipes/tools/stone_shovel"),
-            new ResourceLocation("minecraft", "recipes/combat/stone_sword"),
-            new ResourceLocation("minecraft", "recipes/building_blocks/oak_planks"),
-            new ResourceLocation("minecraft", "recipes/building_blocks/birch_planks"),
-            new ResourceLocation("minecraft", "recipes/building_blocks/acacia_planks"),
-            new ResourceLocation("minecraft", "recipes/building_blocks/jungle_planks"),
-            new ResourceLocation("minecraft", "recipes/building_blocks/spruce_planks"),
-            new ResourceLocation("minecraft", "recipes/building_blocks/dark_oak_planks"),
-            new ResourceLocation("minecraft", "recipes/decorations/torch")
+            new ResourceLocation("minecraft", "recipes/combat/stone_sword")
     );
 
     @SuppressWarnings("unchecked")
@@ -126,13 +108,6 @@ public class ForgeEventSubscriber {
                     Map<ResourceLocation, IRecipe<?>> map1 = map.computeIfAbsent(iRecipeType, (recipeType) -> Maps.newHashMap());
                     resourceLocationIRecipeMap.forEach(map1::put);
                     RECIPES_TO_REMOVE.forEach(map1::remove);
-                    RECIPES_TO_ADD.forEach(resourceLocation -> {
-                        IRecipe<?> recipe = map1.remove(resourceLocation);
-
-                        if (recipe != null) {
-                            map1.put(new ResourceLocation("minecraft", resourceLocation.getPath()), recipe);
-                        }
-                    });
                 });
                 recipes.set(recipeManager, ImmutableMap.copyOf(map));
             } catch (IllegalAccessException e) {

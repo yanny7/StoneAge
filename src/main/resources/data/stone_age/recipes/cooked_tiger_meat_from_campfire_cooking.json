@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:campfire_cooking",
-  "ingredient": {
-    "item": "stone_age:tiger_meat"
-  },
-  "result": "stone_age:cooked_tiger_meat",
-  "experience": 0.35,
-  "cookingtime": 600
-}
