@@ -64,24 +64,22 @@ public class ToolSubscriber {
         Item.Properties bonePickaxeToolProperties = new Item.Properties().maxStackSize(1).group(ModItemGroup.AGES).addToolType(ToolType.PICKAXE, ItemTier.WOOD.getHarvestLevel());
         Item.Properties boneAxeToolProperties = new Item.Properties().maxStackSize(1).group(ModItemGroup.AGES).addToolType(ToolType.AXE, ItemTier.WOOD.getHarvestLevel());
         Item.Properties boneShovelToolProperties = new Item.Properties().maxStackSize(1).group(ModItemGroup.AGES).addToolType(ToolType.SHOVEL, ItemTier.WOOD.getHarvestLevel());
-        Item.Properties boneHoeToolProperties = new Item.Properties().maxStackSize(1).group(ModItemGroup.AGES).addToolType(ToolType.HOE, ItemTier.WOOD.getHarvestLevel());
         Item.Properties stonePickaxeToolProperties = new Item.Properties().maxStackSize(1).group(ModItemGroup.AGES).addToolType(ToolType.PICKAXE, ItemTier.STONE.getHarvestLevel());
         Item.Properties stoneAxeToolProperties = new Item.Properties().maxStackSize(1).group(ModItemGroup.AGES).addToolType(ToolType.AXE, ItemTier.STONE.getHarvestLevel());
         Item.Properties stoneShovelToolProperties = new Item.Properties().maxStackSize(1).group(ModItemGroup.AGES).addToolType(ToolType.SHOVEL, ItemTier.STONE.getHarvestLevel());
-        Item.Properties stoneHoeToolProperties = new Item.Properties().maxStackSize(1).group(ModItemGroup.AGES).addToolType(ToolType.HOE, ItemTier.STONE.getHarvestLevel());
         Item.Properties toolProperties = new Item.Properties().maxStackSize(1).group(ModItemGroup.AGES);
         Item.Properties spearProperties = new Item.Properties().maxStackSize(16).maxDamage(250).group(ModItemGroup.AGES).setISTER(() -> FlintSpearItemRenderer::new);
 
         registry.register(new AgesPickaxeItem(ItemTier.WOOD, 1, -2.8f, bonePickaxeToolProperties).setRegistryName(Reference.MODID, "bone_pickaxe"));
         registry.register(new AgesAxeItem(ItemTier.WOOD, 6, -3.2f, boneAxeToolProperties).setRegistryName(Reference.MODID, "bone_axe"));
         registry.register(new AgesShovelItem(ItemTier.WOOD, 1.5f, -3.0f, boneShovelToolProperties).setRegistryName(Reference.MODID, "bone_shovel"));
-        registry.register(new AgesHoeItem(ItemTier.WOOD, -3.0f, boneHoeToolProperties).setRegistryName(Reference.MODID, "bone_hoe"));
+        registry.register(new AgesHoeItem(ItemTier.WOOD, -3.0f, toolProperties).setRegistryName(Reference.MODID, "bone_hoe"));
         registry.register(new AgesSwordItem(ItemTier.WOOD, 3,-2.4f, combatProperties).setRegistryName(Reference.MODID, "bone_sword"));
 
         registry.register(new AgesPickaxeItem(ItemTier.STONE, 1, -2.8f, stonePickaxeToolProperties).setRegistryName(Reference.MODID, "stone_pickaxe"));
         registry.register(new AgesAxeItem(ItemTier.STONE, 7, -3.2f, stoneAxeToolProperties).setRegistryName(Reference.MODID, "stone_axe"));
         registry.register(new AgesShovelItem(ItemTier.STONE, 1.5f, -3.0f, stoneShovelToolProperties).setRegistryName(Reference.MODID, "stone_shovel"));
-        registry.register(new AgesHoeItem(ItemTier.STONE, -2.0f, stoneHoeToolProperties).setRegistryName(Reference.MODID, "stone_hoe"));
+        registry.register(new AgesHoeItem(ItemTier.STONE, -2.0f, toolProperties).setRegistryName(Reference.MODID, "stone_hoe"));
         registry.register(new AgesSwordItem(ItemTier.STONE, 3,-2.4f, combatProperties).setRegistryName(Reference.MODID, "stone_sword"));
 
         registry.register(new ShearsItem(toolProperties.maxDamage(ItemTier.WOOD.getMaxUses())).setRegistryName(Reference.MODID, "bone_shears"));
