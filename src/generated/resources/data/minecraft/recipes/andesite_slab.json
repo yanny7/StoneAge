@@ -1,0 +1,14 @@
+{
+  "type": "stone_age:tree_stump",
+  "tool": {
+    "tag": "ages_api:hammers"
+  },
+  "ingredient": {
+    "item": "minecraft:andesite"
+  },
+  "chopTimes": 2,
+  "result": {
+    "item": "minecraft:andesite_slab",
+    "count": 2
+  }
+}

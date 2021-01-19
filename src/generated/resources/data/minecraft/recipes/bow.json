@@ -1,0 +1,22 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    " #S",
+    "# S",
+    " #S"
+  ],
+  "tool": {
+    "tag": "ages_api:knives"
+  },
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "S": {
+      "item": "stone_age:leather_strip"
+    }
+  },
+  "result": {
+    "item": "minecraft:bow"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "HWA",
+    "MBC",
+    "PPP"
+  ],
+  "tool": {
+    "tag": "ages_api:knives"
+  },
+  "key": {
+    "H": {
+      "item": "stone_age:stone_pickaxe"
+    },
+    "A": {
+      "item": "stone_age:stone_axe"
+    },
+    "W": {
+      "tag": "minecraft:wool"
+    },
+    "B": {
+      "item": "minecraft:bread"
+    },
+    "M": {
+      "item": "stone_age:millstone"
+    },
+    "C": {
+      "item": "stone_age:stone_chest"
+    },
+    "P": {
+      "tag": "minecraft:wooden_slabs"
+    }
+  },
+  "result": {
+    "item": "minecraft:crafting_table"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "F",
+    "#"
+  ],
+  "key": {
+    "F": {
+      "item": "minecraft:flint"
+    },
+    "#": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "stone_age:flint_knife"
+  }
+}

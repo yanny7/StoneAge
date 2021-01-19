@@ -1,0 +1,18 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "tool": {
+    "tag": "ages_api:knives"
+  },
+  "key": {
+    "#": {
+      "tag": "forge:stone"
+    }
+  },
+  "result": {
+    "item": "stone_age:stone_shovel_head"
+  }
+}

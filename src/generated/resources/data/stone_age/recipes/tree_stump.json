@@ -1,0 +1,21 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    " # ",
+    "FFF"
+  ],
+  "tool": {
+    "tag": "ages_api:knives"
+  },
+  "key": {
+    "#": {
+      "tag": "minecraft:logs"
+    },
+    "F": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "item": "stone_age:tree_stump"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "#S#",
+    "#S#"
+  ],
+  "tool": {
+    "tag": "ages_api:knives"
+  },
+  "key": {
+    "#": {
+      "item": "minecraft:dark_oak_planks"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "minecraft:dark_oak_fence",
+    "count": 3
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "stone_age:fishing_net"
+    ]
+  },
+  "criteria": {
+    "has_recipe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "stone_age:leather_strip"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "stone_age:fishing_net"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_recipe",
+      "has_the_recipe"
+    ]
+  ]
+}

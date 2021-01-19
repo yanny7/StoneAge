@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "stone_age:bone_arrow_head"
+    ]
+  },
+  "criteria": {
+    "has_recipe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "ages_api:bones"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "stone_age:bone_arrow_head"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_recipe",
+      "has_the_recipe"
+    ]
+  ]
+}

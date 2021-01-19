@@ -1,0 +1,19 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "# #",
+    " # ",
+    "###"
+  ],
+  "tool": {
+    "tag": "ages_api:knives"
+  },
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "stone_age:tanning_rack"
+  }
+}

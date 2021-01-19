@@ -1,0 +1,14 @@
+{
+  "type": "stone_age:tree_stump",
+  "tool": {
+    "tag": "ages_api:hammers"
+  },
+  "ingredient": {
+    "item": "minecraft:cut_red_sandstone"
+  },
+  "chopTimes": 2,
+  "result": {
+    "item": "minecraft:cut_red_sandstone_slab",
+    "count": 2
+  }
+}

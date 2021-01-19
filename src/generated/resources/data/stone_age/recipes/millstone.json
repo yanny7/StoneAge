@@ -1,0 +1,28 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "#A#",
+    "#G#",
+    "SSS"
+  ],
+  "tool": {
+    "tag": "ages_api:knives"
+  },
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "A": {
+      "item": "minecraft:andesite"
+    },
+    "G": {
+      "item": "minecraft:granite"
+    },
+    "S": {
+      "item": "minecraft:smooth_stone_slab"
+    }
+  },
+  "result": {
+    "item": "stone_age:millstone"
+  }
+}

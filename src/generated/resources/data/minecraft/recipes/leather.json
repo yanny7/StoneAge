@@ -1,0 +1,12 @@
+{
+  "type": "stone_age:tanning_rack",
+  "tool": {
+    "tag": "ages_api:knives"
+  },
+  "ingredient": {
+    "item": "stone_age:raw_hide"
+  },
+  "result": {
+    "item": "minecraft:leather"
+  }
+}

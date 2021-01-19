@@ -1,0 +1,21 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "F",
+    "#"
+  ],
+  "tool": {
+    "tag": "ages_api:knives"
+  },
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "F": {
+      "item": "stone_age:fat"
+    }
+  },
+  "result": {
+    "item": "minecraft:torch"
+  }
+}

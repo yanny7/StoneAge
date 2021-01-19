@@ -1,0 +1,19 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "tool": {
+    "tag": "ages_api:knives"
+  },
+  "key": {
+    "#": {
+      "item": "stone_age:dried_grass"
+    }
+  },
+  "result": {
+    "item": "stone_age:thatch_stairs"
+  }
+}
