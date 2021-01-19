@@ -14,6 +14,7 @@ import vazkii.patchouli.api.IVariable;
 import javax.annotation.Nonnull;
 import java.util.function.UnaryOperator;
 
+@SuppressWarnings("unused")
 public class FlintWorkbenchRecipeComponent extends BaseComponent {
 
     private transient FlintWorkbenchRecipe recipe = null;

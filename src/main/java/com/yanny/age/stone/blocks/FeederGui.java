@@ -18,6 +18,7 @@ public class FeederGui extends ContainerScreen<Container> {
         super(screenContainer, inv, titleIn);
     }
 
+    @Nonnull
     @Override
     public ITextComponent getTitle() {
         return super.getTitle();

@@ -36,6 +36,7 @@ public class CoelacanthEntity extends WaterMobEntity {
         this.moveController = new CoelacanthEntity.MoveHelperController(this);
     }
 
+    @SuppressWarnings("unused")
     public static boolean canSpawn(EntityType<? extends CoelacanthEntity> type, IWorld worldIn, SpawnReason reason, BlockPos blockPos, Random randomIn) {
         return worldIn.getBlockState(blockPos).getBlock() == Blocks.WATER && worldIn.getBlockState(blockPos.up()).getBlock() == Blocks.WATER;
     }

@@ -19,6 +19,6 @@ public class StoneTierProperties implements IAdditionalProperties {
 
     @Override
     public float getEfficiency() {
-        return random.nextFloat() * 1.0f - 0.5f;
+        return random.nextFloat() - 0.5f;
     }
 }

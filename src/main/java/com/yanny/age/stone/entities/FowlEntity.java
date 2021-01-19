@@ -28,7 +28,6 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -50,7 +49,6 @@ public class FowlEntity extends WildAnimalEntity implements TopEntityInfoProvide
         this.setPathPriority(PathNodeType.WATER, 0.0F);
     }
 
-    @Nonnull
     @Override
     public AgeableEntity func_241840_a(@Nonnull ServerWorld serverWorld, @Nonnull AgeableEntity ageable) {
         if (Math.min(dataManager.get(GENERATION), ageable.getDataManager().get(GENERATION)) >= Config.domesticateAfterGenerations) {

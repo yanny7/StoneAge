@@ -98,9 +98,9 @@ public class MillstoneRecipeCategory implements IRecipeCategory<MillstoneRecipe>
     }
 
     @Override
-    public void draw(MillstoneRecipe recipe, MatrixStack matrixStack, double mouseX, double mouseY) {
+    public void draw(MillstoneRecipe recipe, @Nonnull MatrixStack matrixStack, double mouseX, double mouseY) {
         if (!recipe.getRecipeSecondOutput().isEmpty()) {
-            //Minecraft.getInstance().fontRenderer.drawString(String.format(Locale.ENGLISH, "%.0f%%", recipe.getSecondChance() * 100), 96, 38, -1); TODO 1.16 ???
+            Minecraft.getInstance().fontRenderer.drawString(matrixStack, String.format(Locale.ENGLISH, "%.0f%%", recipe.getSecondChance() * 100), 96, 38, -1);
         }
     }
 }

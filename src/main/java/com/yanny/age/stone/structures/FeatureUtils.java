@@ -44,6 +44,7 @@ public class FeatureUtils {
         for(int i = yMin; i <= yMax; ++i) {
             for(int j = xMin; j <= xMax; ++j) {
                 for(int k = zMin; k <= zMax; ++k) {
+                    //noinspection deprecation
                     if (!existingOnly || !seedReader.getBlockState(pos.add(j, i, k)).isAir()) {
                         if (i != yMin && i != yMax && j != xMin && j != xMax && k != zMin && k != zMax) {
                             seedReader.setBlockState(pos.add(j, i, k), insideBlockState, 2);

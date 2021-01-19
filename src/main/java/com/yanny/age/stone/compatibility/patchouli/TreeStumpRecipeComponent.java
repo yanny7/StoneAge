@@ -13,6 +13,7 @@ import vazkii.patchouli.api.IVariable;
 import javax.annotation.Nonnull;
 import java.util.function.UnaryOperator;
 
+@SuppressWarnings("unused")
 public class TreeStumpRecipeComponent extends BaseComponent {
     private transient TreeStumpRecipe recipe = null;
     private transient IReorderingProcessor title;

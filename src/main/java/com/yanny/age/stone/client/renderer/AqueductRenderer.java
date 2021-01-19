@@ -41,6 +41,11 @@ public class AqueductRenderer extends TileEntityRenderer<AqueductTileEntity> {
 
         Fluid fluid = Fluids.WATER.getFluid();
         IBlockDisplayReader lightReader =  MinecraftForgeClient.getRegionRenderCache(tileEntityIn.getWorld(), tileEntityIn.getPos());
+
+        if (lightReader == null) {
+            return;
+        }
+
         //noinspection deprecation
         TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(AtlasTexture.LOCATION_BLOCKS_TEXTURE)
                 .apply(fluid.getAttributes().getStillTexture(tileEntityIn.getWorld(), tileEntityIn.getPos()));

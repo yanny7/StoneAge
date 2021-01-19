@@ -13,6 +13,7 @@ import vazkii.patchouli.api.IVariable;
 import javax.annotation.Nonnull;
 import java.util.function.UnaryOperator;
 
+@SuppressWarnings("unused")
 public class TanningRackRecipeComponent extends BaseComponent {
     private transient TanningRackRecipe recipe = null;
     private transient IReorderingProcessor title;
