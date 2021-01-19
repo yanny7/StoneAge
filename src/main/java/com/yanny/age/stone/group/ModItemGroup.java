@@ -14,6 +14,7 @@ public class ModItemGroup extends ItemGroup {
         super(Reference.MODID);
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     @Nonnull
     public ItemStack createIcon() {

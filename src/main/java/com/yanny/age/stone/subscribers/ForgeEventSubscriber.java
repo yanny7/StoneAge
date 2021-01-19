@@ -317,11 +317,15 @@ public class ForgeEventSubscriber {
         if (!persistent.contains(PLAYER_MANUAL_NBT)) {
             persistent.putBoolean(PLAYER_MANUAL_NBT, true);
 
-            ItemStack book = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("patchouli", "guide_book")));
+            Item itemBook = ForgeRegistries.ITEMS.getValue(new ResourceLocation("patchouli", "guide_book"));
 
-            if (!book.isEmpty()) {
-                book.getOrCreateTag().putString("patchouli:book", "stone_age:stone_tablet");
-                event.getPlayer().inventory.addItemStackToInventory(book);
+            if (itemBook != null) {
+                ItemStack book = new ItemStack(itemBook);
+
+                if (!book.isEmpty()) {
+                    book.getOrCreateTag().putString("patchouli:book", "stone_age:stone_tablet");
+                    event.getPlayer().inventory.addItemStackToInventory(book);
+                }
             }
         }
     }

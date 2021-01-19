@@ -20,6 +20,7 @@ public abstract class BaseComponent implements ICustomComponent  {
         y = componentY;
     }
 
+    @SuppressWarnings("SameParameterValue")
     protected void drawCenteredStringNoShadow(String s, int x, int y, int color, FontRenderer fontRenderer) {
         fontRenderer.drawString(s, x - fontRenderer.getStringWidth(s) / 2.0F, y, color);
     }

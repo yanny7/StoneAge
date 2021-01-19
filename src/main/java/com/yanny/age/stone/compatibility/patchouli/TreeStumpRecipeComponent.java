@@ -10,6 +10,7 @@ import vazkii.patchouli.api.IComponentRenderContext;
 import javax.annotation.Nonnull;
 import java.util.function.Function;
 
+@SuppressWarnings("unused")
 public class TreeStumpRecipeComponent extends BaseComponent {
     private transient TreeStumpRecipe recipe = null;
     private transient String title;

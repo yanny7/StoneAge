@@ -32,6 +32,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+@SuppressWarnings("ConstantConditions")
 public class FlintSpearEntity extends AbstractArrowEntity {
     private static final DataParameter<Byte> LOYALTY_LEVEL = EntityDataManager.createKey(FlintSpearEntity.class, DataSerializers.BYTE);
     private ItemStack thrownStack = new ItemStack(ToolSubscriber.flint_spear);

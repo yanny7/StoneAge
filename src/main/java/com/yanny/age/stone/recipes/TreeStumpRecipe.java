@@ -94,6 +94,7 @@ public class TreeStumpRecipe implements IRecipe<IInventory> {
         return nonNullList;
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     @Nonnull
     public ItemStack getIcon() {

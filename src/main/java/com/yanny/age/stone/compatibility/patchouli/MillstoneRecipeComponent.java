@@ -10,6 +10,7 @@ import vazkii.patchouli.api.IComponentRenderContext;
 import javax.annotation.Nonnull;
 import java.util.function.Function;
 
+@SuppressWarnings("unused")
 public class MillstoneRecipeComponent extends BaseComponent {
     private transient MillstoneRecipe recipe = null;
     private transient String title;

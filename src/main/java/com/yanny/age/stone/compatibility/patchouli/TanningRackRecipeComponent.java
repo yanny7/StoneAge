@@ -10,6 +10,7 @@ import vazkii.patchouli.api.IComponentRenderContext;
 import javax.annotation.Nonnull;
 import java.util.function.Function;
 
+@SuppressWarnings("unused")
 public class TanningRackRecipeComponent extends BaseComponent {
     private transient TanningRackRecipe recipe = null;
     private transient String title;

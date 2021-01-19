@@ -18,6 +18,7 @@ public class AgesApiItemTagGenerator extends ItemTagsProvider {
         super(dataGenerator);
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     protected void registerTags() {
         getBuilder(Tags.Items.AXES).add(ToolSubscriber.bone_axe).add(ToolSubscriber.stone_axe);

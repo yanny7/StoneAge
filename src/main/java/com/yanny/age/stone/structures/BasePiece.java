@@ -20,8 +20,6 @@ import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 import net.minecraft.world.gen.feature.structure.ScatteredStructurePiece;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
 import java.util.Random;
@@ -29,7 +27,6 @@ import java.util.Random;
 import static net.minecraft.state.properties.BlockStateProperties.HORIZONTAL_FACING;
 
 public abstract class BasePiece extends ScatteredStructurePiece {
-    protected static final Logger LOGGER = LogManager.getLogger();
 
     protected BasePiece(@Nonnull IStructurePieceType structurePieceTypeIn, @Nonnull Random rand, int xIn, int yIn, int zIn, int widthIn, int heightIn, int depthIn) {
         super(structurePieceTypeIn, rand, xIn, yIn, zIn, widthIn, heightIn, depthIn);
@@ -52,12 +49,11 @@ public abstract class BasePiece extends ScatteredStructurePiece {
         }
     }
 
-    @SuppressWarnings("SameParameterValue")
+    @SuppressWarnings({"SameParameterValue", "ConstantConditions"})
     protected void generateFlintWorkbench(@Nonnull IWorld worldIn, @Nonnull MutableBoundingBox boundsIn, @Nonnull Random rand, int x, int y, int z, @Nonnull Direction direction) {
         BlockPos blockpos = new BlockPos(getXWithOffset(x, z), getYWithOffset(y), getZWithOffset(x, z));
 
         if (boundsIn.isVecInside(blockpos)) {
-            //noinspection ConstantConditions
             setBlockState(worldIn, BlockSubscriber.flint_workbench.getDefaultState().with(BlockStateProperties.HORIZONTAL_FACING, direction), x, y, z, boundsIn);
             TileEntity tileentity = worldIn.getTileEntity(blockpos);
 
@@ -73,13 +69,12 @@ public abstract class BasePiece extends ScatteredStructurePiece {
         }
     }
 
-    @SuppressWarnings("SameParameterValue")
+    @SuppressWarnings({"SameParameterValue", "ConstantConditions"})
     protected void generateRandomRack(@Nonnull IWorld worldIn, @Nonnull MutableBoundingBox boundsIn, @Nonnull Random random, int x, int y, int z, @Nonnull Direction direction) {
         BlockPos blockpos = new BlockPos(getXWithOffset(x, z), getYWithOffset(y), getZWithOffset(x, z));
 
         if (boundsIn.isVecInside(blockpos)) {
             if (random.nextDouble() < 0.5) {
-                //noinspection ConstantConditions
                 setBlockState(worldIn, BlockSubscriber.drying_rack.getDefaultState().with(HORIZONTAL_FACING, direction), x, y, z, boundsIn);
                 TileEntity tileentity = worldIn.getTileEntity(blockpos);
 

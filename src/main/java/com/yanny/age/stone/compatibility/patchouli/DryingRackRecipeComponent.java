@@ -3,7 +3,6 @@ package com.yanny.age.stone.compatibility.patchouli;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.yanny.age.stone.recipes.DryingRackRecipe;
 import com.yanny.age.stone.subscribers.BlockSubscriber;
-import jdk.nashorn.internal.ir.Block;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.util.ResourceLocation;
 import vazkii.patchouli.api.IComponentRenderContext;
@@ -11,6 +10,7 @@ import vazkii.patchouli.api.IComponentRenderContext;
 import javax.annotation.Nonnull;
 import java.util.function.Function;
 
+@SuppressWarnings("unused")
 public class DryingRackRecipeComponent extends BaseComponent {
     private transient DryingRackRecipe recipe = null;
     private transient String title;

@@ -8,7 +8,6 @@ import com.yanny.age.stone.datagen.AgesApiItemTagGenerator;
 import com.yanny.age.stone.datagen.ForgeItemTagGenerator;
 import com.yanny.age.stone.datagen.LootTableGenerator;
 import com.yanny.age.stone.datagen.RecipeGenerator;
-import com.yanny.ages.api.Reference;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

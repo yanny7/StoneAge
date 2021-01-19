@@ -1,7 +1,6 @@
 package com.yanny.age.stone.compatibility.patchouli;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.yanny.age.stone.Reference;
 import com.yanny.age.stone.recipes.FlintWorkbenchRecipe;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.item.crafting.Ingredient;
@@ -12,6 +11,7 @@ import vazkii.patchouli.api.IComponentRenderContext;
 import javax.annotation.Nonnull;
 import java.util.function.Function;
 
+@SuppressWarnings("unused")
 public class FlintWorkbenchRecipeComponent extends BaseComponent {
 
     private transient FlintWorkbenchRecipe recipe = null;
