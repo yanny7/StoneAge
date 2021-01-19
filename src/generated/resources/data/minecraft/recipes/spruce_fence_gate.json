@@ -1,0 +1,21 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "S#S",
+    "S#S"
+  ],
+  "tool": {
+    "tag": "ages_api:knives"
+  },
+  "key": {
+    "#": {
+      "item": "minecraft:spruce_planks"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "minecraft:spruce_fence_gate"
+  }
+}

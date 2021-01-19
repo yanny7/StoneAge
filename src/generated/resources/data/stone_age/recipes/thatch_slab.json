@@ -1,0 +1,14 @@
+{
+  "type": "stone_age:tree_stump",
+  "tool": {
+    "tag": "ages_api:axes"
+  },
+  "ingredient": {
+    "item": "stone_age:thatch_block"
+  },
+  "chopTimes": 2,
+  "result": {
+    "item": "stone_age:thatch_slab",
+    "count": 2
+  }
+}

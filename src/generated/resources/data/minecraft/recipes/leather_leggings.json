@@ -1,0 +1,25 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "XXX",
+    "XSX",
+    "XBX"
+  ],
+  "tool": {
+    "tag": "ages_api:knives"
+  },
+  "key": {
+    "B": {
+      "item": "stone_age:fish_bone"
+    },
+    "S": {
+      "item": "stone_age:leather_strip"
+    },
+    "X": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result": {
+    "item": "minecraft:leather_leggings"
+  }
+}

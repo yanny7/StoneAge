@@ -1,0 +1,18 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "#"
+  ],
+  "tool": {
+    "tag": "ages_api:knives"
+  },
+  "key": {
+    "#": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result": {
+    "item": "stone_age:leather_strip",
+    "count": 4
+  }
+}

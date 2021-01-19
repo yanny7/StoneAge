@@ -1,0 +1,10 @@
+{
+  "type": "stone_age:drying_rack",
+  "ingredient": {
+    "item": "minecraft:grass"
+  },
+  "dryingTime": 1200,
+  "result": {
+    "item": "stone_age:dried_grass"
+  }
+}

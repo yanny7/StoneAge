@@ -1,0 +1,24 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "HL",
+    "# "
+  ],
+  "tool": {
+    "tag": "ages_api:knives"
+  },
+  "key": {
+    "H": {
+      "item": "stone_age:stone_pickaxe_head"
+    },
+    "L": {
+      "item": "stone_age:leather_strip"
+    },
+    "#": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "stone_age:stone_pickaxe"
+  }
+}

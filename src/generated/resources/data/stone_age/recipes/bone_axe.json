@@ -1,0 +1,24 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "HL",
+    "# "
+  ],
+  "tool": {
+    "tag": "ages_api:knives"
+  },
+  "key": {
+    "H": {
+      "item": "stone_age:bone_axe_head"
+    },
+    "L": {
+      "item": "stone_age:grass_lead"
+    },
+    "#": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "stone_age:bone_axe"
+  }
+}

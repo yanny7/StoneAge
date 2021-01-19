@@ -1,0 +1,15 @@
+{
+  "type": "stone_age:millstone",
+  "ingredient": {
+    "item": "minecraft:wheat"
+  },
+  "activateCount": 2,
+  "result": {
+    "item": "stone_age:flour",
+    "count": 2
+  },
+  "secondResult": {
+    "item": "stone_age:flour"
+  },
+  "secondChance": 0.1
+}

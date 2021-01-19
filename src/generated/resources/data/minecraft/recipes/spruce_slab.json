@@ -1,0 +1,14 @@
+{
+  "type": "stone_age:tree_stump",
+  "tool": {
+    "tag": "ages_api:axes"
+  },
+  "ingredient": {
+    "item": "minecraft:spruce_planks"
+  },
+  "chopTimes": 2,
+  "result": {
+    "item": "minecraft:spruce_slab",
+    "count": 2
+  }
+}

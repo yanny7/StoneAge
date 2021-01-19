@@ -1,0 +1,15 @@
+{
+  "type": "stone_age:millstone",
+  "ingredient": {
+    "item": "minecraft:sugar_cane"
+  },
+  "activateCount": 2,
+  "result": {
+    "item": "minecraft:sugar",
+    "count": 2
+  },
+  "secondResult": {
+    "item": "minecraft:sugar"
+  },
+  "secondChance": 0.1
+}

@@ -1,0 +1,23 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "###",
+    "#G#",
+    "###"
+  ],
+  "tool": {
+    "tag": "ages_api:knives"
+  },
+  "key": {
+    "G": {
+      "tag": "forge:dyes/green"
+    },
+    "#": {
+      "item": "minecraft:terracotta"
+    }
+  },
+  "result": {
+    "item": "minecraft:green_terracotta",
+    "count": 8
+  }
+}

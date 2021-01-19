@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "F",
+    "#"
+  ],
+  "key": {
+    "F": {
+      "item": "stone_age:fat"
+    },
+    "#": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "stone_age:unlit_torch"
+  }
+}

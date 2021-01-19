@@ -1,0 +1,14 @@
+{
+  "type": "stone_age:tree_stump",
+  "tool": {
+    "tag": "ages_api:hammers"
+  },
+  "ingredient": {
+    "item": "stone_age:mammoth_tusk"
+  },
+  "chopTimes": 3,
+  "result": {
+    "item": "minecraft:bone_meal",
+    "count": 8
+  }
+}

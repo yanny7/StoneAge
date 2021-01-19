@@ -1,0 +1,13 @@
+{
+  "type": "stone_age:tree_stump",
+  "tool": {
+    "tag": "ages_api:hammers"
+  },
+  "ingredient": {
+    "item": "minecraft:bone"
+  },
+  "chopTimes": 1,
+  "result": {
+    "item": "minecraft:bone_meal"
+  }
+}
