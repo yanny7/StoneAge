@@ -26,6 +26,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -126,6 +127,6 @@ public class MouflonEntity extends WildAnimalEntity implements TopEntityInfoProv
 
     @Override
     public void addProbeInfo(@Nonnull ProbeMode mode, @Nonnull IProbeInfo probeInfo, @Nonnull PlayerEntity player, @Nonnull World world, @Nonnull Entity entity, @Nonnull IProbeHitEntityData data) {
-        probeInfo.horizontal().text(ITextComponent.getTextComponentOrEmpty("Generation: " + dataManager.get(GENERATION)));
+        probeInfo.horizontal().text(new StringTextComponent("Generation: " + dataManager.get(GENERATION)));
     }
 }
