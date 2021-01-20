@@ -11,7 +11,7 @@
     },
     {
       "type": "smelting",
-      "recipe": "stone_age:cooked_fat"
+      "recipe": "stone_age:cooked_fat_from_smelting"
     }
   ]
 }

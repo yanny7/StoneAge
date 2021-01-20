@@ -5,33 +5,33 @@
   "pages": [
     {
       "type": "stone_age:flint_workbench_double",
-      "recipe": "stone_age:acacia_fence",
-      "recipe2": "stone_age:acacia_fence_gate"
+      "recipe": "minecraft:acacia_fence",
+      "recipe2": "minecraft:acacia_fence_gate"
     },
     {
       "type": "stone_age:flint_workbench_double",
-      "recipe": "stone_age:birch_fence",
-      "recipe2": "stone_age:birch_fence_gate"
+      "recipe": "minecraft:birch_fence",
+      "recipe2": "minecraft:birch_fence_gate"
     },
     {
       "type": "stone_age:flint_workbench_double",
-      "recipe": "stone_age:dark_oak_fence",
-      "recipe2": "stone_age:dark_oak_fence_gate"
+      "recipe": "minecraft:dark_oak_fence",
+      "recipe2": "minecraft:dark_oak_fence_gate"
     },
     {
       "type": "stone_age:flint_workbench_double",
-      "recipe": "stone_age:jungle_fence",
-      "recipe2": "stone_age:jungle_fence_gate"
+      "recipe": "minecraft:jungle_fence",
+      "recipe2": "minecraft:jungle_fence_gate"
     },
     {
       "type": "stone_age:flint_workbench_double",
-      "recipe": "stone_age:oak_fence",
-      "recipe2": "stone_age:oak_fence_gate"
+      "recipe": "minecraft:oak_fence",
+      "recipe2": "minecraft:oak_fence_gate"
     },
     {
       "type": "stone_age:flint_workbench_double",
-      "recipe": "stone_age:spruce_fence",
-      "recipe2": "stone_age:spruce_fence_gate"
+      "recipe": "minecraft:spruce_fence",
+      "recipe2": "minecraft:spruce_fence_gate"
     }
   ]
 }

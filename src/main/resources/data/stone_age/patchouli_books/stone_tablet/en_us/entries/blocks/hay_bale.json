@@ -11,7 +11,7 @@
     },
     {
       "type": "stone_age:flint_workbench",
-      "recipe": "stone_age:hay_block"
+      "recipe": "minecraft:hay_block"
     }
   ]
 }

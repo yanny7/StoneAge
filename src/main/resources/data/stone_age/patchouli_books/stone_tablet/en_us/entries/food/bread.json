@@ -11,7 +11,7 @@
     },
     {
       "type": "smelting",
-      "recipe": "minecraft:bread"
+      "recipe": "minecraft:bread_from_smelting"
     }
   ]
 }

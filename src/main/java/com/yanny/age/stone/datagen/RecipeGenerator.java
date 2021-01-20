@@ -153,7 +153,7 @@ public class RecipeGenerator extends RecipeProvider {
                 .key('F', FoodSubscriber.fat)
                 .key('#', Items.STICK)
                 .addCriterion("has_recipe", hasItem(Items.STICK))
-                .build(consumer);
+                .build(consumer, new ResourceLocation(Reference.MODID, ItemSubscriber.unlit_torch.getRegistryName().getPath() + "_shaped"));
 
         ShapelessRecipeBuilder.shapelessRecipe(ItemSubscriber.raw_bread)
                 .addIngredient(ItemSubscriber.flour, 3)
@@ -311,6 +311,14 @@ public class RecipeGenerator extends RecipeProvider {
                 .key('X', Items.SUGAR)
                 .tool(com.yanny.ages.api.utils.Tags.Items.KNIVES)
                 .addCriterion("has_recipe", hasItem(ItemSubscriber.flour))
+                .build(consumer);
+        FlintWorkbenchRecipeBuilder.shapedRecipe(ItemSubscriber.unlit_torch)
+                .patternLine("F")
+                .patternLine("X")
+                .key('F', FoodSubscriber.fat)
+                .key('X', Items.STICK)
+                .tool(com.yanny.ages.api.utils.Tags.Items.KNIVES)
+                .addCriterion("has_recipe", hasItem(ItemSubscriber.unlit_torch))
                 .build(consumer);
         FlintWorkbenchRecipeBuilder.shapedRecipe(BlockSubscriber.millstone)
                 .patternLine("#A#")

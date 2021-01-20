@@ -11,7 +11,7 @@
     },
     {
       "type": "smelting",
-      "recipe": "stone_age:cooked_venison"
+      "recipe": "stone_age:cooked_venison_from_smelting"
     }
   ]
 }

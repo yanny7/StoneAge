@@ -9,43 +9,43 @@
     },
     {
       "type": "stone_age:flint_workbench_double",
-      "recipe": "stone_age:black_terracotta",
-      "recipe2": "stone_age:blue_terracotta"
+      "recipe": "minecraft:black_terracotta",
+      "recipe2": "minecraft:blue_terracotta"
     },
     {
       "type": "stone_age:flint_workbench_double",
-      "recipe": "stone_age:brown_terracotta",
-      "recipe2": "stone_age:cyan_terracotta"
+      "recipe": "minecraft:brown_terracotta",
+      "recipe2": "minecraft:cyan_terracotta"
     },
     {
       "type": "stone_age:flint_workbench_double",
-      "recipe": "stone_age:gray_terracotta",
-      "recipe2": "stone_age:green_terracotta"
+      "recipe": "minecraft:gray_terracotta",
+      "recipe2": "minecraft:green_terracotta"
     },
     {
       "type": "stone_age:flint_workbench_double",
-      "recipe": "stone_age:light_blue_terracotta",
-      "recipe2": "stone_age:light_gray_terracotta"
+      "recipe": "minecraft:light_blue_terracotta",
+      "recipe2": "minecraft:light_gray_terracotta"
     },
     {
       "type": "stone_age:flint_workbench_double",
-      "recipe": "stone_age:lime_terracotta",
-      "recipe2": "stone_age:magenta_terracotta"
+      "recipe": "minecraft:lime_terracotta",
+      "recipe2": "minecraft:magenta_terracotta"
     },
     {
       "type": "stone_age:flint_workbench_double",
-      "recipe": "stone_age:orange_terracotta",
-      "recipe2": "stone_age:pink_terracotta"
+      "recipe": "minecraft:orange_terracotta",
+      "recipe2": "minecraft:pink_terracotta"
     },
     {
       "type": "stone_age:flint_workbench_double",
-      "recipe": "stone_age:purple_terracotta",
-      "recipe2": "stone_age:red_terracotta"
+      "recipe": "minecraft:purple_terracotta",
+      "recipe2": "minecraft:red_terracotta"
     },
     {
       "type": "stone_age:flint_workbench_double",
-      "recipe": "stone_age:white_terracotta",
-      "recipe2": "stone_age:yellow_terracotta"
+      "recipe": "minecraft:white_terracotta",
+      "recipe2": "minecraft:yellow_terracotta"
     }
   ]
 }
