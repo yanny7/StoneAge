@@ -5,18 +5,18 @@
   "pages": [
     {
       "type": "stone_age:flint_workbench_double",
-      "recipe": "stone_age:oak_boat",
-      "recipe2": "stone_age:birch_boat"
+      "recipe": "minecraft:oak_boat",
+      "recipe2": "minecraft:birch_boat"
     },
     {
       "type": "stone_age:flint_workbench_double",
-      "recipe": "stone_age:acacia_boat",
-      "recipe2": "stone_age:jungle_boat"
+      "recipe": "minecraft:acacia_boat",
+      "recipe2": "minecraft:jungle_boat"
     },
     {
       "type": "stone_age:flint_workbench_double",
-      "recipe": "stone_age:spruce_boat",
-      "recipe2": "stone_age:dark_oak_boat"
+      "recipe": "minecraft:spruce_boat",
+      "recipe2": "minecraft:dark_oak_boat"
     }
   ]
 }

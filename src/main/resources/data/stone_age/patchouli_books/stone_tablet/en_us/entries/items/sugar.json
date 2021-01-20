@@ -11,7 +11,7 @@
     },
     {
       "type": "stone_age:millstone",
-      "recipe": "stone_age:sugar"
+      "recipe": "minecraft:sugar"
     }
   ]
 }

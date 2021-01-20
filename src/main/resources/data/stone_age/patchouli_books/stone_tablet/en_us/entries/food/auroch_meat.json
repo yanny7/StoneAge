@@ -11,7 +11,7 @@
     },
     {
       "type": "smelting",
-      "recipe": "stone_age:cooked_auroch_meat"
+      "recipe": "stone_age:cooked_auroch_meat_from_smelting"
     }
   ]
 }

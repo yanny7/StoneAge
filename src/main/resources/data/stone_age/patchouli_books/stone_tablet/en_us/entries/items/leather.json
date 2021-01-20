@@ -11,7 +11,7 @@
     },
     {
       "type": "stone_age:tanning_rack",
-      "recipe": "stone_age:leather"
+      "recipe": "minecraft:leather"
     }
   ]
 }

@@ -11,11 +11,11 @@
     },
     {
       "type": "stone_age:flint_workbench",
-      "recipe": "stone_age:raw_bread_flint_workbench"
+      "recipe": "stone_age:raw_bread"
     },
     {
       "type": "crafting",
-      "recipe": "stone_age:raw_bread"
+      "recipe": "stone_age:raw_bread_shapeless"
     }
   ]
 }

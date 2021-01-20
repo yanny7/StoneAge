@@ -11,11 +11,11 @@
     },
     {
       "type": "stone_age:flint_workbench",
-      "recipe": "stone_age:unlit_torch_from_flint_workbench"
+      "recipe": "stone_age:unlit_torch"
     },
     {
       "type": "crafting",
-      "recipe": "stone_age:unlit_torch"
+      "recipe": "stone_age:unlit_torch_shaped"
     }
   ]
 }

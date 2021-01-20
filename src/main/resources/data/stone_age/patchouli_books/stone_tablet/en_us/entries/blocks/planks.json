@@ -5,18 +5,18 @@
   "pages": [
     {
       "type": "stone_age:tree_stump_double",
-      "recipe": "stone_age:oak_planks",
-      "recipe2": "stone_age:acacia_planks"
+      "recipe": "minecraft:oak_planks",
+      "recipe2": "minecraft:acacia_planks"
     },
     {
       "type": "stone_age:tree_stump_double",
-      "recipe": "stone_age:birch_planks",
-      "recipe2": "stone_age:dark_oak_planks"
+      "recipe": "minecraft:birch_planks",
+      "recipe2": "minecraft:dark_oak_planks"
     },
     {
       "type": "stone_age:tree_stump_double",
-      "recipe": "stone_age:jungle_planks",
-      "recipe2": "stone_age:spruce_planks"
+      "recipe": "minecraft:jungle_planks",
+      "recipe2": "minecraft:spruce_planks"
     }
   ]
 }

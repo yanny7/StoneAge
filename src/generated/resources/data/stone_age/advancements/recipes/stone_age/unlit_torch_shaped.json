@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "stone_age:unlit_torch"
+      "stone_age:unlit_torch_shaped"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "stone_age:unlit_torch"
+            "item": "minecraft:stick"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "stone_age:unlit_torch"
+        "recipe": "stone_age:unlit_torch_shaped"
       }
     }
   },
