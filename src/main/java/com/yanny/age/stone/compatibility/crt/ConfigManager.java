@@ -2,7 +2,6 @@ package com.yanny.age.stone.compatibility.crt;
 
 import com.blamejared.crafttweaker.api.annotations.ZenRegister;
 import com.blamejared.crafttweaker.api.exceptions.ScriptException;
-import com.blamejared.crafttweaker.impl.blocks.MCBlock;
 import com.yanny.age.stone.config.Config;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
@@ -16,11 +15,6 @@ import java.util.Set;
 @ZenRegister
 @ZenCodeType.Name("mods.stone_age.ConfigManager")
 public class ConfigManager {
-
-    @ZenCodeType.Method
-    public static MCBlock[] getDisabledBlocksInStoneAge() {
-        return Config.disabledUseInStoneAgeList.stream().map(MCBlock::new).toArray(MCBlock[]::new);
-    }
 
     @ZenCodeType.Method
     public static void addDisabledBlockInStoneAge(String ...resource) {
