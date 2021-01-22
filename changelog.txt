@@ -1,3 +1,16 @@
+v1.3.0
+  Fixed patchouli book
+  Code cleanup
+  Merge fix
+  Added generated files to git
+  Fixed tool compatibility problem, closes #51
+  LootTable data generator 
+  Generated recipes and advancements 
+  CraftTweaker: Fixed crash when recipe is removed, Closes #49 
+  CraftTweaker: Fixed issue with custom recipes that use damageable items, Closes #39 
+  CraftTweaker: Configurable disabled blocks  
+  Debug: Runtime CraftTweaker 
+  Fixed flint workbench recipes layout in manual, Closes #46 
 v1.2.5
   Fixed flint spear attribute registration
   Fixed spawning and bounding box of mobs
