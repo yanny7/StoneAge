@@ -20,12 +20,6 @@ import java.util.stream.Collectors;
 
 @JeiPlugin
 public class JeiCompatPlugin implements IModPlugin {
-    private static final RecipeManager recipeManager;
-
-    static {
-        assert Minecraft.getInstance().world != null;
-        recipeManager = Minecraft.getInstance().world.getRecipeManager();
-    }
 
     @Nonnull
     @Override
@@ -46,6 +40,8 @@ public class JeiCompatPlugin implements IModPlugin {
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
+        assert Minecraft.getInstance().world != null;
+        RecipeManager recipeManager = Minecraft.getInstance().world.getRecipeManager();
         List<IRecipe<?>> dryingRackRecipes = recipeManager.getRecipes().stream().filter(recipe -> recipe instanceof DryingRackRecipe).collect(Collectors.toList());
         List<IRecipe<?>> tanningRackRecipes = recipeManager.getRecipes().stream().filter(recipe -> recipe instanceof TanningRackRecipe).collect(Collectors.toList());
         List<IRecipe<?>> flintWorkbenchRecipes = recipeManager.getRecipes().stream().filter(recipe -> recipe instanceof FlintWorkbenchRecipe).collect(Collectors.toList());
