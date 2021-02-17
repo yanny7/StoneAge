@@ -181,11 +181,9 @@ public class ForgeEventSubscriber {
         if (event.getHand() == Hand.MAIN_HAND && player.getHeldItemMainhand().getItem().equals(ItemSubscriber.unlit_torch)) {
             World world = event.getWorld();
             BlockPos pos = event.getPos();
-            BlockPos facePos = event.getPos().offset(event.getFace());
             BlockState blockState = world.getBlockState(pos);
-            BlockState faceBlockState = world.getBlockState(facePos);
 
-            if (blockState.getBlock().equals(CAMPFIRE) || faceBlockState.getBlock().equals(FIRE) || blockState.getBlock().equals(TORCH)) {
+            if (blockState.getBlock().equals(CAMPFIRE) || blockState.getBlock().equals(FIRE) || blockState.getBlock().equals(TORCH)) {
                 player.setHeldItem(Hand.MAIN_HAND, new ItemStack(Items.TORCH, player.getHeldItemMainhand().getCount()));
                 event.setUseItem(Event.Result.DENY);
             }
