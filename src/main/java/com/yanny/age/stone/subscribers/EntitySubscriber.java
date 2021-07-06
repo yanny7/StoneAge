@@ -34,7 +34,7 @@ public class EntitySubscriber {
     public static final EntityType<MouflonEntity> mouflon = (EntityType<MouflonEntity>) EntityType.Builder.create(MouflonEntity::new, CREATURE)
             .size(0.9f, 1.5f).trackingRange(10).build("").setRegistryName(Reference.MODID,"mouflon");
     public static final EntityType<FlintSpearEntity> flint_spear = (EntityType<FlintSpearEntity>) EntityType.Builder.<FlintSpearEntity>create(FlintSpearEntity::new, MISC)
-            .size(0.5f, 0.5f).trackingRange(4).func_233608_b_(20).build("").setRegistryName(Reference.MODID,"flint_spear");
+            .size(0.5f, 0.5f).trackingRange(4).updateInterval(20).build("").setRegistryName(Reference.MODID,"flint_spear");
     public static final EntityType<MammothEntity> mammoth = (EntityType<MammothEntity>) EntityType.Builder.create(MammothEntity::new, CREATURE)
             .size(1.9f, 2.0f).trackingRange(10).build("").setRegistryName(Reference.MODID,"mammoth");
     public static final EntityType<SaberToothTigerEntity> saber_tooth_tiger = (EntityType<SaberToothTigerEntity>) EntityType.Builder.create(SaberToothTigerEntity::new, CREATURE)
@@ -71,17 +71,6 @@ public class EntitySubscriber {
         registry.register(woolly_rhino);
         registry.register(terror_bird);
         registry.register(coelacanth);
-
-        DeerEntity.registerCustomAttributes();
-        BoarEntity.registerCustomAttributes();
-        AurochEntity.registerCustomAttributes();
-        FowlEntity.registerCustomAttributes();
-        MouflonEntity.registerCustomAttributes();
-        MammothEntity.registerCustomAttributes();
-        SaberToothTigerEntity.registerCustomAttributes();
-        WoollyRhinoEntity.registerCustomAttributes();
-        TerrorBirdEntity.registerCustomAttributes();
-        CoelacanthEntity.registerCustomAttributes();
 
         EntitySpawnPlacementRegistry.register(deer, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
         EntitySpawnPlacementRegistry.register(boar, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);

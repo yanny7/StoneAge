@@ -30,7 +30,7 @@ public class DeerEntity extends AnimalEntity {
 
     @Nullable
     @Override
-    public AgeableEntity func_241840_a(@Nonnull ServerWorld serverWorld, @Nonnull AgeableEntity ageable) {
+    public AgeableEntity createChild(@Nonnull ServerWorld serverWorld, @Nonnull AgeableEntity ageable) {
         return EntitySubscriber.deer.create(serverWorld);
     }
 
@@ -51,12 +51,8 @@ public class DeerEntity extends AnimalEntity {
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
     }
 
-    private static AttributeModifierMap.MutableAttribute getAttributes() {
-        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 12.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2F);
-    }
-
-    public static void registerCustomAttributes() {
-        GlobalEntityTypeAttributes.put(EntitySubscriber.deer, getAttributes().create());
+    public static AttributeModifierMap getAttributes() {
+        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 12.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2F).create();
     }
 
     @Override

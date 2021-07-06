@@ -60,7 +60,7 @@ public class FlintSpearEntity extends AbstractArrowEntity {
             this.dealtDamage = true;
         }
 
-        Entity entity = this.func_234616_v_();
+        Entity entity = this.getShooter();
 
         if ((this.dealtDamage || this.getNoClip()) && entity != null) {
             int i = this.dataManager.get(LOYALTY_LEVEL);
@@ -117,7 +117,7 @@ public class FlintSpearEntity extends AbstractArrowEntity {
             f += EnchantmentHelper.getModifierForCreature(this.thrownStack, livingentity.getCreatureAttribute());
         }
 
-        Entity entity1 = this.func_234616_v_();
+        Entity entity1 = this.getShooter();
         DamageSource damagesource = DamageSource.causeTridentDamage(this, entity1 == null ? this : entity1);
         this.dealtDamage = true;
         SoundEvent soundevent = SoundEvents.ITEM_TRIDENT_HIT;
@@ -164,7 +164,7 @@ public class FlintSpearEntity extends AbstractArrowEntity {
 
     @Override
     public void onCollideWithPlayer(@Nonnull PlayerEntity entityIn) {
-        Entity entity = this.func_234616_v_();
+        Entity entity = this.getShooter();
 
         if (entity == null || entity.getUniqueID() == entityIn.getUniqueID()) {
             super.onCollideWithPlayer(entityIn);
@@ -216,7 +216,7 @@ public class FlintSpearEntity extends AbstractArrowEntity {
     }
 
     private boolean shouldReturnToThrower() {
-        Entity entity = this.func_234616_v_();
+        Entity entity = this.getShooter();
         if (entity != null && entity.isAlive()) {
             return !(entity instanceof ServerPlayerEntity) || !entity.isSpectator();
         } else {

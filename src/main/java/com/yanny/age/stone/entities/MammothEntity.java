@@ -6,7 +6,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -31,7 +30,7 @@ public class MammothEntity extends WildAnimalEntity {
 
     @Nullable
     @Override
-    public AgeableEntity func_241840_a(@Nonnull ServerWorld serverWorld, @Nonnull AgeableEntity ageable) {
+    public AgeableEntity createChild(@Nonnull ServerWorld serverWorld, @Nonnull AgeableEntity ageable) {
         return EntitySubscriber.mammoth.create(world);
     }
 
@@ -49,12 +48,8 @@ public class MammothEntity extends WildAnimalEntity {
         this.targetSelector.addGoal(2, new TargetAggressorGoal<>(this, MammothEntity.class));
     }
 
-    private static AttributeModifierMap.MutableAttribute getAttributes() {
-        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 40.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3F);
-    }
-
-    public static void registerCustomAttributes() {
-        GlobalEntityTypeAttributes.put(EntitySubscriber.mammoth, getAttributes().create());
+    public static AttributeModifierMap getAttributes() {
+        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 40.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3F).create();
     }
 
     @Override

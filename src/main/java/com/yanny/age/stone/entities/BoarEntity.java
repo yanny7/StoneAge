@@ -14,7 +14,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -41,7 +40,7 @@ public class BoarEntity extends WildAnimalEntity implements TopEntityInfoProvide
 
     @Nullable
     @Override
-    public AgeableEntity func_241840_a(@Nonnull ServerWorld serverWorld, @Nonnull AgeableEntity ageable) {
+    public AgeableEntity createChild(@Nonnull ServerWorld serverWorld, @Nonnull AgeableEntity ageable) {
         if (Math.min(dataManager.get(GENERATION), ageable.getDataManager().get(GENERATION)) >= Config.domesticateAfterGenerations) {
             EntityType<?> child = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(Config.boarBreedingResult));
 
@@ -84,12 +83,8 @@ public class BoarEntity extends WildAnimalEntity implements TopEntityInfoProvide
         this.targetSelector.addGoal(2, new TargetAggressorGoal<>(this, BoarEntity.class));
     }
 
-    private static AttributeModifierMap.MutableAttribute getAttributes() {
-        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 15.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3F);
-    }
-
-    public static void registerCustomAttributes() {
-        GlobalEntityTypeAttributes.put(EntitySubscriber.boar, getAttributes().create());
+    public static AttributeModifierMap getAttributes() {
+        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 15.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3F).create();
     }
 
     @Override

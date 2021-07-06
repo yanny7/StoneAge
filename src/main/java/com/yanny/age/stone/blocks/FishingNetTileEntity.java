@@ -151,7 +151,7 @@ public class FishingNetTileEntity extends TileEntity implements IInventoryInterf
         assert world != null;
         LootTable lootTable = ((ServerWorld) world).getServer().getLootTableManager().getLootTableFromLocation(LootTables.GAMEPLAY_FISHING);
         LootContext lootContext = new LootContext.Builder((ServerWorld) world)
-                .withParameter(LootParameters.field_237457_g_, Vector3d.copyCenteredHorizontally(getPos()))
+                .withParameter(LootParameters.ORIGIN, Vector3d.copyCenteredHorizontally(getPos()))
                 .withParameter(LootParameters.TOOL, stacks.get(0))
                 .build(LootParameterSets.FISHING);
 

@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Objects;
 
 class AgroTargetGoal extends TargetGoal {
-    private static final EntityPredicate predicate = (new EntityPredicate()).setLineOfSiteRequired().setUseInvisibilityCheck();
+    private static final EntityPredicate predicate = (new EntityPredicate()).setIgnoresLineOfSight().setUseInvisibilityCheck();
     private int revengeTimerOld;
     private final Class<? extends IBecomeAngry> reinforcement;
     private final Class<?>[] excludedReinforcementTypes;

@@ -5,9 +5,11 @@ import com.yanny.age.stone.compatibility.top.TopCompatibility;
 import com.yanny.age.stone.config.ConfigHelper;
 import com.yanny.age.stone.config.ConfigHolder;
 import com.yanny.age.stone.datagen.*;
+import com.yanny.age.stone.entities.*;
 import com.yanny.ages.api.Reference;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -75,5 +77,19 @@ public class ModEventSubscriber {
         if (event.includeClient()) {
             event.getGenerator().addProvider(new LootTableGenerator(event.getGenerator()));
         }
+    }
+
+    @SubscribeEvent
+    public static void entityAttributeCreatingEvent(@Nonnull EntityAttributeCreationEvent event) {
+        event.put(EntitySubscriber.deer, DeerEntity.getAttributes());
+        event.put(EntitySubscriber.boar, BoarEntity.getAttributes());
+        event.put(EntitySubscriber.auroch, AurochEntity.getAttributes());
+        event.put(EntitySubscriber.fowl, FowlEntity.getAttributes());
+        event.put(EntitySubscriber.mouflon, MouflonEntity.getAttributes());
+        event.put(EntitySubscriber.mammoth, MammothEntity.getAttributes());
+        event.put(EntitySubscriber.saber_tooth_tiger, SaberToothTigerEntity.getAttributes());
+        event.put(EntitySubscriber.woolly_rhino, WoollyRhinoEntity.getAttributes());
+        event.put(EntitySubscriber.terror_bird, TerrorBirdEntity.getAttributes());
+        event.put(EntitySubscriber.coelacanth, CoelacanthEntity.getAttributes());
     }
 }
