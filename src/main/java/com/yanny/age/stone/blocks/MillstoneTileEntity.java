@@ -75,7 +75,7 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
             if (ticks % 20 == 0) {
                 active = false;
 
-                if (!world.isRemote && (ticks == activateTicks)) {
+                if (ticks == activateTicks) {
                     if (stacks.get(1).isEmpty()) {
                         stacks.set(1, result);
                     } else {
@@ -90,9 +90,13 @@ public class MillstoneTileEntity extends TileEntity implements IInventoryInterfa
                         }
                     }
 
-                    ticks = 0;
                     result = ItemStack.EMPTY;
-                    world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
+                    secondResult = ItemStack.EMPTY;
+                    ticks = 0;
+
+                    if (!world.isRemote) {
+                        world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
+                    }
                 }
             }
         }
